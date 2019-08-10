@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- [정적 리소스 파일 보안 설정 하지 않음]-->
+	<sec:http pattern="/include/**" security="none" />
+	
+	<!-- 시큐리티 적용할때 web.xml에 시큐리티 주석 제거 하고 사용 -->
+	
+</beans>
