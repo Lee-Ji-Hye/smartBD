@@ -89,7 +89,7 @@
           <div class="text-center px-lg-3">
             <span class="btn btn-icon btn-lg btn-soft-success rounded-circle mb-5">
               <!-- <span class="fab fa-whmcs fa-2x btn-icon__inner btn-icon__inner-bottom-minus"></span> -->
-              <img src="${resourceImg}/icon/restaurant_icon.png"/>
+              <%-- <img src="${resourceImg}/icon/restaurant_icon.png"/> --%>
             </span>
             <h3 class="h5">식당 예약</h3>
             <p class="mb-md-0">선주문 결제 시스템</p>
