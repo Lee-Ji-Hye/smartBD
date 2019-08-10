@@ -86,10 +86,10 @@
           <path class="fill-primary" opacity=".7" d="M18,46L18,46C8,46,0,38,0,28v0c0-9.9,8-18,18-18h11.3c3.7,0,6.6,3,6.6,6.6V28C35.9,38,27.9,46,18,46z"></path>
           <path class="fill-white" d="M17.4,34V18.3h10.2v2.9h-6.4v3.4h4.8v2.9h-4.8V34H17.4z"></path>
         </svg>
-        <span class="brand brand-primary">Front</span>
+        <span class="brand brand-primary">Smart</span>
       </a>
       <!-- End Logo -->
-      <p class="small text-muted">짤 Front. 2019 Htmlstream. All rights reserved.</p>
+      <p class="small text-muted">Smart. 2019 Htmlstream. All rights reserved.</p>
     </div>
     <!-- End Copyright -->
   </footer>

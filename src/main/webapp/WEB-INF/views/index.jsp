@@ -11,7 +11,7 @@
         <!-- Content -->
         <div class="row w-100">
           <div class="col-lg-5">
-            <h1 class="display-4 font-size-md-down-5 mb-3">Introducing Front</h1>
+            <h1 class="display-4 font-size-md-down-5 mb-3">Introducing Smart</h1>
             <p>
               Your company will look
               <span class="text-primary">
@@ -54,11 +54,11 @@
     <!-- End Hero Section -->
 
     <!-- Icon Blocks Section -->
-    <div class="container space-top-3 space-bottom-md-3 space-bottom-2">
+    <div class="container space-top-3 space-bottom-md-3 space-bottom-2" style="padding-top:0rem !important;">
       <!-- Title -->
       <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
         <span class="btn btn-xs btn-soft-success btn-pill mb-2">What we do?</span>
-        <h2>Front makes designing easy and performance fast</h2>
+        <h2>Smart makes designing easy and performance fast</h2>
       </div>
       <!-- End Title -->
 
@@ -68,8 +68,9 @@
             <span class="btn btn-icon btn-lg btn-soft-danger rounded-circle mb-5">
               <span class="fab fa-yelp fa-2x btn-icon__inner btn-icon__inner-bottom-minus"></span>
             </span>
-            <h3 class="h5">Professional Design</h3>
-            <p class="mb-md-0">Achieve virtually any design and layout from within the one template.</p>
+            <h3 class="h5">주차 관리 시스템</h3>
+            <p class="mb-md-0">입출차 자동관리</p>
+            <p class="mb-md-0">주차권 결제</p>
           </div>
         </div>
 
@@ -78,18 +79,21 @@
             <span class="btn btn-icon btn-lg btn-soft-primary rounded-circle mb-5">
               <span class="fas fa-fire fa-2x btn-icon__inner btn-icon__inner-bottom-minus"></span>
             </span>
-            <h3 class="h5">Front Strategy</h3>
-            <p class="mb-md-0">We strive to figure out ways to help your business grow through all platforms.</p>
+            <h3 class="h5">상가 임대 & 회의실 예약</h3>
+            <p class="mb-md-0">중개인을 거치지 않는 스마트컨트랙트</p>
+            <p class="mb-md-0">사무실 & 상가 신속 계약</p>
           </div>
         </div>
 
         <div class="col-md-4 mb-7">
           <div class="text-center px-lg-3">
             <span class="btn btn-icon btn-lg btn-soft-success rounded-circle mb-5">
-              <span class="fab fa-whmcs fa-2x btn-icon__inner btn-icon__inner-bottom-minus"></span>
+              <!-- <span class="fab fa-whmcs fa-2x btn-icon__inner btn-icon__inner-bottom-minus"></span> -->
+              <img src="${resourceImg}/icon/restaurant_icon.png"/>
             </span>
-            <h3 class="h5">Unlimited Power</h3>
-            <p class="mb-md-0">Find what you need in one template and combine features at will.</p>
+            <h3 class="h5">식당 예약</h3>
+            <p class="mb-md-0">선주문 결제 시스템</p>
+            <p class="mb-md-0">자동 쿠폰발송 기능</p>
           </div>
         </div>
       </div>
@@ -97,7 +101,9 @@
       <!-- Title -->
       <div class="w-md-60 w-lg-50 text-center mx-auto mb-7">
         <h4 class="h5">
-          It is fast and easy. <span class="font-weight-normal">Create your first and ongoing website with Front.</span>
+          	건물을 이용하는 고객과 관리자가 모두 만족할 
+          	<span class="font-weight-normal">신개념 빌딩 시스템</span>
+          	식당관리, 주차관리, 빌딩관리 모두를 한번에 ~? 문구 생각
         </h4>
       </div>
       <!-- End Title -->

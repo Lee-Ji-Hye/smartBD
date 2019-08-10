@@ -57,51 +57,6 @@ public class Paging extends Page {
 	
 	//페이징 html
 	public String html_mk_page() {
-		String html_page = "";
-		String url = "";
-		html_page = "<table style='width:100%;margin-left:0px;padding-top:10px;' align='center'>"+
-						"<tr>"+
-							"<th>";
-		    
-			//게시글 있으면
-			if(cnt > 0) {
-				// 처음[◀◀] / 이전블록 [◀]
-				if(startPage > pageBlock) {
-					url = this.link + "&page="+(startPage - pageBlock);
-					html_page += "<a href='"+this.link+"'>[◀◀]</a>" + 
-								 "<a href='"+url+"'>[◀]</a>";
-				}
-			}
-	        
-			//블록내의 페이지 번호
-			for(int i=startPage; i <= endPage; i++ ) {
-				
-				if(i == currentPage) {
-					html_page += " <span style='font-size:15px;color:#ff3c00;'><b>["+i+"]</b></span>";
-				}
-				
-				if(i != currentPage) {
-					url = this.link + "&page="+i;
-					html_page += "<span style='font-size:15px;color:black;font-weight:500;'><a href='"+url+"'> ["+i+"]</a></span>";
-				}
-			}
-	         
-	        //다음블록 [▶] / 끝 [▶▶] 
-	        if(pageCnt > endPage) {
-	        	html_page += "<a href=\'"+this.link+"&page="+(startPage +  pageBlock)+"'>[▶]</a>";
-	        	html_page += "<a href=\'"+this.link+"&page="+pageCnt+"\'>[▶▶]</a>";
-	        	
-	        }
-            
-        html_page +=    "</th>"+ 
-        			  "</tr>"+ 
-        			" </table>";
-	
-		return html_page;
-	}
-	
-	
-	public String mkTest() {
 		String url = "";
 		String html_page = 
 				"<div class='d-flex align-items-center' style='margin-left:40%'>"+
@@ -168,4 +123,5 @@ public class Paging extends Page {
 			
 			return html_page;
 	}
+	
 }

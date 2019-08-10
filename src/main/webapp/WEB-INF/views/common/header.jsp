@@ -73,19 +73,19 @@
                       Search Results List
                     </a>
                     <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <span class="fas fa-angle-right list-group-icon"></span>
+                      <img src="${resourceImg}/icon/moreicon2.PNG">
                       Search Results Grid
                     </a>
                     <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <span class="fas fa-angle-right list-group-icon"></span>
+                      <img src="${resourceImg}/icon/moreicon2.PNG">
                       About
                     </a>
                     <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <span class="fas fa-angle-right list-group-icon"></span>
+                      <img src="${resourceImg}/icon/moreicon2.PNG">
                       Services
                     </a>
                     <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <span class="fas fa-angle-right list-group-icon"></span>
+                      <img src="${resourceImg}/icon/moreicon2.PNG">
                       Invoice
                     </a>
                   </div>
@@ -96,19 +96,19 @@
                 <div class="col-6">
                   <div class="list-group list-group-transparent list-group-flush list-group-borderless">
                     <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <span class="fas fa-angle-right list-group-icon"></span>
+                      <img src="${resourceImg}/icon/moreicon2.PNG">
                       Profile
                     </a>
                     <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <span class="fas fa-angle-right list-group-icon"></span>
+                      <img src="${resourceImg}/icon/moreicon2.PNG">
                       User Contacts
                     </a>
                     <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <span class="fas fa-angle-right list-group-icon"></span>
+                      <img src="${resourceImg}/icon/moreicon2.PNG">
                       Reviews
                     </a>
                     <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <span class="fas fa-angle-right list-group-icon"></span>
+                      <img src="${resourceImg}/icon/moreicon2.PNG">
                       Settings
                     </a>
                   </div>

@@ -62,23 +62,19 @@
 		 - 로그인 폼을 보여주거나, 접근 권한이 없는 경우 403 Forbidden(권한 없음) 에러 코드를 내보낸다.
 		 - DelegatingFilterProxy -> FilterChainProxy 호출 -> SecurityFilterChain 호출 -> 실제 자원 접근(호출)
 	 -->
-	<!-- <filter>
+	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
+	</filter-mapping>
 	<!-- 시큐리티 추가 종료 -->
-	
-	
-	
 	
 	<!-- 에러처리 페이지 -->
 	<error-page>
 		<error-code>404</error-code>
 		<location>/error?code=404</location>
 	</error-page>
-
 </web-app>
