@@ -4,54 +4,22 @@
 <%@ include file="../../common/header.jsp" %>
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
 <body>
+
 <div class="bg-light">
-      <div class="container space-2">
+	<div class="col-sm-6 col-lg-4 order-sm-1 container space-2">
+         <h2 class="h1 text-primary font-weight-semi-bold">매장이름</h2>
+         <small class="d-block text-muted">tel: 매장 전화번호</small>
+      </div>
+      <div class="col-sm-6 col-lg-4 order-sm-4 container space-2">
         <form id="changePasswordForm" class="js-validate" novalidate="novalidate">
-          <!-- Input -->
-          <div class="js-form-message mb-4">
-            <label class="form-label">
-              	매장명
-            </label>
-
-            <div class="form-group">
-              <input type="text" class="form-control" name="currentPassword" placeholder="매장명 가져오고" >
-            </div>
-          </div>
-          <!-- End Input -->
-
-          <!-- Input -->
-          <div class="mb-4">
-            <div class="js-form-message">
-              <label class="form-label">
-                	쿠폰명
-              </label>
-
-              <div class="form-group">
-                <input id="newPassword" type="text" class="form-control" name="newPassword" placeholder="쿠폰명 입력하세요.">
-              </div>
-            </div>
-          </div>
-          <!-- End Input -->
-
-          <!-- Input -->
-          <div class="js-form-message mb-4">
-            <label class="form-label">
-             	쿠폰가격
-            </label>
-
-            <div class="form-group">
-              <input type="text" class="form-control" name="confirmNewPassword" placeholder="가격을 입력하세요.">
-            </div>
-          </div>
-          <!-- End Input -->
           <div class="js-form-message mb-4">
           <label class="form-label">
-            	사용기한
+            	휴무 시작
           </label>
 
           <div class="row">
             <!-- Input -->
-            <div class="col-md-2 mb-3 mb-sm-4">
+            <div class="col-md-4 mb-4 mb-sm-4">
               <div class="js-form-message">
                 <div class="form-group">
                   <select class="form-control custom-select" required
@@ -78,7 +46,7 @@
             <!-- End Input -->
 
             <!-- Input -->
-            <div class="col-sm-3 col-md-2 mb-3 mb-sm-4">
+            <div class="col-sm-4 col-md-4 mb-3 mb-sm-4">
               <div class="js-form-message">
                 <div class="form-group">
                   <select class="form-control custom-select" required
@@ -124,7 +92,7 @@
             <!-- End Input -->
 
             <!-- Input -->
-            <div class="col-sm-3 col-md-2 mb-3 mb-sm-4">
+            <div class="col-sm-4 col-md-4 mb-3 mb-sm-4">
               <div class="js-form-message">
                 <div class="form-group">
                   <select class="form-control custom-select" required
@@ -145,11 +113,11 @@
             
             <div class="js-form-message mb-4">
             <label class="form-label">
-            	만료기한
+            	휴무 종료
           	</label>
           	<div class="row">
             <!-- Input -->
-            <div class="col-md-2 mb-3 mb-sm-4">
+            <div class="col-md-4 mb-4 mb-sm-4">
               <div class="js-form-message">
                 <div class="form-group">
                   <select class="form-control custom-select" required
@@ -176,7 +144,7 @@
             <!-- End Input -->
 
             <!-- Input -->
-            <div class="col-sm-4 col-md-2 mb-3 mb-sm-4">
+            <div class="col-sm-4 col-md-4 mb-3 mb-sm-4">
               <div class="js-form-message">
                 <div class="form-group">
                   <select class="form-control custom-select" required
@@ -222,7 +190,7 @@
             <!-- End Input -->
 
              <!-- Input -->
-            <div class="col-sm-4 col-md-2 mb-3 mb-sm-4">
+            <div class="col-md-4 mb-4 mb-sm-4">
               <div class="js-form-message">
                 <div class="form-group">
                   <select class="form-control custom-select" required
@@ -250,6 +218,8 @@
         </form>
       </div>
     </div>
- <%@ include file="../../common/footer.jsp" %>
+<!-- footer start -->
+<%@ include file="../../common/footer.jsp" %>
+<!-- footer end -->
 </body>
 </html>
