@@ -94,7 +94,9 @@
     <!-- End Copyright -->
   </footer>
   <!-- ========== END FOOTER ========== -->
-	<c:if test="${userid == null}">
+   
+<sec:authorize access="isAnonymous()">
+	<%-- <c:if test="${userid == null}"> --%>
 		<aside id="sidebarContent" class="u-sidebar u-unfold--css-animation fadeInRight" aria-labelledby="sidebarNavToggler" style="animation-duration: 500ms;">
 		    <div class="u-sidebar__scroller">
 		      <div class="u-sidebar__container">
@@ -110,7 +112,7 @@
 		          <!-- Content -->
 		          <div class="js-scrollbar u-sidebar__body mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="position: relative; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
 		            <div class="u-sidebar__content u-header-sidebar__content">
-		              <form class="js-validate" novalidate="novalidate">
+		              <form class="js-validate" novalidate="novalidate" action="/smart/login" method="post">
 		                <!-- Login -->
 		                <div id="login" data-target-group="idForm">
 		                  <!-- Title -->
@@ -130,7 +132,7 @@
 		                            <span class="fas fa-user"></span>
 		                          </span>
 		                        </div>
-		                        <input type="email" class="form-control" name="email" id="signinEmail" placeholder="Email" aria-label="Email" aria-describedby="signinEmailLabel" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+		                        <input type="text" class="form-control" name="username" id="signinEmail" placeholder="Email" aria-label="Email" aria-describedby="signinEmailLabel" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
 		                      </div>
 		                    </div>
 		                  </div>
@@ -146,7 +148,8 @@
 		                            <span class="fas fa-lock"></span>
 		                          </span>
 		                        </div>
-		                        <input type="password" class="form-control" name="password" id="signinPassword" placeholder="Password" aria-label="Password" aria-describedby="signinPasswordLabel" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
+		                        <input type="password" class="form-control" name="password" id="signinPassword" placeholder="Password" aria-label="Password" aria-describedby="signinPasswordLabel" required="required" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
+		                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                      </div>
 		                    </div>
 		                  </div>
@@ -325,10 +328,13 @@
 		      </div>
 		    </div>
 		  </aside>
-	</c:if>
+		  
+<%-- 	</c:if> --%>
+</sec:authorize>
   <!-- ========== SECONDARY CONTENTS ========== -->
   <!-- Account Sidebar Navigation -->
-  <c:if test="${userid != null}">
+  <sec:authorize access="isAuthenticated()">
+  <%-- <c:if test="${userid != null}"> --%>
 	  <aside id="sidebarContent" class="u-sidebar u-unfold--css-animation u-unfold--hidden fadeOutRight" aria-labelledby="sidebarNavToggler" style="animation-duration: 500ms;">
 	    <div class="u-sidebar__scroller">
 	      <div class="u-sidebar__container">
@@ -366,7 +372,7 @@
 	                  <a class="dropdown-item" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">Settings</a>
 	                  <a class="dropdown-item" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">History</a>
 	                  <div class="dropdown-divider"></div>
-	                  <a class="dropdown-item" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">Sign Out</a>
+	                  <a class="dropdown-item" href="/smart/logout">Sign Out</a>
 	                </div>
 	              </div>
 	              <!-- End Settings -->
@@ -487,7 +493,8 @@
 	    </div>
 	  </aside>
   
-  </c:if>
+  <%-- </c:if> --%>
+  </sec:authorize>
   <!-- End Account Sidebar Navigation -->
 
   <!-- Request Payment Modal Window -->

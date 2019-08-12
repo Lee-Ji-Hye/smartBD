@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<sec:authorize access="isAnonymous()">로그인안됨</sec:authorize>
 <body>Authorities
 principal : <sec:authentication property="principal"/>
 <br><hr><br>
