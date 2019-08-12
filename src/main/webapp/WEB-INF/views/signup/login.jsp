@@ -15,6 +15,7 @@
             <form class="js-validate mt-5" name="login" action="/smart/loginpro" method="post">
             <input type="hidden" name="urlinfo" value="">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            <input type="hidden" name="url" value="${url}">
               <!-- Title -->
               <div class="mb-7">
                 <h2 class="h3 text-primary font-weight-normal mb-0">Welcome <span class="font-weight-semi-bold">back</span></h2>

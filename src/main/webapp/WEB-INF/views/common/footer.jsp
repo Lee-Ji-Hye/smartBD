@@ -98,8 +98,6 @@
    
   <!-- ========== SECONDARY CONTENTS ========== -->
   <!-- Account Sidebar Navigation -->
-  <sec:authorize access="isAuthenticated()">
-  <%-- <c:if test="${userid != null}"> --%>
 	  <aside id="sidebarContent" class="u-sidebar u-unfold--css-animation u-unfold--hidden fadeOutRight" aria-labelledby="sidebarNavToggler" style="animation-duration: 500ms;">
 	    <div class="u-sidebar__scroller">
 	      <div class="u-sidebar__container">
@@ -258,8 +256,6 @@
 	    </div>
 	  </aside>
   
-  <%-- </c:if> --%>
-  </sec:authorize>
   <!-- End Account Sidebar Navigation -->
 
   <!-- Request Payment Modal Window -->
@@ -1206,11 +1202,21 @@
 
       
       // initialization of unfold component
+  <sec:authorize access="isAuthenticated()">
 	  $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
         afterOpen: function () {
           $(this).find('input[type="search"]').focus();
         }
       });
+  </sec:authorize>
+
+  <sec:authorize access="isAnonymous()">
+	  $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
+        afterOpen: function () {
+          $(this).onclick = window.location = '/smart/login';
+        }
+      });
+  </sec:authorize>
 
       // initialization of malihu scrollbar
       $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
