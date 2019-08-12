@@ -40,6 +40,11 @@ public class MainController {
 		//로그아웃 후 메인으로 이동
 		return "redirect:/";
 	}
+	//회원가입
+	@RequestMapping("signUp")
+	public String signUp(HttpServletRequest req, HttpServletResponse res) {
+		return "signup/signup";
+	}
 	
 	//@RequestMapping(value="mypage", method=RequestMethod.POST) //통신 사용시 이걸로 사용.
 	@RequestMapping("mypage")
