@@ -15,6 +15,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler{
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
+		System.out.println("이전페이지 URL : '"+request.getHeader("referer")+"'");
 		request.getRequestDispatcher("/WEB-INF/views/test.jsp").forward(request, response);
 	}
 

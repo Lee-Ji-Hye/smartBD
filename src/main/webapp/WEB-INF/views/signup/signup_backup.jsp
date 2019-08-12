@@ -37,7 +37,7 @@
             <span class="text-danger">*</span>
           </label>
 
-          <input type="text" class="form-control" name="userid" placeholder="minkyung" aria-label="minkyung" required
+          <input type="text" class="form-control" name="userid" placeholder="Kim MinKyung" aria-label="Kim MinKyung" required
                  data-msg="Please enter your account ID."
                  data-error-class="u-has-error"
                  data-success-class="u-has-success">
@@ -82,7 +82,7 @@
             <span class="text-danger">*</span>
           </label>
 
-          <input type="text" class="form-control" name="username" placeholder="Kim MinKyung" aria-label="Kim MinKyung" required
+          <input type="text" class="form-control" name="username" placeholder="Jack Wayley" aria-label="Jack Wayley" required
                  data-msg="Please enter your name."
                  data-error-class="u-has-error"
                  data-success-class="u-has-success">
@@ -96,7 +96,7 @@
             <span class="text-danger">*</span>
           </label>
 
-          <input type="email" class="form-control" name="email" placeholder="minkyung@gmail.com" aria-label="minkyung@gmail.com" required
+          <input type="email" class="form-control" name="email" placeholder="jackwayley@gmail.com" aria-label="jackwayley@gmail.com" required
                  data-msg="Please enter a valid email address."
                  data-error-class="u-has-error"
                  data-success-class="u-has-success">
@@ -110,13 +110,102 @@
             <span class="text-danger">*</span>
           </label>
 
-          <input type="text" class="form-control" name="hp" placeholder="010-0000-0000" aria-label="010-0000-0000" required
+          <input type="text" class="form-control" name="hp" placeholder="010-0000-0000" aria-label="010-0000-0000"
                  data-msg="Please enter a your phone number."
                  data-error-class="u-has-error"
                  data-success-class="u-has-success">
         </div>
         <!-- End Input -->
-        
+
+        <!-- Input -->
+        <div class="js-form-message mb-6">
+          <label class="form-label">
+            What is your timeline for this project?
+            <span class="text-danger">*</span>
+          </label>
+
+          <input type="text" class="form-control" name="timeline" placeholder="1 month" aria-label="1 month" required
+                 data-msg="Please enter a valid date."
+                 data-error-class="u-has-error"
+                 data-success-class="u-has-success">
+        </div>
+        <!-- End Input -->
+
+        <!-- Input -->
+        <div class="js-focus-state mb-6">
+          <label class="form-label">Your website URL</label>
+          <input type="text" class="form-control" placeholder="https://www.jackwayley.com" aria-label="https://www.jackwayley.com">
+        </div>
+        <!-- End Input -->
+
+        <!-- Input -->
+        <div class="js-focus-state mb-6">
+          <label class="form-label">Your company name</label>
+          <input type="text" class="form-control" placeholder="JackWayley Inc." aria-label="JackWayley Inc.">
+        </div>
+        <!-- End Input -->
+
+        <!-- Platform -->
+        <div class="mb-6">
+          <label class="form-label">
+            Choose your platform
+            <span class="text-danger">*</span>
+          </label>
+
+          <!-- Button Group -->
+          <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+            <label class="btn btn-outline-secondary btn-custom-toggle-primary flex-fill">
+              <input type="checkbox" name="options" id="option1">
+              Shopify
+            </label>
+            <label class="btn btn-outline-secondary btn-custom-toggle-primary flex-fill">
+              <input type="checkbox" name="options" id="option2">
+              Web
+            </label>
+            <label class="btn btn-outline-secondary btn-custom-toggle-primary flex-fill">
+              <input type="checkbox" name="options" id="option3">
+              Other
+            </label>
+          </div>
+          <!-- End Button Group -->
+        </div>
+        <!-- End Platform -->
+
+        <!-- Budget Custom Select -->
+        <div class="mb-6">
+          <label class="form-label">
+            Tell us about your budget
+            <span class="text-danger">*</span>
+          </label>
+
+          <div class="js-focus-state">
+            <select class="form-control custom-select" required
+                    data-msg="Please select your budget."
+                    data-error-class="u-has-error"
+                    data-success-class="u-has-success">
+              <option value="" selected>$20,000 to $50,000</option>
+              <option value="budget1">$20,000 to $50,000</option>
+              <option value="budget2">$100,000 to $200,000</option>
+              <option value="budget3">$200,000+</option>
+            </select>
+          </div>
+        </div>
+        <!-- End Budget Custom Select -->
+
+        <!-- Input -->
+        <div class="js-form-message mb-6">
+          <label class="form-label">
+            Tell us about your project
+            <span class="text-danger">*</span>
+          </label>
+
+          <textarea class="form-control" rows="4" name="answer" placeholder="Hi there, I would like to ..." aria-label="Hi there, I would like to ..." required
+                    data-msg="Please enter a reason."
+                    data-error-class="u-has-error"
+                    data-success-class="u-has-success"></textarea>
+        </div>
+        <!-- End Input -->
+
         <div class="text-center">
           <div class="mb-2">
             <button type="submit" class="btn btn-primary transition-3d-hover">Let's Start Working Together</button>

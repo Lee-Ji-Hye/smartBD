@@ -23,13 +23,20 @@ public class MainController {
         //logger.debug("ID : {}");
 		return "index";
 	}
-	
+
 	/**
 	 * 
 	 * @param req 로그아웃을위함 시큐리티 get방식으로 로그아웃 불가능 따라서 redirect사용
 	 * @param model
 	 * @return
 	 */
+
+	@RequestMapping("login")
+	public String login(HttpServletRequest req, HttpServletResponse res) {
+		//로그아웃 후 메인으로 이동
+		return "signup/login";
+	}
+	
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest req, HttpServletResponse res) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -45,6 +52,12 @@ public class MainController {
 	public String signUp(HttpServletRequest req, HttpServletResponse res) {
 		return "signup/signup";
 	}
+	//user_complet 유저 회원가입완료
+	@RequestMapping("user_complet")
+	public String user_complet(HttpServletRequest req, HttpServletResponse res) {
+		return "signup/user_complet";
+	}
+	
 	
 	//@RequestMapping(value="mypage", method=RequestMethod.POST) //통신 사용시 이걸로 사용.
 	@RequestMapping("mypage")

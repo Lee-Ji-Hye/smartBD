@@ -11,7 +11,7 @@
 		<!-- <security:form-login /> --> <!-- 시큐리티가 제공하는 페이지로 이동login-page= "/002_log_in" login-processing-url="/j_spring_security_check"-->
 		<security:form-login 
 			login-page="/"
-			login-processing-url="/login"
+			login-processing-url="/loginpro"
 			authentication-failure-handler-ref="userLoginFailureHandler"
 			authentication-success-handler-ref="UserLoginSuccessHandler"
 		/>
