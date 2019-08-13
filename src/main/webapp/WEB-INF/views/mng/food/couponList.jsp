@@ -253,7 +253,7 @@ pageEncoding="UTF-8"%>
       </div>
       <br><br>
        <!-- Buttons -->
-            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
+            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='couponUpload'">등록</button>
             <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">삭제</button>
             <!-- End Buttons -->
     </div>

@@ -57,15 +57,12 @@
                     <!-- General -->
                     <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                       <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
-                        General
+                        	관리자
                       </a>
 
                       <ul id="generalDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="generalDropdown">
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html">Dashboard</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/profile.html">Profile</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/my-tasks.html">My tasks</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/projects.html">Projects</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/members.html">Members</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/intorduction">업체 소개</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/closed">휴무일 등록</a></li>
                       </ul>
                     </li>
                     <!-- General -->
@@ -73,13 +70,12 @@
                     <!-- Account Settings -->
                     <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                       <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
-                        Account settings
+                        	상품
                       </a>
 
                       <ul id="accountSettingsDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="accountSettingsDropdown">
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/edit-profile.html">Edit profile</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/change-password.html">Change password</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/notifications.html">Notifications</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/goodsList">상품 목록</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/menuUpload">상품 등록</a></li>
                       </ul>
                     </li>
                     <!-- Account Settings -->
@@ -87,12 +83,12 @@
                     <!-- Billing -->
                     <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                       <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
-                        Billing
+                        	주문
                       </a>
 
                       <ul id="billingDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="billingDropdown">
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/activity.html">Activity</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/payment-methods.html">Payment methods</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/orderList">주문 목록</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/oldOrderList">지난 주문</a></li>
                       </ul>
                     </li>
                     <!-- Billing -->
@@ -100,19 +96,19 @@
                     <!-- Accessibility -->
                     <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                       <a id="accessibilityDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="accessibilityDropdownMenu">
-                        Accessibility
+                        	쿠폰
                       </a>
 
                       <ul id="accessibilityDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="accessibilityDropdown">
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/invite-friends.html">Invite friends</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/api-token.html">API Token</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponList">쿠폰 목록</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponUpload">쿠폰 등록</a></li>
                       </ul>
                     </li>
                     <!-- Accessibility -->
 
                     <!-- Others -->
                     <li class="nav-item u-header__nav-item">
-                      <a class="nav-link u-header__nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/plans.html">Plans</a>
+                      <a class="nav-link u-header__nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/plans.html">결산</a>
                     </li>
                     <!-- Others -->
                   </ul>

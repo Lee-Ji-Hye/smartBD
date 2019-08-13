@@ -18,7 +18,7 @@
 
             <div class="col-sm-6 col-lg-4 order-sm-1">
               <!-- Logo -->
-              <img class="mb-2" src="../../assets/svg/logos/logo-short.svg" alt="Logo">
+             <!--  <img class="mb-2" src="../../assets/svg/logos/logo-short.svg" alt="Logo"> -->
               <h2 class="h1 text-primary font-weight-semi-bold">매장이름</h2>
               <!-- End Logo -->
 
