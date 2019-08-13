@@ -28,7 +28,7 @@
     <!-- Hire Us Form Section -->
     <div class="container space-bottom-2">
       <!-- Hire Us Form -->
-      <form class="js-validate w-lg-50 mx-auto">
+      <form class="js-validate w-lg-50 mx-auto" action="/smart/signUpPro" method="post">
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                  
         <!-- Input -->
         <div class="js-form-message mb-6">
@@ -82,7 +82,7 @@
             <span class="text-danger">*</span>
           </label>
 
-          <input type="text" class="form-control" name="username" placeholder="Kim MinKyung" aria-label="Kim MinKyung" required
+          <input type="text" class="form-control" name="name" placeholder="Kim MinKyung" aria-label="Kim MinKyung" required
                  data-msg="Please enter your name."
                  data-error-class="u-has-error"
                  data-success-class="u-has-success">
