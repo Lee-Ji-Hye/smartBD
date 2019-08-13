@@ -9,7 +9,7 @@
       	 <!-- Update Avatar Form -->
         <form class="media align-items-center mb-7">
           <div class="u-lg-avatar mr-3">
-            <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
+            <!-- <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description"> -->
           </div>
 
           <div class="media-body">
