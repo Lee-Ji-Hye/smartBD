@@ -265,7 +265,6 @@
 
                     <ul id="navSubmenuPagesAccount" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesAccount" style="min-width: 230px; display: none;">
                       <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/room">임대</a></li>
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/profile.html">추가할거 추가</a></li>
                     </ul>
                   </li>
                   <!-- End Account -->
@@ -275,8 +274,12 @@
                     <a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">회의실예약</a>
 
                     <ul id="navSubmenuPagesCompany" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesCompany" style="min-width: 230px; display: none;">
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/about-agency.html">About Agency</a></li>
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/services-agency.html">Services Agency</a></li>
+                    <!-- 테스트용 -->
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/sysmaster/">시스템 관리자</a></li>
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/bd_admin/">건물주</a></li>
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/member/">회원</a></li>
+                      <!-- <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/about-agency.html">About Agency</a></li>
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/services-agency.html">Services Agency</a></li> -->
                     </ul>
                   </li>
                   <!-- Company -->
