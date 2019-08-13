@@ -310,7 +310,7 @@
                     <div class="row">
                       <div class="col-sm-6">
                         <ul class="u-header__sub-menu-nav-group">
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/shop/classic.html">한식</a></li>
+                          <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/shop/classic.html"></a></li>
                           <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/shop/categories.html">중식</a></li>
                           <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/shop/categories-sidebar.html">패스트푸드</a></li>
                         </ul>
