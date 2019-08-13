@@ -16,7 +16,7 @@ public class UserAuthenticationService implements UserDetailsService {
 
 	SqlSessionTemplate sqlSession;
 	
-	//xml?��?�� ?��?��?��콩을 ?��?�� 주입
+	//xml sqlSesseion 생성자 콩 주입
 	public UserAuthenticationService(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
 	}
