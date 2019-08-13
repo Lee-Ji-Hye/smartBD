@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/setting.jsp" %>
-<%@ include file="../common/headerAdmin.jsp" %>    
+<%@ include file="../../common/setting.jsp" %>
+<%@ include file="../../common/headerAdmin.jsp" %>    
 <html>
 <body>
 <!-- ========== MAIN ========== -->
@@ -106,9 +106,9 @@
 
           <div class="ml-lg-auto">
             <!-- Button -->
-            <a class="btn btn-sm btn-soft-white text-nowrap transition-3d-hover" href="${path}/incar">
+            <a class="btn btn-sm btn-soft-white text-nowrap transition-3d-hover" href="${path}/outcar">
               <span class="fas fa-plus small mr-2"></span>
-              	입차
+              	출차
             </a>
             <!-- End Button -->
           </div>
@@ -226,7 +226,7 @@
                     </th>
                     <th scope="col" class="font-weight-medium">
                       <div class="d-flex justify-content-between align-items-center">
-                        	입차시간
+                        	출차시간
                         <div class="ml-2">
                           <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                           <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -352,11 +352,11 @@
                         <span class="btn btn-sm btn-icon btn-soft-success rounded-circle mr-2">
                           <span class="btn-icon__inner font-weight-medium">S</span>
                         </span>
-                        <span>입차</span>
+                        <span>출차</span>
                       </div>
                     </td>
-                    <td class="align-middle text-primary">2019-08-13 14:01</td>
-                    <td class="align-middle text-secondary">정기권</td>
+                    <td class="align-middle text-primary"></td>
+                    <td class="align-middle text-secondary">2019-08-13 16:01</td>
                     <td class="align-middle text-danger"></td>
                   </tr>
 
@@ -2816,6 +2816,6 @@
     <!-- End Content Section -->
   </main>
   <!-- ========== END MAIN ========== -->
-<%@ include file="../common/footer.jsp" %>
+<%@ include file="../../common/footer.jsp" %>
 </body>
 </html>

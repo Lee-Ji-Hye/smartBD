@@ -65,69 +65,69 @@ public class MainController {
 	@RequestMapping("mypage")
 	public String mypage(HttpServletRequest req, Model model) {
 		
-		return "svc/mypage";
+		return "svc/parking/mypage";
 	}
 	
 	@RequestMapping("room")
 	public String room(HttpServletRequest req, Model model) {
 		
-		return "svc/room";
+		return "svc/parking/room";
 	}
 	
 	@RequestMapping("inoutcar")
 	public String inoutcar(HttpServletRequest req, Model model) {
 		
-		return "mng/inoutcar";
+		return "mng/parking/inoutcar";
 	}
 	//주차권 사용 내역
 	@RequestMapping("uselist")
 	public String uselist(HttpServletRequest req, Model model) {
 		
-		return "mng/uselist";
+		return "mng/parking/uselist";
 	}
 	//주차권 환불 내역
 	@RequestMapping("refund")
 	public String refund(HttpServletRequest req, Model model) {
 		
-		return "mng/refund";
+		return "mng/parking/refund";
 	}
 	//주차권 발급 내역
 	@RequestMapping("parkinglist")
 	public String parkinglist(HttpServletRequest req, Model model) {
 		
-		return "mng/parkinglist";
+		return "mng/parking/parkinglist";
 	}
 	//주차권 사용
 	@RequestMapping("ticketuse")
 	public String parkinguse(HttpServletRequest req, Model model) {
 		
-		return "mng/ticketuse";
+		return "mng/parking/ticketuse";
 	}
 	
 	//주차장현황  입차
 	@RequestMapping("incar")
 	public String incar(HttpServletRequest req, Model model) {
 		
-		return "mng/incar";
+		return "mng/parking/incar";
 	}
 	
 	//주차장 현황 출차
 	@RequestMapping("outcar")
 	public String outcar(HttpServletRequest req, Model model) {
 		
-		return "mng/outcar";
+		return "mng/parking/outcar";
 	}	
 
 	@RequestMapping("total")
 	public String total(HttpServletRequest req, Model model) {
 		
-		return "mng/total";
+		return "mng/parking/total";
 	}
 	
 	@RequestMapping("ticketmanager")
 	public String ticketmanager(HttpServletRequest req, Model model) {
 		
-		return "mng/ticketmanager";
+		return "mng/parking/ticketmanager";
 	}
 	
 	

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/setting.jsp" %>
-<%@ include file="../common/headerAdmin.jsp" %>
-<%@ include file="../common/middleHeaderManage.jsp" %>
+<%@ include file="../../common/setting.jsp" %>
+<%@ include file="../../common/header.jsp" %>
+<%@ include file="../../common/middleHeaderManage.jsp" %>
 <html>
 <style type="text/css">
  
@@ -27,5 +27,5 @@
 <body>
 <img src="${resourceImg}/주차장1.jpg" style="width:2000px;height:1000px;">
 </body>
-<%@ include file="../common/footer.jsp" %>
+<%@ include file="../../common/footer.jsp" %>
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/setting.jsp" %>
-<%@ include file="../common/headerAdmin.jsp" %>    
+<%@ include file="../../common/setting.jsp" %>
+<%@ include file="../../common/header.jsp" %>    
 <html>
 <body>
 <!-- ========== MAIN ========== -->
@@ -14,7 +14,7 @@
             <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
               <!-- Breadcrumb -->
               <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="../home/index.html">Parking-List</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="../home/index.html">use-List</a></li>
               </ol>
               <!-- End Breadcrumb -->
 
@@ -95,7 +95,7 @@
 
                     </li>
                     <!-- Billing -->
-
+																											
                   
                   </ul>
                 </div>
@@ -208,7 +208,7 @@
                     </th>
                     <th scope="col" class="font-weight-medium">
                       <div class="d-flex justify-content-between align-items-center">
-                        	주차권 코드
+                        	주차권코드
                         <div class="ml-2">
                           <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                           <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -217,7 +217,7 @@
                     </th>
                     <th scope="col" class="font-weight-medium">
                       <div class="d-flex justify-content-between align-items-center">
-                        	차량 번호
+                        	주차 상품코드
                         <div class="ml-2">
                           <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                           <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -235,7 +235,7 @@
                     </th>
                     <th scope="col" class="font-weight-medium">
                       <div class="d-flex justify-content-between align-items-center">
-                       	발급일
+                       	상태
                         <div class="ml-2">
                           <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                           <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -244,7 +244,7 @@
                     </th>
                     <th scope="col" class="font-weight-medium">
                       <div class="d-flex justify-content-between align-items-center">
-                        	사용일
+                        	발급날짜
                         <div class="ml-2">
                           <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                           <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -2816,6 +2816,6 @@
     <!-- End Content Section -->
   </main>
   <!-- ========== END MAIN ========== -->
-<%@ include file="../common/footer.jsp" %>
+<%@ include file="../../common/footer.jsp" %>
 </body>
 </html>
