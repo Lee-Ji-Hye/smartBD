@@ -73,4 +73,62 @@ public class MainController {
 		
 		return "svc/room";
 	}
+	
+	@RequestMapping("inoutcar")
+	public String inoutcar(HttpServletRequest req, Model model) {
+		
+		return "mng/inoutcar";
+	}
+	//주차권 사용 내역
+	@RequestMapping("uselist")
+	public String uselist(HttpServletRequest req, Model model) {
+		
+		return "mng/uselist";
+	}
+	//주차권 환불 내역
+	@RequestMapping("refund")
+	public String refund(HttpServletRequest req, Model model) {
+		
+		return "mng/refund";
+	}
+	//주차권 발급 내역
+	@RequestMapping("parkinglist")
+	public String parkinglist(HttpServletRequest req, Model model) {
+		
+		return "mng/parkinglist";
+	}
+	//주차권 사용
+	@RequestMapping("ticketuse")
+	public String parkinguse(HttpServletRequest req, Model model) {
+		
+		return "mng/ticketuse";
+	}
+	
+	//주차장현황  입차
+	@RequestMapping("incar")
+	public String incar(HttpServletRequest req, Model model) {
+		
+		return "mng/incar";
+	}
+	
+	//주차장 현황 출차
+	@RequestMapping("outcar")
+	public String outcar(HttpServletRequest req, Model model) {
+		
+		return "mng/outcar";
+	}	
+
+	@RequestMapping("total")
+	public String total(HttpServletRequest req, Model model) {
+		
+		return "mng/total";
+	}
+	
+	@RequestMapping("ticketmanager")
+	public String ticketmanager(HttpServletRequest req, Model model) {
+		
+		return "mng/ticketmanager";
+	}
+	
+	
 }

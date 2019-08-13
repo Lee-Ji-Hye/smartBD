@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!-- ========== FOOTER ========== -->
-  <footer>
+  <footer style="background: #fff;">
     <!-- Lists -->
     <div class="border-bottom">
       <div class="container space-2">

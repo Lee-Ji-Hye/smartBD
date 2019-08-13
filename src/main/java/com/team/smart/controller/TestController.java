@@ -54,6 +54,14 @@ public class TestController {
 			access="permitAll" />
 	 */
 	//003_join ȸ������ �Է� ȭ�� �̵�
+
+	@RequestMapping("a")
+	public String a(HttpServletRequest req, Model model) {
+		logger.info("URI -> sysmaster");
+		return "mng/building/a";
+	}
+
+	
 	@RequestMapping("sysmaster/")
 	public String test1(HttpServletRequest req, Model model) {
 		logger.info("URI -> sysmaster");
