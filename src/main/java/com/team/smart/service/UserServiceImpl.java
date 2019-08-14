@@ -32,13 +32,12 @@ public class UserServiceImpl implements UserService {
 		
 		logger.info("signUpUser : " + vo);
 		
-		int cnt = dao.signUpUser(vo);
-		
-		if(cnt == 1) {
-			model.addAttribute("signUpUserCnt", 1);
-		}else {
-			model.addAttribute("signUpUserCnt", 0);
-		}
+//		int cnt = dao.signUpUser(vo);
+//		if(cnt == 1) {
+//			model.addAttribute("signUpUserCnt", 1);
+//		}else {
+//			model.addAttribute("signUpUserCnt", 0);
+//		}
 		
 	}
 	

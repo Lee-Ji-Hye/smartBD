@@ -5,7 +5,6 @@
 <%@ include file="../common/setting.jsp"%>
 <%@ include file="../common/header.jsp"%>
 
-
   <!-- ========== MAIN ========== -->
   <main id="content" role="main">
     <!-- Hire Us Title Section -->
@@ -28,7 +27,7 @@
     <!-- Hire Us Form Section -->
     <div class="container space-bottom-2">
       <!-- Hire Us Form -->
-      <form class="js-validate w-lg-50 mx-auto" action="/smart/signUpPro" method="post">
+      <form class="js-validate w-lg-50 mx-auto" action="/smart/signUpPro" method="post" name="signUpForm">
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                  
         <!-- Input -->
         <div class="js-form-message mb-6">
@@ -118,8 +117,11 @@
         <!-- End Input -->
         
         <div class="text-center">
+        
+        
+        
           <div class="mb-2">
-            <button type="submit" class="btn btn-primary transition-3d-hover">Let's Start Working Together</button>
+            <button type="button" name="btnSubmit" class="btn btn-primary transition-3d-hover">Let's Start Working Together</button>
           </div>
           <p class="small">We'll get back to you in 1-2 business days.</p>
         </div>
@@ -130,6 +132,28 @@
   </main>
   <!-- ========== END MAIN ========== -->
 
+
 <%@ include file="../common/footer.jsp"%>
+
+<script type="text/javascript">
+//submit event 처리
+document.signUpForm.btnSubmit.addEventListener("click", ()=>{
+	var fom = document.signUpForm;
+	if(fom.userpw.value === fom.reuserpw.value){
+		fom.submit();
+	}else{
+		alert("비밀번호 확인이 글러먹었습니다.");
+	}
+});
+
+/* 	console.dir(document.signUpForm);
+	document.signUpForm.onsubmit = function(){
+		return ()=>{
+			
+			console.log(document)
+			return false;
+		}
+	}; */
+</script>
 </body>
 </html>
