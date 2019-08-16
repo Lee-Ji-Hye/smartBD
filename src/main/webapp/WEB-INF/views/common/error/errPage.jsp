@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../setting.jsp" %>
-<html lang="kor">
+    
+    
+<%@ include file="../setting.jsp"%>
+
   <head>
     <!-- Title -->
     <title>404 Not Found</title>
@@ -24,11 +26,8 @@
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="https://htmlstream.com/assets/css/styles.hs.min.css">
   </head>
-
-  <body>
-    <main class="g-min-height-100vh g-flex-centered g-pa-15">
       <div class="text-center g-flex-centered-item g-position-rel g-pb-15">
-
+		
 		<!-- 404 IN -->
         <c:if test="${param.code == '404'}">
         	<div class="g-font-size-180 g-font-size-240--sm g-line-height-1 g-font-weight-600er g-color-gray-light-v4">404</div>
@@ -51,6 +50,3 @@
 		        </div>
         </c:if>
 		</div>
-    </main>
-  </body>
-</html>

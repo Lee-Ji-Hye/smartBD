@@ -34,4 +34,5 @@ public class ManageController {
 		return mngBuilding_ + "/roomlist";
 	}
 	
+	
 }

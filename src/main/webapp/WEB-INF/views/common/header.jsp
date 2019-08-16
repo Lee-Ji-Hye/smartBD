@@ -14,7 +14,7 @@
   <link rel="shortcut icon" href="https://htmlstream.com/preview/front-v2.9.0/favicon.ico">
 
   <!-- Google Fonts -->
-  <link href="${resourceBoot}/css/css(1)" rel="stylesheet">
+  <link href="${resourceBoot}/css/css(1).css" rel="stylesheet">
 
   <!-- CSS Implementing Plugins -->
   <link rel="stylesheet" href="${resourceBoot}/css/fontawesome-all.min.css">
@@ -265,7 +265,6 @@
 
                     <ul id="navSubmenuPagesAccount" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesAccount" style="min-width: 230px; display: none;">
                       <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/room">임대</a></li>
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/profile.html">추가할거 추가</a></li>
                     </ul>
                   </li>
                   <!-- End Account -->
@@ -275,8 +274,12 @@
                     <a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">회의실예약</a>
 
                     <ul id="navSubmenuPagesCompany" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesCompany" style="min-width: 230px; display: none;">
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/about-agency.html">About Agency</a></li>
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/services-agency.html">Services Agency</a></li>
+                    <!-- 테스트용 -->
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/sysmaster/">시스템 관리자</a></li>
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/bd_admin/">건물주</a></li>
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/member/">회원</a></li>
+                      <!-- <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/about-agency.html">About Agency</a></li>
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/services-agency.html">Services Agency</a></li> -->
                     </ul>
                   </li>
                   <!-- Company -->
@@ -291,7 +294,10 @@
 
                 <!-- Blog - Submenu -->
                 <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
-                  <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/blog/card-style.html">주차장 정보</a></li>
+                <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/incar">입차 / 출차 관리</a></li>
+                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/parkinglist">주차권 관리</a></li>
+                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/ticketmanager">주차장 현황관리</a></li>
+                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/total">주차장 정산</a></li>
                   <!-- <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/blog/listing.html">추가할거 추가</a></li> -->
                 </ul>
                 <!-- End Submenu -->
@@ -310,17 +316,19 @@
                     <div class="row">
                       <div class="col-sm-6">
                         <ul class="u-header__sub-menu-nav-group">
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/shop/classic.html">한식</a></li>
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/shop/categories.html">중식</a></li>
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/shop/categories-sidebar.html">패스트푸드</a></li>
+                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/main">관리자</a></li>
+                           <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/closed">휴무 등록</a></li>
+                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/menuUpload">상품 등록</a></li>
+                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponUpload">쿠폰 등록</a></li>
                         </ul>
                       </div>
 
                       <div class="col-sm-6">
                         <ul class="u-header__sub-menu-nav-group">
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/shop/single-product.html">분식</a></li>
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/shop/empty-cart.html">일식</a></li>
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/shop/cart.html">카페·디저트</a></li>
+                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/goodsList">상품 목록</a></li>
+                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponList">쿠폰 목록</a></li>
+                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/orderList">주문 목록</a></li>
+                           <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/oldOrderList">지난 주문</a></li>
                         </ul>
                       </div>
                     </div>
