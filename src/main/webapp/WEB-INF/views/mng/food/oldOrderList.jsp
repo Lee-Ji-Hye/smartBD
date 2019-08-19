@@ -98,7 +98,7 @@ pageEncoding="UTF-8"%>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center" onclick="window.location='orderList'">
                       	메뉴명
                       <div class="ml-2">
                       </div>
@@ -122,7 +122,7 @@ pageEncoding="UTF-8"%>
                     <div class="d-flex justify-content-between align-items-center">
                       	상태
                       <div class="ml-2">
-                      </div>
+            		  </div>
                     </div>
                   </th>
                 </tr>
@@ -137,9 +137,9 @@ pageEncoding="UTF-8"%>
             <nav id="datatablePagination" aria-label="Activity pagination">
              <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">
              	<span class="page-item">
-              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
-             			<span aria-hidden="true">«</span>
-             		</a>
+	              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
+	             		<span aria-hidden="true">«</span>
+	             	</a>
              	</span>
              	<span style="display: flex;">
              		<span class="page-item">
@@ -151,7 +151,7 @@ pageEncoding="UTF-8"%>
              	</span>
              	<span class="page-item">
              		<a class="paginate_button next disabled page-link" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" id="DataTables_Table_0_next">
-             		<span aria-hidden="true">»</span>
+             			<span aria-hidden="true">»</span>
              		</a>
              	</span>
              </div>

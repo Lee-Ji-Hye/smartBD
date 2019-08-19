@@ -74,4 +74,32 @@ public class FoodController {
 		
 		return mngFood_ + "/closed";
 	}
+	
+	// 결산
+	@RequestMapping("mng/food/todayChart")
+	public String money(HttpServletRequest req, Model model) {
+		
+		return mngFood_ + "/todayChart";
+	}
+	
+	// 결산
+		@RequestMapping("mng/food/weekChart")
+		public String weekChart(HttpServletRequest req, Model model) {
+			
+			return mngFood_ + "/weekChart";
+		}
+		
+		// 결산
+		@RequestMapping("mng/food/monthChart")
+		public String monthChart(HttpServletRequest req, Model model) {
+			
+			return mngFood_ + "/monthChart";
+		}
+	
+	//
+	@RequestMapping("mng/food/don")
+	public String don(HttpServletRequest req, Model model) {
+		
+		return mngFood_ + "/don";
+	}
 }

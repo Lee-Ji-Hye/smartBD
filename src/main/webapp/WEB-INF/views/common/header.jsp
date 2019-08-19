@@ -310,7 +310,7 @@
                     <div class="row">
                       <div class="col-sm-6">
                         <ul class="u-header__sub-menu-nav-group">
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/main">관리자</a></li>
+                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/main">업체 정보</a></li>
                            <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/closed">휴무 등록</a></li>
                           <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/menuUpload">상품 등록</a></li>
                           <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponUpload">쿠폰 등록</a></li>

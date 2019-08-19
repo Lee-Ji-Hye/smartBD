@@ -40,29 +40,6 @@
           <div class="mb-4">
             <div class="js-form-message">
               <label class="form-label">
-                	카테고리
-              </label>
-
-              <div class="form-group">
-              	<select class="form-control custom-select" required
-                          data-msg="Please select month."
-                          data-error-class="u-has-error"
-                          data-success-class="u-has-success">
-              <option value="">Select Catagory</option>
-              <option value="birthMonthSelect1" selected="selected">한식</option>
-              <option value="birthMonthSelect2">중식</option>
-              <option value="birthMonthSelect3">일식</option>
-              <option value="birthMonthSelect3">디저트</option>
-            </select>
-              </div>
-            </div>
-          </div>
-          <!-- End Input -->
-
-          <!-- Input -->
-          <div class="mb-4">
-            <div class="js-form-message">
-              <label class="form-label">
                 	분류
               </label>
 
