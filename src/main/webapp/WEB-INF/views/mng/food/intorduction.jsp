@@ -8,28 +8,9 @@
 <!-- Main -->
 <div class="container space-2 px-md-7 px-lg-11">
      <div class="card bg-img-hero" style="background-image: url(../../assets/svg/components/bg-elements-6.svg);">
-       <div class="card-body p-5 p-md-7 p-lg-11">
-         <div class="row justify-content-lg-between align-items-sm-center mb-11">
-           <div class="col-sm-6 col-lg-4 order-sm-2 text-sm-right mb-5 mb-sm-0">
-             <h1 class="h2 font-weight-medium mb-0">
-               	카테고리
-               <small class="d-block">
-             		<select class="form-control custom-select" required
-           		      data-msg="Please select month."
-                         data-error-class="u-has-error"
-                         data-success-class="u-has-success">
-	              <option value="">Select Catagory</option>
-	              <option value="birthMonthSelect1" selected="selected">한식</option>
-	              <option value="birthMonthSelect2">중식</option>
-	              <option value="birthMonthSelect3">일식</option>
-	              <option value="birthMonthSelect3">디저트</option>
-           		</select>
-               </small>
-             </h1>
-           </div>
-
-           <div class="col-sm-6 col-lg-4 order-sm-1">
-           	<div class="container space-1">
+       <div class="card-body p-9 p-md-7 p-lg-11">
+       
+       <div class="container space-1">
            	<!-- Update Avatar Form -->
 	        <form class="media align-items-center mb-4">
 	          <div class="u-lg-avatar mr-3">
@@ -45,11 +26,34 @@
 	          </div>
 	        </form>
 	        </div>
+       
+         <div class="row justify-content-lg-between align-items-sm-center mb-11">
+           
+           <div class="col-sm-6 col-lg-4 order-sm-1">
+           	
 	        <!-- End Update Avatar Form -->
              <!-- Logo -->
              <h2 class="h1 text-primary font-weight-semi-bold">매장이름</h2>
              <!-- End Logo -->
 
+			<div class="col-sm-6 col-lg-4 order-sm-1" style="padding:00px">
+             <h1 class="h6 font-weight-medium mb-0">
+               	카테고리
+               <small class="d-block">
+             		<select class="form-control custom-select" required
+           		      data-msg="Please select month."
+                         data-error-class="u-has-error"
+                         data-success-class="u-has-success">
+	              <option value="">Select Catagory</option>
+	              <option value="birthMonthSelect1" selected="selected">한식</option>
+	              <option value="birthMonthSelect2">중식</option>
+	              <option value="birthMonthSelect3">일식</option>
+	              <option value="birthMonthSelect3">디저트</option>
+           		</select>
+               </small>
+             </h1>
+           </div>
+           <br>
              <!-- Address -->
              <address>
                	매장주소

@@ -14,7 +14,7 @@
             </label>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="currentPassword" placeholder="매장명 가져오고" >
+              <input type="text" class="form-control" name="currentPassword" placeholder="매장명 가져오고" readonly="readonly">
             </div>
           </div>
           <!-- End Input -->
@@ -241,10 +241,13 @@
             </div>
             <!-- End Input -->
 
-          <div class="w-lg-50">
+			<br><br>
+          <div class="w-lg-100">
             <!-- Buttons -->
-            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
-            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button>
+            <div style="text-align:center">
+	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
+	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button>
+            </div>
             <!-- End Buttons -->
           </div>
         </form>

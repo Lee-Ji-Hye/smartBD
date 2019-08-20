@@ -8,38 +8,23 @@ pageEncoding="UTF-8"%>
   <div class="bg-light">
     <div class="container space-2">
       <div class="card">
-        <div class="card-header py-4 px-0 mx-4">
+        <div class="card-header py-2 px-0 mx-4">
+        	<!-- Title & Settings -->
+              <div class="d-flex justify-content-between align-items-center">
+                <h4 class="h4 mb-0">Goods List</h4>
+              </div>
+              <!-- End Title & Settings -->
           <!-- Activity Menu -->
           <div class="row justify-content-sm-between align-items-sm-center">
-            <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
-            </div>
-           <!--  <div class="col-md-6">
-              <div class="d-flex">
-                <div class="mr-2">
-                  Select
-                  <select id="datatableEntries" class="js-select selectpicker dropdown-select" data-width="fit" data-style="btn-soft-primary btn-sm">
-                    <option value="6">6 entries</option>
-                    <option value="12" selected>12 entries</option>
-                    <option value="18">18 entries</option>
-                    <option value="24">24 entries</option>
-                  </select>
-                  End Select
-                </div>
-                Search
-                <div class="js-focus-state input-group input-group-sm">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="searchActivities">
-                      <span class="fas fa-search"></span>
-                    </span>
-                  </div>
-                  <input id="datatableSearch" type="email" class="form-control" placeholder="Search activities" aria-label="Search activities" aria-describedby="searchActivities">
-                </div>
-                End Search
-              </div>
-            </div> -->
+          <div class="col-md-12">
+           	<!-- Buttons -->
+           		<button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="float: right">삭제</button>
+   			<!-- End Buttons -->
+      	</div>
           </div>
           <!-- End Activity Menu -->
         </div>
+        
         <div class="card-body p-4">
           <!-- Activity Table -->
           <div class="table-responsive-md u-datatable">
@@ -226,14 +211,10 @@ pageEncoding="UTF-8"%>
           <!-- End Pagination -->
         </div>
       </div>
-      <br><br>
-       <!-- Buttons -->
-            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">삭제</button>
-       <!-- End Buttons -->
     </div>
      
   <!-- End Content Section -->
-  
+ </div>
 </main>
 <!-- ========== END MAIN ========== -->
 <%@ include file="../../common/footer.jsp" %>

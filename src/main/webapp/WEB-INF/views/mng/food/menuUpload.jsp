@@ -7,14 +7,14 @@
 <div class="bg-light">
       <div class="container space-2">
       	 <!-- Update Avatar Form -->
-        <form class="media align-items-center mb-7">
-          <div class="u-lg-avatar mr-3">
+        <form class="media align-items-center mb-4"  style="text-align: right">
+          <div class="u-lg-avatar mr-4">
             <!-- <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description"> -->
           </div>
 
           <div class="media-body">
             <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn">
-              Upload New Picture
+              Upload
               <input id="fileAttachmentBtn" name="file-attachment" type="file" class="file-attachment-btn__label">
             </label>
 
@@ -102,11 +102,11 @@
                     data-success-class="u-has-success"></textarea>
         </div>
         <!-- End Input -->
-        
-            <!-- Buttons -->
-            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
-            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button>
-            <!-- End Buttons -->
+            <div style="text-align:center">
+	            <!-- Buttons -->
+	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
+	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button>
+	            <!-- End Buttons -->
           </div>
         </form>
       </div>
