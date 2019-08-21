@@ -1,15 +1,29 @@
 package com.team.smart.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.team.smart.app.vo.FoodMenuVO;
+import com.team.smart.service.FoodService;
 
 @Controller
 public class FoodController {
 	
 	private String mngFood_ = "mng/food";
+	
+	@Autowired
+	FoodService f_service;
 	
 	
 	// 메인
@@ -70,8 +84,12 @@ public class FoodController {
 	
 	// 휴무 
 	@RequestMapping("mng/food/closed")
-	public String sing(HttpServletRequest req, Model model) {
+	public String closed(HttpServletRequest req, Model model) {
 		
 		return mngFood_ + "/closed";
 	}
+	
+	
+	
+	
 }
