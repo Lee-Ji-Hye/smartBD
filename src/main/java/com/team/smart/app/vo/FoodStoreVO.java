@@ -16,8 +16,13 @@ public class FoodStoreVO {
 	//USER_COMPANY_TBL
 	private String comp_org;    //업체명
 	private String comp_section;//업체분류
+    private String comp_branch; //업체주소
 	private String comp_hp;     //업체전화번호
 	
+	//FOOD_COUPON_TBL
+	private String f_coupon_num; //쿠폰명
+	private String f_coupon_name;//쿠폰네임
+    private String f_coupon_price;//쿠폰금액
 	
 	/***************************************************
 	 *     GETTER && SETTER
@@ -25,7 +30,8 @@ public class FoodStoreVO {
 	 *     다만, 재정의 하여 사용할 부분이 필요하다면 오버라이딩하여 사용할 것
 	 ***************************************************/
 	public void setF_mainimg(String f_mainimg) {
-		this.f_mainimg = "http://172.30.1.46:8089/smart/resources/images/food/"+f_mainimg;
+		//this.f_mainimg = "http://172.30.1.46:8089/smart/resources/images/food/"+f_mainimg;
+		this.f_mainimg = "http://192.168.219.149/smart/resources/images/food/"+f_mainimg; //학원
 	}
 	
 }
