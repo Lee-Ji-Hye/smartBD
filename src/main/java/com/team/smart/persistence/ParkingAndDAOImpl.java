@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.team.smart.vo.ParkingBDVO;
+import com.team.smart.app.vo.ParkingBDVO;
 
 @Repository
 public class ParkingAndDAOImpl implements ParkingAndDAO{
@@ -15,7 +15,7 @@ public class ParkingAndDAOImpl implements ParkingAndDAO{
 
 	@Override
 	public ParkingBDVO getBDInfo(String b_code) {
-		return sqlSession.selectOne("com.team.smart.persistence.ParkingAndDAO.getBDInfo",b_code);
+		return sqlSession.selectOne("ParkingAndDAO.getBDInfo",b_code);
 	}
 	
 }

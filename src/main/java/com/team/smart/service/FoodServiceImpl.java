@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.team.smart.app.vo.FoodMenuVO;
 import com.team.smart.app.vo.FoodStoreVO;
-import com.team.smart.persistance.FoodDAO;
+import com.team.smart.persistence.FoodDAO;
 import com.team.smart.utils.Functions;
 
 /**

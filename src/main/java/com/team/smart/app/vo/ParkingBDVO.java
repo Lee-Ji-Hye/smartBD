@@ -1,4 +1,4 @@
-package com.team.smart.vo;
+package com.team.smart.app.vo;
 
 import lombok.Data;
 

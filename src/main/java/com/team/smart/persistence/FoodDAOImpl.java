@@ -1,4 +1,4 @@
-package com.team.smart.persistance;
+package com.team.smart.persistence;
 
 import java.util.List;
 import java.util.Map;

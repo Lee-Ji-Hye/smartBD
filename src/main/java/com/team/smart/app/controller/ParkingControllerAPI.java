@@ -1,4 +1,4 @@
-package com.team.smart.controller;
+package com.team.smart.app.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,13 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.smart.app.vo.ParkingBDVO;
 import com.team.smart.service.ParkingAndService;
-import com.team.smart.vo.ParkingBDVO;
 
 @Controller
-public class ParkingController {
+public class ParkingControllerAPI {
 
-	private static final Logger log = LoggerFactory.getLogger(ParkingController.class);
+	private static final Logger log = LoggerFactory.getLogger(ParkingControllerAPI.class);
 
 	@Autowired
 	ParkingAndService p_service;
@@ -48,5 +48,8 @@ public class ParkingController {
 		
 		return map;
 	}
+	
+	
+	
 	
 }

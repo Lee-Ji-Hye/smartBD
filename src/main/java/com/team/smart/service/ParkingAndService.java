@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.team.smart.vo.ParkingBDVO;
+import com.team.smart.app.vo.ParkingBDVO;
 
 //주차관리 안드로이드 서비스
 public interface ParkingAndService {

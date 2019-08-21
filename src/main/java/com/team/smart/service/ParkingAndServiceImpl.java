@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.team.smart.app.vo.ParkingBDVO;
 import com.team.smart.persistence.ParkingAndDAO;
-import com.team.smart.vo.ParkingBDVO;
 
 //주차관리 안드로이드 서비스
 @Service

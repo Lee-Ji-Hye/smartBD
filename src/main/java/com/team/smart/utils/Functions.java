@@ -2,7 +2,7 @@ package com.team.smart.utils;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
-import com.team.smart.persistance.FoodDAO;
+import com.team.smart.persistence.FoodDAO;
 
 public class Functions {
 	
