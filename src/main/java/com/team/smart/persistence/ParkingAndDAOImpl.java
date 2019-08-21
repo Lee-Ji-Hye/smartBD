@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.team.smart.vo.ParkingBDVO;
-import com.team.smart.vo.ParkingTicketVO;
+import com.team.smart.app.vo.ParkingBDVO;
+import com.team.smart.app.vo.ParkingTicketVO;
 
 @Repository
 public class ParkingAndDAOImpl implements ParkingAndDAO{

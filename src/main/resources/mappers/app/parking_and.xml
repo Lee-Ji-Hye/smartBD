@@ -4,7 +4,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
 <mapper namespace="ParkingAndDAO">
-	<select id="getBDInfo" parameterType="String" resultType="com.team.smart.vo.ParkingBDVO">
+	<select id="getBDInfo" parameterType="String" resultType="com.team.smart.app.vo.ParkingBDVO">
 		<!-- select * from parking_lot_tbl l 
 		Join parking_lot_detail_tbl d On l.b_code = d.b_code
 		where l.b_code = #{b_code} -->
@@ -17,12 +17,12 @@
 		where l.b_code = #{b_code}
 	</select>
 	
-	<select id="getBDList" resultType="com.team.smart.vo.ParkingBDVO">
+	<select id="getBDList" resultType="com.team.smart.app.vo.ParkingBDVO">
 		select * 
 		from parking_lot_tbl
 	</select>
 	
-	<select id="getTicketList" resultType="com.team.smart.vo.ParkingTicketVO">
+	<select id="getTicketList" resultType="com.team.smart.app.vo.ParkingTicketVO">
 		select t.*,b.b_area1,b.b_area2,b.b_address,l.b_name
 		from parking_lot_tbl l
 		Join parking_ticket_info_tbl t

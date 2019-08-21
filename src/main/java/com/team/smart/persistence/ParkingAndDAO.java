@@ -2,8 +2,8 @@ package com.team.smart.persistence;
 
 import java.util.List;
 
-import com.team.smart.vo.ParkingBDVO;
-import com.team.smart.vo.ParkingTicketVO;
+import com.team.smart.app.vo.ParkingBDVO;
+import com.team.smart.app.vo.ParkingTicketVO;
 
 //주차관리 안드로이드 DAO
 public interface ParkingAndDAO {
