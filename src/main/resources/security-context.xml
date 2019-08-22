@@ -29,7 +29,7 @@
 		ROLE_CP_MANAGER - 사업체 매니저
 		ROLE_CP_EMPLOYEE - 사업체 직원
 		-->
-		<security:intercept-url pattern="/sysmaster/**"
+		<!-- <security:intercept-url pattern="/sysmaster/**"
 			access="hasRole('ROLE_SYSMASTER')" />
 			
 		<security:intercept-url pattern="/bd_admin/**"
@@ -54,7 +54,7 @@
 			access="hasAnyRole('CP_ADMIN','CP_MANAGER','CP_EMPLOYEE')" />
 			
 		<security:intercept-url pattern="/member/**"
-			access="isAuthenticated()" />
+			access="isAuthenticated()" /> -->
 			
 		<security:intercept-url pattern="/**"
 			access="permitAll" />

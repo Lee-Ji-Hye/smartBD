@@ -24,7 +24,7 @@ public class FoodServiceImpl implements FoodService {
 	// 음식점 소개 등록
 	@Override
 	public void storeIntro(MultipartHttpServletRequest req, Model model) {
-		
+		System.out.println("food");
 		MultipartFile file1 = req.getFile("file-attachment");
 
 		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); //

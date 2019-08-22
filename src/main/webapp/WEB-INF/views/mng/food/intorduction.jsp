@@ -5,13 +5,14 @@
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
 <body> 
 <!-- Main -->
+<form class="media align-items-center mb-4" enctype="multipart/form-data" method="post" action="/smart/mng/food/intorduction">
 <div class="container space-2 px-md-7 px-lg-11">
      <div class="card bg-img-hero" style="background-image: url(../../assets/svg/components/bg-elements-6.svg);">
        <div class="card-body p-9 p-md-7 p-lg-11">
        
        <div class="container space-1">
            	<!-- Update Avatar Form -->
-	        <form class="media align-items-center mb-4" enctype="multipart/form-data" method="post" action="/smart/mng/food/intorduction">
+	        
 	          <div class="u-lg-avatar mr-3">
 	           <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
 	          </div>
@@ -21,9 +22,9 @@
 	              Upload
 	              <input id="fileAttachmentBtn" name="file-attachment" type="file" class="file-attachment-btn__label">
 	            </label>
-	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>
+	            <button type="" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0" onclick="">Delete</button>
 	          </div>
-	        </form>
+	        
         </div>
        
          <div class="row justify-content-lg-between align-items-sm-center mb-11">
@@ -108,14 +109,14 @@
 
 	<!-- Button start -->
      <div class="text-right mt-5">
-       <button type="button" class="btn btn-primary btn-sm-wide transition-3d-hover" onclick="window.location='main'">
+       <button type="submit" class="btn btn-primary btn-sm-wide transition-3d-hover" >
          <span class="fas fa-print mr-2"></span>
          	작성 완료
        </button>
      </div>
    </div>
 	<!-- Button end -->
-
+</form>
 <!-- footer start -->
 <%@ include file="../../common/footer.jsp" %>
 <!-- footer end -->
