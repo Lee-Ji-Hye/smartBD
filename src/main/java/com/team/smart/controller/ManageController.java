@@ -26,12 +26,26 @@ public class ManageController {
         //logger.debug("ID : {}");
 		return mng_ + "index";
 	}
-	
+
 	//매물 리스트
 	@RequestMapping("roomlist")
 	public String roomlist(HttpServletRequest req, Model model) {
 		b_service.pageTest(req, model);
 		return mngBuilding_ + "/roomlist";
+	}
+
+	//매물 리스트
+	@RequestMapping("meetingroom")
+	public String meetingroom(HttpServletRequest req, Model model) {
+		b_service.pageTest(req, model);
+		return mngBuilding_ + "/meetingroom";
+	}
+
+	//매물 리스트
+	@RequestMapping("billing")
+	public String billing(HttpServletRequest req, Model model) {
+		b_service.pageTest(req, model);
+		return mngBuilding_ + "/billing";
 	}
 	
 	

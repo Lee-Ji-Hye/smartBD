@@ -16,7 +16,5 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler{
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		request.getRequestDispatcher("/WEB-INF/views/test.jsp").forward(request, response);
-
 	}
-
 }

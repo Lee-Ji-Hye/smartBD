@@ -1398,7 +1398,6 @@
 		
 		              <small id="datatableInfo" class="text-secondary ml-auto">Showing 1 to 12 of 24 Entries</small>
 		            </div> -->
-		            ${paging.mkTest()}
 		            <!-- End Pagination -->
 		          </div>
 		        </div>
