@@ -1,5 +1,10 @@
 package com.team.smart.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -11,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.team.smart.service.FoodServiceImpl;
 
+
 @Controller
 public class FoodController {
 	
@@ -19,7 +25,8 @@ public class FoodController {
 	
 	private String mngFood_ = "mng/food";
 	
-	FoodServiceImpl service;
+	@Autowired
+	FoodService service;
 	
 	
 	// 메인
@@ -93,7 +100,7 @@ public class FoodController {
 	
 	// 휴무 
 	@RequestMapping("mng/food/closed")
-	public String sing(HttpServletRequest req, Model model) {
+	public String closed(HttpServletRequest req, Model model) {
 		
 		return mngFood_ + "/closed";
 	}
