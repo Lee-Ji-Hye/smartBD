@@ -7,14 +7,14 @@
 <div class="bg-light">
       <div class="container space-2">
       	 <!-- Update Avatar Form -->
-        <form class="media align-items-center mb-7">
-          <div class="u-lg-avatar mr-3">
-            <!-- <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description"> -->
+        <form class="media align-items-center mb-4"  style="text-align: right">
+          <div class="u-lg-avatar mr-4">
+            <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
           </div>
 
           <div class="media-body">
             <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn">
-              Upload New Picture
+              Upload
               <input id="fileAttachmentBtn" name="file-attachment" type="file" class="file-attachment-btn__label">
             </label>
 
@@ -36,29 +36,6 @@
           </div>
           <!-- End Input -->
           
-          <!-- Input -->
-          <div class="mb-4">
-            <div class="js-form-message">
-              <label class="form-label">
-                	카테고리
-              </label>
-
-              <div class="form-group">
-              	<select class="form-control custom-select" required
-                          data-msg="Please select month."
-                          data-error-class="u-has-error"
-                          data-success-class="u-has-success">
-              <option value="">Select Catagory</option>
-              <option value="birthMonthSelect1" selected="selected">한식</option>
-              <option value="birthMonthSelect2">중식</option>
-              <option value="birthMonthSelect3">일식</option>
-              <option value="birthMonthSelect3">디저트</option>
-            </select>
-              </div>
-            </div>
-          </div>
-          <!-- End Input -->
-
           <!-- Input -->
           <div class="mb-4">
             <div class="js-form-message">
@@ -125,11 +102,11 @@
                     data-success-class="u-has-success"></textarea>
         </div>
         <!-- End Input -->
-        
-            <!-- Buttons -->
-            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
-            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button>
-            <!-- End Buttons -->
+            <div style="text-align:center">
+	            <!-- Buttons -->
+	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
+	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button>
+	            <!-- End Buttons -->
           </div>
         </form>
       </div>

@@ -24,6 +24,12 @@
 		<!-- -권한-
 		ROLE_SYSMASTER - 시스템관리자
 		ROLE_BD_ADMIN  - 건물주
+		ROLE_BD_OFFICE, ROLE_BD_FOOD, ROLE_BD_PARK - 건물 파트별 관리자 권한 
+		ROLE_CP_ADMIN - 사업주
+		ROLE_CP_MANAGER - 사업체 매니저
+		ROLE_CP_EMPLOYEE - 사업체 직원
+		-->
+		<!-- <security:intercept-url pattern="/sysmaster/**"
 		ROLE_BD_MANAGER - 건물관리자
 		ROLE_BD_OFFICE, ROLE_BD_FOOD, ROLE_BD_PARK - 건물 파트별 관리자 권한
 		

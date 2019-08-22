@@ -31,30 +31,13 @@ pageEncoding="UTF-8"%>
               </div>
               <!-- End Datepicker -->
             </div>
-           <!--  <div class="col-md-6">
-              <div class="d-flex">
-                <div class="mr-2">
-                  Select
-                  <select id="datatableEntries" class="js-select selectpicker dropdown-select" data-width="fit" data-style="btn-soft-primary btn-sm">
-                    <option value="6">6 entries</option>
-                    <option value="12" selected>12 entries</option>
-                    <option value="18">18 entries</option>
-                    <option value="24">24 entries</option>
-                  </select>
-                  End Select
-                </div>
-                Search
-                <div class="js-focus-state input-group input-group-sm">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="searchActivities">
-                      <span class="fas fa-search"></span>
-                    </span>
-                  </div>
-                  <input id="datatableSearch" type="email" class="form-control" placeholder="Search activities" aria-label="Search activities" aria-describedby="searchActivities">
-                </div>
-                End Search
-              </div>
-            </div> -->
+            
+            <!-- Buttons -->
+            <div class="col-md-2">
+	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='couponUpload'">등록</button>
+	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">삭제</button>
+            </div>
+            <!-- End Buttons -->
           </div>
           <!-- End Activity Menu -->
         </div>
@@ -119,7 +102,9 @@ pageEncoding="UTF-8"%>
                     </div>
                   </th>
               </thead>
+              <%--  <c:forEach var="" items=""> --%>
               <tbody class="font-size-1">
+              	<tr class="text-uppercase font-size-1">
                   <td class="align-middle">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
                       <input type="checkbox" class="custom-control-input" id="invoiceCheckbox01">
@@ -131,7 +116,6 @@ pageEncoding="UTF-8"%>
                   <td class="align-middle text-secondary font-weight-normal ">매장명입력</td>
                   <td class="align-middle">
                     <div class="media align-items-center">
-                      </span>
                       <span>무더운 여름~</span>
                     </div>
                   </td>
@@ -218,6 +202,8 @@ pageEncoding="UTF-8"%>
                       </li>
                     </ul>
                   </div>'>
+                 </tr>
+                <%-- </c:forEach> --%>
               </tbody>
             </table>
           </div>
@@ -251,11 +237,6 @@ pageEncoding="UTF-8"%>
           <!-- End Pagination -->
         </div>
       </div>
-      <br><br>
-       <!-- Buttons -->
-            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='couponUpload'">등록</button>
-            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">삭제</button>
-            <!-- End Buttons -->
     </div>
   </div>
   <!-- End Content Section -->
