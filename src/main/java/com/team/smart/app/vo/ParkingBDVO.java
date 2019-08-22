@@ -29,4 +29,5 @@ public class ParkingBDVO {
 	private int reserved_position; //-- 지정주차구역
 	private String ask; //-- 기타사항
 	
+
 }

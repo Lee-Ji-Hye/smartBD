@@ -16,16 +16,16 @@
 		SELECT uc.comp_org
 		      ,uc.comp_section
 		      ,uc.comp_hp
-              ,uc.comp_branch
+          ,uc.comp_branch
 		      ,c.f_seq
 		      ,c.comp_seq
 		      ,c.long_desc
 		      ,c.short_desc
 		      ,c.f_mainimg
 		      ,c.f_category
-              ,cp.f_coupon_num
-              ,cp.f_coupon_name
-              ,cp.f_coupon_price
+          ,cp.f_coupon_num
+          ,cp.f_coupon_name
+          ,cp.f_coupon_price
 		FROM food_company_tbl c
 		INNER JOIN user_company_tbl uc ON(uc.comp_seq = c.comp_seq)
 		INNER JOIN (SELECT comp_seq, count(*) f_cnt FROM food_menu_tbl group by comp_seq) m
