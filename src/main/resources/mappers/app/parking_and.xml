@@ -32,4 +32,3 @@
 		where l.b_code = #{b_code}
 	</select>
 </mapper>
-	
