@@ -98,7 +98,7 @@ pageEncoding="UTF-8"%>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center" onclick="window.location='orderList'">
                       	메뉴명
                       <div class="ml-2">
                       </div>
@@ -122,12 +122,29 @@ pageEncoding="UTF-8"%>
                     <div class="d-flex justify-content-between align-items-center">
                       	상태
                       <div class="ml-2">
-                      </div>
+            		  </div>
                     </div>
                   </th>
                 </tr>
               </thead>
               <tbody class="font-size-1">
+              	<%-- <c:forEach var="" items=""> --%>
+              		<tr class="text-uppercase font-size-1">
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+	                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <td><a href="orderList?userid=">아이디오고</a></td>
+	                  <td>메뉴명오고</td>
+	                  <td>가격이오고</td>
+	                  <td>시간이오고</td>
+	                  <td>상태가오고</td>
+	                </tr>
+              	<%-- </c:forEach> --%>
               </tbody>
             </table>
           </div>
@@ -137,9 +154,9 @@ pageEncoding="UTF-8"%>
             <nav id="datatablePagination" aria-label="Activity pagination">
              <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">
              	<span class="page-item">
-              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
-             			<span aria-hidden="true">«</span>
-             		</a>
+	              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
+	             		<span aria-hidden="true">«</span>
+	             	</a>
              	</span>
              	<span style="display: flex;">
              		<span class="page-item">
@@ -151,7 +168,7 @@ pageEncoding="UTF-8"%>
              	</span>
              	<span class="page-item">
              		<a class="paginate_button next disabled page-link" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" id="DataTables_Table_0_next">
-             		<span aria-hidden="true">»</span>
+             			<span aria-hidden="true">»</span>
              		</a>
              	</span>
              </div>

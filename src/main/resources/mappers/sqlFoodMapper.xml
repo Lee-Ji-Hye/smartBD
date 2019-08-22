@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FoodDAO">
+
+	<!-- 업체 소개 등록 처리 -->
+	<insert id="storeUp" parameterType="com.team.smart.food.vo.Food_companyVO">
+		INSERT INTO food_company_tbl (long_desc,short_desc,f_category,f_seq)
+		VALUES (#{long_desc},#{short_desc},#{f_category},#{f_seq})
+	</insert>
+	<!-- <update id="storeUp" parameterType="com.team.smart.food.vo.Food_companyVO">
+		UPDATE Food_company_tbl SET long_desc = #{long_desc}, short_desc = #{short_desc}, f_category = #{f_category} WHERE f_seq = #{f_seq}
+	</update> -->
+	
+	<!-- 업체 상품 등록 -->
+	<!-- <insert id="foodUp" parameterType="com.team.smart.food.vo.Food_menuVO">
+		INSERT INTO food_menu_tbl (f_type,f_name,f_price,f_takeout,f_takeout_sale,f_img,f_icon,f_regidate) 
+		VALUES(#{f_type},#{f_name},#{f_price},#{f_takeout},#{f_takeout_sale},#{f_img},#{f_icon},SYSDATE)
+	</insert> -->
+</mapper>
+

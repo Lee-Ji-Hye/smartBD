@@ -3,28 +3,61 @@ pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/header.jsp" %>
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
+ 
 <!-- ========== MAIN ========== -->
 <main id="content" role="main">
   <div class="bg-light">
     <div class="container space-2">
       <div class="card">
-        <div class="card-header py-2 px-0 mx-4">
-        	<!-- Title & Settings -->
-              <div class="d-flex justify-content-between align-items-center">
-                <h4 class="h4 mb-0">Goods List</h4>
-              </div>
-              <!-- End Title & Settings -->
+        <div class="card-header py-4 px-0 mx-4">
           <!-- Activity Menu -->
           <div class="row justify-content-sm-between align-items-sm-center">
-          <div class="col-md-12">
-           	<!-- Buttons -->
-           		<button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="float: right">삭제</button>
-   			<!-- End Buttons -->
-      	</div>
+            <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
+              
+              <!-- Datepicker -->
+              <div id="datepickerWrapper" class="js-focus-state u-datepicker w-auto input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <span class="fas fa-calendar"></span>
+                  </span>
+                </div>
+                
+                <input type="text" class="js-range-datepicker form-control bg-white rounded-right"
+                       data-rp-wrapper="#datepickerWrapper"
+                       data-rp-type="range"
+                       data-rp-date-format="d M Y"
+                       data-rp-default-date='["05 Jul 2019", "19 Jul 2019"]'
+                       data-rp-is-disable-future-dates="true">
+              </div>
+              <!-- End Datepicker -->
+            </div>
+           <!--  <div class="col-md-6">
+              <div class="d-flex">
+                <div class="mr-2">
+                  Select
+                  <select id="datatableEntries" class="js-select selectpicker dropdown-select" data-width="fit" data-style="btn-soft-primary btn-sm">
+                    <option value="6">6 entries</option>
+                    <option value="12" selected>12 entries</option>
+                    <option value="18">18 entries</option>
+                    <option value="24">24 entries</option>
+                  </select>
+                  End Select
+                </div>
+                Search
+                <div class="js-focus-state input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="searchActivities">
+                      <span class="fas fa-search"></span>
+                    </span>
+                  </div>
+                  <input id="datatableSearch" type="email" class="form-control" placeholder="Search activities" aria-label="Search activities" aria-describedby="searchActivities">
+                </div>
+                End Search
+              </div>
+            </div> -->
           </div>
           <!-- End Activity Menu -->
         </div>
-        
         <div class="card-body p-4">
           <!-- Activity Table -->
           <div class="table-responsive-md u-datatable">
@@ -59,7 +92,14 @@ pageEncoding="UTF-8"%>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	메뉴명
+                      	매장명
+                      <div class="ml-2">
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	쿠폰명
                       <div class="ml-2">
                       </div>
                     </div>
@@ -71,18 +111,15 @@ pageEncoding="UTF-8"%>
                       </div>
                     </div>
                   </th>
-                <th scope="col" class="font-weight-medium">
+                  <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	분류
+                      	사옹기한
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
-                </tr>
               </thead>
               <tbody class="font-size-1">
-             <%--  <c:forEach var="" items=""> --%>
-              	<tr class="text-uppercase font-size-1">
                   <td class="align-middle">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
                       <input type="checkbox" class="custom-control-input" id="invoiceCheckbox01">
@@ -91,15 +128,16 @@ pageEncoding="UTF-8"%>
                       </label>
                     </div>
                   </td>
-                  <td class="align-middle text-secondary font-weight-normal"></td>
+                  <td class="align-middle text-secondary font-weight-normal ">매장명입력</td>
                   <td class="align-middle">
                     <div class="media align-items-center">
-                      <span>6,000</span>
+                      </span>
+                      <span>무더운 여름~</span>
                     </div>
                   </td>
-                  <td class="align-middle text-primary">커피</td>
-                  <!-- <td class="align-middle text-secondary">09:00</td>
-                  <td class="align-middle text-danger">상태완료</td> -->
+                  <td class="align-middle text-primary">1,000</td>
+                  <td class="align-middle text-secondary">2019/08/12~2019/09/11</td>
+                  <!-- <td class="align-middle text-danger"></td> -->
                 </tr>
                 <tr class="js-datatabale-details" data-details='
                   <div class="border rounded p-5">
@@ -180,8 +218,6 @@ pageEncoding="UTF-8"%>
                       </li>
                     </ul>
                   </div>'>
-                </tr> 
-                <%-- </c:forEach> --%>
               </tbody>
             </table>
           </div>
@@ -191,7 +227,7 @@ pageEncoding="UTF-8"%>
             <nav id="datatablePagination" aria-label="Activity pagination">
              <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">
              	<span class="page-item">
-              		<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
+              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
              			<span aria-hidden="true">«</span>
              		</a>
              	</span>
@@ -205,7 +241,7 @@ pageEncoding="UTF-8"%>
              	</span>
              	<span class="page-item">
              		<a class="paginate_button next disabled page-link" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" id="DataTables_Table_0_next">
-             			<span aria-hidden="true">»</span>
+             		<span aria-hidden="true">»</span>
              		</a>
              	</span>
              </div>
@@ -215,10 +251,14 @@ pageEncoding="UTF-8"%>
           <!-- End Pagination -->
         </div>
       </div>
+      <br><br>
+       <!-- Buttons -->
+            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='couponUpload'">등록</button>
+            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">삭제</button>
+            <!-- End Buttons -->
     </div>
-     
+  </div>
   <!-- End Content Section -->
- </div>
 </main>
 <!-- ========== END MAIN ========== -->
 <%@ include file="../../common/footer.jsp" %>
