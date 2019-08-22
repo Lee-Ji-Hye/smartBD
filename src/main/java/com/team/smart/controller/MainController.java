@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -12,11 +13,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team.smart.service.UserService;
+
 
 @Controller
 public class MainController {
-	//private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Autowired
+	UserService userService;
+	
+	
 	//메인
 	@RequestMapping({"/", "index"})
 	public String index(HttpServletRequest req, Model model) {
@@ -49,9 +57,20 @@ public class MainController {
 	}
 	//회원가입
 	@RequestMapping("signUp")
-	public String signUp(HttpServletRequest req, HttpServletResponse res) {
+	public String signUp() {
+		logger.info("url => signUp");
 		return "signup/signup";
 	}
+
+	//회원가입처리
+	@RequestMapping("signUpPro")
+	public String signUpPro(HttpServletRequest req, Model model) {
+		logger.info("url => signUpPro");
+		userService.signUpUser(req, model);
+		return "redirect:/user_complet";
+	}
+	
+	
 	//user_complet 유저 회원가입완료
 	@RequestMapping("user_complet")
 	public String user_complet(HttpServletRequest req, HttpServletResponse res) {

@@ -86,9 +86,7 @@ public class FoodControllerAPI {
 	
 	@RequestMapping(value="mimi") //통신 사용시 이걸로 사용.
 	public @ResponseBody String  mimi(HttpServletRequest req) {
-		
 		f_service.test(req);
-		
 		return "";
 	}
 	
