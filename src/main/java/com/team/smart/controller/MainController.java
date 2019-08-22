@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -12,11 +13,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team.smart.service.UserService;
+
 
 @Controller
 public class MainController {
-	//private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Autowired
+	UserService userService;
+	
+	
 	//메인
 	@RequestMapping({"/", "index"})
 	public String index(HttpServletRequest req, Model model) {
@@ -34,8 +42,6 @@ public class MainController {
 	@RequestMapping("login")
 	public String login(HttpServletRequest req, Model model) {
 		//로그아웃 후 메인으로 이동
-		System.out.println("이전페이지 URL : '"+req.getHeader("referer")+"'");
-		model.addAttribute("url",req.getHeader("referer"));
 		return "signup/login";
 	}
 	
@@ -51,9 +57,20 @@ public class MainController {
 	}
 	//회원가입
 	@RequestMapping("signUp")
-	public String signUp(HttpServletRequest req, HttpServletResponse res) {
+	public String signUp() {
+		logger.info("url => signUp");
 		return "signup/signup";
 	}
+
+	//회원가입처리
+	@RequestMapping("signUpPro")
+	public String signUpPro(HttpServletRequest req, Model model) {
+		logger.info("url => signUpPro");
+		userService.signUpUser(req, model);
+		return "redirect:/user_complet";
+	}
+	
+	
 	//user_complet 유저 회원가입완료
 	@RequestMapping("user_complet")
 	public String user_complet(HttpServletRequest req, HttpServletResponse res) {
@@ -65,12 +82,70 @@ public class MainController {
 	@RequestMapping("mypage")
 	public String mypage(HttpServletRequest req, Model model) {
 		
-		return "svc/mypage";
+		return "svc/parking/mypage";
 	}
 	
 	@RequestMapping("room")
 	public String room(HttpServletRequest req, Model model) {
 		
-		return "svc/room";
+		return "svc/parking/room";
 	}
+	
+	@RequestMapping("inoutcar")
+	public String inoutcar(HttpServletRequest req, Model model) {
+		
+		return "mng/parking/inoutcar";
+	}
+	//주차권 사용 내역
+	@RequestMapping("uselist")
+	public String uselist(HttpServletRequest req, Model model) {
+		
+		return "mng/parking/uselist";
+	}
+	//주차권 환불 내역
+	@RequestMapping("refund")
+	public String refund(HttpServletRequest req, Model model) {
+		
+		return "mng/parking/refund";
+	}
+	//주차권 발급 내역
+	@RequestMapping("parkinglist")
+	public String parkinglist(HttpServletRequest req, Model model) {
+		
+		return "mng/parking/parkinglist";
+	}
+	//주차권 사용
+	@RequestMapping("ticketuse")
+	public String parkinguse(HttpServletRequest req, Model model) {
+		
+		return "mng/parking/ticketuse";
+	}
+	
+	//주차장현황  입차
+	@RequestMapping("incar")
+	public String incar(HttpServletRequest req, Model model) {
+		
+		return "mng/parking/incar";
+	}
+	
+	//주차장 현황 출차
+	@RequestMapping("outcar")
+	public String outcar(HttpServletRequest req, Model model) {
+		
+		return "mng/parking/outcar";
+	}	
+
+	@RequestMapping("total")
+	public String total(HttpServletRequest req, Model model) {
+		
+		return "mng/parking/total";
+	}
+	
+	@RequestMapping("ticketmanager")
+	public String ticketmanager(HttpServletRequest req, Model model) {
+		
+		return "mng/parking/ticketmanager";
+	}
+	
+	
 }

@@ -258,28 +258,22 @@
                 <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Building<span></span></a>
 
                 <!-- Pages - Submenu -->
-                <ul id="pagesSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px; display: none;">
-                  <!-- Account -->
-                  <li class="hs-has-sub-menu">
-                    <a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path_m}/roomlist" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">매물 관리</a>
-
-                    <ul id="navSubmenuPagesAccount" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesAccount" style="min-width: 230px; display: none;">
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/room">임대</a></li>
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/profile.html">추가할거 추가</a></li>
-                    </ul>
-                  </li>
-                  <!-- End Account -->
-
-                  <!-- Company -->
-                  <li class="hs-has-sub-menu">
-                    <a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">회의실예약</a>
-
-                    <ul id="navSubmenuPagesCompany" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesCompany" style="min-width: 230px; display: none;">
+                <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
+                  <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path_m}/roomlist" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">매물 관리</a></li>
+                  <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path_m}/meetingroom" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">회의실 관리</a></li>
+                  <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path_m}/billing" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">납부 관리</a></li>
+                 
+					<!--                    <ul id="navSubmenuPagesCompany" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesCompany" style="min-width: 230px; display: none;">
+                    		테스트용
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/sysmaster/">시스템 관리자</a></li>
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/bd_admin/">건물주</a></li>
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/member/">회원</a></li>
                       <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/about-agency.html">About Agency</a></li>
                       <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/services-agency.html">Services Agency</a></li>
-                    </ul>
-                  </li>
+                    </ul> -->
+                  
                   <!-- Company -->
+                  
                 </ul>
                 <!-- End Pages - Submenu -->
               </li>
@@ -291,8 +285,10 @@
 
                 <!-- Blog - Submenu -->
                 <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
-                  <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/blog/card-style.html">주차장 정보</a></li>
-                  <!-- <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/blog/listing.html">추가할거 추가</a></li> -->
+                <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/incar">입차 / 출차 관리</a></li>
+                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/parkinglist">주차권 관리</a></li>
+                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/ticketmanager">주차장 현황관리</a></li>
+                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/total">주차장 정산</a></li>
                 </ul>
                 <!-- End Submenu -->
               </li>
@@ -312,6 +308,7 @@
                         <ul class="u-header__sub-menu-nav-group">
                           <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/main">업체 정보</a></li>
                            <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/closed">휴무 등록</a></li>
+
                           <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/menuUpload">상품 등록</a></li>
                           <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponUpload">쿠폰 등록</a></li>
                         </ul>
@@ -348,11 +345,11 @@
               <!-- End Shop -->
 
               <!-- Button -->
-              <li class="nav-item u-header__nav-last-item">
+              <%-- <li class="nav-item u-header__nav-last-item">
                 <a class="btn btn-sm btn-primary transition-3d-hover" style="width: 105px;font-size: 12px;" href="${path_m}" target="_blank">
                   	매니저 전환
                 </a>
-              </li>
+              </li> --%>
               <!-- End Button -->
             </ul>
           </div>
