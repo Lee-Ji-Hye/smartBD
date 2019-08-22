@@ -3,8 +3,7 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/header.jsp" %>
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
-<body>
-
+<body> 
 <!-- Main -->
 <div class="container space-2 px-md-7 px-lg-11">
      <div class="card bg-img-hero" style="background-image: url(../../assets/svg/components/bg-elements-6.svg);">
@@ -12,9 +11,9 @@
        
        <div class="container space-1">
            	<!-- Update Avatar Form -->
-	        <form class="media align-items-center mb-4">
+	        <form class="media align-items-center mb-4" enctype="multipart/form-data" method="post" action="/smart/mng/food/intorduction">
 	          <div class="u-lg-avatar mr-3">
-	            <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
+	           <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
 	          </div>
 	
 	          <div class="media-body">
@@ -25,12 +24,10 @@
 	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>
 	          </div>
 	        </form>
-	        </div>
+        </div>
        
          <div class="row justify-content-lg-between align-items-sm-center mb-11">
-           
            <div class="col-sm-6 col-lg-4 order-sm-1">
-           	
 	        <!-- End Update Avatar Form -->
              <!-- Logo -->
              <h2 class="h1 text-primary font-weight-semi-bold">매장이름</h2>
@@ -41,15 +38,15 @@
                	카테고리
                <small class="d-block">
              		<select class="form-control custom-select" required
-           		      data-msg="Please select month."
-                         data-error-class="u-has-error"
-                         data-success-class="u-has-success">
-	              <option value="">Select Catagory</option>
-	              <option value="birthMonthSelect1" selected="selected">한식</option>
-	              <option value="birthMonthSelect2">중식</option>
-	              <option value="birthMonthSelect3">일식</option>
-	              <option value="birthMonthSelect3">디저트</option>
-           		</select>
+           		      		data-msg="Please select month."
+                         	data-error-class="u-has-error"
+                         	data-success-class="u-has-success">
+		              <option value="">Select Catagory</option>
+		              <option value="birthMonthSelect1" selected="selected">한식</option>
+		              <option value="birthMonthSelect2">중식</option>
+		              <option value="birthMonthSelect3">일식</option>
+		              <option value="birthMonthSelect3">디저트</option>
+           			</select>
                </small>
              </h1>
            </div>

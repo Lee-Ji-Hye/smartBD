@@ -81,6 +81,8 @@ pageEncoding="UTF-8"%>
                 </tr>
               </thead>
               <tbody class="font-size-1">
+             <%--  <c:forEach var="" items=""> --%>
+              	<tr class="text-uppercase font-size-1">
                   <td class="align-middle">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
                       <input type="checkbox" class="custom-control-input" id="invoiceCheckbox01">
@@ -89,7 +91,7 @@ pageEncoding="UTF-8"%>
                       </label>
                     </div>
                   </td>
-                  <td class="align-middle text-secondary font-weight-normal">카페라떼</td>
+                  <td class="align-middle text-secondary font-weight-normal"></td>
                   <td class="align-middle">
                     <div class="media align-items-center">
                       <span>6,000</span>
@@ -178,6 +180,8 @@ pageEncoding="UTF-8"%>
                       </li>
                     </ul>
                   </div>'>
+                </tr> 
+                <%-- </c:forEach> --%>
               </tbody>
             </table>
           </div>
@@ -187,7 +191,7 @@ pageEncoding="UTF-8"%>
             <nav id="datatablePagination" aria-label="Activity pagination">
              <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">
              	<span class="page-item">
-              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
+              		<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
              			<span aria-hidden="true">«</span>
              		</a>
              	</span>
@@ -201,7 +205,7 @@ pageEncoding="UTF-8"%>
              	</span>
              	<span class="page-item">
              		<a class="paginate_button next disabled page-link" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" id="DataTables_Table_0_next">
-             		<span aria-hidden="true">»</span>
+             			<span aria-hidden="true">»</span>
              		</a>
              	</span>
              </div>

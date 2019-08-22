@@ -65,7 +65,7 @@
 		<security:session-management>
 			<security:concurrency-control
 				max-sessions="1"
-				expired-url="/002_log_in"
+				expired-url="/login"
 				error-if-maximum-exceeded="true"
 			/>
 		</security:session-management>
@@ -84,4 +84,6 @@
 	<!-- 비밀번호 암호화를 위한 빈 -->
 	<!-- <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> -->
 	<bean id="bcryptPasswordEncoder" class="com.team.smart.security.config.UserPasswordEncode" />
+	
+   
 </beans>

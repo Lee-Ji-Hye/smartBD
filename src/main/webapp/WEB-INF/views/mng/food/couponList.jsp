@@ -102,7 +102,9 @@ pageEncoding="UTF-8"%>
                     </div>
                   </th>
               </thead>
+              <%--  <c:forEach var="" items=""> --%>
               <tbody class="font-size-1">
+              	<tr class="text-uppercase font-size-1">
                   <td class="align-middle">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
                       <input type="checkbox" class="custom-control-input" id="invoiceCheckbox01">
@@ -114,7 +116,6 @@ pageEncoding="UTF-8"%>
                   <td class="align-middle text-secondary font-weight-normal ">매장명입력</td>
                   <td class="align-middle">
                     <div class="media align-items-center">
-                      </span>
                       <span>무더운 여름~</span>
                     </div>
                   </td>
@@ -201,6 +202,8 @@ pageEncoding="UTF-8"%>
                       </li>
                     </ul>
                   </div>'>
+                 </tr>
+                <%-- </c:forEach> --%>
               </tbody>
             </table>
           </div>

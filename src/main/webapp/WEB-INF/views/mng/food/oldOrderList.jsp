@@ -128,6 +128,23 @@ pageEncoding="UTF-8"%>
                 </tr>
               </thead>
               <tbody class="font-size-1">
+              	<%-- <c:forEach var="" items=""> --%>
+              		<tr class="text-uppercase font-size-1">
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+	                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <td><a href="orderList?userid=">아이디오고</a></td>
+	                  <td>메뉴명오고</td>
+	                  <td>가격이오고</td>
+	                  <td>시간이오고</td>
+	                  <td>상태가오고</td>
+	                </tr>
+              	<%-- </c:forEach> --%>
               </tbody>
             </table>
           </div>
