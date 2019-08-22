@@ -57,7 +57,7 @@
                     <!-- General -->
                     <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                       <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
-                        	관리자
+                        	업체
                       </a>
 
                       <ul id="generalDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="generalDropdown">
@@ -105,10 +105,17 @@
                       </ul>
                     </li>
                     <!-- Accessibility -->
-
                     <!-- Others -->
-                    <li class="nav-item u-header__nav-item">
-                      <a class="nav-link u-header__nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/plans.html">결산</a>
+                    <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+                      <a id="accessibilityDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="accessibilityDropdownMenu">
+                        	결산
+                      </a>
+
+                      <ul id="accessibilityDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="accessibilityDropdown">
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponList">당일 결산</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponUpload">주간 결산</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponUpload">월간 결산</a></li>
+                      </ul>
                     </li>
                     <!-- Others -->
                   </ul>

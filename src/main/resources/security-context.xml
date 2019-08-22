@@ -37,7 +37,7 @@
 		ROLE_CP_MANAGER - 식당 매니저
 		ROLE_CP_EMPLOYEE - 식당 직원
 		-->
-		<security:intercept-url pattern="/sysmaster/**"
+		<!-- <security:intercept-url pattern="/sysmaster/**"
 			access="hasRole('ROLE_SYSMASTER')" />
 			
 		<security:intercept-url pattern="/bd_admin/**"
@@ -65,7 +65,7 @@
 			access="hasAnyRole('CP_ADMIN','CP_MANAGER','CP_EMPLOYEE')" />
 			
 		<security:intercept-url pattern="/member/**"
-			access="isAuthenticated()" />
+			access="isAuthenticated()" /> -->
 			
 		<security:intercept-url pattern="/**"
 			access="permitAll" />
@@ -95,4 +95,6 @@
 	<!-- 비밀번호 암호화를 위한 빈 -->
 	<!-- <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> -->
 	<bean id="bcryptPasswordEncoder" class="com.team.smart.security.config.UserPasswordEncode" />
+	
+   
 </beans>
