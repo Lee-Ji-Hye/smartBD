@@ -1,4 +1,4 @@
-package com.team.smart.persistance;
+package com.team.smart.persistence;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class UserDAOImpl implements UserDAO {
 	//com.team.smart.persistance.UserDAO
 	@Override
 	public int signUpUser(UserVO vo) {
-		return sqlSession.insert("com.team.smart.persistance.UserDAO.signUpUser", vo);
+		return sqlSession.insert("UserDAO.signUpUser", vo);
 	}
 
 }

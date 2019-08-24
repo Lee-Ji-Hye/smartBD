@@ -18,6 +18,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.team.smart.service.FoodService;
 import com.team.smart.service.FoodServiceImpl;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 
 @Controller
 public class FoodController {

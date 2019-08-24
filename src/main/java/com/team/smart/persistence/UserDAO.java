@@ -1,4 +1,4 @@
-package com.team.smart.persistance;
+package com.team.smart.persistence;
 
 import com.team.smart.vo.UserVO;
 

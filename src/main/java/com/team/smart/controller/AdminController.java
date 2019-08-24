@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AdminController {
 	//private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
 	private String admin_ = "admin/";
 	
 	//메인
@@ -17,6 +16,5 @@ public class AdminController {
 	public String index(HttpServletRequest req, Model model) {
         //logger.debug("ID : {}");
 		return admin_ + "index";
-	}
-	
+	}	
 }

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.team.smart.persistance.UserDAO;
+import com.team.smart.persistence.UserDAO;
 import com.team.smart.vo.UserVO;
 
 @Service

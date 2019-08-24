@@ -27,7 +27,7 @@ public class UserAuthenticationService implements UserDetailsService {
 	//실패시 -> UserLoginFailureHandler로 이동
 	@Override
 	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
-		Map<String, Object> user = sqlSession.selectOne("com.team.smart.persistance.UserDAO.selectMember", userid);
+		Map<String, Object> user = sqlSession.selectOne("UserDAO.selectMember", userid);
 		System.out.println("로그인 체크 ===> " + user);
 		if(user == null) throw new UsernameNotFoundException(userid);
 		//user.get("authority") = 로그인한 유저의 권한을 가져옴
