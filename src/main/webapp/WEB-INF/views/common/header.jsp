@@ -5,16 +5,14 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Title -->
   <title>Dashboard | Front - Responsive Website Template</title>
-
   <!-- Required Meta Tags Always Come First -->
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://htmlstream.com/preview/front-v2.9.0/favicon.ico">
-
   <!-- Google Fonts -->
   <link href="${resourceBoot}/css/css(1).css" rel="stylesheet">
+  <link href="${resourceBoot}/css/css(1).css" rel="stylesheet">
+  <link href="${resource}/css/common.css" rel="stylesheet">
 
   <!-- CSS Implementing Plugins -->
   <link rel="stylesheet" href="${resourceBoot}/css/fontawesome-all.min.css">

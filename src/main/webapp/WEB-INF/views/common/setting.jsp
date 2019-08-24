@@ -2,9 +2,14 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!-- resources PATH-->
+<c:set var="resource"     value="/smart/resources"/>
 <c:set var="resourceBoot" value="/smart/resources/bootstrap"/> <!-- bootstrap resource 파일 경로 -->
-<c:set var="resourceImg" value="/smart/resources/images"/>     <!-- 이미지 경로 -->
-<c:set var="path" value="/smart"/> <!-- root url -->
+<c:set var="resourceImg"  value="/smart/resources/images"/>    <!-- 이미지 경로 -->
+
+<!-- URI PATH -->
+<c:set var="path"   value="/smart"/>       <!-- root url -->
 <c:set var="path_a" value="/smart/admin"/> <!-- 관리자 url -->
 <c:set var="path_m" value="/smart/mng"/>   <!-- 매니저 url -->
 

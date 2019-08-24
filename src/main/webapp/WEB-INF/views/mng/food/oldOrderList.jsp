@@ -145,35 +145,143 @@ pageEncoding="UTF-8"%>
 	                  <td>상태가오고</td>
 	                </tr>
               	<%-- </c:forEach> --%>
+              	
+              	<tr class="text-uppercase font-size-1">
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+	                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <td><a href="orderList?userid=">아이디오고</a></td>
+	                  <td>메뉴명오고</td>
+	                  <td>가격이오고</td>
+	                  <td>시간이오고</td>
+	                  <td>상태가오고</td>
+	                </tr>
+	                <tr class="text-uppercase font-size-1">
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+	                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <td><a href="orderList?userid=">아이디오고</a></td>
+	                  <td>메뉴명오고</td>
+	                  <td>가격이오고</td>
+	                  <td>시간이오고</td>
+	                  <td>상태가오고</td>
+	                </tr>
+	                <tr class="text-uppercase font-size-1">
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+	                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <td><a href="orderList?userid=">아이디오고</a></td>
+	                  <td>메뉴명오고</td>
+	                  <td>가격이오고</td>
+	                  <td>시간이오고</td>
+	                  <td>상태가오고</td>
+	                </tr>
+	                <tr class="text-uppercase font-size-1">
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+	                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <td><a href="orderList?userid=">아이디오고</a></td>
+	                  <td>메뉴명오고</td>
+	                  <td>가격이오고</td>
+	                  <td>시간이오고</td>
+	                  <td>상태가오고</td>
+	                </tr>
+	                <tr class="text-uppercase font-size-1">
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+	                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <td><a href="orderList?userid=">아이디오고</a></td>
+	                  <td>메뉴명오고</td>
+	                  <td>가격이오고</td>
+	                  <td>시간이오고</td>
+	                  <td>상태가오고</td>
+	                </tr>
+	                <tr class="text-uppercase font-size-1">
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+	                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <td><a href="orderList?userid=">아이디오고</a></td>
+	                  <td>메뉴명오고</td>
+	                  <td>가격이오고</td>
+	                  <td>시간이오고</td>
+	                  <td>상태가오고</td>
+	                </tr>
+	                <tr class="text-uppercase font-size-1">
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+	                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <td><a href="orderList?userid=">아이디오고</a></td>
+	                  <td>메뉴명오고</td>
+	                  <td>가격이오고</td>
+	                  <td>시간이오고</td>
+	                  <td>상태가오고</td>
+	                </tr>
               </tbody>
             </table>
           </div>
           <!-- End Activity Table -->
           <!-- Pagination -->
-          <div class="d-flex align-items-center">
-            <nav id="datatablePagination" aria-label="Activity pagination">
-             <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">
-             	<span class="page-item">
-	              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
-	             		<span aria-hidden="true">«</span>
-	             	</a>
-             	</span>
-             	<span style="display: flex;">
-             		<span class="page-item">
-             			<a class="paginate_button page-link" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a>
-             		</span>
-             		<span class="page-item active">
-             			<a class="paginate_button current page-link" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">2</a>
-             		</span>
-             	</span>
-             	<span class="page-item">
-             		<a class="paginate_button next disabled page-link" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" id="DataTables_Table_0_next">
-             			<span aria-hidden="true">»</span>
-             		</a>
-             	</span>
-             </div>
-            </nav>
-            <small id="datatableInfo" class="text-secondary ml-auto"></small>
+          <div class="pagingDivCenter01">
+	          <div class="pagingDivCenter02">
+	            <nav id="datatablePagination" aria-label="Activity pagination">
+	             <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">
+	             	<span class="page-item">
+		              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
+		             		<span aria-hidden="true">«</span>
+		             	</a>
+	             	</span>
+	             	<span style="display: flex;">
+	             		<span class="page-item">
+	             			<a class="paginate_button page-link" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a>
+	             		</span>
+	             		<span class="page-item active">
+	             			<a class="paginate_button current page-link" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">2</a>
+	             		</span>
+	             	</span>
+	             	<span class="page-item">
+	             		<a class="paginate_button next disabled page-link" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" id="DataTables_Table_0_next">
+	             			<span aria-hidden="true">»</span>
+	             		</a>
+	             	</span>
+	             </div>
+	            </nav>
+	            <small id="datatableInfo" class="text-secondary ml-auto"></small>
+	          </div>
           </div>
           <!-- End Pagination -->
         </div>
