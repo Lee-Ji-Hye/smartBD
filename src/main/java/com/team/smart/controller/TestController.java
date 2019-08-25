@@ -1,14 +1,5 @@
 package com.team.smart.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-
 /**
  * 
  * @author jung_sh
@@ -17,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 
-@Controller
+//@Controller
 public class TestController {
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	//test�� ���� ��Ʈ�ѷ�
 	/*
@@ -55,66 +45,66 @@ public class TestController {
 	 */
 	//003_join ȸ������ �Է� ȭ�� �̵�
 
-	@RequestMapping("a")
-	public String a(HttpServletRequest req, Model model) {
-		logger.info("URI -> sysmaster");
-		return "mng/building/a";
-	}
-
-	
-	@RequestMapping("sysmaster/")
-	public String test1(HttpServletRequest req, Model model) {
-		logger.info("URI -> sysmaster");
-		return "test";
-	}
-
-	@RequestMapping("bd_admin/")
-	public String test2(HttpServletRequest req, Model model) {
-		logger.info("URI -> bd_admin");
-		return "test";
-	}
-
-	@RequestMapping("bd_office/")
-	public String test3(HttpServletRequest req, Model model) {
-		logger.info("URI -> bd_office");
-		return "test";
-	}
-
-	@RequestMapping("bd_food/")
-	public String test4(HttpServletRequest req, Model model) {
-		logger.info("URI -> bd_food");
-		return "test";
-	}
-
-	@RequestMapping("bd_park/")
-	public String test5(HttpServletRequest req, Model model) {
-		logger.info("URI -> bd_park");
-		return "test";
-	}
-
-	@RequestMapping("cp_admin/")
-	public String test6(HttpServletRequest req, Model model) {
-		logger.info("URI -> cp_admin");
-		return "test";
-	}
-
-	@RequestMapping("cp_manager/")
-	public String test7(HttpServletRequest req, Model model) {
-		logger.info("URI -> cp_manager");
-		return "test";
-	}
-
-	@RequestMapping("cp_employee/")
-	public String test8(HttpServletRequest req, Model model) {
-		logger.info("URI -> cp_employee");
-		return "test";
-	}
-
-	@RequestMapping("member/")
-	public String test9(HttpServletRequest req, Model model) {
-		logger.info("URI -> member");
-		return "test";
-	}
-
-	
+//	@RequestMapping("a")
+//	public String a(HttpServletRequest req, Model model) {
+//		logger.info("URI -> sysmaster");
+//		return "mng/building/a";
+//	}
+//
+//	
+//	@RequestMapping("sysmaster/")
+//	public String test1(HttpServletRequest req, Model model) {
+//		logger.info("URI -> sysmaster");
+//		return "test";
+//	}
+//
+//	@RequestMapping("bd_admin/")
+//	public String test2(HttpServletRequest req, Model model) {
+//		logger.info("URI -> bd_admin");
+//		return "test";
+//	}
+//
+//	@RequestMapping("bd_office/")
+//	public String test3(HttpServletRequest req, Model model) {
+//		logger.info("URI -> bd_office");
+//		return "test";
+//	}
+//
+//	@RequestMapping("bd_food/")
+//	public String test4(HttpServletRequest req, Model model) {
+//		logger.info("URI -> bd_food");
+//		return "test";
+//	}
+//
+//	@RequestMapping("bd_park/")
+//	public String test5(HttpServletRequest req, Model model) {
+//		logger.info("URI -> bd_park");
+//		return "test";
+//	}
+//
+//	@RequestMapping("cp_admin/")
+//	public String test6(HttpServletRequest req, Model model) {
+//		logger.info("URI -> cp_admin");
+//		return "test";
+//	}
+//
+//	@RequestMapping("cp_manager/")
+//	public String test7(HttpServletRequest req, Model model) {
+//		logger.info("URI -> cp_manager");
+//		return "test";
+//	}
+//
+//	@RequestMapping("cp_employee/")
+//	public String test8(HttpServletRequest req, Model model) {
+//		logger.info("URI -> cp_employee");
+//		return "test";
+//	}
+//
+//	@RequestMapping("member/")
+//	public String test9(HttpServletRequest req, Model model) {
+//		logger.info("URI -> member");
+//		return "test";
+//	}
+//
+//	
 }

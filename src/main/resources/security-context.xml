@@ -21,37 +21,48 @@
 			logout-url="/logout"
 		/>
 			
-		<!-- -권한-
-		ROLE_SYSMASTER - 시스템관리자
-		ROLE_BD_ADMIN  - 건물주
-		ROLE_BD_MANAGER - 건물관리자
-		ROLE_BD_OFFICE, ROLE_BD_FOOD, ROLE_BD_PARK - 건물 파트별 관리자 권한
+		<!-- -권한- 모든 권한 앞에는 'ROLE_'이 붙어야됨.
 		
-		식당(임대권한+식당권한)
-		나눕니다..
+		시스템 관리자	SYSMASTER (시스템관리자)			
+				
+		건물 주인		BD_ADMIN (건물주)			
+						
+		건물 관리권한	BD_MANAGER (건물매니저)			
+						
+		파트별 관리자	BD_OFFICE(임대관리자)	BD_RESER(회의실예약관리자)	BD_PARK(주차장관리자)	BD_FOOD(식당관리자)
 		
-		업체(임대권한)
-		ROLE_CP_TENANT - 임차인
-		식당 
-		ROLE_CP_ADMIN - 식당 사장
-		ROLE_CP_MANAGER - 식당 매니저
-		ROLE_CP_EMPLOYEE - 식당 직원
+		임차인 관리자 권한	CP_TENANT(임차인)			
+								
+		식당 주인					CP_ADMIN(식당주인)
+						
+		식당 매니저 권한				CP_MANAGER(식당매니저)
+						
+		식당 일반 권한				CP_EMPLOYEE(식당직원)
+		
+		일반회원					DEFAULT		
 		-->
-		<!-- <security:intercept-url pattern="/sysmaster/**"
-			access="hasRole('ROLE_SYSMASTER')" />
+		
+		<security:intercept-url pattern="/sysmaster/**"
+			access="hasRole('SYSMASTER')" />
 			
 		<security:intercept-url pattern="/bd_admin/**"
 			access="hasRole('BD_ADMIN')" />
 			
+		<security:intercept-url pattern="/bd_manager/**"
+			access="hasAnyRole('BD_ADMIN','BD_MANAGER')" />
+		
 		<security:intercept-url pattern="/bd_office/**"
-			access="hasAnyRole('BD_ADMIN','BD_OFFICE')" />
+			access="hasAnyRole('BD_ADMIN','BD_MANAGER','BD_OFFICE')" />
 			
 		<security:intercept-url pattern="/bd_food/**"
-			access="hasAnyRole('BD_ADMIN','BD_FOOD')" />
+			access="hasAnyRole('BD_ADMIN','BD_MANAGER','BD_FOOD')" />
 			
 		<security:intercept-url pattern="/bd_park/**"
-			access="hasAnyRole('BD_ADMIN','BD_PARK')" />
-			
+			access="hasAnyRole('BD_ADMIN','BD_MANAGER','BD_PARK')" />
+		
+		<security:intercept-url pattern="/bd_resu/**"
+			access="hasAnyRole('BD_ADMIN','BD_MANAGER','BD_RESU')" />
+		
 		<security:intercept-url pattern="/cp_tenant/**"
 			access="hasRole('CP_TENANT')" />
 			
@@ -65,7 +76,7 @@
 			access="hasAnyRole('CP_ADMIN','CP_MANAGER','CP_EMPLOYEE')" />
 			
 		<security:intercept-url pattern="/member/**"
-			access="isAuthenticated()" /> -->
+			access="isAuthenticated()" />
 			
 		<security:intercept-url pattern="/**"
 			access="permitAll" />
