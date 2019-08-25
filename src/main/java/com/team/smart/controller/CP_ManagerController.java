@@ -24,7 +24,7 @@ public class CP_ManagerController {
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> cp_manager/");
 		
-		return "index";
+		return "test";
 	}
 	
 }

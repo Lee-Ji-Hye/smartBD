@@ -24,7 +24,7 @@ public class BD_ManagerController {
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> bd_manager/");
 		
-		return "index";
+		return "test";
 	}
 	
 }

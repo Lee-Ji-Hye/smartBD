@@ -24,7 +24,7 @@ public class CP_AdminController {
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> cp_admin/");
 		
-		return "index";
+		return "test";
 	}
 	
 }

@@ -23,7 +23,7 @@ public class BD_ResuController {
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> bd_resu/");
 		
-		return "index";
+		return "test";
 	}
 	
 }

@@ -24,7 +24,7 @@ public class MemberController {
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> member/");
 		
-		return "index";
+		return "test";
 	}
 	
 }

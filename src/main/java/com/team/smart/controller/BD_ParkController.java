@@ -23,7 +23,7 @@ public class BD_ParkController {
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> bd_park/");
 		
-		return "index";
+		return "test";
 	}
 	
 }

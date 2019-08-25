@@ -24,7 +24,7 @@ public class CP_TenantController {
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> cp_tenant/");
 		
-		return "index";
+		return "test";
 	}
 	
 }

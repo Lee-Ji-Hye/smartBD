@@ -24,7 +24,7 @@ public class CP_EmployeeController {
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> cp_employee/");
 		
-		return "index";
+		return "test";
 	}
 	
 }

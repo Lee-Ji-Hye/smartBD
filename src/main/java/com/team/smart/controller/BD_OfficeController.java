@@ -24,7 +24,7 @@ public class BD_OfficeController {
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> bd_office/");
 		
-		return "index";
+		return "test";
 	}
 	
 	

@@ -24,7 +24,7 @@ public class BD_FoodController {
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> bd_food/");
 		
-		return "index";
+		return "test";
 	}
 	
 }
