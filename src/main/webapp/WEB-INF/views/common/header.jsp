@@ -1,18 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>   
+<%@ page import="com.team.smart.security.config.UserGrantedAuthority"%> 
+<%@ page import="org.springframework.security.core.GrantedAuthority" %>
+<%@ page import="org.springframework.security.core.authority.SimpleGrantedAuthority" %>
+<%@ page import="java.util.List"%>    
+<%@ page import="java.util.Collection" %>
+
 <!DOCTYPE html>
 <!-- saved from url=(0071)https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Title -->
   <title>Dashboard | Front - Responsive Website Template</title>
+
   <!-- Required Meta Tags Always Come First -->
+  
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://htmlstream.com/preview/front-v2.9.0/favicon.ico">
+
   <!-- Google Fonts -->
   <link href="${resourceBoot}/css/css(1).css" rel="stylesheet">
-  <link href="${resourceBoot}/css/css(1).css" rel="stylesheet">
-  <link href="${resource}/css/common.css" rel="stylesheet">
 
   <!-- CSS Implementing Plugins -->
   <link rel="stylesheet" href="${resourceBoot}/css/fontawesome-all.min.css">
@@ -33,6 +43,14 @@
 	  margin-bottom: .5rem;
 	}
   </style>
+  
+  <%
+	//현재들어있는 세션값이 인가된 값이면 userGrantedAuth가 들어가야됨.. 형변환 하기전 체크함 아래EL태그 사용위해 request객체에 삽입
+	if(!SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))){
+		List<UserGrantedAuthority> securityAuth = (List<UserGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		request.setAttribute("securityAuth", securityAuth);
+	}
+  %>
 <script src="${resourceBoot}/js/jquery.mousewheel.min.js"></script></head>
 <body >
   
@@ -251,6 +269,19 @@
           <!-- Navigation -->
           <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
             <ul class="navbar-nav u-header__navbar-nav">
+            <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+            	<div class="u-header__product-banner">
+            	<form>
+				    	<select class="form-control" id='securityAuth'>
+				    		<option value="">현재 권한을 변경하려면 선택하세요</option>
+							<c:forEach  var="dto" items="${securityAuth}">
+							    <option value="${dto}">${dto.authority}, ${dto.comp_org}, ${dto.r_code}, ${dto.b_code}</option>
+				    		</c:forEach>
+				    	</select>
+				 </form>
+				    </div>
+            </li>
+            
               <!-- Pages -->
               <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                 <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Building<span></span></a>
@@ -337,6 +368,8 @@
                     </div>
                   </div>
                   <!-- End Mega Menu Banner -->
+                  
+				    
                 </div>
                 <!-- End Shop - Mega Menu -->
               </li>
@@ -356,5 +389,11 @@
         <!-- End Nav -->
       </div>
     </div>
+    <script type="text/javascript">
+    document.getElementById('securityAuth').addEventListener("change", function(){
+    	if(this.value!=="")
+  		window.location = '${path}/selectAuth?auth=' + this.value +'&curl=' + window.location.pathname;
+    });
+    </script>
   </header>
   <!-- ========== END HEADER ========== -->

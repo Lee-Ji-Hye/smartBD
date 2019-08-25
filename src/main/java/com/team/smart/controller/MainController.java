@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team.smart.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 public class MainController {
 
@@ -49,12 +51,29 @@ public class MainController {
 	public String logout(HttpServletRequest req, HttpServletResponse res) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		//로그아웃 핸들러로 로그아웃 처리
+		req.getSession().removeAttribute("sessionAuth");
 		if (auth != null){
 			new SecurityContextLogoutHandler().logout(req, res, auth);
 		}
 		//로그아웃 후 메인으로 이동
 		return "redirect:/";
 	}
+	
+
+	//세션선택값을 넘김
+	@RequestMapping("selectAuth")
+	public String securityAuthSelect(HttpServletRequest req, Model model) {
+		//메인으로 이동
+		log.info("url -> selectAuth");
+		String sessionAuth = req.getParameter("auth");
+		String currentURL = req.getParameter("curl");
+		String redirectionURL = currentURL.substring(7);
+		req.getSession().setAttribute("sessionAuth", sessionAuth);
+		//잘라낸 url이 없으면 홈으로 가라
+		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/";
+		
+	}
+	
 	//회원가입
 	@RequestMapping("signUp")
 	public String signUp() {

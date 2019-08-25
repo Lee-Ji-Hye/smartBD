@@ -20,10 +20,14 @@
 		<association property="authority" column="userid" select="getAuthority"/>
 	</resultMap>
 	<select id="getAuthority" resultType="com.team.smart.security.config.UserGrantedAuthority">
-		 SELECT a.comp_auth, c.comp_loc, c.comp_seq
-		 FROM user_compauth_tbl a, t_contract_tbl c
+		 SELECT a.comp_auth
+                , c.comp_seq
+                , c.comp_org
+                , c.r_code
+                , a.b_code
+		 FROM user_compauth_tbl a, room_contract_tbl c
 		 WHERE a.userid = #{userid}
-		 AND c.cont_seq = a.cont_seq
+		 AND c.rt_code = a.rt_code
 	</select>
 	<!-- 로그인 -->
 	

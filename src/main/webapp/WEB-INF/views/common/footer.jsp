@@ -1175,7 +1175,15 @@
 
   <!-- JS Plugins Init. -->
   <script>
+
+/*   $("#stores").on("change", function() {
+	  	 alert(this.value);
+}); */
     $(window).on('load', function () {
+    	//권한 선택창 따라다니도록함
+    	$("#securityAuth").val('${sessionScope.sessionAuth}');
+    	
+    	
       // initialization of HSMegaMenu component
       $('.js-mega-menu').HSMegaMenu({
         event: 'hover',
@@ -1257,6 +1265,8 @@
 
       // initialization of go to
       $.HSCore.components.HSGoTo.init('.js-go-to');
+      
+
     });
   </script>
 
