@@ -23,8 +23,8 @@ public class CP_ManagerController {
 	@RequestMapping({"/"})
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> cp_manager/");
-		
-		return "test";
+
+		return "redirect:/admin";
 	}
 	
 }

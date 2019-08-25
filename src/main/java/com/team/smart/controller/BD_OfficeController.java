@@ -23,8 +23,8 @@ public class BD_OfficeController {
 	@RequestMapping({"/"})
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> bd_office/");
-		
-		return "test";
+
+		return "redirect:/admin";
 	}
 	
 	

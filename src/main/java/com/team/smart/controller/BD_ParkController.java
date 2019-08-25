@@ -22,8 +22,8 @@ public class BD_ParkController {
 	@RequestMapping({"/"})
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> bd_park/");
-		
-		return "test";
+
+		return "redirect:/admin";
 	}
 	
 }

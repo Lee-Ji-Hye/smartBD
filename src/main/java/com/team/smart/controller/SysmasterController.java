@@ -20,12 +20,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/sysmaster")
 public class SysmasterController {
 
-	
+	String jspPath = "admin/";
 
 	@RequestMapping({"/"})
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> sysmaster/");
-		return "test";
+		return "redirect:/admin";
 	}
 	
 	

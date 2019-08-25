@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.team.smart.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
-//
+
+//import org.springframework.security.access.prepost.PreAuthorize;
 //@RequestMapping(value="mypage", method=RequestMethod.POST) //통신 사용시 이걸로 사용.
+
+
 @Slf4j
 @Controller
 public class MainController {
@@ -25,13 +28,22 @@ public class MainController {
 	
 	
 	
-	//메인
+	//사업자 멤버 메인
 	@RequestMapping({"/", "index"})
 	public String index(HttpServletRequest req, Model model) {
         //logger.debug("ID : {}");
 		return "index";
 	}
 
+	@RequestMapping({"/admin"})
+	public String main(HttpServletRequest req, Model model) {
+		log.info("url -> sysmaster/");
+		return "admin/index";
+	}
+	
+	
+	
+	
 	/**
 	 * 
 	 * @param req 로그아웃을위함 시큐리티 get방식으로 로그아웃 불가능 따라서 redirect사용
@@ -44,6 +56,7 @@ public class MainController {
 		//로그아웃 후 메인으로 이동
 		return "signup/login";
 	}
+	
 	
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest req, HttpServletResponse res) {

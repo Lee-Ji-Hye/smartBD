@@ -23,8 +23,8 @@ public class CP_TenantController {
 	@RequestMapping({"/"})
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> cp_tenant/");
-		
-		return "test";
+
+		return "redirect:/admin";
 	}
 	
 }

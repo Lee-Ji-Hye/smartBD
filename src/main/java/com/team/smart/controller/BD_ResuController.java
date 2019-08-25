@@ -22,8 +22,8 @@ public class BD_ResuController {
 	@RequestMapping({"/"})
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> bd_resu/");
-		
-		return "test";
+
+		return "redirect:/admin";
 	}
 	
 }

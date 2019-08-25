@@ -23,8 +23,8 @@ public class MemberController {
 	@RequestMapping({"/"})
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> member/");
-		
-		return "test";
+
+		return "redirect:/admin";
 	}
 	
 }
