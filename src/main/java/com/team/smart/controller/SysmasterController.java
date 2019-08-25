@@ -24,13 +24,13 @@ public class SysmasterController {
 
 	@RequestMapping({"/"})
 	public String main(HttpServletRequest req, Model model) {
-		log.debug("url -> sysmaster/bdmn");
+		log.info("url -> sysmaster/bdmn");
 		return "index";
 	}
 	
 	@RequestMapping({"/bdmn"})
 	public String index(HttpServletRequest req, Model model) {
-		log.debug("url -> sysmaster/bdmn");
+		log.info("url -> sysmaster/bdmn");
 		
 		return "index";
 	}

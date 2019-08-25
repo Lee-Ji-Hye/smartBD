@@ -3,8 +3,6 @@ package com.team.smart.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,12 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.team.smart.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
-
+//
+//@RequestMapping(value="mypage", method=RequestMethod.POST) //통신 사용시 이걸로 사용.
 @Slf4j
 @Controller
 public class MainController {
-
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	UserService userService;
@@ -71,20 +68,20 @@ public class MainController {
 		req.getSession().setAttribute("sessionAuth", sessionAuth);
 		//잘라낸 url이 없으면 홈으로 가라
 		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/";
-		
 	}
 	
 	//회원가입
 	@RequestMapping("signUp")
 	public String signUp() {
-		logger.info("url => signUp");
+		log.info("url => signUp");
 		return "signup/signup";
 	}
 
+	
 	//회원가입처리
 	@RequestMapping("signUpPro")
 	public String signUpPro(HttpServletRequest req, Model model) {
-		logger.info("url => signUpPro");
+		log.info("url => signUpPro");
 		userService.signUpUser(req, model);
 		return "redirect:/user_complet";
 	}
@@ -97,7 +94,9 @@ public class MainController {
 	}
 	
 	
-	//@RequestMapping(value="mypage", method=RequestMethod.POST) //통신 사용시 이걸로 사용.
+	
+	
+	
 	@RequestMapping("mypage")
 	public String mypage(HttpServletRequest req, Model model) {
 		

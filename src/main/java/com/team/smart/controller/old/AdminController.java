@@ -1,4 +1,4 @@
-package com.team.smart.controller;
+package com.team.smart.controller.old;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,5 +16,10 @@ public class AdminController {
 	public String index(HttpServletRequest req, Model model) {
         //logger.debug("ID : {}");
 		return admin_ + "index";
-	}	
+	}
+	
+	
+	
+	
+	
 }
