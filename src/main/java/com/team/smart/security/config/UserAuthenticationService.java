@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class UserAuthenticationService implements UserDetailsService {
 
@@ -28,7 +31,7 @@ public class UserAuthenticationService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
 		Map<String, Object> user = sqlSession.selectOne("UserDAO.selectMember", userid);
-		System.out.println("로그인 체크 ===> " + user);
+		log.debug("로그인 체크 ===> " + user);
 		if(user == null) throw new UsernameNotFoundException(userid);
 		//user.get("authority") = 로그인한 유저의 권한을 가져옴
 		Object auth = user.get("authority");

@@ -2,11 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>   
-<%@ page import="com.team.smart.security.config.UserGrantedAuthority"%> 
-<%@ page import="org.springframework.security.core.GrantedAuthority" %>
+<%@ page import="com.team.smart.security.config.UserGrantedAuthority"%>
 <%@ page import="org.springframework.security.core.authority.SimpleGrantedAuthority" %>
-<%@ page import="java.util.List"%>    
-<%@ page import="java.util.Collection" %>
 
 <!DOCTYPE html>
 <!-- saved from url=(0071)https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html -->
@@ -47,8 +44,7 @@
   <%
 	//현재들어있는 세션값이 인가된 값이면 userGrantedAuth가 들어가야됨.. 형변환 하기전 체크함 아래EL태그 사용위해 request객체에 삽입
 	if(!SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))){
-		List<UserGrantedAuthority> securityAuth = (List<UserGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-		request.setAttribute("securityAuth", securityAuth);
+		request.setAttribute("securityAuth", SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 	}
   %>
 <script src="${resourceBoot}/js/jquery.mousewheel.min.js"></script></head>
@@ -214,7 +210,7 @@
               <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
                 <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/auth" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">직원 권한 요청</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/member" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">개인 정보</a></li>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/bdmn/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">건물 등록</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/bdmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">건물 등록</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/comp" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">업체 등록</a></li>
               </ul>
             </li>

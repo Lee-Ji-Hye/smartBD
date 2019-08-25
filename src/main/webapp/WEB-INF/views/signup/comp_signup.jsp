@@ -27,33 +27,27 @@
     <!-- Hire Us Form Section -->
     <div class="container space-bottom-2">
       <!-- Hire Us Form -->
-      <form class="js-validate w-lg-50 mx-auto" action="/smart/signUpPro" method="post" name="signUpForm">
+      <form class="js-validate w-lg-50 mx-auto" action="${path}/member/comp/putpro" method="post" name="signUpForm">
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                  
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
-            ID
+            	사업자구분 (개인, 법인)
             <span class="text-danger">*</span>
           </label>
 
-          <input type="text" class="form-control" name="userid" placeholder="minkyung" aria-label="minkyung" required
-                 data-msg="Please enter your account ID."
-                 data-error-class="u-has-error"
-                 data-success-class="u-has-success">
+          <input type="text" class="form-control" name="comp_section" placeholder="사업자구분" required>
         </div>
         <!-- End Input -->
       
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
-            password
+            	법인명 (단체명, 상호명)
             <span class="text-danger">*</span>
           </label>
 
-          <input type="password" class="form-control" name="userpw" placeholder="Password" aria-label="Password" required
-                 data-msg="Please enter your password."
-                 data-error-class="u-has-error"
-                 data-success-class="u-has-success">
+          <input type="text" class="form-control" name="comp_org" placeholder="법인명 (단체명, 상호명)" required>
         </div>
         <!-- End Input -->
       
@@ -61,14 +55,11 @@
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
-            password check
+            	사업장 소재지
             <span class="text-danger">*</span>
           </label>
 
-          <input type="password" class="form-control" name="reuserpw" placeholder="Password" aria-label="Password" required
-                 data-msg="Please enter your password."
-                 data-error-class="u-has-error"
-                 data-success-class="u-has-success">
+          <input type="text" class="form-control" name="comp_branch" placeholder="사업장 소재지" required>
         </div>
         <!-- End Input -->
       
@@ -77,42 +68,44 @@
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
-            Your name
+            	본점 소재지
             <span class="text-danger">*</span>
           </label>
 
-          <input type="text" class="form-control" name="name" placeholder="Kim MinKyung" aria-label="Kim MinKyung" required
-                 data-msg="Please enter your name."
-                 data-error-class="u-has-error"
-                 data-success-class="u-has-success">
+          <input type="text" class="form-control" name="comp_master" placeholder="본점 소재지" required>
         </div>
         <!-- End Input -->
 
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
-            Your email address
+            	업태
             <span class="text-danger">*</span>
           </label>
 
-          <input type="email" class="form-control" name="email" placeholder="minkyung@gmail.com" aria-label="minkyung@gmail.com" required
-                 data-msg="Please enter a valid email address."
-                 data-error-class="u-has-error"
-                 data-success-class="u-has-success">
+          <input type="text" class="form-control" name="comp_business" placeholder="업태" required>
         </div>
         <!-- End Input -->
 
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
-            Your phone number
+            	종목
             <span class="text-danger">*</span>
           </label>
 
-          <input type="text" class="form-control" name="hp" placeholder="010-0000-0000" aria-label="010-0000-0000" required
-                 data-msg="Please enter a your phone number."
-                 data-error-class="u-has-error"
-                 data-success-class="u-has-success">
+          <input type="text" class="form-control" name="comp_category" placeholder="종목" required>
+        </div>
+        <!-- End Input -->
+
+        <!-- Input -->
+        <div class="js-form-message mb-6">
+          <label class="form-label">
+            	대표전화번호
+            <span class="text-danger">*</span>
+          </label>
+
+          <input type="text" class="form-control" name="comp_hp" placeholder="대표전화번호" required>
         </div>
         <!-- End Input -->
         
@@ -137,23 +130,10 @@
 
 <script type="text/javascript">
 //submit event 처리
-document.signUpForm.btnSubmit.addEventListener("click", -> {
+document.signUpForm.btnSubmit.addEventListener("click", function() {
 	var fom = document.signUpForm;
-	if(fom.userpw.value === fom.reuserpw.value){
-		fom.submit();
-	}else{
-		alert("비밀번호 확인이 글러먹었습니다.");
-	}
+	fom.submit();
 });
-
-/* 	console.dir(document.signUpForm);
-	document.signUpForm.onsubmit = function(){
-		return ()=>{
-			
-			console.log(document)
-			return false;
-		}
-	}; */
 </script>
 </body>
 </html>

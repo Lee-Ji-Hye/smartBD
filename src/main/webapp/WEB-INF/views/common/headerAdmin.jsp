@@ -47,8 +47,7 @@
   <%
 	//현재들어있는 세션값이 인가된 값이면 userGrantedAuth가 들어가야됨.. 형변환 하기전 체크함 아래EL태그 사용위해 request객체에 삽입
 	if(!SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))){
-		List<UserGrantedAuthority> securityAuth = (List<UserGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-		request.setAttribute("securityAuth", securityAuth);
+		request.setAttribute("securityAuth", SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 	}
   %>
 <script src="${resourceBoot}/js/jquery.mousewheel.min.js"></script></head>
