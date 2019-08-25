@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!--# 셋팅파일  -->
 <%@ include file="../setting.jsp"%>
-<%@ include file="../header.jsp"%>
 
   <head>
     <title>404 Not Found</title>

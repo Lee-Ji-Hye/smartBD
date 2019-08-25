@@ -11,5 +11,5 @@ import org.springframework.ui.Model;
  *
  */
 public interface UserService {
-	public void signUpUser(HttpServletRequest req, Model model);
+	public int signUpUser(HttpServletRequest req, Model model);
 }

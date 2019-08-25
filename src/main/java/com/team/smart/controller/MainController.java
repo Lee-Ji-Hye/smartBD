@@ -24,6 +24,7 @@ public class MainController {
 	UserService userService;
 	
 	
+	
 	//메인
 	@RequestMapping({"/", "index"})
 	public String index(HttpServletRequest req, Model model) {
