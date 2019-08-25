@@ -12,7 +12,7 @@
 <!-- saved from url=(0071)https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Title -->
-  <title>Dashboard | Front - Responsive Website Template</title>
+  <title>Smart Billding Project Kosmo 50 Welcome</title>
 
   <!-- Required Meta Tags Always Come First -->
   
