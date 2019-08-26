@@ -12,36 +12,33 @@
 	</select>
 	
 	<!-- 스토어 리스트 -->
-	<select id="getFoodStoreList" parameterType="java.util.Map" resultType="com.team.smart.app.vo.FoodStoreVO">
-		SELECT uc.comp_org
-		      ,uc.comp_section
-		      ,uc.comp_hp
-          ,uc.comp_branch
-		      ,c.f_seq
-		      ,c.comp_seq
-		      ,c.long_desc
-		      ,c.short_desc
-		      ,c.f_mainimg
-		      ,c.f_category
-          ,cp.f_coupon_num
-          ,cp.f_coupon_name
-          ,cp.f_coupon_price
-		FROM food_company_tbl c
-		INNER JOIN user_company_tbl uc ON(uc.comp_seq = c.comp_seq)
-		INNER JOIN (SELECT comp_seq, count(*) f_cnt FROM food_menu_tbl group by comp_seq) m
-		   ON(m.comp_seq = c.comp_seq)
-        LEFT JOIN food_coupon_tbl cp ON(cp.comp_seq = c.comp_seq)
-		<where>
-		 	<if test="f_category != null">
-				AND c.f_category = #{f_category}
-		 	</if>
-		 	<if test="comp_seq != null">
-		 		and c.comp_seq = #{comp_seq}
-		 	</if>
-		 </where>
-	</select>
+   <select id="getFoodStoreList" parameterType="java.util.Map" resultType="com.team.smart.app.vo.FoodStoreVO">
+      SELECT uc.comp_org
+            ,uc.comp_section
+            ,uc.comp_hp
+            ,uc.comp_branch
+            ,c.f_seq
+            ,c.comp_seq
+            ,c.long_desc
+            ,c.short_desc
+            ,c.f_mainimg
+            ,c.f_category
+            ,cp.f_coupon_num
+            ,cp.f_coupon_name
+            ,cp.f_coupon_price
+      FROM food_company_tbl c
+      INNER JOIN user_company_tbl uc ON(uc.comp_seq = c.comp_seq)
+      INNER JOIN (SELECT comp_seq, count(*) f_cnt FROM food_menu_tbl group by comp_seq) m
+         ON(m.comp_seq = c.comp_seq)
+        LEFT JOIN (SELECT comp_seq, f_coupon_num, f_coupon_name, f_coupon_price  FROM food_coupon_tbl where ROWNUM=1 ) cp ON (cp.comp_seq = c.comp_seq)
+      <where>
+          <if test="f_category != null">
+            AND c.f_category = #{f_category}
+          </if>
+          <if test="comp_seq != null">
+             and c.comp_seq = #{comp_seq}
+          </if>
+       </where>
+   </select>
 	
-	<select id="getTest" resultType="int">
-		SELECT MAX(to_number(SUBSTR(r_code, 2, 7))) + 1 as lastIdx FROM ROOM_TBL
-	</select>
 </mapper>
