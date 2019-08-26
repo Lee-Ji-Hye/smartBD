@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +27,35 @@ public class MemberController {
 		return "redirect:/admin";
 	}
 
+
+	//업체 세션 선택
+	@RequestMapping("bdSession")
+	public String bdSession(HttpServletRequest req, Model model) {
+		//메인으로 이동
+		log.info("url -> bdSession");
+		String sessionAuth = req.getParameter("auth");
+		String currentURL = req.getParameter("curl");
+		String redirectionURL = currentURL.substring(7);
+		req.getSession().setAttribute("bdSession", sessionAuth);
+		//잘라낸 url이 없으면 홈으로 가라
+		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/";
+	}
+	//빌딩 세션 선택
+	@RequestMapping("compSession")
+	public String compSession(HttpServletRequest req, Model model) {
+		//메인으로 이동
+		log.info("url -> compSession");
+		String sessionAuth = req.getParameter("auth");
+		String currentURL = req.getParameter("curl");
+		String redirectionURL = currentURL.substring(7);
+		req.getSession().setAttribute("compSession", sessionAuth);
+		//잘라낸 url이 없으면 홈으로 가라
+		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/";
+	}
+	
+	
+	
+	
 	//직원 권한 요청
 	@RequestMapping({"/auth"})
 	public String auth(HttpServletRequest req, Model model) {

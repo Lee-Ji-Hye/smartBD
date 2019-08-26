@@ -25,9 +25,11 @@
                 , c.comp_org
                 , c.r_code
                 , a.b_code
-		 FROM user_compauth_tbl a, room_contract_tbl c
+                , b.b_name
+		 FROM user_compauth_tbl a, room_contract_tbl c, building_tbl b
 		 WHERE a.userid = #{userid}
 		 AND c.rt_code = a.rt_code
+         AND a.b_code = b.b_code
 	</select>
 	<!-- 로그인 -->
 	

@@ -71,19 +71,6 @@ public class MainController {
 	}
 	
 
-	//세션선택값을 넘김
-	@RequestMapping("selectAuth")
-	public String securityAuthSelect(HttpServletRequest req, Model model) {
-		//메인으로 이동
-		log.info("url -> selectAuth");
-		String sessionAuth = req.getParameter("auth");
-		String currentURL = req.getParameter("curl");
-		String redirectionURL = currentURL.substring(7);
-		req.getSession().setAttribute("sessionAuth", sessionAuth);
-		//잘라낸 url이 없으면 홈으로 가라
-		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/";
-	}
-	
 	//회원가입
 	@RequestMapping("signUp")
 	public String signUp() {

@@ -6,7 +6,7 @@
 <%@ page import="org.springframework.security.core.GrantedAuthority" %>
 <%@ page import="org.springframework.security.core.authority.SimpleGrantedAuthority" %>
 <%@ page import="java.util.List"%>    
-<%@ page import="java.util.Collection" %>
+<%@ page import="java.util.ArrayList"%>  
 
 <!DOCTYPE html>
 <!-- saved from url=(0071)https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html -->
@@ -47,7 +47,16 @@
   <%
 	//현재들어있는 세션값이 인가된 값이면 userGrantedAuth가 들어가야됨.. 형변환 하기전 체크함 아래EL태그 사용위해 request객체에 삽입
 	if(!SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))){
-		request.setAttribute("securityAuth", SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+		List<UserGrantedAuthority> securityAuth = (List<UserGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		List<String> choice = new ArrayList<>();
+		//업체 정보를 꺼내서 중복되지 않게 담음
+		for(UserGrantedAuthority secu : securityAuth){
+			String option = secu.getB_code()+"::"+secu.getB_name();
+			if(!choice.contains(option)) {
+				choice.add(option);
+			}
+		}
+		request.setAttribute("choiceB", choice);
 	}
   %>
 <script src="${resourceBoot}/js/jquery.mousewheel.min.js"></script></head>
@@ -166,10 +175,10 @@
               <div class="u-header__product-banner">
             	<!-- 권한 선택 selectbox -->
             	<form>
-				  <select class="form-control" id='securityAuth'>
-				    <option value="">현재 권한을 변경하려면 선택하세요</option>
-					<c:forEach  var="dto" items="${securityAuth}">
-					  <option value="${dto}">${dto.authority}, ${dto.comp_org}, ${dto.r_code}, ${dto.b_code}</option>
+				  <select class="form-control" id='bdSession'>
+				    <option value="">관리할 빌딩을 선택해주세요</option>
+					<c:forEach  var="dto" items="${choiceB}">
+					  <option value="${dto}">${dto}</option>
 				    </c:forEach>
 				  </select>
 				</form>
@@ -288,9 +297,9 @@
       </div>
     </div>
     <script type="text/javascript">
-    document.getElementById('securityAuth').addEventListener("change", function(){
+    document.getElementById('bdSession').addEventListener("change", function(){
     	if(this.value!=="")
-  		window.location = '${path}/selectAuth?auth=' + this.value +'&curl=' + window.location.pathname;
+  		window.location = '${path}/member/bdSession?auth=' + this.value +'&curl=' + window.location.pathname;
     });
     </script>
   </header>

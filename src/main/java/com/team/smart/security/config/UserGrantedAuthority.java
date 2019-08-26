@@ -12,6 +12,7 @@ public class UserGrantedAuthority implements GrantedAuthority {
 	private final String comp_org; //업체명(업체 명)
 	private final String r_code; //위치 정보(매물 코드)
 	private final String b_code; //건물 정보(건물 코드)
+	private final String b_name; //건물이름
 	
 
 	public UserGrantedAuthority() {
@@ -20,13 +21,15 @@ public class UserGrantedAuthority implements GrantedAuthority {
 		this.comp_org = null;
 		this.r_code = null;
 		this.b_code = null;
+		this.b_name = null;
 	}
-	public UserGrantedAuthority(String comp_auth, String comp_seq, String comp_org, String r_code, String b_code) {
+	public UserGrantedAuthority(String comp_auth, String comp_seq, String comp_org, String r_code, String b_code, String b_name) {
 		this.comp_auth = comp_auth;
 		this.comp_seq = comp_seq;
 		this.comp_org = comp_org;
 		this.r_code = r_code;
 		this.b_code = b_code;
+		this.b_name = b_name;
 	}
 
 	@Override
@@ -45,9 +48,13 @@ public class UserGrantedAuthority implements GrantedAuthority {
 	public String getR_code() {
 		return r_code;
 	}
-	
+
 	public String getB_code() {
 		return b_code;
+	}
+
+	public String getB_name() {
+		return b_name;
 	}
 	
 	@Override
@@ -66,7 +73,7 @@ public class UserGrantedAuthority implements GrantedAuthority {
 	@Override
 	public String toString() {
 		return "auth=" + comp_auth + ",comp_seq=" + comp_seq + ",comp_org=" + comp_org
-				+ ",r_code=" + r_code + ",b_code=" + b_code;
+				+ ",r_code=" + r_code + ",b_code=" + b_code + ",b_name=" + b_name;
 	}
 
 }
