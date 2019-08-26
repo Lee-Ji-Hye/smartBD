@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>   
 <%@ page import="java.util.List"%>   
-<%@ page import="java.util.ArrayList"%>   
-<%@ page import="com.team.smart.vo.IdentityVO"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page import="com.team.smart.security.config.UserGrantedAuthority"%>
 
 <%@ page import="org.springframework.security.core.authority.SimpleGrantedAuthority" %>
