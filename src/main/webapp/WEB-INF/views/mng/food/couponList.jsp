@@ -34,7 +34,7 @@ pageEncoding="UTF-8"%>
             
             <!-- Buttons -->
             <div style="margin-right:20px;">
-	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='couponUpload'">등록</button>
+	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/cp_manager/cpmn/inst'">등록</button>
 	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">삭제</button>
             </div>
             <!-- End Buttons -->

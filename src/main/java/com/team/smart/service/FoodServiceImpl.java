@@ -80,7 +80,7 @@ public class FoodServiceImpl implements FoodService {
 				// VO에 담기
 				Food_companyVO vo = Food_companyVO
 									.builder()
-									.comp_seq(10)  // 
+									.comp_seq(1)  // 
 									.long_desc(req.getParameter("long_desc"))
 									.short_desc(req.getParameter("short_desc"))
 									.f_category(req.getParameter("f_category"))
@@ -151,7 +151,7 @@ public class FoodServiceImpl implements FoodService {
 			// VO에 담기
 			Food_companyVO vo = Food_companyVO
 								.builder()
-								.comp_seq(10)  // 
+								.comp_seq(1)  // 
 								.long_desc(req.getParameter("long_desc"))
 								.short_desc(req.getParameter("short_desc"))
 								.f_category(req.getParameter("f_category"))

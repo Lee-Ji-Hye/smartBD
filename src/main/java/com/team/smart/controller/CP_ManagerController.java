@@ -37,7 +37,7 @@ public class CP_ManagerController {
 	}
 	
 	//----민경
-	// 소개 작성 
+	// 소개 대표메뉴
 	@RequestMapping(value="/intromn")//헤더에 걸려있는 메핑정보
 	public String intromn(HttpServletRequest req, Model model) {
 		log.info("mng/food/intorduction -> intromn");
@@ -64,5 +64,56 @@ public class CP_ManagerController {
 		
 		return mngFood_ + "/intorduction";
 	}
+	
+	
+	// 메뉴 관리
+	@RequestMapping(value="/menumn")//헤더에 걸려있는 메핑정보
+	public String menumn(HttpServletRequest req, Model model) {
+		log.info("mng/food/intorduction -> menumn");
+		
+		return "redirect:/cp_manager/intromn/inst";
+	}
+
+	
+
+	// 쿠폰 대표메뉴
+	@RequestMapping("/cpmn")
+	public String coupon(HttpServletRequest req, Model model) {
+		log.info("url -> coupon");
+		
+		return "redirect:/cp_manager/cpmn/list";
+	}
+	// 쿠폰 리스트
+	@RequestMapping("/cpmn/list")
+	public String couponList(HttpServletRequest req, Model model) {
+		log.info("url -> /cpmn/list");
+		
+		return mngFood_ + "/couponList";
+	}
+	
+	// 쿠폰 업로드
+	@RequestMapping("/cpmn/inst")
+	public String couponUpload(HttpServletRequest req, Model model) {
+		log.info("url -> couponUpload");
+		
+		
+		return mngFood_ + "/couponUpload";
+	}
+	
+	// 쿠폰 업로드 처리
+	@RequestMapping("cpmn/instPro")
+	public String couponUploadPro(HttpServletRequest req, Model model) {
+		log.info("url -> cpmn/instPro");
+		
+		service.insertCoupon(req, model);
+		return "redirect:/cp_manager/cpmn/list";
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 }

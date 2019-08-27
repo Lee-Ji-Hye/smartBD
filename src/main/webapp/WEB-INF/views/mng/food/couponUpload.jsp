@@ -6,7 +6,7 @@
 <body>
 <div class="bg-light">
       <div class="container space-2">
-        <form id="changePasswordForm" class="js-validate" novalidate="novalidate" action="/smart/mng/food/couponUploadPro?${_csrf.parameterName}=${_csrf.token}">
+        <form id="changePasswordForm" class="js-validate" novalidate="novalidate" action="${path}/cp_manager/cpmn/instPro?${_csrf.parameterName}=${_csrf.token}">
           <!-- Input -->
           <div class="js-form-message mb-4">
             <label class="form-label">
