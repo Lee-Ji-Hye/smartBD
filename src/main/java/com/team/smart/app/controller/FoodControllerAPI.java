@@ -72,7 +72,6 @@ public class FoodControllerAPI {
 		return map;
 	}
 	
-	
 	@RequestMapping(value="imageForm") //통신 사용시 이걸로 사용.
 	public String imageForm(HttpServletRequest req) {
 		return "imageForm";

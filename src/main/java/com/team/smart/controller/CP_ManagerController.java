@@ -2,9 +2,13 @@ package com.team.smart.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.team.smart.service.FoodService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,6 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/cp_manager")
 public class CP_ManagerController {
+	
+	@Autowired
+	FoodService service;
+	
+	private String mngFood_ = "mng/food";
 
 
 	@RequestMapping({"/"})
@@ -25,6 +34,35 @@ public class CP_ManagerController {
 		log.info("url -> cp_manager/");
 
 		return "redirect:/admin";
+	}
+	
+	//----민경
+	// 소개 작성 
+	@RequestMapping(value="/intromn")//헤더에 걸려있는 메핑정보
+	public String intromn(HttpServletRequest req, Model model) {
+		log.info("mng/food/intorduction -> intromn");
+		
+		log.info("req.getSession().getServletContext().getRealPath(\"/resources/images/food/" + req.getSession().getServletContext().getRealPath("/resources/images/food/"));
+		return "redirect:/cp_manager/intromn/inst";
+	}
+	
+	// 소개 작성 
+	@RequestMapping(value="/intromn/inst")
+	public String intorduction(HttpServletRequest req, Model model) {
+		log.info("mng/food/intorduction -> inst");
+		
+		log.info("req.getSession().getServletContext().getRealPath(\"/resources/images/food/" + req.getSession().getServletContext().getRealPath("/resources/images/food/"));
+		return mngFood_ + "/intorduction";
+	}
+
+	// 소개 처리 
+	@RequestMapping(value="/intromn/instPro")
+	public String intorductionpro(MultipartHttpServletRequest req, Model model) {
+		log.info("mng/food/intorduction -> instPro");
+		
+		service.insertStoreIntro(req, model);
+		
+		return mngFood_ + "/intorduction";
 	}
 	
 }

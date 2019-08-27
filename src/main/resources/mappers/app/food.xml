@@ -42,6 +42,6 @@
 	</select>
 	
 	<select id="getTest" resultType="int">
-		SELECT MAX(to_number(SUBSTR(r_code, 2, 7))) + 1 as lastIdx FROM ROOM_TBL
+		SELECT MAX(to_number(SUBSTR(f_coupon_num, 3, 7)))+1  as lastIdx FROM food_coupon_tbl;
 	</select>
 </mapper>

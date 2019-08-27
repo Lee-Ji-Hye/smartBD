@@ -11,7 +11,7 @@ public class Food_companyVO {
 	// 음식점 소개 VO
 	private int f_seq;			// 시퀀스
 	private int comp_seq;		// 업체코드
-	private String long_dese;	// 긴줄 소개
+	private String long_desc;	// 긴줄 소개
 	private String short_desc;	// 짧은줄 소개
 	private String f_category;	// 카테고리
 	private String f_mainimg;	// 메인 이미지
@@ -31,7 +31,7 @@ public class Food_companyVO {
 	
 	@Override
 	public String toString() {
-		return "food_company_vo [f_seq=" + f_seq + ", comp_seq=" + comp_seq + ", long_dese=" + long_dese
+		return "food_company_vo [f_seq=" + f_seq + ", comp_seq=" + comp_seq + ", long_dese=" + long_desc
 				+ ", short_desc=" + short_desc + ", f_category=" + f_category + ", f_mainimg=" + f_mainimg
 				+ ", is_choise=" + is_choise + "]";
 	}

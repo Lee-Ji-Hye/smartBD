@@ -18,13 +18,13 @@ public class Functions {
 	
 	private Functions() { }//생성자 잠금
 	
-	//f_code 생성 (ex:FD000049)//R000000
+	//f_code 생성 (ex:FD000049)//R000000 ==>  CP00001
 	public String mkRcode(FoodDAO f_dao) {
-		String type = "R";
+		String type = "CP";
 		/*
 		 * 이곳에서 db에 유니크 코드 가져오기
 		 */
-		int cnt = f_dao.getUniqIndex(); //R005003
+		int cnt = f_dao.getUniqIndex(); //2
 		
 		System.out.println("라스트 코드 수 : " + cnt);
 		

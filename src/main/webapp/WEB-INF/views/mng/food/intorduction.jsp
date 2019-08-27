@@ -5,7 +5,7 @@
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
 <body> 
 <!-- Main -->
-<form class="media align-items-center mb-4" enctype="multipart/form-data" method="post" action="/smart/mng/food/intorduction">
+<form class="media align-items-center mb-4" enctype="multipart/form-data" method="post" action="${path}/cp_manager/intromn/instPro?${_csrf.parameterName}=${_csrf.token}">
 <div class="container space-2 px-md-7 px-lg-11">
      <div class="card bg-img-hero" style="background-image: url(../../assets/svg/components/bg-elements-6.svg);">
        <div class="card-body p-9 p-md-7 p-lg-11">
@@ -20,9 +20,9 @@
 	          <div class="media-body">
 	            <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn">
 	              Upload
-	              <input id="fileAttachmentBtn" name="file-attachment" type="file" class="file-attachment-btn__label">
+	              <input id="fileAttachmentBtn" name="f_mainimg" type="file" class="file-attachment-btn__label">
 	            </label>
-	            <button type="" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0" onclick="">Delete</button>
+	            <button type="reset" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>
 	          </div>
 	        
         </div>
@@ -34,19 +34,20 @@
              <h2 class="h1 text-primary font-weight-semi-bold">매장이름</h2>
              <!-- End Logo -->
 
-			<div class="col-sm-6 col-lg-4 order-sm-1" style="padding:00px">
+			<div class="col-sm-6 col-lg-4 order-sm-1" style="padding:00px" >
              <h1 class="h6 font-weight-medium mb-0">
                	카테고리
                <small class="d-block">
              		<select class="form-control custom-select" required
            		      		data-msg="Please select month."
                          	data-error-class="u-has-error"
-                         	data-success-class="u-has-success">
+                         	data-success-class="u-has-success"
+                         	name="f_category">
 		              <option value="">Select Catagory</option>
-		              <option value="birthMonthSelect1" selected="selected">한식</option>
-		              <option value="birthMonthSelect2">중식</option>
-		              <option value="birthMonthSelect3">일식</option>
-		              <option value="birthMonthSelect3">디저트</option>
+		              <option value="한식" selected="selected">한식</option>
+		              <option value="중식">중식</option>
+		              <option value="일식">일식</option>
+		              <option value="디저트">디저트</option>
            			</select>
                </small>
              </h1>
@@ -66,10 +67,10 @@
           <label class="form-label">
             	업체 소개 짧은글
           </label>
-          <textarea class="form-control" rows="4" name="answer" placeholder="간단한 소개란입니다." aria-label="Hi there, I would like to ..." required
+          <textarea class="form-control" rows="4" name="short_desc" placeholder="간단한 소개란입니다." aria-label="Hi there, I would like to ..." required
                     data-msg="Please enter a reason."
                     data-error-class="u-has-error"
-                    data-success-class="u-has-success"></textarea>
+                    data-success-class="u-has-success">${vo.getShort_desc()}</textarea>
         </div>
         <!-- End Input -->
         
@@ -78,10 +79,10 @@
           <label class="form-label">
             	업체 소개 긴 글
           </label>
-          <textarea class="form-control" rows="13" name="answer" placeholder="소개해주세요." aria-label="Hi there, I would like to ..." required
+          <textarea class="form-control" rows="13" name="long_desc" placeholder="소개해주세요." aria-label="Hi there, I would like to ..." required
                     data-msg="Please enter a reason."
                     data-error-class="u-has-error"
-                    data-success-class="u-has-success"></textarea>
+                    data-success-class="u-has-success">${vo.getLong_desc()}</textarea>
         </div>
         <!-- End Input -->
        

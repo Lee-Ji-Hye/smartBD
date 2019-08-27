@@ -41,7 +41,7 @@
 		
 		일반회원					DEFAULT		
 		-->
-		
+	
 		<security:intercept-url pattern="/sysmaster/**"
 			access="hasRole('SYSMASTER')" />
 			
@@ -79,7 +79,7 @@
 			access="isAuthenticated()" />
 			
 		<security:intercept-url pattern="/**"
-			access="permitAll" />
+			access="permitAll" /> 
 		
 		<!-- max-sessions="1" : 같은 브라우저 여러창에서 동시접속을 막겠다. 
 			expired-url="/user/login.do" : 세션 만료 시 이동할 주소다.

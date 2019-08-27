@@ -137,7 +137,7 @@
 
 <script type="text/javascript">
 //submit event 처리
-document.signUpForm.btnSubmit.addEventListener("click", -> {
+document.signUpForm.btnSubmit.addEventListener("click", function(){
 	var fom = document.signUpForm;
 	if(fom.userpw.value === fom.reuserpw.value){
 		fom.submit();
