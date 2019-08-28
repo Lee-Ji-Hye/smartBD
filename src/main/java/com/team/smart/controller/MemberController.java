@@ -28,7 +28,7 @@ public class MemberController {
 	}
 
 
-	//업체 세션 선택
+	//빌딩 세션 선택
 	@RequestMapping("bdSession")
 	public String bdSession(HttpServletRequest req, Model model) {
 		//메인으로 이동
@@ -40,7 +40,7 @@ public class MemberController {
 		//잘라낸 url이 없으면 홈으로 가라
 		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/";
 	}
-	//빌딩 세션 선택
+	//업체 세션 선택
 	@RequestMapping("compSession")
 	public String compSession(HttpServletRequest req, Model model) {
 		//메인으로 이동

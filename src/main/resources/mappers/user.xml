@@ -22,14 +22,15 @@
 	<select id="getAuthority" resultType="com.team.smart.security.config.UserGrantedAuthority">
 		 SELECT a.comp_auth
                 , c.comp_seq
-                , c.comp_org
+                , o.comp_org
                 , c.r_code
                 , a.b_code
                 , b.b_name
-		 FROM user_compauth_tbl a, room_contract_tbl c, building_tbl b
+		 FROM user_compauth_tbl a, room_contract_tbl c, building_tbl b, user_company_tbl o
 		 WHERE a.userid = #{userid}
 		 AND c.rt_code = a.rt_code
          AND a.b_code = b.b_code
+         AND o.comp_seq = c.comp_seq
 	</select>
 	<!-- 로그인 -->
 	

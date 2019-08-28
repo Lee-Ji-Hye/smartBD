@@ -52,7 +52,8 @@ public class FoodServiceImpl implements FoodService {
 
 				String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); 
 				System.out.println(uploadPath);
-				String realDir = "C:\\Users\\KIM\\git\\smartBD_Dev\\smartBD\\src\\main\\webapp\\resources\\images\\food\\";  
+				String realDir = "C:\\Users\\KIM\\git\\smartBD_new\\src\\main\\webapp\\resources\\images\\food\\";  
+				
 				
 				try {
 					
@@ -72,19 +73,26 @@ public class FoodServiceImpl implements FoodService {
 				}
 				
 				
-				String images_name = null;
+				//String images_name = null;
 				
-				if(file1 != null) {
-					images_name = file1.getOriginalFilename();
-				}
+				//if(file1 != null) {
+				//	images_name = file1.getOriginalFilename();
+				//}
 				// VO에 담기
+				//업체정보꺼내기
+				String compInfo = (String)req.getSession().getAttribute("compSession");
+				log.debug("업체정보 : " + compInfo);
+				String[] comppp = compInfo.split("::");
+				int comp_seq = Integer.parseInt(comppp[0]);
+				String comp_org = comppp[1];
+				
 				Food_companyVO vo = Food_companyVO
 									.builder()
-									.comp_seq(1)  // 
+									.comp_seq(comp_seq)  // 
 									.long_desc(req.getParameter("long_desc"))
 									.short_desc(req.getParameter("short_desc"))
 									.f_category(req.getParameter("f_category"))
-									.f_mainimg(images_name)
+									.f_mainimg(req.getParameter("f_mainimg"))
 									.build();
 				
 				System.out.println("food_company" + vo.toString());
@@ -227,7 +235,6 @@ public class FoodServiceImpl implements FoodService {
 			String f_end3 = req.getParameter("f_end3");
 			
 			f_coupon_end = f_end1 + f_end2 + f_end3;
-			
 			
 			Food_couponVO vo = Food_couponVO
 						        .builder()

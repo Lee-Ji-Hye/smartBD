@@ -51,7 +51,7 @@
 		List<String> choice = new ArrayList<>();
 		//업체 정보를 꺼내서 중복되지 않게 담음
 		for(UserGrantedAuthority secu : securityAuth){
-			String option = secu.getR_code()+"::"+secu.getComp_org();
+			String option = secu.getComp_seq()+"::"+secu.getComp_org();
 			if(!choice.contains(option)) {
 				choice.add(option);
 			}
