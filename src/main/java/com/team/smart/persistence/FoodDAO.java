@@ -11,10 +11,6 @@ import com.team.smart.food.vo.Food_menuVO;
 
 public interface FoodDAO {
 	//지혜======================================
-	//상품 메뉴 가져오기
-	public List<FoodMenuVO> getMenuList(String comp_seq);
-	
-	public List<FoodStoreVO> getFoodStoreList(Map<String, Object> map);
 	
 	
 	
@@ -36,6 +32,12 @@ public interface FoodDAO {
 		
 		// 음식점 쿠폰 등록
 		public int insertCouponeUp(Food_couponVO vo);
+		
+		// 음식점 쿠폰 리스트
+		public List<Food_couponVO> getCoupon(int come_seq);
+		
+		// 음식점 쿠폰 시리얼
+		public int insertCouponSer(Map<String, Object> map);
 		
 	
 	//테스트

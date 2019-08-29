@@ -6,12 +6,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="FoodDAO">
 
 	<!-- 업체 소개 등록 처리 -->
-	<insert id="storeUp" parameterType="com.team.smart.food.vo.Food_companyVO">
-		INSERT INTO food_company_tbl (long_desc,short_desc,f_category,f_seq)
-		VALUES (#{long_desc},#{short_desc},#{f_category},#{f_seq})
+	<insert id="insertStoreUp" parameterType="com.team.smart.food.vo.Food_companyVO">
+		INSERT INTO food_company_tbl (comp_seq, long_desc,short_desc,f_category,f_seq,f_mainimg)
+		VALUES (#{comp_seq},#{long_desc},#{short_desc},#{f_category},food_comp_seq.nextval, #{f_mainimg})
 	</insert>
-	<!-- <update id="storeUp" parameterType="com.team.smart.food.vo.Food_companyVO">
-		UPDATE Food_company_tbl SET long_desc = #{long_desc}, short_desc = #{short_desc}, f_category = #{f_category} WHERE f_seq = #{f_seq}
+	
+	<!-- 업체 소개 등록시 등록 글 -->
+	<select id="getStore" resultType="com.team.smart.food.vo.Food_companyVO">
+		SELECT * FROM food_company_tbl WHERE comp_seq = #{comp_seq}
+	</select> 
+	
+	<!-- 업체 소개 등록 수정  -->
+	<!-- <update id="">
+		UPDATE food_company_tbl SET long_desc = #{long_desc}, short_desc = #{short_desc}, f_mainimg = #{f_mainimg} WHERE comp_seq = #{comp_seq}
 	</update> -->
 	
 	<!-- 업체 상품 등록 -->
@@ -19,5 +26,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO food_menu_tbl (f_type,f_name,f_price,f_takeout,f_takeout_sale,f_img,f_icon,f_regidate) 
 		VALUES(#{f_type},#{f_name},#{f_price},#{f_takeout},#{f_takeout_sale},#{f_img},#{f_icon},SYSDATE)
 	</insert> -->
+	
+	<!-- 쿠폰 등록 -->
+	<insert id="insertCouponeUp" parameterType="com.team.smart.food.vo.Food_couponVO">
+		INSERT INTO food_coupon_tbl (comp_seq,f_coupon_name, f_coupon_price, f_coupon_regidate, f_coupon_start, f_coupon_end, f_coupon_num , f_coupon_count)
+		VALUES (#{comp_seq}, #{f_coupon_name}, #{f_coupon_price}, SYSDATE, #{f_coupon_start}, #{f_coupon_end}, f_coupon_num_seq.nextval , #{f_coupon_count})
+	</insert>
 </mapper>
 

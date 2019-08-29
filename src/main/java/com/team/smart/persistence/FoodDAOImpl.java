@@ -18,25 +18,13 @@ public class FoodDAOImpl implements FoodDAO {
 	
 	@Autowired
 	SqlSession sqlSession;
-	
-	@Override
-	public List<FoodMenuVO> getMenuList(String comp_seq) {
-		// TODO 메뉴 가져오기
-		return sqlSession.selectList("FoodDAO.getMenuList", comp_seq);
-	}
-
-	@Override
-	public List<FoodStoreVO> getFoodStoreList(Map<String, Object> map) {
-		// TODO 스토어 정보 가져오기
-		return sqlSession.selectList("FoodDAO.getFoodStoreList", map);
-	}
 
 	// =========================== 민경
 	
 	// 음식점 소개 등록 처리
 	@Override
 	public int insertStoreUp(Food_companyVO vo) {
-		return sqlSession.update("FoodDAO.insertStoreUp", vo);
+		return sqlSession.insert("FoodDAO.insertStoreUp", vo);
 	}
 	
 	// 음식점 소개 등록시 등록 글
@@ -68,6 +56,18 @@ public class FoodDAOImpl implements FoodDAO {
 	public int insertCouponeUp(Food_couponVO vo) {
 		return sqlSession.insert("FoodDAO.insertCouponeUp", vo);
 	}
+	
+	// 음식점 쿠폰 리스트
+	@Override
+	public List<Food_couponVO> getCoupon(int come_seq) {
+		return sqlSession.selectList("FoodDAO.getCoupon", come_seq);
+	}
+
+	// 음식점 쿠폰 시리얼
+	@Override
+	public int insertCouponSer(Map<String, Object> map) {
+		return sqlSession.insert("FoodDAO.insertCouponSer", map);
+	}
 
 	// ============================= 테스트
 	@Override
@@ -77,5 +77,8 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
 
+
+
+	
 	
 }

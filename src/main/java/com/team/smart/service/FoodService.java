@@ -27,13 +27,10 @@ public interface FoodService {
 	// 쿠폰 등록
 	public void insertCoupon(HttpServletRequest req, Model model);
 	
-	// ------------- 지혜
-
-	//메뉴 리스트
-	public List<FoodMenuVO> getMenuList(HttpServletRequest req);
+	// 쿠폰 리스트
+	public void getCouponList(HttpServletRequest req, Model model);
 	
-	//업체정보 리스트
-	public List<FoodStoreVO> getFoodStoreList(HttpServletRequest req);
+	// ------------- 지혜
 
 	public void test(HttpServletRequest req);
 

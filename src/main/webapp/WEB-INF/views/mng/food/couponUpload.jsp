@@ -20,7 +20,8 @@
           <!-- End Input -->
 
           <!-- Input -->
-          <div class="mb-4">
+          <div class="row">
+        	<div class="col-md-6 mb-3 mb-sm-4"> 
             <div class="js-form-message">
               <label class="form-label">
                 	쿠폰명
@@ -29,7 +30,22 @@
               <div class="form-group">
                 <input id="newPassword" type="text" class="form-control" name="f_coupon_name" placeholder="쿠폰명 입력하세요.">
               </div>
+           </div>
+          </div>
+          <!-- End Input -->
+          
+          <!-- Input -->
+          <div class="col-md-6 mb-3 mb-sm-4">
+            <div class="js-form-message">
+              <label class="form-label">
+                	발급수
+              </label>
+
+              <div class="form-group">
+                <input id="newPassword" type="text" class="form-control" name="f_coupon_count" placeholder="발급장수를 입력하세요." onkeydown="return inNumber();">
+              </div>
             </div>
+          </div>
           </div>
           <!-- End Input -->
 
@@ -60,9 +76,9 @@
                           data-error-class="u-has-error"
                           data-success-class="u-has-success"
                           name="f_start1">
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019" selected="selected">2019</option>
+                    <option value="2017년">2017년</option>
+                    <option value="2018년">2018년</option>
+                    <option value="2019년" selected="selected">2019년</option>
                   </select>
                 </div>
               </div>
@@ -107,37 +123,37 @@
                           data-success-class="u-has-success"
                            name="f_start3">
                    <option value="">Select date</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12" selected="selected">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
+                    <option value="1일">1일</option>
+                    <option value="2일">2일</option>
+                    <option value="3일">3일</option>
+                    <option value="4일">4일</option>
+                    <option value="5일">5일</option>
+                    <option value="6일">6일</option>
+                    <option value="7일">7일</option>
+                    <option value="8일">8일</option>
+                    <option value="9일">9일</option>
+                    <option value="10일">10일</option>
+                    <option value="11일">11일</option>
+                    <option value="12일" selected="selected">12일</option>
+                    <option value="13일">13일</option>
+                    <option value="14일">14일</option>
+                    <option value="15일">15일</option>
+                    <option value="16일">16일</option>
+                    <option value="17일">17일</option>
+                    <option value="18일">18일</option>
+                    <option value="19일">19일</option>
+                    <option value="20일">20일</option>
+                    <option value="21일">21일</option>
+                    <option value="22일">22일</option>
+                    <option value="23일">23일</option>
+                    <option value="24일">24일</option>
+                    <option value="25일">25일</option>
+                    <option value="26일">26일</option>
+                    <option value="27일">27일</option>
+                    <option value="28일">28일</option>
+                    <option value="29일">29일</option>
+                    <option value="30일">30일</option>
+                    <option value="31일">31일</option>
                   </select>
                 </div>
               </div>
@@ -159,9 +175,9 @@
                           data-error-class="u-has-error"
                           data-success-class="u-has-success"
                           name="f_end1">
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019" selected="selected">2019</option>
+                    <option value="2017년">2017년</option>
+                    <option value="2018년">2018년</option>
+                    <option value="2019년" selected="selected">2019년</option>
                     
                    
                   </select>
@@ -207,37 +223,37 @@
                           data-error-class="u-has-error"
                           data-success-class="u-has-success">
                     <option value="">Select date</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12" selected="selected">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
+                    <option value="1일">1일</option>
+                    <option value="2일">2일</option>
+                    <option value="3일">3일</option>
+                    <option value="4일">4일</option>
+                    <option value="5일">5일</option>
+                    <option value="6일">6일</option>
+                    <option value="7일">7일</option>
+                    <option value="8일">8일</option>
+                    <option value="9일">9일</option>
+                    <option value="10일">10일</option>
+                    <option value="11일">11일</option>
+                    <option value="12일" selected="selected">12일</option>
+                    <option value="13일">13일</option>
+                    <option value="14일">14일</option>
+                    <option value="15일">15일</option>
+                    <option value="16일">16일</option>
+                    <option value="17일">17일</option>
+                    <option value="18일">18일</option>
+                    <option value="19일">19일</option>
+                    <option value="20일">20일</option>
+                    <option value="21일">21일</option>
+                    <option value="22일">22일</option>
+                    <option value="23일">23일</option>
+                    <option value="24일">24일</option>
+                    <option value="25일">25일</option>
+                    <option value="26일">26일</option>
+                    <option value="27일">27일</option>
+                    <option value="28일">28일</option>
+                    <option value="29일">29일</option>
+                    <option value="30일">30일</option>
+                    <option value="31일">31일</option>
                   </select>
                 </div>
               </div>
@@ -257,6 +273,17 @@
         </form>
       </div>
     </div>
+ 
+ 
+ <script type="text/javascript">
+  
+//넘버체크
+ function inNumber(){
+     if(event.keyCode<48 || event.keyCode>57){
+    	 event.returnValue=false;
+     }
+ }
+ </script>
  <%@ include file="../../common/footer.jsp" %>
 </body>
 </html>

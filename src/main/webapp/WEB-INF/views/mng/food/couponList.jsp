@@ -102,7 +102,7 @@ pageEncoding="UTF-8"%>
                     </div>
                   </th>
               </thead>
-              <%--  <c:forEach var="" items=""> --%>
+              <c:forEach var="vo" items="${list}">
               <tbody class="font-size-1">
               	<tr class="text-uppercase font-size-1">
                   <td class="align-middle">
@@ -113,10 +113,9 @@ pageEncoding="UTF-8"%>
                       </label>
                     </div>
                   </td>
-                  <td class="align-middle text-secondary font-weight-normal ">매장명입력</td>
+                  <td class="align-middle text-secondary font-weight-normal ">${vo.getF_coupon_name }</td>
                   <td class="align-middle">
                     <div class="media align-items-center">
-                      <span>무더운 여름~</span>
                     </div>
                   </td>
                   <td class="align-middle text-primary">1,000</td>
@@ -203,7 +202,7 @@ pageEncoding="UTF-8"%>
                     </ul>
                   </div>'>
                  </tr>
-                <%-- </c:forEach> --%>
+                </c:forEach>
               </tbody>
             </table>
           </div>

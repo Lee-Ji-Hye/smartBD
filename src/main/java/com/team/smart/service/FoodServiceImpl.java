@@ -45,62 +45,67 @@ public class FoodServiceImpl implements FoodService {
 	FoodDAO f_dao;
 
 	// 음식점 소개 등록
-			@Override
-			public void insertStoreIntro(MultipartHttpServletRequest req, Model model) {
-				System.out.println("food");
-				MultipartFile file1 = req.getFile("f_mainimg");
+		@Override
+		public void insertStoreIntro(MultipartHttpServletRequest req, Model model) {
+			System.out.println("food");
+			MultipartFile file1 = req.getFile("f_mainimg");
 
-				String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); 
-				System.out.println(uploadPath);
-				String realDir = "C:\\Users\\KIM\\git\\smartBD_new\\src\\main\\webapp\\resources\\images\\food\\";  
+			String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); 
+			System.out.println(uploadPath);
+			String realDir = "C:\\Users\\KIM\\git\\smartBD_new\\src\\main\\webapp\\resources\\images\\food\\";  
+			
+			try {
 				
-				
-				try {
+				if(file1 != null) {
+					file1.transferTo(new File(uploadPath+file1.getOriginalFilename()));
 					
-					if(file1 != null) {
-						file1.transferTo(new File(uploadPath+file1.getOriginalFilename()));
-						
-						FileInputStream fis1 = new FileInputStream(uploadPath + file1.getOriginalFilename());
-						FileOutputStream fos1 = new FileOutputStream(realDir + file1.getOriginalFilename());
-						
-						int data = 0;
-						while((data = fis1.read()) != -1) { fos1.write(data); }
-						fis1.close();
-					fos1.close();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
+					FileInputStream fis1 = new FileInputStream(uploadPath + file1.getOriginalFilename());
+					FileOutputStream fos1 = new FileOutputStream(realDir + file1.getOriginalFilename());
+					
+					int data = 0;
+					while((data = fis1.read()) != -1) { fos1.write(data); }
+					fis1.close();
+				fos1.close();
 				}
-				
-				
-				//String images_name = null;
-				
-				//if(file1 != null) {
-				//	images_name = file1.getOriginalFilename();
-				//}
-				// VO에 담기
-				//업체정보꺼내기
-				String compInfo = (String)req.getSession().getAttribute("compSession");
-				log.debug("업체정보 : " + compInfo);
-				String[] comppp = compInfo.split("::");
-				int comp_seq = Integer.parseInt(comppp[0]);
-				String comp_org = comppp[1];
-				
-				Food_companyVO vo = Food_companyVO
-									.builder()
-									.comp_seq(comp_seq)  // 
-									.long_desc(req.getParameter("long_desc"))
-									.short_desc(req.getParameter("short_desc"))
-									.f_category(req.getParameter("f_category"))
-									.f_mainimg(req.getParameter("f_mainimg"))
-									.build();
-				
-				System.out.println("food_company" + vo.toString());
-				int storeUpCode = f_dao.insertStoreUp(vo);		
-				
-				// request나 session에 처리 결과 저장 
-				model.addAttribute("storeUpCode" , storeUpCode);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			
+			
+			String images_name = null;
+			
+			if(file1 != null) {
+				images_name = file1.getOriginalFilename();
+			}
+			
+			// VO에 담기
+			// 업체정보 가져오기
+			String compInfo = (String)req.getSession().getAttribute("compSession");
+			log.debug("업체정보 : " + compInfo);
+			String[] comppp = compInfo.split("::");
+			int comp_seq = Integer.parseInt(comppp[0]);
+			String comp_org = comppp[1];
+
+			log.debug("업체정보 : " + comp_seq + " " + comp_org);
+			
+			Food_companyVO vo = Food_companyVO
+								.builder()
+								.comp_seq(comp_seq)  // 
+								.long_desc(req.getParameter("long_desc"))
+								.short_desc(req.getParameter("short_desc"))
+								.f_category(req.getParameter("f_category"))
+								.f_mainimg(images_name)
+								.build();
+			
+			log.debug("food_company:" + vo.toString());
+			
+			
+			
+			int storeUpCode = f_dao.insertStoreUp(vo);
+			
+			// request나 session에 처리 결과 저장 
+			model.addAttribute("storeUpCode" , storeUpCode);
+		}
 			
 		// 음식점 소개 등록시 소개 글 
 		@Override
@@ -196,6 +201,7 @@ public class FoodServiceImpl implements FoodService {
 				e.printStackTrace();
 			}
 			
+			
 			// VO에 담기
 			Food_menuVO vo = Food_menuVO
 								.builder()
@@ -236,61 +242,67 @@ public class FoodServiceImpl implements FoodService {
 			
 			f_coupon_end = f_end1 + f_end2 + f_end3;
 			
+			// 업체정보 가져오기
+			String compInfo = (String)req.getSession().getAttribute("compSession");
+			log.debug("업체정보 : " + compInfo);
+			String[] comppp = compInfo.split("::");
+			int comp_seq = Integer.parseInt(comppp[0]);
+			String comp_org = comppp[1];
+
+			log.debug("업체정보 : " + comp_seq + " " + comp_org);
+			
 			Food_couponVO vo = Food_couponVO
 						        .builder()
-						        .comp_seq(10)
+						        .comp_seq(comp_seq)
 						        .f_coupon_name(req.getParameter("f_coupon_name"))
 						        .f_coupon_price(Integer.parseInt(req.getParameter("f_coupon_price")))
 						        .f_coupon_regidate(new Timestamp(System.currentTimeMillis()))
 						        .f_coupon_start(f_coupon_start)
 						        .f_coupon_end(f_coupon_end)
+						        .f_coupon_count(Integer.parseInt(req.getParameter("f_coupon_count")))
 						        .build();      
 			
 			int couponUpCode = f_dao.insertCouponeUp(vo);
 			
+			// 쿠폰 시리얼 생성
+			int couponCount = Integer.parseInt(req.getParameter("f_coupon_count"));
+			
+			if(couponCount > 0) {
+
+				for(int j = 0; j < couponCount; j++) {
+					// 시리얼 등록
+					Map<String, Object> map = new HashMap<String,Object>();
+					//map.put("couponNum", f_coupon_count);
+					int couponSer = f_dao.insertCouponSer(map);
+				}
+			}
+			
 			// request나 session에 처리 결과 저장 
 			model.addAttribute("couponUpCode",couponUpCode);
+			model.addAttribute("couponCount",couponCount);
 						        
 		}
-	
-
-
-
-	@Override
-	public List<FoodMenuVO> getMenuList(HttpServletRequest req) {
-		// TODO 메뉴 리스트 가져오기 테스트
 		
-		String comp_seq = (req.getParameter("comp_seq") == "")? null : req.getParameter("comp_seq");
-		List<FoodMenuVO> menuList = f_dao.getMenuList(comp_seq);
-		if(menuList.size() <= 0) {
-			System.out.println("뎃타 없음");
-		} else {
-			System.out.println(menuList.get(0).toString());
+		// 쿠폰리스트
+		@Override
+		public void getCouponList(HttpServletRequest req, Model model) {
+			
+			// 업체정보 가져오기
+			String compInfo = (String)req.getSession().getAttribute("compSession");
+			log.debug("업체정보 : " + compInfo);
+			String[] comppp = compInfo.split("::");
+			int comp_seq = Integer.parseInt(comppp[0]);
+			String comp_org = comppp[1];
+			
+			List<Food_couponVO> list = f_dao.getCoupon(comp_seq);
+			
+			for (int i=0; i < list.size(); i ++) {
+				log.debug("list i" + list.get(i).toString());
+			}
+			
+			// request나 session에 처리결과를 저장(jsp에 전달하기 위함)
+			model.addAttribute("list",list);
 		}
-		return menuList;
-	}
-
-	@Override
-	public List<FoodStoreVO> getFoodStoreList(HttpServletRequest req) {
-		// TODO 업체정보 가져오기
-		
-		String f_category = (req.getParameter("f_category") == "")? null : req.getParameter("f_category");
-		String comp_seq = (req.getParameter("comp_seq") == "")? null : req.getParameter("comp_seq");
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("f_category", f_category);
-		map.put("comp_seq", comp_seq);
-		System.out.println(map);
-		List<FoodStoreVO> storeList = f_dao.getFoodStoreList(map);
-		
-		if(storeList.size() <= 0) {
-			System.out.println("뎃타 없음");
-		} else {
-			System.out.println(storeList.get(0).toString());
-		}
-		
-		return storeList;
-	}
 
 	//매물 등록함수
 	@Override
@@ -303,4 +315,5 @@ public class FoodServiceImpl implements FoodService {
 		
 	}
 
+	
 }

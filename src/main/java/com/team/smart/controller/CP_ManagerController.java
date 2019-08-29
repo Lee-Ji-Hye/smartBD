@@ -74,8 +74,6 @@ public class CP_ManagerController {
 		return "redirect:/cp_manager/intromn/inst";
 	}
 
-	
-
 	// 쿠폰 대표메뉴
 	@RequestMapping("/cpmn")
 	public String coupon(HttpServletRequest req, Model model) {
@@ -83,12 +81,14 @@ public class CP_ManagerController {
 		
 		return "redirect:/cp_manager/cpmn/list";
 	}
+	
 	// 쿠폰 리스트
 	@RequestMapping("/cpmn/list")
 	public String couponList(HttpServletRequest req, Model model) {
 		log.info("url -> /cpmn/list");
 		
 		return mngFood_ + "/couponList";
+		
 	}
 	
 	// 쿠폰 업로드
@@ -105,7 +105,8 @@ public class CP_ManagerController {
 	public String couponUploadPro(HttpServletRequest req, Model model) {
 		log.info("url -> cpmn/instPro");
 		
-		service.insertCoupon(req, model);
+		service.insertCoupon(req, model);//
+		
 		return "redirect:/cp_manager/cpmn/list";
 		
 	}
