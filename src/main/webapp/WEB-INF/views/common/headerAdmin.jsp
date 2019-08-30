@@ -296,11 +296,29 @@
         <!-- End Nav -->
       </div>
     </div>
+<!--     <script type="text/javascript">
+    document.getElementById('bdSession').addEventListener("change", function(){
+    	if(this.value!=="")
+  		window.location = '${path}/member/bdSession?auth=' + this.value +'&curl=' + window.location.pathname;
+    });
+    </script> -->
     <script type="text/javascript">
     document.getElementById('bdSession').addEventListener("change", function(){
     	if(this.value!=="")
   		window.location = '${path}/member/bdSession?auth=' + this.value +'&curl=' + window.location.pathname;
     });
+    
+    //onload 이벤트
+    window.onload = function(){
+    	//업체정보선택하는 select문 id값으로 객체획득
+    	var bdSession = document.getElementById("bdSession");
+    	//세션에 저장된 값과 일치하는 값이 있으면 선택하는 pure js code
+        for(var i=0; i<bdSession.length; i++){
+            if(bdSession[i].value==('${sessionScope.b_code}'+'::'+'${sessionScope.b_name}')){
+            	bdSession[i].selected = true;
+            }
+        }
+    }
     </script>
   </header>
   <!-- ========== END HEADER ========== -->

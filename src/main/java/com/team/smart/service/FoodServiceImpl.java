@@ -80,11 +80,8 @@ public class FoodServiceImpl implements FoodService {
 			
 			// VO에 담기
 			// 업체정보 가져오기
-			String compInfo = (String)req.getSession().getAttribute("compSession");
-			log.debug("업체정보 : " + compInfo);
-			String[] comppp = compInfo.split("::");
-			int comp_seq = Integer.parseInt(comppp[0]);
-			String comp_org = comppp[1];
+			int comp_seq = Integer.parseInt((String)req.getSession().getAttribute("comp_seq"));
+			String comp_org = (String)req.getSession().getAttribute("comp_org");
 
 			log.debug("업체정보 : " + comp_seq + " " + comp_org);
 			

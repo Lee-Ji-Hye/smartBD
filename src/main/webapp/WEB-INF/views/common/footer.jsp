@@ -1102,19 +1102,7 @@
 
   <!-- JS Plugins Init. -->
   <script>
-
-/*   $("#stores").on("change", function() {
-	  	 alert(this.value);
-}); */
     $(window).on('load', function () {
-    	//권한 선택창 따라다니도록함
-    	//업체 선택 세션
-    	$("#compSession").val('${sessionScope.compSession}');
-    	//빌딩 선택 세션
-    	$("#bdSession").val('${sessionScope.bdSession}');
-    	
-    	
-      // initialization of HSMegaMenu component
       $('.js-mega-menu').HSMegaMenu({
         event: 'hover',
         pageContainer: $('.container'),

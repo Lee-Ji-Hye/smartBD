@@ -19,8 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/member")
 public class MemberController {
 
-
-	@RequestMapping({"/"})
+	@RequestMapping({"/","admin"})
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> member/");
 
@@ -33,22 +32,47 @@ public class MemberController {
 	public String bdSession(HttpServletRequest req, Model model) {
 		//메인으로 이동
 		log.info("url -> bdSession");
-		String sessionAuth = req.getParameter("auth");
+		String bdInfo = req.getParameter("auth");
 		String currentURL = req.getParameter("curl");
+
+		if(bdInfo==null)return "redirect:/member/admin";;
+		
+		// 업체정보 가져오기
+		log.debug("업체정보 : " + bdInfo);
+		String[] bdpp = bdInfo.split("::");
+		
+		String b_code = bdpp[0];
+		String b_name = bdpp[1];
+		
 		String redirectionURL = currentURL.substring(7);
-		req.getSession().setAttribute("bdSession", sessionAuth);
+		req.getSession().setAttribute("b_code", b_code);
+		req.getSession().setAttribute("b_name", b_name);
 		//잘라낸 url이 없으면 홈으로 가라
-		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/";
+		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/member/admin";
 	}
+	
 	//업체 세션 선택
 	@RequestMapping("compSession")
 	public String compSession(HttpServletRequest req, Model model) {
 		//메인으로 이동
 		log.info("url -> compSession");
-		String sessionAuth = req.getParameter("auth");
+		//파라메터로 넘어온값 획득
+		String compInfo = req.getParameter("auth");
 		String currentURL = req.getParameter("curl");
+
+		if(compInfo==null)return "redirect:/";
+		
+		// 업체정보 가져오기
+		log.debug("업체정보 : " + compInfo);
+		//구분자로 잘라서 각각 나눠담기
+		String[] comppp = compInfo.split("::");
+		String comp_seq = comppp[0];
+		String comp_org = comppp[1];
+		
 		String redirectionURL = currentURL.substring(7);
-		req.getSession().setAttribute("compSession", sessionAuth);
+		req.getSession().setAttribute("comp_seq", comp_seq);//업체코드 comp_seq에 넣음
+		req.getSession().setAttribute("comp_org", comp_org);//법인명 comp_org에 넣음
+		
 		//잘라낸 url이 없으면 홈으로 가라
 		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/";
 	}

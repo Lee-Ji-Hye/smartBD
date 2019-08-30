@@ -236,11 +236,23 @@
         <!-- End Nav -->
       </div>
     </div>
+    
     <script type="text/javascript">
     document.getElementById('compSession').addEventListener("change", function(){
     	if(this.value!=="")
   		window.location = '${path}/member/compSession?auth=' + this.value +'&curl=' + window.location.pathname;
     });
+    //onload 이벤트
+    window.onload = function(){
+    	//업체정보선택하는 select문 id값으로 객체획득
+    	var compSession = document.getElementById("compSession");
+    	//세션에 저장된 값과 일치하는 값이 있으면 선택하는 pure js code
+        for(var i=0; i<compSession.length; i++){
+            if(compSession[i].value==('${sessionScope.comp_seq}'+'::'+'${sessionScope.comp_org}')){
+            	compSession[i].selected = true;
+            }
+        }
+    }
     </script>
   </header>
   <!-- ========== END HEADER ========== -->

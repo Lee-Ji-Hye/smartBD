@@ -37,7 +37,7 @@ public class MainController {
 
 	@RequestMapping({"/admin"})
 	public String main(HttpServletRequest req, Model model) {
-		log.info("url -> sysmaster/");
+		log.info("url -> admin_index");
 		return "admin/index";
 	}
 	
