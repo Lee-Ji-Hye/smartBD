@@ -31,13 +31,21 @@
 		 AND c.rt_code = a.rt_code
          AND a.b_code = b.b_code
          AND o.comp_seq = c.comp_seq
+         AND o.comp_status='1'
+         <!-- 상태가 승인상태일때만 조회되도록 함 '승인 = 1' -->
 	</select>
 	<!-- 로그인 -->
 	
 	<!-- 회원가입(회원등록) -->
-	<insert id="signUpUser" parameterType="com.team.smart.vo.UserVO">
+	<insert id="insertUser" parameterType="com.team.smart.vo.UserVO">
 		insert into user_member_tbl(userid, userpw, name, email, hp) 
     	values(#{userid}, #{userpw}, #{name}, #{email}, #{hp})
+	</insert>
+	
+	<!-- 업체등록 -->
+	<insert id="insertComp" parameterType="com.team.smart.vo.CompVO">
+		insert into user_company_tbl(comp_seq, comp_section, comp_org, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_status)  
+		values(comp_seq.nextval, #{comp_section}, #{comp_org}, #{comp_branch}, #{comp_master}, #{comp_business}, #{comp_category}, #{comp_hp}, #{comp_status})
 	</insert>
 	
 	

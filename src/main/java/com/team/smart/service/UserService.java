@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import com.team.smart.vo.CompVO;
+
 /**
  * 
  * @author 정승훈
@@ -11,5 +13,10 @@ import org.springframework.ui.Model;
  *
  */
 public interface UserService {
-	public int signUpUser(HttpServletRequest req, Model model);
+	public int insertUser(HttpServletRequest req, Model model);
+	
+
+	public int insertComp(HttpServletRequest req, Model model);
+	
+	
 }

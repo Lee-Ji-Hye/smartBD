@@ -2,9 +2,14 @@ package com.team.smart.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.team.smart.service.UserService;
+import com.team.smart.vo.CompVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +24,11 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/member")
 public class MemberController {
 
+	
+	@Autowired
+	UserService userService;
+	
+	
 	@RequestMapping({"/","admin"})
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> member/");
@@ -125,7 +135,8 @@ public class MemberController {
 	@RequestMapping("/comp/putpro")
 	public String insertProComp(HttpServletRequest req, Model model) {
 		log.info("url -> member/comp/putpro");
-
+		userService.insertComp(req, model);
+		
 		return "redirect:/member/comp/comp_complet";
 	}
 

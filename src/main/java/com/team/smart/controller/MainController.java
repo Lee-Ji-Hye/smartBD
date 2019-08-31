@@ -83,7 +83,7 @@ public class MainController {
 	@RequestMapping("signUpPro")
 	public String signUpPro(HttpServletRequest req, Model model) {
 		log.info("url => signUpPro");
-		userService.signUpUser(req, model);
+		userService.insertUser(req, model);
 		return "redirect:/user_complet";
 	}
 	
