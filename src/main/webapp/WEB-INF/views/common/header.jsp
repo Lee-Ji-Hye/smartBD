@@ -250,7 +250,7 @@
     	var compSession = document.getElementById("compSession");
     	//세션에 저장된 값과 일치하는 값이 있으면 선택하는 pure js code
         for(var i=0; i<compSession.length; i++){
-            if(compSession[i].value==('${sessionScope.comp_seq}'+'::'+'${sessionScope.comp_org}')){
+            if(compSession[i].value===('${sessionScope.comp_seq}'+'::'+'${sessionScope.comp_org}')){
             	compSession[i].selected = true;
             }
         }

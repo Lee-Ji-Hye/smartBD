@@ -1,10 +1,12 @@
 package com.team.smart.service;
 
-import java.security.Timestamp;
+
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -57,7 +59,18 @@ public class UserServiceImpl implements UserService {
 				.comp_hp(req.getParameter("comp_hp"))// 대표전화번호
 				.comp_status("0")// 승인상태 
 				.build();
-		return dao.insertComp(vo);
+		int count = 0;
+		count += dao.insertComp(vo);
+		//TODO 아이디, 업체코드를 넣은 권한 생성 CP_TENATE -> 계약코드가 없기때문에 권한은 못가짐..
+		//
+		//id, 업체코드, 권한명, insert
+		HashMap<String,String> map = new HashMap<>();
+		map.put("userid", SecurityContextHolder.getContext().getAuthentication().getName());
+		map.put("comp_auth", "ROLE_CP_TENANT");
+		count += dao.insertAuth(map);
+		
+		log.debug("count = "+count);
+		return count;
 	}
 	
 	

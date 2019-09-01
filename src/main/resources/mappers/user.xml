@@ -21,18 +21,23 @@
 	</resultMap>
 	<select id="getAuthority" resultType="com.team.smart.security.config.UserGrantedAuthority">
 		 SELECT a.comp_auth
-                , c.comp_seq
+                , o.comp_seq
                 , o.comp_org
-                , c.r_code
                 , a.b_code
                 , b.b_name
-		 FROM user_compauth_tbl a, room_contract_tbl c, building_tbl b, user_company_tbl o
+                , c.r_code
+                , c.rt_date1
+                , c.rt_date2
+		 FROM user_compauth_tbl a
+         LEFT JOIN 
+         room_contract_tbl c
+         ON a.rt_code = c.rt_code
+         LEFT JOIN
+         building_tbl b
+         ON a.b_code = b.b_code
+         LEFT JOIN user_company_tbl o
+         ON a.comp_seq = o.comp_seq
 		 WHERE a.userid = #{userid}
-		 AND c.rt_code = a.rt_code
-         AND a.b_code = b.b_code
-         AND o.comp_seq = c.comp_seq
-         AND o.comp_status='1'
-         <!-- 상태가 승인상태일때만 조회되도록 함 '승인 = 1' -->
 	</select>
 	<!-- 로그인 -->
 	
@@ -48,5 +53,9 @@
 		values(comp_seq.nextval, #{comp_section}, #{comp_org}, #{comp_branch}, #{comp_master}, #{comp_business}, #{comp_category}, #{comp_hp}, #{comp_status})
 	</insert>
 	
+	<!-- 권한등록(업체등록에따른) -->
+	<insert id="insertAuth" parameterType="java.util.Map">
+		insert into user_compauth_tbl(userid, comp_auth, comp_seq) values(#{userid}, #{comp_auth}, COMP_SEQ.currval)
+	</insert>
 	
 </mapper>

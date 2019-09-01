@@ -1,5 +1,7 @@
 package com.team.smart.persistence;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,6 +24,11 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public int insertComp(CompVO vo) {
 		return sqlSession.insert("UserDAO.insertComp", vo);
+	}
+
+	@Override
+	public int insertAuth(Map<String, String> map) {
+		return sqlSession.insert("UserDAO.insertAuth", map);
 	}
 
 }
