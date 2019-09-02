@@ -50,6 +50,30 @@
           <input type="text" class="form-control" name="comp_org" placeholder="법인명 (단체명, 상호명)" required>
         </div>
         <!-- End Input -->
+        
+      
+        <!-- Input -->
+        <div class="js-form-message mb-6">
+          <label class="form-label">
+            	사업자 번호
+            <span class="text-danger">*</span>
+          </label>
+
+          <input type="text" class="form-control" name="comp_bn" placeholder="사업자번호" required>
+        </div>
+        <!-- End Input -->
+        
+      
+        <!-- Input -->
+        <div class="js-form-message mb-6">
+          <label class="form-label">
+            	대표자
+            <span class="text-danger">*</span>
+          </label>
+
+          <input type="text" class="form-control" name="comp_owner" placeholder="대표자" required>
+        </div>
+        <!-- End Input -->
       
       
         <!-- Input -->

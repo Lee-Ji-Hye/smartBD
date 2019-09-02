@@ -52,6 +52,8 @@ public class UserServiceImpl implements UserService {
 		CompVO vo = CompVO.builder()
 				.comp_section(req.getParameter("comp_section"))// 사업자구분(개인사업자,법인사업자)
 				.comp_org(req.getParameter("comp_org"))// 법인명(단체명 혹은 상호명)
+				.comp_bn(req.getParameter("comp_bn"))//사업자번호
+				.comp_owner(req.getParameter("comp_owner"))//대표자
 				.comp_branch(req.getParameter("comp_branch"))// 사업장소재지
 				.comp_master(req.getParameter("comp_master"))// 본점소재지
 				.comp_business(req.getParameter("comp_business"))// 업태

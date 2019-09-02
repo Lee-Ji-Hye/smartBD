@@ -29,6 +29,8 @@ public class CompVO {
 	private int comp_seq;
     private String comp_section;		// 사업자구분(개인사업자,법인사업자)
     private String comp_org;			// 법인명(단체명 혹은 상호명)
+    private String comp_bn;				// 사업자번호
+    private String comp_owner;  		// 대표이사이름
     private String comp_branch; 		// 사업장소재지
     private String comp_master;			// 본점소재지
     private String comp_business;		// 업태

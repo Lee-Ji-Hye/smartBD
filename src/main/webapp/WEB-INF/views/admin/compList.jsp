@@ -118,7 +118,7 @@ pageEncoding="UTF-8"%>
               <tbody class="font-size-1">
               <c:set var="index" value="${0}"/>
               <c:forEach var="dto" items="${compList}">
-              	<tr class="text-uppercase font-size-1">
+              	<tr class="text-uppercase font-size-1 form-original">
                   <td class="align-middle">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
                       <input type="checkbox" class="custom-control-input" id="invoiceCheckbox01">
@@ -163,8 +163,9 @@ pageEncoding="UTF-8"%>
                 </tr>
                 <c:set var="index" value="${index+1}"/>
                 </c:forEach>
-                <tr id='formDetail'>
-                	<td colspan='7'>
+                
+          <tr class="text-uppercase font-size-1 collapse out" id='formDetail' style="display: none;">
+                <td scope="row" colspan="7">
                 		<!-- Bill -->
                   <div class="border rounded p-5">
                     <h4 class="h3">신청서</h4>
@@ -248,7 +249,6 @@ pageEncoding="UTF-8"%>
                 
               </tbody>
             </table>
-            	
           </div>
           <!-- End Activity Table -->
           <!-- Pagination -->
@@ -294,11 +294,22 @@ pageEncoding="UTF-8"%>
 		request.onreadystatechange = function(){//콜백함수
 			if (request.readyState == 4) {
 				if(request.status == 200){
-					var tbl = document.getElementsByTagName('table')
-					var details = document.getElementById('formDetail')
+					//for문으로 돌린 table의 집합 (컨트롤하기위한 class)
+					var tblclass = document.getElementsByClassName('form-original');
+					//삽입할 부모 테이블
+					var tbl = document.getElementsByTagName('table');
+					//숨겨져 있는 값
+					var details = document.getElementById('formDetail');
+					//서버에서 받아온 데이터
 					obj = JSON.parse(request.responseText);
+					//콘솔에찍음
 					console.log(obj);
-					tbl[0].children[1].children[tbl_index+1].before(formDetail);
+					//값을 변경
+					
+					//삽입될 위치를 변경
+					tbl[0].children[1].insertBefore(details, tblclass[tbl_index + 1]);
+					//display 속성을 변경
+					details.style.display="table-row";
 				}else{
 					//실패했을때 알럿
 					alert("데이터 가져오기 실패");
@@ -306,6 +317,14 @@ pageEncoding="UTF-8"%>
 			}
 		};
 		request.send(null);
+	};
+	
+	
+	function formDetailMod(obj){
+		var details = document.getElementById('formDetail')
+		
+		
+		
 	};
   </script>
 </main>
