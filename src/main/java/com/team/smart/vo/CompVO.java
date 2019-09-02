@@ -1,11 +1,14 @@
 package com.team.smart.vo;
 
+import java.math.BigDecimal;
 import java.security.Timestamp;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data @Builder
+@Data @Builder @AllArgsConstructor @NoArgsConstructor
 public class CompVO {
 	/*
 	 * 
@@ -23,7 +26,7 @@ public class CompVO {
     
 	 */
 	// 회원 > 업체 테이블 
-	private String comp_seq;
+	private int comp_seq;
     private String comp_section;		// 사업자구분(개인사업자,법인사업자)
     private String comp_org;			// 법인명(단체명 혹은 상호명)
     private String comp_branch; 		// 사업장소재지

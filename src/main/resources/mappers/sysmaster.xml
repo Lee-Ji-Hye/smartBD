@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysmasterDAO">
+
+	<select id="compList" parameterType="java.util.Map" resultType="com.team.smart.vo.CompVO">
+		select comp_seq, comp_section, 
+			comp_org, comp_branch, 
+			comp_master, comp_business, 
+			comp_category, comp_hp, 
+			comp_regidate, comp_status
+		from user_company_tbl
+	</select>
+	
+	<select id="compInfo" parameterType="int" resultType="com.team.smart.vo.CompVO">
+		select comp_seq, comp_section, 
+			comp_org, comp_branch, 
+			comp_master, comp_business, 
+			comp_category, comp_hp, 
+			comp_regidate, comp_status
+		from user_company_tbl
+		where comp_seq = #{comp_seq}
+	</select>
+	
+</mapper>
