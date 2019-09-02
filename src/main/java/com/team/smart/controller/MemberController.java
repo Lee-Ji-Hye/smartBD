@@ -54,6 +54,7 @@ public class MemberController {
 		String b_code = bdpp[0];
 		String b_name = bdpp[1];
 		
+		
 		String redirectionURL = currentURL.substring(7);
 		req.getSession().setAttribute("b_code", b_code);
 		req.getSession().setAttribute("b_name", b_name);
