@@ -12,14 +12,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 업체 소개 등록시 등록 글 -->
-	<select id="getStore" resultType="com.team.smart.food.vo.Food_companyVO">
-		SELECT * FROM food_company_tbl WHERE comp_seq = #{comp_seq}
+	<select id="getStore" resultType="int" parameterType="int">
+		SELECT COUNT(*) FROM food_company_tbl WHERE comp_seq = #{comp_seq}
 	</select> 
 	
+	<!-- 음식점 소개 글 등록 글 한 건 가져오기 -->
+	<select id="getStoreOne" resultType="com.team.smart.food.vo.Food_companyVO">
+		SELECT * FROM food_company_tbl WHERE comp_seq = #{comp_seq}
+	</select>
+	
 	<!-- 업체 소개 등록 수정  -->
-	<!-- <update id="">
+	<update id="modifySujungUpdate" parameterType="com.team.smart.food.vo.Food_companyVO">
 		UPDATE food_company_tbl SET long_desc = #{long_desc}, short_desc = #{short_desc}, f_mainimg = #{f_mainimg} WHERE comp_seq = #{comp_seq}
-	</update> -->
+	</update>
 	
 	<!-- 업체 상품 등록 -->
 	<!-- <insert id="foodUp" parameterType="com.team.smart.food.vo.Food_menuVO">

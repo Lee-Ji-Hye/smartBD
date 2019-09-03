@@ -6,7 +6,7 @@
 <body>
 <div class="bg-light">
       <div class="container space-2">
-        <form id="changePasswordForm" class="js-validate" novalidate="novalidate" action="${path}/cp_manager/cpmn/instPro?${_csrf.parameterName}=${_csrf.token}">
+        <form id="couponUpload" class="js-validate" novalidate="novalidate" action="${path}/cp_manager/cpmn/instPro?${_csrf.parameterName}=${_csrf.token}">
           <!-- Input -->
           <div class="js-form-message mb-4">
             <label class="form-label">
@@ -42,7 +42,7 @@
               </label>
 
               <div class="form-group">
-                <input id="newPassword" type="text" class="form-control" name="f_coupon_count" placeholder="발급장수를 입력하세요." onkeydown="return inNumber();">
+                <input id="couponJangsu" type="text" class="form-control" name="f_coupon_count" placeholder="발급장수를 입력하세요." onkeydown="return inNumber(event,type);" onkeyup="inKorean(event,type);">
               </div>
             </div>
           </div>
@@ -61,12 +61,11 @@
           </div>
           <!-- End Input -->
           <div class="js-form-message mb-4">
-          <label class="form-label">
+           <label class="form-label">
             	사용기한
-          </label>
-          
+           </label>
+          </div>
           <div class="row">
-          
             <!-- Input -->
             <div class="col-md-2 mb-3 mb-sm-4">
               <div class="js-form-message">
@@ -165,6 +164,7 @@
             <label class="form-label">
             	만료기한
           	</label>
+          	</div>
           	<div class="row">
             <!-- Input -->
             <div class="col-md-2 mb-3 mb-sm-4">
@@ -219,7 +219,8 @@
                   <select class="form-control custom-select" required
                           data-msg="Please select year."
                           data-error-class="u-has-error"
-                          data-success-class="u-has-success">
+                          data-success-class="u-has-success"
+                          name="f_end3">
                     <option value="">Select date</option>
                     <option value="1">1일</option>
                     <option value="2">2일</option>
@@ -276,11 +277,20 @@
  <script type="text/javascript">
   
 //넘버체크
- function inNumber(){ // 0~48 , 58~
-     if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=8){
+ function inNumber(event, type){ // 0~48 , 58~
+	 if((event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 8){
+		 event.returnValue=true;
+     }else{
     	 event.returnValue=false;
      }
+		
  }
+ 
+ function inKorean(event, type){ 
+	 var couponCnt = document.getElementById('couponJangsu');
+	 couponCnt.value = couponCnt.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
+ }
+ 
  </script>
  <%@ include file="../../common/footer.jsp" %>
 </body>

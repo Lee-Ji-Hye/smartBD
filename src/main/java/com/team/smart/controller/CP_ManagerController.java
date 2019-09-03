@@ -40,37 +40,70 @@ public class CP_ManagerController {
 	// 소개 대표메뉴
 	@RequestMapping(value="/intromn") //헤더에 걸려있는 메핑정보
 	public String intromn(HttpServletRequest req, Model model) {
-		log.info("mng/food/intorduction -> intromn");
-		
+		log.info("url -> intromn");
 		log.info("req.getSession().getServletContext().getRealPath(\"/resources/images/food/" + req.getSession().getServletContext().getRealPath("/resources/images/food/"));
+		
 		return "redirect:/cp_manager/intromn/inst";
 	}
 	
 	// 소개 작성 
 	@RequestMapping(value="/intromn/inst")
 	public String intorduction(HttpServletRequest req, Model model) {
-		log.info("mng/food/intorduction -> inst");
-		
+		log.info("url -> inst");
 		log.info("req.getSession().getServletContext().getRealPath(\"/resources/images/food/" + req.getSession().getServletContext().getRealPath("/resources/images/food/"));
+		
+		service.getStore(req, model);
+		
 		return mngFood_ + "/intorduction";
 	}
 
 	// 소개 처리 
 	@RequestMapping(value="/intromn/instPro")
 	public String intorductionpro(MultipartHttpServletRequest req, Model model) {
-		log.info("mng/food/intorduction -> instPro");
+		log.info("url -> instPro");
 		
 		service.insertStoreIntro(req, model);
-		
-		return mngFood_ + "/intorduction";
+		return "redirect:/cp_manager/intromn/inst";
 	}
 	
-	// 메뉴 관리
+	// 메뉴 관리 대표메뉴
 	@RequestMapping(value="/menumn") //헤더에 걸려있는 메핑정보
 	public String menumn(HttpServletRequest req, Model model) {
-		log.info("mng/food/intorduction -> menumn");
+		log.info("url -> menumn");
 		
-		return "redirect:/cp_manager/intromn/inst";
+		return "redirect:/cp_manager/menumn/inst";
+	}
+	
+	// 메뉴 리스트
+	@RequestMapping("/menumn/list") //헤더에 걸려있는 메핑정보
+	public String goodsList(HttpServletRequest req, Model model) {
+		log.info("url -> menumn");
+		
+		return mngFood_ + "/goodsList";
+	}
+	
+	// 메뉴 업로드
+	@RequestMapping("/menumn/inst")
+	public String menu(HttpServletRequest req, Model model) {
+		log.info("url -> menu");
+		
+		return mngFood_ + "/menuUpload";
+	}
+	
+	// 메뉴 업로드 처리
+	@RequestMapping("/menumn/instPro")
+	public String menuUploadPro(HttpServletRequest req, Model model) {
+		log.info("url -> menuUploadPro");
+		
+		return "redirect:/cp_manager/menumn/inst";
+	}
+	
+	// 메뉴 삭제
+	@RequestMapping("/menumn/del")
+	public String menuDel(HttpServletRequest req, Model model) {
+		log.info("url -> menuDel");
+		
+		return "redirect:/cp_manager/menumn/inst";
 	}
 
 	// 쿠폰 대표메뉴
@@ -120,11 +153,6 @@ public class CP_ManagerController {
 		
 		return "redirect:/cp_manager/cpmn/list";
 	}
-	
-	
-	
-	
-	
 	
 	
 }

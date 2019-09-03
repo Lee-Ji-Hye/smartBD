@@ -9,17 +9,11 @@ import com.team.smart.app.vo.FoodStoreVO;
 
 public interface FoodService {
 
-	// 음식점 소개 등록 
+	// 음식점 소개 등록 + 수정
 	public void insertStoreIntro(MultipartHttpServletRequest req, Model model);
 	
 	// 음식점 소개 등록시 등록 글  
 	public void getStore(HttpServletRequest req, Model model);
-	
-	// 음식점 소개 등록 수정 상세페이지
-	public void modifyIntro(HttpServletRequest req, Model model);
-	
-	// 음식점 소개 등록 수정 처리 페이지
-	public void modifyStoreUpdate(MultipartHttpServletRequest req, Model model);
 	
 	// 음식점 상품 등록
 	public void insertFoodGoods(MultipartHttpServletRequest req, Model model);
@@ -35,6 +29,15 @@ public interface FoodService {
 	
 	// 쿠폰 리스트 삭제
 	public void delCoupon(HttpServletRequest req, Model model);
+	
+	// 음식점 상품 등록 + 수정
+	public void insertGoodsIntro(MultipartHttpServletRequest req, Model model);
+	
+	// 음식점 상품 리스트
+	public void getGoodsList(HttpServletRequest req, Model model);
+	
+	// 음식점 상품 삭제
+	public void delGoods(HttpServletRequest req, Model model);
 	
 	// ------------- 지혜
 

@@ -33,14 +33,6 @@ pageEncoding="UTF-8"%>
               <!-- End Datepicker -->
             </div>
             
-            <script type="text/javascript">
-            	function checkBeforeDelete() {
-            		if(confirm("정말 삭제하시겠습니까?") == false) {
-            			return false;
-            		}
-            	}
-            </script>
-            
             <!-- Buttons -->
             <div style="margin-right:20px;">
 	            <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/cp_manager/cpmn/inst'">등록</button>
@@ -170,7 +162,7 @@ pageEncoding="UTF-8"%>
 <!-- jQuery 스크립트  -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-//쿠폰 목록 전체 체크
+//쿠폰 목록 전체 체크 jQuery
 
 $(function(){
 	$("#invoiceToggleAllCheckbox").click(function(){
@@ -178,6 +170,15 @@ $(function(){
 	});
 });
 
+</script>
+
+<!-- 쿠폰 리스트 삭제 버튼 클릭시 작동하는 script -->
+<script type="text/javascript">
+function checkBeforeDelete() {
+	if(confirm("정말 삭제하시겠습니까?") == false) {
+		return false;
+	}
+}        	
 </script>
 
 <!-- ========== END MAIN ========== -->

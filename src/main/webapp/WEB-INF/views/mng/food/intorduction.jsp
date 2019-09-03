@@ -12,7 +12,6 @@
        
        <div class="container space-1">
            	<!-- Update Avatar Form -->
-	        
 	          <div class="u-lg-avatar mr-3">
 	           <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
 	          </div>
@@ -24,7 +23,6 @@
 	            </label>
 	            <button type="reset" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>
 	          </div>
-	        
         </div>
        
          <div class="row justify-content-lg-between align-items-sm-center mb-11">
@@ -43,7 +41,7 @@
                          	data-error-class="u-has-error"
                          	data-success-class="u-has-success"
                          	name="f_category">
-		              <option value="">Select Catagory</option>
+		              <option value="${store.f_category}">Select Catagory</option>
 		              <option value="한식" selected="selected">한식</option>
 		              <option value="중식">중식</option>
 		              <option value="일식">일식</option>
@@ -70,7 +68,7 @@
           <textarea class="form-control" rows="4" name="short_desc" placeholder="간단한 소개란입니다." aria-label="Hi there, I would like to ..." required
                     data-msg="Please enter a reason."
                     data-error-class="u-has-error"
-                    data-success-class="u-has-success">${vo.getShort_desc()}</textarea>
+                    data-success-class="u-has-success">${store.getShort_desc()}</textarea>
         </div>
         <!-- End Input -->
         
@@ -82,7 +80,7 @@
           <textarea class="form-control" rows="13" name="long_desc" placeholder="소개해주세요." aria-label="Hi there, I would like to ..." required
                     data-msg="Please enter a reason."
                     data-error-class="u-has-error"
-                    data-success-class="u-has-success">${vo.getLong_desc()}</textarea>
+                    data-success-class="u-has-success">${store.getLong_desc()}</textarea>
         </div>
         <!-- End Input -->
        
