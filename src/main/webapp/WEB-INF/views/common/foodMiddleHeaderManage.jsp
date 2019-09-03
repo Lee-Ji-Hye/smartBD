@@ -61,8 +61,8 @@
                       </a>
 
                       <ul id="generalDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="generalDropdown">
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/intorduction">업체 소개</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/closed">휴무일 등록</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/intromn">업체 소개</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/closed">휴무일 등록</a></li>
                       </ul>
                     </li>
                     <!-- General -->
@@ -74,8 +74,8 @@
                       </a>
 
                       <ul id="accountSettingsDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="accountSettingsDropdown">
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/goodsList">상품 목록</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/menuUpload">상품 등록</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/">상품 목록</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/">상품 등록</a></li>
                       </ul>
                     </li>
                     <!-- Account Settings -->
@@ -87,8 +87,8 @@
                       </a>
 
                       <ul id="billingDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="billingDropdown">
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/orderList">주문 목록</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/oldOrderList">지난 주문</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/">주문 목록</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/">지난 주문</a></li>
                       </ul>
                     </li>
                     <!-- Billing -->
@@ -100,8 +100,8 @@
                       </a>
 
                       <ul id="accessibilityDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="accessibilityDropdown">
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponList">쿠폰 목록</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponUpload">쿠폰 등록</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/cpmn/list">쿠폰 목록</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/cpmn/inst">쿠폰 등록</a></li>
                       </ul>
                     </li>
                     <!-- Accessibility -->
@@ -112,9 +112,9 @@
                       </a>
 
                       <ul id="accessibilityDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="accessibilityDropdown">
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponList">당일 결산</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponUpload">주간 결산</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponUpload">월간 결산</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/">당일 결산</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/">주간 결산</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/">월간 결산</a></li>
                       </ul>
                     </li>
                     <!-- Others -->

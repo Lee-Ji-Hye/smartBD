@@ -29,8 +29,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 쿠폰 등록 -->
 	<insert id="insertCouponeUp" parameterType="com.team.smart.food.vo.Food_couponVO">
-		INSERT INTO food_coupon_tbl (comp_seq,f_coupon_name, f_coupon_price, f_coupon_regidate, f_coupon_start, f_coupon_end, f_coupon_num , f_coupon_count)
-		VALUES (#{comp_seq}, #{f_coupon_name}, #{f_coupon_price}, SYSDATE, #{f_coupon_start}, #{f_coupon_end}, f_coupon_num_seq.nextval , #{f_coupon_count})
+		INSERT INTO food_coupon_tbl (comp_seq,f_coupon_name, f_coupon_price, f_coupon_regidate, f_coupon_start, f_coupon_end, f_coupon_num , f_coupon_count, staff_id)
+		VALUES (#{comp_seq}, #{f_coupon_name}, #{f_coupon_price}, SYSDATE, #{f_coupon_start}, #{f_coupon_end}, f_coupon_num_seq.nextval , #{f_coupon_count}, #{staff_id})
 	</insert>
+	
+	<!-- 쿠폰 시리얼 등록 -->
+	<insert id="insertCouponSer" parameterType="java.util.Map">
+		INSERT INTO food_coupon_serial_tbl (f_serial, f_coupon_num)
+		VALUES (#{f_serial}, f_coupon_num_seq.currval)
+	</insert>
+	
+	<!-- 쿠폰 리스트 조회 -->
+	<select id="getCoupon" resultType="com.team.smart.food.vo.Food_couponVO" parameterType="int"> 
+		 SELECT c.f_coupon_name, c.f_coupon_price,c.f_coupon_start,c.f_coupon_end, c.f_coupon_num, c.f_coupon_count, c.comp_seq
+		   FROM food_coupon_serial_tbl p
+		   RIGHT JOIN food_coupon_tbl c
+			 ON p.f_coupon_num = c.f_coupon_num
+		  WHERE c.comp_seq= #{comp_seq}
+	</select>
+	
+	<!-- 쿠폰 리스트 삭제 -->
+	<delete id="deleteCoupon" parameterType="String">
+		DELETE food_coupon_tbl WHERE f_coupon_num IN 
+		<foreach item="couponChk" collection="array" open="(" separator="," close=")">
+			#{couponChk}
+		</foreach>
+	</delete>
 </mapper>
 

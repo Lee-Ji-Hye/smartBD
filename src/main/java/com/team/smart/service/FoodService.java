@@ -30,6 +30,12 @@ public interface FoodService {
 	// 쿠폰 리스트
 	public void getCouponList(HttpServletRequest req, Model model);
 	
+	// 쿠폰 시리얼 등록
+	public String insertSerialNum();
+	
+	// 쿠폰 리스트 삭제
+	public void delCoupon(HttpServletRequest req, Model model);
+	
 	// ------------- 지혜
 
 	public void test(HttpServletRequest req);

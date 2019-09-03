@@ -59,14 +59,20 @@ public class FoodDAOImpl implements FoodDAO {
 	
 	// 음식점 쿠폰 리스트
 	@Override
-	public List<Food_couponVO> getCoupon(int come_seq) {
-		return sqlSession.selectList("FoodDAO.getCoupon", come_seq);
+	public List<Food_couponVO> getCoupon(int comp_seq) {
+		return sqlSession.selectList("FoodDAO.getCoupon", comp_seq);
 	}
 
 	// 음식점 쿠폰 시리얼
 	@Override
 	public int insertCouponSer(Map<String, Object> map) {
 		return sqlSession.insert("FoodDAO.insertCouponSer", map);
+	}
+
+	// 음식점 쿠폰 리스트 삭제
+	@Override
+	public int deleteCoupon(String[] f_coupon_num) {
+		return sqlSession.delete("FoodDAO.deleteCoupon", f_coupon_num);
 	}
 
 	// ============================= 테스트
@@ -77,6 +83,7 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
 
+	
 
 
 	

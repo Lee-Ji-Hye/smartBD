@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
  
 <!-- ========== MAIN ========== -->
-<form method="post" name="coupon" action="${path}/cp_manager/cpmn/del?${_csrf.parameterName}=${_csrf.token}" onsubmit="return checkBeforeDelete();">
+<form method="post" name="coupon"action="${path}/cp_manager/cpmn/inst?${_csrf.parameterName}=${_csrf.token}">
 <main id="content" role="main">
   <div class="bg-light">
     <div class="container space-2">
@@ -33,21 +33,13 @@ pageEncoding="UTF-8"%>
               <!-- End Datepicker -->
             </div>
             
-            <script type="text/javascript">
-            	function checkBeforeDelete() {
-            		if(confirm("정말 삭제하시겠습니까?") == false) {
-            			return false;
-            		}
-            	}
-            </script>
-            
             <!-- Buttons -->
             <div style="margin-right:20px;">
-	            <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/cp_manager/cpmn/inst'">등록</button>
-	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">삭제</button>
+	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
+	            <button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" >삭제</button>
             </div>
             <!-- End Buttons -->
-          </div> 
+          </div>
           <!-- End Activity Menu -->
         </div>
         <div class="card-body p-4">
@@ -76,7 +68,7 @@ pageEncoding="UTF-8"%>
                 <tr class="text-uppercase font-size-1">
                   <th scope="col">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
-                      <input type="checkbox" class="custom-control-input " name="couponAll" id="invoiceToggleAllCheckbox" >
+                      <input type="checkbox" class="custom-control-input" name="couponAll" id="invoiceToggleAllCheckbox" onchange="couponChkAll();">
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox" >
                         <span class="text-hide">Checkbox</span>
                       </label>
@@ -99,7 +91,7 @@ pageEncoding="UTF-8"%>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	사용만료
+                      	사옹만료
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
@@ -108,7 +100,7 @@ pageEncoding="UTF-8"%>
                     </div>
                   </th>
               </thead>
-              <c:forEach var="vo" items="${list}"  varStatus="status">
+              <c:forEach var="vo" items="${list}" varStatus="status" >
               <tbody class="font-size-1">
               	<tr class="text-uppercase font-size-1">
                   <td class="align-middle">
@@ -125,6 +117,86 @@ pageEncoding="UTF-8"%>
                   <td class="align-middle text-primary">${vo.f_coupon_end}</td>
                   <td class="align-middle text-secondary">${vo.f_coupon_count}</td>
                 </tr>
+                <%-- <tr class="js-datatabale-details" data-details='
+                  <div class="border rounded p-5">
+                    <h4 class="h3">Invoice</h4>
+                    <div class="row mb-6">
+                      <div class="col-3">
+                        <span class="text-secondary">Date:</span>
+                        <span class="font-weight-medium">12 May, 2018</span>
+                      </div>
+                      
+                      <div class="col-3">
+                        <span class="text-secondary">Merchant:</span>
+                        <span class="font-weight-medium">Dropbox</span>
+                      </div>
+                      <div class="col-6">
+                        <span class="text-secondary">Authorization code:</span>
+                        <span class="font-weight-medium">901274182319</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <h5 class="text-dark font-size-1 text-uppercase">Billing address:</h5>
+                        <address class="text-secondary">
+                          <h6 class="h5 text-dark">Dropbox</h6>
+                          Flat 60, Ross Green, South Lilyberg, Q7M 8ZV
+                        </address>
+                      </div>
+                      <div class="col-sm-6">
+                        <h5 class="text-dark font-size-1 text-uppercase">Client info:</h5>
+                        <ul class="list-unstyled mb-0">
+                          <li class="mb-2">
+                            <span class="text-secondary">First name:</span>
+                            <span class="font-weight-medium">Natalie</span>
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-secondary">Last name:</span>
+                            <span class="font-weight-medium">Curtis</span>
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-secondary">Country:</span>
+                            <span class="font-weight-medium">England</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="row justify-content-end mb-4">
+                      <div class="col-sm-6">
+                        <hr class="my-4">
+                        <h5 class="text-dark font-size-1 text-uppercase">Transaction details:</h5>
+                        <ul class="list-unstyled mb-0">
+                          <li class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-secondary">Transaction amount</span>
+                            <span class="font-weight-medium">$257.93</span>
+                          </li>
+                          <li class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-secondary">Fee</span>
+                            <span class="font-weight-medium">$0.50</span>
+                          </li>
+                          <li class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-secondary">Total amount</span>
+                            <span class="text-primary font-weight-medium">$257.43</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <ul class="list-inline mb-0">
+                      <li class="list-inline-item u-ver-divider pr-3 mr-3">
+                        <a href="#">
+                          <span class="fas fa-file-word text-secondary mr-1"></span>
+                          Download invoice
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="#">
+                          <span class="fas fa-print text-secondary mr-1"></span>
+                          Print details
+                        </a>
+                      </li>
+                    </ul>
+                  </div>'>
+                 </tr> --%>
                 </c:forEach>
               </tbody>
             </table>
@@ -166,18 +238,26 @@ pageEncoding="UTF-8"%>
   <!-- End Content Section -->
  </main>
 </form>
-
-<!-- jQuery 스크립트  -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 //쿠폰 목록 전체 체크
+function couponChkAll() {
+	
+	var allChoice = document.coupon.couponAll;
+	var choice = document.coupon.couponChk;
 
-$(function(){
-	$("#invoiceToggleAllCheckbox").click(function(){
-		$( '.custom-control-input' ).prop( 'checked', this.checked );
-	});
-});
-
+	console.dir(allChoice);
+	console.log(choice);
+	
+	if(allChoice.checked === true){
+		for(var i = 0; i<choice.length; i++) {
+			choice[i].checked = true;
+		}
+	} else {
+		for(var i = 0; i<choice.length; i++) {
+			choice[i].checked = false;
+		}
+	}
+}
 </script>
 
 <!-- ========== END MAIN ========== -->

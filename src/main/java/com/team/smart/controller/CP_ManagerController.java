@@ -38,7 +38,7 @@ public class CP_ManagerController {
 	
 	//----민경
 	// 소개 대표메뉴
-	@RequestMapping(value="/intromn")//헤더에 걸려있는 메핑정보
+	@RequestMapping(value="/intromn") //헤더에 걸려있는 메핑정보
 	public String intromn(HttpServletRequest req, Model model) {
 		log.info("mng/food/intorduction -> intromn");
 		
@@ -65,9 +65,8 @@ public class CP_ManagerController {
 		return mngFood_ + "/intorduction";
 	}
 	
-	
 	// 메뉴 관리
-	@RequestMapping(value="/menumn")//헤더에 걸려있는 메핑정보
+	@RequestMapping(value="/menumn") //헤더에 걸려있는 메핑정보
 	public String menumn(HttpServletRequest req, Model model) {
 		log.info("mng/food/intorduction -> menumn");
 		
@@ -87,6 +86,8 @@ public class CP_ManagerController {
 	public String couponList(HttpServletRequest req, Model model) {
 		log.info("url -> /cpmn/list");
 		
+		service.getCouponList(req, model);
+		
 		return mngFood_ + "/couponList";
 		
 	}
@@ -96,7 +97,6 @@ public class CP_ManagerController {
 	public String couponUpload(HttpServletRequest req, Model model) {
 		log.info("url -> couponUpload");
 		
-		
 		return mngFood_ + "/couponUpload";
 	}
 	
@@ -105,10 +105,20 @@ public class CP_ManagerController {
 	public String couponUploadPro(HttpServletRequest req, Model model) {
 		log.info("url -> cpmn/instPro");
 		
-		service.insertCoupon(req, model);//
+		service.insertCoupon(req, model);
 		
 		return "redirect:/cp_manager/cpmn/list";
 		
+	}
+	
+	// 쿠폰 삭제
+	@RequestMapping("/cpmn/del")
+	public String couponDel(HttpServletRequest req, Model model) {
+		log.debug("url -> cpmn/del");
+		
+		service.delCoupon(req, model);
+		
+		return "redirect:/cp_manager/cpmn/list";
 	}
 	
 	
