@@ -1,46 +1,62 @@
 package com.team.smart.utils;
 
-import org.mybatis.spring.SqlSessionTemplate;
+import java.util.HashMap;
+import java.util.Map;
 
-import com.team.smart.persistence.FoodDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.team.smart.persistence.CodeDAO;
+
+@Component
 public class Functions {
 	
-	private static Functions instance = new Functions();
+	@Autowired
+	CodeDAO c_dao;
 	
-	
-	public static Functions getInstance() {
-		if(instance == null) {
-			instance = new Functions();
+	/**
+	 * @author jihye
+	 * 유니크한 코드 생성  EX)FD000049
+	 * 매물코드, 쿠폰코드 이거로 다 가능
+	 * @param codeColumn : 코드 컬럼명
+	 * @param tblName    : 대상 테이블
+	 * @return int
+	 */
+	//반드시 null이 리턴되면 안됩니다.
+	public String mkUniquecode(String codeColumn, String tblName) {
+		String strCode = "";
+		final int length = 6;
+		if(codeColumn.equals("f_ocode")) {
+			strCode = "FD";//FD
+			               //FD00001
+		} else if(codeColumn.equals("parking_code")) {
+			strCode = "PK";//PK000001
+
+		} else if(codeColumn.equals("f_coupon_num")) {
+			strCode = "CP";//PK000001
+		} else if(codeColumn.equals("comp_seq")) {
+			strCode = "CM";//PK000001
+		} else {
+			return null;
 		}
-		return instance;
-	}
-	
-	private Functions() { }//생성자 잠금
-	
-	//f_code 생성 (ex:FD000049)//R000000 ==>  CP00001
-	public String mkRcode(FoodDAO f_dao) {
-		String type = "CP";
-		/*
-		 * 이곳에서 db에 유니크 코드 가져오기
-		 */
-		int cnt = f_dao.getUniqIndex(); //2
 		
-		System.out.println("라스트 코드 수 : " + cnt);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("column", codeColumn); //f_ocode, r_code, p_code,,.
+		map.put("tblName", tblName);
+	
+		int lastIdx = c_dao.getLastIdx(map);
 		
-		int length = (int)(Math.log10(cnt)+1); //6
-		System.out.println("숫자 자릿수 : " + length);
-		if(length < 6) {
-			int size = 6 - length;
-			for(int j = 0; j < size; j++) {
-				System.out.println();
-				type += "0"; //코드6자리 맞추기
+		int diffLength = (int)(Math.log10(lastIdx)+1); //숫자의 길이를 구함 -cf) 184 => 3
+		
+		if(diffLength < length) {
+			int diffcnt = length - diffLength;
+			for(int j = 0; j < diffcnt; j++) {
+				strCode += "0"; //코드 자리 맞추기
 			}
 		}
 		
-		//select count(*) from room_tbl where r_code= 'R005003'
-		
-		return type+cnt;
+		//System.out.println("NEW 코드 : " + strCode + lastIdx);
+		return strCode + lastIdx;
 	}
 	
 }

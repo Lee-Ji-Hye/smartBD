@@ -6,7 +6,10 @@ import java.util.Map;
 import com.team.smart.vo.CompVO;
 
 public interface SysmasterDAO {
-	public List<CompVO> compList(Map<String,String> map);
-	
+	//리스트
+	public List<CompVO> compList(Map<String,Object> map);
+	//단건
 	public CompVO compInfo(int comp_seq);
+	//갯수
+	public int compListCnt();
 }
