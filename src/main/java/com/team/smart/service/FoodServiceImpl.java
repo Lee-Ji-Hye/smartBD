@@ -402,17 +402,10 @@ public class FoodServiceImpl implements FoodService {
 		
 	}
 
-	// ---------------------------------------------------------------------
-	//매물 등록함수
-	@Override
-	public void test(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		Functions fn = Functions.getInstance();
-		String mimi = fn.mkRcode(f_dao); //R000001
-		
-		//가격, 보증금
-		
-	}
+		@Override
+		public void test(HttpServletRequest req) {
+			
+		}
 
 	
 

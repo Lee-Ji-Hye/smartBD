@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.team.smart.persistence.SysmasterDAO;
+import com.team.smart.utils.Functions;
 import com.team.smart.utils.Paging;
 import com.team.smart.vo.CompVO;
 
@@ -29,19 +30,29 @@ public class SysmasterServiceImpl implements SysmasterService{
 	@Autowired
 	SysmasterDAO sysDAO;
 	
+	@Autowired
+	Functions fun;
 	
 	
 	public void compList(HttpServletRequest req, Model model) {
 
+		log.debug(fun.mkUniquecode("comp_seq", "user_company_tbl"));
+		
 		//상품 총 글 수
-		int totCnt = 50;
 		String page = req.getParameter("page");
+		
+		int totCnt = sysDAO.compListCnt();
 		
 		//페이징 처리
 		String uri = req.getRequestURI();
 		Paging paging = new Paging(5, 5, totCnt, uri);//Paging(int pageLine, int pageBlock, int cnt);
+		
 		paging.pagelist(page);
-		HashMap<String, String> map = new HashMap<>();
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("startNum", paging.getStart());
+		map.put("endNum", paging.getEnd());
+		
 		List<CompVO> compList = sysDAO.compList(map);
 		model.addAttribute("compList", compList);
 		model.addAttribute("paging", paging);

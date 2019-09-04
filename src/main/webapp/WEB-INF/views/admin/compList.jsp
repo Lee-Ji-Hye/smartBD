@@ -74,28 +74,28 @@ pageEncoding="UTF-8"%>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	사업자구분
+                      	<strong>사업자구분</strong>
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	법인명
+                      	<strong>법인명</strong>
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	업종
+                      	<strong>업종</strong>
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	업태
+                      	<strong>업태</strong>
                       <div class="ml-2">
                       </div>
                     </div>
@@ -103,13 +103,7 @@ pageEncoding="UTF-8"%>
                   
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	상태
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                      	<strong>상태</strong>
                       <div class="ml-2">
                       </div>
                     </div>
@@ -118,7 +112,7 @@ pageEncoding="UTF-8"%>
               <tbody class="font-size-1">
               <c:set var="index" value="${0}"/>
               <c:forEach var="dto" items="${compList}">
-              	<tr class="text-uppercase font-size-1">
+              	<tr class="text-uppercase font-size-1 form-original">
                   <td class="align-middle">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
                       <input type="checkbox" class="custom-control-input" id="invoiceCheckbox01">
@@ -129,33 +123,30 @@ pageEncoding="UTF-8"%>
                   </td>
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	개인사업자 : ${dto.comp_section}
+                    	<c:if test="${dto.comp_section=='0'}">개인사업자</c:if>
+                    	<c:if test="${dto.comp_section=='1'}">법인</c:if>
                     </div>
                   </td>
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	<a onclick="compDetail(${dto.comp_seq},${index})">베스킨라빈스 : ${dto.comp_org}</a>
+                    	<a onclick="compDetail(${dto.comp_seq},${index})">${dto.comp_org}</a>
                     </div>
                   </td>
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	식품소매업 : ${dto.comp_business}
+                    	${dto.comp_business}
                     </div>
                   </td>
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	아이스크림 : ${dto.comp_category}
+                    	${dto.comp_category}
                     </div>
                   </td>
                   <td class="align-middle">
-                    <div class="media align-items-center">
-                    	승인대기 : ${dto.comp_status}
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <div class="media align-items-center">
-	            		<button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="">승인</button>
-                  		<button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">반려</button>
+                    <div class="media align-items-center" id="details_comp_status2">
+                    	<c:if test="${dto.comp_status=='-1'}">반려</c:if>
+                    	<c:if test="${dto.comp_status=='0'}">승인 대기</c:if>
+                    	<c:if test="${dto.comp_status=='1'}">승인 완료</c:if>
                     </div>
                   </td>
                   <!-- <td class="align-middle text-secondary">2019/08/12~2019/09/11</td> -->
@@ -163,48 +154,66 @@ pageEncoding="UTF-8"%>
                 </tr>
                 <c:set var="index" value="${index+1}"/>
                 </c:forEach>
-                <tr id='formDetail'>
-                	<td colspan='7'>
-                		<!-- Bill -->
+                
+          <tr class="text-uppercase font-size-1 collapse out" id='formDetail' style="display: none;">
+                <td scope="row" colspan="7">
+                <!-- Bill -->
                   <div class="border rounded p-5">
                     <h4 class="h3">신청서</h4>
                     <div class="row mb-6">
                       <div class="col-3">
-                        <span class="text-secondary">Date:</span>
-                        <span class="font-weight-medium">12 May, 2018</span>
+                        <span class="text-secondary">신청일:</span>
+                        <span class="font-weight-medium" id="details_comp_propose">2019-09-03</span>
                       </div>
                       
                       <div class="col-3">
-                        <span class="text-secondary">Merchant:</span>
-                        <span class="font-weight-medium">Dropbox</span>
+                        <span class="text-secondary">사업자구분:</span>
+                        <span class="font-weight-medium" id="details_comp_section">Dropbox</span>
                       </div>
                       <div class="col-6">
-                        <span class="text-secondary">Authorization code:</span>
-                        <span class="font-weight-medium">901274182319</span>
+                        <span class="text-secondary">사업자번호:</span>
+                        <span class="font-weight-medium" id="details_comp_bn">901274182319</span>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
-                        <h5 class="text-dark font-size-1 text-uppercase">Billing address:</h5>
-                        <address class="text-secondary">
-                          <h6 class="h5 text-dark">Dropbox</h6>
+                        <!-- <h5 class="text-dark font-size-1 text-uppercase">Billing address:</h5> -->
+                        <h6 class="h5 text-secondary">법인명:<em class="h5 text-dark" id="details_comp_org">베스킨라빈스</em></h6>
+                        <span class="text-secondary">본점주소:</span>
+                        <address class="text-dark" id="details_comp_master">
+                          Flat 60, Ross Green, South Lilyberg, Q7M 8ZV
+                        </address>
+                        <span class="text-secondary">지점주소:</span>
+                        <address class="text-dark" id="details_comp_branch">
                           Flat 60, Ross Green, South Lilyberg, Q7M 8ZV
                         </address>
                       </div>
                       <div class="col-sm-6">
-                        <h5 class="text-dark font-size-1 text-uppercase">Client info:</h5>
+                        <!-- <h5 class="text-dark font-size-1 text-uppercase">Client info:</h5> -->
                         <ul class="list-unstyled mb-0">
                           <li class="mb-2">
-                            <span class="text-secondary">First name:</span>
-                            <span class="font-weight-medium">Natalie</span>
+                            <span class="text-secondary">대표자:</span>
+                            <span class="font-weight-medium" id="details_comp_owner">Natalie</span>
                           </li>
                           <li class="mb-2">
-                            <span class="text-secondary">Last name:</span>
-                            <span class="font-weight-medium">Curtis</span>
+                            <span class="text-secondary">업종:</span>
+                            <span class="font-weight-medium" id="details_comp_business">Natalie</span>
                           </li>
                           <li class="mb-2">
-                            <span class="text-secondary">Country:</span>
-                            <span class="font-weight-medium">England</span>
+                            <span class="text-secondary">업태:</span>
+                            <span class="font-weight-medium" id="details_comp_category">Curtis</span>
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-secondary">대표전화:</span>
+                            <span class="font-weight-medium" id="details_comp_hp">England</span>
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-secondary">설립일:</span>
+                            <span class="font-weight-medium" id="details_comp_regidate">England</span>
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-secondary">승인상태:</span>
+                            <span class="font-weight-medium" id="details_comp_status">England</span>
                           </li>
                         </ul>
                       </div>
@@ -212,73 +221,26 @@ pageEncoding="UTF-8"%>
                     <div class="row justify-content-end mb-4">
                       <div class="col-sm-6">
                         <hr class="my-4">
-                        <h5 class="text-dark font-size-1 text-uppercase">Transaction details:</h5>
-                        <ul class="list-unstyled mb-0">
-                          <li class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="text-secondary">Transaction amount</span>
-                            <span class="font-weight-medium">$257.93</span>
-                          </li>
-                          <li class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="text-secondary">Fee</span>
-                            <span class="font-weight-medium">$0.50</span>
-                          </li>
-                          <li class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="text-secondary">Total amount</span>
-                            <span class="text-primary font-weight-medium">$257.43</span>
-                          </li>
-                        </ul>
+                        <h5 class="text-dark font-size-1 text-uppercase">
+                        <a href="#"><span class="fas fa-print text-secondary mr-1">사업자등록증</span>
+                        </a></h5>
                       </div>
                     </div>
-                    <ul class="list-inline mb-0">
-                      <li class="list-inline-item u-ver-divider pr-3 mr-3">
-                        <a href="#">
-                          <span class="fas fa-file-word text-secondary mr-1"></span>
-                          Download invoice
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#">
-                          <span class="fas fa-print text-secondary mr-1"></span>
-                          Print details
-                        </a>
-                      </li>
-                    </ul>
+                    <div class="row justify-content-end mb-4">
+                       <div class="media align-items-center">
+	            		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="compPropose()">승인</button>
+                  		<button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="compReturn()">반려</button>
+                       </div>
+                    </div>
                   </div>
                   <!-- Bill -->
                 
               </tbody>
             </table>
-            	
           </div>
           <!-- End Activity Table -->
           <!-- Pagination -->
-          <div class="pagingDivCenter01">
-	          <div class="pagingDivCenter02">
-	            <nav id="datatablePagination" aria-label="Activity pagination">
-	             <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">
-	             	<span class="page-item">
-	              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
-	             			<span aria-hidden="true">«</span>
-	             		</a>
-	             	</span>
-	             	<span style="display: flex;">
-	             		<span class="page-item">
-	             			<a class="paginate_button page-link" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a>
-	             		</span>
-	             		<span class="page-item active">
-	             			<a class="paginate_button current page-link" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">2</a>
-	             		</span>
-	             	</span>
-	             	<span class="page-item">
-	             		<a class="paginate_button next disabled page-link" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" id="DataTables_Table_0_next">
-	             		<span aria-hidden="true">»</span>
-	             		</a>
-	             	</span>
-	             </div>
-	            </nav>
-	            <small id="datatableInfo" class="text-secondary ml-auto"></small>
-	          </div>
-          </div>
+          ${paging.html_mk_page()}
           <!-- End Pagination -->
         </div>
       </div>
@@ -294,11 +256,46 @@ pageEncoding="UTF-8"%>
 		request.onreadystatechange = function(){//콜백함수
 			if (request.readyState == 4) {
 				if(request.status == 200){
-					var tbl = document.getElementsByTagName('table')
-					var details = document.getElementById('formDetail')
+					//for문으로 돌린 table의 집합 (컨트롤하기위한 class)
+					var tblclass = document.getElementsByClassName('form-original');
+					//삽입할 부모 테이블
+					var tbl = document.getElementsByTagName('table');
+					//숨겨져 있는 값
+					var details = document.getElementById('formDetail');
+					//서버에서 받아온 데이터
 					obj = JSON.parse(request.responseText);
+					//콘솔에찍음
 					console.log(obj);
-					tbl[0].children[1].children[tbl_index+1].before(formDetail);
+					//값을 변경
+					if(obj.comp_section === '0'){
+						obj.comp_section = '개인사업자';
+					} else if(obj.comp_section === '1'){
+						obj.comp_section = '법인';
+					}
+					document.getElementById('details_comp_section').innerText = obj.comp_section;
+					document.getElementById('details_comp_bn').innerText = obj.comp_bn;
+					document.getElementById('details_comp_org').innerText = obj.comp_org;
+					document.getElementById('details_comp_master').innerText = obj.comp_master;
+					document.getElementById('details_comp_branch').innerText = obj.comp_branch;
+					document.getElementById('details_comp_owner').innerText = obj.comp_owner;
+					document.getElementById('details_comp_business').innerText = obj.comp_business;
+					document.getElementById('details_comp_category').innerText = obj.comp_category;
+					document.getElementById('details_comp_hp').innerText = obj.comp_hp;
+					document.getElementById('details_comp_regidate').innerText = obj.comp_regidate;
+					
+					if(obj.comp_status === '-1'){
+						obj.comp_status = '반려';
+					} else if(obj.comp_status === '0'){
+						obj.comp_status = '승인대기';
+					} else if(obj.comp_status === '1'){
+						obj.comp_status = '승인';
+					}
+					document.getElementById('details_comp_status').innerText = obj.comp_status;
+					document.getElementById('details_comp_status2').innerText = obj.comp_status;
+					//삽입될 위치를 변경
+					tbl[0].children[1].insertBefore(details, tblclass[tbl_index + 1]);
+					//display 속성을 변경
+					details.style.display="table-row";
 				}else{
 					//실패했을때 알럿
 					alert("데이터 가져오기 실패");
@@ -306,6 +303,14 @@ pageEncoding="UTF-8"%>
 			}
 		};
 		request.send(null);
+	};
+	
+	
+	function formDetailMod(obj){
+		var details = document.getElementById('formDetail')
+		
+		
+		
 	};
   </script>
 </main>

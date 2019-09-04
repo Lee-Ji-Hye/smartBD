@@ -6,13 +6,20 @@
 
 <mapper namespace="SysmasterDAO">
 
-	<select id="compList" parameterType="java.util.Map" resultType="com.team.smart.vo.CompVO">
-		select comp_seq, comp_section, 
-			comp_org, comp_branch, 
-			comp_master, comp_business, 
-			comp_category, comp_hp, 
-			comp_regidate, comp_status
+	<select id="compListCnt" parameterType="int" resultType="int">
+		select COUNT(*)
 		from user_company_tbl
+	</select>
+
+
+	<select id="compList" parameterType="java.util.Map" resultType="com.team.smart.vo.CompVO">
+	<![CDATA[
+		select comp_seq, comp_section, comp_org, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_regidate, comp_status
+        from (select rownum rNum, comp_seq, comp_section, comp_org, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_regidate, comp_status
+              from (select comp_seq, comp_section, comp_org, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_regidate, comp_status from user_company_tbl order by comp_status asc, comp_seq desc))
+        where rNum>=#{startNum}
+        and rNum<=#{endNum}
+    ]]>
 	</select>
 	
 	<select id="compInfo" parameterType="int" resultType="com.team.smart.vo.CompVO">

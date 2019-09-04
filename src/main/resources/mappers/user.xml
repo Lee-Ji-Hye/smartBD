@@ -21,7 +21,7 @@
 	</resultMap>
 	<select id="getAuthority" resultType="com.team.smart.security.config.UserGrantedAuthority">
 		 SELECT a.comp_auth
-                , o.comp_seq
+                , a.comp_seq
                 , o.comp_org
                 , a.b_code
                 , b.b_name
@@ -49,13 +49,13 @@
 	
 	<!-- 업체등록 -->
 	<insert id="insertComp" parameterType="com.team.smart.vo.CompVO">
-		insert into user_company_tbl(comp_seq, comp_section, comp_org, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_status)  
-		values(comp_seq.nextval, #{comp_section}, #{comp_org}, #{comp_branch}, #{comp_master}, #{comp_business}, #{comp_category}, #{comp_hp}, #{comp_status})
+		insert into user_company_tbl(comp_seq, comp_section, comp_org, comp_bn, comp_owner, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_status)  
+		values(#{comp_seq}, #{comp_section}, #{comp_org}, #{comp_bn}, #{comp_owner}, #{comp_branch}, #{comp_master}, #{comp_business}, #{comp_category}, #{comp_hp}, #{comp_status})
 	</insert>
 	
 	<!-- 권한등록(업체등록에따른) -->
 	<insert id="insertAuth" parameterType="java.util.Map">
-		insert into user_compauth_tbl(userid, comp_auth, comp_seq) values(#{userid}, #{comp_auth}, COMP_SEQ.currval)
+		insert into user_compauth_tbl(userid, comp_auth, comp_seq) values(#{userid}, #{comp_auth}, #{comp_seq})
 	</insert>
 	
 </mapper>
