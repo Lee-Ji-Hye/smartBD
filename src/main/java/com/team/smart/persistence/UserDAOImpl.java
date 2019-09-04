@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team.smart.vo.BuildingVO;
 import com.team.smart.vo.CompVO;
 import com.team.smart.vo.UserVO;
 
@@ -31,6 +32,11 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public int insertAuth(Map<String, String> map) {
 		return sqlSession.insert("UserDAO.insertAuth", map);
+	}
+
+	@Override
+	public int insertBd(BuildingVO vo) {
+		return sqlSession.insert("UserDAO.insertBd", vo);
 	}
 
 }

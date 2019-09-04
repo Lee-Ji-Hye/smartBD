@@ -58,4 +58,9 @@
 		insert into user_compauth_tbl(userid, comp_auth, rt_code, comp_seq, b_code) values(#{userid}, #{comp_auth}, #{rt_code, jdbcType=VARCHAR}, #{comp_seq, jdbcType=VARCHAR}, #{b_code, jdbcType=VARCHAR})
 	</insert>
 	
+	<insert id="insertBd" parameterType="com.team.smart.vo.BuildingVO">
+		insert into building_tbl(b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid)
+		VALUES(#{b_code}, #{b_area1}, #{b_area2}, #{b_address}, #{b_name}, #{b_floor}, #{b_year}, #{b_park}, #{b_elev}, #{b_heat}, #{b_traffic}, #{b_lat}, #{b_lon}, #{userid})
+	</insert>
+	
 </mapper>

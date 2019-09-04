@@ -19,5 +19,6 @@ public interface UserService {
 	//업체 등록
 	public int insertComp(HttpServletRequest req, Model model);
 	
-	
+	//빌딩 등록
+	public int bdmnInsert(HttpServletRequest req, Model model);
 }

@@ -1,6 +1,5 @@
 package com.team.smart.vo;
 
-import java.math.BigDecimal;
 import java.security.Timestamp;
 
 import lombok.AllArgsConstructor;
