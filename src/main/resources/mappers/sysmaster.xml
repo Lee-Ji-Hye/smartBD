@@ -22,7 +22,7 @@
     ]]>
 	</select>
 	
-	<select id="compInfo" parameterType="int" resultType="com.team.smart.vo.CompVO">
+	<select id="compInfo" parameterType="String" resultType="com.team.smart.vo.CompVO">
 		select comp_seq, comp_section, 
 			comp_org, comp_branch, 
 			comp_master, comp_business, 
@@ -32,4 +32,11 @@
 		where comp_seq = #{comp_seq}
 	</select>
 	
+	<delete id="compDel" parameterType="String">
+		delete user_company_tbl where comp_seq=#{comp_seq}
+	</delete>
+	
+	<update id="compAmd" parameterType="java.util.Map">
+		update user_company_tbl set comp_status = #{amd} where comp_seq = #{comp_seq}
+	</update>
 </mapper>

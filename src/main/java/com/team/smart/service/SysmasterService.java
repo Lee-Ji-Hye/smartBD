@@ -10,6 +10,11 @@ public interface SysmasterService {
 	
 	public void compList(HttpServletRequest req, Model model) ;
 	
-	public CompVO compInfo(int comp_seq);
+	public CompVO compInfo(String comp_seq);
 
+	public void compDel(String comp_seq);
+	
+	public void compAmd(String amd, String comp_seq);
+	
+	public void compInsert(HttpServletRequest req, Model model);
 }
