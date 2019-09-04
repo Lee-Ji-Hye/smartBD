@@ -23,7 +23,6 @@
         </form>
         <!-- End Update Avatar Form -->
         
-        <form id="changePasswordForm" class="js-validate" novalidate="novalidate">
           <!-- Input -->
           <div class="js-form-message mb-6">
             <label class="form-label">
@@ -31,7 +30,7 @@
             </label>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="currentPassword" placeholder="메뉴명을 입력하세요.">
+              <input type="text" class="form-control" name="f_name" placeholder="메뉴명을 입력하세요.">
             </div>
           </div>
           <!-- End Input -->
@@ -47,11 +46,12 @@
               	<select class="form-control custom-select" required
                           data-msg="Please select month."
                           data-error-class="u-has-error"
-                          data-success-class="u-has-success">
+                          data-success-class="u-has-success"
+                          name="f_type">
               <option value="">Select Catagory</option>
-              <option value="birthMonthSelect1" selected="selected">기본</option>
-              <option value="birthMonthSelect2">사이드</option>
-              <option value="birthMonthSelect3">기타등등</option>
+              <option value="기본" selected="selected">기본</option>
+              <option value="사이드">사이드</option>
+              <option value="기타등등">기타등등</option>
             </select>
               </div>
             </div>
@@ -68,12 +68,13 @@
             <select class="form-control custom-select" required
                           data-msg="Please select month."
                           data-error-class="u-has-error"
-                          data-success-class="u-has-success">
+                          data-success-class="u-has-success"
+                          name="f_icon">
               <option value="">Select Menu</option>
-              <option value="birthMonthSelect1">Best</option>
-              <option value="birthMonthSelect2">New</option>
-              <option value="birthMonthSelect3">Hot</option>
-              <option value="birthMonthSelect4" selected="selected">It</option>
+              <option value="Best">Best</option>
+              <option value="New">New</option>
+              <option value="Hot">Hot</option>
+              <option value="It" selected="selected">It</option>
             </select>
             </div>
           </div>
@@ -86,7 +87,7 @@
             </label>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="confirmNewPassword" placeholder="가격을 입력하세요.">
+              <input type="text" class="form-control" name="f_price" placeholder="가격을 입력하세요.">
             </div>
           </div>
           <!-- End Input -->
@@ -108,7 +109,6 @@
 	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button>
 	            <!-- End Buttons -->
           </div>
-        </form>
       </div>
     </div>
 <!-- footer start -->

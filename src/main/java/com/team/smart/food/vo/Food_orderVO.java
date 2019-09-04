@@ -3,10 +3,12 @@ package com.team.smart.food.vo;
 
 import java.sql.Timestamp;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data @Builder
+@Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class Food_orderVO {
 
 	// 음식점 주문 테이블 VO
