@@ -12,7 +12,7 @@ public class Food_companyVO {
 	
 	// 음식점 소개 VO
 	private int f_seq;					// 시퀀스
-	private int comp_seq;				// 업체코드
+	private String comp_seq;			// 업체코드
 	private String long_desc;			// 긴줄 소개
 	private String short_desc;			// 짧은줄 소개
 	private String f_category;			// 카테고리
