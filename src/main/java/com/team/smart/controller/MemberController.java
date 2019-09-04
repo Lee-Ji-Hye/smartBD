@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
  * @detail : 임차인 권한 매핑
  *
  */
+
 @Slf4j
 @Controller
 @RequestMapping("/member")
@@ -88,9 +89,6 @@ public class MemberController {
 		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/";
 	}
 	
-	
-	
-	
 	//직원 권한 요청
 	@RequestMapping({"/auth"})
 	public String auth(HttpServletRequest req, Model model) {
@@ -114,7 +112,15 @@ public class MemberController {
 
 		return "redirect:/admin";
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//업체 등록 등
 	@RequestMapping({"/comp"})
 	public String comp(HttpServletRequest req, Model model) {
@@ -148,9 +154,5 @@ public class MemberController {
 
 		return "signup/comp_complet";
 	}
-	
-	
-	
-	
 	
 }

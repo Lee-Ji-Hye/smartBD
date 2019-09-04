@@ -55,7 +55,7 @@
 	
 	<!-- 권한등록(업체등록에따른) -->
 	<insert id="insertAuth" parameterType="java.util.Map">
-		insert into user_compauth_tbl(userid, comp_auth, comp_seq) values(#{userid}, #{comp_auth}, #{comp_seq})
+		insert into user_compauth_tbl(userid, comp_auth, rt_code, comp_seq, b_code) values(#{userid}, #{comp_auth}, #{rt_code, jdbcType=VARCHAR}, #{comp_seq, jdbcType=VARCHAR}, #{b_code, jdbcType=VARCHAR})
 	</insert>
 	
 </mapper>

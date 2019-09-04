@@ -13,9 +13,10 @@ import com.team.smart.vo.CompVO;
  *
  */
 public interface UserService {
+	//유저 회원가입
 	public int insertUser(HttpServletRequest req, Model model);
 	
-
+	//업체 등록
 	public int insertComp(HttpServletRequest req, Model model);
 	
 	

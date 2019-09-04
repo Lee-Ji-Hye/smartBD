@@ -51,11 +51,13 @@ public class UserServiceImpl implements UserService {
 		return cnt;
 	}
 	
+	//업체 등록
 	@Override
 	public int insertComp(HttpServletRequest req, Model model) {
 		//TODO 업체등록 필터링 ..?
+		String comp_seq = funs.mkUniquecode("comp_seq", "user_company_tbl");
 		CompVO vo = CompVO.builder()
-				.comp_seq(funs.mkUniquecode("comp_seq", "user_company_tbl"))
+				.comp_seq(comp_seq)
 				.comp_section(req.getParameter("comp_section"))// 사업자구분(개인사업자,법인사업자)
 				.comp_org(req.getParameter("comp_org"))// 법인명(단체명 혹은 상호명)
 				.comp_bn(req.getParameter("comp_bn"))//사업자번호
@@ -75,7 +77,8 @@ public class UserServiceImpl implements UserService {
 		HashMap<String,String> map = new HashMap<>();
 		map.put("userid", SecurityContextHolder.getContext().getAuthentication().getName());
 		map.put("comp_auth", "ROLE_CP_TENANT");
-		map.put("comp_seq", funs.getCurrentcode("comp_seq", "user_company_tbl"));
+		map.put("comp_seq", comp_seq);
+		
 		count += dao.insertAuth(map);
 		
 		log.debug("count = "+count);

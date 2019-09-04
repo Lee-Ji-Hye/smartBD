@@ -82,18 +82,15 @@ public class SysmasterController {
 	}
 	
 	
-	
-	
-	
-	
-
+	//업체 등록 (관리자)
 	@RequestMapping({"/cormn/inst"})
 	public String cormnInsert(HttpServletRequest req, Model model) {
 		//TODO 관리자 id 검색기능
 		log.info("url -> sysmaster/cormn/inst");
 		return jspPath+"/comp_signup";
 	}
-
+	
+	//업체 등록 처리
 	@RequestMapping({"/cormn/instpro"})
 	public String cormnInsertpro(HttpServletRequest req, Model model) {
 		log.info("url -> sysmaster/cormn/inst");

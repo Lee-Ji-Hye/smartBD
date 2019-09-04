@@ -42,6 +42,7 @@ public class SysmasterServiceImpl implements SysmasterService{
 	@Autowired
 	Functions funs;
 	
+	//업체 리스트
 	public void compList(HttpServletRequest req, Model model) {
 
 		log.debug(fun.mkUniquecode("comp_seq", "user_company_tbl"));
@@ -67,21 +68,21 @@ public class SysmasterServiceImpl implements SysmasterService{
 		
 	}
 
-
+	//업체 단건 조회
 	@Override
 	public CompVO compInfo(String comp_seq) {
 		log.debug("업체 정보 단건 조회");
 		return sysDAO.compInfo(comp_seq);
 	}
 
-
+	//업체 단건 삭제
 	@Override
 	public void compDel(String comp_seq) {
 		log.debug("업체 정보 단건 삭제");
 		sysDAO.compDel(comp_seq);
 	}
 
-
+	//업체 단건 승인 처리 변경
 	@Override
 	public void compAmd(String amd, String comp_seq) {
 		log.debug("업체 정보 권한 수정");
@@ -91,6 +92,7 @@ public class SysmasterServiceImpl implements SysmasterService{
 		sysDAO.compAmd(map);
 	}
 	
+	//업체 단건 삽입
 	@Override
 	public void compInsert(HttpServletRequest req, Model model) {
 		//TODO 업체등록 필터링 ..?
@@ -120,9 +122,6 @@ public class SysmasterServiceImpl implements SysmasterService{
 		
 		log.debug("count = "+count);
 	}
-
-
-
 
 
 }
