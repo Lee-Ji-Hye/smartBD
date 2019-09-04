@@ -27,7 +27,7 @@ public class CP_EmployeeController {
 	
 	private String mngFood_ = "mng/food";
 
-
+	
 	@RequestMapping({"/"})
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> cp_employee/");

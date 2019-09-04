@@ -92,7 +92,9 @@ public class FoodServiceImpl implements FoodService {
 		
 		Food_companyVO vo = Food_companyVO
 							.builder()
-							.comp_seq(comp_seq)  // 
+							.comp_seq(comp_seq)  
+							.f_open_stt(req.getParameter("f_open_stt"))
+							.f_open_end(req.getParameter("f_open_end"))
 							.long_desc(req.getParameter("long_desc"))
 							.short_desc(req.getParameter("short_desc"))
 							.f_category(req.getParameter("f_category"))

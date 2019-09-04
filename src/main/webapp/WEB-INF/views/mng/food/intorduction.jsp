@@ -31,7 +31,8 @@
              <!-- Logo -->
              <h2 class="h1 text-primary font-weight-semi-bold">매장이름</h2>
              <!-- End Logo -->
-
+             
+			 <!-- Input -->
 			<div class="col-sm-6 col-lg-4 order-sm-1" style="padding:00px" >
              <h1 class="h6 font-weight-medium mb-0">
                	카테고리
@@ -50,6 +51,91 @@
                </small>
              </h1>
            </div>
+           <!-- End Input -->
+           <br>
+           <div class="row">
+           <!-- Input -->
+           <div class="col-sm-4 col-lg-6 order-sm-1">
+             <h1 class="h6 font-weight-medium mb-0">
+               	오픈시간
+               <small class="d-block">
+           		<select class="form-control custom-select" required
+          		      		data-msg="Please select month."
+                        	data-error-class="u-has-error"
+                        	data-success-class="u-has-success"
+                        	name="f_open_stt">
+	              <option value="">OPEN</option>
+	              <option value="00:00">00:00</option>
+	              <option value="01:00">01:00</option>
+	              <option value="02:00">02:00</option>
+	              <option value="03:00">03:00</option>
+	              <option value="04:00">04:00</option>
+	              <option value="05:00">05:00</option>
+	              <option value="06:00">06:00</option>
+	              <option value="07:00">07:00</option>
+	              <option value="08:00">08:00</option>
+	              <option value="09:00" selected="selected">09:00</option>
+	              <option value="10:00">10:00</option>
+	              <option value="11:00">11:00</option>
+	              <option value="12:00">12:00</option>
+	              <option value="13:00">13:00</option>
+	              <option value="14:00">14:00</option>
+	              <option value="15:00">15:00</option>
+	              <option value="16:00">16:00</option>
+	              <option value="17:00">17:00</option>
+	              <option value="18:00">18:00</option>
+	              <option value="19:00">19:00</option>
+	              <option value="20:00">20:00</option>
+	              <option value="21:00">21:00</option>
+	              <option value="22:00">22:00</option>
+	              <option value="23:00">23:00</option>
+       			</select>
+               </small>
+             </h1>
+           </div>
+           <!-- End Input -->
+           <!-- Input -->
+           <div class="col-sm-4 col-lg-6 order-sm-1" >
+             <h1 class="h6 font-weight-medium mb-0">
+               	마감시간
+               <small class="d-block">
+           		<select class="form-control custom-select" required
+          		      		data-msg="Please select month."
+                        	data-error-class="u-has-error"
+                        	data-success-class="u-has-success"
+                        	name="f_open_end">
+	             <option value="">OPEN</option>
+	              <option value="00:00">00:00</option>
+	              <option value="01:00">01:00</option>
+	              <option value="02:00">02:00</option>
+	              <option value="03:00">03:00</option>
+	              <option value="04:00">04:00</option>
+	              <option value="05:00">05:00</option>
+	              <option value="06:00">06:00</option>
+	              <option value="07:00">07:00</option>
+	              <option value="08:00">08:00</option>
+	              <option value="09:00" selected="selected">09:00</option>
+	              <option value="10:00">10:00</option>
+	              <option value="11:00">11:00</option>
+	              <option value="12:00">12:00</option>
+	              <option value="13:00">13:00</option>
+	              <option value="14:00">14:00</option>
+	              <option value="15:00">15:00</option>
+	              <option value="16:00">16:00</option>
+	              <option value="17:00">17:00</option>
+	              <option value="18:00">18:00</option>
+	              <option value="19:00">19:00</option>
+	              <option value="20:00">20:00</option>
+	              <option value="21:00">21:00</option>
+	              <option value="22:00">22:00</option>
+	              <option value="23:00">23:00</option>
+       			</select>
+               </small>
+             </h1>
+           </div>
+           <!-- End Input -->
+           </div>
+           
            <br>
              <!-- Address -->
              <address>
@@ -65,7 +151,7 @@
           <label class="form-label">
             	업체 소개 짧은글
           </label>
-          <textarea class="form-control" rows="4" name="short_desc" placeholder="간단한 소개란입니다." aria-label="Hi there, I would like to ..." required
+          <textarea class="form-control" rows="3" name="short_desc" placeholder="간단한 소개란입니다." aria-label="Hi there, I would like to ..." required
                     data-msg="Please enter a reason."
                     data-error-class="u-has-error"
                     data-success-class="u-has-success">${store.getShort_desc()}</textarea>

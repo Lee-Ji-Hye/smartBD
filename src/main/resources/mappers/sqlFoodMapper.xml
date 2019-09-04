@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 업체 소개 등록 처리 -->
 	<insert id="insertStoreUp" parameterType="com.team.smart.food.vo.Food_companyVO">
-		INSERT INTO food_company_tbl (comp_seq, long_desc,short_desc,f_category,f_seq,f_mainimg)
-		VALUES (#{comp_seq},#{long_desc},#{short_desc},#{f_category},food_comp_seq.nextval, #{f_mainimg})
+		INSERT INTO food_company_tbl (comp_seq, long_desc, short_desc, f_open_stt, f_open_end, f_category, f_seq, f_mainimg)
+		VALUES (#{comp_seq}, #{long_desc}, #{short_desc}, #{f_open_stt}, #{f_open_end}, #{f_category}, food_comp_seq.nextval, #{f_mainimg})
 	</insert>
 	
 	<!-- 업체 소개 등록시 등록 글 -->
