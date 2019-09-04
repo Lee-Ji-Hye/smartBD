@@ -36,7 +36,17 @@
             <span class="text-danger">*</span>
           </label>
 
-          <input type="text" class="form-control" name="comp_section" placeholder="사업자구분" required>
+          <!-- <input type="text" class="form-control" name="comp_section" placeholder="사업자구분" required> -->
+          
+          <select class="form-control custom-select" required
+                  data-msg="사업자 구분을 선택해주세요."
+                  data-error-class="u-has-error"
+                  data-success-class="u-has-success"
+                  name="comp_section">
+            <option value="" selected="selected">선택해주세요</option>
+            <option value="0">개인사업자</option>
+            <option value="1">법인</option>
+          </select>
         </div>
         <!-- End Input -->
       
