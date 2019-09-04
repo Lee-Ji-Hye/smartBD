@@ -13,7 +13,7 @@ public class Food_orderVO {
 
 	// 음식점 주문 테이블 VO
 	private String f_ocode;				// 주문코드
-    private int comp_seq; 				// 업체코드
+    private String comp_seq; 			// 업체코드
     private char f_takeout;				// 테이크아웃
     private int f_takeout_sale;			// 테이크아웃할인
     private String f_status;			// 주문상태

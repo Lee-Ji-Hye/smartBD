@@ -46,12 +46,16 @@ public class FoodServiceImpl implements FoodService {
 	@Autowired
 	FoodDAO f_dao;
 	
+	@Autowired
+	Functions funs;
+	
+	
 	String images_name = null;  // 음식점 소개 등록, 상품 등록시 이미지 확인 처리
 
 	// 음식점 소개 등록  + 수정
 	@Override
 	public void insertStoreIntro(MultipartHttpServletRequest req, Model model) {
-		
+		//TODO 1. 김민경 인서트스토어어쩌구 날짜추가
 		MultipartFile file1 = req.getFile("f_mainimg");
 
 		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); 
@@ -82,7 +86,7 @@ public class FoodServiceImpl implements FoodService {
 		
 		// 음식점 소개 등록 VO에 담기
 		// 업체정보 가져오기
-		int comp_seq = Integer.parseInt((String)req.getSession().getAttribute("comp_seq"));
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 
 		log.debug("업체정보 : " + comp_seq + " " + comp_org);
@@ -97,6 +101,8 @@ public class FoodServiceImpl implements FoodService {
 							.f_open_end(req.getParameter("f_open_end"))
 							.long_desc(req.getParameter("long_desc"))
 							.short_desc(req.getParameter("short_desc"))
+							.f_open_stt(req.getParameter("f_open_stt"))
+							.f_open_end(req.getParameter("f_open_end"))
 							.f_category(req.getParameter("f_category"))
 							.f_mainimg(images_name)
 							.build();
@@ -125,7 +131,8 @@ public class FoodServiceImpl implements FoodService {
 	public void getStore(HttpServletRequest req, Model model) {
 		
 		// 업체정보 가져오기 (업체코드, 업체명, 등록자 id)
-		int comp_seq = Integer.parseInt((String)req.getSession().getAttribute("comp_seq"));
+		// 업체정보 가져오기
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		
 		Food_companyVO list = f_dao.getStoreOne(comp_seq);
@@ -168,7 +175,7 @@ public class FoodServiceImpl implements FoodService {
 							.f_takeout(req.getParameter("f_takeout").charAt(0))
 							.f_img(req.getParameter("f_img"))
 							.f_icon(req.getParameter("f_icon"))
-							.comp_seq(Integer.parseInt(req.getParameter("comp_seq")))
+							.comp_seq(req.getParameter("comp_seq"))
 							.build();
 							
 		int foodUpCode = f_dao.insertFoodUp(vo);		
@@ -204,7 +211,8 @@ public class FoodServiceImpl implements FoodService {
 		
 		log.debug("f_coupon_end" + f_coupon_end);
 		// 업체정보 가져오기 (업체코드, 업체명, 등록자 id)
-		int comp_seq = Integer.parseInt((String)req.getSession().getAttribute("comp_seq"));
+		// 업체정보 가져오기
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		String staff_id = SecurityContextHolder.getContext().getAuthentication().getName();
 
@@ -216,6 +224,7 @@ public class FoodServiceImpl implements FoodService {
 					        .comp_seq(comp_seq)
 					        .staff_id(staff_id)
 					        .f_coupon_name(req.getParameter("f_coupon_name"))
+					        .f_coupon_num(funs.mkUniquecode("f_coupon_num", "food_coupon_tbl"))
 					        .f_coupon_price(Integer.parseInt(req.getParameter("f_coupon_price")))
 					        .f_coupon_regidate(new Timestamp(System.currentTimeMillis()))
 					        .f_coupon_start(f_coupon_start)
@@ -230,11 +239,12 @@ public class FoodServiceImpl implements FoodService {
 		// 쿠폰 발급 수가 0장 이상일 경우
 		if(couponCount > 0) {
 
+			Map<String, Object> map = new HashMap<String,Object>();
+			map.put("f_serial", insertSerialNum());
+			map.put("f_coupon_num", funs.getCurrentcode("f_coupon_num", "food_coupon_tbl"));
 			for(int j = 0; j < couponCount; j++) {
 				// 시리얼 등록
-				Map<String, Object> map = new HashMap<String,Object>();
 				map.put("f_serial", insertSerialNum());
-				// f_coupon_num_seq.currval로 넣음.
 				int couponSer = f_dao.insertCouponSer(map);
 			}
 		}
@@ -258,7 +268,7 @@ public class FoodServiceImpl implements FoodService {
 	public void getCouponList(HttpServletRequest req, Model model) {
 		
 		// 업체정보 가져오기
-		int comp_seq = Integer.parseInt((String)req.getSession().getAttribute("comp_seq"));
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 
 		log.debug("쿠폰리스트 : " + comp_seq + " " + comp_org);
@@ -323,7 +333,7 @@ public class FoodServiceImpl implements FoodService {
 		
 		// 음식점 소개 등록 VO에 담기
 		// 업체정보 가져오기
-		int comp_seq = Integer.parseInt((String)req.getSession().getAttribute("comp_seq"));
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 
 		log.debug("업체정보 : " + comp_seq + " " + comp_org);
@@ -370,7 +380,7 @@ public class FoodServiceImpl implements FoodService {
 	public void getGoodsList(HttpServletRequest req, Model model) {
 		
 		// 업체정보 가져오기
-		int comp_seq = Integer.parseInt((String)req.getSession().getAttribute("comp_seq"));
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 
 		log.debug("음식점 상품 리스트 : " + comp_seq + " " + comp_org);
@@ -406,10 +416,5 @@ public class FoodServiceImpl implements FoodService {
 		public void test(HttpServletRequest req) {
 			
 		}
-
-	
-
-	
-
 	
 }

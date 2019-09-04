@@ -20,7 +20,7 @@ public class Functions {
 	 * 매물코드, 쿠폰코드 이거로 다 가능
 	 * @param codeColumn : 코드 컬럼명
 	 * @param tblName    : 대상 테이블
-	 * @return int
+	 * @return String
 	 */
 	//반드시 null이 리턴되면 안됩니다.
 	public String mkUniquecode(String codeColumn, String tblName) {
@@ -77,7 +77,7 @@ public class Functions {
 	 * 매물코드, 쿠폰코드 이거로 다 가능
 	 * @param codeColumn : 코드 컬럼명
 	 * @param tblName    : 대상 테이블
-	 * @return int
+	 * @return String
 	 */
 	//반드시 null이 리턴되면 안됩니다.
 	public String getCurrentcode(String codeColumn, String tblName) {

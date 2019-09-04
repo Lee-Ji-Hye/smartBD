@@ -6,7 +6,7 @@
 <body>
 <div class="bg-light">
       <div class="container space-2">
-        <form id="couponUpload" class="js-validate" novalidate="novalidate" action="${path}/cp_manager/cpmn/instPro?${_csrf.parameterName}=${_csrf.token}">
+        <form name="mkCoupon" id="couponUpload" class="js-validate" novalidate="novalidate" action="${path}/cp_manager/cpmn/instPro?${_csrf.parameterName}=${_csrf.token}">
           <!-- Input -->
           <div class="js-form-message mb-4">
             <label class="form-label">
@@ -275,8 +275,7 @@
  
  
  <script type="text/javascript">
-  
-//넘버체크
+// 넘버체크
  function inNumber(event, type){ // 0~48 , 58~
 	 if((event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 8){
 		 event.returnValue=true;
@@ -286,6 +285,7 @@
 		
  }
  
+ // 한글 입력 받지 못하게 처리
  function inKorean(event, type){ 
 	 var couponCnt = document.getElementById('couponJangsu');
 	 couponCnt.value = couponCnt.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');

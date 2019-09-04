@@ -5,7 +5,7 @@
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
 <body> 
 <!-- Main -->
-<form class="media align-items-center mb-4" enctype="multipart/form-data" method="post" action="${path}/cp_manager/intromn/instPro?${_csrf.parameterName}=${_csrf.token}">
+<form name="mkintro" class="media align-items-center mb-4" enctype="multipart/form-data" method="post" action="${path}/cp_manager/intromn/instPro?${_csrf.parameterName}=${_csrf.token}">
 <div class="container space-2 px-md-7 px-lg-11">
      <div class="card bg-img-hero" style="background-image: url(../../assets/svg/components/bg-elements-6.svg);">
        <div class="card-body p-9 p-md-7 p-lg-11">
@@ -42,7 +42,7 @@
                          	data-error-class="u-has-error"
                          	data-success-class="u-has-success"
                          	name="f_category">
-		              <option value="${store.f_category}">Select Catagory</option>
+		              <option value="">Select Catagory</option>
 		              <option value="한식" selected="selected">한식</option>
 		              <option value="중식">중식</option>
 		              <option value="일식">일식</option>
@@ -202,6 +202,36 @@
    </div>
 	<!-- Button end -->
 </form>
+
+<!-- script start -->
+<script type="text/javascript">
+// 업체 수정시 카테고리, 오픈시간, 종료시간 등록 값으로 남기기 
+	window.onload = function() {
+		var category = document.mkintro.f_category;  // 카테고리에 대한 셀렉트
+		var startTime = document.mkintro.f_open_stt; // 오픈시간에 대한 셀렉트
+		var endTime = document.mkintro.f_open_end;   // 종료시간에 대한 셀렉트
+		
+		// 카테고리 선택 for문
+		for(var i=0; i<category.length; i++){
+			if(category[i].value === '${store.f_category}'){
+				category[i].selected = true;
+			}
+		}
+		// 오픈시간 선택 for문
+		for(var i=0; i<startTime.length; i++){
+			if(startTime[i].value === '${store.f_open_stt}'){
+				startTime[i].selected = true;
+			}
+		}
+		// 종료시간 선택 for문
+		for(var i=0; i<endTime.length; i++){
+			if(endTime[i].value === '${store.f_open_end}'){
+				endTime[i].selected = true;
+			}
+		}
+	}
+</script>
+<!-- script end -->
 <!-- footer start -->
 <%@ include file="../../common/footer.jsp" %>
 <!-- footer end -->
