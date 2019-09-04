@@ -39,25 +39,12 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectOne("FoodDAO.getStoreOne", comp_seq);
 	}
 	
-	// 음식점 등록 
-	//@Override
-	public int getStoreSujung(String comp_seq) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	// 음식점 소개 등록 수정처리 
 	@Override
 	public int modifySujungUpdate(Food_companyVO vo) {
 		return sqlSession.update("FoodDAO.modifySujungUpdate", vo);
 	}
 
-	// 음식점 상품 등록 
-	@Override
-	public int insertFoodUp(Food_menuVO vo) {
-		return sqlSession.insert("FoodDAO.insertFoodUp",vo);
-	}
-	
 	// 음식점 쿠폰 등록 
 	@Override
 	public int insertCouponeUp(Food_couponVO vo) {
@@ -82,40 +69,43 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.delete("FoodDAO.deleteCoupon", f_coupon_num);
 	}
 	
+	// 음식점 상품 등록  페이지 처리
 	@Override
 	public int insertGoodsUp(Food_menuVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("FoodDAO.insertGoodsUp", vo);
 	}
 
+	// 음식점 상품 등록시 등록 상품
 	@Override
 	public int getGoods(String comp_seq) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	// 음식점 상품 등록시 등록 상품 가져오기
 	@Override
 	public Food_menuVO getGoodsOne(String comp_seq) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	// 음식점 상품 등록 수정 처리하기
 	@Override
 	public int modifyGoodsSujung(Food_menuVO vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	// 음식점 상품 리스트
 	@Override
 	public List<Food_menuVO> getGoodsList(String comp_seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("FoodDAO.getGoodsList", comp_seq);
 	}
 
+	// 음식점 상품 리스트 삭제
 	@Override
 	public int deleteGoods(String[] f_code) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("FoodDAO.deleteGoods", f_code);
 	}
 
 	// ============================= 테스트

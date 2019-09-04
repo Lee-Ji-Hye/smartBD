@@ -28,9 +28,6 @@ public interface FoodDAO {
 	// 음식점 소개 등록 수정 처리 페이지
 	public int modifySujungUpdate(Food_companyVO vo);
 	
-	// 음식점 상품 등록
-	public int insertFoodUp(Food_menuVO vo);
-	
 	// 음식점 쿠폰 등록
 	public int insertCouponeUp(Food_couponVO vo);
 	

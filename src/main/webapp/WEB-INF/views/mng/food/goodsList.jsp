@@ -19,7 +19,8 @@ pageEncoding="UTF-8"%>
           <div class="row justify-content-sm-between align-items-sm-center">
           <div class="col-md-12">
            	<!-- Buttons -->
-           		<button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="float: right;">등록</button>
+           		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="float: right;" onclick="window.location='${path}/cp_manager/menumn/inst'">등록</button>
+   				<button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover " style="float: right; margin-right:10px;">삭제</button>
    			<!-- End Buttons -->
       	</div>
           </div>
@@ -52,7 +53,7 @@ pageEncoding="UTF-8"%>
                 <tr class="text-uppercase font-size-1">
                   <th scope="col">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
-                      <input type="checkbox" class="custom-control-input" name="f_codeOne" id="invoiceToggleAllCheckbox">
+                      <input type="checkbox" class="custom-control-input" name="f_codeOne" id="invoiceToggleAllCheckbox" onchange="goodsChkAll();">
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox">
                         <span class="text-hide">Checkbox</span>
                       </label>
@@ -72,11 +73,16 @@ pageEncoding="UTF-8"%>
                     <div class="d-flex justify-content-between align-items-center">
                       	분류
                       </div>
-                  </th>
+                 </th>
+                 <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	아이콘
+                      </div>
+                 </th>
                 </tr>
               </thead>
               <tbody class="font-size-1">
-            <c:forEach var="dto" items="${list}" varStatus="status">
+            <c:forEach var="dto" items="${food}" varStatus="status">
               	<tr class="text-uppercase font-size-1">
                   <td class="align-middle">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
@@ -86,10 +92,10 @@ pageEncoding="UTF-8"%>
                       </label>
                     </div>
                   </td>
-                  <td class="align-middle text-secondary font-weight-normal"></td>
-                  <td class="align-middle">${dto.f_name}</td>
-                  <td class="align-middle text-primary">${dto.f_price}</td>
-                  <td class="align-middle text-secondary">${dto.f_type}</td>
+                  <td class="align-middle text-secondary font-weight-normal">${dto.f_name}</td>
+                  <td class="align-middle">${dto.f_price}</td>
+                  <td class="align-middle text-primary">${dto.f_type}</td>
+                  <td class="align-middle text-secondary">${dto.f_icon}</td>
                  <!--  <td class="align-middle text-danger">상태완료</td> -->
                 </tr>
                </c:forEach>
@@ -134,6 +140,27 @@ pageEncoding="UTF-8"%>
  </div>
 </main>
 </form>
+<script type="text/javascript">
+//쿠폰 목록 전체 체크
+function goodsChkAll() {
+	
+	var allChoice = document.goods.f_codeOne;
+	var choice = document.goods.f_code;
+
+	console.dir(allChoice);
+	console.log(choice);
+	
+	if(allChoice.checked === true){
+		for(var i = 0; i<choice.length; i++) {
+			choice[i].checked = true;
+		}
+	} else {
+		for(var i = 0; i<choice.length; i++) {
+			choice[i].checked = false;
+		}
+	}
+}
+</script>
 <!-- ========== END MAIN ========== -->
 <%@ include file="../../common/footer.jsp" %>
 </body>
