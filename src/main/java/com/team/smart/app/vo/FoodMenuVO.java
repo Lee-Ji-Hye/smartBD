@@ -1,6 +1,7 @@
 package com.team.smart.app.vo;
 
-import com.sun.jmx.snmp.Timestamp;
+
+import java.sql.Timestamp;
 
 import lombok.Data;
 

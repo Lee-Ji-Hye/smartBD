@@ -6,7 +6,7 @@
 <body>
 <div class="bg-light">
       <div class="container space-2">
-        <form id="changePasswordForm" class="js-validate" novalidate="novalidate">
+        <form name="mkCoupon" id="couponUpload" class="js-validate" novalidate="novalidate" action="${path}/cp_manager/cpmn/instPro?${_csrf.parameterName}=${_csrf.token}">
           <!-- Input -->
           <div class="js-form-message mb-4">
             <label class="form-label">
@@ -14,22 +14,38 @@
             </label>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="currentPassword" placeholder="매장명 가져오고" readonly="readonly">
+              <input type="text" class="form-control" name="comp_org" placeholder="매장명 가져오고" readonly="readonly">
             </div>
           </div>
           <!-- End Input -->
 
           <!-- Input -->
-          <div class="mb-4">
+          <div class="row">
+        	<div class="col-md-6 mb-3 mb-sm-4"> 
             <div class="js-form-message">
               <label class="form-label">
                 	쿠폰명
               </label>
 
               <div class="form-group">
-                <input id="newPassword" type="text" class="form-control" name="newPassword" placeholder="쿠폰명 입력하세요.">
+                <input id="newPassword" type="text" class="form-control" name="f_coupon_name" placeholder="쿠폰명 입력하세요.">
+              </div>
+           </div>
+          </div>
+          <!-- End Input -->
+          
+          <!-- Input -->
+          <div class="col-md-6 mb-3 mb-sm-4">
+            <div class="js-form-message">
+              <label class="form-label">
+                	발급수
+              </label>
+
+              <div class="form-group">
+                <input id="couponJangsu" type="text" class="form-control" name="f_coupon_count" placeholder="발급장수를 입력하세요." onkeydown="return inNumber(event,type);" onkeyup="inKorean(event,type);">
               </div>
             </div>
+          </div>
           </div>
           <!-- End Input -->
 
@@ -40,15 +56,15 @@
             </label>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="confirmNewPassword" placeholder="가격을 입력하세요.">
+              <input type="text" class="form-control" name="f_coupon_price" placeholder="가격을 입력하세요.">
             </div>
           </div>
           <!-- End Input -->
           <div class="js-form-message mb-4">
-          <label class="form-label">
+           <label class="form-label">
             	사용기한
-          </label>
-
+           </label>
+          </div>
           <div class="row">
             <!-- Input -->
             <div class="col-md-2 mb-3 mb-sm-4">
@@ -57,118 +73,11 @@
                   <select class="form-control custom-select" required
                           data-msg="Please select month."
                           data-error-class="u-has-error"
-                          data-success-class="u-has-success">
-                    <option value="">Select month</option>
-                    <option value="birthMonthSelect1">1월</option>
-                    <option value="birthMonthSelect2">2월</option>
-                    <option value="birthMonthSelect3">3월</option>
-                    <option value="birthMonthSelect4" selected="selected">4월</option>
-                    <option value="birthMonthSelect5">5월</option>
-                    <option value="birthMonthSelect6">6월</option>
-                    <option value="birthMonthSelect7">7월</option>
-                    <option value="birthMonthSelect8">8월</option>
-                    <option value="birthMonthSelect9">9월</option>
-                    <option value="birthMonthSelect10">10월</option>
-                    <option value="birthMonthSelect11">11월</option>
-                    <option value="birthMonthSelect12">12월</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <!-- End Input -->
-
-            <!-- Input -->
-            <div class="col-sm-3 col-md-2 mb-3 mb-sm-4">
-              <div class="js-form-message">
-                <div class="form-group">
-                  <select class="form-control custom-select" required
-                          data-msg="Please select date."
-                          data-error-class="u-has-error"
-                          data-success-class="u-has-success">
-                    <option value="">Select date</option>
-                    <option value="birthDateSelect1">1</option>
-                    <option value="birthDateSelect2">2</option>
-                    <option value="birthDateSelect3">3</option>
-                    <option value="birthDateSelect4">4</option>
-                    <option value="birthDateSelect5">5</option>
-                    <option value="birthDateSelect6">6</option>
-                    <option value="birthDateSelect7">7</option>
-                    <option value="birthDateSelect8">8</option>
-                    <option value="birthDateSelect9">9</option>
-                    <option value="birthDateSelect10">10</option>
-                    <option value="birthDateSelect11">11</option>
-                    <option value="birthDateSelect12" selected="selected">12</option>
-                    <option value="birthDateSelect13">13</option>
-                    <option value="birthDateSelect14">14</option>
-                    <option value="birthDateSelect15">15</option>
-                    <option value="birthDateSelect16">16</option>
-                    <option value="birthDateSelect17">17</option>
-                    <option value="birthDateSelect18">18</option>
-                    <option value="birthDateSelect19">19</option>
-                    <option value="birthDateSelect20">20</option>
-                    <option value="birthDateSelect21">21</option>
-                    <option value="birthDateSelect22">22</option>
-                    <option value="birthDateSelect23">23</option>
-                    <option value="birthDateSelect24">24</option>
-                    <option value="birthDateSelect25">25</option>
-                    <option value="birthDateSelect26">26</option>
-                    <option value="birthDateSelect27">27</option>
-                    <option value="birthDateSelect28">28</option>
-                    <option value="birthDateSelect29">29</option>
-                    <option value="birthDateSelect30">30</option>
-                    <option value="birthDateSelect31">31</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <!-- End Input -->
-
-            <!-- Input -->
-            <div class="col-sm-3 col-md-2 mb-3 mb-sm-4">
-              <div class="js-form-message">
-                <div class="form-group">
-                  <select class="form-control custom-select" required
-                          data-msg="Please select year."
-                          data-error-class="u-has-error"
-                          data-success-class="u-has-success">
-                    <option value="birthYearSelect2015">2015</option>
-                    <option value="birthYearSelect2016">2016</option>
-                    <option value="birthYearSelect2017">2017</option>
-                    <option value="birthYearSelect2016">2018</option>
-                    <option value="birthYearSelect2017" selected="selected">2019</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            </div>
-            <!-- End Input -->
-            
-            <div class="js-form-message mb-4">
-            <label class="form-label">
-            	만료기한
-          	</label>
-          	<div class="row">
-            <!-- Input -->
-            <div class="col-md-2 mb-3 mb-sm-4">
-              <div class="js-form-message">
-                <div class="form-group">
-                  <select class="form-control custom-select" required
-                          data-msg="Please select month."
-                          data-error-class="u-has-error"
-                          data-success-class="u-has-success">
-                    <option value="">Select month</option>
-                    <option value="birthMonthSelect1">1월</option>
-                    <option value="birthMonthSelect2">2월</option>
-                    <option value="birthMonthSelect3">3월</option>
-                    <option value="birthMonthSelect4" selected="selected">4월</option>
-                    <option value="birthMonthSelect5">5월</option>
-                    <option value="birthMonthSelect6">6월</option>
-                    <option value="birthMonthSelect7">7월</option>
-                    <option value="birthMonthSelect8">8월</option>
-                    <option value="birthMonthSelect9">9월</option>
-                    <option value="birthMonthSelect10">10월</option>
-                    <option value="birthMonthSelect11">11월</option>
-                    <option value="birthMonthSelect12">12월</option>
+                          data-success-class="u-has-success"
+                          name="f_start1">
+                    <option value="2017">2017년</option>
+                    <option value="2018">2018년</option>
+                    <option value="2019" selected="selected">2019년</option>
                   </select>
                 </div>
               </div>
@@ -182,39 +91,121 @@
                   <select class="form-control custom-select" required
                           data-msg="Please select date."
                           data-error-class="u-has-error"
-                          data-success-class="u-has-success">
-                    <option value="">Select date</option>
-                    <option value="birthDateSelect1">1</option>
-                    <option value="birthDateSelect2">2</option>
-                    <option value="birthDateSelect3">3</option>
-                    <option value="birthDateSelect4">4</option>
-                    <option value="birthDateSelect5">5</option>
-                    <option value="birthDateSelect6">6</option>
-                    <option value="birthDateSelect7">7</option>
-                    <option value="birthDateSelect8">8</option>
-                    <option value="birthDateSelect9">9</option>
-                    <option value="birthDateSelect10">10</option>
-                    <option value="birthDateSelect11">11</option>
-                    <option value="birthDateSelect12" selected="selected">12</option>
-                    <option value="birthDateSelect13">13</option>
-                    <option value="birthDateSelect14">14</option>
-                    <option value="birthDateSelect15">15</option>
-                    <option value="birthDateSelect16">16</option>
-                    <option value="birthDateSelect17">17</option>
-                    <option value="birthDateSelect18">18</option>
-                    <option value="birthDateSelect19">19</option>
-                    <option value="birthDateSelect20">20</option>
-                    <option value="birthDateSelect21">21</option>
-                    <option value="birthDateSelect22">22</option>
-                    <option value="birthDateSelect23">23</option>
-                    <option value="birthDateSelect24">24</option>
-                    <option value="birthDateSelect25">25</option>
-                    <option value="birthDateSelect26">26</option>
-                    <option value="birthDateSelect27">27</option>
-                    <option value="birthDateSelect28">28</option>
-                    <option value="birthDateSelect29">29</option>
-                    <option value="birthDateSelect30">30</option>
-                    <option value="birthDateSelect31">31</option>
+                          data-success-class="u-has-success"
+                          name="f_start2">
+                    <option value="">Select month</option>
+                    <option value="1">1월</option>
+                    <option value="2">2월</option>
+                    <option value="3">3월</option>
+                    <option value="4" selected="selected">4월</option>
+                    <option value="5">5월</option>
+                    <option value="6">6월</option>
+                    <option value="7">7월</option>
+                    <option value="8">8월</option>
+                    <option value="9">9월</option>
+                    <option value="10">10월</option>
+                    <option value="11">11월</option>
+                    <option value="12">12월</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- End Input -->
+            
+            <!-- Input -->
+            <div class="col-sm-4 col-md-2 mb-3 mb-sm-4">
+              <div class="js-form-message">
+                <div class="form-group">
+                  <select class="form-control custom-select" required
+                          data-msg="Please select year."
+                          data-error-class="u-has-error"
+                          data-success-class="u-has-success"
+                           name="f_start3">
+                   <option value="">Select date</option>
+                    <option value="1">1일</option>
+                    <option value="2">2일</option>
+                    <option value="3">3일</option>
+                    <option value="4">4일</option>
+                    <option value="5">5일</option>
+                    <option value="6">6일</option>
+                    <option value="7">7일</option>
+                    <option value="8">8일</option>
+                    <option value="9">9일</option>
+                    <option value="10">10일</option>
+                    <option value="11">11일</option>
+                    <option value="12" selected="selected">12일</option>
+                    <option value="13">13일</option>
+                    <option value="14">14일</option>
+                    <option value="15">15일</option>
+                    <option value="16">16일</option>
+                    <option value="17">17일</option>
+                    <option value="18">18일</option>
+                    <option value="19">19일</option>
+                    <option value="20">20일</option>
+                    <option value="21">21일</option>
+                    <option value="22">22일</option>
+                    <option value="23">23일</option>
+                    <option value="24">24일</option>
+                    <option value="25">25일</option>
+                    <option value="26">26일</option>
+                    <option value="27">27일</option>
+                    <option value="28">28일</option>
+                    <option value="29">29일</option>
+                    <option value="30">30일</option>
+                    <option value="31">31일</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            </div>
+            <!-- End Input -->
+
+            <div class="js-form-message mb-4">
+            <label class="form-label">
+            	만료기한
+          	</label>
+          	</div>
+          	<div class="row">
+            <!-- Input -->
+            <div class="col-md-2 mb-3 mb-sm-4">
+              <div class="js-form-message">
+                <div class="form-group">
+                  <select class="form-control custom-select" required
+                          data-msg="Please select month."
+                          data-error-class="u-has-error"
+                          data-success-class="u-has-success"
+                          name="f_end1">
+                    <option value="2017">2017년</option>
+                    <option value="2018">2018년</option>
+                    <option value="2019" selected="selected">2019년</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- End Input -->
+
+            <!-- Input -->
+            <div class="col-sm-4 col-md-2 mb-3 mb-sm-4">
+              <div class="js-form-message">
+                <div class="form-group">
+                  <select class="form-control custom-select" required
+                          data-msg="Please select date."
+                          data-error-class="u-has-error"
+                          data-success-class="u-has-success"
+                          name="f_end2">
+                     <option value="">Select month</option>
+                    <option value="1">1월</option>
+                    <option value="2">2월</option>
+                    <option value="3">3월</option>
+                    <option value="4" selected="selected">4월</option>
+                    <option value="5">5월</option>
+                    <option value="6">6월</option>
+                    <option value="7">7월</option>
+                    <option value="8">8월</option>
+                    <option value="9">9월</option>
+                    <option value="10">10월</option>
+                    <option value="11">11월</option>
+                    <option value="12">12월</option>
                   </select>
                 </div>
               </div>
@@ -228,12 +219,40 @@
                   <select class="form-control custom-select" required
                           data-msg="Please select year."
                           data-error-class="u-has-error"
-                          data-success-class="u-has-success">
-                    <option value="birthYearSelect2015">2015</option>
-                    <option value="birthYearSelect2016">2016</option>
-                    <option value="birthYearSelect2017">2017</option>
-                    <option value="birthYearSelect2016">2018</option>
-                    <option value="birthYearSelect2017" selected="selected">2019</option>
+                          data-success-class="u-has-success"
+                          name="f_end3">
+                    <option value="">Select date</option>
+                    <option value="1">1일</option>
+                    <option value="2">2일</option>
+                    <option value="3">3일</option>
+                    <option value="4">4일</option>
+                    <option value="5">5일</option>
+                    <option value="6">6일</option>
+                    <option value="7">7일</option>
+                    <option value="8">8일</option>
+                    <option value="9">9일</option>
+                    <option value="10">10일</option>
+                    <option value="11">11일</option>
+                    <option value="12" selected="selected">12일</option>
+                    <option value="13">13일</option>
+                    <option value="14">14일</option>
+                    <option value="15">15일</option>
+                    <option value="16">16일</option>
+                    <option value="17">17일</option>
+                    <option value="18">18일</option>
+                    <option value="19">19일</option>
+                    <option value="20">20일</option>
+                    <option value="21">21일</option>
+                    <option value="22">22일</option>
+                    <option value="23">23일</option>
+                    <option value="24">24일</option>
+                    <option value="25">25일</option>
+                    <option value="26">26일</option>
+                    <option value="27">27일</option>
+                    <option value="28">28일</option>
+                    <option value="29">29일</option>
+                    <option value="30">30일</option>
+                    <option value="31">31일</option>
                   </select>
                 </div>
               </div>
@@ -253,6 +272,26 @@
         </form>
       </div>
     </div>
+ 
+ 
+ <script type="text/javascript">
+// 넘버체크
+ function inNumber(event, type){ // 0~48 , 58~
+	 if((event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 8){
+		 event.returnValue=true;
+     }else{
+    	 event.returnValue=false;
+     }
+		
+ }
+ 
+ // 한글 입력 받지 못하게 처리
+ function inKorean(event, type){ 
+	 var couponCnt = document.getElementById('couponJangsu');
+	 couponCnt.value = couponCnt.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
+ }
+ 
+ </script>
  <%@ include file="../../common/footer.jsp" %>
 </body>
 </html>

@@ -3,15 +3,17 @@ package com.team.smart.food.vo;
 
 import java.sql.Timestamp;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data @Builder
+@Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class Food_menuVO {
 
 	// 음식점 메뉴 테이블 VO
 	private String f_code;			// 메뉴코드
-    private int comp_seq;			// 업체코드
+    private String comp_seq;		// 업체코드
     private String f_type; 			// 메인, 사이드 구분(main, side)
     private String f_name;			// 메뉴명
     private int f_price;			// 메뉴가격

@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    
+<!--# 셋팅파일  -->
 <%@ include file="../setting.jsp"%>
 
   <head>
-    <!-- Title -->
     <title>404 Not Found</title>
 
     <!-- Required Meta Tags Always Come First -->
@@ -26,7 +24,7 @@
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="https://htmlstream.com/assets/css/styles.hs.min.css">
   </head>
-      <div class="text-center g-flex-centered-item g-position-rel g-pb-15">
+      <div class="text-center g-flex-centered-item g-position-rel g-pb-15" style="margin-top:10%;">
 		
 		<!-- 404 IN -->
         <c:if test="${param.code == '404'}">
@@ -50,3 +48,6 @@
 		        </div>
         </c:if>
 		</div>
+
+</body>
+</html>

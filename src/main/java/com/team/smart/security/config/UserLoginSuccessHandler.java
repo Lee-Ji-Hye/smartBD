@@ -1,6 +1,8 @@
 package com.team.smart.security.config;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
@@ -27,6 +30,23 @@ public class UserLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
 			HttpServletResponse response, Authentication authentication)
 			throws ServletException, IOException {
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
+		//??
+		if(!authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))){
+			List<UserGrantedAuthority> securityAuth = (List<UserGrantedAuthority>) authentication.getAuthorities();
+			//업체 정보를 꺼내서 중복되지 않게 담음
+			if(securityAuth.size()!=0) {
+				if(securityAuth.get(0).getComp_seq()!=null) {
+					request.getSession().setAttribute("comp_seq", securityAuth.get(0).getComp_seq());//업체코드 comp_seq에 넣음
+					request.getSession().setAttribute("comp_org", securityAuth.get(0).getComp_org());//법인명 comp_org에 넣음
+				}
+				if(securityAuth.get(0).getB_code()!=null) {
+					request.getSession().setAttribute("b_code", securityAuth.get(0).getB_code());
+					request.getSession().setAttribute("b_name", securityAuth.get(0).getB_name());
+				}
+			}
+		}		
+		//추가
+		
 		
 		//System.out.println("savedRequest : " + savedRequest);
 		if (savedRequest == null) {
@@ -42,9 +62,9 @@ public class UserLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
 
 			return;
 		}
-
+		
 		clearAuthenticationAttributes(request);
-
+		
 		// Use the DefaultSavedRequest URL
 		String targetUrl = savedRequest.getRedirectUrl();
 		logger.debug("Redirecting to DefaultSavedRequest Url: " + targetUrl);

@@ -1,7 +1,6 @@
 package com.team.smart.parking.vo;
 
-
-import com.sun.jmx.snmp.Timestamp;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

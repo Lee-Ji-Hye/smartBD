@@ -80,60 +80,32 @@
 		                    </th><th scope="col" class="font-weight-medium sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"style="width: 151px;">
 		                      <div class="d-flex justify-content-between align-items-center">
 		                        	호수
-		                       <!--  <div class="ml-2">
-		                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-		                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-		                        </div> -->
 		                      </div>
 		                    </th><th scope="col" class="font-weight-medium sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 248.5px;">
 		                      <div class="d-flex justify-content-between align-items-center">
 		                        	상호명
-		                        <!-- <div class="ml-2">
-		                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-		                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-		                        </div> -->
 		                      </div>
 		                    </th><th scope="col" class="font-weight-medium sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 163.5px;">
 		                      <div class="d-flex justify-content-between align-items-center">
 		                        	연락처
-		                        <!-- <div class="ml-2">
-		                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-		                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-		                        </div> -->
 		                      </div>
 		                    </th><th scope="col" class="font-weight-medium sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 117.25px;">
 		                      <div class="d-flex justify-content-between align-items-center">
 		                        	임대료
-		                        <!-- <div class="ml-2">
-		                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-		                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-		                        </div> -->
 		                      </div>
 		                    </th><th scope="col" class="font-weight-medium sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 169.75px;">
 		                      <div class="d-flex justify-content-between align-items-center">
 		                        	관리비
-		                       <!--  <div class="ml-2">
-		                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-		                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-		                        </div> -->
 		                      </div>
 		                    </th>
 		                    <th scope="col" class="font-weight-medium sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 169.75px;">
 		                      <div class="d-flex justify-content-between align-items-center">
 		                        	수금액
-		                        <!-- <div class="ml-2">
-		                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-		                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-		                        </div> -->
 		                      </div>
 		                    </th>
 		                    <th scope="col" class="font-weight-medium sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 169.75px;">
 		                      <div class="d-flex justify-content-between align-items-center">
 		                        	미수금
-		                        <!-- <div class="ml-2">
-		                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-		                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-		                        </div> -->
 		                      </div>
 		                    </th>
 		                    </tr>

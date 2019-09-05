@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>   
+<%@ page import="java.util.List"%>   
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="com.team.smart.security.config.UserGrantedAuthority"%>
+
+<%@ page import="org.springframework.security.core.authority.SimpleGrantedAuthority" %>
+
 <!DOCTYPE html>
 <!-- saved from url=(0071)https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Title -->
-  <title>Dashboard | Front - Responsive Website Template</title>
+  <title>Smart Billding Project Kosmo 50 Welcome</title>
 
   <!-- Required Meta Tags Always Come First -->
   
@@ -35,8 +43,25 @@
 	  margin-bottom: .5rem;
 	}
   </style>
+  
+  <%
+	//현재들어있는 세션값이 인가된 값이면 userGrantedAuth가 들어가야됨.. 형변환 하기전 체크함 아래EL태그 사용위해 request객체에 삽입
+	if(!SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))){
+		List<UserGrantedAuthority> securityAuth = (List<UserGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		List<String> choice = new ArrayList<>();
+		//업체 정보를 꺼내서 중복되지 않게 담음
+		for(UserGrantedAuthority secu : securityAuth){
+			if(secu.getComp_seq()!=null){
+				String option = secu.getComp_seq()+"::"+secu.getComp_org();
+				if(!choice.contains(option)) {
+					choice.add(option);
+				}
+			}
+		}
+		request.setAttribute("choiceC", choice);
+	}
+  %>
 <script src="${resourceBoot}/js/jquery.mousewheel.min.js"></script></head>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <body >
   
   <!-- ========== HEADER ========== -->
@@ -59,87 +84,6 @@
             </div>
           </form>
           <!-- End Input -->
-
-          <!-- Content -->
-          <div class="row d-none d-md-flex mt-7">
-            <div class="col-sm-6">
-              <strong class="d-block mb-2">Quick Links</strong>
-
-              <div class="row">
-                <!-- List Group -->
-                <div class="col-6">
-                  <div class="list-group list-group-transparent list-group-flush list-group-borderless">
-                    <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <img src="${resourceImg}/icon/moreicon2.PNG">
-                      Search Results List
-                    </a>
-                    <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <img src="${resourceImg}/icon/moreicon2.PNG">
-                      Search Results Grid
-                    </a>
-                    <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <img src="${resourceImg}/icon/moreicon2.PNG">
-                      About
-                    </a>
-                    <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <img src="${resourceImg}/icon/moreicon2.PNG">
-                      Services
-                    </a>
-                    <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <img src="${resourceImg}/icon/moreicon2.PNG">
-                      Invoice
-                    </a>
-                  </div>
-                </div>
-                <!-- End List Group -->
-
-                <!-- List Group -->
-                <div class="col-6">
-                  <div class="list-group list-group-transparent list-group-flush list-group-borderless">
-                    <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <img src="${resourceImg}/icon/moreicon2.PNG">
-                      Profile
-                    </a>
-                    <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <img src="${resourceImg}/icon/moreicon2.PNG">
-                      User Contacts
-                    </a>
-                    <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <img src="${resourceImg}/icon/moreicon2.PNG">
-                      Reviews
-                    </a>
-                    <a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">
-                      <img src="${resourceImg}/icon/moreicon2.PNG">
-                      Settings
-                    </a>
-                  </div>
-                </div>
-                <!-- End List Group -->
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <!-- Banner -->
-              <div class="rounded u-search-push-top__banner">
-                <div class="d-flex align-items-center">
-                  <div class="u-search-push-top__banner-container">
-                    <img class="img-fluid u-search-push-top__banner-img" src="${resourceBoot}/image/img3.png" alt="Image Description">
-                    <img class="img-fluid u-search-push-top__banner-img" src="${resourceBoot}/image/img2.png" alt="Image Description">
-                  </div>
-
-                  <div>
-                    <div class="mb-4">
-                      <strong class="d-block mb-2">Featured Item</strong>
-                      <p>Create astonishing web sites and pages.</p>
-                    </div>
-                    <a class="btn btn-xs btn-soft-success transition-3d-hover" href="https://htmlstream.com/preview/front-v2.9.0/html/account/index.html">Apply Now <span class="fas fa-angle-right ml-2"></span></a>
-                  </div>
-                </div>
-              </div>
-              <!-- End Banner -->
-            </div>
-          </div>
-          <!-- End Content -->
         </div>
       </div>
     </div>
@@ -150,27 +94,15 @@
       <div class="container u-header__hide-content pt-2">
         <div class="d-flex align-items-center">
           <div class="ml-auto">
-            <!-- Jump To -->
-            <div class="d-inline-block d-sm-none position-relative mr-2">
-              <a id="jumpToDropdownInvoker" class="dropdown-nav-link dropdown-toggle d-flex align-items-center" href="javascript:;" role="button" aria-controls="jumpToDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="hover" data-unfold-target="#jumpToDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
-                Jump to
-              </a>
-
-              <div id="jumpToDropdown" class="dropdown-menu dropdown-unfold u-unfold--css-animation u-unfold--hidden fadeOut" aria-labelledby="jumpToDropdownInvoker" style="animation-duration: 300ms;">
-                <a class="dropdown-item" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/faq.html">Help</a>
-                <a class="dropdown-item" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/contacts-agency.html">Contacts</a>
-              </div>
-            </div>
-            <!-- End Jump To -->
-
+          
             <!-- Links -->
             <div class="d-none d-sm-inline-block ml-sm-auto">
               <ul class="list-inline mb-0">
                 <li class="list-inline-item mr-0">
-                  <a class="u-header__navbar-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/faq.html">Help</a>
+                  <a class="u-header__navbar-link" href="${path}/admin">매니저 페이지</a>
                 </li>
                 <li class="list-inline-item mr-0">
-                  <a class="u-header__navbar-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/contacts-agency.html">Contacts</a>
+                  <a class="u-header__navbar-link" href="${path}/">사업자 멤버 페이지</a>
                 </li>
               </ul>
             </div>
@@ -186,22 +118,8 @@
               </a>
             </li>
             <!-- End Search -->
-
-            <!-- Shopping Cart -->
-            <li class="list-inline-item position-relative">
-              <a id="shoppingCartDropdownInvoker" class="btn btn-xs btn-icon btn-text-secondary" href="javascript:;" role="button" aria-controls="shoppingCartDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="hover" data-unfold-target="#shoppingCartDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
-                <img src="${resourceImg}/icon/topIcon2_cart.PNG" onerror='this.src="${resourceImg}/common/noimage_1.jpg"' style="width: 100%;height: 90%;margin-top: 3px;"/>
-              </a>
-
-              <div id="shoppingCartDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right text-center p-7 u-unfold--css-animation u-unfold--hidden fadeOut" aria-labelledby="shoppingCartDropdownInvoker" style="min-width: 250px; animation-duration: 300ms;">
-                <span class="btn btn-icon btn-soft-primary rounded-circle mb-3">
-                  <span class="fas fa-shopping-basket btn-icon__inner"></span>
-                </span>
-                <span class="d-block">Your Cart is Empty</span>
-              </div>
-            </li>
-            <!-- End Shopping Cart -->
-
+            
+            
             <!-- Account Login -->
             <li class="list-inline-item">
               <!-- Account Sidebar Toggle Button -->
@@ -253,113 +171,90 @@
 
           <!-- Navigation -->
           <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
+          <!-- 네비게이션 ul 시작 -->
             <ul class="navbar-nav u-header__navbar-nav">
-              <!-- Pages -->
-              <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Building<span></span></a>
-
-                <!-- Pages - Submenu -->
-                <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
-                  <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path_m}/roomlist" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">매물 관리</a></li>
-                  <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path_m}/meetingroom" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">회의실 관리</a></li>
-                  <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path_m}/billing" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">납부 관리</a></li>
-                 
-					<!--                    <ul id="navSubmenuPagesCompany" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesCompany" style="min-width: 230px; display: none;">
-                    		테스트용
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/sysmaster/">시스템 관리자</a></li>
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/bd_admin/">건물주</a></li>
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/member/">회원</a></li>
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/about-agency.html">About Agency</a></li>
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/services-agency.html">Services Agency</a></li>
-                    </ul> -->
-                  
-                  <!-- Company -->
-                  
-                </ul>
-                <!-- End Pages - Submenu -->
-              </li>
-              <!-- End Pages -->
-
-              <!-- Blog -->
-              <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                <a id="blogMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="blogSubMenu">Parking<span></span></a>
-
-                <!-- Blog - Submenu -->
-                <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
-                <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/incar">입차 / 출차 관리</a></li>
-                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/parkinglist">주차권 관리</a></li>
-                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/ticketmanager">주차장 현황관리</a></li>
-                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/total">주차장 정산</a></li>
-                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/insertplace">주차장 등록</a></li>
-				  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/ticketreg">주차권 등록 </a></li>	
-                </ul>
-                <!-- End Submenu -->
-              </li>
-              <!-- End Blog -->
-
-              <!-- Shop -->
-              <li class="nav-item hs-has-mega-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut" data-max-width="440px" data-position="right">
-                <a id="shopMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">Restaurant</a>
-
-                <!-- Shop - Mega Menu -->
-                <div class="hs-mega-menu u-header__sub-menu u-header__mega-menu-position-right-fix--md" aria-labelledby="shopMegaMenu" style="display: none;">
-                  <div class="u-header__mega-menu-wrapper">
-                    <span class="u-header__sub-menu-title">Shop Elements</span>
-
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <ul class="u-header__sub-menu-nav-group">
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/main">업체 정보</a></li>
-                           <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/closed">휴무 등록</a></li>
-
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/menuUpload">상품 등록</a></li>
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponUpload">쿠폰 등록</a></li>
-                        </ul>
-                      </div>
-
-                      <div class="col-sm-6">
-                        <ul class="u-header__sub-menu-nav-group">
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/goodsList">상품 목록</a></li>
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/couponList">쿠폰 목록</a></li>
-                          <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/orderList">주문 목록</a></li>
-                           <li><a class="nav-link u-header__sub-menu-nav-link" href="/smart/mng/food/oldOrderList">지난 주문</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Mega Menu Banner -->
-                  <div class="u-header__product-banner">
-                    <div class="d-flex align-items-end">
-                      <img class="img-fluid mr-4" src="${resourceImg}/image5.PNG" style="width:170px;height:180px;" alt="Image Description">
-                      <div class="u-header__product-banner-content">
-                        <div class="mb-4">
-                          <span class="u-header__product-pink">StrowBarry</span>
-                          <p class="u-header__product-banner-text">Best-recommend</p>
-                        </div>
-                        <!-- <a class="btn btn-sm btn-soft-primary transition-3d-hover" href="https://htmlstream.com/preview/front-v2.9.0/html/shop/classic.html">Learn More <span class="fas fa-angle-right ml-2"></span></a> -->
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Mega Menu Banner -->
-                </div>
-                <!-- End Shop - Mega Menu -->
-              </li>
-              <!-- End Shop -->
-
-              <!-- Button -->
-              <%-- <li class="nav-item u-header__nav-last-item">
-                <a class="btn btn-sm btn-primary transition-3d-hover" style="width: 105px;font-size: 12px;" href="${path_m}" target="_blank">
-                  	매니저 전환
-                </a>
-              </li> --%>
-              <!-- End Button -->
+            <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+              <div class="u-header__product-banner">
+            	<!-- 권한 선택 selectbox -->
+            	<form>
+				  <select class="form-control" id='compSession'>
+				    <option value="">관리할 업체를 선택해주세요</option>
+					<c:forEach  var="dto" items="${choiceC}">
+					  <option value="${dto}">${dto}</option>
+				    </c:forEach>
+				  </select>
+				</form>
+            	<!-- 권한 선택 selectbox 끝 -->
+			  </div>
+            </li>
+            
+            <!-- 표시되는 큰메뉴 시스템 관리자 권한 -->
+            <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+              <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Rent<span></span></a>
+              <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
+                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/rntif" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">임대 정보</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/payif" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">납부 정보</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/pkcmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">주차권 관리</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/fdmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">식당 관리</a></li>
+              </ul>
+            </li>
+            <!-- /표시되는 큰메뉴 끝 -->
+            
+            <!-- 표시되는 큰메뉴 시스템 관리자 권한 -->
+            <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+              <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Restaurant<span></span></a>
+              <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
+                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_manager/intromn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">프로필 관리</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_manager/menumn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">메뉴 관리</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_manager/holidaymn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">휴무일 관리</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_manager/cpmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">쿠폰 관리</a></li>
+                <li class="dropdown-divider"></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_employee/odmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">주문 관리</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_employee/rfmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">환불 관리</a></li>
+                <li class="dropdown-divider"></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_admin/fdepmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">직원 관리</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_admin/settlement" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">결산</a></li>
+              </ul>
+            </li>
+            <!-- /표시되는 큰메뉴 끝 -->
+            
+            <!-- 표시되는 큰메뉴 시스템 관리자 권한 파트별 관리자 1안-->
+            <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+              <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Account<span></span></a>
+              <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
+                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/auth" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">직원 권한 요청</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/member" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">개인 정보</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/bdmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">건물 등록</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/comp" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">업체 등록</a></li>
+              </ul>
+            </li>
+            <!-- /표시되는 큰메뉴 끝 -->
+            
             </ul>
+            <!-- /네비게이션 ul 끝 -->
           </div>
           <!-- End Navigation -->
         </nav>
         <!-- End Nav -->
       </div>
     </div>
+    
+    <script type="text/javascript">
+    document.getElementById('compSession').addEventListener("change", function(){
+    	if(this.value!=="")
+  		window.location = '${path}/member/compSession?auth=' + this.value +'&curl=' + window.location.pathname;
+    });
+    //onload 이벤트
+    window.onload = function(){
+    	//업체정보선택하는 select문 id값으로 객체획득
+    	var compSession = document.getElementById("compSession");
+    	//세션에 저장된 값과 일치하는 값이 있으면 선택하는 pure js code
+        for(var i=0; i<compSession.length; i++){
+            if(compSession[i].value===('${sessionScope.comp_seq}'+'::'+'${sessionScope.comp_org}')){
+            	compSession[i].selected = true;
+            }
+        }
+    }
+    </script>
   </header>
   <!-- ========== END HEADER ========== -->

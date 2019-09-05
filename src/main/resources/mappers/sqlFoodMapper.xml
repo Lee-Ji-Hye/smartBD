@@ -5,19 +5,88 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="FoodDAO">
 
-	<!-- 업체 소개 등록 처리 -->
-	<insert id="storeUp" parameterType="com.team.smart.food.vo.Food_companyVO">
-		INSERT INTO food_company_tbl (long_desc,short_desc,f_category,f_seq)
-		VALUES (#{long_desc},#{short_desc},#{f_category},#{f_seq})
+	<!-- 음식점 업체 소개 등록 처리 -->
+	<insert id="insertStoreUp" parameterType="com.team.smart.food.vo.Food_companyVO">
+		INSERT INTO food_company_tbl (comp_seq, long_desc, short_desc, f_open_stt, f_open_end, f_category, f_seq, f_mainimg)
+		VALUES (#{comp_seq}, #{long_desc}, #{short_desc}, #{f_open_stt}, #{f_open_end}, #{f_category}, food_comp_seq.nextval, #{f_mainimg})
 	</insert>
-	<!-- <update id="storeUp" parameterType="com.team.smart.food.vo.Food_companyVO">
-		UPDATE Food_company_tbl SET long_desc = #{long_desc}, short_desc = #{short_desc}, f_category = #{f_category} WHERE f_seq = #{f_seq}
-	</update> -->
 	
-	<!-- 업체 상품 등록 -->
-	<!-- <insert id="foodUp" parameterType="com.team.smart.food.vo.Food_menuVO">
-		INSERT INTO food_menu_tbl (f_type,f_name,f_price,f_takeout,f_takeout_sale,f_img,f_icon,f_regidate) 
-		VALUES(#{f_type},#{f_name},#{f_price},#{f_takeout},#{f_takeout_sale},#{f_img},#{f_icon},SYSDATE)
-	</insert> -->
+	<!-- 음식점 업체 소개 등록시 등록 글 -->
+	<select id="getStore" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM food_company_tbl WHERE comp_seq = #{comp_seq}
+	</select> 
+	
+	<!-- 음식점 소개 글 등록 글 한 건 가져오기 -->
+	<select id="getStoreOne" resultType="com.team.smart.food.vo.Food_companyVO">
+		SELECT * FROM food_company_tbl WHERE comp_seq = #{comp_seq}
+	</select>
+	
+	<!-- 음식점 업체 소개 등록 수정  -->
+	<update id="modifySujungUpdate" parameterType="com.team.smart.food.vo.Food_companyVO">
+		UPDATE food_company_tbl SET long_desc = #{long_desc}, short_desc = #{short_desc}, f_open_stt = #{f_open_stt}, f_open_end = #{f_open_end}, f_mainimg = #{f_mainimg} WHERE comp_seq = #{comp_seq}
+	</update>
+	
+	<!-- 음식점 쿠폰 등록 -->
+	<insert id="insertCouponeUp" parameterType="com.team.smart.food.vo.Food_couponVO">
+		INSERT INTO food_coupon_tbl (comp_seq,f_coupon_name, f_coupon_price, f_coupon_regidate, f_coupon_start, f_coupon_end, f_coupon_num , f_coupon_count, staff_id)
+		VALUES (#{comp_seq}, #{f_coupon_name}, #{f_coupon_price}, SYSDATE, #{f_coupon_start}, #{f_coupon_end}, #{f_coupon_num}, #{f_coupon_count}, #{staff_id})
+	</insert>
+	
+	<!-- 음식점 쿠폰 시리얼 등록 -->
+	<insert id="insertCouponSer" parameterType="java.util.Map">
+		INSERT INTO food_coupon_serial_tbl (f_serial, f_coupon_num)
+		VALUES (#{f_serial}, #{f_coupon_num})
+	</insert>
+	
+	<!-- 음식점 쿠폰 리스트 조회 -->
+	<select id="getCoupon" resultType="com.team.smart.food.vo.Food_couponVO" parameterType="String"> 
+		 SELECT c.f_coupon_name, c.f_coupon_price,c.f_coupon_start,c.f_coupon_end, c.f_coupon_num, c.f_coupon_count, c.comp_seq
+		   FROM food_coupon_serial_tbl p
+     RIGHT JOIN food_coupon_tbl c
+			 ON p.f_coupon_num = c.f_coupon_num
+		  WHERE c.comp_seq= #{comp_seq}
+	</select>
+	
+	<!-- 음식점 쿠폰 리스트 삭제 -->
+	<delete id="deleteCoupon" parameterType="String">
+		DELETE food_coupon_tbl WHERE f_coupon_num IN 
+		<foreach item="couponChk" collection="array" open="(" separator="," close=")">
+			#{couponChk}
+		</foreach>
+	</delete>
+	
+	<!-- 음식점 업체 상품 등록 -->
+	<insert id="insertGoodsUp" parameterType="com.team.smart.food.vo.Food_menuVO">
+		INSERT INTO food_menu_tbl (f_code, comp_seq, f_type, f_name, f_price, f_img, f_icon, userid, f_regidate) 
+		VALUES(#{f_code}, #{comp_seq}, #{f_type}, #{f_name}, #{f_price}, #{f_img}, #{f_icon}, #{userid}, SYSDATE)
+	</insert>
+	
+	<!-- 음식점 상품 등록시 등록 상품 -->
+	<select id="getGoods" resultType="int" parameterType="String">
+		SELECT COUNT(*) FORM food_menu_tbl WHERE comp_seq = #{comp_seq}
+	</select>
+	
+	<!-- 음식점 상품 등록시 등록 상품 가져오기 -->
+	<select id="getGoodsOne" resultType="com.team.smart.food.vo.Food_menuVO">
+		SELECT * FROM food_menu_tbl WHERE f_code = #{f_code}
+	</select>
+	
+	<!-- 음식점 상품 등록 수정 처리하기 -->
+	<update id="modifyGoodsSujung" parameterType="com.team.smart.food.vo.Food_menuVO">
+		UPDATE food_menu_tbl SET f_type = #{f_type}, f_name = #{f_name}, f_price = #{f_price}, f_img = #{f_img}, f_regidate = #{f_regidate} WHERE f_code = #{f_code}
+	</update>
+	
+	<!-- 음식점 상품 리스트 조회 -->
+	<select id="getGoodsList" resultType="com.team.smart.food.vo.Food_menuVO" parameterType="String">
+		SELECT * FROM food_menu_tbl WHERE comp_seq = #{comp_seq}
+	</select>
+	
+	<!-- 음식점 상품 리스트 삭제 -->
+	<delete id="deleteGoods" parameterType="String">
+		DELETE food_menu_tbl WHERE f_code IN
+		<foreach item="f_code" collection="array" open="(" separator="," close=")">
+			#{f_code}
+		</foreach>
+	</delete>
 </mapper>
 

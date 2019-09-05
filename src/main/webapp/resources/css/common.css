@@ -1,0 +1,21 @@
+@charset "UTF-8";
+.editBtnDiv01{padding-right: 18px;}
+.pagingDivCenter01{    
+	width: 1080px;
+    text-align: center;
+    margin-top:50px;
+}
+.pagingDivCenter02{
+	display: inline-block;
+    text-align: center;
+}
+.couponDivWidth{
+	position:absolute;
+	width: 30%;
+}
+.cpdMargin30{
+	margin-left: 31.6%;
+}
+.mrginTop10pro{
+	margin-top:10%;
+}

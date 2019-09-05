@@ -16,7 +16,7 @@
           <h1 class="h3 font-weight-medium">Sign-up completed!</h1>
           <p>Welcome! Your order is being processed and will be completed within 3-6 hours. You will receive an email confirmation when your order is completed.</p>
         </div>
-        <a class="btn btn-primary btn-pill transition-3d-hover px-5" href="classic.html">메인으로 가기</a>
+        <a class="btn btn-primary btn-pill transition-3d-hover px-5" href="${path}/login">로그인 하기</a>
       </div>
     
             <!-- Platform -->
@@ -31,11 +31,11 @@
           <p>회원 가입을 축하드립니다. 관리자 권한으로 사용하기 위해서는 추가 정보 입력이 필요합니다. 아래 버튼을 눌러 진행해주세요.</p>
         </div>
          <div class="w-md-80 w-lg-50 text-center mx-md-auto">
-        <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="classic.html">건물 등록</a>
+        <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="${path}/member/bdmn/put">건물 등록</a>
         
-        <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="classic.html">업체 등록</a>
+        <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="${path}/member/comp/put">업체 등록</a>
         
-        <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="classic.html">직원 등록</a>
+        <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="${path}/member/auth/put">직원 권한 요청</a>
         </div>
         </div>
         <!-- End Platform -->

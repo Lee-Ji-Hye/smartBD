@@ -58,7 +58,7 @@
 	<!-- 한글 안깨지게 처리 종료 -->
 	
 	<!-- 멀티파트  필터 -->
-     <filter>
+   <!--   <filter>
         <display-name>springMultipartFilter</display-name>
         <filter-name>springMultipartFilter</filter-name>
         <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
@@ -66,7 +66,7 @@
     <filter-mapping>
         <filter-name>springMultipartFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping> -->
 	
 	<!-- 시큐리티 추가 시작 -->
 	<!-- springSecurityFilterChain : 보안 필터 체인 : 보안과 관련된 작업을 처리한다.

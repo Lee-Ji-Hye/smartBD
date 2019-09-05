@@ -35,16 +35,16 @@
 
               <!-- Form Group -->
               <div class="js-form-message form-group">
+              
                 <label class="form-label" for="signinSrPassword">
                   <span class="d-flex justify-content-between align-items-center">
                     Password
-                    <a class="link-muted text-capitalize font-weight-normal" href="recover-account.html">Forgot Password?</a>
-                  </span>
-                </label>
-                <input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="********" aria-label="********" required
+                  </span><input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="********" aria-label="********" required
                        data-msg="Your password is invalid. Please try again."
                        data-error-class="u-has-error"
                        data-success-class="u-has-success">
+                    <a class="link-muted text-capitalize font-weight-normal" href="recover-account.html">Forgot Password?</a>
+                </label>
               </div>
               <!-- End Form Group -->
 
@@ -65,7 +65,6 @@
           </div>
         </div>
       </div>
-    </div>
     <!-- End Form -->
   </main>
   <!-- ========== END MAIN ========== -->
