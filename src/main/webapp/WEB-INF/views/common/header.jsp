@@ -25,6 +25,7 @@
   <link href="${resourceBoot}/css/css(1).css" rel="stylesheet">
 
   <!-- CSS Implementing Plugins -->
+  <link href="/smart/resources/css/bxslider/bxslider.css" rel="stylesheet" />
   <link rel="stylesheet" href="${resourceBoot}/css/fontawesome-all.min.css">
   <link rel="stylesheet" href="${resourceBoot}/css/custombox.min.css">
   <link rel="stylesheet" href="${resourceBoot}/css/animate.min.css">
@@ -62,6 +63,7 @@
 	}
   %>
 <script src="${resourceBoot}/js/jquery.mousewheel.min.js"></script></head>
+
 <body >
   
   <!-- ========== HEADER ========== -->
@@ -196,6 +198,8 @@
                 <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/payif" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">납부 정보</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/pkcmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">주차권 관리</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/fdmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">식당 관리</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/mng/roomlist" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">임대 리스트</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/mng/roomupload" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">임대 등록</a></li>
               </ul>
             </li>
             <!-- /표시되는 큰메뉴 끝 -->

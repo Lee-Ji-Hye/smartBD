@@ -164,9 +164,9 @@ public class FoodController {
 //	}
 //	
 //	//
-//	@RequestMapping("mng/food/don")
-//	public String don(HttpServletRequest req, Model model) {
-//		
-//		return mngFood_ + "/don";
-//	}
+	@RequestMapping("testtest")
+	public String don(HttpServletRequest req, Model model) {
+		
+		return "ttttimgii";
+	}
 }

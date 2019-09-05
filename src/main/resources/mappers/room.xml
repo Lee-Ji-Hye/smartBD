@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	    
+<mapper namespace="RoomDAO">
+
+	<!-- 매물정보 테스트 -->
+	<select id="getDetail" resultType="com.team.smart.room.vo.RoomVO">
+	
+		select * from ROOM_TBL where r_code= #{r_code}
+	
+	</select>
+	
+	<!-- 매물 코드 생성 -->
+	<select id="getUniqRoomIndex" resultType="int">
+		select max(to_number(substr(r_code,2,7)))+1 from ROOM_TBL
+	</select>
+	
+	<!-- 매물 업로드 -->
+	<insert id="roomupload" parameterType="com.team.smart.room.vo.RoomVO">
+		insert into room_tbl(r_code,b_code,r_img,r_name,r_type,r_price,r_deposit,r_premium,r_ofer_fee,r_area,r_indi_space,r_floor,r_able_date,r_toilet,r_desc,r_pmemo,r_delete,userid,r_kind)
+		VALUES(#{r_code},#{b_code},#{r_img},#{r_name},#{r_type},#{r_price},#{r_deposit},#{r_premium},#{r_ofer_fee},#{r_area},#{r_indi_space},${r_floor},#{r_able_date},#{r_toilet},#{r_desc},#{r_pmemo},#{r_delete},#{userid},#{r_kind})
+	</insert>
+	
+	<!-- 슬라이드 이미지 삽입 -->
+	<insert id="slide" parameterType="com.team.smart.room.vo.RoomVO">
+		insert into room_img_tbl (r_code,r_img)
+		VALUES(#{r_code},#{r_img})
+	</insert>
+
+
+	<!-- 매물 갯수 구하기 -->
+	<select id="getArticleCnt" resultType="int">
+		select count(*) from room_tbl
+	</select>
+	
+	<!-- 매물 내용 구하기 -->
+	<select id="List" parameterType="java.util.Map" resultType="com.team.smart.room.vo.RoomVO">
+		
+			select * from room_tbl order by r_code,r_delete
+		
+	</select>
+	
+	<!-- 매물 수정 -->
+	<update id="update" parameterType="com.team.smart.room.vo.RoomVO">
+		update room_tbl set r_kind=#{r_kind},r_type=#{r_type},r_price=#{r_price},r_premium=#{r_premium},r_deposit=#{r_deposit}, 
+		r_area=#{r_area},r_name=#{r_name},r_toilet=#{r_toilet},r_floor=#{r_floor},r_able_date=#{r_able_date}, 
+		r_indi_space=#{r_indi_space},r_ofer_fee=#{r_ofer_fee},r_pmemo=#{r_pmemo},r_desc=#{r_desc} where r_code=#{r_code}
+	</update>
+	
+	
+	<!-- 매물 삭제 -->
+	<delete id="delete">
+		delete room_tbl where r_code=#{r_code}
+	</delete>
+	
+	<!-- 슬라이드용 이미지 갯수 구하기 -->
+	<select id="getImagecount" resultType="int">
+		select count(*) from room_img_tbl where r_code= #{r_code}
+	</select>
+	
+	<!-- 슬라이드용 이미지 가져오기 -->
+	<select id="getImage" resultType="com.team.smart.room.vo.RoomVO">
+		select * from room_img_tbl where r_code= #{r_code}
+	</select>
+	
+</mapper>	   
