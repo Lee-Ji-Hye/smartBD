@@ -140,49 +140,6 @@ public class FoodServiceImpl implements FoodService {
 		model.addAttribute("store", list);
 	}
 	
-	// 음식점 상품 등록 
-	@Override
-	public void insertFoodGoods(MultipartHttpServletRequest req, Model model) {
-		
-		MultipartFile file1 = req.getFile("file-attachment");
-		
-		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); //
-		System.out.println(uploadPath);
-		String realDir = "C:\\Dew50\\workspace_t\\SmartDB\\src\\main\\webapp\\resources\\food\\";  //
-		
-		try {
-			file1.transferTo(new File(uploadPath+file1.getOriginalFilename()));
-			
-			FileInputStream fis1 = new FileInputStream(uploadPath + file1.getOriginalFilename());
-			FileOutputStream fos1 = new FileOutputStream(realDir + file1.getOriginalFilename());
-			
-			int data = 0;
-			while((data = fis1.read()) != -1) { fos1.write(data); }
-			fis1.close();
-			fos1.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		// VO에 음식 등록 상품 담기
-		Food_menuVO vo = Food_menuVO
-							.builder()
-							.f_code(req.getParameter("f_code"))
-							.f_type(req.getParameter("f_type"))
-							.f_name(req.getParameter("f_name"))
-							.f_price(Integer.parseInt(req.getParameter("f_price")))
-							.f_takeout(req.getParameter("f_takeout").charAt(0))
-							.f_img(req.getParameter("f_img"))
-							.f_icon(req.getParameter("f_icon"))
-							.comp_seq(req.getParameter("comp_seq"))
-							.build();
-							
-		int foodUpCode = f_dao.insertFoodUp(vo);		
-		
-		// request나 session에 처리 결과 저장 
-		model.addAttribute("foodUpCode" , foodUpCode);
-	}
 		
 	// 쿠폰 등록
 	@Override
@@ -303,7 +260,9 @@ public class FoodServiceImpl implements FoodService {
 	@Override
 	public void insertGoodsIntro(MultipartHttpServletRequest req, Model model) {
 		
-		MultipartFile file1 = req.getFile("f_mainimg");
+		String userid = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		MultipartFile file1 = req.getFile("f_img");
 
 		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); 
 		System.out.println(uploadPath);
@@ -349,10 +308,12 @@ public class FoodServiceImpl implements FoodService {
 		Food_menuVO vo = Food_menuVO
 						.builder()
 						.comp_seq(comp_seq)
+						.f_code(funs.mkUniquecode("f_code", "food_menu_tbl"))
 						.f_name(req.getParameter("f_name"))
 						.f_type(req.getParameter("f_type"))
 						.f_icon(req.getParameter("f_icon"))
 						.f_price(Integer.parseInt(req.getParameter("f_price")))
+						.userid(userid)
 						.f_img(images_name)
 						.build();
 						
@@ -388,7 +349,7 @@ public class FoodServiceImpl implements FoodService {
 		List<Food_menuVO> food = f_dao.getGoodsList(comp_seq);
 		
 		for(int i=0; i < food.size(); i ++) {
-			log.debug("list i" + food.get(i).toString());
+			log.debug("food i" + food.get(i).toString());
 		}
 		
 		// request나 session에 처리결과를 저장
@@ -412,9 +373,10 @@ public class FoodServiceImpl implements FoodService {
 		
 	}
 
-		@Override
-		public void test(HttpServletRequest req) {
-			
-		}
+	// 테스트
+	@Override
+	public void test(HttpServletRequest req) {
+		
+	}
 	
 }

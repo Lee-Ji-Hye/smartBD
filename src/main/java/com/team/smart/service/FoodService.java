@@ -15,9 +15,6 @@ public interface FoodService {
 	// 음식점 소개 등록시 등록 글  
 	public void getStore(HttpServletRequest req, Model model);
 	
-	// 음식점 상품 등록
-	public void insertFoodGoods(MultipartHttpServletRequest req, Model model);
-	
 	// 쿠폰 등록
 	public void insertCoupon(HttpServletRequest req, Model model);
 	

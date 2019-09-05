@@ -33,14 +33,16 @@ public class Functions {
 		 * comp_seq 업체테이블 pk
 		 * b_code 빌딩테이블 pk
 		 * rt_code 임대계약테이블 pk
+		 * f_code 메뉴코드 pk
 		 */
 		
 		if(codeColumn.equals("f_ocode")) {
 			strCode = "FD";//FD
 			               //FD00001
+		} else if(codeColumn.equals("f_code")) {
+			strCode = "FM";
 		} else if(codeColumn.equals("parking_code")) {
 			strCode = "PK";//PK000001
-
 		} else if(codeColumn.equals("f_coupon_num")) {
 			strCode = "CP";//PK000001
 		} else if(codeColumn.equals("comp_seq")) {
@@ -90,14 +92,16 @@ public class Functions {
 		 * comp_seq 업체테이블 pk
 		 * b_code 빌딩테이블 pk
 		 * rt_code 임대계약테이블 pk
+		 * f_code 메뉴코드 pk
 		 */
 		
 		if(codeColumn.equals("f_ocode")) {
 			strCode = "FD";//FD
 			               //FD00001
+		} else if(codeColumn.equals("f_code")) {
+			strCode = "FM";
 		} else if(codeColumn.equals("parking_code")) {
 			strCode = "PK";//PK000001
-
 		} else if(codeColumn.equals("f_coupon_num")) {
 			strCode = "CP";//PK000001
 		} else if(codeColumn.equals("comp_seq")) {
