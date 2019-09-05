@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team.smart.service.ParkingService;
 import com.team.smart.service.UserService;
 
 
@@ -23,6 +24,9 @@ public class MainController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	ParkingService parkingService;
 	
 	
 	//메인
@@ -39,6 +43,12 @@ public class MainController {
 	 * @return
 	 */
 
+	@RequestMapping("test1")
+	public String test1(HttpServletRequest req, Model model) {
+		//로그아웃 후 메인으로 이동
+		return "mng/parking/test1";
+	}
+	
 	@RequestMapping("login")
 	public String login(HttpServletRequest req, Model model) {
 		//로그아웃 후 메인으로 이동
@@ -99,7 +109,7 @@ public class MainController {
 	//주차권 사용 내역
 	@RequestMapping("uselist")
 	public String uselist(HttpServletRequest req, Model model) {
-		
+		parkingService.paylist(req, model);
 		return "mng/parking/uselist";
 	}
 	//주차권 환불 내역
@@ -111,14 +121,19 @@ public class MainController {
 	//주차권 발급 내역
 	@RequestMapping("parkinglist")
 	public String parkinglist(HttpServletRequest req, Model model) {
-		
+		parkingService.tickethavelist(req, model);
 		return "mng/parking/parkinglist";
 	}
 	//주차권 사용
 	@RequestMapping("ticketuse")
 	public String parkinguse(HttpServletRequest req, Model model) {
-		
 		return "mng/parking/ticketuse";
+	}
+	
+	//주차권 사용 처리
+	@RequestMapping("ticketusepro")
+	public String parkingusepro(HttpServletRequest req, Model model) {
+		return "mng/parking/ticketusepro";
 	}
 	
 	//주차장현황  입차
@@ -143,9 +158,56 @@ public class MainController {
 	
 	@RequestMapping("ticketmanager")
 	public String ticketmanager(HttpServletRequest req, Model model) {
-		
+		parkingService.getcurrentpark(req, model);
 		return "mng/parking/ticketmanager";
 	}
+	
+
+	@RequestMapping("test")
+	public String test(HttpServletRequest req, Model model) {
+		return "mng/parking/test";
+	}
+	
+	//주차권 등록
+	@RequestMapping("ticketreg")
+	public String ticketreg(HttpServletRequest req, Model model) {
+		return "mng/parking/ticketreg";
+	}
+	//주차권 처리
+	@RequestMapping("ticketregpro")
+	public String ticketregpro(HttpServletRequest req, Model model) {
+		parkingService.ticketreg(req, model);
+		return "mng/parking/ticketregpro";
+	}
+	
+	//주차권 삭제
+	@RequestMapping("tickedelete")
+	public String tickedelete(HttpServletRequest req, Model model) {
+		parkingService.ticketreg(req, model);
+		return "mng/parking/tickedelete";
+	}
+	
+	
+	//주차장 등록
+	@RequestMapping("insertplace")
+	public String insertplace(HttpServletRequest req, Model model) {
+		return "mng/parking/insertplace";
+	}
+	
+	//주차장 등록 처리
+	@RequestMapping("insertplacepro")
+	public String insertplacepro(HttpServletRequest req, Model model) {
+		parkingService.insertplace(req, model);
+		return "mng/parking/insertplacepro";
+	}
+	
+	//주차장 수정
+	@RequestMapping("updateplace")
+	public String updateplace(HttpServletRequest req, Model model) {
+		return "mng/parking/updateplace";
+	}
+	
+	//주차권 사용
 	
 	
 }

@@ -39,6 +39,9 @@ public class FoodServiceImpl implements FoodService {
 	
 	@Autowired
 	FoodDAO f_dao;
+	
+	@Autowired
+	Functions fn;
 
 	// 음식점 소개 등록
 	@Override
@@ -130,7 +133,6 @@ public class FoodServiceImpl implements FoodService {
 
 	@Override
 	public List<FoodMenuVO> getMenuList(HttpServletRequest req) {
-		// TODO 메뉴 리스트 가져오기 테스트
 		
 		String comp_seq = (req.getParameter("comp_seq") == "")? null : req.getParameter("comp_seq");
 		List<FoodMenuVO> menuList = f_dao.getMenuList(comp_seq);
@@ -167,12 +169,9 @@ public class FoodServiceImpl implements FoodService {
 	//매물 등록함수
 	@Override
 	public void test(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		Functions fn = Functions.getInstance();
-		String mimi = fn.mkRcode(f_dao);
-		
-		//가격, 보증금
-		
+		// TODO p_code 생성 테스트
+		String p_code = fn.mkUniquecode("p_code", "parking_ticket_info_tbl");
+		System.out.println("주차권 코드 : " + p_code);
 	}
 
 }

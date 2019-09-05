@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team.smart.utils.Paging;
+
 
 /**
  * 
@@ -116,5 +118,27 @@ public class TestController {
 		return "test";
 	}
 
+	@RequestMapping("imgdropanddrag/")
+	public String imgdropanddrag(HttpServletRequest req, Model model) {
+		logger.info("URI -> imgdropanddrag");
+		return "imgdropanddrag";
+	}
 	
+	
+	@RequestMapping("ParkingTicketList")
+	public String ParkingTicketList(HttpServletRequest req, Model model) {
+		
+		int totCnt = 50; //총게시글
+		Paging paging = new Paging(5, 5, totCnt, "http://www.naver.com/list");
+		
+		String page = req.getParameter("page");
+		
+		paging.pagelist(page); //jsp페이지에서 html_mk_page()를 쓸 수 있도록 setting
+		
+		model.addAttribute("paging", paging);
+		
+		
+		
+		return "imgdropanddrag";
+	}
 }

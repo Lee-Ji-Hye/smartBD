@@ -295,6 +295,8 @@
                   <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/parkinglist">주차권 관리</a></li>
                   <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/ticketmanager">주차장 현황관리</a></li>
                   <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/total">주차장 정산</a></li>
+				  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/insertplace">주차장 등록</a></li>
+				  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/ticketreg">주차권 등록 </a></li>				
                   <!-- <li><a class="nav-link u-header__sub-menu-nav-link" href="https://htmlstream.com/preview/front-v2.9.0/html/blog/listing.html">추가할거 추가</a></li> -->
                 </ul>
                 <!-- End Submenu -->

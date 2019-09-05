@@ -36,6 +36,7 @@
 	}
   </style>
 <script src="${resourceBoot}/js/jquery.mousewheel.min.js"></script></head>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <body >
   
   <!-- ========== HEADER ========== -->
@@ -289,6 +290,8 @@
                   <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/parkinglist">주차권 관리</a></li>
                   <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/ticketmanager">주차장 현황관리</a></li>
                   <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/total">주차장 정산</a></li>
+                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/insertplace">주차장 등록</a></li>
+				  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/ticketreg">주차권 등록 </a></li>	
                 </ul>
                 <!-- End Submenu -->
               </li>
