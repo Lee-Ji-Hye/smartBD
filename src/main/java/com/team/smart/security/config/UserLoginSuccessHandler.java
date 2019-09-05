@@ -34,11 +34,16 @@ public class UserLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
 		if(!authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))){
 			List<UserGrantedAuthority> securityAuth = (List<UserGrantedAuthority>) authentication.getAuthorities();
 			//업체 정보를 꺼내서 중복되지 않게 담음
-			request.getSession().setAttribute("comp_seq", securityAuth.get(0).getComp_seq());//업체코드 comp_seq에 넣음
-			request.getSession().setAttribute("comp_org", securityAuth.get(0).getComp_org());//법인명 comp_org에 넣음
-			request.getSession().setAttribute("b_code", securityAuth.get(0).getB_code());
-			request.getSession().setAttribute("b_name", securityAuth.get(0).getB_name());
-			
+			if(securityAuth.size()!=0) {
+				if(securityAuth.get(0).getComp_seq()!=null) {
+					request.getSession().setAttribute("comp_seq", securityAuth.get(0).getComp_seq());//업체코드 comp_seq에 넣음
+					request.getSession().setAttribute("comp_org", securityAuth.get(0).getComp_org());//법인명 comp_org에 넣음
+				}
+				if(securityAuth.get(0).getB_code()!=null) {
+					request.getSession().setAttribute("b_code", securityAuth.get(0).getB_code());
+					request.getSession().setAttribute("b_name", securityAuth.get(0).getB_name());
+				}
+			}
 		}		
 		//추가
 		

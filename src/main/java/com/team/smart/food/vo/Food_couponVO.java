@@ -2,18 +2,20 @@ package com.team.smart.food.vo;
 
 import java.sql.Timestamp;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data @Builder
+@Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class Food_couponVO {
 
 	// 음식점 쿠폰 테이블 VO
 	private String f_coupon_num;			// 쿠폰코드
-    private int comp_seq;					// 업체코드
+    private String comp_seq;				// 업체코드
     private String f_coupon_name;			// 쿠폰이름
     private int f_coupon_price;				// 쿠폰가격
-    private String userid;					// 아이디
+    private String staff_id;				// 아이디
     private Timestamp f_coupon_regidate;	// 쿠폰 등록일 
     private String f_coupon_start;			// 유효기간1
     private String f_coupon_end;			// 유효기간2

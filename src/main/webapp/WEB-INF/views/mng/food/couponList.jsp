@@ -5,6 +5,7 @@ pageEncoding="UTF-8"%>
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
  
 <!-- ========== MAIN ========== -->
+<form method="post" name="coupon" action="${path}/cp_manager/cpmn/del?${_csrf.parameterName}=${_csrf.token}" onsubmit="return checkBeforeDelete();">
 <main id="content" role="main">
   <div class="bg-light">
     <div class="container space-2">
@@ -34,11 +35,11 @@ pageEncoding="UTF-8"%>
             
             <!-- Buttons -->
             <div style="margin-right:20px;">
-	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/cp_manager/cpmn/inst'">등록</button>
+	            <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/cp_manager/cpmn/inst'">등록</button>
 	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">삭제</button>
             </div>
             <!-- End Buttons -->
-          </div>
+          </div> 
           <!-- End Activity Menu -->
         </div>
         <div class="card-body p-4">
@@ -67,152 +68,66 @@ pageEncoding="UTF-8"%>
                 <tr class="text-uppercase font-size-1">
                   <th scope="col">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
-                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
-                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+                      <input type="checkbox" class="custom-control-input " name="couponAll" id="invoiceToggleAllCheckbox" >
+                      <label class="custom-control-label" for="invoiceToggleAllCheckbox" >
                         <span class="text-hide">Checkbox</span>
                       </label>
-                    </div>
-                  </th>
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	매장명
-                      <div class="ml-2">
-                      </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
                       	쿠폰명
-                      <div class="ml-2">
-                      </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
                       	가격
-                      <div class="ml-2">
-                      </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	사옹기한
-                      <div class="ml-2">
-                      </div>
+                    	사용기한
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	사용만료
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	발급장수
                     </div>
                   </th>
               </thead>
-              <c:forEach var="vo" items="${list}">
+              <c:forEach var="vo" items="${list}"  varStatus="status">
               <tbody class="font-size-1">
               	<tr class="text-uppercase font-size-1">
                   <td class="align-middle">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
-                      <input type="checkbox" class="custom-control-input" id="invoiceCheckbox01">
-                      <label class="custom-control-label" for="invoiceCheckbox01">
-                        <span class="text-hide">Checkbox</span>
+                      <input type="checkbox" class="custom-control-input" name="couponChk" id="invoiceCheckbox0${status.count}" value="${vo.f_coupon_num}">
+                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
+                       <span class="text-hide">Checkbox</span>
                       </label>
                     </div>
                   </td>
-                  <td class="align-middle text-secondary font-weight-normal ">${vo.getF_coupon_name }</td>
-                  <td class="align-middle">
-                    <div class="media align-items-center">
-                    </div>
-                  </td>
-                  <td class="align-middle text-primary">1,000</td>
-                  <td class="align-middle text-secondary">2019/08/12~2019/09/11</td>
-                  <!-- <td class="align-middle text-danger"></td> -->
+                  <td class="align-middle text-secondary font-weight-normal ">${vo.f_coupon_name}</td>
+                  <td class="align-middle">${vo.f_coupon_price}</td>
+                  <td class="align-middle text-primary">${vo.f_coupon_start}</td>
+                  <td class="align-middle text-primary">${vo.f_coupon_end}</td>
+                  <td class="align-middle text-secondary">${vo.f_coupon_count}</td>
                 </tr>
-                <tr class="js-datatabale-details" data-details='
-                  <div class="border rounded p-5">
-                    <h4 class="h3">Invoice</h4>
-                    <div class="row mb-6">
-                      <div class="col-3">
-                        <span class="text-secondary">Date:</span>
-                        <span class="font-weight-medium">12 May, 2018</span>
-                      </div>
-                      
-                      <div class="col-3">
-                        <span class="text-secondary">Merchant:</span>
-                        <span class="font-weight-medium">Dropbox</span>
-                      </div>
-                      <div class="col-6">
-                        <span class="text-secondary">Authorization code:</span>
-                        <span class="font-weight-medium">901274182319</span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        <h5 class="text-dark font-size-1 text-uppercase">Billing address:</h5>
-                        <address class="text-secondary">
-                          <h6 class="h5 text-dark">Dropbox</h6>
-                          Flat 60, Ross Green, South Lilyberg, Q7M 8ZV
-                        </address>
-                      </div>
-                      <div class="col-sm-6">
-                        <h5 class="text-dark font-size-1 text-uppercase">Client info:</h5>
-                        <ul class="list-unstyled mb-0">
-                          <li class="mb-2">
-                            <span class="text-secondary">First name:</span>
-                            <span class="font-weight-medium">Natalie</span>
-                          </li>
-                          <li class="mb-2">
-                            <span class="text-secondary">Last name:</span>
-                            <span class="font-weight-medium">Curtis</span>
-                          </li>
-                          <li class="mb-2">
-                            <span class="text-secondary">Country:</span>
-                            <span class="font-weight-medium">England</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="row justify-content-end mb-4">
-                      <div class="col-sm-6">
-                        <hr class="my-4">
-                        <h5 class="text-dark font-size-1 text-uppercase">Transaction details:</h5>
-                        <ul class="list-unstyled mb-0">
-                          <li class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="text-secondary">Transaction amount</span>
-                            <span class="font-weight-medium">$257.93</span>
-                          </li>
-                          <li class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="text-secondary">Fee</span>
-                            <span class="font-weight-medium">$0.50</span>
-                          </li>
-                          <li class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="text-secondary">Total amount</span>
-                            <span class="text-primary font-weight-medium">$257.43</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <ul class="list-inline mb-0">
-                      <li class="list-inline-item u-ver-divider pr-3 mr-3">
-                        <a href="#">
-                          <span class="fas fa-file-word text-secondary mr-1"></span>
-                          Download invoice
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#">
-                          <span class="fas fa-print text-secondary mr-1"></span>
-                          Print details
-                        </a>
-                      </li>
-                    </ul>
-                  </div>'>
-                 </tr>
                 </c:forEach>
               </tbody>
             </table>
           </div>
           <!-- End Activity Table -->
           <!-- Pagination -->
-          <div class="pagingDivCenter01">
-	          <div class="pagingDivCenter02">
-	            <nav id="datatablePagination" aria-label="Activity pagination">
-	             <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">
-	             	<span class="page-item">
+          <div class="pagingDivCenter01">  
+	          <div class="pagingDivCenter02">          
+	            <nav id="datatablePagination" aria-label="Activity pagination">           
+	             <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">         
+	             	<span class="page-item">          
 	              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
 	             			<span aria-hidden="true">«</span>
 	             		</a>
@@ -241,7 +156,31 @@ pageEncoding="UTF-8"%>
     </div>
   </div>
   <!-- End Content Section -->
-</main>
+ </main>
+</form>
+
+<!-- jQuery 스크립트  -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+//쿠폰 목록 전체 체크 jQuery
+
+$(function(){
+	$("#invoiceToggleAllCheckbox").click(function(){
+		$( '.custom-control-input' ).prop( 'checked', this.checked );
+	});
+});
+
+</script>
+
+<!-- 쿠폰 리스트 삭제 버튼 클릭시 작동하는 script -->
+<script type="text/javascript">
+function checkBeforeDelete() {
+	if(confirm("정말 삭제하시겠습니까?") == false) {
+		return false;
+	}
+}        	
+</script>
+
 <!-- ========== END MAIN ========== -->
 <%@ include file="../../common/footer.jsp" %>
 </body>

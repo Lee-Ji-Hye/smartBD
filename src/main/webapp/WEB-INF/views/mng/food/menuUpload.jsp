@@ -7,23 +7,22 @@
 <div class="bg-light">
       <div class="container space-2">
       	 <!-- Update Avatar Form -->
-        <form class="media align-items-center mb-4"  style="text-align: right">
+        <form name="mkMenu"  enctype="multipart/form-data" method="post" action="${path}/cp_manager/menumn/instPro?${_csrf.parameterName}=${_csrf.token}">
           <div class="u-lg-avatar mr-4">
             <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
           </div>
 
-          <div class="media-body">
+          <div class="media-body" style="text-align: right">
             <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn">
               Upload
-              <input id="fileAttachmentBtn" name="file-attachment" type="file" class="file-attachment-btn__label">
+              <input id="fileAttachmentBtn" name="f_img" type="file" class="file-attachment-btn__label">
             </label>
 
-            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>
+            <button type="reset" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>
           </div>
-        </form>
+        
         <!-- End Update Avatar Form -->
         
-        <form id="changePasswordForm" class="js-validate" novalidate="novalidate">
           <!-- Input -->
           <div class="js-form-message mb-6">
             <label class="form-label">
@@ -31,7 +30,7 @@
             </label>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="currentPassword" placeholder="메뉴명을 입력하세요.">
+              <input type="text" class="form-control" name="f_name" placeholder="메뉴명을 입력하세요." value="${storeUpCode.f_name}">
             </div>
           </div>
           <!-- End Input -->
@@ -47,11 +46,12 @@
               	<select class="form-control custom-select" required
                           data-msg="Please select month."
                           data-error-class="u-has-error"
-                          data-success-class="u-has-success">
+                          data-success-class="u-has-success"
+                          name="f_type">
               <option value="">Select Catagory</option>
-              <option value="birthMonthSelect1" selected="selected">기본</option>
-              <option value="birthMonthSelect2">사이드</option>
-              <option value="birthMonthSelect3">기타등등</option>
+              <option value="기본" selected="selected">기본</option>
+              <option value="사이드">사이드</option>
+              <option value="기타">기타</option>
             </select>
               </div>
             </div>
@@ -68,12 +68,13 @@
             <select class="form-control custom-select" required
                           data-msg="Please select month."
                           data-error-class="u-has-error"
-                          data-success-class="u-has-success">
+                          data-success-class="u-has-success"
+                          name="f_icon">
               <option value="">Select Menu</option>
-              <option value="birthMonthSelect1">Best</option>
-              <option value="birthMonthSelect2">New</option>
-              <option value="birthMonthSelect3">Hot</option>
-              <option value="birthMonthSelect4" selected="selected">It</option>
+              <option value="Best">Best</option>
+              <option value="New">New</option>
+              <option value="Hot">Hot</option>
+              <option value="It" selected="selected">It</option>
             </select>
             </div>
           </div>
@@ -86,7 +87,7 @@
             </label>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="confirmNewPassword" placeholder="가격을 입력하세요.">
+              <input type="text" class="form-control" name="f_price" placeholder="가격을 입력하세요." value="${storeUpCode.f_price}">
             </div>
           </div>
           <!-- End Input -->
@@ -105,12 +106,36 @@
             <div style="text-align:center">
 	            <!-- Buttons -->
 	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
-	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button>
+	            <!-- <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button> -->
 	            <!-- End Buttons -->
           </div>
         </form>
       </div>
     </div>
+    
+<!-- script start -->
+<script type="text/javascript">
+// 업체 수정시 카테고리, 오픈시간, 종료시간 등록 값으로 남기기 
+	window.onload = function() {
+		var f_type = document.mkMenu.f_type;  // 분류에 대한 셀렉트
+		var f_icon = document.mkMenu.f_icon; // 메뉴분류에 대한 셀렉트
+		
+		// 카테고리 선택 for문
+		for(var i=0; i<f_type.length; i++){
+			if(f_type[i].value === '${storeUpCode.f_type}'){
+				f_type[i].selected = true;
+			}
+		}
+		
+		// 오픈시간 선택 for문
+		for(var i=0; i<f_icon.length; i++){
+			if(f_icon[i].value === '${storeUpCode.f_icon}'){
+				f_icon[i].selected = true;
+			}
+		}
+	}
+</script>
+<!-- script end -->
 <!-- footer start -->
 <%@ include file="../../common/footer.jsp" %>
 <!-- footer end -->

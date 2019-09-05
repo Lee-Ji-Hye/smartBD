@@ -4,6 +4,7 @@ pageEncoding="UTF-8"%>
 <%@ include file="../../common/header.jsp" %>
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
 <!-- ========== MAIN ========== -->
+<form method="post" name="goods" action="${path}/cp_manager/menumn/del?${_csrf.parameterName}=${_csrf.token}" onsubmit="return checkBeforeDelete();">
 <main id="content" role="main">
   <div class="bg-light">
     <div class="container space-2">
@@ -18,7 +19,8 @@ pageEncoding="UTF-8"%>
           <div class="row justify-content-sm-between align-items-sm-center">
           <div class="col-md-12">
            	<!-- Buttons -->
-           		<button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="float: right;">등록</button>
+           		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="float: right;" onclick="window.location='${path}/cp_manager/menumn/inst'">등록</button>
+   				<button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover " style="float: right; margin-right:10px;">삭제</button>
    			<!-- End Buttons -->
       	</div>
           </div>
@@ -51,7 +53,7 @@ pageEncoding="UTF-8"%>
                 <tr class="text-uppercase font-size-1">
                   <th scope="col">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
-                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+                      <input type="checkbox" class="custom-control-input" name="f_codeOne" id="invoiceToggleAllCheckbox" onchange="goodsChkAll();">
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox">
                         <span class="text-hide">Checkbox</span>
                       </label>
@@ -60,132 +62,43 @@ pageEncoding="UTF-8"%>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
                       	메뉴명
-                      <div class="ml-2">
                       </div>
-                    </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
                       	가격
-                      <div class="ml-2">
                       </div>
-                    </div>
                   </th>
                 <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
                       	분류
-                      <div class="ml-2">
                       </div>
-                    </div>
-                  </th>
+                 </th>
+                 <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	아이콘
+                      </div>
+                 </th>
                 </tr>
               </thead>
               <tbody class="font-size-1">
-             <%--  <c:forEach var="" items=""> --%>
+            <c:forEach var="dto" items="${food}" varStatus="status">
               	<tr class="text-uppercase font-size-1">
                   <td class="align-middle">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
-                      <input type="checkbox" class="custom-control-input" id="invoiceCheckbox01">
-                      <label class="custom-control-label" for="invoiceCheckbox01">
+                      <input type="checkbox" class="custom-control-input" name="f_code" id="invoiceCheckbox0${status.count}">
+                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}">
                         <span class="text-hide">Checkbox</span>
                       </label>
                     </div>
                   </td>
-                  <td class="align-middle text-secondary font-weight-normal"></td>
-                  <td class="align-middle">
-                    <div class="media align-items-center">
-                      <span>6,000</span>
-                    </div>
-                  </td>
-                  <td class="align-middle text-primary">커피</td>
-                  <!-- <td class="align-middle text-secondary">09:00</td>
-                  <td class="align-middle text-danger">상태완료</td> -->
+                  <td class="align-middle text-secondary font-weight-normal">${dto.f_name}</td>
+                  <td class="align-middle">${dto.f_price}</td>
+                  <td class="align-middle text-primary">${dto.f_type}</td>
+                  <td class="align-middle text-secondary">${dto.f_icon}</td>
+                 <!--  <td class="align-middle text-danger">상태완료</td> -->
                 </tr>
-                <tr class="js-datatabale-details" data-details='
-                  <div class="border rounded p-5">
-                    <h4 class="h3">Invoice</h4>
-                    <div class="row mb-6">
-                      <div class="col-3">
-                        <span class="text-secondary">Date:</span>
-                        <span class="font-weight-medium">12 May, 2018</span>
-                      </div>
-                      
-                      <div class="col-3">
-                        <span class="text-secondary">Merchant:</span>
-                        <span class="font-weight-medium">Dropbox</span>
-                      </div>
-                      <div class="col-6">
-                        <span class="text-secondary">Authorization code:</span>
-                        <span class="font-weight-medium">901274182319</span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        <h5 class="text-dark font-size-1 text-uppercase">Billing address:</h5>
-                        <address class="text-secondary">
-                          <h6 class="h5 text-dark">Dropbox</h6>
-                          Flat 60, Ross Green, South Lilyberg, Q7M 8ZV
-                        </address>
-                      </div>
-                      <div class="col-sm-6">
-                        <h5 class="text-dark font-size-1 text-uppercase">Client info:</h5>
-                        <ul class="list-unstyled mb-0">
-                          <li class="mb-2">
-                            <span class="text-secondary">First name:</span>
-                            <span class="font-weight-medium">Natalie</span>
-                          </li>
-                          <li class="mb-2">
-                            <span class="text-secondary">Last name:</span>
-                            <span class="font-weight-medium">Curtis</span>
-                          </li>
-                          <li class="mb-2">
-                            <span class="text-secondary">Country:</span>
-                            <span class="font-weight-medium">England</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="row justify-content-end mb-4">
-                      <div class="col-sm-6">
-                        <hr class="my-4">
-                        <h5 class="text-dark font-size-1 text-uppercase">Transaction details:</h5>
-                        <ul class="list-unstyled mb-0">
-                          <li class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="text-secondary">Transaction amount</span>
-                            <span class="font-weight-medium">$257.93</span>
-                          </li>
-                          <li class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="text-secondary">Fee</span>
-                            <span class="font-weight-medium">$0.50</span>
-                          </li>
-                          <li class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="text-secondary">Total amount</span>
-                            <span class="text-primary font-weight-medium">$257.43</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <ul class="list-inline mb-0">
-                      <li class="list-inline-item u-ver-divider pr-3 mr-3">
-                        <a href="#">
-                          <span class="fas fa-file-word text-secondary mr-1"></span>
-                          Download invoice
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#">
-                          <span class="fas fa-print text-secondary mr-1"></span>
-                          Print details
-                        </a>
-                      </li>
-                    </ul>
-                  </div>'>
-                </tr> 
-                <%-- </c:forEach> --%>
-                
-                
-                
-                
+               </c:forEach>
               </tbody>
             </table>
           </div>
@@ -226,6 +139,28 @@ pageEncoding="UTF-8"%>
   <!-- End Content Section -->
  </div>
 </main>
+</form>
+<script type="text/javascript">
+//쿠폰 목록 전체 체크
+function goodsChkAll() {
+	
+	var allChoice = document.goods.f_codeOne;
+	var choice = document.goods.f_code;
+
+	console.dir(allChoice);
+	console.log(choice);
+	
+	if(allChoice.checked === true){
+		for(var i = 0; i<choice.length; i++) {
+			choice[i].checked = true;
+		}
+	} else {
+		for(var i = 0; i<choice.length; i++) {
+			choice[i].checked = false;
+		}
+	}
+}
+</script>
 <!-- ========== END MAIN ========== -->
 <%@ include file="../../common/footer.jsp" %>
 </body>

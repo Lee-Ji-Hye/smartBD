@@ -6,6 +6,25 @@
 <html>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.content{
+    outline: 2px dashed #92b0b3 ;
+    outline-offset:-10px;  
+    text-align: center;
+    transition: all .15s ease-in-out;
+    width: 300px;
+    height: 300px;
+    background-color: gray;
+}
+
+.content img, .content video{
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+</style>
+
 <body>
 <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
@@ -18,7 +37,7 @@
         </div>
         <!-- End Title -->
 
-        <form id="uploadForm" class="js-validate svg-preloader">
+        <form id="uploadForm" class="js-validate svg-preloader" >
           <!-- Listing Agent Information -->
           <div class="mb-7">
             <!-- Title -->
@@ -119,12 +138,11 @@
             <!-- End Title -->
 
             <!-- File Attachment Input -->
-            <div class="u-dropzone">
+            <div class="content">
               <div class="dz-message">
-                <img class="js-svg-injector max-width-10 mb-3" src="../../assets/svg/illustrations/add-file.svg" alt="SVG"
+                <img  class="js-svg-injector max-width-10 mb-3" src="#" alt="SVG"
                      data-parent="#uploadForm">
-                <span class="d-block mb-2">Browse your device and upload images</span>
-                <small class="d-block text-muted">Maximum file size is 2MB</small>
+               
               </div>
             </div>
             <!-- End File Attachment Input -->
@@ -135,9 +153,56 @@
         </form>
       </div>
     </div>
+
+    
     <!-- End Upload Form Section -->
   </main>
   <!-- ========== END MAIN CONTENT ========== -->
  <%@ include file="../../common/footer.jsp" %> 
 </body>
+<script type="text/javascript">
+$('.content')
+.on("dragover", dragOver)
+.on("dragleave", dragOver)
+.on("drop", uploadFiles);
+
+function dragOver(e){
+  e.stopPropagation();
+  e.preventDefault();
+  if (e.type == "dragover") {
+      $(e.target).css({
+          "background-color": "black",
+          "outline-offset": "-20px"
+      });
+  } else {
+      $(e.target).css({
+          "background-color": "gray",
+          "outline-offset": "-10px"
+      });
+  }
+}
+
+function uploadFiles(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  dragOver(e);
+
+  e.dataTransfer = e.originalEvent.dataTransfer;
+  var files = e.target.files || e.dataTransfer.files;
+  if (files.length > 1) {
+      alert('하나만 올려라.');
+      return;
+  }
+  if (files[0].type.match(/image.*/)) {
+              $(e.target).css({
+          "background-image": "url(" + window.URL.createObjectURL(files[0]) + ")",
+          "outline": "none",
+          "background-size": "100% 100%"
+      });
+  }else{
+    alert('이미지가 아닙니다.');
+    return;
+  }
+}
+</script>
 </html>

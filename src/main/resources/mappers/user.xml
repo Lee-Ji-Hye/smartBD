@@ -21,18 +21,24 @@
 	</resultMap>
 	<select id="getAuthority" resultType="com.team.smart.security.config.UserGrantedAuthority">
 		 SELECT a.comp_auth
-                , c.comp_seq
+                , a.comp_seq
                 , o.comp_org
-                , c.r_code
                 , a.b_code
                 , b.b_name
-		 FROM user_compauth_tbl a, room_contract_tbl c, building_tbl b, user_company_tbl o
+                , b.b_status
+                , c.r_code
+                , c.rt_date1
+                , c.rt_date2
+		 FROM user_compauth_tbl a
+         LEFT JOIN 
+         room_contract_tbl c
+         ON a.rt_code = c.rt_code
+         LEFT JOIN
+         building_tbl b
+         ON a.b_code = b.b_code
+         LEFT JOIN user_company_tbl o
+         ON a.comp_seq = o.comp_seq 
 		 WHERE a.userid = #{userid}
-		 AND c.rt_code = a.rt_code
-         AND a.b_code = b.b_code
-         AND o.comp_seq = c.comp_seq
-         AND o.comp_status='1'
-         <!-- 상태가 승인상태일때만 조회되도록 함 '승인 = 1' -->
 	</select>
 	<!-- 로그인 -->
 	
@@ -44,9 +50,18 @@
 	
 	<!-- 업체등록 -->
 	<insert id="insertComp" parameterType="com.team.smart.vo.CompVO">
-		insert into user_company_tbl(comp_seq, comp_section, comp_org, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_status)  
-		values(comp_seq.nextval, #{comp_section}, #{comp_org}, #{comp_branch}, #{comp_master}, #{comp_business}, #{comp_category}, #{comp_hp}, #{comp_status})
+		insert into user_company_tbl(comp_seq, comp_section, comp_org, comp_bn, comp_owner, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_status)  
+		values(#{comp_seq}, #{comp_section}, #{comp_org}, #{comp_bn}, #{comp_owner}, #{comp_branch}, #{comp_master}, #{comp_business}, #{comp_category}, #{comp_hp}, #{comp_status})
 	</insert>
 	
+	<!-- 권한등록(업체등록에따른) -->
+	<insert id="insertAuth" parameterType="java.util.Map">
+		insert into user_compauth_tbl(userid, comp_auth, rt_code, comp_seq, b_code) values(#{userid}, #{comp_auth}, #{rt_code, jdbcType=VARCHAR}, #{comp_seq, jdbcType=VARCHAR}, #{b_code, jdbcType=VARCHAR})
+	</insert>
+	
+	<insert id="insertBd" parameterType="com.team.smart.vo.BuildingVO">
+		insert into building_tbl(b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid)
+		VALUES(#{b_code}, #{b_area1}, #{b_area2}, #{b_address}, #{b_name}, #{b_floor}, #{b_year}, #{b_park}, #{b_elev}, #{b_heat}, #{b_traffic}, #{b_lat}, #{b_lon}, #{userid})
+	</insert>
 	
 </mapper>

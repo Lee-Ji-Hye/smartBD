@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
  * @detail : 임차인 권한 매핑
  *
  */
+
 @Slf4j
 @Controller
 @RequestMapping("/member")
@@ -54,6 +55,7 @@ public class MemberController {
 		String b_code = bdpp[0];
 		String b_name = bdpp[1];
 		
+		
 		String redirectionURL = currentURL.substring(7);
 		req.getSession().setAttribute("b_code", b_code);
 		req.getSession().setAttribute("b_name", b_name);
@@ -87,9 +89,6 @@ public class MemberController {
 		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/";
 	}
 	
-	
-	
-	
 	//직원 권한 요청
 	@RequestMapping({"/auth"})
 	public String auth(HttpServletRequest req, Model model) {
@@ -106,14 +105,42 @@ public class MemberController {
 		return "redirect:/admin";
 	}
 
-	//건물 등록등
+	//빌딩 등록등
 	@RequestMapping({"/bdmn"})
 	public String bdmn(HttpServletRequest req, Model model) {
 		log.info("url -> member/bdmn");
 
-		return "redirect:/admin";
+		return "redirect:/member/bdmn/inst";
+	}
+	
+	//빌딩 등록 페이지
+	@RequestMapping({"/bdmn/inst"})
+	public String bdmnInsert(HttpServletRequest req, Model model) {
+		log.info("url -> member/bdmn/inst");
+		return "signup/bd_signup";
 	}
 
+	//빌딩 등록 처리
+	@RequestMapping("/bdmn/instpro")
+	public String bdmnInsertPro(HttpServletRequest req, Model model) {
+		log.info("url -> member/bdmn/instpro");
+		
+		userService.bdmnInsert(req, model);
+		
+		return "redirect:/member/bdmn/bd_complet";
+	}
+
+	//빌딩 등록 완료
+	@RequestMapping("/bdmn/bd_complet")
+	public String bd_complet(HttpServletRequest req, Model model) {
+		log.info("url -> member/bdmn/bd_complet");
+
+		return "signup/bd_complet";
+	}
+	
+	
+	
+	
 	//업체 등록 등
 	@RequestMapping({"/comp"})
 	public String comp(HttpServletRequest req, Model model) {
@@ -147,9 +174,5 @@ public class MemberController {
 
 		return "signup/comp_complet";
 	}
-	
-	
-	
-	
 	
 }
