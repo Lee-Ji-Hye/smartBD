@@ -53,7 +53,7 @@ public class UserAuthenticationService implements UserDetailsService {
 						if(delimiter.equals("CP")) {
 							//구분자가 사업체일때 rt_code의 계약정보를 확인하고 맞을때만 권한을 넣어준다
 							log.debug("CP 권한 줌 .. 0 구분자로 확인");
-							if(uauth.getComp_seq()!=null && uauth.getR_code()!=null) {
+							if(!uauth.getComp_seq().isEmpty() && !uauth.getR_code().isEmpty()) {
 								//1이 2보다 크냐?라고 물어보는 메소드 ts1.compareTo(ts2) 일때 ts1이 크면 1, 같으면 0, 작으면 -1 나옴
 								log.debug("CP 권한체크 1 null체크");
 								Timestamp currentTime = new Timestamp(System.currentTimeMillis()); 
@@ -62,13 +62,28 @@ public class UserAuthenticationService implements UserDetailsService {
 									log.debug("cp 권한체크2 유효기간 체크");
 									//이조건이 참일때 유효하므로 권한을 넣음
 									authority.add(uauth);
+								}else {
+									authority.add(new UserGrantedAuthority());
 								}
+							}else {
+								authority.add(new UserGrantedAuthority());
 							}
 						}else if(delimiter.equals("BD")) {
 							//구분자가 빌딩관련일때 b_code null체크하고 넣어준다.
 							log.debug("BD Null만체크해서 권한줌");
-							if(uauth.getB_code()!=null)authority.add(uauth);
-							else log.debug("B_CODE가 NULL이다");
+							if(!uauth.getB_code().isEmpty()) {
+								//b_status 를 검사해서 1이면 준다. 0이 미승인 1이 승인 
+								if(uauth.getB_status().equals("1"))
+									authority.add(uauth);
+								else{
+									log.debug("B_STATUS가 1(승인)이 아님 ");
+									authority.add(new UserGrantedAuthority());
+								}
+							}else {
+								log.debug("B_CODE가 NULL이다");
+								authority.add(new UserGrantedAuthority());
+							}
+							
 						}else if(delimiter.equals("SY")) {
 							//구분자가 시스템일때 바로넣어준다.
 							log.debug("systemmaster 권한 증정");
@@ -76,6 +91,7 @@ public class UserAuthenticationService implements UserDetailsService {
 						}else {
 							//구분자가 이상한거일때
 							log.debug("구분자가 글러먹었따"+uauth.getAuthority());
+							authority.add(new UserGrantedAuthority());
 						}
 					}
 				}

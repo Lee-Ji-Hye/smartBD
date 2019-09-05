@@ -25,6 +25,7 @@
                 , o.comp_org
                 , a.b_code
                 , b.b_name
+                , b.b_status
                 , c.r_code
                 , c.rt_date1
                 , c.rt_date2
@@ -36,7 +37,7 @@
          building_tbl b
          ON a.b_code = b.b_code
          LEFT JOIN user_company_tbl o
-         ON a.comp_seq = o.comp_seq
+         ON a.comp_seq = o.comp_seq 
 		 WHERE a.userid = #{userid}
 	</select>
 	<!-- 로그인 -->
