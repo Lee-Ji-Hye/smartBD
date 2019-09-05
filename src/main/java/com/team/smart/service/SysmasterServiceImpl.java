@@ -15,6 +15,7 @@ import com.team.smart.persistence.SysmasterDAO;
 import com.team.smart.persistence.UserDAO;
 import com.team.smart.utils.Functions;
 import com.team.smart.utils.Paging;
+import com.team.smart.vo.BuildingVO;
 import com.team.smart.vo.CompVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,8 +45,6 @@ public class SysmasterServiceImpl implements SysmasterService{
 	
 	//업체 리스트
 	public void compList(HttpServletRequest req, Model model) {
-
-		log.debug(fun.mkUniquecode("comp_seq", "user_company_tbl"));
 		
 		//상품 총 글 수
 		String page = req.getParameter("page");
@@ -123,5 +122,29 @@ public class SysmasterServiceImpl implements SysmasterService{
 		log.debug("count = "+count);
 	}
 
+	@Override
+	public void bdList(HttpServletRequest req, Model model) {
+		//상품 총 글 수
+		String page = req.getParameter("page");
+		
+		int totCnt = sysDAO.bdListCnt();
+		
+		//페이징 처리
+		String uri = req.getRequestURI();
+		Paging paging = new Paging(5, 5, totCnt, uri);//Paging(int pageLine, int pageBlock, int cnt);
+		
+		paging.pagelist(page);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("startNum", paging.getStart());
+		map.put("endNum", paging.getEnd());
+		
+		List<BuildingVO> bdList = sysDAO.bdList(map);
+		model.addAttribute("bdList", bdList);
+		model.addAttribute("paging", paging);
+	}
+
+	
+	
 
 }

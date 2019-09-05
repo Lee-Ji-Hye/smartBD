@@ -141,7 +141,6 @@ public class MemberController {
 	
 	
 	
-	
 	//업체 등록 등
 	@RequestMapping({"/comp"})
 	public String comp(HttpServletRequest req, Model model) {

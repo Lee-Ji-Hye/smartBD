@@ -17,4 +17,11 @@ public interface SysmasterService {
 	public void compAmd(String amd, String comp_seq);
 	//업체 단건 추가
 	public void compInsert(HttpServletRequest req, Model model);
+	
+	//빌딩 리스트
+	public void bdList(HttpServletRequest req, Model model);
+	
+	
+	
+	
 }

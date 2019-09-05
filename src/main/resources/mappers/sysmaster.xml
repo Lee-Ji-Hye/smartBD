@@ -5,13 +5,13 @@
 	    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="SysmasterDAO">
-
+	<!-- 업체 갯수 -->
 	<select id="compListCnt" parameterType="int" resultType="int">
 		select COUNT(*)
 		from user_company_tbl
 	</select>
 
-
+	<!-- 업체 리스트 -->
 	<select id="compList" parameterType="java.util.Map" resultType="com.team.smart.vo.CompVO">
 	<![CDATA[
 		select comp_seq, comp_section, comp_org, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_regidate, comp_status
@@ -21,7 +21,7 @@
         and rNum<=#{endNum}
     ]]>
 	</select>
-	
+	<!-- 업체 단건 조회 -->
 	<select id="compInfo" parameterType="String" resultType="com.team.smart.vo.CompVO">
 		select comp_seq, comp_section, 
 			comp_org, comp_branch, 
@@ -31,12 +31,32 @@
 		from user_company_tbl
 		where comp_seq = #{comp_seq}
 	</select>
-	
+	<!-- 업체 단건 삭제 -->
 	<delete id="compDel" parameterType="String">
 		delete user_company_tbl where comp_seq=#{comp_seq}
 	</delete>
-	
+	<!-- 업체 권한 수정 -->
 	<update id="compAmd" parameterType="java.util.Map">
 		update user_company_tbl set comp_status = #{amd} where comp_seq = #{comp_seq}
 	</update>
+	
+	
+	
+	<!-- 빌딩 갯수 -->
+	<select id="bdListCnt" parameterType="int" resultType="int">
+		select COUNT(*)
+		from building_tbl
+	</select>
+
+	<!-- 빌딩 리스트 -->
+	<select id="bdList" parameterType="java.util.Map" resultType="com.team.smart.vo.CompVO">
+	<![CDATA[
+		select b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid
+        from (select rownum rNum, b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid
+              from (select b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid from building_tbl order by userid asc, b_code desc))
+        where rNum>=#{startNum}
+        and rNum<=#{endNum}
+    ]]>
+	</select>
+	
 </mapper>

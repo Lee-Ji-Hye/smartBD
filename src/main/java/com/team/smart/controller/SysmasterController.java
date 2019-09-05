@@ -101,6 +101,28 @@ public class SysmasterController {
 	
 	
 	
+
+	//빌딩 관리를 선택했을때
+	@RequestMapping({"/bdmn"})
+	public String bdmn(HttpServletRequest req, Model model) {
+		log.info("url -> sysmaster/");
+		return "redirect:/sysmaster/bdmn/list";
+	}
+	
+	
+	
+	///업체 목록 목록
+	@RequestMapping({"/bdmn/list"})
+	public String bdmnlist(HttpServletRequest req, Model model) {
+		log.info("url -> /sysmaster/bdmn/list");
+		sysService.bdList(req, model);
+		return jspPath+"/bdList";
+	}
+	
+
+	
+	
+	
 	
 	
 }
