@@ -23,12 +23,16 @@ public class RoomServiceImpl implements RoomService{
 	@Autowired
 	RoomDAO dao;
 
+	@Autowired
+	Functions fn;
+	
 	//매물 상세페이지
 	@Override
 	public void roomDetail(HttpServletRequest req, Model model) {
 		
 		String r_code = req.getParameter("r_code");
 		RoomVO vo = dao.getDetail(r_code);
+		
 		
 		
 		model.addAttribute("r_code",r_code);
@@ -62,9 +66,8 @@ public class RoomServiceImpl implements RoomService{
 		//TIMESTAMP regidate;														//등록일
 		String r_img = "";														//사진
 		//매물코드생성	
-		Functions fn = Functions.getInstance();
 		if(mode.equals("insert")) {
-			r_code = fn.r_mkRcode(dao);										//매물코드
+			r_code = fn.mkUniquecode("r_code", "room_tbl");										//매물코드
 		}else {
 			r_code = req.getParameter("r_code");
 		}
