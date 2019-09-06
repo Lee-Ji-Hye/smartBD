@@ -263,11 +263,13 @@
                   <a id="navLinkContactsServices" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_park/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuContactsServices">주차장 파트 관리</a>
 
                   <ul id="navSubmenuContactsServices" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkContactsServices" style="min-width: 230px;">
-                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/pkmn">입출차 관리</a></li>
-                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/pkcpmn">주차권 관리</a></li>
-                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/pkstat">주차장 현황</a></li>
+                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/inoutcar">입출차 관리</a></li>
+                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/uselist">주차권 관리</a></li>
+                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/ticketmanager">주차장 현황</a></li>
+                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/insertplace">주차장 등록</a></li>
+                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/ticketreg">주차권 등록</a></li>
                       <li class="dropdown-divider"></li>
-                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/settlement">결산</a></li>
+                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/total">결산</a></li>
                   </ul>
                 </li>
                 <!-- End 주차장 관리 -->

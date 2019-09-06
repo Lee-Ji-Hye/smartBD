@@ -22,7 +22,7 @@ public class BuildingServiceImpl implements BuildingService {
 		Paging paging = new Paging(5, 5, totCnt, uri);//Paging(int pageLine, int pageBlock, int cnt);
 		paging.pagelist(page);
 		
-		model.addAttribute("paging", paging);
+		model.addAttribute("paging", paging); 
 		
 	}
 

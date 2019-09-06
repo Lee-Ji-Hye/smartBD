@@ -187,6 +187,9 @@
             	<!-- 권한 선택 selectbox 끝 -->
 			  </div>
             </li>
+            <!-- 표시되는 큰메뉴 시스템 관리자 권한 -->
+           
+            <!-- /표시되는 큰메뉴 끝 -->
             
             <!-- 표시되는 큰메뉴 시스템 관리자 권한 -->
             <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">

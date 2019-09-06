@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.team.smart.persistence.CodeDAO;
+import com.team.smart.persistence.RoomDAO;
 
 @Component
 public class Functions {
@@ -43,6 +44,8 @@ public class Functions {
 			strCode = "FM";
 		} else if(codeColumn.equals("parking_code")) {
 			strCode = "PK";//PK000001
+		} else if(codeColumn.equals("p_code")) {
+			strCode = "PG";//PG000001
 		} else if(codeColumn.equals("f_coupon_num")) {
 			strCode = "CP";//PK000001
 		} else if(codeColumn.equals("comp_seq")) {
@@ -51,6 +54,8 @@ public class Functions {
 			strCode = "BD";//PK000001
 		} else if(codeColumn.equals("rt_code")) {
 			strCode = "RT";//PK000001
+		} else if(codeColumn.equals("r_code")) {
+			strCode = "RM";//RM000001
 		} else {
 			return null;
 		}
@@ -110,6 +115,8 @@ public class Functions {
 			strCode = "BD";//PK000001
 		} else if(codeColumn.equals("rt_code")) {
 			strCode = "RT";//PK000001
+		} else if(codeColumn.equals("r_code")) {
+			strCode = "RM";//RM000001
 		} else {
 			return null;
 		}
@@ -132,4 +139,6 @@ public class Functions {
 		//System.out.println("NEW 코드 : " + strCode + lastIdx);
 		return strCode + lastIdx;
 	}
+
+	
 }

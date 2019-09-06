@@ -25,6 +25,7 @@
                 , o.comp_org
                 , a.b_code
                 , b.b_name
+                , b.b_status
                 , c.r_code
                 , c.rt_date1
                 , c.rt_date2
@@ -36,7 +37,7 @@
          building_tbl b
          ON a.b_code = b.b_code
          LEFT JOIN user_company_tbl o
-         ON a.comp_seq = o.comp_seq
+         ON a.comp_seq = o.comp_seq 
 		 WHERE a.userid = #{userid}
 	</select>
 	<!-- 로그인 -->
@@ -55,7 +56,12 @@
 	
 	<!-- 권한등록(업체등록에따른) -->
 	<insert id="insertAuth" parameterType="java.util.Map">
-		insert into user_compauth_tbl(userid, comp_auth, comp_seq) values(#{userid}, #{comp_auth}, #{comp_seq})
+		insert into user_compauth_tbl(userid, comp_auth, rt_code, comp_seq, b_code) values(#{userid}, #{comp_auth}, #{rt_code, jdbcType=VARCHAR}, #{comp_seq, jdbcType=VARCHAR}, #{b_code, jdbcType=VARCHAR})
+	</insert>
+	
+	<insert id="insertBd" parameterType="com.team.smart.vo.BuildingVO">
+		insert into building_tbl(b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid)
+		VALUES(#{b_code}, #{b_area1}, #{b_area2}, #{b_address}, #{b_name}, #{b_floor}, #{b_year}, #{b_park}, #{b_elev}, #{b_heat}, #{b_traffic}, #{b_lat}, #{b_lon}, #{userid})
 	</insert>
 	
 </mapper>

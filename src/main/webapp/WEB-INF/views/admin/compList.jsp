@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
             <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
               
               <!-- Datepicker -->
-              <div id="datepickerWrapper" class="js-focus-state u-datepicker w-auto input-group input-group-sm">
+              <!-- <div id="datepickerWrapper" class="js-focus-state u-datepicker w-auto input-group input-group-sm">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
                     <span class="fas fa-calendar"></span>
@@ -27,14 +27,13 @@ pageEncoding="UTF-8"%>
                        data-rp-date-format="d M Y"
                        data-rp-default-date='["05 Jul 2019", "19 Jul 2019"]'
                        data-rp-is-disable-future-dates="true">
-              </div>
+              </div> -->
               <!-- End Datepicker -->
             </div>
             
             <!-- Buttons -->
             <div style="margin-right:20px;">
-	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/cp_manager/cpmn/inst'">등록</button>
-	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">삭제</button>
+	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/sysmaster/cormn/inst'">등록</button>
             </div>
             <!-- End Buttons -->
           </div>
@@ -64,14 +63,14 @@ pageEncoding="UTF-8"%>
                    data-dt-pagination-prev-link-markup='<span aria-hidden="true">&laquo;</span>'>
               <thead>
                 <tr class="text-uppercase font-size-1">
-                  <th scope="col">
+                  <!-- <th scope="col">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
                       <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox">
                         <span class="text-hide">Checkbox</span>
                       </label>
                     </div>
-                  </th>
+                  </th> -->
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
                       	<strong>사업자구분</strong>
@@ -113,14 +112,14 @@ pageEncoding="UTF-8"%>
               <c:set var="index" value="${0}"/>
               <c:forEach var="dto" items="${compList}">
               	<tr class="text-uppercase font-size-1 form-original">
-                  <td class="align-middle">
+                  <!-- <td class="align-middle">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
                       <input type="checkbox" class="custom-control-input" id="invoiceCheckbox01">
                       <label class="custom-control-label" for="invoiceCheckbox01">
                         <span class="text-hide">Checkbox</span>
                       </label>
                     </div>
-                  </td>
+                  </td> -->
                   <td class="align-middle">
                     <div class="media align-items-center">
                     	<c:if test="${dto.comp_section=='0'}">개인사업자</c:if>
@@ -129,7 +128,7 @@ pageEncoding="UTF-8"%>
                   </td>
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	<a onclick="compDetail(${dto.comp_seq},${index})">${dto.comp_org}</a>
+                    	<a onclick="compDetail('${dto.comp_seq}',${index})">${dto.comp_org}</a>
                     </div>
                   </td>
                   <td class="align-middle">
@@ -144,7 +143,7 @@ pageEncoding="UTF-8"%>
                   </td>
                   <td class="align-middle">
                     <div class="media align-items-center" id="details_comp_status2">
-                    	<c:if test="${dto.comp_status=='-1'}">반려</c:if>
+                    	<c:if test="${dto.comp_status=='2'}">반려</c:if>
                     	<c:if test="${dto.comp_status=='0'}">승인 대기</c:if>
                     	<c:if test="${dto.comp_status=='1'}">승인 완료</c:if>
                     </div>
@@ -216,6 +215,7 @@ pageEncoding="UTF-8"%>
                             <span class="font-weight-medium" id="details_comp_status">England</span>
                           </li>
                         </ul>
+                          <span id="details_comp_seq" style="display: none;"></span>
                       </div>
                     </div>
                     <div class="row justify-content-end mb-4">
@@ -228,8 +228,9 @@ pageEncoding="UTF-8"%>
                     </div>
                     <div class="row justify-content-end mb-4">
                        <div class="media align-items-center">
-	            		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="compPropose()">승인</button>
-                  		<button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="compReturn()">반려</button>
+	            		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="compPro(event,'amd_ok')">승인</button>
+                  		<button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="compPro(event,'amd_ng')">반려</button>
+                  		<button type="button" class="btn btn-sm btn-danger transition-3d-hover" onclick="compPro(event,'del')">삭제</button>
                        </div>
                     </div>
                   </div>
@@ -272,6 +273,7 @@ pageEncoding="UTF-8"%>
 					} else if(obj.comp_section === '1'){
 						obj.comp_section = '법인';
 					}
+					document.getElementById('details_comp_seq').innerText = obj.comp_seq;
 					document.getElementById('details_comp_section').innerText = obj.comp_section;
 					document.getElementById('details_comp_bn').innerText = obj.comp_bn;
 					document.getElementById('details_comp_org').innerText = obj.comp_org;
@@ -282,8 +284,7 @@ pageEncoding="UTF-8"%>
 					document.getElementById('details_comp_category').innerText = obj.comp_category;
 					document.getElementById('details_comp_hp').innerText = obj.comp_hp;
 					document.getElementById('details_comp_regidate').innerText = obj.comp_regidate;
-					
-					if(obj.comp_status === '-1'){
+					if(obj.comp_status === '2'){
 						obj.comp_status = '반려';
 					} else if(obj.comp_status === '0'){
 						obj.comp_status = '승인대기';
@@ -305,13 +306,39 @@ pageEncoding="UTF-8"%>
 		request.send(null);
 	};
 	
-	
-	function formDetailMod(obj){
-		var details = document.getElementById('formDetail')
+	function compPro(event, jong) {
+		//amd_ok, amd_ng, del
+		var comp_seq = document.getElementById('details_comp_seq').innerText;
+		var url = "${path}/sysmaster/cormn/";
+		var method = "";
 		
+		if(jong === 'amd_ok'){
+			url += 'amd/1/' + comp_seq;
+			method = "GET";
+		} else if(jong === 'amd_ng'){
+			url += 'amd/2/' + comp_seq;
+			method = "GET";
+		} else if(jong === 'del'){
+			url +=  'del/' + comp_seq;
+			method = "GET";
+		}
 		
-		
-	};
+		var request = new XMLHttpRequest();//지역변수 추천
+		request.open(method, url, true);//요청보내는거
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		console.dir(request);
+		request.onreadystatechange = function(){//콜백함수
+			if (request.readyState == 4) {
+				if(request.status == 200){
+					window.location = request.responseURL;
+				}else{
+					//실패했을때 알럿
+					alert("데이터 가져오기 실패");
+				}
+			}
+		};
+		request.send(comp_seq);
+	}
   </script>
 </main>
 <!-- ========== END MAIN ========== -->
