@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
-<%@ include file="../../common/header.jsp" %> 
+<%@ include file="../../common/headerAdmin.jsp" %>   
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -71,7 +71,7 @@
               <button type="button" class="btn btn-block btn-sm btn-primary transition-3d-hover">Add Funds</button>
               <!-- End Deposit Info -->
             </div>
-
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <div class="card-footer p-5">
               <!-- Progress Info -->
               <div class="row align-items-center">

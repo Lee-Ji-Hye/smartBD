@@ -116,7 +116,7 @@
       </div>
     </div>
     <!-- End Breadcrumb Section -->
-
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <!-- Content Section -->
     <div class="bg-light">
       <div class="container space-2">

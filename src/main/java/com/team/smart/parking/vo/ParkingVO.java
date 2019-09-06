@@ -25,7 +25,9 @@ public class ParkingVO {
 	private int	   hourly;
 	private int	   price;
 	private String reg_id;
+	private Timestamp reg_date;    
 	private String update_id;	
+	private Timestamp update_date;   
 	
 	//주차장 등록
 	private String b_name;

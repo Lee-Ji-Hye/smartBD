@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
-<%@ include file="../../common/header.jsp" %>
+<%@ include file="../../common/headerAdmin.jsp" %>   
 
 
 <html>
@@ -25,6 +25,7 @@
 <title>주차장 현황</title>
 <body>
 <form>
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 <c:set var="num" value="-1"></c:set>
 <c:forEach var="carnum" items="${curpark}">
 <c:set var="num" value="${num + 1}"></c:set>
@@ -136,7 +137,6 @@
 <canvas id="B1"></canvas>
 <!-- <script src="../jQuery/jquery-1.3.2-vsdoc2.js" type="text/javascript"></script> -->
 <script type="text/javascript">
-
  $(function(){
 	init();
 });

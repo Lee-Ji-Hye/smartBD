@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
-<%@ include file="../../common/header.jsp" %>
+<%@ include file="../../common/headerAdmin.jsp" %>   
  <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
  
   <!-- ========== MAIN CONTENT ========== -->
@@ -53,7 +53,7 @@
                          data-parent="#uploadForm">
                     </span>
                   </div>
-                  <input type="text" class="form-control" name="b_name" id="listingPrice" placeholder="b_name" aria-label="Price" aria-describedby="listingPriceLabel" required
+                  <input type="text" class="form-control" name="b_name" id="listingPrice" placeholder="대륭테크노3차" aria-label="Price" aria-describedby="listingPriceLabel" required
                          data-msg="필수 항목입니다"
                          data-parent="#uploadForm"
                          data-error-class="u-has-error"

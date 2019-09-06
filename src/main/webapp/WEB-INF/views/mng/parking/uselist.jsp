@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
-<%@ include file="../../common/header.jsp" %>    
+<%@ include file="../../common/headerAdmin.jsp" %>      
 <html>
 <body>
 <!-- ========== MAIN ========== -->
@@ -67,7 +67,7 @@
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/uselist" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
+                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/uselist" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
                         	주차권 발급내역
                       </a>
                     </li>
@@ -78,7 +78,7 @@
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
+                      <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
                         	주차권 사용 내역
                       </a>
                     </li>
@@ -89,8 +89,19 @@
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/refund" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/refund" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
                         	주차권 환불 내역
+                      </a>
+
+                    </li>
+                    <!-- Billing -->
+<!-- Billing -->
+                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                        data-event="hover"
+                        data-animation-in="slideInUp"
+                        data-animation-out="fadeOut">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/ticketlist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                        	주차권 등록 내역
                       </a>
 
                     </li>
@@ -141,7 +152,7 @@
                 </div>
                 <!-- End Datepicker -->
               </div>
-
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
               <div class="col-md-6">
                 <div class="d-flex">
                   <div class="mr-2">
@@ -266,11 +277,10 @@
 			                    </div>
 			                  </td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.parking_code}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_ocode}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.userid}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_ocode}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.car_number}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.use_day}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_count}</td>
 			                  <td class="align-middle text-primary"></td>
 	              		</tr>
 	              		</c:forEach>
@@ -280,6 +290,7 @@
             </div>
             <!-- End Activity Table -->
 
+	 ${paging.html_mk_page()}
             <!-- Pagination -->
             <div class="d-flex align-items-center">
               <nav id="datatablePagination" aria-label="Activity pagination"></nav>
