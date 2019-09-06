@@ -79,8 +79,8 @@ public class ParkingDAOImpl implements ParkingDAO{
 	}
 
 	@Override
-	public List<ParkingVO> getpaylist() {
-		return sqlSession.selectList("ParkingDAO.getpaylist");
+	public List<ParkingVO> getpaylist(Map<String, Object> map) {
+		return sqlSession.selectList("ParkingDAO.getpaylist",map);
 	}
 
 	
@@ -92,6 +92,16 @@ public class ParkingDAOImpl implements ParkingDAO{
 	@Override
 	public List<ParkingVO> getorderlist(Map<String, Object> map) {
 		return sqlSession.selectList("ParkingDAO.getorderlist",map);
+	}
+
+	@Override
+	public int getinsertCnt() {
+		return sqlSession.selectOne("ParkingDAO.getinsertCnt");
+	}
+
+	@Override
+	public List<ParkingVO> getinsertlist(Map<String, Object> map) {
+		return sqlSession.selectList("ParkingDAO.getinsertlist",map);
 	}
 
 	

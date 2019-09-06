@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
-<%@ include file="../../common/header.jsp" %>    
+<%@ include file="../../common/headerAdmin.jsp" %>   
 <html>
 <body>
 <!-- ========== MAIN ========== -->
@@ -62,13 +62,12 @@
               <nav class="js-breadcrumb-menu navbar navbar-expand-lg u-header__navbar u-header__navbar--no-space">
                 <div id="breadcrumbNavBar" class="collapse navbar-collapse u-header__navbar-collapse">
                   <ul class="navbar-nav u-header__navbar-nav">
-                    <!-- General -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+               <li class="nav-item hs-has-sub-menu u-header__nav-item"
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/uselist" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
-                        	주차권 사용내역
+                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/uselist" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
+                        	주차권 발급내역
                       </a>
                     </li>
                     <!-- General -->
@@ -78,8 +77,8 @@
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
-                        	주차권 발급 내역
+                      <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
+                        	주차권 사용 내역
                       </a>
                     </li>
                     <!-- Account Settings -->
@@ -89,13 +88,22 @@
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/refund" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/refund" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
                         	주차권 환불 내역
                       </a>
 
                     </li>
                     <!-- Billing -->
+<!-- Billing -->
+                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                        data-event="hover"
+                        data-animation-in="slideInUp"
+                        data-animation-out="fadeOut">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/ticketlist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                        	주차권 등록 내역
+                      </a>
 
+                    </li>
                   
                   </ul>
                 </div>
@@ -170,7 +178,7 @@
             </div>
             <!-- End Activity Menu -->
           </div>
-
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
           <div class="card-body p-4">
             <!-- Activity Table -->
             <div class="table-responsive-md u-datatable">

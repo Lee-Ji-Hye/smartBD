@@ -99,7 +99,7 @@ public class UserAuthenticationService implements UserDetailsService {
 				authority.add(new UserGrantedAuthority());
 			}
 		}
-		
+		log.debug(authority.toString());
 		//(!true) ==> (disabled = !enabled)
 		//회원 정보를 리턴
 		return User.builder().username(user.get("username").toString())

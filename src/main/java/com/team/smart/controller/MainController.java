@@ -214,7 +214,7 @@ public class MainController {
 	//	
 	//	
 //		//주차장 등록
-//		@RequestMapping("insertplace")
+//		@RequestMapping({"insertplace","sadsadsadas"})
 //		public String insertplace(HttpServletRequest req, Model model) {
 //			return "mng/parking/insertplace";
 //		}

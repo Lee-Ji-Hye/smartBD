@@ -10,8 +10,17 @@
 <script type="text/javascript">
 setTimeout(function(){
 	alert("등록되었습니다.");
-	window.location = 'insertplace';	/* cnt == 2 */ 
-},2000);
+	window.location = 'inst4';	/* cnt == 2 */ 
+},500);
+</script>
+</c:if>
+
+<c:if test="${parkingcode !=1}">
+<script type="text/javascript">
+setTimeout(function(){
+	alert("등록에 실패하였습니다.");
+	window.location = 'inst4';	/* cnt == 2 */ 
+},500);
 </script>
 </c:if>
 </head>

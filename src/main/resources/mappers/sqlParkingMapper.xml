@@ -96,8 +96,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from parking_ticket_history_tbl
 	</select>
 	
-	<select id="getpaylist" resultType="com.team.smart.parking.vo.ParkingVO">
-	select * from parking_ticket_history_tbl order by p_ocode 
+	<select id="getpaylist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
+			<![CDATA[
+		select * from (select pt.*,rownum rNum from parking_ticket_history_tbl pt)
+		  where rNum >=#{start} and rNum <= #{end} order by p_ocode
+		   ]]>
 	</select>
 	
 	<select id="getOrderCnt" resultType="int">
@@ -108,6 +111,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<![CDATA[
 		select * from (select pt.*,rownum rNum from parking_ticket_order_tbl pt)
 		  where rNum >=#{start} and rNum <= #{end} order by p_ocode
+	  ]]>
+	</select>
+	
+	<select id="getinsertCnt" resultType="int">
+		select count(*) from parking_ticket_info_tbl  
+	</select>
+	
+	<select id="getinsertlist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
+	<![CDATA[
+		select * from (select pt.*,rownum rNum from parking_ticket_info_tbl  pt)
+		  where rNum >=#{start} and rNum <= #{end} order by p_code
 	  ]]>
 	</select>
 	

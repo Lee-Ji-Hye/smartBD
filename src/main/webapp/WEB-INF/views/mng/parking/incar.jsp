@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
-<%@ include file="../../common/header.jsp" %>    
+<%@ include file="../../common/headerAdmin.jsp" %>    
 <html>
 <body>
 <!-- ========== MAIN ========== -->
@@ -154,7 +154,7 @@
                     </select>
                     <!-- End Select -->
                   </div>
-
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                   <!-- Search -->
                   <div class="js-focus-state input-group input-group-sm">
                     <div class="input-group-prepend">

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
-<%@ include file="../../common/header.jsp" %>    
+<%@ include file="../../common/headerAdmin.jsp" %>     
 <html>
 <body>
 <!-- ========== MAIN ========== -->
@@ -63,11 +63,11 @@
                 <div id="breadcrumbNavBar" class="collapse navbar-collapse u-header__navbar-collapse">
                   <ul class="navbar-nav u-header__navbar-nav">
                     <!-- General -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                   <li class="nav-item hs-has-sub-menu u-header__nav-item"
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/uselist" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
+                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/uselist" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
                         	주차권 발급내역
                       </a>
                     </li>
@@ -78,7 +78,7 @@
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
+                      <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
                         	주차권 사용 내역
                       </a>
                     </li>
@@ -89,13 +89,23 @@
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/refund" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/refund" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
                         	주차권 환불 내역
                       </a>
 
                     </li>
                     <!-- Billing -->
+<!-- Billing -->
+                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                        data-event="hover"
+                        data-animation-in="slideInUp"
+                        data-animation-out="fadeOut">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/ticketlist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                        	주차권 등록 내역
+                      </a>
 
+                    </li>
+                    <!-- Billing -->
                   
                   </ul>
                 </div>
@@ -254,6 +264,7 @@
                         </div>
                       </div>
                     </th>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <th scope="col" class="font-weight-medium">
                       <div class="d-flex justify-content-between align-items-center">
                         	카카오페이 tid
@@ -392,7 +403,13 @@
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_ocode}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_code}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.userid}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_state}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.p_state == 0}"> <input type="button" value="결재대기"></c:if>
+			                  <c:if test="${dto.p_state == 1}"><input type="button" value="결제완료"></c:if>
+			                  <c:if test="${dto.p_state == 2}"><input type="button" value="결제완료"></c:if>
+			                  <c:if test="${dto.p_state == 3}"><input type="button" value="사용완료 "></c:if>
+			                  <c:if test="${dto.p_state == 4}"><input type="button" value="환불요청 "></c:if>
+			                  <c:if test="${dto.p_state == 5}"><input type="button" value="환불 완료"></c:if>
+			                     <c:if test="${dto.p_state == 6}"><input type="button" value="환불 완료"></c:if></td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_oprice}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_count}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.tid}</td>
