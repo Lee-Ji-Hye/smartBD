@@ -7,7 +7,7 @@
 <c:if test="${cnt ==1}">
 	<script type="text/javascript">
 		alert("삭제 성공")
-		window.location="roomlist"
+		window.location="/smart/bd_office/roomlist";
 	</script>
 </c:if>
 </body>

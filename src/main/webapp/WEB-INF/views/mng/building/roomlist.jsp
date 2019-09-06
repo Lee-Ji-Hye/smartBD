@@ -130,7 +130,7 @@ pageEncoding="UTF-8"%>
 			                      </label>
 			                    </div>
 			                  </td>
-			                  <td class="align-middle text-secondary font-weight-normal "><a href="${path}/mng/roomdetail?r_code=${dto.r_code}">${dto.r_code}</a></td>
+			                  <td class="align-middle text-secondary font-weight-normal "><a href="${path_r_mng}/roomdetail?r_code=${dto.r_code}">${dto.r_code}</a></td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_name}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_type}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_price}</td>

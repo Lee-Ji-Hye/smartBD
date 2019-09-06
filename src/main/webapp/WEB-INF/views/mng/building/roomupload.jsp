@@ -36,7 +36,7 @@
         </div>
         <!-- End Title -->
 		
-        <form id="uploadForm" class="js-validate svg-preloader" method="post" action="${path_m}/uploadPro">
+        <form id="uploadForm" class="js-validate svg-preloader" method="post" action="${path_r_mng}/uploadPro">
          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		 <input type="hidden" name="mode" value="${mode}">
 		 <input type="hidden" name="r_code" value="${dto.r_code}" />
