@@ -27,8 +27,17 @@ public interface FoodService {
 	// 쿠폰 리스트 삭제
 	public void delCoupon(HttpServletRequest req, Model model);
 	
-	// 음식점 상품 등록 + 수정
+	// 음식점 상품 등록 
 	public void insertGoodsIntro(MultipartHttpServletRequest req, Model model);
+	
+	// 음식점 상품 등록시 등록 건
+	public void getGoods(HttpServletRequest req, Model model);
+	
+	// 음식점 상품 등록 수정 
+	public void modGoodsSu(HttpServletRequest req, Model model);
+	
+	// 음식점 상품 등록 수정 처리
+	public void modGoodsSuEnd(MultipartHttpServletRequest req, Model model);
 	
 	// 음식점 상품 리스트
 	public void getGoodsList(HttpServletRequest req, Model model);

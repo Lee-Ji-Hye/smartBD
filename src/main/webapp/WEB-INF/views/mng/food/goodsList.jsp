@@ -19,8 +19,8 @@ pageEncoding="UTF-8"%>
           <div class="row justify-content-sm-between align-items-sm-center">
           <div class="col-md-12">
            	<!-- Buttons -->
-           		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="float: right;" onclick="window.location='${path}/cp_manager/menumn/inst'">등록</button>
    				<button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover " style="float: right; margin-right:10px;">삭제</button>
+           		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="float: right;" onclick="window.location='${path}/cp_manager/menumn/inst'">등록</button>
    			<!-- End Buttons -->
       	</div>
           </div>
@@ -61,6 +61,11 @@ pageEncoding="UTF-8"%>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
+                      	메뉴코드
+                      </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
                       	메뉴명
                       </div>
                   </th>
@@ -79,6 +84,11 @@ pageEncoding="UTF-8"%>
                       	아이콘
                       </div>
                  </th>
+                 <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	수정
+                      </div>
+                 </th>
                 </tr>
               </thead>
               <tbody class="font-size-1">
@@ -86,17 +96,18 @@ pageEncoding="UTF-8"%>
               	<tr class="text-uppercase font-size-1">
                   <td class="align-middle">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
-                      <input type="checkbox" class="custom-control-input" name="f_code" id="invoiceCheckbox0${status.count}">
+                      <input type="checkbox" class="custom-control-input" name="f_code" id="invoiceCheckbox0${status.count}" value="${dto.f_code}">
                       <label class="custom-control-label" for="invoiceCheckbox0${status.count}">
                         <span class="text-hide">Checkbox</span>
                       </label>
                     </div>
                   </td>
+                  <td class="align-middle text-secondary font-weight-normal" >${dto.f_code}</td>
                   <td class="align-middle text-secondary font-weight-normal">${dto.f_name}</td>
                   <td class="align-middle">${dto.f_price}</td>
                   <td class="align-middle text-primary">${dto.f_type}</td>
                   <td class="align-middle text-secondary">${dto.f_icon}</td>
-                 <!--  <td class="align-middle text-danger">상태완료</td> -->
+                  <td><button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/cp_manager/menumn/mod?f_code=${dto.f_code}'">수정</button></td>
                 </tr>
                </c:forEach>
               </tbody>
@@ -135,7 +146,6 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </div>
-     
   <!-- End Content Section -->
  </div>
 </main>

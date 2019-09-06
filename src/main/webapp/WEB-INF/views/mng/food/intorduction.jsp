@@ -33,7 +33,7 @@
              <!-- End Logo -->
              
 			 <!-- Input -->
-			<div class="col-sm-6 col-lg-4 order-sm-1" style="padding:00px" >
+			<div class="col-sm-6 col-lg-5 order-sm-1" style="padding:00px" >
              <h1 class="h6 font-weight-medium mb-0">
                	카테고리
                <small class="d-block">
@@ -135,17 +135,8 @@
            </div>
            <!-- End Input -->
            </div>
-           
-           <br>
-             <!-- Address -->
-             <address>
-               	매장주소
-             </address>
-             <small class="d-block text-muted">tel: 매장 전화번호</small>
-             <!-- End Address -->
            </div>
          </div>
-
 		<!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">

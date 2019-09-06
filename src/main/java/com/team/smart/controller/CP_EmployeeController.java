@@ -57,7 +57,7 @@ public class CP_EmployeeController {
 	public String orderDetail(HttpServletRequest req, Model model) {
 		log.info("url -> orderDetail/");
 		
-		return mngFood_ + "/oldOrderList";
+		return mngFood_ + "/orderDetail";
 	}
 
 	

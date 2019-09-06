@@ -20,7 +20,7 @@ public interface FoodDAO {
 	public int insertStoreUp(Food_companyVO vo);
 	
 	// 음식점 소개 등록시 등록 글 
-	public int getStore(String comp_seq);
+	public int getStoreSel(String comp_seq);
 	
 	// 음식점 소개 등록 등록글 가져오기
 	public Food_companyVO getStoreOne(String comp_seq);
@@ -37,6 +37,9 @@ public interface FoodDAO {
 	// 음식점 쿠폰 시리얼
 	public int insertCouponSer(Map<String, Object> map);
 	
+	// 음식점 쿠폰 시리얼 리스트
+	public int getSerial(String[] f_serial);
+	
 	// 음식점 쿠폰 리스트 삭제
 	public int deleteCoupon(String[] f_coupon_num);
 	
@@ -46,8 +49,11 @@ public interface FoodDAO {
 	// 음식점 상품 등록시 등록 상품
 	public int getGoods(String comp_seq);
 	
-	// 음식점 상품 등록시 등록 상품 가져오기
-	public Food_menuVO getGoodsOne(String comp_seq);
+	// 음식점 상품 등록건
+	public Food_menuVO getGoodsOneList(String comp_seq);
+	
+	// 음식점 상품 수정시
+	public Food_menuVO getGoodsOne(String f_code);
 	
 	// 음식점 상품 등록 수정 처리하기
 	public int modifyGoodsSujung(Food_menuVO vo);
@@ -57,6 +63,9 @@ public interface FoodDAO {
 	
 	// 음식점 상품 리스트 삭제
 	public int deleteGoods(String[] f_code);
+	
+	// 페이지 처리
+	public int getPage();
 	
 	//테스트
 	public int getUniqIndex();

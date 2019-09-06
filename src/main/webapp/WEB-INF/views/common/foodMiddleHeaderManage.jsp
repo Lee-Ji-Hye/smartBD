@@ -87,8 +87,8 @@
                       </a>
 
                       <ul id="billingDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px; display: none;" aria-labelledby="billingDropdown">
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_employee/odmn/list">주문 목록</a></li>
-                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_employee/odmn/amd">지난 주문</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_employee/odmn/amd">주문 목록</a></li>
+                        <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_employee/odmn/list">지난 주문</a></li>
                       </ul>
                     </li>
                     <!-- Billing -->

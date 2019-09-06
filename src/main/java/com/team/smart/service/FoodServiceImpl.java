@@ -31,6 +31,7 @@ import com.team.smart.app.vo.FoodMenuVO;
 import com.team.smart.app.vo.FoodStoreVO;
 import com.team.smart.persistence.FoodDAO;
 import com.team.smart.utils.Functions;
+import com.team.smart.utils.Paging;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -92,7 +93,7 @@ public class FoodServiceImpl implements FoodService {
 		log.debug("업체정보 : " + comp_seq + " " + comp_org);
 		
 		// 업체 코드를 통해 등록 글 조회
-		int compCnt = f_dao.getStore(comp_seq);
+		int compCnt = f_dao.getStoreSel(comp_seq);
 		
 		Food_companyVO vo = Food_companyVO
 							.builder()
@@ -120,7 +121,7 @@ public class FoodServiceImpl implements FoodService {
 		} else {
 			int storeUpCode = f_dao.insertStoreUp(vo);
 			
-			// request나 session에 처리 결과 저장 
+			//  처리 결과 저장 
 			model.addAttribute("storeUpCode" , storeUpCode);
 		}
 		
@@ -154,6 +155,7 @@ public class FoodServiceImpl implements FoodService {
 		if(!f_start1.equals("") && !f_start2.equals("") && !f_start3.equals("")) {
 			f_coupon_start = f_start1 + "-" + f_start2 + "-" +f_start3; // 시작일
 		}
+		
 		log.debug("f_coupon_start" + f_coupon_start);
 		
 		// 쿠폰 유효기간 만료일
@@ -167,8 +169,8 @@ public class FoodServiceImpl implements FoodService {
 		}
 		
 		log.debug("f_coupon_end" + f_coupon_end);
+		
 		// 업체정보 가져오기 (업체코드, 업체명, 등록자 id)
-		// 업체정보 가져오기
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		String staff_id = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -195,7 +197,7 @@ public class FoodServiceImpl implements FoodService {
 		int couponCount = Integer.parseInt(req.getParameter("f_coupon_count"));
 		// 쿠폰 발급 수가 0장 이상일 경우
 		if(couponCount > 0) {
-
+			// 쿠폰 시리얼 번호화 쿠폰 번호
 			Map<String, Object> map = new HashMap<String,Object>();
 			map.put("f_serial", insertSerialNum());
 			map.put("f_coupon_num", funs.getCurrentcode("f_coupon_num", "food_coupon_tbl"));
@@ -206,13 +208,13 @@ public class FoodServiceImpl implements FoodService {
 			}
 		}
 		
-		// request나 session에 처리 결과 저장 
+		// 처리 결과 저장 
 		model.addAttribute("couponUpCode",couponUpCode);
 		model.addAttribute("couponCount",couponCount);
 					        
 	}
 		
-	// 쿠폰 시리얼 
+	// 쿠폰 시리얼 생성
 	@Override
 	public String insertSerialNum() {
 		    
@@ -224,11 +226,26 @@ public class FoodServiceImpl implements FoodService {
 	@Override
 	public void getCouponList(HttpServletRequest req, Model model) {
 		
-		// 업체정보 가져오기
+		// 업체정보 가져오기(업체코드, 업체명)
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
-
+		//String page = req.getParameter("page"); //현재페이지를 화면에서 가져옴
+		
+		
+		//int totCnt = 
+		
 		log.debug("쿠폰리스트 : " + comp_seq + " " + comp_org);
+		//log.debug("쿠폰리스트 : " + comp_seq + " " + page);
+		
+		//String uri = req.getRequestURI();//현재 서블릿의 uri
+		//Paging paging = new Paging(5, 5, totCnt, uri);//Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
+		
+		//paging.pagelist(page);//현재페이지번호를 넣어줌
+		
+		//HashMap<String, Object> map = new HashMap<>();
+		//map.put("startNum", paging.getStart());//시작번호
+		//map.put("endNum", paging.getEnd());//끝번호
+		//map.put("comp_seq", comp_seq);//끝번호
 		
 		List<Food_couponVO> list = f_dao.getCoupon(comp_seq);
 		
@@ -236,7 +253,7 @@ public class FoodServiceImpl implements FoodService {
 			log.debug("list i" + list.get(i).toString());
 		}
 		
-		// request나 session에 처리결과를 저장
+		// 처리결과를 저장
 		model.addAttribute("list",list);
 	}
 	
@@ -248,15 +265,18 @@ public class FoodServiceImpl implements FoodService {
 		String[] f_coupon_num = req.getParameterValues("couponChk");
 		
 		log.debug("쿠폰리스트 삭제 : " + f_coupon_num);
-			
+		 
+		// 시리얼 테이블에서 쿠폰 번호와 사용날짜로 쿠폰 조회
+		// 쿠폰 시리얼이 없으면 삭제 가능
 		int couponDel = f_dao.deleteCoupon(f_coupon_num);
 		
-		// request나 session에 처리결과를 저장
+		// 처리결과를 저장
 		model.addAttribute("couponDel", couponDel);
-		
+			
+			
 	}
 	
-	// 음식점 상품 등록 + 수정
+	// 음식점 상품 등록 
 	@Override
 	public void insertGoodsIntro(MultipartHttpServletRequest req, Model model) {
 		
@@ -290,8 +310,7 @@ public class FoodServiceImpl implements FoodService {
 			images_name = file1.getOriginalFilename();
 		}
 		
-		// 음식점 소개 등록 VO에 담기
-		// 업체정보 가져오기
+		// 업체정보 가져오기(업체코드, 업체명)
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 
@@ -305,6 +324,7 @@ public class FoodServiceImpl implements FoodService {
 		// 업체 코드를 통해 등록 상품 조회
 		int goodsCnt = f_dao.getGoods(comp_seq);
 		
+		// 음식점 소개 등록 VO에 담기
 		Food_menuVO vo = Food_menuVO
 						.builder()
 						.comp_seq(comp_seq)
@@ -319,28 +339,31 @@ public class FoodServiceImpl implements FoodService {
 						
 		log.debug("Food_menuVO:" + vo.toString());
 		
-		if(goodsCnt == 1) {
-			// 수정 처리 
-			int goodsSujungCnt = f_dao.modifyGoodsSujung(vo);
-			
-			log.debug("goodsSujungCnt" + goodsSujungCnt);
-			
-			// 처리 결과 저장
-			model.addAttribute("goodsSujungCnt", goodsSujungCnt);
-		// 등록된 글이 없으면 등록
-		} else {
-			int storeUpCode = f_dao.insertGoodsUp(vo);
-			
-			// request나 session에 처리 결과 저장 
-			model.addAttribute("storeUpCode" , storeUpCode);
-		}
+		int storeUpCode = f_dao.insertGoodsUp(vo);
+		// 처리 결과 저장 
+		model.addAttribute("storeUpCode" , storeUpCode);
+	}
+	
+	// 음식점 상품 등록시 등록 건
+	@Override
+	public void getGoods(HttpServletRequest req, Model model) {
+		
+		// 업체정보 가져오기 (업체코드, 업체명, 등록자 id)
+		// 업체정보 가져오기
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
+		String comp_org = (String)req.getSession().getAttribute("comp_org");
+		
+		Food_menuVO menu = f_dao.getGoodsOneList(comp_seq);
+		
+		model.addAttribute("menu", menu);
+		
 	}
 
 	// 음식점 상품 리스트
 	@Override
 	public void getGoodsList(HttpServletRequest req, Model model) {
 		
-		// 업체정보 가져오기
+		// 업체정보 가져오기(업체코드,업체명)
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 
@@ -352,9 +375,80 @@ public class FoodServiceImpl implements FoodService {
 			log.debug("food i" + food.get(i).toString());
 		}
 		
-		// request나 session에 처리결과를 저장
+		// 처리결과를 저장
 		model.addAttribute("food", food);
 		
+	}
+	
+	// 음식점 상품 등록 수정 
+	@Override
+	public void modGoodsSu(HttpServletRequest req, Model model) {
+		
+		// 업체정보 가져오기(업체코드,업체명, 상품코드)
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
+		String comp_org = (String)req.getSession().getAttribute("comp_org");
+		String f_code = req.getParameter("f_code");
+		
+		Food_menuVO vo = f_dao.getGoodsOne(f_code);
+		
+		model.addAttribute("vo",vo);
+		
+	}
+
+	// 음식점 상품 등록 수정 처리
+	@Override
+	public void modGoodsSuEnd(MultipartHttpServletRequest req, Model model) {
+		
+		// 업체정보 가져오기(업체코드,업체명, 상품코드)
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
+		String comp_org = (String)req.getSession().getAttribute("comp_org");
+		String f_code = req.getParameter("f_code");
+		
+		MultipartFile file1 = req.getFile("f_img");
+
+		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); 
+		System.out.println(uploadPath);
+		String realDir = "C:\\Users\\KIM\\git\\smartBD_new\\src\\main\\webapp\\resources\\images\\food\\";  
+		
+		try {
+			
+			if(file1 != null) {
+				file1.transferTo(new File(uploadPath+file1.getOriginalFilename()));
+				
+				FileInputStream fis1 = new FileInputStream(uploadPath + file1.getOriginalFilename());
+				FileOutputStream fos1 = new FileOutputStream(realDir + file1.getOriginalFilename());
+				
+				int data = 0;
+				while((data = fis1.read()) != -1) { fos1.write(data); }
+				fis1.close();
+			fos1.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 이미지 없을 때 처리
+		if(file1 != null) {
+			images_name = file1.getOriginalFilename();
+		}
+		
+		// 음식점 상품 수정 정보VO에 담기
+		Food_menuVO vo = Food_menuVO
+						.builder()
+						.comp_seq(comp_seq)
+						.f_code(f_code)
+						.f_name(req.getParameter("f_name"))
+						.f_price(Integer.parseInt(req.getParameter("f_price")))
+						.f_icon(req.getParameter("f_icon"))
+						.f_type(req.getParameter("f_type"))
+						.f_img(images_name)
+						.build();
+		
+		int modCnt = f_dao.modifyGoodsSujung(vo);
+		
+		// 처리결과 저장
+		model.addAttribute("modCnt", modCnt);
+						
 	}
 
 	// 음식점 상품 삭제
@@ -378,5 +472,7 @@ public class FoodServiceImpl implements FoodService {
 	public void test(HttpServletRequest req) {
 		
 	}
+
 	
+
 }
