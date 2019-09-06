@@ -237,6 +237,7 @@
                   <a id="navLinkPagesPortfolio" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_office/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesPortfolio">임대 파트 관리</a>
 
                   <ul id="navSubmenuPagesPortfolio" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesPortfolio" style="min-width: 230px;">
+                  <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_office/roomlist">매물 정보</a></li>
                     <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_office/rntmn">계약 관리</a></li>
                     <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_office/paymn">납부 관리</a></li>
                       <li class="dropdown-divider"></li>

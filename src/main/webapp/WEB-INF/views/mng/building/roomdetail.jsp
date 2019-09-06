@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
-<%@ include file="../../common/header.jsp" %>
+<%-- <%@ include file="../../common/header.jsp" %> --%>
+<%@ include file="../../common/headerAdmin.jsp" %>
 <link href="/smart/resources/css/bxslider/bxslider.css" rel="stylesheet" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
@@ -144,19 +145,19 @@
           <span class="text-secondary font-size-1">December 27, 2018</span>
         </div>
 
-        <a class="btn btn-sm btn-outline-secondary border-white" href="/smart/mng/roomlist"
+        <a class="btn btn-sm btn-outline-secondary border-white" href="${path_r_mng}/roomlist"
            data-target="#calculatorSection"
            data-type="static">
           <img src="${resourceImg}/room/search.png" width=15px; height=15px">
           	매물 목록으로 
         </a>
 
-        <a class="btn btn-sm btn-outline-secondary border-white" href="/smart/mng/roomupload/?mode=edit&r_code=${dto.r_code}">
+        <a class="btn btn-sm btn-outline-secondary border-white" href="${path_r_mng}/roomupload/?mode=edit&r_code=${dto.r_code}">
           <img src="${resourceImg}/room/writing.png" width=15px; height=15px">
           	 매물 수정하기 
         </a>
 
-        <a class="btn btn-sm btn-outline-secondary border-white" href="/smart/mng/deletePro/?r_code=${dto.r_code}">
+        <a class="btn btn-sm btn-outline-secondary border-white" href="${path_r_mng}/deletePro/?r_code=${dto.r_code}">
           <img src="${resourceImg}/room/trash.png" width=15px; height=15px">
           	매물 삭제하기
         </a>
@@ -492,7 +493,7 @@
 
             <div class="tab-pane fade pt-6" id="pills-two" role="tabpanel" aria-labelledby="pills-two-tab">
               <!-- Gallery -->
-              <a class="js-fancybox u-media-viewer" href="/smart/mng/imageadd?r_code=${dto.r_code}"
+              <a class="js-fancybox u-media-viewer" href="${path_r_mng}/imageadd?r_code=${dto.r_code}"
                  data-src="../../assets/img/others/img1.png"
                  data-fancybox="fancyboxGalleryFloorPlan"
                  data-caption="Floorplan image #01"
