@@ -29,8 +29,8 @@ public class FoodDAOImpl implements FoodDAO {
 	
 	// 음식점 소개 등록시 등록 글
 	@Override
-	public int getStore(String comp_seq) {
-		return sqlSession.selectOne("FoodDAO.getStore", comp_seq);
+	public int getStoreSel(String comp_seq) {
+		return sqlSession.selectOne("FoodDAO.getStoreSel", comp_seq);
 	}
 	
 	// 음식점 소개 등록시 글 한 건 가져오기 
@@ -62,6 +62,12 @@ public class FoodDAOImpl implements FoodDAO {
 	public int insertCouponSer(Map<String, Object> map) {
 		return sqlSession.insert("FoodDAO.insertCouponSer", map);
 	}
+	
+	// 음식점 쿠폰 시리얼 확인
+	@Override
+	public int getSerial(String[] f_coupon_num) {
+		return sqlSession.selectOne("FoodDAO.getSerial", f_coupon_num);
+	}
 
 	// 음식점 쿠폰 리스트 삭제
 	@Override
@@ -75,25 +81,28 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.insert("FoodDAO.insertGoodsUp", vo);
 	}
 
-	// 음식점 상품 등록시 등록 상품
+	// 음식점 상품 등록시 업체 코드로 등록 상품
 	@Override
 	public int getGoods(String comp_seq) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne("FoodDAO.getGoods", comp_seq);
 	}
 
-	// 음식점 상품 등록시 등록 상품 가져오기
+	// 음식점 상품 수정시 상품코드로 등록 상품 가져오기
 	@Override
-	public Food_menuVO getGoodsOne(String comp_seq) {
-		// TODO Auto-generated method stub
-		return null;
+	public Food_menuVO getGoodsOne(String f_code) {
+		return sqlSession.selectOne("FoodDAO.getGoodsOne",f_code);
+	}
+	
+	// 음식점 상품 등록시
+	@Override
+	public Food_menuVO getGoodsOneList(String comp_seq) {
+		return sqlSession.selectOne("FoodDAO.getGoodsOneList", comp_seq);
 	}
 
 	// 음식점 상품 등록 수정 처리하기
 	@Override
 	public int modifyGoodsSujung(Food_menuVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("FoodDAO.modifyGoodsSujung", vo);
 	}
 
 	// 음식점 상품 리스트
@@ -107,6 +116,12 @@ public class FoodDAOImpl implements FoodDAO {
 	public int deleteGoods(String[] f_code) {
 		return sqlSession.delete("FoodDAO.deleteGoods", f_code);
 	}
+	
+	// 페이지 처리
+	@Override
+	public int getPage() {
+		return sqlSession.selectOne("FoodDAO.getPage");
+	}
 
 	// ============================= 테스트
 	@Override
@@ -115,13 +130,6 @@ public class FoodDAOImpl implements FoodDAO {
 		System.out.println("~!!!!!!!!!!!!!!!!!!!!!!!!!!~");
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
-
-	
-
-	
-	
-	
-
 
 	
 	

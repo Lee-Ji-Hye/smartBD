@@ -89,6 +89,8 @@ public class CP_ManagerController {
 	public String menu(HttpServletRequest req, Model model) {
 		log.info("url -> menu");
 		
+		service.getGoods(req, model);
+		
 		return mngFood_ + "/menuUpload";
 	}
 	
@@ -99,7 +101,27 @@ public class CP_ManagerController {
 		
 		service.insertGoodsIntro(req, model);
 		
-		return "redirect:/cp_manager/menumn/inst";
+		return "redirect:/cp_manager/menumn/list";
+	}
+	
+	// 메뉴 수정 
+	@RequestMapping("/menumn/mod")
+	public String menuMod(HttpServletRequest req, Model model) {
+		log.info("url -> menuMod");
+		
+		service.modGoodsSu(req, model);
+		
+		return mngFood_ + "/menuUpload";
+	}
+	
+	// 메뉴 수정 처리
+	@RequestMapping("/menumn/modPro")
+	public String menuModPro(MultipartHttpServletRequest req, Model model) {
+		log.info("url -> menuModPro");
+		
+		service.modGoodsSuEnd(req, model);
+		
+		return "redirect:/cp_manager/menumn/list";
 	}
 	
 	// 메뉴 삭제

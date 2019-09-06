@@ -1,127 +1,179 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
-<%@ include file="../../common/header.jsp" %> 
+<%@ include file="../../common/header.jsp" %>
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
-
-<!-- Main -->
-<div class="container space-2 px-md-7 px-lg-11">
-      <div class="card bg-img-hero" style="background-image: url(../../assets/svg/components/bg-elements-6.svg);">
-        <div class="card-body p-5 p-md-7 p-lg-11">
-          <div class="row justify-content-lg-between align-items-sm-center mb-11">
-            <div class="col-sm-6 col-lg-4 order-sm-2 text-sm-right mb-5 mb-sm-0">
-              <h1 class="h2 font-weight-medium mb-0">
-                	매장코드
-                <small class="d-block">코드번호</small>
-              </h1>
+ 
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+  <div class="bg-light">
+    <div class="container space-2">
+      <div class="card">
+        <div class="card-header py-4 px-0 mx-4">
+          <!-- Activity Menu -->
+          <div class="row justify-content-sm-between align-items-sm-center">
+            <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
+              
+              <!-- Datepicker -->
+              <div id="datepickerWrapper" class="js-focus-state u-datepicker w-auto input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <span class="fas fa-calendar"></span>
+                  </span>
+                </div>
+                
+                <input type="text" class="js-range-datepicker form-control bg-white rounded-right"
+                       data-rp-wrapper="#datepickerWrapper"
+                       data-rp-type="range"
+                       data-rp-date-format="d M Y"
+                       data-rp-default-date='["05 Jul 2019", "19 Jul 2019"]'
+                       data-rp-is-disable-future-dates="true">
+              </div>
+              <!-- End Datepicker -->
             </div>
-
-            <div class="col-sm-6 col-lg-4 order-sm-1">
-              <!-- Logo -->
-             <!--  <img class="mb-2" src="../../assets/svg/logos/logo-short.svg" alt="Logo"> -->
-              <h2 class="h1 text-primary font-weight-semi-bold">매장이름</h2>
-              <!-- End Logo -->
-
-              <!-- Address -->
-              <address>
-                	매장주소
-              </address>
-              <small class="d-block text-muted">tel: 매장 전화번호</small>
-              <!-- End Address -->
-            </div>
+           <!--  <div class="col-md-6">
+              <div class="d-flex">
+                <div class="mr-2">
+                  Select
+                  <select id="datatableEntries" class="js-select selectpicker dropdown-select" data-width="fit" data-style="btn-soft-primary btn-sm">
+                    <option value="6">6 entries</option>
+                    <option value="12" selected>12 entries</option>
+                    <option value="18">18 entries</option>
+                    <option value="24">24 entries</option>
+                  </select>
+                  End Select
+                </div>
+                Search
+                <div class="js-focus-state input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="searchActivities">
+                      <span class="fas fa-search"></span>
+                    </span>
+                  </div>
+                  <input id="datatableSearch" type="email" class="form-control" placeholder="Search activities" aria-label="Search activities" aria-describedby="searchActivities">
+                </div>
+                End Search
+              </div>
+            </div> -->
           </div>
-
-          <!-- Bill To -->
-          <div class="row justify-content-md-between mb-7">
-            <div class="col-md-5 col-lg-4">
-              <h3 class="h5">주문 내역</h3>
-              <span class="d-block">주문자 </span>
-              <address class="text-secondary mb-0">
-               		주문자 아이디
-              </address>
-            </div>
-
-            <div class="col-md-5 col-lg-4 mt-6">
-              <dl class="row mb-0">
-                <dt class="col-5 col-md-6 font-weight-normal text-secondary">테이크아웃</dt>
-                <dd class="col-7 col-md-6 font-weight-medium">먹어/포장</dd>
-              </dl>
-              <dl class="row mb-0">
-                <dt class="col-5 col-md-6 font-weight-normal text-secondary">픽업시간</dt>
-                <dd class="col-7 col-md-6 font-weight-medium">픽업시간</dd>
-              </dl>
-            </div>
+          <!-- End Activity Menu -->
+        </div>
+        <div class="card-body p-4">
+          <!-- Activity Table -->
+          <div class="table-responsive-md u-datatable">
+            <table class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5"
+                   data-dt-info="#datatableInfo"
+                   data-dt-search="#datatableSearch"
+                   data-dt-entries="#datatableEntries"
+                   data-dt-page-length="12"
+                   data-dt-is-responsive="false"
+                   data-dt-is-show-paging="true"
+                   data-dt-details-invoker=".js-datatabale-details"
+                   data-dt-select-all-control="#invoiceToggleAllCheckbox"
+                   data-dt-pagination="datatablePagination"
+                   data-dt-pagination-classes="pagination mb-0"
+                   data-dt-pagination-items-classes="page-item"
+                   data-dt-pagination-links-classes="page-link"
+                   data-dt-pagination-next-classes="page-item"
+                   data-dt-pagination-next-link-classes="page-link"
+                   data-dt-pagination-next-link-markup='<span aria-hidden="true">&raquo;</span>'
+                   data-dt-pagination-prev-classes="page-item"
+                   data-dt-pagination-prev-link-classes="page-link"
+                   data-dt-pagination-prev-link-markup='<span aria-hidden="true">&laquo;</span>'>
+              <thead>
+                <tr class="text-uppercase font-size-1">
+                  <th scope="col">
+                    <div class="custom-control custom-checkbox d-flex align-items-center">
+                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+                        <span class="text-hide">Checkbox</span>
+                      </label>
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	아이디
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center" onclick="window.location='orderList'">
+                      	메뉴명
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	가격
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	시간
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	상태
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="font-size-1">
+              	<c:forEach var="ovo" items="" varStatus="status">
+              		<tr class="text-uppercase font-size-1">
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceCheckbox0${status.count}">
+	                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <td><a href="orderList?userid=">${ovo.userid}</a></td>
+	                  <td>${ovo.f_name}</td>
+	                  <td>${ovo.f_amount}</td>
+	                  <td>${ovo.f_regidate}</td>
+	                  <td>${ovo.f_status}</td>
+	                </tr>
+              	</c:forEach>
+              </tbody>
+            </table>
           </div>
-          <!-- End Bill To -->
-
-          <!-- Table -->
-          <table class="table table-heighlighted font-size-1 mb-9">
-            <thead>
-              <tr class="text-uppercase text-secondary">
-                <th scope="col" class="font-weight-medium">메뉴명</th>
-                <th scope="col" class="font-weight-medium">수량</th>
-                <th scope="col" class="font-weight-medium">가격</th>
-                <th scope="col" class="font-weight-medium text-right">요청사항</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" class="font-weight-normal">카페라떼</th>
-                <td>5</td>
-                <td>12,000</td>
-                <td class="text-right">달달하게</td>
-              </tr>
-              <!--<tr>
-                <th scope="row" class="font-weight-normal">12,000</th>
-                <td>24</td>
-                <td>1</td>
-                <td class="text-right">달달하게</td>
-              </tr>
-               <tr>
-                <th scope="row" class="font-weight-normal">SEO</th>
-                <td>6</td>
-                <td>1</td>
-                <td class="text-right">$2000</td>
-              </tr>
-            </tbody>
-            <tfoot> -->
-              <tr class="h6">
-                <td scope="row">Total</td>
-                <td colspan="3" class="text-right">총 합계</td>
-              </tr>
-            </tfoot>
-          </table>
-          <!-- End Table -->
-
-          <!-- Contacts -->
-          <div class="row justify-content-lg-between">
-            <div class="col-md-8 col-lg-4 order-md-2 mb-5 mb-md-0">
-              <h4 class="h6">Thank you!</h4>
-              <p class="font-size-1">시스템을 이용해주셔서 감사합니다!!</p>
-
-              <span class="d-block">
-                <small class="font-weight-medium">email:</small>
-                <small class="text-muted">시스템관리자정보?</small>
-              </span>
-              <small class="font-weight-medium">telephone:</small>
-              <small class="text-muted">+1 (062) 109-9222</small>
-            </div>
-
-            <div class="col-md-4 col-lg-3 order-md-1 align-self-end">
-              <p class="small text-muted mb-0">© 2019 Smart.</p>
-            </div>
+          <!-- End Activity Table -->
+          <!-- Pagination -->
+          <div class="pagingDivCenter01">
+	          <div class="pagingDivCenter02">
+	            <nav id="datatablePagination" aria-label="Activity pagination">
+	             <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">
+	             	<span class="page-item">
+		              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
+		             		<span aria-hidden="true">«</span>
+		             	</a>
+	             	</span>
+	             	<span style="display: flex;">
+	             		<span class="page-item">
+	             			<a class="paginate_button page-link" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a>
+	             		</span>
+	             		<span class="page-item active">
+	             			<a class="paginate_button current page-link" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">2</a>
+	             		</span>
+	             	</span>
+	             	<span class="page-item">
+	             		<a class="paginate_button next disabled page-link" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" id="DataTables_Table_0_next">
+	             			<span aria-hidden="true">»</span>
+	             		</a>
+	             	</span>
+	             </div>
+	            </nav>
+	            <small id="datatableInfo" class="text-secondary ml-auto"></small>
+	          </div>
           </div>
-          <!-- End Contacts -->
+          <!-- End Pagination -->
         </div>
       </div>
-
-      <div class="text-right mt-5">
-        <button type="button" class="btn btn-primary btn-sm-wide transition-3d-hover" onclick="window.print();return false;">
-          <span class="fas fa-print mr-2"></span>
-          	주문승인
-        </button>
-      </div>
     </div>
- <!-- footer start -->
+  </div>
+  <!-- End Content Section -->
+</main>
+<!-- ========== END MAIN ========== -->
 <%@ include file="../../common/footer.jsp" %>
-<!-- footer end -->
+</body>

@@ -28,4 +28,10 @@ public class Food_orderVO {
     private String f_pay_type;			// 결제수단
     private int f_refund_price;			// 환불금액
     private int f_rate;					// 수수료
+    
+    // 음식점 주문 상세테이블VO
+    private String f_odetail_code;		// 주문상세코드
+    private String f_name;				// 메뉴명
+    private int f_cnt;					// 주문 수량
+    private int f_price;				// 가격
 }
