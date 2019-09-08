@@ -43,7 +43,7 @@ public interface FoodDAO {
 	// 음식점 쿠폰 리스트 삭제
 	public int deleteCoupon(String[] f_coupon_num);
 	
-	// 음식점 상품 등록  페이지 처리
+	// 음식점 상품 등록 
 	public int insertGoodsUp(Food_menuVO vo);
 	
 	// 음식점 상품 등록시 등록 상품
@@ -59,13 +59,16 @@ public interface FoodDAO {
 	public int modifyGoodsSujung(Food_menuVO vo);
 	
 	// 음식점 상품 리스트
-	public List<Food_menuVO> getGoodsList(String comp_seq);
+	public List<Food_menuVO> getGoodsList(Map<String, Object> map);
 	
 	// 음식점 상품 리스트 삭제
 	public int deleteGoods(String[] f_code);
 	
-	// 페이지 처리
-	public int getPage();
+	// 쿠폰 페이지 처리
+	public int getCouponPage();
+	
+	// 상품 등록 페이지 처리
+	public int getGoodsPage();
 	
 	//테스트
 	public int getUniqIndex();

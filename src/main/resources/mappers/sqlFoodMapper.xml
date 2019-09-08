@@ -38,9 +38,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{f_serial}, #{f_coupon_num})
 	</insert>
 	
+	<!-- 음식점 쿠폰 갯수 조회 -->
+	<select id="getCouponPage" resultType="int">
+		SELECT COUNT(*) FROM food_coupon_tbl
+	</select>
+	
 	<!-- 음식점 쿠폰 리스트 조회 -->
 	<select id="getCoupon" resultType="com.team.smart.food.vo.Food_couponVO" parameterType="java.util.Map"> 
-		 SELECT * FROM food_coupon_tbl
+		<![CDATA[
+		SELECT comp_seq, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end
+         FROM (SELECT comp_seq, rownum rNum, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end
+              FROM (SELECT comp_seq, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end FROM food_coupon_tbl order by comp_seq desc))
+        where rNum>=#{startNum}
+        and rNum<=#{endNum}
+    	]]>
 	</select>
 	
 	<!-- 음식점 쿠폰 시리얼 있는지 확인 -->
@@ -67,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM food_menu_tbl WHERE comp_seq = #{comp_seq}
 	</select>
 	
-	<!-- 음식점 상품등록건 -->
+	<!-- 음식점 상품등록 한 건 가져오기 -->
 	<select id="getGoodsOneList" resultType="com.team.smart.food.vo.Food_menuVO" parameterType="String">
 		SELECT COUNT(*) FROM food_menu_tbl WHERE comp_seq = #{comp_seq}
 	</select>
@@ -82,9 +93,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE food_menu_tbl SET f_type = #{f_type}, f_name = #{f_name}, f_price = #{f_price}, f_img = #{f_img}, f_regidate = #{f_regidate} WHERE f_code = #{f_code}
 	</update>
 	
+	<!-- 음식점 상품 등록 갯수 -->
+	<select id="getGoodsPage" resultType="int">
+		SELECT COUNT(*) FROM food_menu_tbl
+	</select>
+		
 	<!-- 음식점 상품 리스트 조회 -->
-	<select id="getGoodsList" resultType="com.team.smart.food.vo.Food_menuVO" parameterType="String">
-		SELECT * FROM food_menu_tbl WHERE comp_seq = #{comp_seq}
+	<select id="getGoodsList" resultType="com.team.smart.food.vo.Food_menuVO" parameterType="java.util.Map">
+		<![CDATA[
+		SELECT comp_seq, f_type, f_name, f_price, f_img, f_icon, f_regidate
+         FROM (SELECT comp_seq, rownum rNum, f_type, f_name, f_price, f_img, f_icon, f_regidate
+              FROM (SELECT comp_seq, f_type, f_name, f_price, f_img, f_icon, f_regidate FROM food_menu_tbl ORDER BY comp_seq desc))
+        where rNum>=#{startNum}
+        AND rNum<=#{endNum}
+    	]]>
 	</select>
 	
 	<!-- 음식점 상품 리스트 삭제 -->

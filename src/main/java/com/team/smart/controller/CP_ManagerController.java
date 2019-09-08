@@ -27,6 +27,7 @@ public class CP_ManagerController {
 	FoodService service;
 	
 	private String mngFood_ = "mng/food";
+	
 
 
 	@RequestMapping({"/"})

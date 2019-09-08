@@ -107,8 +107,8 @@ public class FoodDAOImpl implements FoodDAO {
 
 	// 음식점 상품 리스트
 	@Override
-	public List<Food_menuVO> getGoodsList(String comp_seq) {
-		return sqlSession.selectList("FoodDAO.getGoodsList", comp_seq);
+	public List<Food_menuVO> getGoodsList(Map<String, Object> map) {
+		return sqlSession.selectList("FoodDAO.getGoodsList", map);
 	}
 
 	// 음식점 상품 리스트 삭제
@@ -117,10 +117,16 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.delete("FoodDAO.deleteGoods", f_code);
 	}
 	
-	// 페이지 처리
+	// 쿠폰 리스트 페이징 처리
 	@Override
-	public int getPage() {
-		return sqlSession.selectOne("FoodDAO.getPage");
+	public int getCouponPage() {
+		return sqlSession.selectOne("FoodDAO.getCouponPage");
+	}
+	
+	// 상품 리스트 페이징 처리
+	@Override
+	public int getGoodsPage() {
+		return sqlSession.selectOne("FoodDAO.getGoodsPage");
 	}
 
 	// ============================= 테스트
@@ -130,6 +136,8 @@ public class FoodDAOImpl implements FoodDAO {
 		System.out.println("~!!!!!!!!!!!!!!!!!!!!!!!!!!~");
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
+
+	
 
 	
 	
