@@ -92,11 +92,12 @@ public class UserGrantedAuthority implements GrantedAuthority {
 	public int hashCode() {
 		return this.comp_auth.hashCode();
 	}
-	
+
 	@Override
 	public String toString() {
-		return "auth=" + comp_auth + ",comp_seq=" + comp_seq + ",comp_org=" + comp_org
-				+ ",r_code=" + r_code + ",b_code=" + b_code + ",b_name=" + b_name;
+		return "[comp_auth=" + comp_auth + ", comp_seq=" + comp_seq + ", comp_org=" + comp_org
+				+ ", b_code=" + b_code + ", b_name=" + b_name + ", b_status=" + b_status + ", r_code=" + r_code
+				+ ", rt_date1=" + rt_date1 + ", rt_date2=" + rt_date2 + "]";
 	}
 	
 }

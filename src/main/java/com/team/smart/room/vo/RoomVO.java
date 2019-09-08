@@ -1,10 +1,11 @@
 package com.team.smart.room.vo;
 
 
+import java.sql.Timestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import oracle.sql.TIMESTAMP;
 
 @Data
 public class RoomVO {
@@ -25,7 +26,7 @@ public class RoomVO {
 	String r_toilet;	//화장실
 	String r_desc;		//상세설명
 	String r_pmemo;		//비공개메모(선택)
-	TIMESTAMP regidate;	//등록일
+	Timestamp regidate;	//등록일
 	String r_delete;	//삭제 여부
 	String userid;		//관리자아이디
 	String r_kind;		//매물종류
