@@ -50,15 +50,29 @@ public class UserAuthenticationService implements UserDetailsService {
 						//권한이 유효한지 확인
 						String delimiter = uauth.getAuthority().substring(5,7);
 						//log.debug(uauth.getAuthority().substring(5,7));//ROLE_CP_TENANT//ROLE_BD_FOOD
+						
+						
+						String comp_seq = uauth.getComp_seq();//업체코드
+						
+						Timestamp rt_date1 = uauth.getRt_date1();//임대 시작 날짜 데이터
+						Timestamp rt_date2 = uauth.getRt_date2();//임대 끝 날짜 데이터
+						
+						String b_code = uauth.getB_code();//빌딩코드
+						String b_status = uauth.getB_status();//빌딩승인상태코드
+
+						log.debug(uauth.toString());//객체확인 log
+						//log.debug(rt_date1.getTime()+"");//객체확인 log
+						
 						if(delimiter.equals("CP")) {
 							//구분자가 사업체일때 rt_code의 계약정보를 확인하고 맞을때만 권한을 넣어준다
 							log.debug("CP 권한 줌 .. 0 구분자로 확인");
-							if(!uauth.getComp_seq().isEmpty() && !uauth.getR_code().isEmpty()) {
+							if(comp_seq!=null) { // && r_code != null
 								//1이 2보다 크냐?라고 물어보는 메소드 ts1.compareTo(ts2) 일때 ts1이 크면 1, 같으면 0, 작으면 -1 나옴
 								log.debug("CP 권한체크 1 null체크");
 								Timestamp currentTime = new Timestamp(System.currentTimeMillis()); 
-								//현재시간(currentTime)이 시작시간 (Rt_date1)보다 커서 0이상이 나와야하고, 현재시간(currentTime)이 종료시간 (Rt_date2)보다 작아서 0이하가 나와야한다.  
-								if(currentTime.compareTo(uauth.getRt_date1())>=0 && currentTime.compareTo(uauth.getRt_date2())<0) {
+								//현재시간(currentTime)이 시작시간 (Rt_date1)보다 커서 0이상이 나와야하고, 현재시간(currentTime)이 종료시간 (Rt_date2)보다 작아서 0이하가 나와야한다.
+								
+								if(!(rt_date1 == null) & !(rt_date2 == null)) {// & currentTime.compareTo(rt_date1)>=0 && currentTime.compareTo(rt_date2)<0
 									log.debug("cp 권한체크2 유효기간 체크");
 									//이조건이 참일때 유효하므로 권한을 넣음
 									authority.add(uauth);
@@ -71,9 +85,9 @@ public class UserAuthenticationService implements UserDetailsService {
 						}else if(delimiter.equals("BD")) {
 							//구분자가 빌딩관련일때 b_code null체크하고 넣어준다.
 							log.debug("BD Null만체크해서 권한줌");
-							if(!uauth.getB_code().isEmpty()) {
+							if(b_code != null) {
 								//b_status 를 검사해서 1이면 준다. 0이 미승인 1이 승인 
-								if(uauth.getB_status().equals("1"))
+								if(b_status.equals("1"))
 									authority.add(uauth);
 								else{
 									log.debug("B_STATUS가 1(승인)이 아님 ");

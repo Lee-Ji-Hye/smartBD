@@ -11,7 +11,7 @@
 <!-- URI PATH -->
 <c:set var="path"   value="/smart"/>       <!-- root url -->
 <c:set var="path_a" value="/smart/admin"/> <!-- 관리자 url -->
-<c:set var="path_m" value="/smart/mng"/>   <!-- 매니저 url -->
+<c:set var="path_r_mng" value="/smart/bd_office"/>   <!-- 매니저 임대 url -->
 
 
 
