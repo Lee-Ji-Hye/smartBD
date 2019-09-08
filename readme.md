@@ -2,40 +2,48 @@
 
 You can find all our previous releases docs on <https://getbootstrap.com/docs/versions/>.
 
-[Previous releases](https://github.com/twbs/bootstrap/releases) and their documentation are also available for download.
+
+## 기술스택
+-BASE
+-- Java 8
+-- Oracle xe 11g
+
+-WEB PAGE
+-- HTML
+-- CSS
+-- JAVASCRIPT
+-- JQUERY
+-- BOOTSTRAP
+-- AJAX
+
+-SERVER
+--SPRING
+--SPRING SECURITY
+--MYBATIS
+--REST API
 
 
-## Contributing
+## dependency
+--AdoptOpenJDK jdk-8.0.222.10-openj9 : open JDK
+--spring 5.1.8.RELEASE : spring frame work
+--servlet 2.5 : servlet
+--servlet.jsp 2.1 : jsp
+--springframework.security 5.1.3.RELEASE : 인증, 인가
+--mybatis 1.3.2 : DB JDBC 
+--lombok 1.16.20 : Data Class 자동생성
+--jackson 2.9.8 : JSON 변환
+--junit 4.7 : 단위 테스트 
+--slf4j : log 관련
+--
 
-Please read through our [contributing guidelines](https://github.com/twbs/bootstrap/blob/master/.github/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
+## 개발 일정 
+- 2019-07 ~ 2019-09
 
-Moreover, if your pull request contains JavaScript patches or features, you must include [relevant unit tests](https://github.com/twbs/bootstrap/tree/master/js/tests). All HTML and CSS should conform to the [Code Guide](https://github.com/mdo/code-guide), maintained by [Mark Otto](https://github.com/mdo).
-
-Editor preferences are available in the [editor config](https://github.com/twbs/bootstrap/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <https://editorconfig.org/>.
-
-
-## Community
-
-Get updates on Bootstrap's development and chat with the project maintainers and community members.
-
-- Follow [@getbootstrap on Twitter](https://twitter.com/getbootstrap).
-- Read and subscribe to [The Official Bootstrap Blog](https://blog.getbootstrap.com/).
-- Join [the official Slack room](https://bootstrap-slack.herokuapp.com/).
-- Chat with fellow Bootstrappers in IRC. On the `irc.freenode.net` server, in the `##bootstrap` channel.
-- Implementation help may be found at Stack Overflow (tagged [`bootstrap-4`](https://stackoverflow.com/questions/tagged/bootstrap-4)).
-- Developers should use the keyword `bootstrap` on packages which modify or add to the functionality of Bootstrap when distributing through [npm](https://www.npmjs.com/browse/keyword/bootstrap) or similar delivery mechanisms for maximum discoverability.
-
-
-## Versioning
-
-For transparency into our release cycle and in striving to maintain backward compatibility, Bootstrap is maintained under [the Semantic Versioning guidelines](https://semver.org/). Sometimes we screw up, but we adhere to those rules whenever possible.
-
-See [the Releases section of our GitHub project](https://github.com/twbs/bootstrap/releases) for changelogs for each release version of Bootstrap. Release announcement posts on [the official Bootstrap blog](https://blog.getbootstrap.com/) contain summaries of the most noteworthy changes made in each release.
 
 
 ## Creators
+- 참여멤버 : 7
 
-**Mark Otto**
+**Kosmo 50**
 
-- <https://twitter.com/mdo>
-- <https://github.com/mdo>
+- <https://cafe.naver.com/kosmobrain>
