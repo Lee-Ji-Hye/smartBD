@@ -70,14 +70,16 @@ public class UserAuthenticationService implements UserDetailsService {
 								//1이 2보다 크냐?라고 물어보는 메소드 ts1.compareTo(ts2) 일때 ts1이 크면 1, 같으면 0, 작으면 -1 나옴
 								log.debug("CP 권한체크 1 null체크");
 								Timestamp currentTime = new Timestamp(System.currentTimeMillis()); 
-								//현재시간(currentTime)이 시작시간 (Rt_date1)보다 커서 0이상이 나와야하고, 현재시간(currentTime)이 종료시간 (Rt_date2)보다 작아서 0이하가 나와야한다.
-								
-								if(!(rt_date1 == null) & !(rt_date2 == null)) {// & currentTime.compareTo(rt_date1)>=0 && currentTime.compareTo(rt_date2)<0
+								if(!(rt_date1 == null) & !(rt_date2 == null)) {// 
 									log.debug("cp 권한체크2 유효기간 체크");
-									//이조건이 참일때 유효하므로 권한을 넣음
-									authority.add(uauth);
+									//현재시간(currentTime)이 시작시간 (Rt_date1)보다 커서 0이상이 나와야하고, 현재시간(currentTime)이 종료시간 (Rt_date2)보다 작아서 0이하가 나와야한다.
+									if(currentTime.compareTo(rt_date1)>=0 && currentTime.compareTo(rt_date2)<0) {
+										//이조건이 참일때 유효하므로 권한을 넣음
+										authority.add(uauth);	
+									}else {
+										authority.add(new UserGrantedAuthority());
+									}
 								}else {
-									authority.add(new UserGrantedAuthority());
 								}
 							}else {
 								authority.add(new UserGrantedAuthority());
