@@ -229,32 +229,40 @@ public class FoodServiceImpl implements FoodService {
 		// 업체정보 가져오기(업체코드, 업체명)
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
-		//String page = req.getParameter("page"); //현재페이지를 화면에서 가져옴
-		
-		
-		//int totCnt = 
+		String page = req.getParameter("page"); // 현재페이지를 화면에서 가져옴
 		
 		log.debug("쿠폰리스트 : " + comp_seq + " " + comp_org);
-		//log.debug("쿠폰리스트 : " + comp_seq + " " + page);
+		log.debug("쿠폰리스트 : " + comp_seq + " " + page);
 		
-		//String uri = req.getRequestURI();//현재 서블릿의 uri
-		//Paging paging = new Paging(5, 5, totCnt, uri);//Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
+		// 글 갯수 
+		int totCnt = 0;
+		totCnt = f_dao.getPage();
 		
-		//paging.pagelist(page);//현재페이지번호를 넣어줌
+		String uri = req.getRequestURI(); // 현재 서블릿의 uri
+		Paging paging = new Paging(5, 5, totCnt, uri); //Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
 		
-		//HashMap<String, Object> map = new HashMap<>();
-		//map.put("startNum", paging.getStart());//시작번호
-		//map.put("endNum", paging.getEnd());//끝번호
-		//map.put("comp_seq", comp_seq);//끝번호
+		paging.pagelist(page); // 현재페이지번호를 넣어줌
 		
-		List<Food_couponVO> list = f_dao.getCoupon(comp_seq);
-		
-		for (int i=0; i < list.size(); i ++) {
-			log.debug("list i" + list.get(i).toString());
+		if(totCnt > 0) {
+			// 게시글 목록 조회
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("startNum", paging.getStart()); // 시작번호
+			map.put("endNum", paging.getEnd()); // 끝번호
+			map.put("comp_seq", comp_seq); // 끝번호
+			
+			List<Food_couponVO> list = f_dao.getCoupon(map);
+			// 처리결과를 저장
+			model.addAttribute("list",list);
+		/*
+		 * for (int i=0; i < list.size(); i ++) { log.debug("list i" +
+		 * list.get(i).toString()); }
+		 */
 		}
+		model.addAttribute("paging", paging);
+		model.addAttribute("cnt", paging);
+		model.addAttribute("pageNum", page);
 		
-		// 처리결과를 저장
-		model.addAttribute("list",list);
+		
 	}
 	
 	// 쿠폰 리스트 삭제

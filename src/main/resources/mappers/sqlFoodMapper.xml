@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 음식점 쿠폰 리스트 조회 -->
-	<select id="getCoupon" resultType="com.team.smart.food.vo.Food_couponVO" parameterType="String"> 
+	<select id="getCoupon" resultType="com.team.smart.food.vo.Food_couponVO" parameterType="java.util.Map"> 
 		 SELECT * FROM food_coupon_tbl
 	</select>
 	

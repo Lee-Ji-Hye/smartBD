@@ -32,7 +32,7 @@ public interface FoodDAO {
 	public int insertCouponeUp(Food_couponVO vo);
 	
 	// 음식점 쿠폰 리스트
-	public List<Food_couponVO> getCoupon(String comp_seq);
+	public List<Food_couponVO> getCoupon(Map<String, Object> map);
 	
 	// 음식점 쿠폰 시리얼
 	public int insertCouponSer(Map<String, Object> map);

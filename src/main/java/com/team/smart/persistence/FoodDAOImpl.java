@@ -53,8 +53,8 @@ public class FoodDAOImpl implements FoodDAO {
 	
 	// 음식점 쿠폰 리스트
 	@Override
-	public List<Food_couponVO> getCoupon(String comp_seq) {
-		return sqlSession.selectList("FoodDAO.getCoupon", comp_seq);
+	public List<Food_couponVO> getCoupon(Map<String, Object> map) {
+		return sqlSession.selectList("FoodDAO.getCoupon", map);
 	}
 
 	// 음식점 쿠폰 시리얼
