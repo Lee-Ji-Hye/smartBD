@@ -12,6 +12,7 @@ import com.team.smart.app.vo.FoodStoreVO;
 import com.team.smart.food.vo.Food_companyVO;
 import com.team.smart.food.vo.Food_couponVO;
 import com.team.smart.food.vo.Food_menuVO;
+import com.team.smart.food.vo.Food_orderVO;
 
 @Repository
 public class FoodDAOImpl implements FoodDAO {
@@ -117,6 +118,14 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.delete("FoodDAO.deleteGoods", f_code);
 	}
 	
+	// 음식점 주문 목록 
+	@Override
+	public List<Food_orderVO> getFoodOrderList(Map<String, Object> map) {
+		return sqlSession.selectList("FoodDAO.getFoodOrderList", map);
+	}
+	
+	// ======================== 페이징 처리
+	
 	// 쿠폰 리스트 페이징 처리
 	@Override
 	public int getCouponPage() {
@@ -128,6 +137,14 @@ public class FoodDAOImpl implements FoodDAO {
 	public int getGoodsPage() {
 		return sqlSession.selectOne("FoodDAO.getGoodsPage");
 	}
+	
+	// 주문 목록 페이징 처리
+	@Override
+	public int getOrderPage() {
+		return sqlSession.selectOne("FoodDAO.getOrderPage");
+	}
+	
+	
 
 	// ============================= 테스트
 	@Override
@@ -137,8 +154,5 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
 
-	
-
-	
 	
 }

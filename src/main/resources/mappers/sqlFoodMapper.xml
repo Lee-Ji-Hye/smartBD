@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 음식점 업체 소개 등록 처리 -->
 	<insert id="insertStoreUp" parameterType="com.team.smart.food.vo.Food_companyVO">
-		INSERT INTO food_company_tbl (comp_seq, long_desc, short_desc, f_open_stt, f_open_end, f_category, f_seq, f_mainimg)
-		VALUES (#{comp_seq}, #{long_desc}, #{short_desc}, #{f_open_stt}, #{f_open_end}, #{f_category}, food_comp_seq.nextval, #{f_mainimg})
+		INSERT INTO food_company_tbl (comp_seq, comp_org, long_desc, short_desc, f_open_stt, f_open_end, f_category, f_seq, f_mainimg)
+		VALUES (#{comp_seq}, #{comp_org}, #{long_desc}, #{short_desc}, #{f_open_stt}, #{f_open_end}, #{f_category}, food_comp_seq.nextval, #{f_mainimg})
 	</insert>
 	
 	<!-- 음식점 업체 소개 등록시 등록 글 -->
@@ -46,9 +46,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 음식점 쿠폰 리스트 조회 -->
 	<select id="getCoupon" resultType="com.team.smart.food.vo.Food_couponVO" parameterType="java.util.Map"> 
 		<![CDATA[
-		SELECT comp_seq, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end
-         FROM (SELECT comp_seq, rownum rNum, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end
-              FROM (SELECT comp_seq, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end FROM food_coupon_tbl order by comp_seq desc))
+		SELECT comp_seq, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end, f_coupon_num
+         FROM (SELECT comp_seq, rownum rNum, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end
+              FROM (SELECT comp_seq, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end FROM food_coupon_tbl order by comp_seq desc))
         where rNum>=#{startNum}
         and rNum<=#{endNum}
     	]]>
@@ -90,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 음식점 상품 등록 수정 처리하기 -->
 	<update id="modifyGoodsSujung" parameterType="com.team.smart.food.vo.Food_menuVO">
-		UPDATE food_menu_tbl SET f_type = #{f_type}, f_name = #{f_name}, f_price = #{f_price}, f_img = #{f_img}, f_regidate = #{f_regidate} WHERE f_code = #{f_code}
+		UPDATE food_menu_tbl SET f_type = #{f_type}, f_name = #{f_name}, f_price = #{f_price}, f_img = #{f_img}, f_regidate = #{f_regidate}, f_icon = #{f_icon} WHERE f_code = #{f_code}
 	</update>
 	
 	<!-- 음식점 상품 등록 갯수 -->
@@ -101,9 +101,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 음식점 상품 리스트 조회 -->
 	<select id="getGoodsList" resultType="com.team.smart.food.vo.Food_menuVO" parameterType="java.util.Map">
 		<![CDATA[
-		SELECT comp_seq, f_type, f_name, f_price, f_img, f_icon, f_regidate
-         FROM (SELECT comp_seq, rownum rNum, f_type, f_name, f_price, f_img, f_icon, f_regidate
-              FROM (SELECT comp_seq, f_type, f_name, f_price, f_img, f_icon, f_regidate FROM food_menu_tbl ORDER BY comp_seq desc))
+		SELECT comp_seq, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate
+         FROM (SELECT comp_seq, rownum rNum, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate
+              FROM (SELECT comp_seq, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate FROM food_menu_tbl ORDER BY comp_seq))
         where rNum>=#{startNum}
         AND rNum<=#{endNum}
     	]]>
@@ -116,5 +116,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{f_code}
 		</foreach>
 	</delete>
+	
+	<!-- 음식점 주문 목록 갯수 조회 -->
+	<select id="getOrderPage" resultType="int">
+		SELECT COUNT(*) FROM food_order_tbl
+	</select>
+	
+	<!-- 음식점 주문 목록 -->
+	<select id="getFoodOrderList" resultType="com.team.smart.food.vo.Food_orderVO" parameterType="java.util.Map">
+		<![CDATA[
+		SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type
+         FROM (SELECT comp_seq, rownum rNum, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type
+              FROM (SELECT comp_seq, f_coupon_num, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type FROM food_order_tbl ORDER BY comp_seq desc))
+        where rNum>=#{startNum}
+        and rNum<=#{endNum}
+    	]]>
+	</select>
 </mapper>
 

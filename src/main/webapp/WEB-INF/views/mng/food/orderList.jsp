@@ -140,33 +140,7 @@ pageEncoding="UTF-8"%>
           </div>
           <!-- End Activity Table -->
           <!-- Pagination -->
-          <div class="pagingDivCenter01">
-	          <div class="pagingDivCenter02">
-	            <nav id="datatablePagination" aria-label="Activity pagination">
-	             <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">
-	             	<span class="page-item">
-		              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
-		             		<span aria-hidden="true">«</span>
-		             	</a>
-	             	</span>
-	             	<span style="display: flex;">
-	             		<span class="page-item">
-	             			<a class="paginate_button page-link" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a>
-	             		</span>
-	             		<span class="page-item active">
-	             			<a class="paginate_button current page-link" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">2</a>
-	             		</span>
-	             	</span>
-	             	<span class="page-item">
-	             		<a class="paginate_button next disabled page-link" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" id="DataTables_Table_0_next">
-	             			<span aria-hidden="true">»</span>
-	             		</a>
-	             	</span>
-	             </div>
-	            </nav>
-	            <small id="datatableInfo" class="text-secondary ml-auto"></small>
-	          </div>
-          </div>
+          ${paging.html_mk_page()}
           <!-- End Pagination -->
         </div>
       </div>
@@ -174,6 +148,28 @@ pageEncoding="UTF-8"%>
   </div>
   <!-- End Content Section -->
 </main>
+
+<script type="text/javascript">
+// 주문 목록 전체 체크
+function goodsChkAll() {
+	
+	var allChoice = document.goods.f_codeOne;
+	var choice = document.goods.f_code;
+
+	console.dir(allChoice);
+	console.log(choice);
+	
+	if(allChoice.checked === true){
+		for(var i = 0; i<choice.length; i++) {
+			choice[i].checked = true;
+		}
+	} else {
+		for(var i = 0; i<choice.length; i++) {
+			choice[i].checked = false;
+		}
+	}
+}
+</script>
 <!-- ========== END MAIN ========== -->
 <%@ include file="../../common/footer.jsp" %>
 </body>

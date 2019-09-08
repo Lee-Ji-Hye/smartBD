@@ -8,6 +8,7 @@ import com.team.smart.app.vo.FoodStoreVO;
 import com.team.smart.food.vo.Food_companyVO;
 import com.team.smart.food.vo.Food_couponVO;
 import com.team.smart.food.vo.Food_menuVO;
+import com.team.smart.food.vo.Food_orderVO;
 
 public interface FoodDAO {
 	//지혜======================================
@@ -64,11 +65,19 @@ public interface FoodDAO {
 	// 음식점 상품 리스트 삭제
 	public int deleteGoods(String[] f_code);
 	
+	// 음식점 상품 주문목록
+	public List<Food_orderVO> getFoodOrderList(Map<String, Object> map);
+	
+	// ------------ 페이징 처리
+	
 	// 쿠폰 페이지 처리
 	public int getCouponPage();
 	
 	// 상품 등록 페이지 처리
 	public int getGoodsPage();
+	
+	// 주문 목록 페이지 처리
+	public int getOrderPage();
 	
 	//테스트
 	public int getUniqIndex();

@@ -143,6 +143,7 @@ public class CP_ManagerController {
 		return "redirect:/cp_manager/cpmn/list";
 	}
 	
+	
 	// 쿠폰 리스트
 	@RequestMapping("/cpmn/list")
 	public String couponList(HttpServletRequest req, Model model) {

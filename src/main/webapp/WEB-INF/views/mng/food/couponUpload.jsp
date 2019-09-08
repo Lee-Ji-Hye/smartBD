@@ -14,7 +14,7 @@
             </label>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="comp_org" placeholder="매장명 가져오고" readonly="readonly">
+              <input type="text" class="form-control" name="comp_org" readonly="readonly" value="${sessionScope.comp_org}">
             </div>
           </div>
           <!-- End Input -->

@@ -15,7 +15,7 @@
           <div class="media-body" style="text-align: right">
             <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn">
               Upload
-              <input id="fileAttachmentBtn" name="f_img" type="file" class="file-attachment-btn__label">
+              <input id="fileAttachmentBtn" name="f_img" multiple="multiple" type="file" class="file-attachment-btn__label">
             </label>
 
             <button type="reset" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>

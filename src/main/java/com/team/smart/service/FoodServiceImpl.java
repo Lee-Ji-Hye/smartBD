@@ -98,6 +98,7 @@ public class FoodServiceImpl implements FoodService {
 		Food_companyVO vo = Food_companyVO
 							.builder()
 							.comp_seq(comp_seq)  
+							.comp_org(comp_org)
 							.f_open_stt(req.getParameter("f_open_stt"))
 							.f_open_end(req.getParameter("f_open_end"))
 							.long_desc(req.getParameter("long_desc"))
@@ -182,6 +183,7 @@ public class FoodServiceImpl implements FoodService {
 					        .builder()
 					        .comp_seq(comp_seq)
 					        .staff_id(staff_id)
+					        .comp_org(comp_org)
 					        .f_coupon_name(req.getParameter("f_coupon_name"))
 					        .f_coupon_num(funs.mkUniquecode("f_coupon_num", "food_coupon_tbl"))
 					        .f_coupon_price(Integer.parseInt(req.getParameter("f_coupon_price")))
@@ -488,6 +490,43 @@ public class FoodServiceImpl implements FoodService {
 		model.addAttribute("goodsDel", goodsDel);
 		
 	}
+	
+	// 음식점 주문 목록
+	@Override
+	public void getOrderFood(HttpServletRequest req, Model model) {
+		
+		// 업체정보 가져오기(업체코드,업체명)
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
+		String comp_org = (String)req.getSession().getAttribute("comp_org");
+		String page = req.getParameter("page"); // 현재페이지를 화면에서 가져옴
+
+		log.debug("음식점 상품 리스트 : " + comp_seq + " " + comp_org + " " + page);
+		
+		// 글 갯수 
+		int totCnt = 0;
+		totCnt = f_dao.getOrderPage();
+		
+		String uri = req.getRequestURI(); // 현재 서블릿의 uri
+		Paging paging = new Paging(5, 5, totCnt, uri); //Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
+		
+		paging.pagelist(page); // 현재페이지번호를 넣어줌
+		
+		if(totCnt > 0) {
+			// 게시글 목록 조회
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("startNum", paging.getStart()); // 시작번호
+			map.put("endNum", paging.getEnd()); // 끝번호
+			map.put("comp_seq", comp_seq); // 끝번호
+			
+			List<Food_menuVO> food = f_dao.getGoodsList(map);
+			// 처리결과를 저장
+			model.addAttribute("food", food);
+		}
+		// 처리결과를 저장
+		model.addAttribute("paging", paging);
+		model.addAttribute("cnt", paging);
+		model.addAttribute("pageNum", page);
+	}
 
 	// 테스트
 	@Override
@@ -495,6 +534,5 @@ public class FoodServiceImpl implements FoodService {
 		
 	}
 
-	
 
 }

@@ -45,6 +45,9 @@ public interface FoodService {
 	// 음식점 상품 삭제
 	public void delGoods(HttpServletRequest req, Model model);
 	
+	// 음식점 주문 목록 
+	public void getOrderFood(HttpServletRequest req, Model model);
+	
 	// ------------- 지혜
 
 	public void test(HttpServletRequest req);
