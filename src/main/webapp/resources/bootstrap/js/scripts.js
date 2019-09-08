@@ -54,5 +54,6 @@ $(document).ready(function () {
     $(document).on("focus", "#billToEditable" , function(){
       $(".popover").popover('hide');
     });
-
+    
+    
 });

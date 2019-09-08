@@ -9,6 +9,10 @@
 # BlueJ files
 *.ctxt
 
+# maven file
+MANIFEST.MF
+pom.properties
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -77,3 +81,4 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+/target/

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ParkingDAO">
+	<select id="getcurrentpark"  resultType="com.team.smart.parking.vo.ParkingVO">
+		select
+		P1_FLOOR,
+		LOCATION_X,
+        LOCATION_Y,
+        PARK_STATE
+	    FROM PARKING_LOC_TBL
+	    WHERE P1_FLOOR = 'B1'
+	</select>
+	
+	<insert id="ticketreg" parameterType="com.team.smart.parking.vo.ParkingVO">
+		insert into parking_ticket_info_tbl(p_code,b_code,p_type,hourly,price,reg_id,reg_date)
+		values(#{p_code},#{b_code},#{p_type},#{hourly},#{price},#{reg_id}, sysdate)
+	</insert>
+	
+	<!-- <insert id="ticketreg" parameterType="com.team.smart.parking.vo.ParkingVO">
+		insert into parking_lot_tbl
+		values(#{B_CODE},#{B_NAME},#{P_floor},#{able_position},#{able_height},#{lat},#{lon},#{operate_time_day},#{operate_time_week},#{operate_tel})
+	</insert> -->
+	
+	<select id="buliding" resultType="com.team.smart.parking.vo.ParkingVO">
+		select
+		B_CODE,
+		B_FLOOR,
+		B_LAT,
+		B_LON
+		FROM BUILDING_TBL
+		WHERE B_NAME = #{B_NAME}
+	</select>
+	
+	<select id="buildcount" resultType="int">
+		select count(*)
+		FROM BUILDING_TBL
+		WHERE B_CODE = #{B_CODE}
+	</select>
+	
+	<select id="buildcount1" resultType="int">
+		select count(*)
+		FROM BUILDING_TBL
+		WHERE B_NAME = #{B_NAME}
+	</select>
+	
+	<update id="updateticket" parameterType="com.team.smart.parking.vo.ParkingVO">
+		update parking_ticket_info_tbl
+		set b_code = #{b_code},
+		p_type = #{p_type},
+		hourly = #{hourly},
+		price = #{price},
+		update_date = sysdate
+		WHERE p_code = #{p_code}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete parking_ticket_info_tbl
+		where p_code = #{p_code}
+	</delete>
+	
+	<insert id="parkingreg" parameterType="com.team.smart.parking.vo.ParkingVO">
+		insert into parking_lot_tbl(b_code,b_name,p_floor,able_position,able_height,lat,lon,operate_time_day,operate_time_week,operate_tel)
+		values(#{b_code},#{b_name},#{p_floor},#{able_position},#{able_height},#{lat},#{lon},#{operate_time_day},#{operate_time_week},#{operate_tel})
+	</insert>
+	
+	<update id="updateplace" parameterType="com.team.smart.parking.vo.ParkingVO">
+		update parking_lot_tbl
+		set b_name = #{b_name},
+		p_floor = #{p_floor},
+		able_position = #{able_position},
+		able_height = #{able_height},
+		lat = #{lat},
+		lon = #{lon},
+		operate_time_day = #{operate_time_day},
+		operate_time_week = #{operate_time_week},
+		operate_tel = #{operate_tel}
+		where b_code = #{b_code}
+	</update>
+	
+	<delete id="deleteplace" parameterType="int">
+		delete parking_lot_tbl
+		where b_code = #{b_code}
+	</delete>
+	
+	<!-- <select id="importpcode" resultType="int">
+		select max(p_code)
+		from parking_ticket_info_tbl
+		where 0< (select count(p_code)
+            from parking_ticket_info_tbl)
+	</select> -->
+	
+	<select id="getArticleCnt" resultType="int">
+		select count(*) from parking_ticket_history_tbl
+	</select>
+	
+	<select id="getpaylist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
+			<![CDATA[
+		select * from (select pt.*,rownum rNum from parking_ticket_history_tbl pt)
+		  where rNum >=#{start} and rNum <= #{end} order by p_ocode
+		   ]]>
+	</select>
+	
+	<select id="getOrderCnt" resultType="int">
+		select count(*) from parking_ticket_order_tbl 
+	</select>
+	
+	<select id="getorderlist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
+	<![CDATA[
+		select * from (select pt.*,rownum rNum from parking_ticket_order_tbl pt)
+		  where rNum >=#{start} and rNum <= #{end} order by p_ocode
+	  ]]>
+	</select>
+	
+	<select id="getinsertCnt" resultType="int">
+		select count(*) from parking_ticket_info_tbl  
+	</select>
+	
+	<select id="getinsertlist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
+	<![CDATA[
+		select * from (select pt.*,rownum rNum from parking_ticket_info_tbl  pt)
+		  where rNum >=#{start} and rNum <= #{end} order by p_code
+	  ]]>
+	</select>
+	
+</mapper>
+

@@ -1018,8 +1018,9 @@ pre code {
   }
   .col-md-2 {
     -ms-flex: 0 0 16.66667%;
-        flex: 0 0 16.66667%;
-    max-width: 16.66667%;
+    /* flex: 0 0 16.66667%; */
+    /* max-width: 16.66667%; */
+     max-width: 30%;
   }
   .col-md-3 {
     -ms-flex: 0 0 25%;
@@ -3154,7 +3155,8 @@ fieldset:disabled a.btn {
 }
 
 .btn-sm, .btn-group-sm > .btn {
-  padding: 0.625rem 1.125rem;
+  /* padding: 0.625rem 1.125rem; */
+  padding: 0.400rem 0.900rem;
   font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.25rem;
@@ -3666,7 +3668,7 @@ input[type="button"].btn-block {
 
 .input-group-sm > .form-control:not(textarea),
 .input-group-sm > .custom-select {
-  height: calc(1.5em + 1.25rem + 2px);
+  height: calc(1.0em + 1.25rem + 2px);
 }
 
 .input-group-sm > .form-control,
@@ -4798,7 +4800,6 @@ input[type="button"].btn-block {
     display: -ms-flexbox;
     display: flex;
     -ms-flex: 1 0 0%;
-        flex: 1 0 0%;
     -ms-flex-direction: column;
         flex-direction: column;
     margin-right: 15px;

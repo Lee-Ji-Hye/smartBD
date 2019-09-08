@@ -59,7 +59,8 @@ public class Paging extends Page {
 	public String html_mk_page() {
 		String url = "";
 		String html_page = 
-				"<div class='d-flex align-items-center' style='margin-left:40%'>"+
+			"<div class='pagingDivCenter01'>"+	
+				"<div class='pagingDivCenter02'>"+
 				"<nav id='datatablePagination' aria-label='Activity pagination'style=''>"+
 				"<div class='dataTables_paginate paging_simple_numbers pagination mb-0'"+
 					 "id='DataTables_Table_0_paginate'>";
@@ -119,7 +120,8 @@ public class Paging extends Page {
 						
 			html_page += "</div>"+
 						"</nav> "+
-					"</div>";
+					"</div>"+
+				"</div>";
 			
 			return html_page;
 	}

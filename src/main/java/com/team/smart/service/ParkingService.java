@@ -1,0 +1,65 @@
+package com.team.smart.service;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.ui.Model;
+
+import com.team.smart.parking.vo.ParkingVO;
+
+public interface ParkingService {
+	//주차장 자리현황
+		public void getcurrentpark(HttpServletRequest req,Model model);
+		
+		//주차권 등록
+		public void ticketreg(HttpServletRequest req,Model model);
+		
+		//주차권 수정  
+		public void update(HttpServletRequest req,Model model);
+		
+		//주차권 삭제
+		public void delete(HttpServletRequest req,Model model);
+
+		//주차장 등록 
+		public void insertplace(HttpServletRequest req,Model model);
+		
+		//주차장 수정 
+		public void updateplace(HttpServletRequest req,Model model);
+		
+		//주차장 삭제
+		public void deleteplace(HttpServletRequest req,Model model);
+		
+		//주차권 사용
+		public void useticket(HttpServletRequest req,Model model);
+		
+		//주차권 등록내역 리스트
+		public void ticketlist(HttpServletRequest req,Model model);
+		
+		//주차권 사용내역 리스트
+		public void tickectuselist(HttpServletRequest req,Model model);
+		
+		//회원 주차권 보유내역 리스트
+		public void tickethavelist(HttpServletRequest req,Model model);
+		
+		//회원  결제 내역 리스트
+		public void paylist(HttpServletRequest req,Model model);
+		
+		//회원 결제 상세내역
+		public void paydetail(HttpServletRequest req,Model model);
+		
+		//회원 환불 내역 리스트
+		public void refundlist(HttpServletRequest req,Model model);
+		
+		//회원 환불 상세 내역
+		public void refunddetail(HttpServletRequest req,Model model);
+		
+		//등록된 회원 차량 리스트 
+		public void regperlist(HttpServletRequest req,Model model);
+		
+		//주차장 상세정보
+		public void parkplacedetail(HttpServletRequest req,Model model);
+		
+		//주차권 자동사용
+		public void ticketautouse(HttpServletRequest req,Model model);
+}

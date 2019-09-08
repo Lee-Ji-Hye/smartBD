@@ -1,12 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<!-- [정적 리소스 파일 보안 설정 하지 않음]-->
-	<sec:http pattern="/include/**" security="none" />
+
 	
-	<!-- 시큐리티 적용할때 web.xml에 시큐리티 주석 제거 하고 사용 -->
 	
+	<security:http auto-config="true" use-expressions="true" create-session="never">
+		<!-- <security:form-login /> --> <!-- 시큐리티가 제공하는 페이지로 이동login-page= "/002_log_in" login-processing-url="/j_spring_security_check"-->
+		<security:form-login 
+			login-page="/login"
+			login-processing-url="/loginpro"
+			authentication-failure-handler-ref="userLoginFailureHandler"
+			authentication-success-handler-ref="UserLoginSuccessHandler"
+		/>
+		<security:logout
+			logout-success-url="/"
+			invalidate-session="true"
+			logout-url="/logout"
+		/>
+			
+		<!-- -권한- 모든 권한 앞에는 'ROLE_'이 붙어야됨.
+		
+		시스템 관리자	SYSMASTER (시스템관리자)			
+				
+		건물 주인		BD_ADMIN (건물주)			
+						
+		건물 관리권한	BD_MANAGER (건물매니저)			
+						
+		파트별 관리자	BD_OFFICE(임대관리자)	BD_RESER(회의실예약관리자)	BD_PARK(주차장관리자)	BD_FOOD(식당관리자)
+		
+		임차인 관리자 권한	CP_TENANT(임차인)			
+								
+		식당 주인					CP_ADMIN(식당주인)
+						
+		식당 매니저 권한				CP_MANAGER(식당매니저)
+						
+		식당 일반 권한				CP_EMPLOYEE(식당직원)
+		
+		일반회원					DEFAULT		
+		-->
+	
+		<security:intercept-url pattern="/sysmaster/**"
+			access="hasRole('SYSMASTER')" />
+			
+		<security:intercept-url pattern="/bd_admin/**"
+			access="hasRole('BD_ADMIN')" />
+			
+		<security:intercept-url pattern="/bd_manager/**"
+			access="hasAnyRole('BD_ADMIN','BD_MANAGER')" />
+		
+		<security:intercept-url pattern="/bd_office/**"
+			access="hasAnyRole('BD_ADMIN','BD_MANAGER','BD_OFFICE')" />
+			
+		<security:intercept-url pattern="/bd_food/**"
+			access="hasAnyRole('BD_ADMIN','BD_MANAGER','BD_FOOD')" />
+			
+		<security:intercept-url pattern="/bd_park/**"
+			access="hasAnyRole('BD_ADMIN','BD_MANAGER','BD_PARK')" />
+		
+		<security:intercept-url pattern="/bd_resu/**"
+			access="hasAnyRole('BD_ADMIN','BD_MANAGER','BD_RESU')" />
+		
+		<security:intercept-url pattern="/cp_tenant/**"
+			access="hasRole('CP_TENANT')" />
+			
+		<security:intercept-url pattern="/cp_admin/**"
+			access="hasRole('CP_ADMIN')" />
+			
+		<security:intercept-url pattern="/cp_manager/**"
+			access="hasAnyRole('CP_ADMIN','CP_MANAGER')" />
+			
+		<security:intercept-url pattern="/cp_employee/**"
+			access="hasAnyRole('CP_ADMIN','CP_MANAGER','CP_EMPLOYEE')" />
+			
+		<security:intercept-url pattern="/member/**"
+			access="isAuthenticated()" />
+			
+		<security:intercept-url pattern="/**"
+			access="permitAll" /> 
+		
+		<!-- max-sessions="1" : 같은 브라우저 여러창에서 동시접속을 막겠다. 
+			expired-url="/user/login.do" : 세션 만료 시 이동할 주소다.
+			error-if-maximum-exceeded="true" : 최대 세션 초과 시 에러 옵션-->
+		<security:session-management>
+			<security:concurrency-control
+				max-sessions="1"
+				expired-url="/login"
+				error-if-maximum-exceeded="true"
+			/>
+		</security:session-management>
+		<security:access-denied-handler ref="userDeniedHandler"/>
+	</security:http>
+	
+	<!-- 로그인 인증을 처리하는 빈 -->
+	<bean id="userService" class="com.team.smart.security.config.UserAuthenticationService">
+		<constructor-arg name="sqlSession" ref="sqlSession"></constructor-arg>
+	</bean>
+	
+	<bean id="UserLoginSuccessHandler" class="com.team.smart.security.config.UserLoginSuccessHandler"></bean>
+	<bean id="userLoginFailureHandler" class="com.team.smart.security.config.UserLoginFailureHandler"></bean>
+	<bean id="userDeniedHandler" class="com.team.smart.security.config.UserDeniedHandler"></bean>
+	
+	<!-- 비밀번호 암호화를 위한 빈 -->
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<!-- <bean id="bcryptPasswordEncoder" class="com.team.smart.security.config.UserPasswordEncode" /> -->
+	
+   
 </beans>

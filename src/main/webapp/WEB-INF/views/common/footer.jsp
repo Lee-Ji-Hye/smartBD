@@ -1,80 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!-- ========== FOOTER ========== -->
-  <footer>
-    <!-- Lists -->
-    <div class="border-bottom">
-      <div class="container space-2">
-        <div class="row justify-content-md-between">
-          <div class="col-sm-4 col-lg-2 mb-4 mb-lg-0">
-            <h4 class="h6 font-weight-semi-bold">About</h4>
-
-            <!-- List Group -->
-            <ul class="list-group list-group-flush list-group-borderless mb-0">
-              <li><a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/about-agency.html">About</a></li>
-              <li><a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/services-agency.html">Services</a></li>
-              <li><a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/careers.html">Careers</a></li>
-            </ul>
-            <!-- End List Group -->
-          </div>
-
-          <div class="col-sm-4 col-lg-2 mb-4 mb-lg-0">
-            <h4 class="h6 font-weight-semi-bold">Account</h4>
-
-            <!-- List Group -->
-            <ul class="list-group list-group-flush list-group-borderless mb-0">
-              <li><a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html">Account</a></li>
-              <li><a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/my-tasks.html">My tasks</a></li>
-              <li><a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/account/projects.html">Projects</a></li>
-            </ul>
-            <!-- End List Group -->
-          </div>
-
-          <div class="col-sm-4 col-lg-2 mb-4 mb-lg-0">
-            <h4 class="h6 font-weight-semi-bold">Resources</h4>
-
-            <!-- List Group -->
-            <ul class="list-group list-group-flush list-group-borderless mb-0">
-              <li><a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/faq.html">Help</a></li>
-              <li><a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/terms.html">Terms</a></li>
-              <li><a class="list-group-item list-group-item-action" href="https://htmlstream.com/preview/front-v2.9.0/html/pages/privacy.html">Privacy</a></li>
-            </ul>
-            <!-- End List Group -->
-          </div>
-
-          <div class="col-md-6 col-lg-4">
-            <h4 class="h6 font-weight-semi-bold mb-4">We are driven to deliver results for all your businesses.</h4>
-
-            <!-- Button -->
-            <button type="button" class="btn btn-xs btn-dark btn-wide transition-3d-hover text-left mb-2 mr-1">
-              <span class="media align-items-center">
-                <!-- <span class="fab fa-apple fa-2x mr-3"></span> -->
-                <img src="${resourceImg}/icon/appleicon.PNG" style="width: 35px;margin-right: 5px;" />
-                <span class="media-body">
-                  <span class="d-block">Download on the</span>
-                  <strong class="font-size-1">App Store</strong>
-                </span>
-              </span>
-            </button>
-            <!-- End Button -->
-
-            <!-- Button -->
-            <button type="button" class="btn btn-xs btn-dark btn-wide transition-3d-hover text-left mb-2">
-              <span class="media align-items-center">
-                <!-- <span class="fab fa-google-play fa-2x mr-3"></span> -->
-                <img src="${resourceImg}/icon/playicon.PNG" style="width: 30px;margin-right: 5px;" />
-                <span class="media-body">
-                  <span class="d-block">Get it on</span>
-                  <strong class="font-size-1">Google Play</strong>
-                </span>
-              </span>
-            </button>
-            <!-- End Button -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Lists -->
+  <footer style="background: #fff;">
 
     <!-- Copyright -->
     <div class="container text-center space-1">
@@ -94,241 +22,9 @@
     <!-- End Copyright -->
   </footer>
   <!-- ========== END FOOTER ========== -->
-	<c:if test="${userid == null}">
-		<aside id="sidebarContent" class="u-sidebar u-unfold--css-animation fadeInRight" aria-labelledby="sidebarNavToggler" style="animation-duration: 500ms;">
-		    <div class="u-sidebar__scroller">
-		      <div class="u-sidebar__container">
-		        <div class="u-header-sidebar__footer-offset">
-		          <!-- Toggle Button -->
-		          <div class="d-flex align-items-center pt-4 px-7">
-		            <button type="button" class="close ml-auto target-of-invoker-has-unfolds" aria-controls="sidebarContent" aria-haspopup="true" aria-expanded="true" data-unfold-event="click" data-unfold-hide-on-scroll="false" data-unfold-target="#sidebarContent" data-unfold-type="css-animation" data-unfold-animation-in="fadeInRight" data-unfold-animation-out="fadeOutRight" data-unfold-duration="500">
-		              <span aria-hidden="true">×</span>
-		            </button>
-		          </div>
-		          <!-- End Toggle Button -->
-		
-		          <!-- Content -->
-		          <div class="js-scrollbar u-sidebar__body mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="position: relative; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-		            <div class="u-sidebar__content u-header-sidebar__content">
-		              <form class="js-validate" novalidate="novalidate">
-		                <!-- Login -->
-		                <div id="login" data-target-group="idForm">
-		                  <!-- Title -->
-		                  <header class="text-center mb-7">
-		                    <h2 class="h4 mb-0">Welcome Back!</h2>
-		                    <p>Login to manage your account.</p>
-		                  </header>
-		                  <!-- End Title -->
-		
-		                  <!-- Form Group -->
-		                  <div class="form-group">
-		                    <div class="js-form-message js-focus-state">
-		                      <label class="sr-only" for="signinEmail">Email</label>
-		                      <div class="input-group">
-		                        <div class="input-group-prepend">
-		                          <span class="input-group-text" id="signinEmailLabel">
-		                            <span class="fas fa-user"></span>
-		                          </span>
-		                        </div>
-		                        <input type="email" class="form-control" name="email" id="signinEmail" placeholder="Email" aria-label="Email" aria-describedby="signinEmailLabel" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-		                      </div>
-		                    </div>
-		                  </div>
-		                  <!-- End Form Group -->
-		
-		                  <!-- Form Group -->
-		                  <div class="form-group">
-		                    <div class="js-form-message js-focus-state">
-		                      <label class="sr-only" for="signinPassword">Password</label>
-		                      <div class="input-group">
-		                        <div class="input-group-prepend">
-		                          <span class="input-group-text" id="signinPasswordLabel">
-		                            <span class="fas fa-lock"></span>
-		                          </span>
-		                        </div>
-		                        <input type="password" class="form-control" name="password" id="signinPassword" placeholder="Password" aria-label="Password" aria-describedby="signinPasswordLabel" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
-		                      </div>
-		                    </div>
-		                  </div>
-		                  <!-- End Form Group -->
-		
-		                  <div class="d-flex justify-content-end mb-4">
-		                    <a class="js-animation-link small link-muted" href="javascript:;" data-target="#forgotPassword" data-link-group="idForm" data-animation-in="slideInUp">Forgot Password?</a>
-		                  </div>
-		
-		                  <div class="mb-2">
-		                    <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Login</button>
-		                  </div>
-		
-		                  <div class="text-center mb-4">
-		                    <span class="small text-muted">Do not have an account?</span>
-		                    <a class="js-animation-link small" href="javascript:;" data-target="#signup" data-link-group="idForm" data-animation-in="slideInUp">Signup
-		                    </a>
-		                  </div>
-		                </div>
-		
-		                <!-- Signup -->
-		                <div id="signup" style="display: none; opacity: 0;" data-target-group="idForm">
-		                  <!-- Title -->
-		                  <header class="text-center mb-7">
-		                    <h2 class="h4 mb-0">Welcome to Front.</h2>
-		                    <p>Fill out the form to get started.</p>
-		                  </header>
-		                  <!-- End Title -->
-		
-		                  <!-- Form Group -->
-		                  <div class="form-group">
-		                    <div class="js-form-message js-focus-state">
-		                      <label class="sr-only" for="signupEmail">Email</label>
-		                      <div class="input-group">
-		                        <div class="input-group-prepend">
-		                          <span class="input-group-text" id="signupEmailLabel">
-		                            <span class="fas fa-user"></span>
-		                          </span>
-		                        </div>
-		                        <input type="email" class="form-control" name="email" id="signupEmail" placeholder="Email" aria-label="Email" aria-describedby="signupEmailLabel" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-		                      </div>
-		                    </div>
-		                  </div>
-		                  <!-- End Input -->
-		
-		                  <!-- Form Group -->
-		                  <div class="form-group">
-		                    <div class="js-form-message js-focus-state">
-		                      <label class="sr-only" for="signupPassword">Password</label>
-		                      <div class="input-group">
-		                        <div class="input-group-prepend">
-		                          <span class="input-group-text" id="signupPasswordLabel">
-		                            <span class="fas fa-lock"></span>
-		                          </span>
-		                        </div>
-		                        <input type="password" class="form-control" name="password" id="signupPassword" placeholder="Password" aria-label="Password" aria-describedby="signupPasswordLabel" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
-		                      </div>
-		                    </div>
-		                  </div>
-		                  <!-- End Input -->
-		
-		                  <!-- Form Group -->
-		                  <div class="form-group">
-		                    <div class="js-form-message js-focus-state">
-		                      <label class="sr-only" for="signupConfirmPassword">Confirm Password</label>
-		                      <div class="input-group">
-		                        <div class="input-group-prepend">
-		                          <span class="input-group-text" id="signupConfirmPasswordLabel">
-		                            <span class="fas fa-key"></span>
-		                          </span>
-		                        </div>
-		                        <input type="password" class="form-control" name="confirmPassword" id="signupConfirmPassword" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="signupConfirmPasswordLabel" required="" data-msg="Password does not match the confirm password." data-error-class="u-has-error" data-success-class="u-has-success">
-		                      </div>
-		                    </div>
-		                  </div>
-		                  <!-- End Input -->
-		
-		                  <div class="mb-2">
-		                    <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Get Started</button>
-		                  </div>
-		
-		                  <div class="text-center mb-4">
-		                    <span class="small text-muted">Already have an account?</span>
-		                    <a class="js-animation-link small" href="javascript:;" data-target="#login" data-link-group="idForm" data-animation-in="slideInUp">Login
-		                    </a>
-		                  </div>
-		
-		                  <div class="text-center">
-		                    <span class="u-divider u-divider--xs u-divider--text mb-4">OR</span>
-		                  </div>
-		
-		                </div>
-		                <!-- End Signup -->
-		
-		                <!-- Forgot Password -->
-		                <div id="forgotPassword" style="display: none; opacity: 0;" data-target-group="idForm">
-		                  <!-- Title -->
-		                  <header class="text-center mb-7">
-		                    <h2 class="h4 mb-0">Recover Password.</h2>
-		                    <p>Enter your email address and an email with instructions will be sent to you.</p>
-		                  </header>
-		                  <!-- End Title -->
-		
-		                  <!-- Form Group -->
-		                  <div class="form-group">
-		                    <div class="js-form-message js-focus-state">
-		                      <label class="sr-only" for="recoverEmail">Your email</label>
-		                      <div class="input-group">
-		                        <div class="input-group-prepend">
-		                          <span class="input-group-text" id="recoverEmailLabel">
-		                            <span class="fas fa-user"></span>
-		                          </span>
-		                        </div>
-		                        <input type="email" class="form-control" name="email" id="recoverEmail" placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmailLabel" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-		                      </div>
-		                    </div>
-		                  </div>
-		                  <!-- End Form Group -->
-		
-		                  <div class="mb-2">
-		                    <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Recover Password</button>
-		                  </div>
-		
-		                  <div class="text-center mb-4">
-		                    <span class="small text-muted">Remember your password?</span>
-		                    <a class="js-animation-link small" href="javascript:;" data-target="#login" data-link-group="idForm" data-animation-in="slideInUp">Login
-		                    </a>
-		                  </div>
-		                </div>
-		                <!-- End Forgot Password -->
-		              </form>
-		            </div>
-		          </div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; top: 0px; height: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div>
-		          <!-- End Content -->
-		        </div>
-		
-		        <!-- Footer -->
-		        <footer id="SVGwaveWithDots" class="u-sidebar__footer u-sidebar__footer--account" style="">
-		          <ul class="list-inline mb-0">
-		            <li class="list-inline-item pr-3">
-		              <a class="u-sidebar__footer--account__text" href="../pages/privacy.html">Privacy</a>
-		            </li>
-		            <li class="list-inline-item pr-3">
-		              <a class="u-sidebar__footer--account__text" href="../pages/terms.html">Terms</a>
-		            </li>
-		            <li class="list-inline-item">
-		              <a class="u-sidebar__footer--account__text" href="../pages/help.html">
-		                <i class="fas fa-info-circle"></i>
-		              </a>
-		            </li>
-		          </ul>
-		
-		          <!-- SVG Background Shape -->
-		          <div class="position-absolute right-0 bottom-0 left-0">
-		            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 126.5" style="margin-bottom: -5px; enable-background:new 0 0 300 126.5;" xml:space="preserve" class="injected-svg js-svg-injector" data-parent="#SVGwaveWithDots">
-		<style type="text/css">
-			.wave-bottom-with-dots-0{fill:#377DFF;}
-			.wave-bottom-with-dots-1{fill:#377DFF;}
-			.wave-bottom-with-dots-2{fill:#DE4437;}
-			.wave-bottom-with-dots-3{fill:#00C9A7;}
-			.wave-bottom-with-dots-4{fill:#FFC107;}
-		</style>
-		<path class="wave-bottom-with-dots-0 fill-primary" opacity=".6" d="M0,58.9c0-0.9,5.1-2,5.8-2.2c6-0.8,11.8,2.2,17.2,4.6c4.5,2.1,8.6,5.3,13.3,7.1C48.2,73.3,61,73.8,73,69  c43-16.9,40-7.9,84-2.2c44,5.7,83-31.5,143-10.1v69.8H0C0,126.5,0,59,0,58.9z"></path>
-		<path class="wave-bottom-with-dots-1 fill-primary" d="M300,68.5v58H0v-58c0,0,43-16.7,82,5.6c12.4,7.1,26.5,9.6,40.2,5.9c7.5-2.1,14.5-6.1,20.9-11  c6.2-4.7,12-10.4,18.8-13.8c7.3-3.8,15.6-5.2,23.6-5.2c16.1,0.1,30.7,8.2,45,16.1c13.4,7.4,28.1,12.2,43.3,11.2  C282.5,76.7,292.7,74.4,300,68.5z"></path>
-		<g>
-			<circle class="wave-bottom-with-dots-2 fill-danger" cx="259.5" cy="17" r="13"></circle>
-			<circle class="wave-bottom-with-dots-1 fill-primary" cx="290" cy="35.5" r="8.5"></circle>
-			<circle class="wave-bottom-with-dots-3 fill-success" cx="288" cy="5.5" r="5.5"></circle>
-			<circle class="wave-bottom-with-dots-4 fill-warning" cx="232.5" cy="34" r="2"></circle>
-		</g>
-		</svg>
-		          </div>
-		          <!-- End SVG Background Shape -->
-		        </footer>
-		        <!-- End Footer -->
-		      </div>
-		    </div>
-		  </aside>
-	</c:if>
+   
   <!-- ========== SECONDARY CONTENTS ========== -->
   <!-- Account Sidebar Navigation -->
-  <c:if test="${userid != null}">
 	  <aside id="sidebarContent" class="u-sidebar u-unfold--css-animation u-unfold--hidden fadeOutRight" aria-labelledby="sidebarNavToggler" style="animation-duration: 500ms;">
 	    <div class="u-sidebar__scroller">
 	      <div class="u-sidebar__container">
@@ -366,7 +62,7 @@
 	                  <a class="dropdown-item" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">Settings</a>
 	                  <a class="dropdown-item" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">History</a>
 	                  <div class="dropdown-divider"></div>
-	                  <a class="dropdown-item" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#">Sign Out</a>
+	                  <a class="dropdown-item" href="/smart/logout">Sign Out</a>
 	                </div>
 	              </div>
 	              <!-- End Settings -->
@@ -487,7 +183,6 @@
 	    </div>
 	  </aside>
   
-  </c:if>
   <!-- End Account Sidebar Navigation -->
 
   <!-- Request Payment Modal Window -->
@@ -1407,8 +1102,39 @@
 
   <!-- JS Plugins Init. -->
   <script>
+  	//로딩창 테스트 3초동안 껏다켜짐
+  	function test(imageName) {
+	    LoadingWithMask();
+	    setTimeout("closeLoadingWithMask()", 3000);
+	}
+	//로딩창 회색화면만듬
+	function LoadingWithMask() {
+	    //화면의 높이와 너비를 구합니다.
+	    var maskHeight = $(document).height();
+	    var maskWidth  = window.document.body.clientWidth;
+	    //화면에 출력할 마스크를 설정해줍니다.
+	    var mask = "<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
+	    //화면에 레이어 추가
+	    $('body').append(mask)
+	    //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채웁니다.
+	    $('#mask').css({
+	            'width' : maskWidth,
+	            'height': maskHeight,
+	            'opacity' : '0.5'
+	    });
+	    //마스크 표시
+	    $('#mask').show();
+	  
+	}
+	//로딩창 회색화면만든거 풀어줌
+	function closeLoadingWithMask() {
+	    $('#mask').hide();
+	    $('#mask').empty(); 
+	}
+
+
+  
     $(window).on('load', function () {
-      // initialization of HSMegaMenu component
       $('.js-mega-menu').HSMegaMenu({
         event: 'hover',
         pageContainer: $('.container'),
@@ -1432,12 +1158,23 @@
       // initialization of header
       $.HSCore.components.HSHeader.init($('#header'));
 
+      
       // initialization of unfold component
-      $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
+  <sec:authorize access="isAuthenticated()">
+	  $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
         afterOpen: function () {
           $(this).find('input[type="search"]').focus();
         }
       });
+  </sec:authorize>
+
+  <sec:authorize access="isAnonymous()">
+	  $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
+        afterOpen: function () {
+          $(this).onclick = window.location = '/smart/login';
+        }
+      });
+  </sec:authorize>
 
       // initialization of malihu scrollbar
       $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
@@ -1478,6 +1215,8 @@
 
       // initialization of go to
       $.HSCore.components.HSGoTo.init('.js-go-to');
+      
+
     });
   </script>
 

@@ -15,7 +15,7 @@ public class UserDeniedHandler implements AccessDeniedHandler{
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
-		request.getRequestDispatcher("/WEB-INF/views/denied.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/common/error/errPage.jsp?code=403").forward(request, response);
 	}
 
 }
