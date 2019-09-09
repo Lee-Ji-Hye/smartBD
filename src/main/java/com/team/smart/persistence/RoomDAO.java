@@ -28,8 +28,11 @@ public interface RoomDAO {
 		//매물 수정
 		public int update(RoomVO vo);
 		
-		//매물 삭제
+		//매물 비공개로 전환
 		public int delete(String r_code);
+		
+		//매물 공개로 전환
+		public int reload(String r_code);
 		
 		//슬라이드 이미지넣기
 		public int slide(RoomVO vo);
