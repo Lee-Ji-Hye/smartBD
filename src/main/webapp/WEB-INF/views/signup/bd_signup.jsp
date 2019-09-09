@@ -104,13 +104,189 @@
   <main id="content" role="main">
     <!-- Hire Us Title Section -->
     <!-- 위에영역먹고있던페이지 -->
-<!--       <div class="container space-top-2 space-bottom-3 space-top-md-5 space-lg-4">
+      <div class="container space-top-2 space-bottom-3 space-top-md-5 space-lg-4">
         <div class="w-md-80 w-lg-50 text-center mx-md-auto">
           <h1 class="text-primary">Got a <span class="font-weight-semi-bold">project</span> for us?</h1>
           <p class="lead">We help brands and platforms turn big ideas into beautiful digital products and experiences.</p>
         </div>
-      </div> -->
-<div class="jumbotron">
+      </div>
+
+      <!-- SVG Bottom Shape -->
+      <!-- <figure class="position-absolute right-0 bottom-0 left-0">
+        <img class="js-svg-injector" src="../../assets/svg/components/wave-4-bottom.svg" alt="Image Description"
+             data-parent="#SVGheroBgElements">
+      </figure> -->
+      <!-- End SVG Bottom Shape -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    <!-- End Hire Us Title Section -->
+
+    <!-- Hire Us Form Section -->
+    <div class="container">
+      <!-- Hire Us Form -->
+      <form class="js-validate mx-auto" action="${path}/member/bdmn/instpro" method="post" name="signUpForm">
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+      
+                   
+		<div class="row js-form-message mb-6">
+	        <!-- Input -->
+	        <div class="js-form-message col">
+	          <label class="form-label">
+	            	건물명
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_name" placeholder="건물명" required>
+	        </div>
+	        <!-- End Input -->
+	        <!-- Input -->
+	        <div class="js-form-message col">
+	          <label class="form-label">
+	            	건물고유번호
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_unique" placeholder="건물고유번호" required>
+	        </div>
+	        <!-- End Input -->
+        </div>
+      
+        <!-- Input -->
+        
+		<div class="row js-form-message mb-6">
+	        <div class="js-form-message col">
+	          <label class="form-label">
+	            	소유자(명칭)
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_owner" placeholder="소유자(명칭)" required>
+	        </div>
+	        <!-- End Input -->
+	        
+	      
+	        <!-- Input -->
+	        <div class="js-form-message col">
+	          <label class="form-label">
+	            	소유자고유번호(등록번호)
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_regnum" placeholder="소유자고유번호(등록번호)" required>
+	        </div>
+	        <!-- End Input -->
+	    </div>
+        
+      
+		<div class="row js-form-message mb-6">
+	        <!-- Input -->
+	        <div class="js-form-message col">
+	          <label class="form-label">
+	            	대지면적
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_landarea" placeholder="대지면적" required>
+	        </div>
+	        <!-- End Input -->
+	        
+	      
+	        <!-- Input -->
+	        <div class="js-form-message col">
+	          <label class="form-label">
+	            	건축면적
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_buildarea" placeholder="건축면적" required>
+	        </div>
+	        <!-- End Input -->
+        </div>
+        
+        
+		<div class="row js-form-message mb-6">
+	        <!-- Input -->
+	        <div class="js-form-message col">
+	          <label class="form-label">
+	            	건축규모
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_buildscale" placeholder="건축규모" required>
+	        </div>
+	        <!-- End Input -->
+	        
+	      
+	        <!-- Input -->
+	        <div class="js-form-message col">
+	          <label class="form-label">
+	            	건물 층수
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_floor" placeholder="건물층수" required>
+	        </div>
+	        <!-- End Input -->
+        </div>
+        
+        
+		<div class="row js-form-message mb-6">
+	        <!-- Input -->
+	        <div class="js-form-message col">
+	          <label class="form-label">
+	            	준공년도
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_year" placeholder="준공년도" required>
+	        </div>
+	        <!-- End Input -->
+	      
+	      
+	        <!-- Input -->
+	        <div class="js-form-message col">
+	          <label class="form-label">
+	            	주차장 유무
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_park" placeholder="주차장 유무" required>
+	        </div>
+	        <!-- End Input -->
+      
+       
+	        <!-- Input -->
+	        <div class="js-form-message col">
+	          <label class="form-label">
+	            	승강기 유무
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_elev" placeholder="승강기 유무" required>
+	        </div>
+	        <!-- End Input -->
+	
+	        <!-- Input -->
+	        <div class="js-form-message mb-6">
+	          <label class="form-label">
+	            	난방종류
+	            <span class="text-danger">*</span>
+	          </label>
+	
+	          <input type="text" class="form-control" name="b_heat" placeholder="난방종류" required>
+	        </div>
+	        <!-- End Input -->
+	    </div>
+
+        <!-- Input -->
+        <div class="js-form-message mb-6">
+          <label class="form-label">
+            	교통편
+            <span class="text-danger">*</span>
+          </label>
+
+          <input type="text" class="form-control" name="b_traffic" placeholder="교통편" required>
+        </div>
+        
+        <div class="jumbotron">
     <div class="container">
 		<div class="row">
 	        <div class="map_wrap col-md-8">
@@ -135,172 +311,6 @@
 		</div>
     </div>
 </div>
-
-      <!-- SVG Bottom Shape -->
-      <!-- <figure class="position-absolute right-0 bottom-0 left-0">
-        <img class="js-svg-injector" src="../../assets/svg/components/wave-4-bottom.svg" alt="Image Description"
-             data-parent="#SVGheroBgElements">
-      </figure> -->
-      <!-- End SVG Bottom Shape -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-    <!-- End Hire Us Title Section -->
-
-    <!-- Hire Us Form Section -->
-    <div class="container space-bottom-2">
-      <!-- Hire Us Form -->
-      <form class="js-validate w-lg-50 mx-auto" action="${path}/member/bdmn/instpro" method="post" name="signUpForm">
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                  
-
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	건물명
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_name" placeholder="건물명" required>
-        </div>
-        <!-- End Input -->
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	건물고유번호
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_unique" placeholder="건물고유번호" required>
-        </div>
-        <!-- End Input -->
-        
-      
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	소유자(명칭)
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_owner" placeholder="소유자(명칭)" required>
-        </div>
-        <!-- End Input -->
-        
-      
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	소유자고유번호(등록번호)
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_regnum" placeholder="소유자고유번호(등록번호)" required>
-        </div>
-        <!-- End Input -->
-        
-      
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	대지면적
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_landarea" placeholder="대지면적" required>
-        </div>
-        <!-- End Input -->
-        
-      
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	건축면적
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_buildarea" placeholder="건축면적" required>
-        </div>
-        <!-- End Input -->
-        
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	건축규모
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_buildscale" placeholder="건축규모" required>
-        </div>
-        <!-- End Input -->
-        
-      
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	건물 층수
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_floor" placeholder="건물층수" required>
-        </div>
-        <!-- End Input -->
-        
-      
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	준공년도
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_year" placeholder="준공년도" required>
-        </div>
-        <!-- End Input -->
-      
-      
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	주차장 유무
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_park" placeholder="주차장 유무" required>
-        </div>
-        <!-- End Input -->
-      
-      <!-- 비밀번호 -->
-      
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	승강기 유무
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_elev" placeholder="승강기 유무" required>
-        </div>
-        <!-- End Input -->
-
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	난방종류
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_heat" placeholder="난방종류" required>
-        </div>
-        <!-- End Input -->
-
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            	교통편
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="b_traffic" placeholder="교통편" required>
-        </div>
-        
-        
         
         <!-- Input -->
         <div class="js-form-message mb-6">
@@ -308,7 +318,7 @@
 				광역 시 도
             <span class="text-danger">*</span>
           </label>
-          	<%@include file="../common/area_1.jsp" %>
+          <%@include file="../common/area_1.jsp" %>
         </div>
         
         <!-- Input -->
@@ -368,10 +378,9 @@
             <button type="button" name="btnSubmit" class="btn btn-primary transition-3d-hover">Let's Start Working Together</button>
           </div>
           <p class="small">We'll get back to you in 1-2 business days.</p>
-        </div>
       </form>
-      <!-- End Hire Us Form -->
     </div>
+      <!-- End Hire Us Form -->
     <!-- End Hire Us Form Section -->
   </main>
   <!-- ========== END MAIN ========== -->
@@ -379,7 +388,7 @@
 
   
   <!-- 프로그래스 바 -->
-  <div id="progressBar" class="lay_abr_research covers"> <!-- 프로그래스바가 보이려면  covers 클래스를 추가하면됨 -->
+  <%-- <div id="progressBar" class="lay_abr_research"> <!-- 프로그래스바가 보이려면  covers 클래스를 추가하면됨 -->
     <div class="lay_abr_resch_box" style="height: auto;">
         <p><img src="${resource}/images/icon/ic_loading2.gif" alt="로딩이미지"></p>
         <p style="margin-top: 18px; margin-bottom: 18px;"><!-- <img src="../../images/search/img_research.gif" alt="검색 숙소 중 고객님께 가장 잘 어울리는 숙소를 업데이트 중입니다."> --></p>
@@ -387,7 +396,7 @@
             <div class="bar" style="width: 0; height: 25px; background-color: #58a2ec; color: #FFF; font-weight: bold; text-align: center;"></div>
         </div>
     </div>
-</div>
+</div> --%>
 
 
 <%@ include file="../common/footer.jsp"%>
@@ -396,12 +405,12 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e4ab5e67439dc7eb644a4c54304bf22f&libraries=services"></script>
 <script>
 	
-	window.onload = function() { 
+/* 	window.onload = function() { 
 		//
 		var progressBar = document.getElementById( 'progressBar' );
 		//progressBar.classList.add( 'covers' ); //css =>  커버 클래스 추가
 		progressBar.classList.remove( 'covers' ); //css => covers 제거
-	}
+	} */
 
 	
 
@@ -573,11 +582,6 @@
 	    // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
 	    listEl.appendChild(fragment);
 	    menuEl.scrollTop = 0;
-	    
-		//menuEl
-        //menuEl.addEventListener("click", function(event) {
-        //    console.dir(event);
-        //});
 		
 	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 	    map.setBounds(bounds);
