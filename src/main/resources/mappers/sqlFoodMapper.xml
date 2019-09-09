@@ -125,12 +125,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 음식점 주문 목록 -->
 	<select id="getFoodOrderList" resultType="com.team.smart.food.vo.Food_orderVO" parameterType="java.util.Map">
 		<![CDATA[
-		SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type
-         FROM (SELECT comp_seq, rownum rNum, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type
-              FROM (SELECT comp_seq, f_coupon_num, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type FROM food_order_tbl ORDER BY comp_seq desc))
+		SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price
+         FROM (SELECT comp_seq, rownum rNum, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price
+              FROM (SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price FROM food_order_tbl ORDER BY comp_seq desc))
         where rNum>=#{startNum}
         and rNum<=#{endNum}
     	]]>
+	</select>
+	
+	<!-- 음식점 주문 목록 상세보기 -->
+	<select id="getFoodDetail" resultType="com.team.smart.food.vo.Food_orderVO" parameterType="String">
+		SELECT f_odetail_code, f_ocode, f_code, f_name, f_cnt, f_price  FROM food_order_detail_tbl WHERE f_ocode = #{f_ocode}
 	</select>
 </mapper>
 

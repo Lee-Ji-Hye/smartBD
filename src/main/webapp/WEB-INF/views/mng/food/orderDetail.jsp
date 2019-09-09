@@ -5,30 +5,23 @@
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
 
 <!-- Main -->
+<form method="post" name="orderDetail" action="${path}/cp_manager/menumn/del?${_csrf.parameterName}=${_csrf.token}">
 <div class="container space-2 px-md-7 px-lg-11">
       <div class="card bg-img-hero" style="background-image: url(../../assets/svg/components/bg-elements-6.svg);">
         <div class="card-body p-5 p-md-7 p-lg-11">
           <div class="row justify-content-lg-between align-items-sm-center mb-11">
             <div class="col-sm-6 col-lg-4 order-sm-2 text-sm-right mb-5 mb-sm-0">
               <h1 class="h2 font-weight-medium mb-0">
-                	주문상세코드
                 <small class="d-block">${dvo.f_odetail_code}</small>
               </h1>
             </div>
 
-            <div class="col-sm-6 col-lg-4 order-sm-1">
-              <!-- Logo -->
-             <!--  <img class="mb-2" src="../../assets/svg/logos/logo-short.svg" alt="Logo"> -->
-              <h2 class="h1 text-primary font-weight-semi-bold">매장이름</h2>
-              <!-- End Logo -->
-
-              <!-- Address -->
-              <address>
-                	매장주소
-              </address>
-              <small class="d-block text-muted">tel: 매장 전화번호</small>
-              <!-- End Address -->
-            </div>
+            <!-- <div class="col-sm-6 col-lg-4 order-sm-1">
+              Logo
+              <img class="mb-2" src="../../assets/svg/logos/logo-short.svg" alt="Logo">
+              <h2 class="h1 text-primary font-weight-semi-bold"></h2>
+              End Logo
+            </div> -->
           </div>
 
           <!-- Bill To -->
@@ -64,7 +57,7 @@
                 <th scope="col" class="font-weight-medium text-right">요청사항</th>
               </tr>
             </thead>
-            <c:forEach var="dvo" items=""  varStatus="status">
+            <c:forEach var="dvo" items="detail" varStatus="status">
             <tbody>
               <tr>
                 <th scope="row" class="font-weight-normal">${dvo.f_name}</th>
@@ -88,7 +81,7 @@
               <p class="font-size-1">시스템을 이용해주셔서 감사합니다!!</p>
               <span class="d-block">
                 <small class="font-weight-medium">email:</small>
-                <small class="text-muted">시스템관리자정보?</small>
+                <small class="text-muted">smartBD@kosomo.com</small>
               </span>
               <small class="font-weight-medium">telephone:</small>
               <small class="text-muted">+1 (062) 109-9222</small>
@@ -109,6 +102,7 @@
         </button>
       </div>
     </div>
+</form>
  <!-- footer start -->
 <%@ include file="../../common/footer.jsp" %>
 <!-- footer end -->

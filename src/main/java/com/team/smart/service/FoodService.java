@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.team.smart.app.vo.FoodMenuVO;
 import com.team.smart.app.vo.FoodStoreVO;
+import com.team.smart.food.vo.Food_orderVO;
 
 public interface FoodService {
 
@@ -47,6 +48,9 @@ public interface FoodService {
 	
 	// 음식점 주문 목록 
 	public void getOrderFood(HttpServletRequest req, Model model);
+	
+	// 음식점 주문 목록 상세보기
+	public Food_orderVO getDetailOrder(String f_ocode);
 	
 	// ------------- 지혜
 

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.team.smart.food.vo.Food_companyVO;
 import com.team.smart.food.vo.Food_couponVO;
 import com.team.smart.food.vo.Food_menuVO;
+import com.team.smart.food.vo.Food_orderVO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -518,21 +519,44 @@ public class FoodServiceImpl implements FoodService {
 			map.put("endNum", paging.getEnd()); // 끝번호
 			map.put("comp_seq", comp_seq); // 끝번호
 			
-			List<Food_menuVO> food = f_dao.getGoodsList(map);
+			List<Food_orderVO> order = f_dao.getFoodOrderList(map);
 			// 처리결과를 저장
-			model.addAttribute("food", food);
+			model.addAttribute("order", order);
 		}
 		// 처리결과를 저장
 		model.addAttribute("paging", paging);
 		model.addAttribute("cnt", paging);
 		model.addAttribute("pageNum", page);
 	}
-
-	// 테스트
+	
+	// 음식점 주문 목록 상세보기
+	@Override
+	public Food_orderVO getDetailOrder(String f_ocode) {
+		
+		/*
+		 * // 업체정보 가져오기(업체코드,업체명) String comp_seq =
+		 * (String)req.getSession().getAttribute("comp_seq"); String comp_org =
+		 * (String)req.getSession().getAttribute("comp_org"); // 주문 번호 가져오기 String
+		 * f_ocode = req.getParameter("orderDetail");
+		 * 
+		 * log.debug(" 주문 목록 상세보기 : " + comp_seq + " " + comp_org);
+		 * 
+		 * Food_orderVO detail = f_dao.getFoodDetail(f_ocode);
+		 * 
+		 * // 저장 model.addAttribute("detail",detail);
+		 */
+		
+		return f_dao.getFoodDetail(f_ocode);
+	}
+	
+	
+	// ======================= 테스트
 	@Override
 	public void test(HttpServletRequest req) {
 		
 	}
+
+	
 
 
 }
