@@ -1,13 +1,19 @@
 package com.team.smart.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.smart.service.RoomService;
 import com.team.smart.service.UserService;
 import com.team.smart.vo.CompVO;
 
@@ -25,9 +31,11 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/member")
 public class MemberController {
 
-	
+
 	@Autowired
 	UserService userService;
+	@Autowired
+	RoomService roomService;
 	
 	
 	@RequestMapping({"/","admin"})
@@ -117,6 +125,7 @@ public class MemberController {
 	@RequestMapping({"/bdmn/inst"})
 	public String bdmnInsert(HttpServletRequest req, Model model) {
 		log.info("url -> member/bdmn/inst");
+		model.addAttribute("area1", roomService.getSi());
 		return "signup/bd_signup";
 	}
 
@@ -138,7 +147,22 @@ public class MemberController {
 		return "signup/bd_complet";
 	}
 	
-	
+
+
+	///업체 목록 단건
+//	@GetMapping({"/bdmn/getSi"})
+//	public @ResponseBody List<String> getSi() {
+//		log.info("url -> sysmaster/cormn/details/");
+//		return roomService.getSi();
+//	}
+
+	///업체 목록 단건
+	@GetMapping({"/bdmn/getGu"})
+	public @ResponseBody List<String> getGu(HttpServletRequest req) {
+		String si = req.getParameter("si");
+		log.info("url -> sysmaster/cormn/details/"+si);
+		return roomService.getGu(si);
+	}
 	
 	
 	//업체 등록 등
@@ -175,4 +199,5 @@ public class MemberController {
 		return "signup/comp_complet";
 	}
 	
+
 }

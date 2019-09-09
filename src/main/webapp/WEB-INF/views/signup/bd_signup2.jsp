@@ -6,20 +6,13 @@
 <style>
 	.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 	.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-	/* .map_wrap {position:relative;width:100%;height:500px;} */
-	#menu_wrap {height:500px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);font-size:12px;border-radius: 10px;}/* position:absolute;top:0;left:0;bottom:0; */
+	.map_wrap {position:relative;width:100%;height:500px;}
+	#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 	.bg_white {background:#fff;}
 	#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 	#menu_wrap .option{text-align: center;}
 	#menu_wrap .option p {margin:10px 0;}  
 	#menu_wrap .option button {margin-left:5px;}
-	
-	.title {font-weight:bold;display:block;}
-    .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-    #centerAddr {display:block;margin-top:2px;font-weight: normal;}
-    .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-	
-	
 	#placesList li {list-style: none;}
 	#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
 	#placesList .item span {display: block;margin-top:4px;}
@@ -47,58 +40,6 @@
 	#pagination {margin:10px auto;text-align: center;}
 	#pagination a {display:inline-block;margin-right:10px;}
 	#pagination .on {font-weight: bold; cursor: default;color:#777;}
-	
-	
-	
-	
-	
-	
-	.covers {
-    background: rgba(0,0,0,0.7);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-	}
-	.covers {
-    background: rgba(0,0,0,0.7);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-	}
-	.lay_abr_resch_box {
-    width: 387px;
-    height: 160px;
-    background: #fff;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -90px 0 0 -200px;
-    padding-top: 20px;
-	}
-	.lay_abr_resch_box {
-    width: 387px;
-    height: 160px;
-    background: #fff;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -90px 0 0 -200px;
-    padding-top: 20px;
-	}
-	.lay_abr_resch_box img[src*="ic_loading2"] {
-    width: 70px;
-	}
-	.lay_abr_resch_box img[src*="ic_loading2"] {
-    width: 70px;
-	}
 </style>
   <!-- ========== MAIN ========== -->
   <main id="content" role="main">
@@ -110,18 +51,11 @@
           <p class="lead">We help brands and platforms turn big ideas into beautiful digital products and experiences.</p>
         </div>
       </div> -->
-<div class="jumbotron">
+      <div class="jumbotron">
     <div class="container">
-		<div class="row">
-	        <div class="map_wrap col-md-8">
-			    <div id="map" style="width:100%;height:500px;"></div><!--  style="width:100%;height:100%;position:relative;overflow:hidden;" -->
-			    
-			    <div class="hAddr">
-			        <span class="title">지도중심기준 행정동 주소정보</span>
-			        <span id="centerAddr"></span>
-			    </div>
-			</div>
-		    <div id="menu_wrap" class = "col-md-4"><!-- class="bg_white" -->
+        <div class="map_wrap">
+		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+		    <div id="menu_wrap" class="bg_white">
 		        <div class="option">
 		            <div>
 		                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
@@ -300,33 +234,27 @@
           <input type="text" class="form-control" name="b_traffic" placeholder="교통편" required>
         </div>
         
-        
-        
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
 				광역 시 도
             <span class="text-danger">*</span>
           </label>
-          	<%@include file="../common/area_1.jsp" %>
+
+          <input type="text" class="form-control" name="b_area1" placeholder="광역 시 도" required>
         </div>
         
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
-				구, 동
+            	구, 동
             <span class="text-danger">*</span>
           </label>
-          	<select class="form-control custom-select" required
-                      data-msg="Please select month."
-                      data-error-class="u-has-error"
-                      data-success-class="u-has-success"
-                      name="b_area2"
-                      id="b_area2">
-                <option value="">지역선택</option>
-              </select>
+
+          <input type="text" class="form-control" name="b_area2" placeholder="구, 동" required>
         </div>
         
+        <!-- End Input -->
         
         <!-- Input -->
         <div class="js-form-message mb-6">
@@ -375,36 +303,13 @@
     <!-- End Hire Us Form Section -->
   </main>
   <!-- ========== END MAIN ========== -->
-  
-
-  
-  <!-- 프로그래스 바 -->
-  <div id="progressBar" class="lay_abr_research covers"> <!-- 프로그래스바가 보이려면  covers 클래스를 추가하면됨 -->
-    <div class="lay_abr_resch_box" style="height: auto;">
-        <p><img src="${resource}/images/icon/ic_loading2.gif" alt="로딩이미지"></p>
-        <p style="margin-top: 18px; margin-bottom: 18px;"><!-- <img src="../../images/search/img_research.gif" alt="검색 숙소 중 고객님께 가장 잘 어울리는 숙소를 업데이트 중입니다."> --></p>
-        <div id="prograss_bar" style="width: 100%; padding: 0; background-color: #E7F1FB;">
-            <div class="bar" style="width: 0; height: 25px; background-color: #58a2ec; color: #FFF; font-weight: bold; text-align: center;"></div>
-        </div>
-    </div>
-</div>
 
 
 <%@ include file="../common/footer.jsp"%>
 
-<script type="text/javascript" src="${resource}/js/selectCity.js"></script>
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e4ab5e67439dc7eb644a4c54304bf22f&libraries=services"></script>
 <script>
-	
-	window.onload = function() { 
-		//
-		var progressBar = document.getElementById( 'progressBar' );
-		//progressBar.classList.add( 'covers' ); //css =>  커버 클래스 추가
-		progressBar.classList.remove( 'covers' ); //css => covers 제거
-	}
-
-	
-
 	// 마커를 담을 배열입니다
 	var markers = [];
 	
@@ -417,66 +322,14 @@
 	// 지도를 생성합니다    
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
 	
-
-	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new kakao.maps.services.Geocoder();
-	
-	var marker = new kakao.maps.Marker();
-	
 	// 장소 검색 객체를 생성합니다
 	var ps = new kakao.maps.services.Places();  
-	
-	// 리스트 데이터 객체
-	var bdList;
 	
 	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 	
 	// 키워드로 장소를 검색합니다
 	searchPlaces();
-	
-	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-	    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
-	        if (status === kakao.maps.services.Status.OK) {
-
-			    var keyword = document.getElementById('keyword').value;
-			    keyword = result[0].address.address_name;
-		        console.dir(result[0].address.address_name);
-			    ps.keywordSearch(keyword, placesSearchCB);
-	        }   
-	    });
-	});
-
-	// 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
-	kakao.maps.event.addListener(map, 'idle', function() {
-	    searchAddrFromCoords(map.getCenter(), displayCenterInfo);
-	});
-
-	function searchAddrFromCoords(coords, callback) {
-	    // 좌표로 행정동 주소 정보를 요청합니다
-	    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
-	}
-
-	function searchDetailAddrFromCoords(coords, callback) {
-	    // 좌표로 법정동 상세 주소 정보를 요청합니다
-	    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
-	}
-
-	// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
-	function displayCenterInfo(result, status) {
-	    if (status === kakao.maps.services.Status.OK) {
-	        var infoDiv = document.getElementById('centerAddr');
-
-	        for(var i = 0; i < result.length; i++) {
-	            // 행정동의 region_type 값은 'H' 이므로
-	            if (result[i].region_type === 'H') {
-	                infoDiv.innerHTML = result[i].address_name;
-	                break;
-	            }
-	        }
-	    }    
-	}
-
 	
 	// 키워드 검색을 요청하는 함수입니다
 	function searchPlaces() {
@@ -498,8 +351,6 @@
 	
 	        // 정상적으로 검색이 완료됐으면
 	        // 검색 목록과 마커를 표출합니다
-	        console.dir(data);
-	        console.dir(pagination);
 	        displayPlaces(data);
 	
 	        // 페이지 번호를 표출합니다
@@ -520,12 +371,10 @@
 	
 	// 검색 결과 목록과 마커를 표출하는 함수입니다
 	function displayPlaces(places) {
-		//객체 추가
-		bdList = JSON.parse(JSON.stringify(places));
 	
-	    var listEl = document.getElementById('placesList'),
+	    var listEl = document.getElementById('placesList'), 
 	    menuEl = document.getElementById('menu_wrap'),
-	    fragment = document.createDocumentFragment(),
+	    fragment = document.createDocumentFragment(), 
 	    bounds = new kakao.maps.LatLngBounds(), 
 	    listStr = '';
 	    
@@ -573,26 +422,21 @@
 	    // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
 	    listEl.appendChild(fragment);
 	    menuEl.scrollTop = 0;
-	    
-		//menuEl
-        //menuEl.addEventListener("click", function(event) {
-        //    console.dir(event);
-        //});
-		
+	
 	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 	    map.setBounds(bounds);
 	}
 	
 	// 검색결과 항목을 Element로 반환하는 함수입니다
 	function getListItem(index, places) {
-		
+	
 	    var el = document.createElement('li'),
 	    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
 	                '<div class="info">' +
 	                '   <h5>' + places.place_name + '</h5>';
 	
 	    if (places.road_address_name) {
-	        itemStr += '    <span onclick=listItemOnclick('+ index +')>' + places.road_address_name + '</span>' +
+	        itemStr += '    <span>' + places.road_address_name + '</span>' +
 	                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
 	    } else {
 	        itemStr += '    <span>' +  places.address_name  + '</span>'; 
@@ -683,47 +527,10 @@
 	    }
 	}
 	
-	function listItemOnclick(index){
-		/*
-		address_name: "서울 용산구 이태원동 34-87"
-		category_group_code: "CT1"
-		category_group_name: "문화시설"
-		category_name: "문화,예술 > 문화시설 > 공연장,연극극장"
-		distance: ""
-		id: "13314714"
-		phone: "02-2199-7260"
-		place_name: "용산아트홀"
-		place_url: "http://place.map.kakao.com/13314714"
-		road_address_name: "서울 용산구 녹사평대로 150"
-		x: "126.990324334919"
-		y: "37.5328526868103"
-		__proto__: Object
-		*/
-		console.dir(bdList[index]);
-		var juso = bdList[index];
-		
-		var strArr = juso.road_address_name.split(" ");
-		var b_area1 = strArr[0];
-		var b_area2 = strArr[1];
-		$('#b_area1').val(b_area1);
-		selectCity('b_area2',b_area1,b_area2);
-		
-	    removeMarker();
-	    var placePosition = new kakao.maps.LatLng(bdList[index].y, bdList[index].x)
-        var marker = addMarker(placePosition, index);
-	}
-	
-	 
 	//submit event 처리
 	document.signUpForm.btnSubmit.addEventListener("click", function() {
 		var fom = document.signUpForm;
 		fom.submit();
-	});
-	
-	$(function(){
-		$('#b_area1').change(function(){
-			selectCity('b_area2',$(this).val(),'');
-		})
 	});
 	</script>
 </body>

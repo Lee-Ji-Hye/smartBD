@@ -42,5 +42,11 @@ public interface RoomDAO {
 		
 		//슬라이드용 이미지 가져오기
 		public List<RoomVO> getImage(String r_code);
+		
+		//시가져오기
+		public List<String> getSi();
+		
+		//구가져오기
+		public List<String> getGu(String si);
 
 }

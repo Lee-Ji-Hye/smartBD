@@ -97,6 +97,16 @@ public class RoomDAOImpl implements RoomDAO{
 		return sqlSession.selectList("RoomDAO.getImage",r_code);
 	}
 
+	@Override
+	public List<String> getSi() {
+		return sqlSession.selectList("RoomDAO.getSi");
+	}
+
+	@Override
+	public List<String> getGu(String si) {
+		return sqlSession.selectList("RoomDAO.getGu",si);
+	}
+
 	
 
 }

@@ -282,6 +282,16 @@ public class RoomServiceImpl implements RoomService{
 		}
 	}
 
+	@Override
+	public List<String> getSi() {
+		return dao.getSi();
+	}
+
+	@Override
+	public List<String> getGu(String si) {
+		return dao.getGu(si);
+	}
+
 	
 	
 	

@@ -70,4 +70,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from room_img_tbl where r_code= #{r_code}
 	</select>
 	
+	
+	<select id="getGu" resultType="String" parameterType="String">
+        select area2 from area_tbl where area1 = #{si}
+	</select>
+	
+	<select id="getSi" resultType="String">
+        select DISTINCT(area1) from area_tbl
+	</select>
+        
+        
 </mapper>	   
