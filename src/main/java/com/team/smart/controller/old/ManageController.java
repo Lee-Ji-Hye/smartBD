@@ -71,8 +71,6 @@ public class ManageController {
 //		
 //		return mngBuilding_ + "/roomlist";
 //	}
-	
-	
 //	//매물 상세페이지
 //	@RequestMapping("roomdetail")
 //	public String roomdetail(HttpServletRequest req, Model model) {
