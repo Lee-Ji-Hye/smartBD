@@ -7,7 +7,7 @@
 <div class="bg-light">
       <div class="container space-2">
       	 <!-- Update Avatar Form -->
-        <form name="mkMenu"  enctype="multipart/form-data" method="post" action="${path}/cp_manager/menumn/instPro?${_csrf.parameterName}=${_csrf.token}">
+        <form name="mkMenu"  enctype="multipart/form-data" method="post">
           <div class="u-lg-avatar mr-4">
             <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
           </div>
@@ -105,8 +105,8 @@
         <!-- End Input -->
             <div style="text-align:center">
 	            <!-- Buttons -->
-	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
-	            <button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="window.location='${path}/cp_manager/menumn/modPro?f_code=${vo.f_code}'">수정</button>
+	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" formaction="${path}/cp_manager/menumn/instPro?${_csrf.parameterName}=${_csrf.token}">등록</button>
+	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover" formaction="${path}/cp_manager/menumn/modPro?f_code=${vo.f_code}&${_csrf.parameterName}=${_csrf.token}">수정</button>
 	            <!-- End Buttons -->
           </div>
         </form>

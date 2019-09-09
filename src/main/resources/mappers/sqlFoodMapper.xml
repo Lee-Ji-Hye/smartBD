@@ -90,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 음식점 상품 등록 수정 처리하기 -->
 	<update id="modifyGoodsSujung" parameterType="com.team.smart.food.vo.Food_menuVO">
-		UPDATE food_menu_tbl SET f_type = #{f_type}, f_name = #{f_name}, f_price = #{f_price}, f_img = #{f_img}, f_regidate = #{f_regidate}, f_icon = #{f_icon} WHERE f_code = #{f_code}
+		UPDATE food_menu_tbl SET f_type = #{f_type}, f_name = #{f_name}, f_price = #{f_price}, f_img = #{f_img}, f_icon = #{f_icon}, f_regidate = SYSDATE WHERE f_code = #{f_code}
 	</update>
 	
 	<!-- 음식점 상품 등록 갯수 -->
