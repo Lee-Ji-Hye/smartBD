@@ -50,9 +50,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
-	<!-- 매물 삭제 -->
+	<!-- 매물 비공개 상태로 전환 -->
 	<delete id="delete">
-		delete room_tbl where r_code=#{r_code}
+		update room_tbl set r_delete=1 where r_code=#{r_code}
+	</delete>
+	
+	<!-- 비공개 된 매물 다시 공개로 전환 -->
+	<delete id="reload">
+		update room_tbl set r_delete=0 where r_code=#{r_code}
 	</delete>
 	
 	<!-- 슬라이드용 이미지 갯수 구하기 -->

@@ -6,8 +6,15 @@
 <body>
 <c:if test="${cnt ==1}">
 	<script type="text/javascript">
-		alert("삭제 성공")
-		window.location="/smart/bd_office/roomlist";
+		alert("비공개 전환")
+		window.history.go(-1);
+	</script>
+</c:if>
+
+<c:if test="${cnt ==2}">
+	<script type="text/javascript">
+		alert("공개 전환")
+		window.history.go(-1);
 	</script>
 </c:if>
 </body>

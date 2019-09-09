@@ -37,102 +37,7 @@
   <main id="content" role="main">
     <!-- Gallery Section -->
     <div class="container-fluid position-relative p-2 mb-3">
-      <%-- <div class="row mx-gutters-1">
-        <div class="col-md-8 col-lg-6">
-          <!-- Gallery -->
-          <a class="js-fancybox u-media-viewer" href="javascript:;"
-             data-src="../../assets/img/1920x1080/img36.jpg"
-             data-fancybox="fancyboxGallery6"
-             data-caption="Front in frames - image #01"
-             data-speed="700"
-             data-is-infinite="true">
-            <img class="img-fluid" src="${resourceImg}/room/img1.jpg" alt="Image Description">
-
-            <div class="position-absolute bottom-0 right-0 pb-3 pr-3">
-              <span class="d-md-none btn btn-sm btn-white">
-                <span class="fas fa-expand mr-2"></span>
-                View Photos
-              </span>
-            </div>
-          </a>
-          <!-- End Gallery -->
-        </div>
-
-        <div class="col-md-4 col-lg-3 d-none d-md-inline-block">
-          <!-- Gallery -->
-          <a class="js-fancybox u-media-viewer mb-2" href="javascript:;"
-             data-src="../../assets/img/1920x1080/img37.jpg"
-             data-fancybox="fancyboxGallery6"
-             data-caption="Front in frames - image #02"
-             data-speed="700"
-             data-is-infinite="true">
-            <img class="img-fluid" src="${resourceImg}/room/img11.jpg" alt="Image Description">
-          </a>
-          <!-- End Gallery -->
-
-          <!-- Gallery -->
-          <a class="js-fancybox u-media-viewer" href="javascript:;"
-             data-src="../../assets/img/1920x1080/img38.jpg"
-             data-fancybox="fancyboxGallery6"
-             data-caption="Front in frames - image #03"
-             data-speed="700"
-             data-is-infinite="true">
-            <img class="img-fluid" src="${resourceImg}/room/img2.jpg" alt="Image Description">
-
-            <div class="position-absolute bottom-0 right-0 pb-3 pr-3">
-              <span class="d-sm-inline-block d-lg-none btn btn-sm btn-white">
-                <span class="fas fa-expand mr-2"></span>
-                View Photos
-              </span>
-            </div>
-          </a>
-          <!-- End Gallery -->
-        </div>
-
-        <div class="col-lg-3 d-none d-lg-inline-block">
-          <!-- Gallery -->
-          <a class="js-fancybox u-media-viewer mb-2" href="javascript:;"
-             data-src="../../assets/img/1920x1080/img39.jpg"
-             data-fancybox="fancyboxGallery6"
-             data-caption="Front in frames - image #04"
-             data-speed="700"
-             data-is-infinite="true">
-            <img class="img-fluid" src="${resourceImg}/room/img3.jpg" alt="Image Description">
-          </a>
-          <!-- End Gallery -->
-
-          <!-- Gallery -->
-          <a class="js-fancybox u-media-viewer" href="javascript:;"
-             data-src="../../assets/img/1920x1080/img40.jpg"
-             data-fancybox="fancyboxGallery6"
-             data-caption="Front in frames - image #04"
-             data-speed="700"
-             data-is-infinite="true">
-            <img class="img-fluid" src="${resourceImg}/room/img4.jpg" alt="Image Description">
-
-            <div class="position-absolute bottom-0 right-0 pb-3 pr-3">
-              <span class="d-none d-lg-inline-block btn btn-sm btn-white">
-                <span class="fas fa-expand mr-2"></span>
-                View Photos
-              </span>
-            </div>
-          </a>
-          <!-- End Gallery -->
-
-          <img class="js-fancybox d-none" alt="Image Description"
-               data-fancybox="fancyboxGallery6"
-               data-src="../../assets/img/1920x1080/img41.jpg"
-               data-caption="Front in frames - image #05"
-               data-speed="700"
-               data-is-infinite="true">
-          <img class="js-fancybox d-none" alt="Image Description"
-               data-caption="Front in frames - image #06"
-               data-src="../../assets/img/1920x1080/img42.jpg"
-               data-fancybox="fancyboxGallery6"
-               data-speed="700"
-               data-is-infinite="true">
-        </div>
-      </div> --%>
+      
     </div>
     <!-- End Gallery Section -->
 
@@ -141,8 +46,8 @@
       <!-- Additional Functions -->
       <div class="d-md-flex justify-content-md-start align-items-md-center text-center mb-7">
         <div class="mr-md-auto mb-2 mb-md-0">
-          <span class="font-size-1 font-weight-medium">Published:</span>
-          <span class="text-secondary font-size-1">December 27, 2018</span>
+          <!-- <span class="font-size-1 font-weight-medium"></span> -->
+         <!--  <span class="text-secondary font-size-1">December 27, 2018</span> -->
         </div>
 
         <a class="btn btn-sm btn-outline-secondary border-white" href="${path_r_mng}/roomlist"
@@ -156,10 +61,20 @@
           <img src="${resourceImg}/room/writing.png" width=15px; height=15px">
           	 매물 수정하기 
         </a>
+        
+        <a class="btn btn-sm btn-outline-secondary border-white"href="${path_r_mng}/imageadd?r_code=${dto.r_code}">
+          <img src="${resourceImg}/room/imgup.png" width=15px; height=15px">
+          	 슬라이드 이미지 등록 
+        </a>	
 
-        <a class="btn btn-sm btn-outline-secondary border-white" href="${path_r_mng}/deletePro/?r_code=${dto.r_code}">
-          <img src="${resourceImg}/room/trash.png" width=15px; height=15px">
-          	매물 삭제하기
+        <a class="btn btn-sm btn-outline-secondary border-white" href="${path_r_mng}/deletePro/?r_code=${dto.r_code}&r_delete=${dto.r_delete}">
+          <img src="${resourceImg}/room/recycle.png" width=15px; height=15px">
+          	<c:if test="${dto.r_delete eq 0}">
+          		매물 비공개로 전환
+          	</c:if>
+          	<c:if test="${dto.r_delete eq 1}">
+          		매물 공개로 전환
+          	</c:if>
         </a>
       </div>
       <!-- End Additional Functions -->
@@ -170,16 +85,27 @@
           <!-- Breadcrumb -->
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-no-gutter bg-transparent font-size-1">
-              <li class="breadcrumb-item"><a href="#">For Sale</a></li>
-              <li class="breadcrumb-item"><a href="#">England</a></li>
-              <li class="breadcrumb-item"><a href="#">London</a></li>
-              <li class="breadcrumb-item"><a href="#">Studio</a></li>
-              <li class="breadcrumb-item active" aria-current="page">470 Lucy Forks, Patriciafurt, YC7B</li>
+              <li class="breadcrumb-item">매물종류:
+          <c:if test="${dto.r_kind eq 'RT'}">사무실</c:if>
+          <c:if test="${dto.r_kind eq 'ST'}">상가</c:if>
+              </li>
+              <li class="breadcrumb-item">거래유형 :${dto.r_type}</li>
+              <li class="breadcrumb-item active" aria-current="page">보증금:${dto.r_deposit}만</li>
+              <li class="breadcrumb-item active" aria-current="page">권리금:${dto.r_premium}만</li>
+              <li class="breadcrumb-item active" aria-current="page">관리비:${dto.r_ofer_fee}만</li>
             </ol>
           </nav>
           <!-- End Breadcrumb -->
 
-          <h1 class="h3 font-weight-medium">${dto.r_price}만</h1>
+          <h1 class="h3 font-weight-medium">매물가 :${dto.r_price}만</h1>
+          <h1 class="h3 font-weight-medium">등록 상태:
+         	 <c:if test="${dto.r_delete eq 0}">
+          		공개
+          	</c:if>
+          	<c:if test="${dto.r_delete eq 1}">
+          		비공개
+          	</c:if>
+          </h1>
         </div>
 
         <%-- <div class="col-lg-4 align-self-lg-end text-lg-right mb-5 mb-lg-0">
@@ -189,7 +115,7 @@
       <!-- End Title -->
 
       <div class="row space-top-2">
-        <div class="col-lg-8 mb-9 mb-lg-0">
+        <div class="col-lg-8 mb-9 mb-lg-0" >
           <!-- Nav Classic -->
           <ul id="SVGnavIcons" class="svg-preloader nav nav-classic nav-rounded nav-shadow nav-justified border" role="tablist">
             <li class="nav-item">
@@ -591,8 +517,9 @@
           <!-- End Agents List --> --%>
         </div>
 
+        <!--
         <div class="col-lg-4">
-          <div id="stickyBlockStartPoint" class="pl-lg-4">
+          <div id="stickyBlockStartPoint" class="pl-lg-4"> -->
             <!-- Contact Form -->
             <%-- <div class="js-sticky-block card shadow-sm p-4"
                  data-parent="#stickyBlockStartPoint"
@@ -650,9 +577,9 @@
               </form> -->
               <!-- End Form -->
             </div> --%>
-            <!-- End Contact Form -->
+            <!-- End Contact Form 
           </div>
-        </div>
+        </div>-->
       </div>
 
       <!-- Sticky Block End Point -->

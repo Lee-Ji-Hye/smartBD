@@ -43,7 +43,7 @@ public class BD_OfficeController {
 		return mngBuilding_ + "/roomlist";
 	}
 	
-	//매물 상세페이지
+		//매물 상세페이지
 		@RequestMapping("roomdetail")
 		public String roomdetail(HttpServletRequest req, Model model) {
 			//logger.info("URI -> sysmaster");
@@ -86,13 +86,23 @@ public class BD_OfficeController {
 			return mngBuilding_ + "/uploadPro";
 		}
 		
-		//매물 삭제
+		//매물 공개,비공개 전환하기
 		@RequestMapping("deletePro")
 		public String roomdeletePro(HttpServletRequest req, Model model) {
 			String r_code = req.getParameter("r_code");
+			String r_delete = req.getParameter("r_delete");
 			
+			
+			//r_delete 가 공개상태인경우 비공개로 전환하는 서비스
+			if(r_delete.equals("0")) {
+				r_service.delete(req, model);
+				
+			//r_delete 가 비공개 상태인경우 공개로 전환하는 서비스
+			}else if(r_delete.equals("1")) {
+				r_service.reload(req,model);
+			}
 			System.out.println("r_code :" + r_code);
-			r_service.delete(req, model);
+			
 			
 			
 			return mngBuilding_ + "/deletePro";
@@ -114,6 +124,8 @@ public class BD_OfficeController {
 	        String r_code = req.getParameter("r_code");
 	        System.out.println("src value : " + src);
 
+	        //해당 저장경로는 컴퓨터마다 다르기때문에 pull받은 컴퓨터에 알맞는 경로로 지정해줘야 저장이 됨
+	        //git파일 위치가 동일하다면C:\\Users\\kosmo27\\ 부분만 수정해주면 된다
 	        String path = "C:\\Users\\kosmo27\\git\\smartBD\\src\\main\\webapp\\resources\\images\\slide\\";
 	        
 	        for (MultipartFile mf : fileList) {
@@ -145,5 +157,22 @@ public class BD_OfficeController {
 
 	        return mngBuilding_ + "/roomdetail?r_code=" + r_code;
 	    }
+		
+		//계약관리
+		@RequestMapping("roomcontract")
+		public String pay(HttpServletRequest req, Model model) {
+					
+					
+					
+			return mngBuilding_ + "/roomcontract";
+		}
+		
+		//계약서
+		@RequestMapping("contract")
+		public String news1(HttpServletRequest req, Model model) throws Exception{
+			//logger.info("url => news1 호출");
+					
+			return mngBuilding_ +"/contract";
+		}
 	
 }

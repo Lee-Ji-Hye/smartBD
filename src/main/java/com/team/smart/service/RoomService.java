@@ -26,8 +26,11 @@ public interface RoomService {
 		//매물 수정
 		public void update(HttpServletRequest req, Model model);
 		
-		//매물 삭제
+		//매물 비공개로 전환
 		public void delete(HttpServletRequest req, Model model);
+		
+		//매물 공개로 전환
+		public void reload(HttpServletRequest req, Model model);
 		
 		//이미지 등록시 DB에 이미지name저장
 		public void addImage(HttpServletRequest req, Model model,String originFileName,String r_code);
