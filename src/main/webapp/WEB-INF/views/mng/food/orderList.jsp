@@ -93,6 +93,11 @@ pageEncoding="UTF-8"%>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
+                      	주문번호
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
                       	아이디
                     </div>
                   </th>
@@ -116,13 +121,12 @@ pageEncoding="UTF-8"%>
                       	상태
                     </div>
                   </th>
-                  
                 </tr>
               </thead>
               <tbody class="font-size-1">
               <c:set var="order" value="${0}"/>
-              	<c:forEach var="ovo" items="${order}">
-              		<tr class="text-uppercase font-size-1">
+              	<c:forEach var="ovo" items="${detailO}">
+              		<tr class="text-uppercase font-size-1  form-original">
 	                  <th scope="col">
 	                    <%-- <div class="custom-control custom-checkbox d-flex align-items-center">
 	                      <input type="checkbox" class="custom-control-input" id="invoiceCheckbox0${status.count}">
@@ -131,16 +135,17 @@ pageEncoding="UTF-8"%>
 	                      </label>
 	                    </div> --%>
 	                  </th>
-	                  <td class="align-middle text-secondary font-weight-normal" onclick="window.location='${path}/cp_employee/odmn/amd?userid=${ovo.userid}'">${ovo.userid}</td>
+	                   <td class="align-middle" id="detail_odrerCode" onclick="orderDetail('${ovo.f_ocode}',${order})">${ovo.f_ocode}</td>
+	                  <td class="align-middle text-secondary font-weight-normal">${ovo.userid}</td>
 	                  <td class="align-middle">${ovo.f_name}</td>
 	                  <td class="align-middle text-primary">${ovo.f_pay_price}</td>
 	                  <td class="align-middle">${ovo.f_regidate}</td>
-	                  <td class="align-middle">
-	                  	<div class="media align-items-center" id="foodOrderApp">
+	                  <td class="align-middle" id="foodOrderApp">
+	                  	<!-- <div class="media align-items-center" > -->
 	                  		<c:if test="${ovo.f_status == '0'}">승인대기</c:if>
 	                  		<c:if test="${ovo.f_status == '1'}">승인완료</c:if>
 	                  		<c:if test="${ovo.f_status == '2'}">승인거절</c:if>
-	                  	</div>
+	                  	<!-- </div> -->
 	                  </td>
 	                </tr>
                 	<c:set var="order" value="${order+1}"/>
@@ -153,19 +158,23 @@ pageEncoding="UTF-8"%>
 				            <div class="col-md-5 col-lg-4">
 				              <h3 class="h5">주문 내역</h3>
 				              <span class="d-block">주문자 </span>
-				              <address class="text-secondary mb-0" id="orderID">
-				               		${dvo.userid}
+				              <address class="text-secondary mb-0" id="detail_orderID">
+				               		${ovo.userid}
 				              </address>
 				            </div>
-				
+				            
 				            <div class="col-md-5 col-lg-4 mt-6">
 				              <dl class="row mb-0">
 				                <dt class="col-5 col-md-6 font-weight-normal text-secondary">테이크아웃</dt>
-				                <dd class="col-7 col-md-6 font-weight-medium" id="orderTakeOut">${dvo.f_takeout}</dd>
+				                <dd class="col-7 col-md-6 font-weight-medium" id="detail_orderTakeOut">${ovo.f_takeout}</dd>
 				              </dl>
 				              <dl class="row mb-0">
 				                <dt class="col-5 col-md-6 font-weight-normal text-secondary">픽업시간</dt>
-				                <dd class="col-7 col-md-6 font-weight-medium" id="pickUp">${dvo.f_receive_time}</dd>
+				                <dd class="col-7 col-md-6 font-weight-medium" id="detail_pickUp">${ovo.f_receive_time}</dd>
+				              </dl>
+				              <dl class="row mb-0">
+				                <dt class="col-5 col-md-6 font-weight-normal text-secondary">승인상태</dt>
+				                <dd class="col-7 col-md-6 font-weight-medium" id="foodOrderApp2"></dd>
 				              </dl>
 				            </div>
 				          </div>
@@ -184,16 +193,30 @@ pageEncoding="UTF-8"%>
 				            <c:forEach var="dvo" items="detail" varStatus="status">
 				            <tbody>
 				              <tr>
-				                <th scope="row" class="font-weight-normal" id="menuName">${dvo.f_name}</th>
-				                <td scope="row" class="font-weight-normal" id="menuCount">${dvo.f_cnt}</td>
-				                <td scope="row" class="font-weight-normal" id="menuPrice">${dvo.f_price}</td>
-				                <td class="text-right" id="menuMessage">${dvo.f_message}</td>
+				                <th scope="row" class="font-weight-normal" id="detail_menuName">${ovo.f_name}</th>
+				                <td scope="row" class="font-weight-normal" id="detail_menuCount">${ovo.f_cnt}</td>
+				                <td scope="row" class="font-weight-normal" id="detail_menuPrice">${ovo.f_price}</td>
+				                <td class="text-right" id="detail_menuMessage">${ovo.f_message}</td>
 				              </tr>
 				            </tbody>
+                        		<hr class="my-4">
+				              <tr class="h6">
+				                <td scope="row">합계</td>
+				                 <td colspan="3" class="text-right" id="detail_menu_amount">${ovo.f_amount}</td>
+				              </tr>
+				              <tr class="h6">
+				                <td scope="row">할인</td>
+				                 <td colspan="3" class="text-right" id="detail_menu_sale">${ovo.f_sale_price}</td>
+				              </tr>
 				              <tr class="h6">
 				                <td scope="row">Total</td>
-				                <td colspan="3" class="text-right" id="menuTotal">${dvo.f_amount}</td>
+				                <td colspan="3" class="text-right" id="detail_menuTotal">${ovo.f_pay_price}</td>
 				              </tr>
+				              <!-- <tr class="h6" style="float:right">
+				                <td scope="row" >승인상태:</td>
+				                <td colspan="3" class="text-right" id="foodOrderApp2"></td>
+				                <td></td>
+				              </tr> -->
 				            </c:forEach>
 				          </table>
 				          <!-- End Table -->
@@ -218,11 +241,12 @@ pageEncoding="UTF-8"%>
 				          <!-- End Contacts -->
 				
 				      <div class="text-right mt-5">
-				        <button type="button" class="btn btn-primary btn-sm-wide transition-3d-hover" onclick="orderPro(event,'amdOk')">
-				          <span class="fas fa-print mr-2"></span>
+				        <button type="button" class="btn btn-sm btn-primary transition-3d-hover" onclick="orderPro(event,'amdOk')"><!-- btn btn-primary -->
+				          <span class="fas fa-print mr-1"></span>
 				          	주문승인
 				        </button>
-				        <button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="orderPro(event,'amdNg')">
+				        <button type="button" class="btn btn-sm btn-secondary  transition-3d-hover" onclick="orderPro(event,'amdNg')">
+				          <span class="fas fa-print mr-1"></span>
 				        	주문거절
 				        </button>
 				      </div>
@@ -263,9 +287,9 @@ function goodsChkAll() {
 }
 
 // AJAX 
-function compDetail(f_ocode, tbl_index){
+function orderDetail(f_ocode, tbl_order){
 	var request = new XMLHttpRequest();//지역변수 추천
-	request.open("GET", "${path}/cp_employeelgks/odmn/amd/" + comp_seq, true);//요청보내는거
+	request.open("GET", "${path}/cp_employee/odmn/amd/" + f_ocode, true);//요청보내는거
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	console.dir(request);
 	request.onreadystatechange = function(){//콜백함수
@@ -281,34 +305,29 @@ function compDetail(f_ocode, tbl_index){
 				obj = JSON.parse(request.responseText);
 				//콘솔에찍음
 				console.log(obj);
-				//값을 변경
-				if(obj.comp_section === '0'){
-					obj.comp_section = '개인사업자';
-				} else if(obj.comp_section === '1'){
-					obj.comp_section = '법인';
+				
+				if(obj.f_status === '0'){
+					obj.f_status = '승인대기';
+				} else if(obj.f_status === '1'){
+					obj.f_status = '승인완료';
+				} else if(obj.f_status === '2'){
+					obj.f_status = '승인거절';
 				}
-				document.getElementById('details_comp_seq').innerText = obj.comp_seq;
-				document.getElementById('details_comp_section').innerText = obj.comp_section;
-				document.getElementById('details_comp_bn').innerText = obj.comp_bn;
-				document.getElementById('details_comp_org').innerText = obj.comp_org;
-				document.getElementById('details_comp_master').innerText = obj.comp_master;
-				document.getElementById('details_comp_branch').innerText = obj.comp_branch;
-				document.getElementById('details_comp_owner').innerText = obj.comp_owner;
-				document.getElementById('details_comp_business').innerText = obj.comp_business;
-				document.getElementById('details_comp_category').innerText = obj.comp_category;
-				document.getElementById('details_comp_hp').innerText = obj.comp_hp;
-				document.getElementById('details_comp_regidate').innerText = obj.comp_regidate;
-				if(obj.comp_status === '2'){
-					obj.comp_status = '반려';
-				} else if(obj.comp_status === '0'){
-					obj.comp_status = '승인대기';
-				} else if(obj.comp_status === '1'){
-					obj.comp_status = '승인';
-				}
-				document.getElementById('details_comp_status').innerText = obj.comp_status;
-				document.getElementById('details_comp_status2').innerText = obj.comp_status;
+				document.getElementById('foodOrderApp').innerText = obj.f_status;
+				document.getElementById('foodOrderApp2').innerText = obj.f_status;
+				
+				document.getElementById('detail_orderID').innerText = obj.userid;
+				document.getElementById('detail_orderTakeOut').innerText = obj.f_takeout;
+				document.getElementById('detail_pickUp').innerText = obj.f_receive_time;
+				document.getElementById('detail_menuName').innerText = obj.f_name;
+				document.getElementById('detail_menuCount').innerText = obj.f_cnt;
+				document.getElementById('detail_menuPrice').innerText = obj.f_price;
+				document.getElementById('detail_menu_amount').innerText = obj.f_amount;
+				document.getElementById('detail_menu_sale').innerText = obj.f_sale_price;
+				document.getElementById('detail_menuMessage').innerText = obj.f_message;
+				document.getElementById('detail_menuTotal').innerText = obj.f_pay_price;
 				//삽입될 위치를 변경
-				tbl[0].children[1].insertBefore(details, tblclass[tbl_index + 1]);
+				tbl[0].children[1].insertBefore(details, tblclass[tbl_order + 1]);
 				//display 속성을 변경
 				details.style.display="table-row";
 			}else{
@@ -317,21 +336,21 @@ function compDetail(f_ocode, tbl_index){
 			}
 		}
 	};
-	request.send(null);
+	request.send(null);//body
 };
 
 
 function orderPro(event, jong) {
 	//amdOk, amdNg,
-	var comp_seq = document.getElementById('details_comp_seq').innerText;
+	var f_ocode = document.getElementById('foodOrderApp2').innerText;
 	var url = "${path}/cp_employee/odmn/";
 	var method = "";
 	
 	if(jong === 'amdOk'){
-		url += 'amd/1/' + comp_seq;
+		url += 'amd/1/' + f_ocode;
 		method = "GET";
 	} else if(jong === 'amdNg'){
-		url += 'amd/2/' + comp_seq;
+		url += 'amd/2/' + f_ocode;
 		method = "GET";
 	} 
 	
@@ -349,7 +368,7 @@ function orderPro(event, jong) {
 			}
 		}
 	};
-	request.send(comp_seq);
+	request.send(f_ocode);
 }
 </script>
 <!-- ========== END MAIN ========== -->

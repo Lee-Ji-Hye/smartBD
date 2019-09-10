@@ -71,6 +71,9 @@ public interface FoodDAO {
 	// 음식점 상품 주문 상세 보기
 	public Food_orderVO getFoodDetail(String f_ocode);
 	
+	// 주문 승인 처리
+	public int amdFood(Map<String, String> map);
+	
 	// ------------ 페이징 처리
 	
 	// 쿠폰 페이지 처리

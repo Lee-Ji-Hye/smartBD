@@ -63,9 +63,15 @@ public class CP_EmployeeController {
 	public @ResponseBody Food_orderVO orderDetail(HttpServletRequest req, @PathVariable String f_ocode) {
 		log.info("url -> orderDetail/");
 		
-		
 		return service.getDetailOrder(f_ocode);
 	}
+	
+	// 주문건 승인 처리
+	//@GetMapping("/odmn/amd/{f_ocode}/{f_status}")
+	//public @ResponseBody Map<String,String> amdFood(HttpServletRequest req, @PathVariable String f_ocode) {
+		//log.info("url -> orderDetail/");
+	//}
+	
 	
 	/*
 	 * // 주문 건 상세보기
@@ -75,6 +81,6 @@ public class CP_EmployeeController {
 	 * 
 	 * return mngFood_ + "/orderDetail"; }
 	 */
-
-	
 }
+	
+

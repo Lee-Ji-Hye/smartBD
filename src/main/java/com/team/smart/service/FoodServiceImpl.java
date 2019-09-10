@@ -521,7 +521,7 @@ public class FoodServiceImpl implements FoodService {
 			
 			List<Food_orderVO> order = f_dao.getFoodOrderList(map);
 			// 처리결과를 저장
-			model.addAttribute("order", order);
+			model.addAttribute("detailO", order);
 		}
 		// 처리결과를 저장
 		model.addAttribute("paging", paging);
@@ -549,6 +549,19 @@ public class FoodServiceImpl implements FoodService {
 		return f_dao.getFoodDetail(f_ocode);
 	}
 	
+	// 음식점 승인 처리
+	@Override
+	public void amdOrder(String f_ocode, String f_status) {
+		
+		Map<String,String> map = new HashMap<>();
+		map.put("f_ocode", f_ocode);
+		map.put("f_status", f_status);
+		
+		log.debug("음식점 승인 처리" + map);
+		
+		f_dao.amdFood(map);
+		
+	}
 	
 	// ======================= 테스트
 	@Override
@@ -556,7 +569,6 @@ public class FoodServiceImpl implements FoodService {
 		
 	}
 
-	
 
 
 }

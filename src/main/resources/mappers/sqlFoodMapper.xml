@@ -104,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT comp_seq, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate
          FROM (SELECT comp_seq, rownum rNum, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate
               FROM (SELECT comp_seq, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate FROM food_menu_tbl ORDER BY comp_seq))
-        where rNum>=#{startNum}
+        WHERE rNum>=#{startNum}
         AND rNum<=#{endNum}
     	]]>
 	</select>
@@ -135,7 +135,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 음식점 주문 목록 상세보기 -->
 	<select id="getFoodDetail" resultType="com.team.smart.food.vo.Food_orderVO" parameterType="String">
-		SELECT f_odetail_code, f_ocode, f_code, f_name, f_cnt, f_price  FROM food_order_detail_tbl WHERE f_ocode = #{f_ocode}
+		 SELECT o.f_ocode, o.comp_seq, o.f_takeout, o.f_takeout_sale, o.f_status, o.f_name, o.f_hp, o.f_receive_time, o.f_message, o.f_person_num,
+        		o.userid, o.f_serial, o.f_regidate, o.f_amount, o.f_sale_price, o.f_pay_type, o.tid, o.f_pay_price, o.f_refund_price, o.f_rate, d.f_odetail_code, d.f_price, d.f_cnt
+           FROM food_order_tbl o
+           JOIN food_order_detail_tbl d
+             ON o.f_name = d.f_name
+          WHERE o.f_ocode = #{f_ocode}
 	</select>
+	
+	<!-- 음식점 상품 등록 수정 처리하기 -->
+	<update id="amdFood" parameterType="java.util.Map">
+		UPDATE food_order_tbl SET f_status = #{f_status} WHERE f_code = #{f_code}
+	</update>
+	
+	
 </mapper>
 

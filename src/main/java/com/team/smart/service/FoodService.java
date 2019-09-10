@@ -52,6 +52,9 @@ public interface FoodService {
 	// 음식점 주문 목록 상세보기
 	public Food_orderVO getDetailOrder(String f_ocode);
 	
+	// 음식점 주문 승인 처리
+	public void amdOrder(String f_ocode, String f_status);
+	
 	// ------------- 지혜
 
 	public void test(HttpServletRequest req);

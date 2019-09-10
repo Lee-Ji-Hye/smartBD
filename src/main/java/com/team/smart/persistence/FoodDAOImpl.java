@@ -150,6 +150,12 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectOne("FoodDAO.getOrderPage");
 	}
 	
+	// 주문 승인 처리 
+	@Override
+	public int amdFood(Map<String, String> map) {
+		return sqlSession.update("FoodDAO.amdFood", map);
+	}
+	
 	
 
 	// ============================= 테스트
@@ -159,6 +165,5 @@ public class FoodDAOImpl implements FoodDAO {
 		System.out.println("~!!!!!!!!!!!!!!!!!!!!!!!!!!~");
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
-
 	
 }
