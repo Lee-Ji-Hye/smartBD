@@ -99,13 +99,22 @@ public class UserServiceImpl implements UserService {
 						.b_address(req.getParameter("b_address"))//지도에서가져와야댐
 						.b_name(req.getParameter("b_name"))
 						.b_floor(Integer.parseInt(req.getParameter("b_floor")))
-						.b_year(new Timestamp(System.currentTimeMillis()))
+						.b_year(req.getParameter("b_year"))
+						
+						.b_unique(req.getParameter("b_unique"))
+						.b_owner(req.getParameter("b_owner"))
+						.b_regnum(req.getParameter("b_regnum"))
+						.b_landarea(req.getParameter("b_landarea"))
+						.b_buildarea(req.getParameter("b_buildarea"))
+						.b_buildscale(req.getParameter("b_buildscale"))
+						.b_status("0")
+						
 						.b_park(req.getParameter("b_park"))
 						.b_elev(req.getParameter("b_elev"))
 						.b_heat(req.getParameter("b_heat"))
 						.b_traffic(req.getParameter("b_traffic"))
-						.b_lat(Integer.parseInt(req.getParameter("b_lat")))//지도에서 가져와야댐
-						.b_lon(Integer.parseInt(req.getParameter("b_lon")))//지도에서가져와야댐
+						.b_lat(Double.parseDouble(req.getParameter("b_lat")))//지도에서 가져와야댐
+						.b_lon(Double.parseDouble(req.getParameter("b_lon")))//지도에서가져와야댐
 						.userid(SecurityContextHolder.getContext().getAuthentication().getName())
 						.build();
 		

@@ -60,10 +60,9 @@
 	</insert>
 	
 	<insert id="insertBd" parameterType="com.team.smart.vo.BuildingVO">
-		insert into building_tbl(b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid)
-		VALUES(#{b_code}, #{b_area1}, #{b_area2}, #{b_address}, #{b_name}, #{b_floor}, #{b_year}, #{b_park}, #{b_elev}, #{b_heat}, #{b_traffic}, #{b_lat}, #{b_lon}, #{userid})
+		insert into building_tbl(b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid, b_unique, b_owner, b_regnum, b_landarea, b_buildarea, b_buildscale, b_status)
+		VALUES(#{b_code}, #{b_area1}, #{b_area2}, #{b_address}, #{b_name}, #{b_floor}, #{b_year}, #{b_park}, #{b_elev}, #{b_heat}, #{b_traffic}, #{b_lat}, #{b_lon}, #{userid}, #{b_unique}, #{b_owner}, #{b_regnum}, #{b_landarea}, #{b_buildarea}, #{b_buildscale}, #{b_status})
 	</insert>
-	
 	
 	
 </mapper>

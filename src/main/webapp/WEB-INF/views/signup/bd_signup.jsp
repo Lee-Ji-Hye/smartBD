@@ -222,7 +222,7 @@
 	            <span class="text-danger">*</span>
 	          </label>
 	
-	          <input type="text" class="form-control" name="b_floor" placeholder="건물층수" required>
+	          <input type="number" class="form-control" name="b_floor" placeholder="건물층수" required>
 	        </div>
 	        <!-- End Input -->
         </div>
@@ -236,7 +236,7 @@
 	            <span class="text-danger">*</span>
 	          </label>
 	
-	          <input type="text" class="form-control" name="b_year" placeholder="준공년도" required>
+	          <input type="date" class="form-control" name="b_year" placeholder="준공년도" required>
 	        </div>
 	        <!-- End Input -->
 	      
@@ -247,8 +247,16 @@
 	            	주차장 유무
 	            <span class="text-danger">*</span>
 	          </label>
-	
-	          <input type="text" class="form-control" name="b_park" placeholder="주차장 유무" required>
+	          
+          		<select class="form-control custom-select" required
+                      data-error-class="u-has-error"
+                      data-success-class="u-has-success"
+                      name="b_park"
+                      required>
+                	<option value="">주차장 유무</option>
+                	<option value="1">있다</option>
+                	<option value="0">없다</option>
+              	</select>
 	        </div>
 	        <!-- End Input -->
       
@@ -260,7 +268,16 @@
 	            <span class="text-danger">*</span>
 	          </label>
 	
-	          <input type="text" class="form-control" name="b_elev" placeholder="승강기 유무" required>
+				
+          		<select class="form-control custom-select" required
+                      data-error-class="u-has-error"
+                      data-success-class="u-has-success"
+                      name="b_elev"
+                      required>
+                	<option value="">승강기 유무</option>
+                	<option value="1">있다</option>
+                	<option value="0">없다</option>
+              	</select>
 	        </div>
 	        <!-- End Input -->
 	
@@ -270,8 +287,16 @@
 	            	난방종류
 	            <span class="text-danger">*</span>
 	          </label>
-	
-	          <input type="text" class="form-control" name="b_heat" placeholder="난방종류" required>
+				
+          		<select class="form-control custom-select" required
+                      data-error-class="u-has-error"
+                      data-success-class="u-has-success"
+                      name="b_heat"
+                      required>
+                	<option value="">난방종류</option>
+                	<option value="개별난방">개별난방</option>
+                	<option value="중앙난방">중앙난방</option>
+              	</select>
 	        </div>
 	        <!-- End Input -->
 	    </div>
@@ -286,7 +311,14 @@
           <input type="text" class="form-control" name="b_traffic" placeholder="교통편" required>
         </div>
         
-        <div class="jumbotron">
+        <div class="row">
+	        <div class="col-4">
+	          <button type="button" name="btnHideOnBush" class="btn btn-soft-secondary transition-3d-hover">지도 펼치기</button>
+	          <p class="small">지도를 펼쳐서 편하게 등록하셔요</p>
+	        </div>
+        </div>
+        
+<div class="jumbotron" id="jido" style="display:none;">
     <div class="container">
 		<div class="row">
 	        <div class="map_wrap col-md-8">
@@ -345,7 +377,7 @@
             <span class="text-danger">*</span>
           </label>
 
-          <input type="text" class="form-control" name="b_address" placeholder="주소" required>
+          <input type="text" class="form-control" name="b_address" id="b_address" placeholder="주소" required>
         </div>
         
         <!-- End Input -->
@@ -358,7 +390,7 @@
             <span class="text-danger">*</span>
           </label>
 
-          <input type="text" class="form-control" name="b_lat" placeholder="위도" required>
+          <input type="text" class="form-control" name="b_lat" id="b_lat" placeholder="위도" required>
         </div>
         
         <!-- End Input -->
@@ -370,14 +402,17 @@
             <span class="text-danger">*</span>
           </label>
 
-          <input type="text" class="form-control" name="b_lon" placeholder="경도" required>
+          <input type="text" class="form-control" name="b_lon" id="b_lon" placeholder="경도" required>
         </div>
         <!-- End Input -->
-        
-          <div class="mb-2">
-            <button type="button" name="btnSubmit" class="btn btn-primary transition-3d-hover">Let's Start Working Together</button>
-          </div>
-          <p class="small">We'll get back to you in 1-2 business days.</p>
+        <div class="row">
+	        <div class="col-4"></div>
+	        <div class="col-4">
+	          <button type="button" name="btnSubmit" class="btn btn-primary transition-3d-hover">Let's Start Working Together</button>
+	          <p class="small">We'll get back to you in 1-2 business days.</p>
+	        </div>
+	        <div class="col-4"></div>
+        </div>
       </form>
     </div>
       <!-- End Hire Us Form -->
@@ -412,8 +447,19 @@
 		progressBar.classList.remove( 'covers' ); //css => covers 제거
 	} */
 
+
+	// 리스트 데이터 객체
+	var bdList;
 	
 
+	//중간에 지도 펼치기 버튼
+document.signUpForm.btnHideOnBush.addEventListener("click", function(){
+	var jido = document.getElementById('jido');
+	jido.style.display="block";
+	jidoFunction();
+}); 
+	
+jidoFunction = function(){
 	// 마커를 담을 배열입니다
 	var markers = [];
 	
@@ -435,23 +481,19 @@
 	// 장소 검색 객체를 생성합니다
 	var ps = new kakao.maps.services.Places();  
 	
-	// 리스트 데이터 객체
-	var bdList;
-	
 	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 	
-	// 키워드로 장소를 검색합니다
-	searchPlaces();
 	
 	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 	    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
 	        if (status === kakao.maps.services.Status.OK) {
 
-			    var keyword = document.getElementById('keyword').value;
-			    keyword = result[0].address.address_name;
-		        console.dir(result[0].address.address_name);
-			    ps.keywordSearch(keyword, placesSearchCB);
+			    var keyword = document.getElementById('keyword');
+		        //console.dir(result[0].address.address_name);
+		        console.dir(keyword);
+		        keyword.value = result[0].address.address_name;
+			    ps.keywordSearch(result[0].address.address_name, placesSearchCB);
 	        }   
 	    });
 	});
@@ -464,12 +506,12 @@
 	function searchAddrFromCoords(coords, callback) {
 	    // 좌표로 행정동 주소 정보를 요청합니다
 	    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
-	}
+	};
 
 	function searchDetailAddrFromCoords(coords, callback) {
 	    // 좌표로 법정동 상세 주소 정보를 요청합니다
 	    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
-	}
+	};
 
 	// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
 	function displayCenterInfo(result, status) {
@@ -484,11 +526,11 @@
 	            }
 	        }
 	    }    
-	}
+	};
 
 	
 	// 키워드 검색을 요청하는 함수입니다
-	function searchPlaces() {
+	searchPlaces = function() {
 	
 	    var keyword = document.getElementById('keyword').value;
 	
@@ -499,7 +541,7 @@
 	
 	    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 	    ps.keywordSearch( keyword, placesSearchCB); 
-	}
+	};
 	
 	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 	function placesSearchCB(data, status, pagination) {
@@ -507,8 +549,8 @@
 	
 	        // 정상적으로 검색이 완료됐으면
 	        // 검색 목록과 마커를 표출합니다
-	        console.dir(data);
-	        console.dir(pagination);
+	        //console.dir(data);
+	        //console.dir(pagination);
 	        displayPlaces(data);
 	
 	        // 페이지 번호를 표출합니다
@@ -525,7 +567,7 @@
 	        return;
 	
 	    }
-	}
+	};
 	
 	// 검색 결과 목록과 마커를 표출하는 함수입니다
 	function displayPlaces(places) {
@@ -585,7 +627,7 @@
 		
 	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 	    map.setBounds(bounds);
-	}
+	};
 	
 	// 검색결과 항목을 Element로 반환하는 함수입니다
 	function getListItem(index, places) {
@@ -596,7 +638,7 @@
 	                '   <h5>' + places.place_name + '</h5>';
 	
 	    if (places.road_address_name) {
-	        itemStr += '    <span onclick=listItemOnclick('+ index +')>' + places.road_address_name + '</span>' +
+	        itemStr += '    <span onclick=\'listItemOnclick('+ index +')\'>' + places.road_address_name + '</span>' +
 	                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
 	    } else {
 	        itemStr += '    <span>' +  places.address_name  + '</span>'; 
@@ -609,10 +651,10 @@
 	    el.className = 'item';
 	
 	    return el;
-	}
+	};
 	
 	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-	function addMarker(position, idx, title) {
+	addMarker = function(position, idx, title) {
 	    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
 	        imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
 	        imgOptions =  {
@@ -630,15 +672,15 @@
 	    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
 	
 	    return marker;
-	}
+	};
 	
 	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
-	function removeMarker() {
+	removeMarker = function() {
 	    for ( var i = 0; i < markers.length; i++ ) {
 	        markers[i].setMap(null);
 	    }   
 	    markers = [];
-	}
+	};
 	
 	// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
 	function displayPagination(pagination) {
@@ -669,7 +711,7 @@
 	        fragment.appendChild(el);
 	    }
 	    paginationEl.appendChild(fragment);
-	}
+	};
 	
 	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 	// 인포윈도우에 장소명을 표시합니다
@@ -678,32 +720,24 @@
 	
 	    infowindow.setContent(content);
 	    infowindow.open(map, marker);
-	}
+	};
 	
 	 // 검색결과 목록의 자식 Element를 제거하는 함수입니다
 	function removeAllChildNods(el) {   
 	    while (el.hasChildNodes()) {
 	        el.removeChild (el.lastChild);
 	    }
-	}
+	};
+	
+
+	// 키워드로 장소를 검색합니다
+	searchPlaces();
+	
+};
+
 	
 	function listItemOnclick(index){
-		/*
-		address_name: "서울 용산구 이태원동 34-87"
-		category_group_code: "CT1"
-		category_group_name: "문화시설"
-		category_name: "문화,예술 > 문화시설 > 공연장,연극극장"
-		distance: ""
-		id: "13314714"
-		phone: "02-2199-7260"
-		place_name: "용산아트홀"
-		place_url: "http://place.map.kakao.com/13314714"
-		road_address_name: "서울 용산구 녹사평대로 150"
-		x: "126.990324334919"
-		y: "37.5328526868103"
-		__proto__: Object
-		*/
-		console.dir(bdList[index]);
+		
 		var juso = bdList[index];
 		
 		var strArr = juso.road_address_name.split(" ");
@@ -712,12 +746,21 @@
 		$('#b_area1').val(b_area1);
 		selectCity('b_area2',b_area1,b_area2);
 		
+		var address = document.getElementById('b_address');//주소
+	    var lon = document.getElementById('b_lon');//경도
+	    var lat = document.getElementById('b_lat');//위도
+	    
+	    lon.value = juso.x;
+	    lat.value = juso.y;
+	    address.value = juso.road_address_name;
+	    
 	    removeMarker();
+	    
 	    var placePosition = new kakao.maps.LatLng(bdList[index].y, bdList[index].x)
-        var marker = addMarker(placePosition, index);
-	}
+	    var marker = addMarker(placePosition, index);
+	    
+	};
 	
-	 
 	//submit event 처리
 	document.signUpForm.btnSubmit.addEventListener("click", function() {
 		var fom = document.signUpForm;

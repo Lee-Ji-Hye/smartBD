@@ -24,8 +24,8 @@ function selectCity (objId, area1, area2) {
 			optHtml += "<option value=''>지역구</option>";
 			
 			$.each(areaInfo, function(i, v){
-				console.log(i); //0,1,2..
-				console.log(v); //강남구, 중구, 중랑구..
+				//console.log(i); //0,1,2..
+				//console.log(v); //강남구, 중구, 중랑구..
 				optHtml += "<option value='" + v + "'>" + v + "</option>";
 			});
 			//console.log(optHtml);
