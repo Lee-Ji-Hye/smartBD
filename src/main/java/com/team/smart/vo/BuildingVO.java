@@ -61,5 +61,6 @@ B_REGIDATE            TIMESTAMP(6)
 	private double b_lat;			//위도
 	private double b_lon;			//경도
 	private String userid;		//관리자아이디
+	private Timestamp b_regidate;
 	
 }

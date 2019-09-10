@@ -71,6 +71,16 @@ pageEncoding="UTF-8"%>
                       </label>
                     </div>
                   </th> -->
+                  
+                  
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	<strong>건물번호</strong>
+                      <div class="ml-2">
+                      </div>
+                    </div>
+                  </th>
+                  
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
                       	<strong>건물명</strong>
@@ -97,15 +107,7 @@ pageEncoding="UTF-8"%>
                   
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	<strong>주소</strong>
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	<strong>승인여부</strong>
+                      	<strong>승인 상태</strong>
                       <div class="ml-2">
                       </div>
                     </div>
@@ -126,6 +128,11 @@ pageEncoding="UTF-8"%>
                   </td> -->
                   <td class="align-middle">
                     <div class="media align-items-center">
+                    	${dto.b_code }
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="media align-items-center">
 						<a onclick="bdDetail('${dto.b_code}',${index})">${dto.b_name}</a>
                     </div>
                   </td>
@@ -140,14 +147,9 @@ pageEncoding="UTF-8"%>
                     </div>
                   </td>
                   <td class="align-middle">
-                    <div class="media align-items-center">
-                    	${dto.b_address }
-                    </div>
-                  </td>
-                  <td class="align-middle">
                     <div class="media align-items-center" id="details_comp_status2">
-                    	<c:if test="${dto.userid==null}">승인</c:if>
-                    	<c:if test="${dto.userid!=null}">승인 대기</c:if>
+                    	<c:if test="${dto.b_status==null}">승인</c:if>
+                    	<c:if test="${dto.b_status!=null}">승인 대기</c:if>
                     </div>
                   </td>
                   <!-- <td class="align-middle text-secondary">2019/08/12~2019/09/11</td> -->
@@ -244,7 +246,7 @@ pageEncoding="UTF-8"%>
                        </div>
                     </div>
                   </div>
-                  <!-- Bill -->
+                  <!-- Bill -->  
                 
               </tbody>
             </table>
@@ -259,9 +261,9 @@ pageEncoding="UTF-8"%>
   </div>
   <!-- End Content Section -->
   <script>
-	function compDetail(comp_seq, tbl_index){
+	function bdDetail(b_code, tbl_index){
 		var request = new XMLHttpRequest();//지역변수 추천
-		request.open("GET", "${path}/sysmaster/bdmn/details/" + comp_seq, true);//요청보내는거
+		request.open("GET", "${path}/sysmaster/bdmn/details/" + b_code, true);//요청보내는거
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		console.dir(request);
 		request.onreadystatechange = function(){//콜백함수
@@ -283,7 +285,7 @@ pageEncoding="UTF-8"%>
 					} else if(obj.comp_section === '1'){
 						obj.comp_section = '법인';
 					}
-					document.getElementById('details_comp_seq').innerText = obj.comp_seq;
+					document.getElementById('details_b_code').innerText = obj.comp_seq;
 					document.getElementById('details_comp_section').innerText = obj.comp_section;
 					document.getElementById('details_comp_bn').innerText = obj.comp_bn;
 					document.getElementById('details_comp_org').innerText = obj.comp_org;
