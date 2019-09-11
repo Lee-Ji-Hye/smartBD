@@ -59,4 +59,19 @@
     ]]>
 	</select>
 	
+	<!-- 빌딩 단건 조회 -->
+	<select id="bdInfo" parameterType="String" resultType="com.team.smart.vo.BuildingVO">
+		select b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid, b_unique, b_owner, b_regnum, b_landarea, b_buildarea, b_buildscale, b_status, b_regidate
+		from building_tbl
+		where b_code = #{b_code}
+	</select>
+	<!-- 빌딩 단건 삭제 -->
+	<delete id="bdDel" parameterType="String">
+		delete building_tbl where b_code=#{b_code}
+	</delete>
+	<!-- 빌딩 권한 수정 -->
+	<update id="bdAmd" parameterType="java.util.Map">
+		update building_tbl set b_status = #{amd} where b_code = #{b_code}
+	</update>
+	
 </mapper>

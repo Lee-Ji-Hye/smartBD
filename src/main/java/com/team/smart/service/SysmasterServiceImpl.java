@@ -144,6 +144,73 @@ public class SysmasterServiceImpl implements SysmasterService{
 		model.addAttribute("paging", paging);
 	}
 
+	@Override
+	public BuildingVO bdInfo(String b_code) {
+		log.debug("업체 정보 단건 조회");
+		return sysDAO.bdInfo(b_code);
+	}
+
+	@Override
+	public void bdDel(String b_code) {
+		log.debug("업체 정보 단건 삭제");
+		sysDAO.bdDel(b_code);
+	}
+
+	@Override
+	public void bdAmd(String amd, String b_code) {
+		log.debug("업체 정보 권한 수정");
+		Map<String, String> map = new HashMap<>();
+		map.put("amd", amd);
+		map.put("b_code", b_code);
+		sysDAO.bdAmd(map);
+	}
+
+	@Override
+	public void bdInsert(HttpServletRequest req, Model model) {
+		//TODO 업체등록 필터링 ..?
+		String b_code = funs.mkUniquecode("b_code", "building_tbl");
+		
+		BuildingVO vo = BuildingVO.builder()
+						.b_code(b_code)
+						.b_area1(req.getParameter("b_area1"))//지도에서가져와야댐
+						.b_area2(req.getParameter("b_area2"))//지도에서가져와야댐
+						.b_address(req.getParameter("b_address"))//지도에서가져와야댐
+						.b_name(req.getParameter("b_name"))
+						.b_floor(Integer.parseInt(req.getParameter("b_floor")))
+						.b_year(req.getParameter("b_year"))
+						
+						.b_unique(req.getParameter("b_unique"))
+						.b_owner(req.getParameter("b_owner"))
+						.b_regnum(req.getParameter("b_regnum"))
+						.b_landarea(req.getParameter("b_landarea"))
+						.b_buildarea(req.getParameter("b_buildarea"))
+						.b_buildscale(req.getParameter("b_buildscale"))
+						.b_status("0")
+						
+						.b_park(req.getParameter("b_park"))
+						.b_elev(req.getParameter("b_elev"))
+						.b_heat(req.getParameter("b_heat"))
+						.b_traffic(req.getParameter("b_traffic"))
+						.b_lat(Double.parseDouble(req.getParameter("b_lat")))//지도에서 가져와야댐
+						.b_lon(Double.parseDouble(req.getParameter("b_lon")))//지도에서가져와야댐
+						.userid(SecurityContextHolder.getContext().getAuthentication().getName())
+						.build();
+		
+		int count = 0;
+		count += dao.insertBd(vo);
+		//TODO 아이디, 업체코드를 넣은 권한 생성 CP_TENATE -> 계약코드가 없기때문에 권한은 못가짐..
+		//
+		//id, 업체코드, 권한명, insert 이거 승인되면 넣을예정
+//		HashMap<String,String> map = new HashMap<>();
+//		map.put("userid", SecurityContextHolder.getContext().getAuthentication().getName());
+//		map.put("comp_auth", "ROLE_BD_ADMIN");
+//		map.put("b_code", b_code);
+//		
+//		count += dao.insertAuth(map);
+		
+//		log.debug("count = "+count);
+	}
+
 	
 	
 

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.smart.security.config.UserGrantedAuthority;
 import com.team.smart.service.SysmasterService;
+import com.team.smart.vo.BuildingVO;
 import com.team.smart.vo.CompVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -109,8 +110,6 @@ public class SysmasterController {
 		return "redirect:/sysmaster/bdmn/list";
 	}
 	
-	
-	
 	///업체 목록 목록
 	@RequestMapping({"/bdmn/list"})
 	public String bdmnlist(HttpServletRequest req, Model model) {
@@ -118,7 +117,46 @@ public class SysmasterController {
 		sysService.bdList(req, model);
 		return jspPath+"/bdList";
 	}
+
+	///업체 목록 단건
+	@GetMapping({"/bdmn/details/{b_code}"})
+	public @ResponseBody BuildingVO bdmndetails(HttpServletRequest req, @PathVariable String b_code) {
+		log.info("url -> /sysmaster/bdmn/details/{b_code}");
+		return sysService.bdInfo(b_code);
+	}
+
+	///업체 삭제 단건
+	@GetMapping({"/bdmn/del/{b_code}"})
+	public String bdmnDel(@PathVariable String b_code) {
+		log.info("url -> /sysmaster/bdmn/del/{b_code}");
+		sysService.bdDel(b_code);
+		return "redirect:/sysmaster/bdmn/list";
+	}
+
+	///업체 삭제 단건
+	@GetMapping({"/bdmn/amd/{amd}/{b_code}"})
+	public String bdmnAmd(@PathVariable String amd, @PathVariable String b_code) {
+		log.info("url -> sysmaster/bdmn/amd/{amd}/{b_code}");
+		sysService.bdAmd(amd, b_code);
+		return "redirect:/sysmaster/bdmn/list";
+	}
 	
+
+	//업체 등록 (관리자)
+	@RequestMapping({"/bdmn/inst"})
+	public String bdmnInsert(HttpServletRequest req, Model model) {
+		//TODO 관리자 id 검색기능
+		log.info("url -> sysmaster/bdmn/inst");
+		return jspPath+"/bd_signup";
+	}
+	
+	//업체 등록 처리
+	@RequestMapping({"/bdmn/instpro"})
+	public String bdmnInsertpro(HttpServletRequest req, Model model) {
+		log.info("url -> sysmaster/bdmn/instpro");
+		sysService.bdInsert(req, model);
+		return "redirect:/sysmaster/bdmn/list";
+	}
 
 	
 	
