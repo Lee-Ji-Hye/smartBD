@@ -1,19 +1,20 @@
 package com.team.smart.service;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.team.smart.parking.vo.ParkingVO;
-
 public interface ParkingService {
-	//주차장 자리현황
+		//주차장 자리현황
 		public void getcurrentpark(HttpServletRequest req,Model model);
 		
 		//주차권 등록
 		public void ticketreg(HttpServletRequest req,Model model);
+		//입출차 조회
+		public void search(HttpServletRequest req,Model model);
+		
+		//입출차 결산
+		public void inoutcartotal(HttpServletRequest req,Model model);
 		
 		//주차권 수정  
 		public void update(HttpServletRequest req,Model model);
@@ -32,6 +33,9 @@ public interface ParkingService {
 		
 		//주차권 사용
 		public void useticket(HttpServletRequest req,Model model);
+		
+		//주차권 수정처리
+		public void updatepro(HttpServletRequest req,Model model);
 		
 		//주차권 등록내역 리스트
 		public void ticketlist(HttpServletRequest req,Model model);

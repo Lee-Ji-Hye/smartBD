@@ -268,7 +268,6 @@
                     <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/uselist">주차권 관리</a></li>
                     <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/ticketmanager">주차장 현황</a></li>
                     <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/insertplace">주차장 등록</a></li>
-                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/ticketreg">주차권 등록</a></li>
                       <li class="dropdown-divider"></li>
                     <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_park/total">결산</a></li>
                   </ul>
@@ -278,7 +277,6 @@
                 <!-- 식당 관리 -->
                 <li class="hs-has-sub-menu">
                   <a id="navLinkPagesUtilities" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_food/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesUtilities">식당 파트 관리</a>
-
                   <ul id="navSubmenuPagesUtilities" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesUtilities" style="min-width: 230px;">
                     <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_food/fdmn">음식점 관리</a></li>
                       <li class="dropdown-divider"></li>

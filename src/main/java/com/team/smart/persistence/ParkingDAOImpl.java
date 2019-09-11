@@ -48,10 +48,6 @@ public class ParkingDAOImpl implements ParkingDAO{
 		return sqlSession.update("ParkingDAO.ticketreg", ticket);
 	}
 
-	@Override
-	public int delete(String p_code) {
-		return sqlSession.delete("ParkingDAO.delete", p_code);
-	}
 
 	@Override
 	public int parkingreg(ParkingVO parking) {
@@ -102,6 +98,21 @@ public class ParkingDAOImpl implements ParkingDAO{
 	@Override
 	public List<ParkingVO> getinsertlist(Map<String, Object> map) {
 		return sqlSession.selectList("ParkingDAO.getinsertlist",map);
+	}
+	
+	@Override
+	public List<ParkingVO> ticketinfo(String p_code) {
+		return sqlSession.selectList("ParkingDAO.ticketinfo",p_code);
+	}
+
+	@Override
+	public int ticketpro(ParkingVO parking) {
+		return sqlSession.update("ParkingDAO.ticketpro", parking);
+	}
+
+	@Override
+	public int delete(String p_code) {
+		return sqlSession.delete("ParkingDAO.delete",p_code);
 	}
 
 	

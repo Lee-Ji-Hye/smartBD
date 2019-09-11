@@ -31,8 +31,6 @@ public class CP_ParkingController {
 //			return "redirect:/admin";
 //		}
 		
-		
-		
 		//주차권 사용 내역
 		@RequestMapping(value="/uselist")
 		public String uselist(HttpServletRequest req, Model model) {
@@ -56,16 +54,14 @@ public class CP_ParkingController {
 	
 		@RequestMapping(value="/intromn/inst1")
 		public String inoutcar1(HttpServletRequest req, Model model) {
-			
 			return mngParking_ + "/incar";
 		}
-		
-		//주차권 환불 내역
-		@RequestMapping(value="refund")
-		public String refund(HttpServletRequest req, Model model) {
-			
-			return mngParking_+"/refund";
+		//차량 입출차 결산 
+		@RequestMapping(value="/inoutcartotal")
+		public String inoutcartotal(HttpServletRequest req, Model model) {
+			return mngParking_ + "/inoutcartotal";
 		}
+		
 		//주차권 발급 내역
 		@RequestMapping(value="parkinglist")
 		public String parkinglist(HttpServletRequest req, Model model) {
@@ -146,11 +142,24 @@ public class CP_ParkingController {
 			return mngParking_+"/ticketregpro";
 		}
 		
+		//주차권 수정
+		@RequestMapping(value="/ticketup")
+		public String ticketup(HttpServletRequest req, Model model) {
+			parkingService.update(req, model);
+			return mngParking_+"/ticketup";
+		}
+		//주차권 수정 처리
+		@RequestMapping(value="/ticketpro")
+		public String search(HttpServletRequest req, Model model) {
+			parkingService.updatepro(req, model);
+			return mngParking_+"/ticketpro";
+		}
+		
 		//주차권 삭제
-		@RequestMapping(value="tickedelete")
-		public String tickedelete(HttpServletRequest req, Model model) {
-			parkingService.ticketreg(req, model);
-			return mngParking_+"/tickedelete";
+		@RequestMapping(value="/ticketdelete")
+		public String ticketdelete(HttpServletRequest req, Model model) {
+			parkingService.delete(req, model);
+			return mngParking_+"/ticketdelete";
 		}
 		
 		
@@ -187,10 +196,6 @@ public class CP_ParkingController {
 			return "svc/parking/mypage";
 		}
 		
-		@RequestMapping("room")
-		public String room(HttpServletRequest req, Model model) {
-			
-			return "svc/parking/room";
-		}
+		
 		
 }

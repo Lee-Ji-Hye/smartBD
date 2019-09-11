@@ -63,38 +63,7 @@
                 <div id="breadcrumbNavBar" class="collapse navbar-collapse u-header__navbar-collapse">
                   <ul class="navbar-nav u-header__navbar-nav">
                     <!-- General -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
-                        data-event="hover"
-                        data-animation-in="slideInUp"
-                        data-animation-out="fadeOut">
-                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/outcar" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
-                        	전체
-                      </a>
-                    </li>
-                    <!-- General -->
-
-                    <!-- Account Settings -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
-                        data-event="hover"
-                        data-animation-in="slideInUp"
-                        data-animation-out="fadeOut">
-                      <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/outcar" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
-                        	정기권
-                      </a>
-                    </li>
-                    <!-- Account Settings -->
-
-                    <!-- Billing -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
-                        data-event="hover"
-                        data-animation-in="slideInUp"
-                        data-animation-out="fadeOut">
-                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/outcar" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
-                        	일반권
-                      </a>
-
-                    </li>
-                    <!-- Billing -->
+                                        <!-- Billing -->
 
                   
                   </ul>
@@ -104,14 +73,7 @@
           </div>
           <!-- End Navbar -->
 
-          <div class="ml-lg-auto">
-            <!-- Button -->
-            <a class="btn btn-sm btn-soft-white text-nowrap transition-3d-hover" href="${path}/outcar">
-              <span class="fas fa-plus small mr-2"></span>
-              	출차
-            </a>
-            <!-- End Button -->
-          </div>
+          
         </div>
       </div>
     </div>
@@ -132,13 +94,16 @@
                       <span class="fas fa-calendar"></span>
                     </span>
                   </div>
-                  <input type="text" class="js-range-datepicker form-control bg-white rounded-right"
-                         data-rp-wrapper="#datepickerWrapper"
-                         data-rp-type="range"
-                         data-rp-date-format="d M Y"
-                         data-rp-default-date='["05 Jul 2018", "19 Jul 2018"]'
-                         data-rp-is-disable-future-dates="true">
+                  <input type="date" >
+                   <select id="datatableEntries" class="js-select selectpicker dropdown-select" data-width="fit" data-style="btn-soft-primary btn-sm">
+                      <option value="6">6 entries</option>
+                      <option value="12" selected>12 entries</option>
+                      <option value="18">18 entries</option>
+                      <option value="24">24 entries</option>
+                    </select>
                 </div>
+                
+                
                 <!-- End Datepicker -->
               </div>
 
@@ -146,23 +111,16 @@
                 <div class="d-flex">
                   <div class="mr-2">
                     <!-- Select -->
-                    <select id="datatableEntries" class="js-select selectpicker dropdown-select" data-width="fit" data-style="btn-soft-primary btn-sm">
-                      <option value="6">6 entries</option>
-                      <option value="12" selected>12 entries</option>
-                      <option value="18">18 entries</option>
-                      <option value="24">24 entries</option>
-                    </select>
+                   <div class="editBtnDiv01">
+                    <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="position:relative;left: 400px;width: 100px;"   onclick="window.location="${path}/bd_park/ticketuse">사용</button>
+                   </div>
                     <!-- End Select -->
                   </div>
-
-                  <!-- Search -->
                   <div class="js-focus-state input-group input-group-sm">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="searchActivities">
-                        <span class="fas fa-search"></span>
                       </span>
                     </div>
-                    <input id="datatableSearch" type="email" class="form-control" placeholder="Search activities" aria-label="Search activities" aria-describedby="searchActivities">
+                    
                   </div>
                   <!-- End Search -->
                 </div>

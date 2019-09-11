@@ -56,10 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE p_code = #{p_code}
 	</update>
 	
-	<delete id="delete" parameterType="int">
-		delete parking_ticket_info_tbl
-		where p_code = #{p_code}
-	</delete>
+	
 	
 	<insert id="parkingreg" parameterType="com.team.smart.parking.vo.ParkingVO">
 		insert into parking_lot_tbl(b_code,b_name,p_floor,able_position,able_height,lat,lon,operate_time_day,operate_time_week,operate_tel)
@@ -125,5 +122,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  ]]>
 	</select>
 	
+	<select id="ticketinfo"  resultType="com.team.smart.parking.vo.ParkingVO" parameterType="String">
+		select
+		p_type,
+		hourly,
+        price
+	    FROM PARKING_TICKET_INFO_TBL
+	    WHERE p_code = #{p_code}
+	</select>
+	
+	<update id="ticketpro" parameterType="com.team.smart.parking.vo.ParkingVO">
+		update PARKING_TICKET_INFO_TBL
+		set p_type = #{p_type},
+			hourly = #{hourly},
+			price = #{price},
+			reg_id = #{reg_id}
+			WHERE p_code = #{p_code}
+	</update>
+	<delete id="delete" parameterType="String">
+			delete PARKING_TICKET_INFO_TBL
+			where p_code = #{p_code}
+	</delete>
 </mapper>
 

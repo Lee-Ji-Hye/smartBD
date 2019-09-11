@@ -31,6 +31,12 @@ public interface ParkingDAO {
 		//주차장 등록
 		public int parkingreg(ParkingVO parking);
 		
+		// 주차권 수정 정보불러오기
+		public List<ParkingVO> ticketinfo(String p_code);
+		
+		//주차권 수정 처리
+		public int ticketpro(ParkingVO parking);
+		
 		//주차장 수정
 		public int updateplace(ParkingVO place);
 		

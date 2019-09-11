@@ -76,35 +76,23 @@ public class ParkingServiceImpl implements ParkingService{
 	@Override
 	public void update(HttpServletRequest req, Model model) {
 		String p_code = req.getParameter("p_code");
-		String b_code = req.getParameter("b_code");
-		String p_type = req.getParameter("p_type");
-		int hourly =  Integer.parseInt(req.getParameter("hourly"));
-		int price = Integer.parseInt(req.getParameter("price"));
-		int tikectcode = 0;
-		int check = 1;
-		String reg_id = req.getParameter("reg_id");
-		ParkingVO vo= ParkingVO
-				   .builder()
-				   .p_code(p_code)
-				   .b_code(b_code)
-				   .p_type(p_type)
-				   .hourly(hourly)
-				   .price(price)
-				   .reg_id(reg_id)
-				   .build();
-		
-		if(check == p_dao.buildcount(b_code)) {
-		tikectcode = p_dao.updateticket(vo);
-		}
-		
-		 model.addAttribute("tikectcode",tikectcode); 
+		List<ParkingVO> park = p_dao.ticketinfo(p_code);
+		model.addAttribute("p_code",p_code);
+		model.addAttribute("p_type",park.get(0).getP_type());
+		model.addAttribute("p_hourly",park.get(0).getHourly());
+		model.addAttribute("p_price",park.get(0).getPrice());
 	}
 	// 주차권 삭제
 		@Override
 		public void delete(HttpServletRequest req, Model model) {
-			String p_code = req.getParameter("p_code");
-			int check = 0;
-			check = p_dao.delete(p_code);
+			String p_code[] = req.getParameterValues("p_code");
+			System.out.println(p_code[0]);
+			int check =0;
+			for(int i = 0; i<p_code.length; i++) {
+				System.out.println(p_code[i]);
+				p_dao.delete(p_code[i] + " p_code[i]");
+				check += i;
+			}
 			model.addAttribute("check",check);	
 		}
 	
@@ -187,7 +175,6 @@ public class ParkingServiceImpl implements ParkingService{
 		int check = 0;
 		check = p_dao.deleteplace(b_code);
 		model.addAttribute("check",check);	
-		
 	}
 	
 	
@@ -406,6 +393,36 @@ public class ParkingServiceImpl implements ParkingService{
 	//주차권 자동사용
 	@Override
 	public void ticketautouse(HttpServletRequest req, Model model) {
+		
+	}
+	//주차권 수정 처리
+	@Override
+	public void updatepro(HttpServletRequest req, Model model) {
+		String p_code = req.getParameter("p_code");
+		String p_type = req.getParameter("p_type");
+		int hourly =  Integer.parseInt(req.getParameter("hourly"));
+		int price = Integer.parseInt(req.getParameter("price"));
+		String reg_id = req.getParameter("reg_id");
+		int tikectcode = 0;
+		ParkingVO vo= ParkingVO
+				   .builder()
+				   .p_code(p_code)
+				   .p_type(p_type)
+				   .hourly(hourly)
+				   .price(price)
+				   .reg_id(reg_id)
+				   .build();
+		tikectcode = p_dao.ticketpro(vo);	
+		model.addAttribute(tikectcode);
+	}
+	
+	@Override
+	public void search(HttpServletRequest req, Model model) {
+		String 
+	}
+	//입출차 결산
+	@Override
+	public void inoutcartotal(HttpServletRequest req, Model model) {
 		
 	}
 	
