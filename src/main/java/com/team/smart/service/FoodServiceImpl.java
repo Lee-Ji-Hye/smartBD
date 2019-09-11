@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.team.smart.food.vo.Food_companyVO;
 import com.team.smart.food.vo.Food_couponVO;
 import com.team.smart.food.vo.Food_menuVO;
+import com.team.smart.food.vo.Food_orderVO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +33,10 @@ import com.team.smart.app.vo.FoodMenuVO;
 import com.team.smart.app.vo.FoodStoreVO;
 import com.team.smart.persistence.FoodDAO;
 import com.team.smart.utils.Functions;
+import com.team.smart.utils.KakaoPay;
 import com.team.smart.utils.Paging;
+import com.team.smart.vo.KakaoCancleRequestVO;
+import com.team.smart.vo.KakaoPayCancleResponseVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -518,21 +523,77 @@ public class FoodServiceImpl implements FoodService {
 			map.put("endNum", paging.getEnd()); // 끝번호
 			map.put("comp_seq", comp_seq); // 끝번호
 			
-			List<Food_menuVO> food = f_dao.getGoodsList(map);
+			List<Food_orderVO> order = f_dao.getFoodOrderList(map);
 			// 처리결과를 저장
-			model.addAttribute("food", food);
+			model.addAttribute("detailO", order);
 		}
 		// 처리결과를 저장
 		model.addAttribute("paging", paging);
 		model.addAttribute("cnt", paging);
 		model.addAttribute("pageNum", page);
 	}
+	
+	// 음식점 주문 목록 상세보기
+	@Override
+	public Food_orderVO getDetailOrder(String f_ocode) {
+		
+		return f_dao.getFoodDetail(f_ocode);
+	}
+	
+	// 음식점 승인 처리
+	@Override
+	public void amdOrder(HttpServletResponse res, String f_ocode) {
+		log.debug("음식점 승인 처리" );
+		int i = f_dao.amdFood(f_ocode);
+		if(i != 1)res.setStatus(448);
+		
+	}
+	
+	// 음식점 주문 거절 처리
+	@Override
+	public void amdNotOrder(HttpServletResponse res, String f_ocode) {
+		log.debug("음식점 주문 거절 처리" );
+		
+		Food_orderVO vo = f_dao.getFoodDetail(f_ocode);
+		
+		KakaoCancleRequestVO cancel_vo = new KakaoCancleRequestVO();
+		
+		// 부과세 계산
+		double cancel_amount = vo.getF_pay_price();//3000.0 200
+		double tmp = (double) (cancel_amount/11.0);//55.4888
+		
+		int cancel_vat = (int)Math.round(tmp); 
+		
+		cancel_vo.setTid(vo.getTid());
+		cancel_vo.setCancel_amount(vo.getF_pay_price());
+		cancel_vo.setCancel_tax_free_amount(0);
+		cancel_vo.setCid("");
+		cancel_vo.setCid_secret("");
+		cancel_vo.setCancel_available_amount(vo.getF_pay_price());
+		cancel_vo.setCancel_vat_amount(cancel_vat);
+		
+		KakaoPay kakao = new KakaoPay();
+		KakaoPayCancleResponseVO result = kakao.kakaoPayRefund(cancel_vo);
+		
+		log.debug("result: *******************************" + result);
+		
+		if(result.getStatus().equals("CANCEL_PAYMENT")) {
+			int j = f_dao.amdNotFood(f_ocode);
+			if(j != 2)res.setStatus(448);
+		}
+		
+		
+		
+	}
 
-	// 테스트
+	
+	// ======================= 테스트
 	@Override
 	public void test(HttpServletRequest req) {
 		
 	}
+
+	
 
 
 }

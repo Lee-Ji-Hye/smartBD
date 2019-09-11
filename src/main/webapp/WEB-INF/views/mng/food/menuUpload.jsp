@@ -93,7 +93,7 @@
           <!-- End Input -->
           
 		<!-- Input -->
-        <div class="js-form-message mb-6">
+       <!--  <div class="js-form-message mb-6">
           <label class="form-label">
             	메뉴설명
           </label>
@@ -101,7 +101,7 @@
                     data-msg="Please enter a reason."
                     data-error-class="u-has-error"
                     data-success-class="u-has-success"></textarea>
-        </div>
+        </div> -->
         <!-- End Input -->
             <div style="text-align:center">
 	            <!-- Buttons -->
@@ -150,9 +150,7 @@
 	 var couponCnt = document.getElementById('menuPrice');
 	 couponCnt.value = couponCnt.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
  }
- 
 	
-
 </script>
 <!-- script end -->
 <!-- footer start -->

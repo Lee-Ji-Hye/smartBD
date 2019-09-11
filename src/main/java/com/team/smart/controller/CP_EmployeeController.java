@@ -1,12 +1,17 @@
 package com.team.smart.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.smart.food.vo.Food_orderVO;
 import com.team.smart.service.FoodService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -49,16 +54,48 @@ public class CP_EmployeeController {
 	public String order(HttpServletRequest req, Model model) {
 		log.info("url -> order/");
 		
+		service.getOrderFood(req, model);
+		
 		return mngFood_ + "/orderList";
 	}
 	
-	// 주문 건 상세보기 
-	@RequestMapping("/odmn/amd")
-	public String orderDetail(HttpServletRequest req, Model model) {
+	// 주문건 메뉴 상세보기
+	@GetMapping("/odmn/amd/{f_ocode}")
+	public @ResponseBody Food_orderVO orderDetail(HttpServletRequest req, @PathVariable String f_ocode) {
 		log.info("url -> orderDetail/");
 		
-		return mngFood_ + "/orderDetail";
+		return service.getDetailOrder(f_ocode);
 	}
-
 	
+	// 주문건 승인 처리
+	@GetMapping("/odmn/ok/{f_ocode}")
+	public @ResponseBody String amdFood(HttpServletRequest req, HttpServletResponse res, @PathVariable String f_ocode) {
+		log.info("url -> orderDetail/");
+		
+		service.amdOrder(res, f_ocode);
+		
+		return null;
+	}
+	
+	// 주문건 거절 처리
+	@GetMapping("/odmn/ng/{f_ocode}")
+	public @ResponseBody String amdNotFood(HttpServletRequest req, HttpServletResponse res, @PathVariable String f_ocode) {
+		log.info("url -> amdNotFood/");
+		
+		service.amdNotOrder(res, f_ocode);
+		
+		return null;
+	}
+	
+	
+	/*
+	 * // 주문 건 상세보기
+	 * 
+	 * @RequestMapping("/odmn/amd") public String orderDetail(HttpServletRequest
+	 * req, Model model) { log.info("url -> orderDetail/");
+	 * 
+	 * return mngFood_ + "/orderDetail"; }
+	 */
 }
+	
+

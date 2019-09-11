@@ -184,5 +184,4 @@ public class CP_ManagerController {
 		return "redirect:/cp_manager/cpmn/list";
 	}
 	
-	
 }

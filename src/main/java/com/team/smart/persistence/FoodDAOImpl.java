@@ -124,6 +124,12 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectList("FoodDAO.getFoodOrderList", map);
 	}
 	
+	// 음식점 주문 목록 상세보기
+	@Override
+	public Food_orderVO getFoodDetail(String f_ocode) {
+		return sqlSession.selectOne("FoodDAO.getFoodDetail", f_ocode);
+	}
+	
 	// ======================== 페이징 처리
 	
 	// 쿠폰 리스트 페이징 처리
@@ -144,7 +150,17 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectOne("FoodDAO.getOrderPage");
 	}
 	
+	// 주문 승인 처리 
+	@Override
+	public int amdFood(String f_ocode) {
+		return sqlSession.update("FoodDAO.amdFood", f_ocode);
+	}
 	
+	// 주문 거절 처리
+	@Override
+	public int amdNotFood(String f_ocode) {
+		return sqlSession.update("FoodDAO.amdNotFood", f_ocode);
+	}
 
 	// ============================= 테스트
 	@Override
@@ -154,5 +170,4 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
 
-	
 }
