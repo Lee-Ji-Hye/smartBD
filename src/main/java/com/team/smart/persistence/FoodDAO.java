@@ -72,7 +72,10 @@ public interface FoodDAO {
 	public Food_orderVO getFoodDetail(String f_ocode);
 	
 	// 주문 승인 처리
-	public int amdFood(Map<String, String> map);
+	public int amdFood(String f_ocode);
+	
+	// 주문 거절 처리
+	public int amdNotFood(String f_ocode);
 	
 	// ------------ 페이징 처리
 	

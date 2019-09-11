@@ -142,10 +142,37 @@ pageEncoding="UTF-8"%>
 	                  <td class="align-middle">${ovo.f_regidate}</td>
 	                  <td class="align-middle" id="foodOrderApp">
 	                  	<!-- <div class="media align-items-center" > -->
-	                  		<c:if test="${ovo.f_status == '0'}">승인대기</c:if>
-	                  		<c:if test="${ovo.f_status == '1'}">승인완료</c:if>
-	                  		<c:if test="${ovo.f_status == '2'}">승인거절</c:if>
+	                  		<%-- <c:if test="${ovo.f_status == '0'}">주문대기..</c:if>
+	                  		<c:if test="${ovo.f_status == '1'}">주문완료..</c:if>
+	                  		<c:if test="${ovo.f_status == '2'}">주문거절..</c:if> --%>
 	                  	<!-- </div> -->
+	                  	<c:if test="${ovo.f_status}=='주문취소'">
+	                  	</c:if>
+	                  	<c:if test="${ovo.f_status}=='주문접수'">
+	                  	<font color="green">${ovo.f_status}</font>
+	                  	</c:if>
+	                  	<c:if test="${ovo.f_status}=='주문접수'">
+	                  	<font color="green">${ovo.f_status}</font>
+	                  	</c:if>
+	                  	<c:if test="${ovo.f_status}=='주문완료'">
+	                  	<font color="green">${ovo.f_status}</font>
+	                  	</c:if>
+	                  	<c:if test="${ovo.f_status}=='주문대기'">
+	                  	<font color="green">${ovo.f_status}</font>
+	                  	</c:if>
+	                  	
+	                  	<c:choose>
+					       <c:when test="${ovo.f_status == '주문취소'}">
+	                  			<font color="red">${ovo.f_status}</font>
+					       </c:when>
+					       <c:when test="${ovo.f_status == '주문접수'}">
+	                  			<font color="green">${ovo.f_status}</font>
+					       </c:when>
+					       <c:otherwise>
+					           ${ovo.f_status}
+					       </c:otherwise>
+					   </c:choose>
+
 	                  </td>
 	                </tr>
                 	<c:set var="order" value="${order+1}"/>
@@ -174,7 +201,7 @@ pageEncoding="UTF-8"%>
 				              </dl>
 				              <dl class="row mb-0">
 				                <dt class="col-5 col-md-6 font-weight-normal text-secondary">승인상태</dt>
-				                <dd class="col-7 col-md-6 font-weight-medium" id="foodOrderApp2"></dd>
+				                <dd class="col-7 col-md-6 font-weight-medium" id="foodOrderApp2">${ovo.f_status}</dd>
 				              </dl>
 				            </div>
 				          </div>
@@ -184,7 +211,7 @@ pageEncoding="UTF-8"%>
 				          <table class="table table-heighlighted font-size-1 mb-9">
 				            <thead>
 				              <tr class="text-uppercase text-secondary">
-				                <th scope="col" class="font-weight-medium">메뉴명</th>
+				                <th scope="col" class="font-weight-medium">메뉴명 <span id="detail_f_ocode" style="display:none;"></span></th>
 				                <th scope="col" class="font-weight-medium">수량</th>
 				                <th scope="col" class="font-weight-medium">가격</th>
 				                <th scope="col" class="font-weight-medium text-right">요청사항</th>
@@ -241,16 +268,17 @@ pageEncoding="UTF-8"%>
 				          <!-- End Contacts -->
 				
 				      <div class="text-right mt-5">
-				        <button type="button" class="btn btn-sm btn-primary transition-3d-hover" onclick="orderPro(event,'amdOk')"><!-- btn btn-primary -->
+				        <button type="button" class="btn btn-sm btn-primary transition-3d-hover" id="amdOk" onclick="orderPro(event,'amdOk')"><!-- btn btn-primary -->
 				          <span class="fas fa-print mr-1"></span>
 				          	주문승인
 				        </button>
-				        <button type="button" class="btn btn-sm btn-secondary  transition-3d-hover" onclick="orderPro(event,'amdNg')">
+				        <button type="button" class="btn btn-sm btn-secondary  transition-3d-hover" id="amdNg" onclick="orderPro2(event,'amdNg')">
 				          <span class="fas fa-print mr-1"></span>
 				        	주문거절
 				        </button>
 				      </div>
                 	</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -288,34 +316,48 @@ function goodsChkAll() {
 
 // AJAX 
 function orderDetail(f_ocode, tbl_order){
-	var request = new XMLHttpRequest();//지역변수 추천
-	request.open("GET", "${path}/cp_employee/odmn/amd/" + f_ocode, true);//요청보내는거
+	var request = new XMLHttpRequest(); // 지역변수 추천
+	request.open("GET", "${path}/cp_employee/odmn/amd/" + f_ocode, true); // 요청보내는거
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	console.dir(request);
-	request.onreadystatechange = function(){//콜백함수
+	request.onreadystatechange = function(){ // 콜백함수
 		if (request.readyState == 4) {
 			if(request.status == 200){
-				//for문으로 돌린 table의 집합 (컨트롤하기위한 class)
+				// for문으로 돌린 table의 집합 (컨트롤하기위한 class)
 				var tblclass = document.getElementsByClassName('form-original');
-				//삽입할 부모 테이블
+				// 삽입할 부모 테이블
 				var tbl = document.getElementsByTagName('table');
-				//숨겨져 있는 값
+				// 숨겨져 있는 값
 				var details = document.getElementById('formDetail');
-				//서버에서 받아온 데이터
+				// 서버에서 받아온 데이터
 				obj = JSON.parse(request.responseText);
-				//콘솔에찍음
+				// 콘솔에찍음
 				console.log(obj);
 				
 				if(obj.f_status === '0'){
-					obj.f_status = '승인대기';
+					obj.f_status = '주문대기';
 				} else if(obj.f_status === '1'){
-					obj.f_status = '승인완료';
+					obj.f_status = '주문완료';
 				} else if(obj.f_status === '2'){
-					obj.f_status = '승인거절';
+					obj.f_status = '주문거절';
 				}
+				
+								
+				if(obj.f_status == '주문대기') {
+					$("#amdNg").show();
+					$("#amdOk").hide();	
+				} else if(obj.f_status == '주문접수') {
+					$("#amdNg").show();
+					$("#amdOk").show();
+				} else {
+					$("#amdNg").hide();
+					$("#amdOk").hide();
+				}
+				
 				document.getElementById('foodOrderApp').innerText = obj.f_status;
 				document.getElementById('foodOrderApp2').innerText = obj.f_status;
-				
+
+				document.getElementById('detail_f_ocode').innerText = obj.f_ocode;
 				document.getElementById('detail_orderID').innerText = obj.userid;
 				document.getElementById('detail_orderTakeOut').innerText = obj.f_takeout;
 				document.getElementById('detail_pickUp').innerText = obj.f_receive_time;
@@ -326,44 +368,58 @@ function orderDetail(f_ocode, tbl_order){
 				document.getElementById('detail_menu_sale').innerText = obj.f_sale_price;
 				document.getElementById('detail_menuMessage').innerText = obj.f_message;
 				document.getElementById('detail_menuTotal').innerText = obj.f_pay_price;
-				//삽입될 위치를 변경
+				// 삽입될 위치를 변경
 				tbl[0].children[1].insertBefore(details, tblclass[tbl_order + 1]);
-				//display 속성을 변경
+				// display 속성을 변경
 				details.style.display="table-row";
 			}else{
-				//실패했을때 알럿
 				alert("데이터 가져오기 실패");
 			}
 		}
 	};
-	request.send(null);//body
+	request.send(null); // body
 };
 
-
-function orderPro(event, jong) {
-	//amdOk, amdNg,
-	var f_ocode = document.getElementById('foodOrderApp2').innerText;
-	var url = "${path}/cp_employee/odmn/";
-	var method = "";
-	
-	if(jong === 'amdOk'){
-		url += 'amd/1/' + f_ocode;
-		method = "GET";
-	} else if(jong === 'amdNg'){
-		url += 'amd/2/' + f_ocode;
-		method = "GET";
-	} 
-	
-	var request = new XMLHttpRequest();//지역변수 추천
-	request.open(method, url, true);//요청보내는거
+// 주문 승인 하기
+function orderPro(event) {
+	var f_ocode = document.getElementById('detail_f_ocode').innerText;
+	var request = new XMLHttpRequest(); // 지역변수 추천
+	request.open("GET", "${path}/cp_employee/odmn/ok/" + f_ocode, true); // 요청보내는거
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	console.dir(request);
-	request.onreadystatechange = function(){//콜백함수
+	request.onreadystatechange = function(){ // 콜백함수
 		if (request.readyState == 4) {
 			if(request.status == 200){
-				window.location = request.responseURL;
-			}else{
-				//실패했을때 알럿
+				document.getElementById('foodOrderApp').innerText = '주문완료';
+				document.getElementById('foodOrderApp2').innerText = '주문완료';
+			} else if(request.status == 448){
+				document.getElementById('foodOrderApp').innerText = '주문거절';
+				document.getElementById('foodOrderApp2').innerText = '주문거절';
+			} else {
+				alert("데이터 가져오기 실패");
+			}
+		}
+	};
+	request.send(f_ocode);
+}
+
+// 주문 거절
+function orderPro2(event) {
+	var f_ocode = document.getElementById('detail_f_ocode').innerText;
+	var request = new XMLHttpRequest(); // 지역변수 추천
+	request.open("GET", "${path}/cp_employee/odmn/ng/" + f_ocode, true); // 요청보내는거
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	console.dir(request);
+	request.onreadystatechange = function(){ // 콜백함수
+		alert(request.readyState);
+		if (request.readyState == 4) {
+			if(request.status == 200){
+				document.getElementById('foodOrderApp').innerText = '주문거절';
+				document.getElementById('foodOrderApp2').innerText = '주문거절';
+			} else if(request.status == 448){
+				document.getElementById('foodOrderApp').innerText = '승인 거절';
+				document.getElementById('foodOrderApp2').innerText = '승인 거절';
+			} else {
 				alert("데이터 가져오기 실패");
 			}
 		}

@@ -3,6 +3,8 @@ package com.team.smart.service;
 import java.util.List;
 import org.springframework.ui.Model;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.team.smart.app.vo.FoodMenuVO;
 import com.team.smart.app.vo.FoodStoreVO;
@@ -53,7 +55,10 @@ public interface FoodService {
 	public Food_orderVO getDetailOrder(String f_ocode);
 	
 	// 음식점 주문 승인 처리
-	public void amdOrder(String f_ocode, String f_status);
+	public void amdOrder(HttpServletResponse res, String f_ocode);
+	
+	// 음식점 주문 거절 처리
+	public void amdNotOrder(HttpServletResponse res, String f_ocode);
 	
 	// ------------- 지혜
 

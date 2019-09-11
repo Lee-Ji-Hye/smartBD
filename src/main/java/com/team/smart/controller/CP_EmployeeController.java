@@ -1,6 +1,7 @@
 package com.team.smart.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,10 +68,24 @@ public class CP_EmployeeController {
 	}
 	
 	// 주문건 승인 처리
-	//@GetMapping("/odmn/amd/{f_ocode}/{f_status}")
-	//public @ResponseBody Map<String,String> amdFood(HttpServletRequest req, @PathVariable String f_ocode) {
-		//log.info("url -> orderDetail/");
-	//}
+	@GetMapping("/odmn/ok/{f_ocode}")
+	public @ResponseBody String amdFood(HttpServletRequest req, HttpServletResponse res, @PathVariable String f_ocode) {
+		log.info("url -> orderDetail/");
+		
+		service.amdOrder(res, f_ocode);
+		
+		return null;
+	}
+	
+	// 주문건 거절 처리
+	@GetMapping("/odmn/ng/{f_ocode}")
+	public @ResponseBody String amdNotFood(HttpServletRequest req, HttpServletResponse res, @PathVariable String f_ocode) {
+		log.info("url -> amdNotFood/");
+		
+		service.amdNotOrder(res, f_ocode);
+		
+		return null;
+	}
 	
 	
 	/*

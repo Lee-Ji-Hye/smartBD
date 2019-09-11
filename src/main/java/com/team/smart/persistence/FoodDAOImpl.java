@@ -152,11 +152,15 @@ public class FoodDAOImpl implements FoodDAO {
 	
 	// 주문 승인 처리 
 	@Override
-	public int amdFood(Map<String, String> map) {
-		return sqlSession.update("FoodDAO.amdFood", map);
+	public int amdFood(String f_ocode) {
+		return sqlSession.update("FoodDAO.amdFood", f_ocode);
 	}
 	
-	
+	// 주문 거절 처리
+	@Override
+	public int amdNotFood(String f_ocode) {
+		return sqlSession.update("FoodDAO.amdNotFood", f_ocode);
+	}
 
 	// ============================= 테스트
 	@Override
@@ -165,5 +169,5 @@ public class FoodDAOImpl implements FoodDAO {
 		System.out.println("~!!!!!!!!!!!!!!!!!!!!!!!!!!~");
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
-	
+
 }

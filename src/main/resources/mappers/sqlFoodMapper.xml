@@ -126,10 +126,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getFoodOrderList" resultType="com.team.smart.food.vo.Food_orderVO" parameterType="java.util.Map">
 		<![CDATA[
 		SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price
-         FROM (SELECT comp_seq, rownum rNum, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price
-              FROM (SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price FROM food_order_tbl ORDER BY comp_seq desc))
-        where rNum>=#{startNum}
-        and rNum<=#{endNum}
+          FROM (SELECT comp_seq, rownum rNum, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price
+              FROM (SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price FROM food_order_tbl ORDER BY f_regidate desc, CASE f_status WHEN '주문접수' THEN 1 WHEN '주문대기' THEN 2 ELSE 999 END ))
+         WHERE rNum>=#{startNum}
+           AND rNum<=#{endNum}
     	]]>
 	</select>
 	
@@ -139,15 +139,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         		o.userid, o.f_serial, o.f_regidate, o.f_amount, o.f_sale_price, o.f_pay_type, o.tid, o.f_pay_price, o.f_refund_price, o.f_rate, d.f_odetail_code, d.f_price, d.f_cnt
            FROM food_order_tbl o
            JOIN food_order_detail_tbl d
-             ON o.f_name = d.f_name
+             ON o.f_ocode = d.f_ocode
           WHERE o.f_ocode = #{f_ocode}
 	</select>
 	
-	<!-- 음식점 상품 등록 수정 처리하기 -->
-	<update id="amdFood" parameterType="java.util.Map">
-		UPDATE food_order_tbl SET f_status = #{f_status} WHERE f_code = #{f_code}
+	<!-- 음식점 주문 승인 처리하기 -->
+	<update id="amdFood" parameterType="String">
+		UPDATE food_order_tbl SET f_status='주문완료' WHERE f_ocode = #{f_ocode}
 	</update>
 	
+	<!-- 음식점 주문 거절 처리하기 -->
+	<update id="amdNotFood" parameterType="String">
+		UPDATE food_order_tbl SET f_status='주문취소' WHERE f_ocode = #{f_ocode}
+	</update>
 	
 </mapper>
 

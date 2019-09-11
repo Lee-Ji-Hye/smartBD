@@ -27,7 +27,7 @@ public class Food_orderVO {
     private int f_amount;				// 총결제액
     private String f_pay_type;			// 결제수단
     private String tid;					// 결제 TID(외부 고유키)
-    private String f_pay_price;			// 결제한 금액
+    private int f_pay_price;			// 결제한 금액
     private int f_refund_price;			// 환불금액
     private int f_rate;					// 수수료
     
