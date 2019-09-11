@@ -54,6 +54,13 @@ public class ManageController {
 		b_service.pageTest(req, model);
 		return mngBuilding_ + "/meetingroom";
 	}
+	
+	@RequestMapping("news1")
+	public String news1(HttpServletRequest req, Model model) throws Exception{
+		//logger.info("url => news1 호출");
+		
+		return "mng/building/contract";
+	}
 
 //	//매물 리스트
 //	@RequestMapping("roomlist")
@@ -64,8 +71,6 @@ public class ManageController {
 //		
 //		return mngBuilding_ + "/roomlist";
 //	}
-	
-	
 //	//매물 상세페이지
 //	@RequestMapping("roomdetail")
 //	public String roomdetail(HttpServletRequest req, Model model) {

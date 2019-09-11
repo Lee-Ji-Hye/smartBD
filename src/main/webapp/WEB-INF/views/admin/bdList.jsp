@@ -71,6 +71,16 @@ pageEncoding="UTF-8"%>
                       </label>
                     </div>
                   </th> -->
+                  
+                  
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	<strong>건물번호</strong>
+                      <div class="ml-2">
+                      </div>
+                    </div>
+                  </th>
+                  
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
                       	<strong>건물명</strong>
@@ -97,15 +107,7 @@ pageEncoding="UTF-8"%>
                   
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	<strong>주소</strong>
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	<strong>승인여부</strong>
+                      	<strong>승인 상태</strong>
                       <div class="ml-2">
                       </div>
                     </div>
@@ -126,6 +128,11 @@ pageEncoding="UTF-8"%>
                   </td> -->
                   <td class="align-middle">
                     <div class="media align-items-center">
+                    	${dto.b_code }
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="media align-items-center">
 						<a onclick="bdDetail('${dto.b_code}',${index})">${dto.b_name}</a>
                     </div>
                   </td>
@@ -140,14 +147,9 @@ pageEncoding="UTF-8"%>
                     </div>
                   </td>
                   <td class="align-middle">
-                    <div class="media align-items-center">
-                    	${dto.b_address }
-                    </div>
-                  </td>
-                  <td class="align-middle">
                     <div class="media align-items-center" id="details_comp_status2">
-                    	<c:if test="${dto.userid==null}">승인</c:if>
-                    	<c:if test="${dto.userid!=null}">승인 대기</c:if>
+                    	<c:if test="${dto.b_status==null}">승인</c:if>
+                    	<c:if test="${dto.b_status!=null}">승인 대기</c:if>
                     </div>
                   </td>
                   <!-- <td class="align-middle text-secondary">2019/08/12~2019/09/11</td> -->
@@ -224,6 +226,38 @@ pageEncoding="UTF-8"%>
                             <span class="text-secondary">승인상태:</span>
                             <span class="font-weight-medium" id="details_userid">England</span>
                           </li>
+                          <!-- 
+					//.b_unique(req.getParameter("b_unique"))
+					//.b_owner(req.getParameter("b_owner"))
+					//.b_regnum(req.getParameter("b_regnum"))
+					//.b_landarea(req.getParameter("b_landarea"))
+					//.b_buildarea(req.getParameter("b_buildarea"))
+					//.b_buildscale(req.getParameter("b_buildscale"))
+                           -->
+                          <li class="mb-2">
+                            <span class="text-secondary">고유번호:</span>
+                            <span class="font-weight-medium" id="details_b_unique">England</span>
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-secondary">소유자:</span>
+                            <span class="font-weight-medium" id="details_b_owner">England</span>
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-secondary">소유자번호:</span>
+                            <span class="font-weight-medium" id="details_b_regnum">England</span>
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-secondary">대지면적:</span>
+                            <span class="font-weight-medium" id="details_b_landarea">England</span>
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-secondary">건축면적:</span>
+                            <span class="font-weight-medium" id="details_b_buildarea">England</span>
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-secondary">건축규모:</span>
+                            <span class="font-weight-medium" id="details_b_buildscale">England</span>
+                          </li>
                         </ul>
                           <span id="details_b_code" style="display: none;"></span>
                       </div>
@@ -244,7 +278,7 @@ pageEncoding="UTF-8"%>
                        </div>
                     </div>
                   </div>
-                  <!-- Bill -->
+                  <!-- Bill -->  
                 
               </tbody>
             </table>
@@ -259,9 +293,9 @@ pageEncoding="UTF-8"%>
   </div>
   <!-- End Content Section -->
   <script>
-	function compDetail(comp_seq, tbl_index){
+	function bdDetail(b_code, tbl_index){
 		var request = new XMLHttpRequest();//지역변수 추천
-		request.open("GET", "${path}/sysmaster/bdmn/details/" + comp_seq, true);//요청보내는거
+		request.open("GET", "${path}/sysmaster/bdmn/details/" + b_code, true);//요청보내는거
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		console.dir(request);
 		request.onreadystatechange = function(){//콜백함수
@@ -278,31 +312,37 @@ pageEncoding="UTF-8"%>
 					//콘솔에찍음
 					console.log(obj);
 					//값을 변경
-					if(obj.comp_section === '0'){
-						obj.comp_section = '개인사업자';
-					} else if(obj.comp_section === '1'){
-						obj.comp_section = '법인';
-					}
-					document.getElementById('details_comp_seq').innerText = obj.comp_seq;
-					document.getElementById('details_comp_section').innerText = obj.comp_section;
-					document.getElementById('details_comp_bn').innerText = obj.comp_bn;
-					document.getElementById('details_comp_org').innerText = obj.comp_org;
-					document.getElementById('details_comp_master').innerText = obj.comp_master;
-					document.getElementById('details_comp_branch').innerText = obj.comp_branch;
-					document.getElementById('details_comp_owner').innerText = obj.comp_owner;
-					document.getElementById('details_comp_business').innerText = obj.comp_business;
-					document.getElementById('details_comp_category').innerText = obj.comp_category;
-					document.getElementById('details_comp_hp').innerText = obj.comp_hp;
-					document.getElementById('details_comp_regidate').innerText = obj.comp_regidate;
-					if(obj.comp_status === '2'){
-						obj.comp_status = '반려';
-					} else if(obj.comp_status === '0'){
-						obj.comp_status = '승인대기';
+					//b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid, b_unique, b_owner, b_regnum, b_landarea, b_buildarea, b_buildscale, b_status, b_regidate
+					document.getElementById('details_b_area1').innerText = obj.b_area1;
+					document.getElementById('details_b_area2').innerText = obj.b_area2;
+					document.getElementById('details_b_code').innerText = obj.b_code;
+					document.getElementById('details_b_address').innerText = obj.b_address;
+					document.getElementById('details_b_floor').innerText = obj.b_floor;
+					document.getElementById('details_b_year').innerText = obj.b_year;
+					
+					document.getElementById('details_b_unique').innerText = obj.b_unique;
+					document.getElementById('details_b_owner').innerText = obj.b_owner;
+					document.getElementById('details_b_year').innerText = obj.b_regnum;
+					document.getElementById('details_b_regnum').innerText = obj.b_landarea;
+					document.getElementById('details_b_buildarea').innerText = obj.b_buildarea;
+					document.getElementById('details_b_buildscale').innerText = obj.b_buildscale;
+					
+					document.getElementById('details_b_park').innerText = obj.b_park;
+					document.getElementById('details_b_elev').innerText = obj.b_elev;
+					document.getElementById('details_b_heat').innerText = obj.b_heat;
+					document.getElementById('details_b_traffic').innerText = obj.b_traffic;
+					document.getElementById('details_b_lat').innerText = obj.b_lat;
+					document.getElementById('details_b_lon').innerText = obj.b_lon;
+					document.getElementById('details_userid').innerText = obj.userid;
+					if(obj.b_status === '2'){
+						obj.b_status = '반려';
+					} else if(obj.b_status === '0'){
+						obj.b_status = '승인대기';
 					} else if(obj.comp_status === '1'){
-						obj.comp_status = '승인';
+						obj.b_status = '승인';
 					}
-					document.getElementById('details_comp_status').innerText = obj.comp_status;
-					document.getElementById('details_comp_status2').innerText = obj.comp_status;
+					//document.getElementById('details_b_status').innerText = obj.comp_status;
+					//document.getElementById('details_b_status2').innerText = obj.comp_status;
 					//삽입될 위치를 변경
 					tbl[0].children[1].insertBefore(details, tblclass[tbl_index + 1]);
 					//display 속성을 변경

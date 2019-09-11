@@ -1,5 +1,7 @@
 package com.team.smart.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
@@ -26,8 +28,11 @@ public interface RoomService {
 		//매물 수정
 		public void update(HttpServletRequest req, Model model);
 		
-		//매물 삭제
+		//매물 비공개로 전환
 		public void delete(HttpServletRequest req, Model model);
+		
+		//매물 공개로 전환
+		public void reload(HttpServletRequest req, Model model);
 		
 		//이미지 등록시 DB에 이미지name저장
 		public void addImage(HttpServletRequest req, Model model,String originFileName,String r_code);
@@ -35,5 +40,10 @@ public interface RoomService {
 		//슬라이드용 이미지 가져오기
 		public void getImage(HttpServletRequest req,Model model);
 
+		//주소 si가져오기
+		public List<String> getSi();
+		
+		//주소 gu가져오기
+		public List<String> getGu(String si);
 
 }

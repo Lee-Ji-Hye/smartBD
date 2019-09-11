@@ -61,11 +61,18 @@ public class RoomDAOImpl implements RoomDAO{
 		return sqlSession.update("RoomDAO.update",vo);
 	}
 
-	//매물 삭제
+	//매물 비공개로 전환
 	@Override
 	public int delete(String r_code) {
 		
 		return sqlSession.delete("RoomDAO.delete",r_code);
+	}
+	
+	//매물 공개로 전환
+	@Override
+	public int reload(String r_code) {
+		
+		return sqlSession.update("RoomDAO.reload",r_code);
 	}
 
 	
@@ -89,5 +96,17 @@ public class RoomDAOImpl implements RoomDAO{
 		
 		return sqlSession.selectList("RoomDAO.getImage",r_code);
 	}
+
+	@Override
+	public List<String> getSi() {
+		return sqlSession.selectList("RoomDAO.getSi");
+	}
+
+	@Override
+	public List<String> getGu(String si) {
+		return sqlSession.selectList("RoomDAO.getGu",si);
+	}
+
+	
 
 }

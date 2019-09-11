@@ -12,9 +12,10 @@
 </script>
 <body>
     <form name="fileForm" action="requestupload2?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+    	<label for="ex_file">업로드</label>
 		<input type="hidden" name="r_code" value="${r_code}">
         <input multiple="multiple" type="file" name="file" />
-        <input type="text" name="src" value=""/>
+        <input type="hidden" name="src" value=""/>
         <input type="submit" value="전송" />
     </form>
 </body>

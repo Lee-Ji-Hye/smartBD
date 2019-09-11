@@ -216,18 +216,39 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 	
-	//매물 삭제
+	//매물 공개에서 비공개로 전환
 	@Override
 	public void delete(HttpServletRequest req, Model model) {
-		
+		int big=0;
 		String r_code = req.getParameter("r_code");
 		
 		int deleteCnt = dao.delete(r_code);
 		
-		req.setAttribute("cnt", deleteCnt);
+		if(deleteCnt == 1) {
+			big = 1;
+		}
 		
+		req.setAttribute("cnt", big);
 		
 	}
+	
+	//매물 비공개에서 공개로 전환
+	@Override
+	public void reload(HttpServletRequest req, Model model) {
+		int big=0;
+		String r_code = req.getParameter("r_code");
+		
+		int reloadCnt = dao.reload(r_code);
+		
+		if(reloadCnt == 1) {
+			big = 2;
+		}
+		
+		req.setAttribute("cnt", big);
+		
+			
+	}
+	
 
 	//이미지이름 DB에 저장하기
 	@Override
@@ -260,6 +281,18 @@ public class RoomServiceImpl implements RoomService{
 			req.setAttribute("icnt", cnt);
 		}
 	}
+
+	@Override
+	public List<String> getSi() {
+		return dao.getSi();
+	}
+
+	@Override
+	public List<String> getGu(String si) {
+		return dao.getGu(si);
+	}
+
+	
 	
 	
 

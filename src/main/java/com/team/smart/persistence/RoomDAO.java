@@ -28,8 +28,11 @@ public interface RoomDAO {
 		//매물 수정
 		public int update(RoomVO vo);
 		
-		//매물 삭제
+		//매물 비공개로 전환
 		public int delete(String r_code);
+		
+		//매물 공개로 전환
+		public int reload(String r_code);
 		
 		//슬라이드 이미지넣기
 		public int slide(RoomVO vo);
@@ -39,5 +42,11 @@ public interface RoomDAO {
 		
 		//슬라이드용 이미지 가져오기
 		public List<RoomVO> getImage(String r_code);
+		
+		//시가져오기
+		public List<String> getSi();
+		
+		//구가져오기
+		public List<String> getGu(String si);
 
 }

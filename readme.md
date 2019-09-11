@@ -1,41 +1,57 @@
-### Documentation for previous releases
+### README.MD
 
-You can find all our previous releases docs on <https://getbootstrap.com/docs/versions/>.
-
-[Previous releases](https://github.com/twbs/bootstrap/releases) and their documentation are also available for download.
+This is a practice project. Create by Kosmo 50th 3 Team 
 
 
-## Contributing
+#### Technologies Used
+LANGUAGE
+- JAVA
+- JAVASCRIPT
+- PYTHON
 
-Please read through our [contributing guidelines](https://github.com/twbs/bootstrap/blob/master/.github/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
+BACKEND
+- SPRING
+- MYBATIS
 
-Moreover, if your pull request contains JavaScript patches or features, you must include [relevant unit tests](https://github.com/twbs/bootstrap/tree/master/js/tests). All HTML and CSS should conform to the [Code Guide](https://github.com/mdo/code-guide), maintained by [Mark Otto](https://github.com/mdo).
+BIG DATA
+- TensorFlow
 
-Editor preferences are available in the [editor config](https://github.com/twbs/bootstrap/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <https://editorconfig.org/>.
+IMAGE PROCESSING
+- OPENCV
 
+IOT
+- Raspberry Pi
 
-## Community
+BLOCK CHAIN
+- WEB3J
+- INFURA
 
-Get updates on Bootstrap's development and chat with the project maintainers and community members.
+DATABASE
+- Oracle
 
-- Follow [@getbootstrap on Twitter](https://twitter.com/getbootstrap).
-- Read and subscribe to [The Official Bootstrap Blog](https://blog.getbootstrap.com/).
-- Join [the official Slack room](https://bootstrap-slack.herokuapp.com/).
-- Chat with fellow Bootstrappers in IRC. On the `irc.freenode.net` server, in the `##bootstrap` channel.
-- Implementation help may be found at Stack Overflow (tagged [`bootstrap-4`](https://stackoverflow.com/questions/tagged/bootstrap-4)).
-- Developers should use the keyword `bootstrap` on packages which modify or add to the functionality of Bootstrap when distributing through [npm](https://www.npmjs.com/browse/keyword/bootstrap) or similar delivery mechanisms for maximum discoverability.
-
-
-## Versioning
-
-For transparency into our release cycle and in striving to maintain backward compatibility, Bootstrap is maintained under [the Semantic Versioning guidelines](https://semver.org/). Sometimes we screw up, but we adhere to those rules whenever possible.
-
-See [the Releases section of our GitHub project](https://github.com/twbs/bootstrap/releases) for changelogs for each release version of Bootstrap. Release announcement posts on [the official Bootstrap blog](https://blog.getbootstrap.com/) contain summaries of the most noteworthy changes made in each release.
+WEB 
+- BOOTSTRAP
 
 
-## Creators
+#### Dependency
+- AdoptOpenJDK jdk-8.0.222.10-openj9 : open JDK
+- Spring 5.1.8.RELEASE : Application framework
+- Springframework.security 5.1.3.RELEASE : Authentication and authorization framework 
+- Mybatis 1.3.2 : Persistence framework
+- Lombok 1.16.20 : JavaBeans Class Auto create
+- Jackson 2.9.8 : JSON to JavaBeans connection
+- Junit 4.7 : Unit test
+- Slf4j, logback : Logging 
+and etc...more 
 
-**Mark Otto**
+#### Development Schedule
+- 2019-07 ~ 2019-09
 
-- <https://twitter.com/mdo>
-- <https://github.com/mdo>
+
+
+#### Creators
+- Member : 7
+
+**Kosmo 50th 3Team Online community**
+
+- <https://cafe.naver.com/kosmobrain>

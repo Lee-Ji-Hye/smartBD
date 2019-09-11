@@ -59,6 +59,21 @@ public class SysmasterDAOImpl implements SysmasterDAO{
 		return sqlSession.selectList("SysmasterDAO.bdList", map);
 	}
 
+	@Override
+	public BuildingVO bdInfo(String b_code) {
+		return sqlSession.selectOne("SysmasterDAO.bdInfo", b_code);
+	}
+
+	@Override
+	public int bdDel(String b_code) {
+		return sqlSession.delete("SysmasterDAO.bdDel", b_code);
+	}
+
+	@Override
+	public int bdAmd(Map<String, String> map) {
+		return sqlSession.update("SysmasterDAO.bdAmd", map);
+	}
+
 
 	
 }

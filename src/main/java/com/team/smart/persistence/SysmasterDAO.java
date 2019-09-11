@@ -24,4 +24,10 @@ public interface SysmasterDAO {
 	public int bdListCnt();
 	//건물 리스트
 	public List<BuildingVO> bdList(Map<String,Object> map);
+	//업체 단건 조회
+	public BuildingVO bdInfo(String b_code);
+	//업체 단건 삭제
+	public int bdDel(String b_code);
+	//업체 단건 수정
+	public int bdAmd(Map<String,String> map);
 }
