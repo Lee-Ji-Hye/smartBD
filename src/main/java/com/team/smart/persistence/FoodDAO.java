@@ -8,6 +8,7 @@ import com.team.smart.app.vo.FoodStoreVO;
 import com.team.smart.food.vo.Food_companyVO;
 import com.team.smart.food.vo.Food_couponVO;
 import com.team.smart.food.vo.Food_menuVO;
+import com.team.smart.food.vo.Food_orderVO;
 
 public interface FoodDAO {
 	//지혜======================================
@@ -32,7 +33,7 @@ public interface FoodDAO {
 	public int insertCouponeUp(Food_couponVO vo);
 	
 	// 음식점 쿠폰 리스트
-	public List<Food_couponVO> getCoupon(String comp_seq);
+	public List<Food_couponVO> getCoupon(Map<String, Object> map);
 	
 	// 음식점 쿠폰 시리얼
 	public int insertCouponSer(Map<String, Object> map);
@@ -43,7 +44,7 @@ public interface FoodDAO {
 	// 음식점 쿠폰 리스트 삭제
 	public int deleteCoupon(String[] f_coupon_num);
 	
-	// 음식점 상품 등록  페이지 처리
+	// 음식점 상품 등록 
 	public int insertGoodsUp(Food_menuVO vo);
 	
 	// 음식점 상품 등록시 등록 상품
@@ -59,13 +60,33 @@ public interface FoodDAO {
 	public int modifyGoodsSujung(Food_menuVO vo);
 	
 	// 음식점 상품 리스트
-	public List<Food_menuVO> getGoodsList(String comp_seq);
+	public List<Food_menuVO> getGoodsList(Map<String, Object> map);
 	
 	// 음식점 상품 리스트 삭제
 	public int deleteGoods(String[] f_code);
 	
-	// 페이지 처리
-	public int getPage();
+	// 음식점 상품 주문목록
+	public List<Food_orderVO> getFoodOrderList(Map<String, Object> map);
+	
+	// 음식점 상품 주문 상세 보기
+	public Food_orderVO getFoodDetail(String f_ocode);
+	
+	// 주문 승인 처리
+	public int amdFood(String f_ocode);
+	
+	// 주문 거절 처리
+	public int amdNotFood(String f_ocode);
+	
+	// ------------ 페이징 처리
+	
+	// 쿠폰 페이지 처리
+	public int getCouponPage();
+	
+	// 상품 등록 페이지 처리
+	public int getGoodsPage();
+	
+	// 주문 목록 페이지 처리
+	public int getOrderPage();
 	
 	//테스트
 	public int getUniqIndex();

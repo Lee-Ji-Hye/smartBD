@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.team.smart.food.vo.Food_companyVO;
 import com.team.smart.food.vo.Food_couponVO;
 import com.team.smart.food.vo.Food_menuVO;
+import com.team.smart.food.vo.Food_orderVO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +33,10 @@ import com.team.smart.app.vo.FoodMenuVO;
 import com.team.smart.app.vo.FoodStoreVO;
 import com.team.smart.persistence.FoodDAO;
 import com.team.smart.utils.Functions;
+import com.team.smart.utils.KakaoPay;
 import com.team.smart.utils.Paging;
+import com.team.smart.vo.KakaoCancleRequestVO;
+import com.team.smart.vo.KakaoPayCancleResponseVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -98,6 +103,7 @@ public class FoodServiceImpl implements FoodService {
 		Food_companyVO vo = Food_companyVO
 							.builder()
 							.comp_seq(comp_seq)  
+							.comp_org(comp_org)
 							.f_open_stt(req.getParameter("f_open_stt"))
 							.f_open_end(req.getParameter("f_open_end"))
 							.long_desc(req.getParameter("long_desc"))
@@ -182,6 +188,7 @@ public class FoodServiceImpl implements FoodService {
 					        .builder()
 					        .comp_seq(comp_seq)
 					        .staff_id(staff_id)
+					        .comp_org(comp_org)
 					        .f_coupon_name(req.getParameter("f_coupon_name"))
 					        .f_coupon_num(funs.mkUniquecode("f_coupon_num", "food_coupon_tbl"))
 					        .f_coupon_price(Integer.parseInt(req.getParameter("f_coupon_price")))
@@ -229,32 +236,38 @@ public class FoodServiceImpl implements FoodService {
 		// 업체정보 가져오기(업체코드, 업체명)
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
-		//String page = req.getParameter("page"); //현재페이지를 화면에서 가져옴
+		String page = req.getParameter("page"); // 현재페이지를 화면에서 가져옴
 		
+		log.debug("쿠폰리스트 : " + comp_seq + " " + comp_org + " " + page);
 		
-		//int totCnt = 
+		// 글 갯수 
+		int totCnt = 0;
+		totCnt = f_dao.getCouponPage();
 		
-		log.debug("쿠폰리스트 : " + comp_seq + " " + comp_org);
-		//log.debug("쿠폰리스트 : " + comp_seq + " " + page);
+		String uri = req.getRequestURI(); // 현재 서블릿의 uri
+		Paging paging = new Paging(5, 5, totCnt, uri); //Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
 		
-		//String uri = req.getRequestURI();//현재 서블릿의 uri
-		//Paging paging = new Paging(5, 5, totCnt, uri);//Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
+		paging.pagelist(page); // 현재페이지번호를 넣어줌
 		
-		//paging.pagelist(page);//현재페이지번호를 넣어줌
-		
-		//HashMap<String, Object> map = new HashMap<>();
-		//map.put("startNum", paging.getStart());//시작번호
-		//map.put("endNum", paging.getEnd());//끝번호
-		//map.put("comp_seq", comp_seq);//끝번호
-		
-		List<Food_couponVO> list = f_dao.getCoupon(comp_seq);
-		
-		for (int i=0; i < list.size(); i ++) {
-			log.debug("list i" + list.get(i).toString());
+		if(totCnt > 0) {
+			// 게시글 목록 조회
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("startNum", paging.getStart()); // 시작번호
+			map.put("endNum", paging.getEnd()); // 끝번호
+			map.put("comp_seq", comp_seq); // 끝번호
+			
+			List<Food_couponVO> list = f_dao.getCoupon(map);
+			// 처리결과를 저장
+			model.addAttribute("list",list);
+		/*
+		 * for (int i=0; i < list.size(); i ++) { log.debug("list i" +
+		 * list.get(i).toString()); }
+		 */
 		}
 		
-		// 처리결과를 저장
-		model.addAttribute("list",list);
+		model.addAttribute("paging", paging);
+		model.addAttribute("cnt", paging);
+		model.addAttribute("pageNum", page);
 	}
 	
 	// 쿠폰 리스트 삭제
@@ -366,18 +379,34 @@ public class FoodServiceImpl implements FoodService {
 		// 업체정보 가져오기(업체코드,업체명)
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
+		String page = req.getParameter("page"); // 현재페이지를 화면에서 가져옴
 
-		log.debug("음식점 상품 리스트 : " + comp_seq + " " + comp_org);
+		log.debug("음식점 상품 리스트 : " + comp_seq + " " + comp_org + " " + page);
 		
-		List<Food_menuVO> food = f_dao.getGoodsList(comp_seq);
+		// 글 갯수 
+		int totCnt = 0;
+		totCnt = f_dao.getGoodsPage();
 		
-		for(int i=0; i < food.size(); i ++) {
-			log.debug("food i" + food.get(i).toString());
+		String uri = req.getRequestURI(); // 현재 서블릿의 uri
+		Paging paging = new Paging(5, 5, totCnt, uri); //Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
+		
+		paging.pagelist(page); // 현재페이지번호를 넣어줌
+		
+		if(totCnt > 0) {
+			// 게시글 목록 조회
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("startNum", paging.getStart()); // 시작번호
+			map.put("endNum", paging.getEnd()); // 끝번호
+			map.put("comp_seq", comp_seq); // 끝번호
+			
+			List<Food_menuVO> food = f_dao.getGoodsList(map);
+			// 처리결과를 저장
+			model.addAttribute("food", food);
 		}
-		
 		// 처리결과를 저장
-		model.addAttribute("food", food);
-		
+		model.addAttribute("paging", paging);
+		model.addAttribute("cnt", paging);
+		model.addAttribute("pageNum", page);
 	}
 	
 	// 음식점 상품 등록 수정 
@@ -466,13 +495,105 @@ public class FoodServiceImpl implements FoodService {
 		model.addAttribute("goodsDel", goodsDel);
 		
 	}
+	
+	// 음식점 주문 목록
+	@Override
+	public void getOrderFood(HttpServletRequest req, Model model) {
+		
+		// 업체정보 가져오기(업체코드,업체명)
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
+		String comp_org = (String)req.getSession().getAttribute("comp_org");
+		String page = req.getParameter("page"); // 현재페이지를 화면에서 가져옴
 
-	// 테스트
+		log.debug("음식점 상품 리스트 : " + comp_seq + " " + comp_org + " " + page);
+		
+		// 글 갯수 
+		int totCnt = 0;
+		totCnt = f_dao.getOrderPage();
+		
+		String uri = req.getRequestURI(); // 현재 서블릿의 uri
+		Paging paging = new Paging(5, 5, totCnt, uri); //Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
+		
+		paging.pagelist(page); // 현재페이지번호를 넣어줌
+		
+		if(totCnt > 0) {
+			// 게시글 목록 조회
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("startNum", paging.getStart()); // 시작번호
+			map.put("endNum", paging.getEnd()); // 끝번호
+			map.put("comp_seq", comp_seq); // 끝번호
+			
+			List<Food_orderVO> order = f_dao.getFoodOrderList(map);
+			// 처리결과를 저장
+			model.addAttribute("detailO", order);
+		}
+		// 처리결과를 저장
+		model.addAttribute("paging", paging);
+		model.addAttribute("cnt", paging);
+		model.addAttribute("pageNum", page);
+	}
+	
+	// 음식점 주문 목록 상세보기
+	@Override
+	public Food_orderVO getDetailOrder(String f_ocode) {
+		
+		return f_dao.getFoodDetail(f_ocode);
+	}
+	
+	// 음식점 승인 처리
+	@Override
+	public void amdOrder(HttpServletResponse res, String f_ocode) {
+		log.debug("음식점 승인 처리" );
+		int i = f_dao.amdFood(f_ocode);
+		if(i != 1)res.setStatus(448);
+		
+	}
+	
+	// 음식점 주문 거절 처리
+	@Override
+	public void amdNotOrder(HttpServletResponse res, String f_ocode) {
+		log.debug("음식점 주문 거절 처리" );
+		
+		Food_orderVO vo = f_dao.getFoodDetail(f_ocode);
+		
+		KakaoCancleRequestVO cancel_vo = new KakaoCancleRequestVO();
+		
+		// 부과세 계산
+		double cancel_amount = vo.getF_pay_price();//3000.0 200
+		double tmp = (double) (cancel_amount/11.0);//55.4888
+		
+		int cancel_vat = (int)Math.round(tmp); 
+		
+		cancel_vo.setTid(vo.getTid());
+		cancel_vo.setCancel_amount(vo.getF_pay_price());
+		cancel_vo.setCancel_tax_free_amount(0);
+		cancel_vo.setCid("");
+		cancel_vo.setCid_secret("");
+		cancel_vo.setCancel_available_amount(vo.getF_pay_price());
+		cancel_vo.setCancel_vat_amount(cancel_vat);
+		
+		KakaoPay kakao = new KakaoPay();
+		KakaoPayCancleResponseVO result = kakao.kakaoPayRefund(cancel_vo);
+		
+		log.debug("result: *******************************" + result);
+		
+		if(result.getStatus().equals("CANCEL_PAYMENT")) {
+			int j = f_dao.amdNotFood(f_ocode);
+			if(j != 2)res.setStatus(448);
+		}
+		
+		
+		
+	}
+
+	
+	// ======================= 테스트
 	@Override
 	public void test(HttpServletRequest req) {
 		
 	}
 
 	
+
 
 }

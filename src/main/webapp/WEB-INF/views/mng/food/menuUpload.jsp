@@ -7,7 +7,7 @@
 <div class="bg-light">
       <div class="container space-2">
       	 <!-- Update Avatar Form -->
-        <form name="mkMenu"  enctype="multipart/form-data" method="post" action="${path}/cp_manager/menumn/instPro?${_csrf.parameterName}=${_csrf.token}">
+        <form name="mkMenu"  enctype="multipart/form-data" method="post">
           <div class="u-lg-avatar mr-4">
             <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
           </div>
@@ -15,7 +15,7 @@
           <div class="media-body" style="text-align: right">
             <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn">
               Upload
-              <input id="fileAttachmentBtn" name="f_img" type="file" class="file-attachment-btn__label">
+              <input id="fileAttachmentBtn" name="f_img" multiple="multiple" type="file" class="file-attachment-btn__label">
             </label>
 
             <button type="reset" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>
@@ -93,7 +93,7 @@
           <!-- End Input -->
           
 		<!-- Input -->
-        <div class="js-form-message mb-6">
+       <!--  <div class="js-form-message mb-6">
           <label class="form-label">
             	메뉴설명
           </label>
@@ -101,12 +101,12 @@
                     data-msg="Please enter a reason."
                     data-error-class="u-has-error"
                     data-success-class="u-has-success"></textarea>
-        </div>
+        </div> -->
         <!-- End Input -->
             <div style="text-align:center">
 	            <!-- Buttons -->
-	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
-	            <button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="window.location='${path}/cp_manager/menumn/modPro?f_code=${vo.f_code}'">수정</button>
+	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" formaction="${path}/cp_manager/menumn/instPro?${_csrf.parameterName}=${_csrf.token}">등록</button>
+	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover" formaction="${path}/cp_manager/menumn/modPro?f_code=${vo.f_code}&${_csrf.parameterName}=${_csrf.token}">수정</button>
 	            <!-- End Buttons -->
           </div>
         </form>
@@ -150,9 +150,7 @@
 	 var couponCnt = document.getElementById('menuPrice');
 	 couponCnt.value = couponCnt.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
  }
- 
 	
-
 </script>
 <!-- script end -->
 <!-- footer start -->

@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 음식점 업체 소개 등록 처리 -->
 	<insert id="insertStoreUp" parameterType="com.team.smart.food.vo.Food_companyVO">
-		INSERT INTO food_company_tbl (comp_seq, long_desc, short_desc, f_open_stt, f_open_end, f_category, f_seq, f_mainimg)
-		VALUES (#{comp_seq}, #{long_desc}, #{short_desc}, #{f_open_stt}, #{f_open_end}, #{f_category}, food_comp_seq.nextval, #{f_mainimg})
+		INSERT INTO food_company_tbl (comp_seq, comp_org, long_desc, short_desc, f_open_stt, f_open_end, f_category, f_seq, f_mainimg)
+		VALUES (#{comp_seq}, #{comp_org}, #{long_desc}, #{short_desc}, #{f_open_stt}, #{f_open_end}, #{f_category}, food_comp_seq.nextval, #{f_mainimg})
 	</insert>
 	
 	<!-- 음식점 업체 소개 등록시 등록 글 -->
@@ -38,9 +38,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{f_serial}, #{f_coupon_num})
 	</insert>
 	
+	<!-- 음식점 쿠폰 갯수 조회 -->
+	<select id="getCouponPage" resultType="int">
+		SELECT COUNT(*) FROM food_coupon_tbl
+	</select>
+	
 	<!-- 음식점 쿠폰 리스트 조회 -->
-	<select id="getCoupon" resultType="com.team.smart.food.vo.Food_couponVO" parameterType="String"> 
-		 SELECT * FROM food_coupon_tbl
+	<select id="getCoupon" resultType="com.team.smart.food.vo.Food_couponVO" parameterType="java.util.Map"> 
+		<![CDATA[
+		SELECT comp_seq, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end, f_coupon_num
+         FROM (SELECT comp_seq, rownum rNum, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end
+              FROM (SELECT comp_seq, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end FROM food_coupon_tbl order by comp_seq desc))
+        where rNum>=#{startNum}
+        and rNum<=#{endNum}
+    	]]>
 	</select>
 	
 	<!-- 음식점 쿠폰 시리얼 있는지 확인 -->
@@ -67,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM food_menu_tbl WHERE comp_seq = #{comp_seq}
 	</select>
 	
-	<!-- 음식점 상품등록건 -->
+	<!-- 음식점 상품등록 한 건 가져오기 -->
 	<select id="getGoodsOneList" resultType="com.team.smart.food.vo.Food_menuVO" parameterType="String">
 		SELECT COUNT(*) FROM food_menu_tbl WHERE comp_seq = #{comp_seq}
 	</select>
@@ -79,12 +90,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 음식점 상품 등록 수정 처리하기 -->
 	<update id="modifyGoodsSujung" parameterType="com.team.smart.food.vo.Food_menuVO">
-		UPDATE food_menu_tbl SET f_type = #{f_type}, f_name = #{f_name}, f_price = #{f_price}, f_img = #{f_img}, f_regidate = #{f_regidate} WHERE f_code = #{f_code}
+		UPDATE food_menu_tbl SET f_type = #{f_type}, f_name = #{f_name}, f_price = #{f_price}, f_img = #{f_img}, f_icon = #{f_icon}, f_regidate = SYSDATE WHERE f_code = #{f_code}
 	</update>
 	
+	<!-- 음식점 상품 등록 갯수 -->
+	<select id="getGoodsPage" resultType="int">
+		SELECT COUNT(*) FROM food_menu_tbl
+	</select>
+		
 	<!-- 음식점 상품 리스트 조회 -->
-	<select id="getGoodsList" resultType="com.team.smart.food.vo.Food_menuVO" parameterType="String">
-		SELECT * FROM food_menu_tbl WHERE comp_seq = #{comp_seq}
+	<select id="getGoodsList" resultType="com.team.smart.food.vo.Food_menuVO" parameterType="java.util.Map">
+		<![CDATA[
+		SELECT comp_seq, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate
+         FROM (SELECT comp_seq, rownum rNum, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate
+              FROM (SELECT comp_seq, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate FROM food_menu_tbl ORDER BY comp_seq))
+        WHERE rNum>=#{startNum}
+        AND rNum<=#{endNum}
+    	]]>
 	</select>
 	
 	<!-- 음식점 상품 리스트 삭제 -->
@@ -94,5 +116,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{f_code}
 		</foreach>
 	</delete>
+	
+	<!-- 음식점 주문 목록 갯수 조회 -->
+	<select id="getOrderPage" resultType="int">
+		SELECT COUNT(*) FROM food_order_tbl
+	</select>
+	
+	<!-- 음식점 주문 목록 -->
+	<select id="getFoodOrderList" resultType="com.team.smart.food.vo.Food_orderVO" parameterType="java.util.Map">
+		<![CDATA[
+		SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price
+          FROM (SELECT comp_seq, rownum rNum, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price
+              FROM (SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price FROM food_order_tbl ORDER BY f_regidate desc, CASE f_status WHEN '주문접수' THEN 1 WHEN '주문대기' THEN 2 ELSE 999 END ))
+         WHERE rNum>=#{startNum}
+           AND rNum<=#{endNum}
+    	]]>
+	</select>
+	
+	<!-- 음식점 주문 목록 상세보기 -->
+	<select id="getFoodDetail" resultType="com.team.smart.food.vo.Food_orderVO" parameterType="String">
+		 SELECT o.f_ocode, o.comp_seq, o.f_takeout, o.f_takeout_sale, o.f_status, o.f_name, o.f_hp, o.f_receive_time, o.f_message, o.f_person_num,
+        		o.userid, o.f_serial, o.f_regidate, o.f_amount, o.f_sale_price, o.f_pay_type, o.tid, o.f_pay_price, o.f_refund_price, o.f_rate, d.f_odetail_code, d.f_price, d.f_cnt
+           FROM food_order_tbl o
+           JOIN food_order_detail_tbl d
+             ON o.f_ocode = d.f_ocode
+          WHERE o.f_ocode = #{f_ocode}
+	</select>
+	
+	<!-- 음식점 주문 승인 처리하기 -->
+	<update id="amdFood" parameterType="String">
+		UPDATE food_order_tbl SET f_status='주문완료' WHERE f_ocode = #{f_ocode}
+	</update>
+	
+	<!-- 음식점 주문 거절 처리하기 -->
+	<update id="amdNotFood" parameterType="String">
+		UPDATE food_order_tbl SET f_status='주문취소' WHERE f_ocode = #{f_ocode}
+	</update>
+	
 </mapper>
 

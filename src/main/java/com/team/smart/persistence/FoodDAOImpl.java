@@ -12,6 +12,7 @@ import com.team.smart.app.vo.FoodStoreVO;
 import com.team.smart.food.vo.Food_companyVO;
 import com.team.smart.food.vo.Food_couponVO;
 import com.team.smart.food.vo.Food_menuVO;
+import com.team.smart.food.vo.Food_orderVO;
 
 @Repository
 public class FoodDAOImpl implements FoodDAO {
@@ -53,8 +54,8 @@ public class FoodDAOImpl implements FoodDAO {
 	
 	// 음식점 쿠폰 리스트
 	@Override
-	public List<Food_couponVO> getCoupon(String comp_seq) {
-		return sqlSession.selectList("FoodDAO.getCoupon", comp_seq);
+	public List<Food_couponVO> getCoupon(Map<String, Object> map) {
+		return sqlSession.selectList("FoodDAO.getCoupon", map);
 	}
 
 	// 음식점 쿠폰 시리얼
@@ -107,8 +108,8 @@ public class FoodDAOImpl implements FoodDAO {
 
 	// 음식점 상품 리스트
 	@Override
-	public List<Food_menuVO> getGoodsList(String comp_seq) {
-		return sqlSession.selectList("FoodDAO.getGoodsList", comp_seq);
+	public List<Food_menuVO> getGoodsList(Map<String, Object> map) {
+		return sqlSession.selectList("FoodDAO.getGoodsList", map);
 	}
 
 	// 음식점 상품 리스트 삭제
@@ -117,10 +118,48 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.delete("FoodDAO.deleteGoods", f_code);
 	}
 	
-	// 페이지 처리
+	// 음식점 주문 목록 
 	@Override
-	public int getPage() {
-		return sqlSession.selectOne("FoodDAO.getPage");
+	public List<Food_orderVO> getFoodOrderList(Map<String, Object> map) {
+		return sqlSession.selectList("FoodDAO.getFoodOrderList", map);
+	}
+	
+	// 음식점 주문 목록 상세보기
+	@Override
+	public Food_orderVO getFoodDetail(String f_ocode) {
+		return sqlSession.selectOne("FoodDAO.getFoodDetail", f_ocode);
+	}
+	
+	// ======================== 페이징 처리
+	
+	// 쿠폰 리스트 페이징 처리
+	@Override
+	public int getCouponPage() {
+		return sqlSession.selectOne("FoodDAO.getCouponPage");
+	}
+	
+	// 상품 리스트 페이징 처리
+	@Override
+	public int getGoodsPage() {
+		return sqlSession.selectOne("FoodDAO.getGoodsPage");
+	}
+	
+	// 주문 목록 페이징 처리
+	@Override
+	public int getOrderPage() {
+		return sqlSession.selectOne("FoodDAO.getOrderPage");
+	}
+	
+	// 주문 승인 처리 
+	@Override
+	public int amdFood(String f_ocode) {
+		return sqlSession.update("FoodDAO.amdFood", f_ocode);
+	}
+	
+	// 주문 거절 처리
+	@Override
+	public int amdNotFood(String f_ocode) {
+		return sqlSession.update("FoodDAO.amdNotFood", f_ocode);
 	}
 
 	// ============================= 테스트
@@ -131,6 +170,4 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
 
-	
-	
 }

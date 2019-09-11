@@ -29,7 +29,7 @@
            <div class="col-sm-6 col-lg-4 order-sm-1">
 	        <!-- End Update Avatar Form -->
              <!-- Logo -->
-             <h2 class="h1 text-primary font-weight-semi-bold">매장이름</h2>
+             <h2 class="h1 text-primary font-weight-semi-bold">${sessionScope.comp_org}</h2>
              <!-- End Logo -->
              
 			 <!-- Input -->

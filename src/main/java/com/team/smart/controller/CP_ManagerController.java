@@ -27,6 +27,7 @@ public class CP_ManagerController {
 	FoodService service;
 	
 	private String mngFood_ = "mng/food";
+	
 
 
 	@RequestMapping({"/"})
@@ -142,6 +143,7 @@ public class CP_ManagerController {
 		return "redirect:/cp_manager/cpmn/list";
 	}
 	
+	
 	// 쿠폰 리스트
 	@RequestMapping("/cpmn/list")
 	public String couponList(HttpServletRequest req, Model model) {
@@ -181,6 +183,5 @@ public class CP_ManagerController {
 		
 		return "redirect:/cp_manager/cpmn/list";
 	}
-	
 	
 }

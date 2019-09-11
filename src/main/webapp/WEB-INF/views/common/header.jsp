@@ -37,7 +37,8 @@
   
   <!-- 공통 css -->
   <link rel="stylesheet" href="${resource}/css/common.css">
-  
+
+
   <style>
   	.u-header__product-pink {
 	  display: block;
