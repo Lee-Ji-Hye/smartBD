@@ -11,25 +11,7 @@ pageEncoding="UTF-8"%>
         <div class="card-header py-4 px-0 mx-4">
           <!-- Activity Menu -->
           <div class="row justify-content-sm-between align-items-sm-center">
-            <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
-              
-              <!-- Datepicker -->
-              <!-- <div id="datepickerWrapper" class="js-focus-state u-datepicker w-auto input-group input-group-sm">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <span class="fas fa-calendar"></span>
-                  </span>
-                </div>
-                
-                <input type="text" class="js-range-datepicker form-control bg-white rounded-right"
-                       data-rp-wrapper="#datepickerWrapper"
-                       data-rp-type="range"
-                       data-rp-date-format="d M Y"
-                       data-rp-default-date='["05 Jul 2019", "19 Jul 2019"]'
-                       data-rp-is-disable-future-dates="true">
-              </div> -->
-              <!-- End Datepicker -->
-            </div>
+            <div class="col-md-5 col-lg-4 mb-2 mb-md-0"><!-- 버튼 앞 공간차지위한 div박스 --></div>
             
             <!-- Buttons -->
             <div style="margin-right:20px;">
@@ -63,15 +45,6 @@ pageEncoding="UTF-8"%>
                    data-dt-pagination-prev-link-markup='<span aria-hidden="true">&laquo;</span>'>
               <thead>
                 <tr class="text-uppercase font-size-1">
-                  <!-- <th scope="col">
-                    <div class="custom-control custom-checkbox d-flex align-items-center">
-                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
-                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
-                        <span class="text-hide">Checkbox</span>
-                      </label>
-                    </div>
-                  </th> -->
-                  
                   
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
@@ -118,14 +91,6 @@ pageEncoding="UTF-8"%>
               <c:set var="index" value="${0}"/>
               <c:forEach var="dto" items="${bdList}">
               	<tr class="text-uppercase font-size-1 form-original">
-                  <!-- <td class="align-middle">
-                    <div class="custom-control custom-checkbox d-flex align-items-center">
-                      <input type="checkbox" class="custom-control-input" id="invoiceCheckbox01">
-                      <label class="custom-control-label" for="invoiceCheckbox01">
-                        <span class="text-hide">Checkbox</span>
-                      </label>
-                    </div>
-                  </td> -->
                   <td class="align-middle">
                     <div class="media align-items-center">
                     	${dto.b_code }
@@ -147,13 +112,11 @@ pageEncoding="UTF-8"%>
                     </div>
                   </td>
                   <td class="align-middle">
-                    <div class="media align-items-center" id="details_comp_status2">
-                    	<c:if test="${dto.b_status==null}">승인</c:if>
-                    	<c:if test="${dto.b_status!=null}">승인 대기</c:if>
+                    <div class="media align-items-center" id="details_b_status">
+                    	<c:if test="${dto.b_status==1}">승인</c:if>
+                    	<c:if test="${dto.b_status!=1}">승인 대기</c:if>
                     </div>
                   </td>
-                  <!-- <td class="align-middle text-secondary">2019/08/12~2019/09/11</td> -->
-                  <!-- <td class="align-middle text-danger"></td> -->
                 </tr>
                 <c:set var="index" value="${index+1}"/>
                 </c:forEach>
@@ -180,7 +143,6 @@ pageEncoding="UTF-8"%>
                     </div>
                     <div class="row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
-                        <!-- <h5 class="text-dark font-size-1 text-uppercase">Billing address:</h5> -->
                         <h6 class="h5 text-secondary">건물명:<em class="h5 text-dark" id="details_b_name">베스킨라빈스</em></h6>
                         <span class="text-secondary">건물주소:</span>
                         <address class="text-dark" id="details_b_address">
@@ -188,7 +150,6 @@ pageEncoding="UTF-8"%>
                         </address>
                       </div>
                       <div class="col-sm-6">
-                        <!-- <h5 class="text-dark font-size-1 text-uppercase">Client info:</h5> -->
                         <ul class="list-unstyled mb-0">
                           <li class="mb-2">
                             <span class="text-secondary">건물층수:</span>
@@ -224,16 +185,8 @@ pageEncoding="UTF-8"%>
                           </li>
                           <li class="mb-2">
                             <span class="text-secondary">승인상태:</span>
-                            <span class="font-weight-medium" id="details_userid">England</span>
+                            <span class="font-weight-medium" id="details_b_status2">England</span>
                           </li>
-                          <!-- 
-					//.b_unique(req.getParameter("b_unique"))
-					//.b_owner(req.getParameter("b_owner"))
-					//.b_regnum(req.getParameter("b_regnum"))
-					//.b_landarea(req.getParameter("b_landarea"))
-					//.b_buildarea(req.getParameter("b_buildarea"))
-					//.b_buildscale(req.getParameter("b_buildscale"))
-                           -->
                           <li class="mb-2">
                             <span class="text-secondary">고유번호:</span>
                             <span class="font-weight-medium" id="details_b_unique">England</span>
@@ -272,9 +225,9 @@ pageEncoding="UTF-8"%>
                     </div>
                     <div class="row justify-content-end mb-4">
                        <div class="media align-items-center">
-	            		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="compPro(event,'amd_ok')">승인</button>
-                  		<button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="compPro(event,'amd_ng')">반려</button>
-                  		<button type="button" class="btn btn-sm btn-danger transition-3d-hover" onclick="compPro(event,'del')">삭제</button>
+	            		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="compPro('amd_ok')">승인</button>
+                  		<button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="compPro('amd_ng')">반려</button>
+                  		<button type="button" class="btn btn-sm btn-danger transition-3d-hover" onclick="compPro('del')">삭제</button>
                        </div>
                     </div>
                   </div>
@@ -312,6 +265,13 @@ pageEncoding="UTF-8"%>
 					//콘솔에찍음
 					console.log(obj);
 					//값을 변경
+					if(obj.b_status === '2'){
+						obj.b_status = '반려';
+					} else if(obj.comp_status === '1'){
+						obj.b_status = '승인';
+					} else {
+						obj.b_status = '승인대기';
+					}
 					//b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid, b_unique, b_owner, b_regnum, b_landarea, b_buildarea, b_buildscale, b_status, b_regidate
 					document.getElementById('details_b_area1').innerText = obj.b_area1;
 					document.getElementById('details_b_area2').innerText = obj.b_area2;
@@ -333,16 +293,9 @@ pageEncoding="UTF-8"%>
 					document.getElementById('details_b_traffic').innerText = obj.b_traffic;
 					document.getElementById('details_b_lat').innerText = obj.b_lat;
 					document.getElementById('details_b_lon').innerText = obj.b_lon;
-					document.getElementById('details_userid').innerText = obj.userid;
-					if(obj.b_status === '2'){
-						obj.b_status = '반려';
-					} else if(obj.b_status === '0'){
-						obj.b_status = '승인대기';
-					} else if(obj.comp_status === '1'){
-						obj.b_status = '승인';
-					}
-					//document.getElementById('details_b_status').innerText = obj.comp_status;
-					//document.getElementById('details_b_status2').innerText = obj.comp_status;
+					//document.getElementById('details_userid').innerText = obj.userid;
+					document.getElementById('details_b_status').innerText = obj.b_status;
+					document.getElementById('details_b_status2').innerText = obj.b_status;
 					//삽입될 위치를 변경
 					tbl[0].children[1].insertBefore(details, tblclass[tbl_index + 1]);
 					//display 속성을 변경
@@ -356,10 +309,10 @@ pageEncoding="UTF-8"%>
 		request.send(null);
 	};
 	
-	function compPro(event, jong) {
+	function compPro(jong) {
 		//amd_ok, amd_ng, del
-		var comp_seq = document.getElementById('details_comp_seq').innerText;
-		var url = "${path}/sysmaster/cormn/";
+		var comp_seq = document.getElementById('details_b_code').innerText;
+		var url = "${path}/sysmaster/bdmn/";
 		var method = "";
 		
 		if(jong === 'amd_ok'){
