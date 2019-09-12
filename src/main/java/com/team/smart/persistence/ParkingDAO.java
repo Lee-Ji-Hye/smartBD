@@ -64,5 +64,10 @@ public interface ParkingDAO {
 		//주차권 등록리스트
 		public List<ParkingVO> getinsertlist(Map<String, Object> map);
 	
-	
+		//조회 카운트 
+		
+		//전체조회
+		public List<ParkingVO> getsearch(String ser);
+		
+		
 }

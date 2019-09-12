@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.team.smart.parking.vo.ParkingVO;
 
+import sun.nio.ch.SelChImpl;
+
 @Repository
 public class ParkingDAOImpl implements ParkingDAO{
 
@@ -113,6 +115,11 @@ public class ParkingDAOImpl implements ParkingDAO{
 	@Override
 	public int delete(String p_code) {
 		return sqlSession.delete("ParkingDAO.delete",p_code);
+	}
+
+	@Override
+	public List<ParkingVO> getsearch(String ser) {
+		return sqlSession.selectList("ParkingDAO.getsearch",ser);
 	}
 
 	

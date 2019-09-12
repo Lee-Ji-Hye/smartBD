@@ -16,8 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class CP_ParkingController {
 	
-	
-		
 		@Autowired
 		ParkingService parkingService;
 		
@@ -62,6 +60,12 @@ public class CP_ParkingController {
 			return mngParking_ + "/inoutcartotal";
 		}
 		
+		//매출 결산
+		@RequestMapping(value="/paytotal")
+		public String paytotal(HttpServletRequest req, Model model) {
+			return mngParking_ + "/paytotal";
+		}
+		
 		//주차권 발급 내역
 		@RequestMapping(value="parkinglist")
 		public String parkinglist(HttpServletRequest req, Model model) {
@@ -71,7 +75,8 @@ public class CP_ParkingController {
 		//주차권 등록 내역
 		@RequestMapping(value="ticketlist")
 		public String ticketlist(HttpServletRequest req, Model model) {
-			parkingService.ticketlist(req, model);;
+			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			parkingService.ticketlist(req, model);
 			return mngParking_+"/ticketlist";
 		}
 		//주차권 사용
@@ -162,7 +167,6 @@ public class CP_ParkingController {
 			return mngParking_+"/ticketdelete";
 		}
 		
-		
 		//주차장 등록
 		@RequestMapping(value= "/insertplace")
 		public String insertplace(HttpServletRequest req, Model model) {
@@ -189,6 +193,8 @@ public class CP_ParkingController {
 		public String updateplace(HttpServletRequest req, Model model) {
 			return mngParking_+"/updateplace";
 		}
+		
+		
 		//@RequestMapping(value="mypage", method=RequestMethod.POST) //통신 사용시 이걸로 사용.
 		@RequestMapping("mypage")
 		public String mypage(HttpServletRequest req, Model model) {

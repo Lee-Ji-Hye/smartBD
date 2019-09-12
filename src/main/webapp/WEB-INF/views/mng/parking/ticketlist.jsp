@@ -3,6 +3,12 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/headerAdmin.jsp" %>   
 <html>
+<style>
+#myInput
+,#serBtn{
+	float: left;
+}
+</style>
 <body>
 <!-- ========== MAIN ========== -->
   <main id="content" role="main">
@@ -92,10 +98,8 @@
                       <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/ticketlist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
                         	주차권 등록 내역
                       </a>
-
                     </li>
                     <!-- Billing -->
-                  
                   </ul>
                 </div>
               </nav>
@@ -122,14 +126,19 @@
 			<!-- Buttons -->
 			<div class="editBtnDiv01">
 			
-	<form method="post" name="form">
-    <input type="submit"  class="btn btn-sm btn-primary transition-3d-hover mr-1" value="등록" onclick="javascript: form.action='${path}/bd_park/ticketreg';"/>
-    <input type="submit"  class="btn btn-sm btn-soft-secondary transition-3d-hover" value="삭제" onclick="javascript: form.action='${path}/bd_park/ticketdelete';"/>
- 	<input type="text" >
- 	<input type="submit"  class="btn btn-sm btn-soft-secondary transition-3d-hover" value="" onclick="javascript: form.action='${path}/bd_park/ticketdelete';"/>
-			<!-- End Buttons -->
+	<form method="get" id="form" name="form" >
+	 <input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}">
+    <input type="button" id="serBtn" value="검색"  class="btn btn-sm btn-soft-secondary transition-3d-hover"  >
+    <input type="button" id="ticketAddBtn" class="btn btn-sm btn-primary transition-3d-hover mr-1" value="등록" />
+    <input type="button" id="ticketDelBtn"  class="btn btn-sm btn-soft-secondary transition-3d-hover" value="삭제" />
+  
+   
+ 	
+ 	<!-- <button type="button"> -->
           </div>
         </div>
+      
+	
         <div class="card-body p-4">
           <!-- Activity Table -->
           <div class="table-responsive-md u-datatable">
@@ -188,8 +197,8 @@
                     </div>
                   </th>
               </tr></thead>
-              	<c:forEach var="dto" items="${dtos}" varStatus="status">
-	              		<tbody class="font-size-1">
+              <tbody class="font-size-1" id="myTable">
+              	<c:forEach var="dto" items="${dtos}" varStatus="status" begin="" end="">
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
 			                    <div class="custom-control custom-checkbox d-flex align-items-center">
@@ -217,7 +226,7 @@
 	              		</c:forEach>
               	
               
-                   
+                   </tbody>
                     </form>
               </table>
             </div>
@@ -245,6 +254,35 @@
 		$("#invoiceToggleAllCheckbox").click(function(){
 			$(".custom-control-input").prop("checked", this.checked);
 		});
+		
+		 $("#myInput").on("keyup", function() {
+			    var value = $(this).val().toLowerCase();
+			    $("#myTable tr").filter(function() {
+			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			    });
+		});
+		 
+		//
+		$("#ticketAddBtn").click(function(){
+			//${path}/bd_park/ticketreg
+			$("#form").attr("action","${path}/bd_park/ticketreg");
+			$("#form").submit();
+		});
+		
+		
+		$("#ticketDelBtn").click(function(){
+			//${path}/bd_park/ticketdelete'
+			$("#form").attr("action","${path}/bd_park/ticketdelete");
+			$("#form").submit();
+			
+		});
+		
+		$("#serBtn").click(function(){
+			alert("하이");
+			$("#form").attr("action","${path}/bd_park/ticketlist");
+			$("#form").submit();
+		});
 	});
+	
 </script>
 </html>

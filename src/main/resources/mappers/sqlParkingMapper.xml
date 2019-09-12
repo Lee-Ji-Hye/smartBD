@@ -57,7 +57,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
-	
 	<insert id="parkingreg" parameterType="com.team.smart.parking.vo.ParkingVO">
 		insert into parking_lot_tbl(b_code,b_name,p_floor,able_position,able_height,lat,lon,operate_time_day,operate_time_week,operate_tel)
 		values(#{b_code},#{b_name},#{p_floor},#{able_position},#{able_height},#{lat},#{lon},#{operate_time_day},#{operate_time_week},#{operate_tel})
@@ -94,10 +93,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getpaylist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
-			<![CDATA[
+		<![CDATA[
 		select * from (select pt.*,rownum rNum from parking_ticket_history_tbl pt)
 		  where rNum >=#{start} and rNum <= #{end} order by p_ocode
-		   ]]>
+		]]>
 	</select>
 	
 	<select id="getOrderCnt" resultType="int">
@@ -105,10 +104,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getorderlist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
-	<![CDATA[
+		<![CDATA[
 		select * from (select pt.*,rownum rNum from parking_ticket_order_tbl pt)
 		  where rNum >=#{start} and rNum <= #{end} order by p_ocode
-	  ]]>
+		 ]]>
 	</select>
 	
 	<select id="getinsertCnt" resultType="int">
@@ -116,9 +115,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getinsertlist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
+		select * 
+		  from (select pt.*,rownum rNum from parking_ticket_info_tbl  pt
+		  	<if test="sertext != '' ">
+		  	 WHERE p_code like '%' ||  #{sertext} || '%' 
+				    OR B_CODE like '%' ||  #{sertext} || '%'
+				    OR P_TYPE like '%' ||  #{sertext} || '%' 
+				    OR REG_ID like '%' ||  #{sertext} || '%' 
+			        OR REG_DATE like '%'|| #{sertext} || '%'
+		  	</if>
+			)
 	<![CDATA[
-		select * from (select pt.*,rownum rNum from parking_ticket_info_tbl  pt)
-		  where rNum >=#{start} and rNum <= #{end} order by p_code
+		 where rNum >=#{start} and rNum <= #{end} order by p_code
 	  ]]>
 	</select>
 	
@@ -139,9 +147,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			reg_id = #{reg_id}
 			WHERE p_code = #{p_code}
 	</update>
+	
 	<delete id="delete" parameterType="String">
 			delete PARKING_TICKET_INFO_TBL
 			where p_code = #{p_code}
 	</delete>
+	
+<!-- 	<select id="getsearch"  resultType="com.team.smart.parking.vo.ParkingVO" parameterType="String">
+		selete *
+		from  (select pt.*,rownum rNum from parking_ticket_info_tbl  pt)
+		where p_code like '%' ||  #{ser} || '%' 
+		  OR B_CODE like '%' ||  #{ser} || '%'
+		  OR P_TYPE like '%' ||  #{ser} || '%' 
+		  OR REG_ID like '%' ||  #{ser} || '%' 
+	      OR REG_DATE like '%' ||  #{ser} || '%'
+	    AND rNum >=#{start} AND rNum <= #{end} order by p_code
+	</select> -->
+	
+	
 </mapper>
 
