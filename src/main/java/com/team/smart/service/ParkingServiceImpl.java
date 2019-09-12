@@ -76,35 +76,23 @@ public class ParkingServiceImpl implements ParkingService{
 	@Override
 	public void update(HttpServletRequest req, Model model) {
 		String p_code = req.getParameter("p_code");
-		String b_code = req.getParameter("b_code");
-		String p_type = req.getParameter("p_type");
-		int hourly =  Integer.parseInt(req.getParameter("hourly"));
-		int price = Integer.parseInt(req.getParameter("price"));
-		int tikectcode = 0;
-		int check = 1;
-		String reg_id = req.getParameter("reg_id");
-		ParkingVO vo= ParkingVO
-				   .builder()
-				   .p_code(p_code)
-				   .b_code(b_code)
-				   .p_type(p_type)
-				   .hourly(hourly)
-				   .price(price)
-				   .reg_id(reg_id)
-				   .build();
-		
-		if(check == p_dao.buildcount(b_code)) {
-		tikectcode = p_dao.updateticket(vo);
-		}
-		
-		 model.addAttribute("tikectcode",tikectcode); 
+		List<ParkingVO> park = p_dao.ticketinfo(p_code);
+		model.addAttribute("p_code",p_code);
+		model.addAttribute("p_type",park.get(0).getP_type());
+		model.addAttribute("p_hourly",park.get(0).getHourly());
+		model.addAttribute("p_price",park.get(0).getPrice());
 	}
 	// 주차권 삭제
 		@Override
 		public void delete(HttpServletRequest req, Model model) {
-			String p_code = req.getParameter("p_code");
-			int check = 0;
-			check = p_dao.delete(p_code);
+			String p_code[] = req.getParameterValues("p_code");
+			System.out.println(p_code[0]);
+			int check =0;
+			for(int i = 0; i<p_code.length; i++) {
+				System.out.println(p_code[i]);
+				p_dao.delete(p_code[i] + " p_code[i]");
+				check += i;
+			}
 			model.addAttribute("check",check);	
 		}
 	
@@ -187,7 +175,6 @@ public class ParkingServiceImpl implements ParkingService{
 		int check = 0;
 		check = p_dao.deleteplace(b_code);
 		model.addAttribute("check",check);	
-		
 	}
 	
 	
@@ -201,9 +188,11 @@ public class ParkingServiceImpl implements ParkingService{
 	//주차권 등록내역 리스트 
 	@Override
 	public void ticketlist(HttpServletRequest req, Model model) {
-		// 현재페이지
+				// 현재페이지
+		
 				String page = req.getParameter("page");
 				int bcnt = 0;
+				String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
 				
 				//글갯수 구하기
 				bcnt = p_dao.getinsertCnt(); //총게시글 수
@@ -211,26 +200,32 @@ public class ParkingServiceImpl implements ParkingService{
 				System.out.println("bcnt : " + bcnt);
 				System.out.println("uri : " + uri);
 
-				Paging paging = new Paging( 10, 3, bcnt, uri);
+				//http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
+				if(!sertext.equals("")) {
+					uri = uri+"?sertext=" + sertext;
+				}
+				Paging paging = new Paging( 5, 3, bcnt, uri);
 				paging.pagelist(page);
 				
 				
 				if(bcnt > 0) {
+					
 					//  게시글 목록 조회
 					Map<String, Object> map = new HashMap<String, Object>();
 					map.put("start", paging.getStart());
 					map.put("end", paging.getEnd());
+					map.put("sertext",sertext);
 					System.out.println("리밋 : " + map);
 					List<ParkingVO> dtos = p_dao.getinsertlist(map);
 					req.setAttribute("dtos", dtos); //큰바구니 : 게시글 목록 cf)작은바구니 : 게시글 한건
 					
 				}
 				
-				
+				model.addAttribute("page",page);
 				model.addAttribute("paging",paging);
 				model.addAttribute("cnt", bcnt);				//글갯수
 				model.addAttribute("pageNum", page);		//페이지번호
-						
+				model.addAttribute("sertext", sertext);		//${sertext}
 				
 	}
 	//주차권 사용내역 리스트
@@ -340,7 +335,6 @@ public class ParkingServiceImpl implements ParkingService{
 		model.addAttribute("paging",paging);
 		model.addAttribute("cnt", bcnt);				//글갯수
 		model.addAttribute("pageNum", page);		//페이지번호
-				
 		
 				
 	}
@@ -406,6 +400,80 @@ public class ParkingServiceImpl implements ParkingService{
 	//주차권 자동사용
 	@Override
 	public void ticketautouse(HttpServletRequest req, Model model) {
+		
+	}
+	//주차권 수정 처리
+	@Override
+	public void updatepro(HttpServletRequest req, Model model) {
+		String p_code = req.getParameter("p_code");
+		String p_type = req.getParameter("p_type");
+		int hourly =  Integer.parseInt(req.getParameter("hourly"));
+		int price = Integer.parseInt(req.getParameter("price"));
+		String reg_id = req.getParameter("reg_id");
+		int tikectcode = 0;
+		ParkingVO vo= ParkingVO
+				   .builder()
+				   .p_code(p_code)
+				   .p_type(p_type)
+				   .hourly(hourly)
+				   .price(price)
+				   .reg_id(reg_id)
+				   .build();
+		tikectcode = p_dao.ticketpro(vo);	
+		model.addAttribute(tikectcode);
+	}
+	//조회
+	@Override
+	public void search(HttpServletRequest req, Model model) {
+		String page = req.getParameter("page");
+		int bcnt = 0;
+		//글갯수 구하기
+		bcnt = p_dao.getinsertCnt(); //총게시글 수
+		String uri = req.getRequestURI();
+		System.out.println("bcnt : " + bcnt);
+		System.out.println("uri : " + uri);
+
+		Paging paging = new Paging( 1, 3, bcnt, uri);
+		paging.pagelist(page);
+		
+		String ser = "";
+		if(bcnt > 0) {
+		if(req.getParameter("test1") ==  null) {
+			return;
+		}else if(req.getParameter("test1") != null) {
+			ser = req.getParameter("test1");
+			if((ser + "") == "") {
+				List<ParkingVO> dtos = p_dao.getsearch(ser);
+				model.addAttribute("dtos",dtos);
+			}else if(Integer.parseInt(ser) >=0) {
+				List<ParkingVO> dtos = p_dao.getsearch(ser);
+				model.addAttribute("dtos",dtos);
+			}
+			
+		}
+		
+		
+		
+			
+			//  게시글 목록 조회
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", paging.getStart());
+			map.put("end", paging.getEnd());
+			map.put("ser",ser);
+			System.out.println("리밋 : " + map);
+			List<ParkingVO> dtos = p_dao.getinsertlist(map);
+			req.setAttribute("dtos", dtos); //큰바구니 : 게시글 목록 cf)작은바구니 : 게시글 한건
+			
+		}
+		model.addAttribute("page",page);
+		model.addAttribute("paging",paging);
+		model.addAttribute("cnt", bcnt);				//글갯수
+		
+		
+	}
+	//입출차 결산
+	@Override
+	public void inoutcartotal(HttpServletRequest req, Model model) {
 		
 	}
 	

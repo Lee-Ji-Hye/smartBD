@@ -149,7 +149,26 @@
             <!-- End File Attachment Input -->
           </div>
           <!-- End Upload Images -->
-
+		<div class="col-md-6 mb-3">
+                <!-- Input -->
+                <div class="form-group">
+                  <div class="js-form-message js-focus-state">
+                    <label class="form-label" for="listingAgentPhoneNumber">차량번호 </label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="listingAgentPhoneNumberLabel">
+                          <span class="fas fa-phone"></span>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control" name="phoneNumber" id="listingAgentPhoneNumber" placeholder="차량번호" aria-label="Phone number" aria-describedby="listingAgentPhoneNumberLabel" required
+                             data-msg="Please enter a phone number."
+                             data-error-class="u-has-error"
+                             data-success-class="u-has-success">
+                    </div>
+                  </div>
+                </div>
+                <!-- End Input -->
+              </div>
           <button type="submit" class="btn btn-primary btn-block transition-3d-hover">등록</button>
         </form>
       </div>
