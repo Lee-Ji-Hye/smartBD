@@ -180,6 +180,7 @@ pageEncoding="UTF-8"%>
               	
               	<tr class="text-uppercase font-size-1 collapse out" id='formDetail' style="display: none;">
                 	<td scope="row" colspan="7">
+                	<div class="border rounded p-5">
                 		<!-- Bill To -->
 				          <div class="row justify-content-md-between mb-7">
 				            <div class="col-md-5 col-lg-4">
@@ -277,6 +278,7 @@ pageEncoding="UTF-8"%>
 				        	주문거절
 				        </button>
 				      </div>
+				      </div>
                 	</td>
                 </tr>
               </tbody>
@@ -343,31 +345,31 @@ function orderDetail(f_ocode, tbl_order){
 				}
 				
 								
-				if(obj.f_status == '주문대기') {
-					$("#amdNg").show();
-					$("#amdOk").hide();	
-				} else if(obj.f_status == '주문접수') {
-					$("#amdNg").show();
-					$("#amdOk").show();
-				} else {
-					$("#amdNg").hide();
+				if(obj.f_status == '주문대기') { // '주문대기' 상태 
+					$("#amdNg").show(); // 거절버튼 보이기
+					$("#amdOk").hide();	// 승인버튼 숨기기 
+				} else if(obj.f_status == '주문접수') { // '주문접수' 상태
+					$("#amdNg").show(); // 거절버튼 보이기
+					$("#amdOk").show(); // 승인버튼 보이기
+				} else { // 그 외 버튼 다 숨기기
+					$("#amdNg").hide(); 
 					$("#amdOk").hide();
 				}
 				
-				document.getElementById('foodOrderApp').innerText = obj.f_status;
-				document.getElementById('foodOrderApp2').innerText = obj.f_status;
+				document.getElementById('foodOrderApp').innerText = obj.f_status; // 주문상태코드
+				document.getElementById('foodOrderApp2').innerText = obj.f_status; // 주문상태코드
 
-				document.getElementById('detail_f_ocode').innerText = obj.f_ocode;
-				document.getElementById('detail_orderID').innerText = obj.userid;
-				document.getElementById('detail_orderTakeOut').innerText = obj.f_takeout;
-				document.getElementById('detail_pickUp').innerText = obj.f_receive_time;
-				document.getElementById('detail_menuName').innerText = obj.f_name;
-				document.getElementById('detail_menuCount').innerText = obj.f_cnt;
-				document.getElementById('detail_menuPrice').innerText = obj.f_price;
-				document.getElementById('detail_menu_amount').innerText = obj.f_amount;
-				document.getElementById('detail_menu_sale').innerText = obj.f_sale_price;
-				document.getElementById('detail_menuMessage').innerText = obj.f_message;
-				document.getElementById('detail_menuTotal').innerText = obj.f_pay_price;
+				document.getElementById('detail_f_ocode').innerText = obj.f_ocode; // 주문코드
+				document.getElementById('detail_orderID').innerText = obj.userid; // 주문자 아이디
+				document.getElementById('detail_orderTakeOut').innerText = obj.f_takeout; // 테이크아웃여부
+				document.getElementById('detail_pickUp').innerText = obj.f_receive_time; // 할인
+				document.getElementById('detail_menuName').innerText = obj.f_name; // 제품명
+				document.getElementById('detail_menuCount').innerText = obj.f_cnt; // 제품 갯수
+				document.getElementById('detail_menuPrice').innerText = obj.f_price; // 제품 한 건당 가격
+				document.getElementById('detail_menu_amount').innerText = obj.f_amount; // 제품 총 가격
+				document.getElementById('detail_menu_sale').innerText = obj.f_sale_price; // 할인쿠폰 가격
+				document.getElementById('detail_menuMessage').innerText = obj.f_message; // 주문 메세지
+				document.getElementById('detail_menuTotal').innerText = obj.f_pay_price; // 총 결제 금액
 				// 삽입될 위치를 변경
 				tbl[0].children[1].insertBefore(details, tblclass[tbl_order + 1]);
 				// display 속성을 변경

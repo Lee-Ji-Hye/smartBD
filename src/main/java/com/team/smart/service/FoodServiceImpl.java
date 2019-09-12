@@ -112,6 +112,8 @@ public class FoodServiceImpl implements FoodService {
 							.f_open_end(req.getParameter("f_open_end"))
 							.f_category(req.getParameter("f_category"))
 							.f_mainimg(images_name)
+							.f_major(req.getParameter("f_major"))
+							.f_minor(req.getParameter("f_minor"))
 							.build();
 		log.debug("food_company:" + vo.toString());
 		// 등록 된 글이 있을 경우 수정
@@ -259,10 +261,6 @@ public class FoodServiceImpl implements FoodService {
 			List<Food_couponVO> list = f_dao.getCoupon(map);
 			// 처리결과를 저장
 			model.addAttribute("list",list);
-		/*
-		 * for (int i=0; i < list.size(); i ++) { log.debug("list i" +
-		 * list.get(i).toString()); }
-		 */
 		}
 		
 		model.addAttribute("paging", paging);
@@ -543,7 +541,8 @@ public class FoodServiceImpl implements FoodService {
 	// 음식점 승인 처리
 	@Override
 	public void amdOrder(HttpServletResponse res, String f_ocode) {
-		log.debug("음식점 승인 처리" );
+		log.debug("음식점 승인 처리: " );
+		
 		int i = f_dao.amdFood(f_ocode);
 		if(i != 1)res.setStatus(448);
 		
@@ -552,18 +551,20 @@ public class FoodServiceImpl implements FoodService {
 	// 음식점 주문 거절 처리
 	@Override
 	public void amdNotOrder(HttpServletResponse res, String f_ocode) {
-		log.debug("음식점 주문 거절 처리" );
+		log.debug("음식점 주문 거절 처리:" );
 		
 		Food_orderVO vo = f_dao.getFoodDetail(f_ocode);
 		
+		// 카카오페이 환불
 		KakaoCancleRequestVO cancel_vo = new KakaoCancleRequestVO();
 		
-		// 부과세 계산
-		double cancel_amount = vo.getF_pay_price();//3000.0 200
-		double tmp = (double) (cancel_amount/11.0);//55.4888
-		
+		// 환불을 위한 부과세 계산
+		double cancel_amount = vo.getF_pay_price(); //3000.0 200
+		// 부가세 계산
+		double tmp = (double) (cancel_amount/11.0); //55.4888
+		// 반올림 처리
 		int cancel_vat = (int)Math.round(tmp); 
-		
+		// 환불 처리를 위한 정보 담기
 		cancel_vo.setTid(vo.getTid());
 		cancel_vo.setCancel_amount(vo.getF_pay_price());
 		cancel_vo.setCancel_tax_free_amount(0);
@@ -575,15 +576,29 @@ public class FoodServiceImpl implements FoodService {
 		KakaoPay kakao = new KakaoPay();
 		KakaoPayCancleResponseVO result = kakao.kakaoPayRefund(cancel_vo);
 		
-		log.debug("result: *******************************" + result);
+		log.debug("result:" + result);
 		
+		// CANCEL_PAYMENT가 같으면 환불 처리 진행
 		if(result.getStatus().equals("CANCEL_PAYMENT")) {
 			int j = f_dao.amdNotFood(f_ocode);
 			if(j != 2)res.setStatus(448);
 		}
+	}
+	
+	// 음식점 결산
+	@Override
+	public void getAccounts(HttpServletRequest req, Model model) {
+		// 업체정보 가져오기(업체코드,업체명)
+		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
+		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		
+		List<Food_orderVO> don = f_dao.getOrderAccounts(comp_org);
 		
+		Map<String,String> sum = f_dao.getAccountsEnd();
+		String foodSum = String.valueOf(sum.get("SUM(f_pay_price)"));  // 상품 합계
+		String foodCancel = String.valueOf(sum.get("f_refund_price"));	// 상품 취소
 		
+		List<Map<String,String>> food_don = f_dao.getFoodDon();
 	}
 
 	
@@ -592,8 +607,5 @@ public class FoodServiceImpl implements FoodService {
 	public void test(HttpServletRequest req) {
 		
 	}
-
-	
-
 
 }

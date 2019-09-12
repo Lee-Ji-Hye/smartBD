@@ -27,4 +27,12 @@ public class CP_AdminController {
 		return "redirect:/admin";
 	}
 	
+	// =====
+	// 결산
+	/*
+	 * @RequestMapping("/foodChart") public String chart(HttpServletRequest req,
+	 * Model model) { log.debug("url -> foodChart");
+	 * 
+	 * return mngFood_ + "foodChart"; }
+	 */
 }

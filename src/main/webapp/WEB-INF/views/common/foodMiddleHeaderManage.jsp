@@ -30,15 +30,15 @@
             <!-- User Info -->
             <div class="media d-block d-sm-flex align-items-sm-center">
               <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
-                <img class="img-fluid rounded-circle" src="${resourceBoot}/image/img2.jpg" alt="Image Description">
+                <img class="img-fluid rounded-circle"  src="${sessionScope.comp_image}"  onerror='this.src="${resourceImg}/common/noimage_1.jpg"'  alt="Image Description">
                 <span class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle">
                   <!-- <span class="fas fa-check"></span> -->
                   <img src="${resourceImg}/icon/checkicon.PNG"  style="width: 10px;"/>
                 </span>
               </div>
               <div class="media-body">
-                <h1 class="h3 text-white font-weight-medium mb-1">Howdy, Natalie!</h1>
-                <span class="d-block text-white">natalie.curtis@gmail.com</span>
+                <h1 class="h3 text-white font-weight-medium mb-1">${sessionScope.comp_org}</h1>
+                <span class="d-block text-white">${sessionScope.comp_hp}</span>
               </div>
             </div>
             <!-- End User Info -->

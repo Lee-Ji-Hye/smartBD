@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 음식점 업체 소개 등록 처리 -->
 	<insert id="insertStoreUp" parameterType="com.team.smart.food.vo.Food_companyVO">
-		INSERT INTO food_company_tbl (comp_seq, comp_org, long_desc, short_desc, f_open_stt, f_open_end, f_category, f_seq, f_mainimg)
-		VALUES (#{comp_seq}, #{comp_org}, #{long_desc}, #{short_desc}, #{f_open_stt}, #{f_open_end}, #{f_category}, food_comp_seq.nextval, #{f_mainimg})
+		INSERT INTO food_company_tbl (comp_seq, comp_org, long_desc, short_desc, f_open_stt, f_open_end, f_category, f_seq, f_mainimg, f_major, f_minor)
+		VALUES (#{comp_seq}, #{comp_org}, #{long_desc}, #{short_desc}, #{f_open_stt}, #{f_open_end}, #{f_category}, food_comp_seq.nextval, #{f_mainimg}, #{f_major}, #{f_minor})
 	</insert>
 	
 	<!-- 음식점 업체 소개 등록시 등록 글 -->
@@ -22,8 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 음식점 업체 소개 등록 수정  -->
-	<update id="modifySujungUpdate" parameterType="com.team.smart.food.vo.Food_companyVO">
-		UPDATE food_company_tbl SET long_desc = #{long_desc}, short_desc = #{short_desc}, f_open_stt = #{f_open_stt}, f_open_end = #{f_open_end}, f_mainimg = #{f_mainimg} WHERE comp_seq = #{comp_seq}
+	<update id="modifySujungUpdate" parameterType="com.team.smart.food.vo.Food_companyVO"> 
+		UPDATE food_company_tbl SET f_major =#{f_major}, f_minor = #{f_minor}, long_desc = #{long_desc}, short_desc = #{short_desc}, f_open_stt = #{f_open_stt}, f_open_end = #{f_open_end}, f_mainimg = #{f_mainimg} WHERE comp_seq = #{comp_seq}
 	</update>
 	
 	<!-- 음식점 쿠폰 등록 -->

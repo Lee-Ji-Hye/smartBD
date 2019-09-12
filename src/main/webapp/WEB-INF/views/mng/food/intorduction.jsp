@@ -3,27 +3,16 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/header.jsp" %>
 <%@ include file="../../common/foodMiddleHeaderManage.jsp" %>
-<body> 
+<body>
+<style>
+	.hide{display:none;}
+</style> 
 <!-- Main -->
 <form name="mkintro" class="media align-items-center mb-4" enctype="multipart/form-data" method="post" action="${path}/cp_manager/intromn/instPro?${_csrf.parameterName}=${_csrf.token}">
 <div class="container space-2 px-md-7 px-lg-11">
      <div class="card bg-img-hero" style="background-image: url(../../assets/svg/components/bg-elements-6.svg);">
        <div class="card-body p-9 p-md-7 p-lg-11">
-       
-       <div class="container space-1">
-           	<!-- Update Avatar Form -->
-	          <div class="u-lg-avatar mr-3">
-	           <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
-	          </div>
-	
-	          <div class="media-body">
-	            <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn">
-	              Upload
-	              <input id="fileAttachmentBtn" name="f_mainimg" type="file" class="file-attachment-btn__label">
-	            </label>
-	            <button type="reset" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>
-	          </div>
-        </div>
+
        
          <div class="row justify-content-lg-between align-items-sm-center mb-11">
            <div class="col-sm-6 col-lg-4 order-sm-1">
@@ -32,6 +21,8 @@
              <h2 class="h1 text-primary font-weight-semi-bold">${sessionScope.comp_org}</h2>
              <!-- End Logo -->
              
+                    
+       
 			 <!-- Input -->
 			<div class="col-sm-6 col-lg-5 order-sm-1" style="padding:00px" >
              <h1 class="h6 font-weight-medium mb-0">
@@ -160,6 +151,55 @@
                     data-success-class="u-has-success">${store.getLong_desc()}</textarea>
         </div>
         <!-- End Input -->
+        
+         <div class="container space-1">
+           	<!-- Update Avatar Form -->
+	          <div class="media-body">
+	            <button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0" id="beconBtn">비콘추가</button>
+	          </div>
+        </div>
+        
+        <div class="row hide" id="beconDiv">
+        <!-- Input -->
+          <div class="col-sm4 col-lg-6 order-sm-1" >
+           <label class="form-label">
+             	비콘 아이디
+            </label>
+
+            <div class="form-group">
+              <input type="text" class="form-control" name="f_major" placeholder="아이디" value="${store.f_major}">
+            </div>
+          </div>
+          <!-- End Input -->
+          
+           <!-- Input -->
+          <div class="col-sm-4 col-lg-6 order-sm-1">
+           <label class="form-label">
+             	비콘 비밀번호
+            </label>
+
+            <div class="form-group">
+              <input type="text" class="form-control" name="f_minor" placeholder="비밀번호" value="${store.f_minor}">
+            </div>
+          </div>
+          <!-- End Input -->
+           </div>
+        
+       <div class="container space-1">
+           	<!-- Update Avatar Form -->
+	          <div class="u-lg-avatar mr-3">
+	           <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
+	          </div>
+	
+	          <div class="media-body">
+	            <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn">
+	              Upload
+	              <input id="fileAttachmentBtn" name="f_mainimg" type="file" class="file-attachment-btn__label" value="Upload">
+	            </label>
+	            <button type="reset" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>
+	          </div>
+        </div>
+        
        
          <!-- Contacts -->
          <div class="row justify-content-lg-between">
@@ -182,7 +222,7 @@
          <!-- End Contacts -->
        </div>
      </div>
-
+     
 	<!-- Button start -->
      <div class="text-right mt-5">
        <button type="submit" class="btn btn-primary btn-sm-wide transition-3d-hover" >
@@ -221,6 +261,27 @@
 			}
 		}
 	}
+</script>
+
+<!-- beconBtn -->
+<script type="text/javascript">
+	$(function(){
+		$("#beconBtn").click(function(){
+			
+			if($("#beconDiv").hasClass("hide")) {
+				$("#beconDiv").removeClass("hide");
+				$("#beconBtn").text("비콘닫기");
+				
+			} else {
+				$("#beconDiv").addClass("hide");
+				$("#beconBtn").text("비콘추가");
+			}
+		});
+		
+	});
+
+
+		
 </script>
 <!-- script end -->
 <!-- footer start -->

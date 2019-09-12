@@ -161,6 +161,13 @@ public class FoodDAOImpl implements FoodDAO {
 	public int amdNotFood(String f_ocode) {
 		return sqlSession.update("FoodDAO.amdNotFood", f_ocode);
 	}
+	
+	// 주문 차트
+	@Override
+	public List<Map<String, String>> getFoodDon() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	// ============================= 테스트
 	@Override
@@ -169,5 +176,18 @@ public class FoodDAOImpl implements FoodDAO {
 		System.out.println("~!!!!!!!!!!!!!!!!!!!!!!!!!!~");
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
+
+	@Override
+	public List<Food_orderVO> getOrderAccounts(String comp_org) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, String> getAccountsEnd() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

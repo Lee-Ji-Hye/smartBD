@@ -31,7 +31,7 @@ public class FoodStoreVO {
 	 ***************************************************/
 	public void setF_mainimg(String f_mainimg) {
 		//this.f_mainimg = "http://172.30.1.46:8089/smart/resources/images/food/"+f_mainimg;
-		this.f_mainimg = "http://192.168.219.149/smart/resources/images/food/"+f_mainimg; //학원
+		this.f_mainimg = "http://localhost/smart/resources/images/food/"+f_mainimg; //학원
 	}
 	
 }
