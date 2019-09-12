@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.team.smart.service.SysmasterService;
 import com.team.smart.vo.BuildingVO;
 import com.team.smart.vo.CompVO;
+import com.team.smart.vo.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -103,7 +104,7 @@ public class SysmasterController {
 		return "redirect:/sysmaster/bdmn/list";
 	}
 	
-	///업체 목록 목록
+	///빌딩 목록 목록
 	@RequestMapping({"/bdmn/list"})
 	public String bdmnlist(HttpServletRequest req, Model model) {
 		log.info("url -> /sysmaster/bdmn/list");
@@ -111,14 +112,14 @@ public class SysmasterController {
 		return jspPath+"/bdList";
 	}
 
-	///업체 목록 단건
+	///빌딩 목록 단건
 	@GetMapping({"/bdmn/details/{b_code}"})
 	public @ResponseBody BuildingVO bdmndetails(HttpServletRequest req, @PathVariable String b_code) {
 		log.info("url -> /sysmaster/bdmn/details/{b_code}");
 		return sysService.bdInfo(b_code);
 	}
 
-	///업체 삭제 단건
+	///빌딩 삭제 단건
 	@GetMapping({"/bdmn/del/{b_code}"})
 	public String bdmnDel(@PathVariable String b_code) {
 		log.info("url -> /sysmaster/bdmn/del/{b_code}");
@@ -126,7 +127,7 @@ public class SysmasterController {
 		return "redirect:/sysmaster/bdmn/list";
 	}
 
-	///업체 삭제 단건
+	///빌딩 삭제 단건
 	@GetMapping({"/bdmn/amd/{amd}/{b_code}"})
 	public String bdmnAmd(@PathVariable String amd, @PathVariable String b_code) {
 		log.info("url -> sysmaster/bdmn/amd/{amd}/{b_code}");
@@ -152,7 +153,62 @@ public class SysmasterController {
 	}
 
 	
+
 	
+
+	//회원 관리를 선택했을때
+	@RequestMapping({"/memmn"})
+	public String memmn(HttpServletRequest req, Model model) {
+		log.info("url -> sysmaster/");
+		return "redirect:/sysmaster/memmn/list";
+	}
+	
+	///회원 목록 목록
+	@RequestMapping({"/memmn/list"})
+	public String memmnlist(HttpServletRequest req, Model model) {
+		log.info("url -> /sysmaster/memmn/list");
+		sysService.memList(req, model);
+		return jspPath+"/memberList";
+	}
+
+	///회원 목록 단건
+	@GetMapping({"/memmn/details/{userid}"})
+	public @ResponseBody UserVO memmndetails(HttpServletRequest req, @PathVariable String userid) {
+		log.info("url -> /sysmaster/memmn/details/{userid}");
+		return sysService.memInfo(userid);
+	}
+
+	///회원 삭제 단건
+	@GetMapping({"/memmn/amd/{amd}/{userid}"})
+	public String memmnAmd(@PathVariable String amd, @PathVariable String userid) {
+		log.info("url -> sysmaster/memmn/amd/{amd}/{userid}");
+		sysService.memAmd(amd, userid);
+		return "redirect:/sysmaster/memmn/list";
+	}
+	
+	///회원 삭제 단건
+	@GetMapping({"/memmn/del/{userid}"})
+	public String memmnDel(@PathVariable String userid) {
+		log.info("url -> /sysmaster/memmn/del/{userid}");
+		sysService.memDel(userid);
+		return "redirect:/sysmaster/memmn/list";
+	}
+
+	//회원 등록 (관리자)
+	@RequestMapping({"/memmn/inst"})
+	public String memmnInsert(HttpServletRequest req, Model model) {
+		//TODO 관리자 id 검색기능
+		log.info("url -> sysmaster/memmn/inst");
+		return jspPath+"/mem_signup";
+	}
+	
+	//회원 등록 처리
+	@RequestMapping({"/memmn/instpro"})
+	public String memmnInsertpro(HttpServletRequest req, Model model) {
+		log.info("url -> sysmaster/memmn/instpro");
+		sysService.memInsert(req, model);
+		return "redirect:/sysmaster/memmn/list";
+	}
 	
 	
 	

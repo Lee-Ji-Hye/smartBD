@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.team.smart.vo.BuildingVO;
 import com.team.smart.vo.CompVO;
+import com.team.smart.vo.UserVO;
 
 @Repository
 public class SysmasterDAOImpl implements SysmasterDAO{
@@ -74,6 +75,33 @@ public class SysmasterDAOImpl implements SysmasterDAO{
 		return sqlSession.update("SysmasterDAO.bdAmd", map);
 	}
 
+	
+	
+	@Override
+	public int memListCnt() {
+		return sqlSession.selectOne("SysmasterDAO.memListCnt");
+	}
+
+	//빌딩 리스트
+	@Override
+	public List<UserVO> memList(Map<String,Object> map) {
+		return sqlSession.selectList("SysmasterDAO.memList", map);
+	}
+
+	@Override
+	public UserVO memInfo(String userid) {
+		return sqlSession.selectOne("SysmasterDAO.memInfo", userid);
+	}
+
+	@Override
+	public int memDel(String userid) {
+		return sqlSession.delete("SysmasterDAO.memDel", userid);
+	}
+
+	@Override
+	public int memAmd(Map<String, String> map) {
+		return sqlSession.update("SysmasterDAO.memAmd", map);
+	}
 
 	
 }

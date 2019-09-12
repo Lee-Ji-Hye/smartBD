@@ -1,7 +1,11 @@
 package com.team.smart.vo;
 
+import java.security.Timestamp;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -16,11 +20,15 @@ import lombok.Data;
 	hp              VARCHAR2(50)    ,           --핸드폰번호
  * 
  */
-@Data	@Builder
+@Data @Builder @AllArgsConstructor @NoArgsConstructor
 public class UserVO {
 	private String userid;
 	private String userpw;
 	private String name;
 	private String email;
 	private String hp;
+	private Timestamp regidate;
+	private String visit;
+	private Timestamp visit_date;
+	private String enabled; 
 }

@@ -17,6 +17,7 @@ import com.team.smart.utils.Functions;
 import com.team.smart.utils.Paging;
 import com.team.smart.vo.BuildingVO;
 import com.team.smart.vo.CompVO;
+import com.team.smart.vo.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -209,6 +210,58 @@ public class SysmasterServiceImpl implements SysmasterService{
 //		count += dao.insertAuth(map);
 		
 //		log.debug("count = "+count);
+	}
+
+	
+	
+
+	@Override
+	public void memList(HttpServletRequest req, Model model) {
+		//상품 총 글 수
+		String page = req.getParameter("page");
+		
+		int totCnt = sysDAO.memListCnt();
+		
+		//페이징 처리
+		String uri = req.getRequestURI();
+		Paging paging = new Paging(5, 5, totCnt, uri);//Paging(int pageLine, int pageBlock, int cnt);
+		
+		paging.pagelist(page);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("startNum", paging.getStart());
+		map.put("endNum", paging.getEnd());
+		
+		List<UserVO> memList = sysDAO.memList(map);
+		model.addAttribute("memList", memList);
+		model.addAttribute("paging", paging);
+	}
+
+	@Override
+	public UserVO memInfo(String userid) {
+		log.debug("회원 정보 단건 조회");
+		return sysDAO.memInfo(userid); 
+	}
+
+	@Override
+	public void memDel(String userid) {
+		log.debug("회원 정보 단건 삭제");
+		sysDAO.memDel(userid);
+	}
+
+	@Override
+	public void memAmd(String amd, String userid) {
+		log.debug("회원 정보 권한 수정");
+		Map<String, String> map = new HashMap<>();
+		map.put("amd", amd);
+		map.put("userid", userid);
+		sysDAO.memAmd(map);
+	}
+
+	@Override
+	public void memInsert(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

@@ -74,4 +74,42 @@
 		update building_tbl set b_status = #{amd} where b_code = #{b_code}
 	</update>
 	
+	
+	
+
+	<!-- 회원 갯수 -->
+	<select id="memListCnt" parameterType="int" resultType="int">
+		select COUNT(*)
+		from user_member_tbl
+	</select>
+
+	<!-- 회원 리스트 -->
+	<select id="memList" parameterType="java.util.Map" resultType="com.team.smart.vo.UserVO">
+	<![CDATA[
+	select userid, name, email, hp, regidate, visit, visit_date, enabled
+	from (select rownum rNum, userid, name, email, hp, regidate, visit, visit_date, enabled
+	from (select userid, name, email, hp, regidate, visit, visit_date, enabled from user_member_tbl order by regidate asc, enabled desc))
+	where rNum>=#{startNum}
+	and rNum<=#{endNum}
+    	]]>
+	</select>
+	
+	<!-- 회원 단건 조회 -->
+	<select id="memInfo" parameterType="String" resultType="com.team.smart.vo.UserVO">
+		select userid, name, email, hp, regidate, visit, visit_date, enabled 
+		from user_member_tbl
+		where userid = #{userid}
+	</select>
+
+	<!-- 회원 단건 삭제 -->
+	<delete id="memDel" parameterType="String">
+		delete user_member_tbl where userid=#{userid}
+	</delete>
+
+	<!-- 회원 차단 수정 -->
+	<update id="memAmd" parameterType="java.util.Map">
+		update user_member_tbl set enabled = #{amd} where userid = #{userid}
+	</update>
+	
+	
 </mapper>
