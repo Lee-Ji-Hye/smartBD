@@ -8,14 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.smart.service.RoomService;
 import com.team.smart.service.UserService;
-import com.team.smart.vo.CompVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -95,14 +92,6 @@ public class MemberController {
 		
 		//잘라낸 url이 없으면 홈으로 가라
 		if(redirectionURL.length()!=0) return "redirect:" + redirectionURL; else return "redirect:/";
-	}
-	
-	//직원 권한 요청
-	@RequestMapping({"/auth"})
-	public String auth(HttpServletRequest req, Model model) {
-		log.info("url -> member/auth");
-
-		return "redirect:/admin";
 	}
 	
 	//내 정보
@@ -200,4 +189,23 @@ public class MemberController {
 	}
 	
 
+
+	//직원 권한 요청
+	@RequestMapping({"/auth"})
+	public String auth(HttpServletRequest req, Model model) {
+		log.info("url -> member/auth");
+
+		return "redirect:/member/auth/put";
+	}
+
+	//업체 등록 등
+	@RequestMapping({"/auth/put"})
+	public String insertauth(HttpServletRequest req, Model model) {
+		log.info("url -> member/auth/put");
+
+		return "signup/auth_signup";
+	}
+	
+	
+	
 }
