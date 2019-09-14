@@ -42,5 +42,11 @@ public interface RoomDAO {
 		
 		//슬라이드용 이미지 가져오기
 		public List<RoomVO> getImage(String r_code);
+		
+		//납부리스트 가져오기
+		public List<RoomVO> getpaylist();
+		
+		//납부상세 페이지
+		public List<RoomVO> getpaydetail();
 
 }

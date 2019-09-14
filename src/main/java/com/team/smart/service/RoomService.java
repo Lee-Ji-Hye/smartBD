@@ -37,6 +37,12 @@ public interface RoomService {
 		
 		//슬라이드용 이미지 가져오기
 		public void getImage(HttpServletRequest req,Model model);
+		
+		//납부 리스트 가져오기
+		public void getpaylist(HttpServletRequest req,Model model);
+		
+		//납부 상세페이지
+		public void getpaydetail(HttpServletRequest req,Model model);
 
 
 }

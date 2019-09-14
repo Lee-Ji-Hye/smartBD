@@ -71,10 +71,10 @@ public class RoomServiceImpl implements RoomService{
 		}
 		
 		String b_code = "B000000";												//건물코드
-		String r_delete = "0";													//삭제 여부
-		String userid = "big";													//관리자아이디
+		String r_delete = "Y";													//삭제 여부
+		String userid = "id9";													//관리자아이디
 		
-		System.out.println(r_type);
+		System.out.println("r_type :"+r_type);
 		
 		RoomVO vo = new RoomVO();
 		vo.setR_kind(r_kind);
@@ -265,6 +265,7 @@ public class RoomServiceImpl implements RoomService{
 		
 	}
 
+	
 	@Override
 	public void getImage(HttpServletRequest req, Model model) {
 		
@@ -280,6 +281,25 @@ public class RoomServiceImpl implements RoomService{
 			req.setAttribute("image", dtos); 
 			req.setAttribute("icnt", cnt);
 		}
+	}
+
+	//납부 리스트 가져오기
+	@Override
+	public void getpaylist(HttpServletRequest req, Model model) {
+		
+		List<RoomVO> dtos = dao.getpaylist();
+		
+		req.setAttribute("dto", dtos);
+	}
+
+	//납부 상세페이지
+	@Override
+	public void getpaydetail(HttpServletRequest req, Model model) {
+		
+		List<RoomVO> dtos = dao.getpaydetail();
+		
+		req.setAttribute("dto", dtos);
+		
 	}
 
 	

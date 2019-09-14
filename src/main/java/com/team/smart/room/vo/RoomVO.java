@@ -30,6 +30,11 @@ public class RoomVO {
 	String r_delete;	//삭제 여부
 	String userid;		//관리자아이디
 	String r_kind;		//매물종류
+	String rt_date1;	//입주일
+	String rt_date2;	//만기일
+	String rt_deposit;	//보증금현황
+	String rt_mobile;	//폰번호
+	String rt_code;		//계약코드
 	
 
 }

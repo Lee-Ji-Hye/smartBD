@@ -97,6 +97,19 @@ public class RoomDAOImpl implements RoomDAO{
 		return sqlSession.selectList("RoomDAO.getImage",r_code);
 	}
 
+	//납부리스트 가져오기
+	@Override
+	public List<RoomVO> getpaylist() {
+		
+		return sqlSession.selectList("RoomDAO.getpaylist");
+	}
+
+	@Override
+	public List<RoomVO> getpaydetail() {
+		
+		return sqlSession.selectList("RoomDAO.getpaydetail");
+	}
+
 	
 
 }

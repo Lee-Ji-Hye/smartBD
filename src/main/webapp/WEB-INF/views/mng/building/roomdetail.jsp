@@ -711,7 +711,7 @@
       <!-- End Calculator Section -->
 
       <!-- Google Map Section -->
-      <div id="GMapCustomized-light" class="js-g-map embed-responsive embed-responsive-21by9"
+      <!-- <div id="GMapCustomized-light" class="js-g-map embed-responsive embed-responsive-21by9"
            data-type="custom"
            data-lat="40.674"
            data-lng="-73.946"
@@ -723,7 +723,7 @@
              ["", "", [{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]],
              ["", "labels", [{"visibility":"on"}]],
              ["water", "", [{"color":"#bac6cb"}]]
-           ]'></div>
+           ]'></div> -->
       <!-- End Google Map Section -->
 
       <!-- Similar Properties Section -->
