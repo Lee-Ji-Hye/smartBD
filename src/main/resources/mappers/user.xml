@@ -64,5 +64,12 @@
 		VALUES(#{b_code}, #{b_area1}, #{b_area2}, #{b_address}, #{b_name}, #{b_floor}, #{b_year}, #{b_park}, #{b_elev}, #{b_heat}, #{b_traffic}, #{b_lat}, #{b_lon}, #{userid}, #{b_unique}, #{b_owner}, #{b_regnum}, #{b_landarea}, #{b_buildarea}, #{b_buildscale}, #{b_status})
 	</insert>
 	
+	<select id="compSearch" parameterType="String" resultType="java.util.Map">
+		select c.comp_seq code, c.comp_org name from user_company_tbl c, food_company_tbl f where c.comp_seq=f.comp_seq and comp_org like #{keyword}||'%'
+	</select>
+	
+	<select id="bdSearch" parameterType="String" resultType="java.util.Map">
+		select b_code code, b_name name from building_tbl where b_name like #{keyword}||'%'
+	</select>
 	
 </mapper>

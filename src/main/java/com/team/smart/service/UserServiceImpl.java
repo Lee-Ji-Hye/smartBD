@@ -3,6 +3,8 @@ package com.team.smart.service;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -132,6 +134,39 @@ public class UserServiceImpl implements UserService {
 		
 		log.debug("count = "+count);
 		return count;
+	}
+
+	@Override
+	public List<Map<String,String>> search(String keyword, String category) {
+
+		if(category.equals("comp")) {
+			return dao.compSearch(keyword);
+		}else if(category.equals("bd")) {
+			return dao.bdSearch(keyword);
+		}else {
+			return null;
+		}
+		
+	}
+
+	@Override
+	public int insertauth(HttpServletRequest req, Model model) {
+		String name = req.getParameter("name");
+		String code = req.getParameter("code");
+		String auth = req.getParameter("auth");
+		String category = req.getParameter("category");
+		log.debug(name+"  "+code+"  "+auth+"  "+category);
+		
+		Map<String,String> map = new HashMap<>();
+
+		map.put("code",code);
+		map.put("auth",auth);
+//		if(category.equals("bd")) {
+//			return dao.insertBdAuth(map);
+//		}else if(category.equals("comp")) {
+//			return dao.insertCompAuth(map);
+//		}
+		return 0;
 	}
 	
 	

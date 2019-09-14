@@ -1,5 +1,6 @@
 package com.team.smart.persistence;
 
+import java.util.List;
 import java.util.Map;
 
 import com.team.smart.vo.BuildingVO;
@@ -18,5 +19,12 @@ public interface UserDAO {
 	
 	//빌딩등록
 	public int insertBd(BuildingVO vo);
+
+	//빌딩 검색
+	public List<Map<String,String>> bdSearch(String keyword);
+
+	//식당 검색
+	public List<Map<String,String>> compSearch(String keyword);
+	
 	
 }

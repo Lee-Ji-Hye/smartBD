@@ -1,5 +1,6 @@
 package com.team.smart.persistence;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -37,6 +38,16 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public int insertBd(BuildingVO vo) {
 		return sqlSession.insert("UserDAO.insertBd", vo);
+	}
+
+	@Override
+	public List<Map<String, String>> bdSearch(String keyword){
+		return sqlSession.selectList("UserDAO.bdSearch",keyword);
+	}
+
+	@Override
+	public List<Map<String, String>> compSearch(String keyword) {
+		return sqlSession.selectList("UserDAO.compSearch",keyword);
 	}
 
 }

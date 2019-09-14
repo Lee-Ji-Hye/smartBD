@@ -1,6 +1,7 @@
 package com.team.smart.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -198,7 +200,7 @@ public class MemberController {
 		return "redirect:/member/auth/put";
 	}
 
-	//업체 등록 등
+	//권한 등록 등
 	@RequestMapping({"/auth/put"})
 	public String insertauth(HttpServletRequest req, Model model) {
 		log.info("url -> member/auth/put");
@@ -206,6 +208,41 @@ public class MemberController {
 		return "signup/auth_signup";
 	}
 	
+
 	
+	//권한요청 등록 등
+	@RequestMapping("/auth/putpro")
+	public String insertProauth(HttpServletRequest req, Model model) {
+		log.info("url -> member/auth/putpro");
+		userService.insertauth(req, model);
+		
+		return "redirect:/member/auth/auth_complet";
+	}
+
+	//권한요청 등록 등
+	@RequestMapping("/auth/auth_complet")
+	public String auth_complet(HttpServletRequest req, Model model) {
+		log.info("url -> member/auth/auth_complet");
+
+		return "signup/auth_complet";
+	}
+	
+
+	
+
+	///검색
+	@GetMapping({"/search/{category}/"})
+	public @ResponseBody String notKeyworld(@PathVariable String category) {
+		log.info("url -> member/search/"+category);
+		return null;
+	}
+	
+	///검색
+	@GetMapping({"/search/{category}/{keyword}"})
+	public @ResponseBody List<Map<String,String>> cormndetails(HttpServletRequest req, @PathVariable String keyword, @PathVariable String category) {
+		log.info("url -> member/search/"+keyword+","+category);
+		return userService.search(keyword,category);
+	}
+
 	
 }

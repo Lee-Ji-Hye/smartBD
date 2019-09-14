@@ -1,5 +1,8 @@
 package com.team.smart.service;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
@@ -21,4 +24,10 @@ public interface UserService {
 	
 	//빌딩 등록
 	public int bdmnInsert(HttpServletRequest req, Model model);
+	
+	//검색
+	public List<Map<String,String>> search(String keyword, String category);
+
+	public int insertauth(HttpServletRequest req, Model model);
+	
 }
