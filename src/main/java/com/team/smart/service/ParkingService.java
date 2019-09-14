@@ -12,28 +12,20 @@ public interface ParkingService {
 		public void ticketreg(HttpServletRequest req,Model model);
 		//입출차 조회
 		public void search(HttpServletRequest req,Model model);
-		
 		//입출차 결산
 		public void inoutcartotal(HttpServletRequest req,Model model);
-		
 		//주차권 수정  
 		public void update(HttpServletRequest req,Model model);
-		
 		//주차권 삭제
 		public void delete(HttpServletRequest req,Model model);
-
 		//주차장 등록 
 		public void insertplace(HttpServletRequest req,Model model);
-		
 		//주차장 수정 
 		public void updateplace(HttpServletRequest req,Model model);
-		
 		//주차장 삭제
 		public void deleteplace(HttpServletRequest req,Model model);
-		
 		//주차권 사용
 		public void useticket(HttpServletRequest req,Model model);
-		
 		//주차권 수정처리
 		public void updatepro(HttpServletRequest req,Model model);
 		
@@ -66,4 +58,7 @@ public interface ParkingService {
 		
 		//주차권 자동사용
 		public void ticketautouse(HttpServletRequest req,Model model);
+		
+		//주차장 자리현황 리스트
+		public void parklist(HttpServletRequest req,Model model); 
 }

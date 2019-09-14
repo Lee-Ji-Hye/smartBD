@@ -26,6 +26,10 @@
         .sans {
             font: 0.8em sans-serif;
         }
+        .highcharts-plot-band,
+        .highcharts-plot-band{
+        display: none;
+        }
     </style>
 </head>
 <body>
@@ -42,7 +46,7 @@
     <div class="grid">
         <div class="item">
             <div class="item-content">
-                <h2>대한민국 도시 인구 순위</h2>
+                <h2>입/출차 통계</h2>
                 <div id="7lfxIhp2GiscHjEmabeklB"></div>
             </div>
         </div>
@@ -65,7 +69,7 @@
 				<rect fill="none" class="highcharts-plot-background" x="77" y="53"
 					width="752" height="310"></rect>
 				<g class="highcharts-plot-bands-0" data-z-index="0">
-				<path fill="rgba(68, 170, 213, .2)" class="highcharts-plot-band "
+				<path  fill="rgba(68, 170, 213, .2)" class="highcharts-plot-band "
 					d="M 613.5 53 L 613.5 363 828.5 363 828.5 53 z"></path></g>
 				<g class="highcharts-grid highcharts-xaxis-grid" data-z-index="1">
 				<path fill="none" data-z-index="1" class="highcharts-grid-line"
@@ -323,23 +327,7 @@
 		</div>
 	</div>
 	<script>
-        var data = [{
-            city: '서울특별시',
-            value: 991,
-            percent: '<div class="progress"><div title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 19.15%" aria-valuenow="19.15" aria-valuemin="0" aria-valuemax="100">19.15%</div></div>'
-        }, {
-            city: '부산광역시',
-            value: 348,
-            percent: '<div class="progress"><div title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 6.72%" aria-valuenow="6.72" aria-valuemin="0" aria-valuemax="100">6.72%</div></div>'
-        }, {
-            city: '인천광역시',
-            value: 295,
-            percent: '<div class="progress"><div title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 5.70%" aria-valuenow="5.70" aria-valuemin="0" aria-valuemax="100">5.70%</div></div>'
-        }, {
-            city: '전체',
-            value: 5174,
-            percent: '<div class="progress"><div title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div></div>'
-        }];
+        var data = [];
         var hot = new Handsontable(document.getElementById('7lfxIhp2GiscHjEmabeklB'), {
             data: data,
             rowHeaders: true,
@@ -377,7 +365,7 @@
                 type: 'areaspline'
             },
             title: {
-                text: '안녕하세요 저는 이쁜이차트라고해요'
+                text: 'InOutCarTotal'
             },
             legend: {
                 layout: 'vertical',
@@ -430,16 +418,16 @@
             },
             //여기에 종류 추가해준다
             series: [{
-                name: '전세',
+                name: '입차',
                 data: [3, 4, 3, 5, 4, 10, 12, 110, 8, 4, 5, 3]
             }, {
-                name: '월세',
-                data: [1, 3, 4, 3, 3, 5, 4, 8, 4, 4, 3, 8]
+                name: '출차',
+                data: [8, 3, 4, 3, 3, 5, 4, 8, 4, 4, 3, 8]
             }]
+            	
         });
     </script>
 </div>
-
 
 </body>
 </html>

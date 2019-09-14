@@ -7,8 +7,14 @@ import com.team.smart.parking.vo.ParkingVO;
 
 
 public interface ParkingDAO {
-	//주차장현황 정보가져오기
-		public List<ParkingVO> getcurrentpark();
+		//주차장현황 정보가져오기
+		public List<ParkingVO> getcurrentpark(String b_code);
+		
+		//주차장 현황 갯수
+		public int getparkCnt(String b_code);
+		
+		//주차장 현황 리스트 
+		public List<ParkingVO> getparklist(Map<String, Object> map);
 		
 		//주차권 등록
 		public int ticketreg(ParkingVO ticket);
@@ -64,7 +70,6 @@ public interface ParkingDAO {
 		//주차권 등록리스트
 		public List<ParkingVO> getinsertlist(Map<String, Object> map);
 	
-		//조회 카운트 
 		
 		//전체조회
 		public List<ParkingVO> getsearch(String ser);

@@ -4,14 +4,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ParkingDAO">
-	<select id="getcurrentpark"  resultType="com.team.smart.parking.vo.ParkingVO">
+	<select id="getcurrentpark"  resultType="com.team.smart.parking.vo.ParkingVO" parameterType="String">
 		select
-		P1_FLOOR,
-		LOCATION_X,
-        LOCATION_Y,
-        PARK_STATE
-	    FROM PARKING_LOC_TBL
-	    WHERE P1_FLOOR = 'B1'
+		B_CODE,
+		P_LAT,
+        P_LOT,
+        P_STATE,
+        DISABLE_POSITION_X,
+        DISABLE_POSITION_Y,
+        RESERVED_POSITION_X,
+        RESERVED_POSITION_Y
+	    FROM parking_lot_detail_tbl
+	    WHERE B_CODE = #{b_code} order by p_seq
+	</select>
+	<select id="getparkCnt" resultType="int" parameterType="String">
+		select count(*) from parking_lot_detail_tbl where b_code = #{b_code}  
+	</select>
+	<select id="getparklist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
+		<![CDATA[
+		select * from (select pt.*,rownum rNum from parking_lot_detail_tbl pt)
+	   where rNum >=#{start} and rNum <= #{end} and b_code = #{b_code} order by b_code
+		]]>
 	</select>
 	
 	<insert id="ticketreg" parameterType="com.team.smart.parking.vo.ParkingVO">

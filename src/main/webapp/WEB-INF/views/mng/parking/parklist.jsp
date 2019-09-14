@@ -3,12 +3,6 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/headerAdmin.jsp" %>   
 <html>
-<style>
-#myInput
-,#serBtn{
-	float: left;
-}
-</style>
 <body>
 <!-- ========== MAIN ========== -->
   <main id="content" role="main">
@@ -98,8 +92,10 @@
                       <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/ticketlist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
                         	주차권 등록 내역
                       </a>
+
                     </li>
                     <!-- Billing -->
+                  
                   </ul>
                 </div>
               </nav>
@@ -124,22 +120,10 @@
               
             </div>
 			<!-- Buttons -->
-			<div class="editBtnDiv01">
-			
-	<form method="get" id="form" name="form" >
-	 <input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}" style="position: ">
- 
-    <input type="button" id="serBtn" value="검색"  class="btn btn-sm btn-soft-secondary transition-3d-hover" s >
-    <input type="button" id="ticketAddBtn" class="btn btn-sm btn-primary transition-3d-hover mr-1" value="등록" />
-    <input type="button" id="ticketDelBtn"  class="btn btn-sm btn-soft-secondary transition-3d-hover" value="삭제" />
-  
-   
- 	
- 	<!-- <button type="button"> -->
+		
+			<!-- End Buttons -->
           </div>
         </div>
-      
-	
         <div class="card-body p-4">
           <!-- Activity Table -->
           <div class="table-responsive-md u-datatable">
@@ -148,7 +132,7 @@
               	<tr>
                   <th scope="col">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
-                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox" >
+                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox">
                         <span class="text-hide">Checkbox</span>
                       </label>
@@ -156,79 +140,68 @@
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	주차상품코드
+                      	빌딩코드
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	건물코드
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                 
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	시간별
+                      	주차층
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	가격
+                      	주차상태
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	작성자
+                      	주차위치
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
+                  
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	작성일
+                      	비고
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
               </tr></thead>
-              <tbody class="font-size-1" id="myTable">
-              	<c:forEach var="dto" items="${dtos}" varStatus="status" begin="" end="">
+              	
+	              		 <c:if test="${cnt >0}">
+              	<c:forEach var="dto" items="${dtos}" varStatus="status">
+	              		<tbody class="font-size-1">
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
 			                    <div class="custom-control custom-checkbox d-flex align-items-center">
-			                      <input type="checkbox" class="custom-control-input"  id="invoiceCheckbox0${status.count}" name="p_code" value="${dto.p_code}">
+			                      <input type="checkbox" class="custom-control-input" name="couponChk" id="invoiceCheckbox0${status.count}" value="${vo.f_coupon_num}">
 			                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
 			                       <span class="text-hide">Checkbox</span>
 			                      </label>
 			                    </div>
 			                  </td>
-			                  <td class="align-middle text-secondary font-weight-normal "><a onClick="location.href='${path}/bd_park/ticketup?p_code=${dto.p_code}'">${dto.p_code}</a></td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.b_code}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">
-			                  ${dto.hourly}
-			                  <c:if test="${dto.p_type == 'M'}">분</c:if>
-			                  <c:if test="${dto.p_type == 'H'}">시간</c:if>
-			                  <c:if test="${dto.p_type == 'D'}">일</c:if>
-			                  </td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.price}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.reg_id}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.reg_date}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.update_id}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.update_date}</td>
-			                  <td class="align-middle text-primary"></td>
-	              		</tr>
-	              		</c:forEach>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_detail_floor}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.p_state == 0}"><input type="button" value="주차전"></c:if>
+			                  <c:if test="${dto.p_state == 1}"><input type="button" value="주차중"></c:if></td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_lat},${dto.p_lot}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.ask}</td>
+			       				</tr>
+      		</c:forEach>
+	              		</tbody>
+              </c:if>
               	
               
-                   </tbody>
-                    </form>
+                   
+                    
               </table>
             </div>
             <!-- End Activity Table -->
@@ -250,39 +223,4 @@
   <!-- ========== END MAIN ========== -->
 <%@ include file="../../common/footer.jsp" %>
 </body>
-<script type="text/javascript">
-	$(function(){
-		$("#invoiceToggleAllCheckbox").click(function(){
-			$(".custom-control-input").prop("checked", this.checked);
-		});
-		
-		 $("#myInput").on("keyup", function() {
-			    var value = $(this).val().toLowerCase();
-			    $("#myTable tr").filter(function() {
-			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-			    });
-		});
-		 
-		//
-		$("#ticketAddBtn").click(function(){
-			//${path}/bd_park/ticketreg
-			$("#form").attr("action","${path}/bd_park/ticketreg");
-			$("#form").submit();
-		});
-		
-		
-		$("#ticketDelBtn").click(function(){
-			//${path}/bd_park/ticketdelete'
-			$("#form").attr("action","${path}/bd_park/ticketdelete");
-			$("#form").submit();
-			
-		});
-		
-		$("#serBtn").click(function(){
-			$("#form").attr("action","${path}/bd_park/ticketlist");
-			$("#form").submit();
-		});
-	});
-	
-</script>
 </html>

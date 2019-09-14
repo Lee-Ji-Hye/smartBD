@@ -28,14 +28,17 @@
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 <c:set var="num" value="-1"></c:set>
 <c:forEach var="carnum" items="${curpark}">
-<c:set var="num" value="${num + 1}"></c:set>
+<c:set var="num" value="${num + 1}"></c:set> 
 <input type="hidden" id="A${num}" value="${num}">
-<input type="hidden" id="F${num}" value="${carnum.p_floor}">
-<input type="hidden" id="X${num}" value="${carnum.location_x}">
-<input type="hidden" id="Y${num}" value="${carnum.location_y}">
-<input type="hidden" id="P${num}" value="${carnum.park_state}">
-
-</c:forEach>
+<input type="hidden" id="F${num}" value="${carnum.p_detail_floor}">
+<input type="hidden" id="X${num}" value="${carnum.p_lat}">
+<input type="hidden" id="Y${num}" value="${carnum.p_lot}">
+<input type="hidden" id="P${num}" value="${carnum.p_state}">
+<input type="hidden" id="DX${num}" value="${carnum.disable_position_x}">
+<input type="hidden" id="DY${num}" value="${carnum.disable_position_y}">
+<input type="hidden" id="RX${num}" value="${carnum.reserved_position_x}">
+<input type="hidden" id="RY${num}" value="${carnum.reserved_position_y}">
+</c:forEach> 
 <div class="bg-primary">
       <div class="container space-top-1 pb-3">
         <div class="row">
@@ -141,8 +144,9 @@
 	init();
 });
 function init(){
+	alert("init 함수 실행");
 	var canvas = document.getElementById("B1");
-	var ctx = canvas.getContext("2d");
+	var ctx = canvas.getContext("2d");	
 	var i = 0;
 	var count = 0;
 	for(; i<28;i++){
@@ -154,25 +158,33 @@ function init(){
 			ctx.fillRect($("#X"+i).val(), $("#Y"+i).val(), 2, 4);
 			count = count +1;
 		}
-
 	}
 	for(; i<240;i++){
+		
 		if($("#P"+i).val() == 0){
-			ctx.fillStyle = "#000000";
+			 if(($("#DX"+i).val()===$("#X"+i).val()) === ($("#DY"+i).val()===$("#Y").val())){
+				ctx.fillStyle = "#FFFFFF";
+				ctx.fillRect($("#DX"+i).val(), $("#DY"+i).val(), 4, 2);
+			}else if(($("#RX"+i).val()===$("#X"+i).val()) === ($("#RY"+i).val()===$("#Y").val())){
+				ctx.fillStyle = "#008000";
+				ctx.fillRect($("#RX"+i).val(), $("#RY"+i).val(), 4, 2);
+			}else{ 
+				ctx.fillStyle = "#000000";
 				ctx.fillRect($("#X"+i).val(), $("#Y"+i).val(), 4, 2);
-			}else{
+			}
+		}else{
 				ctx.fillStyle = "#FF0000";
 				ctx.fillRect($("#X"+i).val(), $("#Y"+i).val(), 4, 2);
-				count = count +1;
-			}
+	}
 	}
 	if(count >= 0){
+	
 	ctx.font = "3px";
 	ctx.fillText("주차 공간 :" + 240, 200, 20);
 	ctx.fillText("주차가능 공간 :" + (240-count), 200, 40);
 	ctx.fillText("주차된 차량 :" + count, 200, 60);
 	ctx.fillStyle = "#333";
-	}
+	} 
 	}	 
 </script>
 </form>

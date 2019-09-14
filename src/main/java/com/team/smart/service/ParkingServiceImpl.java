@@ -27,10 +27,49 @@ public class ParkingServiceImpl implements ParkingService{
 	@Override
 	public void getcurrentpark(HttpServletRequest req, Model model) {
 		System.out.println("차량 현황");
-		List<ParkingVO> curpark = p_dao.getcurrentpark();
-		System.out.println(curpark.get(0).getLocation_x());
+		String b_code = (String)req.getSession().getAttribute("b_code");
+		List<ParkingVO> curpark = p_dao.getcurrentpark(b_code);
+		System.out.println(curpark.get(0).getP_lat());
+		System.out.println(curpark.get(0).getP_lot());
 		model.addAttribute("curpark", curpark);
 	}
+	//주차장 현황 리스트
+	@Override
+	public void parklist(HttpServletRequest req, Model model) {
+		String page = req.getParameter("page");
+		int bcnt = 0;
+		String b_code = (String)req.getSession().getAttribute("b_code");
+		//글갯수 구하기
+		bcnt = p_dao.getparkCnt(b_code); //총게시글 수
+		String uri = req.getRequestURI();
+		System.out.println("bcnt : " + bcnt);
+		System.out.println("uri : " + uri);
+
+		Paging paging = new Paging( 5, 3, bcnt, uri);
+		paging.pagelist(page);
+		
+		
+		if(bcnt > 0) {
+			
+			//  게시글 목록 조회
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", paging.getStart());
+			map.put("end", paging.getEnd());
+			map.put("b_code", b_code);
+			System.out.println("리밋 : " + map);
+			List<ParkingVO> dtos = p_dao.getparklist(map);
+			req.setAttribute("dtos", dtos); //큰바구니 : 게시글 목록 cf)작은바구니 : 게시글 한건
+			
+		}
+		
+		model.addAttribute("page",page);
+		model.addAttribute("paging",paging);
+		model.addAttribute("cnt", bcnt);				//글갯수
+		model.addAttribute("pageNum", page);		//페이지번호
+		
+	}
+	
+	
 	//주차권 등록
 	@Override
 	public void ticketreg(HttpServletRequest req, Model model) {
@@ -476,6 +515,8 @@ public class ParkingServiceImpl implements ParkingService{
 	public void inoutcartotal(HttpServletRequest req, Model model) {
 		
 	}
+
+
 	
 	
 	

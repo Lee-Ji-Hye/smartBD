@@ -112,7 +112,7 @@
                   <div class="mr-2">
                     <!-- Select -->
                    <div class="editBtnDiv01">
-                    <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="position:relative;left: 400px;width: 100px;"   onclick="window.location="${path}/bd_park/ticketuse">사용</button>
+                    <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="position:relative;left: 400px;width: 100px;" href=  onclick="window.location=${path}/bd_park/ticketuse">사용</button>
                    </div>
                     <!-- End Select -->
                   </div>

@@ -75,7 +75,6 @@ public class CP_ParkingController {
 		//주차권 등록 내역
 		@RequestMapping(value="ticketlist")
 		public String ticketlist(HttpServletRequest req, Model model) {
-			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			parkingService.ticketlist(req, model);
 			return mngParking_+"/ticketlist";
 		}
@@ -119,6 +118,7 @@ public class CP_ParkingController {
 		//주차장 현황
 		@RequestMapping(value ="/ticketmanager")
 		public String ticketmanager(HttpServletRequest req, Model model) {
+			
 			return "redirect:/bd_park/intromn/inst2";
 		}
 		//주차장 현황 
@@ -128,6 +128,12 @@ public class CP_ParkingController {
 			return  mngParking_+"/ticketmanager";
 		}
 
+		//주차장 현황 리스트
+		@RequestMapping(value ="/parklist")
+		public String parklist(HttpServletRequest req, Model model) {
+			parkingService.parklist(req, model);
+			return mngParking_+"parklist";
+		}
 		
 		//주차권 등록
 		@RequestMapping(value="/ticketreg")
