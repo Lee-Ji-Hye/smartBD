@@ -7,11 +7,11 @@
           <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
             <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
               <!-- Breadcrumb -->
-              <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+              <!-- <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
                 <li class="breadcrumb-item"><a class="breadcrumb-link" href="https://htmlstream.com/preview/front-v2.9.0/html/home/index.html">Home</a></li>
                 <li class="breadcrumb-item"><a class="breadcrumb-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html">Account</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-              </ol>
+              </ol> -->
               <!-- End Breadcrumb -->
 
               <!-- Breadcrumb Nav Toggle Button -->
@@ -55,7 +55,7 @@
                 <div id="breadcrumbNavBar" class="collapse navbar-collapse u-header__navbar-collapse">
                   <ul class="navbar-nav u-header__navbar-nav">
                     <!-- General -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+                    <%-- <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                       <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
                         	업체
                       </a>
@@ -64,11 +64,11 @@
                         <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/intromn">업체 소개</a></li>
                         <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/closed">휴무일 등록</a></li>
                       </ul>
-                    </li>
+                    </li> --%>
                     <!-- General -->
 
                     <!-- Account Settings -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+                   <%--  <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                       <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
                         	상품
                       </a>
@@ -77,11 +77,11 @@
                         <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/menumn/list">상품 목록</a></li>
                         <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/menumn/inst">상품 등록</a></li>
                       </ul>
-                    </li>
+                    </li> --%>
                     <!-- Account Settings -->
 
                     <!-- Billing -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+                    <%-- <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                       <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
                         	주문
                       </a>
@@ -90,11 +90,11 @@
                         <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_employee/odmn/amd">주문 목록</a></li>
                         <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_employee/odmn/list">지난 주문</a></li>
                       </ul>
-                    </li>
+                    </li> --%>
                     <!-- Billing -->
 
                     <!-- Accessibility -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+                    <%-- <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                       <a id="accessibilityDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="accessibilityDropdownMenu">
                         	쿠폰
                       </a>
@@ -103,10 +103,10 @@
                         <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/cpmn/list">쿠폰 목록</a></li>
                         <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/cpmn/inst">쿠폰 등록</a></li>
                       </ul>
-                    </li>
+                    </li> --%>
                     <!-- Accessibility -->
                     <!-- Others -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+                    <%-- <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                       <a id="accessibilityDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="accessibilityDropdownMenu">
                         	결산
                       </a>
@@ -116,7 +116,7 @@
                         <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/">주간 결산</a></li>
                         <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/cp_manager/">월간 결산</a></li>
                       </ul>
-                    </li>
+                    </li> --%>
                     <!-- Others -->
                   </ul>
                 </div>
@@ -129,7 +129,7 @@
             <!-- Button -->
             <a class="btn btn-sm btn-soft-white text-nowrap transition-3d-hover" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#requestPaymentModal" data-modal-target="#requestPaymentModal">
               <span style="font-size: 18px;margin-right: 5px;font-weight: bold;">+</span>
-              Request a Payment
+              Request a Payment 
             </a>
             <!-- End Button -->
           </div>

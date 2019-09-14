@@ -32,9 +32,9 @@ pageEncoding="UTF-8"%>
               </div>
               <!-- End Datepicker -->
             </div>
-           <!--  <div class="col-md-6">
+           <div class="col-md-6">
               <div class="d-flex">
-                <div class="mr-2">
+                <!-- <div class="mr-2">
                   Select
                   <select id="datatableEntries" class="js-select selectpicker dropdown-select" data-width="fit" data-style="btn-soft-primary btn-sm">
                     <option value="6">6 entries</option>
@@ -43,7 +43,7 @@ pageEncoding="UTF-8"%>
                     <option value="24">24 entries</option>
                   </select>
                   End Select
-                </div>
+                </div> -->
                 Search
                 <div class="js-focus-state input-group input-group-sm">
                   <div class="input-group-prepend">
@@ -53,9 +53,8 @@ pageEncoding="UTF-8"%>
                   </div>
                   <input id="datatableSearch" type="email" class="form-control" placeholder="Search activities" aria-label="Search activities" aria-describedby="searchActivities">
                 </div>
-                End Search
               </div>
-            </div> -->
+            </div>
           </div>
           <!-- End Activity Menu -->
         </div>
@@ -93,32 +92,32 @@ pageEncoding="UTF-8"%>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	주문번호
+                      	<strong>주문번호</strong>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	아이디
+                      	<strong>아이디</strong>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center" onclick="window.location='orderList'">
-                      	메뉴명
+                      	<strong>테이크아웃</strong>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	가격
+                      	<strong>가격</strong>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	주문시간
+                      	<strong>주문시간</strong>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	상태
+                      	<strong>상태</strong>
                     </div>
                   </th>
                 </tr>
@@ -128,16 +127,10 @@ pageEncoding="UTF-8"%>
               	<c:forEach var="ovo" items="${detailO}">
               		<tr class="text-uppercase font-size-1  form-original">
 	                  <th scope="col">
-	                    <%-- <div class="custom-control custom-checkbox d-flex align-items-center">
-	                      <input type="checkbox" class="custom-control-input" id="invoiceCheckbox0${status.count}">
-	                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}">
-	                        <span class="text-hide">Checkbox</span>
-	                      </label>
-	                    </div> --%>
 	                  </th>
-	                   <td class="align-middle" id="detail_odrerCode" onclick="orderDetail('${ovo.f_ocode}',${order})">${ovo.f_ocode}</td>
+	                   <td class="align-middle" id="detail_odrerCode" onclick="orderDetailCode('${ovo.f_ocode}',${order})">${ovo.f_ocode}</td>
 	                  <td class="align-middle text-secondary font-weight-normal">${ovo.userid}</td>
-	                  <td class="align-middle">${ovo.f_name}</td>
+	                  <td class="align-middle">${ovo.f_takeout}</td>
 	                  <td class="align-middle text-primary">${ovo.f_pay_price}</td>
 	                  <td class="align-middle">${ovo.f_regidate}</td>
 	                  <td class="align-middle" id="foodOrderApp">
@@ -316,7 +309,23 @@ function goodsChkAll() {
 	}
 }
 
-// AJAX 
+// orderDetail함수를 부르기 위한 함수
+function orderDetailCode(f_ocode, tbl_order) {
+	//상세보기창이 display:none이면 false 출력
+	if($('#formDetail').is(':visible')){
+		// display:table-row일때
+		//숨겨야됨
+		$("#formDetail").hide();	// 승인버튼 숨기기 
+		$($('.form-original')[tbl_order]).css("color", "black");
+	}else{
+		// display:none일때
+		//펼쳐야됨
+		orderDetail(f_ocode, tbl_order)
+	}
+	
+}
+
+// AJAX 주문코드 클릭시 상세 주문 보기 띄우기
 function orderDetail(f_ocode, tbl_order){
 	var request = new XMLHttpRequest(); // 지역변수 추천
 	request.open("GET", "${path}/cp_employee/odmn/amd/" + f_ocode, true); // 요청보내는거
@@ -372,6 +381,7 @@ function orderDetail(f_ocode, tbl_order){
 				document.getElementById('detail_menuTotal').innerText = obj.f_pay_price; // 총 결제 금액
 				// 삽입될 위치를 변경
 				tbl[0].children[1].insertBefore(details, tblclass[tbl_order + 1]);
+				$(tblclass[tbl_order]).css("color", "blue");
 				// display 속성을 변경
 				details.style.display="table-row";
 			}else{
@@ -429,6 +439,21 @@ function orderPro2(event) {
 	request.send(f_ocode);
 }
 </script>
+
+<!-- 주문 번호 재클릭시 열린 창 닫기 jQuery -->
+<!-- <script type="text/javascript">
+	$(function(){
+		$("#detail_odrerCode").click(function() {
+			if($("#formDetail").hasClass("hide")) {
+				$("#formDetail").removeClass("hide");
+			} else {
+				$("#formDetail").addClass("hide");
+			}
+		});
+	});
+	
+</script> -->
+
 <!-- ========== END MAIN ========== -->
 <%@ include file="../../common/footer.jsp" %>
 </body>

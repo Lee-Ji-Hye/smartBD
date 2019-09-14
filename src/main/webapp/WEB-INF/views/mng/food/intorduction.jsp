@@ -234,7 +234,7 @@
 	<!-- Button end -->
 </form>
 
-<!-- script start -->
+<!-- select box 선택 값을 남기기 위한 JAVASCRIPT start -->
 <script type="text/javascript">
 // 업체 수정시 카테고리, 오픈시간, 종료시간 등록 값으로 남기기 
 	window.onload = function() {
@@ -263,7 +263,7 @@
 	}
 </script>
 
-<!-- beconBtn -->
+<!-- beconBtn jQuery-->
 <script type="text/javascript">
 	$(function(){
 		$("#beconBtn").click(function(){
@@ -280,8 +280,6 @@
 		
 	});
 
-
-		
 </script>
 <!-- script end -->
 <!-- footer start -->

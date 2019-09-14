@@ -104,7 +104,7 @@
 					transform="translate(0,0) rotate(270 25.640625 208)"
 					class="highcharts-axis-title" style="color:#666666;fill:#666666;"
 					y="208">
-				<tspan>Fruit units</tspan></text>
+				<!-- <tspan>Fruit units</tspan></text>
 				<path fill="none" class="highcharts-axis-line" data-z-index="7"
 					d="M 77 53 L 77 363"></path></g>
 				<g class="highcharts-series-group" data-z-index="3">
@@ -259,7 +259,7 @@
 					text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">Saturday</text>
 				<text x="775.2857142857143"
 					style="color:#666666;cursor:default;font-size:11px;fill:#666666;"
-					text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">Sunday</text></g>
+					text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">Sunday</text></g> -->
 				<g class="highcharts-axis-labels highcharts-yaxis-labels"
 					data-z-index="7">
 				<text x="62"
@@ -314,13 +314,35 @@
 				<tspan style="font-weight:bold" dx="0">3 units</tspan>
 				<tspan style="fill:#434348" x="8" dy="15">●</tspan>
 				<tspan dx="0"> Jane: </tspan>
-				<tspan style="font-weight:bold" dx="0">1 units</tspan></text></g></svg>
+				<tspan style="font-weight:bold" dx="0">1 units</tspan></text></g>
+				</svg>
 		</div>
 	</div>
 	</div>
 	<script>
-       
-        //하이차트
+       //
+        //하이차트(div의 아이디값, chart데이터 객체)
+        //text로 변환 후에 JSON.parse안하면 오류남 (비동기떄문에 그런거같음)
+        //var textData = 
+        //${food_don}
+        var chartData = JSON.parse('${food_don}');
+        var monthData = [];
+        var priceData = [];
+        
+        async function goWork(){
+        	await conconcon();
+        	console.dir(monthData);
+        	console.dir(priceData);
+        };
+        
+        function conconcon(){
+	        for(key in chartData){
+            	monthData.push(chartData[key].MOONTH);
+            	priceData.push(chartData[key].SUMPRICE);
+            };
+        };
+        goWork();
+        
         Highcharts.chart('container', {
             chart: {
                 type: 'areaspline'
@@ -340,20 +362,7 @@
                     Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
             },
             xAxis: {
-                categories: [
-                    '1월',
-                    '2월',
-                    '3월',
-                    '4월',
-                    '5월',
-                    '6월',
-                    '7월',
-                    '8월',
-                    '9월',
-                    '10월',
-                    '11월',
-                    '12월'
-                ],
+                categories: monthData,
                 plotBands: [{ // visualize the weekend
                     from: 4.5,
                     to: 6.5,
@@ -380,10 +389,7 @@
             //여기에 종류 추가해준다
             series: [{
                 name: '승인',
-                data: [3, 4, 3, 5, 4, 10, 12, 110, 8, 4, 5, 3]
-            }, {
-                name: '취소',
-                data: [1, 3, 4, 3, 3, 5, 4, 8, 4, 4, 3, 8]
+                data: priceData
             }]
         });
     </script>

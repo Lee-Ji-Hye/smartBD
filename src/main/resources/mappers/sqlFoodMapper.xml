@@ -153,5 +153,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE food_order_tbl SET f_status='주문취소' WHERE f_ocode = #{f_ocode}
 	</update>
 	
+	<!-- 음식점 결산 -->
+	<select id="getOrderAccounts" resultType="com.team.smart.food.vo.Food_orderVO">
+		SELECT o.f_ocode, o.comp_seq, o.f_name, o.f_receive_time,
+        		o.userid, o.f_serial, o.f_regidate, o.f_amount, o.f_sale_price, o.tid, o.f_pay_price, o.f_refund_price, o.f_rate, d.f_odetail_code, d.f_price, d.f_cnt
+           FROM food_order_tbl o
+           JOIN food_order_detail_tbl d
+             ON o.f_ocode = d.f_ocode
+          WHERE o.comp_seq = #{comp_seq}
+	</select>
+	
+	<!-- 음식점 결산 처리 -->
+	<select id="getAccountsEnd" resultType="java.util.Map">
+		SELECT SUM(f_pay_price), SUM(f_refund_price) FROM food_order_tbl
+	</select>
+	
+	<!-- 음식점 결산 차트 -->
+	<select id="getFoodDon" resultType="java.util.Map">
+		SELECT SUM(f_pay_price) SUMPRICE, to_char(f_regidate,'YYYY-MM') as moonth FROM food_order_tbl WHERE f_status = '주문완료' GROUP BY to_char(f_regidate,'YYYY-MM') ORDER BY moonth
+	</select>
 </mapper>
 

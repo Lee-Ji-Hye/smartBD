@@ -87,15 +87,6 @@ public class CP_EmployeeController {
 		return null;
 	}
 	
-	
-	/*
-	 * // 주문 건 상세보기
-	 * 
-	 * @RequestMapping("/odmn/amd") public String orderDetail(HttpServletRequest
-	 * req, Model model) { log.info("url -> orderDetail/");
-	 * 
-	 * return mngFood_ + "/orderDetail"; }
-	 */
 }
 	
 

@@ -113,8 +113,8 @@ pageEncoding="UTF-8"%>
                   </td>
                   <td class="align-middle text-secondary font-weight-normal ">${vo.f_coupon_name}</td>
                   <td class="align-middle">${vo.f_coupon_price}</td>
-                  <td class="align-middle text-primary">${vo.f_coupon_start}</td>
-                  <td class="align-middle text-primary">${vo.f_coupon_end}</td>
+                  <td class="align-middle text-primary"><fmt:formatDate value="${vo.f_coupon_start}" pattern="yyyy-MM-dd"/></td>
+                  <td class="align-middle text-primary"><fmt:formatDate value="${vo.f_coupon_end}" pattern="yyyy-MM-dd"/></td>
                   <td class="align-middle text-secondary">${vo.f_coupon_count}</td>
                 </tr>
                 </c:forEach>

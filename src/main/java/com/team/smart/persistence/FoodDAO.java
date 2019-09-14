@@ -75,13 +75,13 @@ public interface FoodDAO {
 	public int amdNotFood(String f_ocode);
 	
 	// 음식점 결산
-	public List<Food_orderVO> getOrderAccounts(String comp_org);
+	public List<Food_orderVO> getOrderAccounts(String comp_seq);
 	
 	// 음식점 결산 처리
 	public Map<String,String> getAccountsEnd();
 	
 	// 음식점 결산 차트
-	public List<Map<String,String>> getFoodDon();
+	public List<Map<String,Object>> getFoodDon();
 	
 	// ------------ 페이징 처리
 	

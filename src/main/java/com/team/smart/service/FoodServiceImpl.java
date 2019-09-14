@@ -3,7 +3,10 @@ package com.team.smart.service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +21,8 @@ import com.team.smart.food.vo.Food_couponVO;
 import com.team.smart.food.vo.Food_menuVO;
 import com.team.smart.food.vo.Food_orderVO;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,13 +31,12 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.team.smart.app.vo.FoodMenuVO;
 import com.team.smart.app.vo.FoodStoreVO;
 import com.team.smart.persistence.FoodDAO;
 import com.team.smart.utils.Functions;
+import com.team.smart.utils.JsonUtil;
 import com.team.smart.utils.KakaoPay;
 import com.team.smart.utils.Paging;
 import com.team.smart.vo.KakaoCancleRequestVO;
@@ -55,6 +59,8 @@ public class FoodServiceImpl implements FoodService {
 	@Autowired
 	Functions funs;
 	
+	@Autowired
+	JsonUtil jsonutil;
 	
 	String images_name = null;  // 음식점 소개 등록, 상품 등록시 이미지 확인 처리
 
@@ -155,28 +161,33 @@ public class FoodServiceImpl implements FoodService {
 	public void insertCoupon(HttpServletRequest req, Model model) {
 		
 		// 쿠폰 유효기간 시작일
-		String f_coupon_start = null;
-		String f_start1 = req.getParameter("f_start1"); // 년
-		String f_start2 = req.getParameter("f_start2"); // 월
-		String f_start3 = req.getParameter("f_start3"); // 일
+		int f_start1 = Integer.parseInt(req.getParameter("f_start1")); // 년
+		int f_start2 = Integer.parseInt(req.getParameter("f_start2")); // 월
+		int f_start3 = Integer.parseInt(req.getParameter("f_start3")); // 일
+		Date f_coupon_start=null;
+		Date f_coupon_end=null;
+		try {
 		
-		if(!f_start1.equals("") && !f_start2.equals("") && !f_start3.equals("")) {
-			f_coupon_start = f_start1 + "-" + f_start2 + "-" +f_start3; // 시작일
+			f_coupon_start = new SimpleDateFormat("yyyy-MM-dd").parse(f_start1+"-"+f_start2+"-"+f_start3);
+			
+			//Date f_coupon_start = new Timestamp(f_start1, f_start2, f_start3, 0, 0, 0, 0);
+					//(f_start1, f_start2, f_start3);
+			
+			
+			log.debug("f_coupon_start" + f_coupon_start);
+			
+			// 쿠폰 유효기간 만료일
+			int f_end1 = Integer.parseInt(req.getParameter("f_end1")); // 년
+			int f_end2 = Integer.parseInt(req.getParameter("f_end2")); // 월
+			int f_end3 = Integer.parseInt(req.getParameter("f_end3")); // 일
+	
+			f_coupon_end = new SimpleDateFormat("yyyy-MM-dd").parse(f_end1+"-"+f_end2+"-"+f_end3);
+			
+			log.debug("f_coupon_end" + f_coupon_end);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		log.debug("f_coupon_start" + f_coupon_start);
-		
-		// 쿠폰 유효기간 만료일
-		String f_coupon_end = null;
-		String f_end1 = req.getParameter("f_end1"); // 년
-		String f_end2 = req.getParameter("f_end2"); // 월
-		String f_end3 = req.getParameter("f_end3"); // 일
-		
-		if(!f_end1.equals("") && !f_end2.equals("") && !f_end3.equals("")) {
-			f_coupon_end = f_end1 + "-" + f_end2 + "-" + f_end3; // 만료일
-		}
-		
-		log.debug("f_coupon_end" + f_coupon_end);
 		
 		// 업체정보 가져오기 (업체코드, 업체명, 등록자 id)
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
@@ -592,13 +603,18 @@ public class FoodServiceImpl implements FoodService {
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		
-		List<Food_orderVO> don = f_dao.getOrderAccounts(comp_org);
+		List<Food_orderVO> don = f_dao.getOrderAccounts(comp_seq);
 		
 		Map<String,String> sum = f_dao.getAccountsEnd();
 		String foodSum = String.valueOf(sum.get("SUM(f_pay_price)"));  // 상품 합계
 		String foodCancel = String.valueOf(sum.get("f_refund_price"));	// 상품 취소
 		
-		List<Map<String,String>> food_don = f_dao.getFoodDon();
+		List<Map<String,Object>> food_don = f_dao.getFoodDon();
+		 
+		model.addAttribute("don",don);
+		model.addAttribute("food_don", jsonutil.getJsonStringFromList(food_don));
+		model.addAttribute("foodSum",foodSum);
+		model.addAttribute("foodCancel",foodCancel);
 	}
 
 	
@@ -608,4 +624,7 @@ public class FoodServiceImpl implements FoodService {
 		
 	}
 
+
+
+	
 }
