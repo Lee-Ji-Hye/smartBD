@@ -152,21 +152,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int insertauth(HttpServletRequest req, Model model) {
 		String name = req.getParameter("name");
-		String code = req.getParameter("code");
-		String auth = req.getParameter("auth");
-		String category = req.getParameter("category");
-		log.debug(name+"  "+code+"  "+auth+"  "+category);
+		String req_key = req.getParameter("req_key");
+		String req_auth = req.getParameter("req_auth");
+		String req_division = req.getParameter("req_division");
+		
+		log.debug(name+"  "+req_key+"  "+req_auth+"  "+req_division);
 		
 		Map<String,String> map = new HashMap<>();
-
-		map.put("code",code);
-		map.put("auth",auth);
-//		if(category.equals("bd")) {
-//			return dao.insertBdAuth(map);
-//		}else if(category.equals("comp")) {
-//			return dao.insertCompAuth(map);
-//		}
-		return 0;
+		map.put("userid", SecurityContextHolder.getContext().getAuthentication().getName());
+		map.put("req_key",req_key);
+		map.put("req_auth",req_auth);
+		map.put("req_division",req_division);
+		return dao.insertAuthReq(map);
+		
 	}
 	
 	

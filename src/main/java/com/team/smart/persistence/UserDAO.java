@@ -26,5 +26,6 @@ public interface UserDAO {
 	//식당 검색
 	public List<Map<String,String>> compSearch(String keyword);
 	
-	
+	//요청권한
+	public int insertAuthReq(Map<String, String> map);
 }

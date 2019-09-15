@@ -72,4 +72,10 @@
 		select b_code code, b_name name from building_tbl where b_name like #{keyword}||'%'
 	</select>
 	
+	
+	<insert id="insertAuthReq" parameterType="java.util.Map">
+		insert into user_authreq_tbl(req_division, req_key, req_auth, userid)
+		values(#{req_division},#{req_key},#{req_auth},#{userid})
+	</insert>
+	
 </mapper>

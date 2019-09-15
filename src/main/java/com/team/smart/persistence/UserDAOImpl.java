@@ -50,4 +50,9 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectList("UserDAO.compSearch",keyword);
 	}
 
+	@Override
+	public int insertAuthReq(Map<String, String> map) {
+		return sqlSession.insert("UserDAO.insertAuthReq", map);
+	}
+
 }

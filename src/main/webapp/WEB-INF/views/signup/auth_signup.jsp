@@ -64,7 +64,7 @@
 				         data-msg="Please select month."
 				         data-error-class="u-has-error"
 				         data-success-class="u-has-success"
-				         name="category"
+				         name="req_division"
 				         id="b_area1">
 					<option value="">권한 선택</option>
 					<option value="bd">빌딩</option>
@@ -80,7 +80,7 @@
 	          </label>
 	    	  <!-- 아래의 input의 값을 받을 때, 자동완성 기능이 작동합니다. -->
 	          <input type="text" id="autoInput" onkeyup="startSearch()" class="form-control" name="name" placeholder="법인명 (단체명, 상호명)" required>
-	          <input type="hidden" id="code" name="code">
+	          <input type="hidden" id="code" name="req_key">
 	        </div>
 	        <!-- End Input -->
 	        
@@ -93,7 +93,7 @@
 			         data-msg="Please select month."
 			         data-error-class="u-has-error"
 			         data-success-class="u-has-success"
-			         name="auth"
+			         name="req_auth"
 			         id="b_area2">
 				<option value="">권한 선택</option>
 			</select>

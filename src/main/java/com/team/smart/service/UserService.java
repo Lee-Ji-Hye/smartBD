@@ -28,6 +28,7 @@ public interface UserService {
 	//검색
 	public List<Map<String,String>> search(String keyword, String category);
 
+	//직원권한요청
 	public int insertauth(HttpServletRequest req, Model model);
 	
 }
