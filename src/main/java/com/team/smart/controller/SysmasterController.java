@@ -178,7 +178,7 @@ public class SysmasterController {
 		return sysService.memInfo(userid);
 	}
 
-	///회원 삭제 단건
+	///회원 권한 수정 단건
 	@GetMapping({"/memmn/amd/{amd}/{userid}"})
 	public String memmnAmd(@PathVariable String amd, @PathVariable String userid) {
 		log.info("url -> sysmaster/memmn/amd/{amd}/{userid}");

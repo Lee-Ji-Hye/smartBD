@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 
 import com.team.smart.persistence.UserDAO;
 import com.team.smart.utils.Functions;
+import com.team.smart.vo.AuthReqVO;
 import com.team.smart.vo.BuildingVO;
 import com.team.smart.vo.CompVO;
 import com.team.smart.vo.UserVO;
@@ -158,12 +159,18 @@ public class UserServiceImpl implements UserService {
 		
 		log.debug(name+"  "+req_key+"  "+req_auth+"  "+req_division);
 		
-		Map<String,String> map = new HashMap<>();
-		map.put("userid", SecurityContextHolder.getContext().getAuthentication().getName());
-		map.put("req_key",req_key);
-		map.put("req_auth",req_auth);
-		map.put("req_division",req_division);
-		return dao.insertAuthReq(map);
+		AuthReqVO vo = AuthReqVO.builder()
+					.req_key(req_key)
+					.req_auth(req_auth)
+					.req_division(req_division)
+					.userid(SecurityContextHolder.getContext().getAuthentication().getName())
+					.build();
+		//Map<String,String> map = new HashMap<>();
+		//map.put("userid", SecurityContextHolder.getContext().getAuthentication().getName());
+		//map.put("req_key",req_key);
+		//map.put("req_auth",req_auth);
+		//map.put("req_division",req_division);
+		return dao.insertAuthReq(vo);
 		
 	}
 	

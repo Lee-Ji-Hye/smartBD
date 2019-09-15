@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team.smart.vo.AuthReqVO;
 import com.team.smart.vo.BuildingVO;
 import com.team.smart.vo.CompVO;
 import com.team.smart.vo.UserVO;
@@ -51,8 +52,8 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public int insertAuthReq(Map<String, String> map) {
-		return sqlSession.insert("UserDAO.insertAuthReq", map);
+	public int insertAuthReq(AuthReqVO vo) {
+		return sqlSession.insert("UserDAO.insertAuthReq", vo);
 	}
 
 }

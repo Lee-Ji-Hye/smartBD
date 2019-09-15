@@ -3,6 +3,7 @@ package com.team.smart.persistence;
 import java.util.List;
 import java.util.Map;
 
+import com.team.smart.vo.AuthReqVO;
 import com.team.smart.vo.BuildingVO;
 import com.team.smart.vo.CompVO;
 import com.team.smart.vo.UserVO;
@@ -27,5 +28,5 @@ public interface UserDAO {
 	public List<Map<String,String>> compSearch(String keyword);
 	
 	//요청권한
-	public int insertAuthReq(Map<String, String> map);
+	public int insertAuthReq(AuthReqVO vo);
 }
