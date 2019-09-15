@@ -64,7 +64,7 @@
     <thead>
       <tr >
         <th  style="border-radius: 10px 0px 0px 10px";>호수</th>
-        <th>입주자</th>
+        
         <th>연락처</th>
         <th>입주일</th>
         <th>만기일</th>
@@ -82,7 +82,7 @@
       <tr style="cursor: pointer;" class="showDetail" rt_code="${dto.rt_code}">
         <!-- <td class="align-middle text-secondary"><a href="#">101</a></td> -->
         <td class="align-middle text-secondary" id="btn">${dto.r_name}</td>
-        <td class="align-middle text-secondary">김기동</td>
+        
         <td class="align-middle text-secondary">${dto.rt_mobile}</td>
         <td class="align-middle text-primary">${dto.rt_date1}</td>
         <td class="align-middle text-danger">${dto.rt_date2}</td>

@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 
 import com.team.smart.persistence.RoomDAO;
 import com.team.smart.room.vo.RoomVO;
+import com.team.smart.room.vo.TotalVO;
 import com.team.smart.utils.Functions;
+import com.team.smart.utils.JsonUtil;
 
 
 @Service
@@ -23,6 +25,9 @@ public class RoomServiceImpl implements RoomService{
 
 	@Autowired
 	Functions fn;
+	
+	@Autowired
+	JsonUtil jsonutil;
 	
 	//매물 상세페이지
 	@Override
@@ -71,7 +76,7 @@ public class RoomServiceImpl implements RoomService{
 		}
 		
 		String b_code = "B000000";												//건물코드
-		String r_delete = "Y";													//삭제 여부
+		String r_delete = "0";													//삭제 여부
 		String userid = "id9";													//관리자아이디
 		
 		System.out.println("r_type :"+r_type);
@@ -296,9 +301,23 @@ public class RoomServiceImpl implements RoomService{
 	@Override
 	public void getpaydetail(HttpServletRequest req, Model model) {
 		
-		List<RoomVO> dtos = dao.getpaydetail();
+		String rt_code = req.getParameter("rt_code");
+		
+		List<RoomVO> dtos = dao.getpaydetail(rt_code);
 		
 		req.setAttribute("dto", dtos);
+		
+	}
+
+	
+	//
+	@Override
+	public void getmonthtotal(HttpServletRequest req, Model model) {
+
+
+		List<TotalVO> dto = dao.getmonthtotal();
+		
+		req.setAttribute("dto", dto);
 		
 	}
 

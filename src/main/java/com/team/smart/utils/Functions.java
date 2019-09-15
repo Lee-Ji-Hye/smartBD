@@ -55,7 +55,7 @@ public class Functions {
 		} else if(codeColumn.equals("rt_code")) {
 			strCode = "RT";//PK000001
 		} else if(codeColumn.equals("r_code")) {
-			strCode = "RM";//RM000001
+			strCode = "R";//RM000001
 		} else {
 			return null;
 		}

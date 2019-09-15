@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="../../common/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,54 +17,29 @@
   <thead>
     <tr style="background-color: #b9d2ec!important;" align="center">
       <th rowspan="2">구분</th>
-      <th rowspan="2">월세</th>
+      <th rowspan="2">금액</th>
       <th rowspan="2">관리비</th>
-      <th scope="col" colspan="3" >월세 입금</th>
-      <th scope="col" colspan="3" >관리비 입금</th>
+      <th scope="col" >입금 일자</th>
+      <th scope="col" >월세 입금</th>
+      <th scope="col" >월세 입금</th>
       <th rowspan="2">미납</th>
       <th rowspan="2">비고</th>
     </tr>
   </thead>
-  <tbody>
-    <tr style="background-color: #b9d2ec!important;" align="center">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>일자</td>
-      <td>구분</td>
-      <td>금액</td>
-      <td>일자</td>
-      <td>구분</td>
-      <td>금액</td>
-      <td></td>
-      <td></td>
-    </tr>
+  
+    <c:forEach var="dto" items="${dto}">
     <tr align="center">
-      <th scope="row">2월</th>
-      <td>300000</td>
+      <th scope="row">${dto.rt_type}</th>
+      <td>${dto.rt_pay}</td>
       <td>10000</td>
-      <td>16/02/20</td>
+      <td>${dto.rt_date1}</td>
       <td>통장</td>
       <td>300000</td>
-      <td>16/02/20</td>
-      <td>현금</td>
-      <td>10000</td>
       <td>0</td>
       <td>비고란</td>
     </tr>
-    <tr align="center">
-      <th scope="row">3월</th>
-      <td>300000</td>
-      <td>10000</td>
-      <td>16/02/20</td>
-      <td>통장</td>
-      <td>300000</td>
-      <td>16/02/20</td>
-      <td>현금</td>
-      <td>10000</td>
-      <td>0</td>
-      <td>비고란</td>
-    </tr>
+    </c:forEach>
+    
   </tbody>
 </table>
 

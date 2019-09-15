@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team.smart.room.vo.RoomVO;
+import com.team.smart.room.vo.TotalVO;
 
 @Repository
 public class RoomDAOImpl implements RoomDAO{
@@ -105,9 +106,16 @@ public class RoomDAOImpl implements RoomDAO{
 	}
 
 	@Override
-	public List<RoomVO> getpaydetail() {
+	public List<RoomVO> getpaydetail(String rt_code) {
 		
-		return sqlSession.selectList("RoomDAO.getpaydetail");
+		return sqlSession.selectList("RoomDAO.getpaydetail",rt_code);
+	}
+
+	//결산 월별 월세금액
+	@Override
+	public List<TotalVO> getmonthtotal() {
+		
+		return sqlSession.selectList("RoomDAO.getmonthtotal");
 	}
 
 	

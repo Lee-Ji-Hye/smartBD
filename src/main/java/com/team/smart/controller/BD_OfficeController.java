@@ -203,7 +203,7 @@ public class BD_OfficeController {
 		@RequestMapping("total")
 		public String total(HttpServletRequest req, Model model) {
 										
-											
+			r_service.getmonthtotal(req, model);						
 										
 			return mngBuilding_ + "/total";
 		}

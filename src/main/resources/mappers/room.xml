@@ -79,17 +79,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rt.r_code=r.r_code
 	</select>
 	
-	
-	<select id="getpaydetail" resultType="com.team.smart.room.vo.RoomVO">
-		SELECT r.r_code, to_char(rt.rt_date1, 'YYYY-MM-DD') rt_date1 ,to_char(rt.rt_date2, 'YYYY-MM-DD') rt_date2,
-		r.r_name,r.r_ofer_fee,r.r_price,rt.rt_deposit,rt.rt_mobile,p.rt_pay,r.r_premium,rt.rt_code
+	<!-- 납부 상세정보 -->
+	<select id="getpaydetail"  resultType="com.team.smart.room.vo.RoomVO">
+		SELECT r.r_code, to_char(p.rt_paydate, 'YYYY-MM-DD') rt_date1, 
+		rt.rt_deposit,p.rt_pay,r.r_premium,rt.rt_code,p.rt_type
 		FROM room_contract_tbl rt,
 		room_tbl r,
 		room_contract_pay_tbl p
 		where rt.r_code=r.r_code
 		and r.r_code = p.r_code
 		and rt.r_code = p.r_code
-		and rt.rt_code = #{rt_code}
+		and p.rt_code = #{rt_code}
+	</select>
+	
+	<!-- 결산 월별 월세 합산금액 -->
+	<select id="getmonthtotal" resultType="com.team.smart.room.vo.TotalVO">
+		select sum(rt_pay) monthpay
+		from room_contract_pay_tbl
+		where rt_type='월세'
+		GROUP by (substr(rt_paydate,1,5))
+		order by (substr(rt_paydate,1,5))
 	</select>
 	
 </mapper>	   

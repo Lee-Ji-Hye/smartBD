@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+    
+<%@ include file="../../common/setting.jsp" %>
+<%-- <%@ include file="../../common/header.jsp" %> --%>
+<%@ include file="../../common/headerAdmin.jsp" %>
 
 <html>
 
-<head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -27,8 +30,8 @@
             font: 0.8em sans-serif;
         }
     </style>
-</head>
-<body>
+
+
    <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -39,10 +42,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.5.4/muuri.min.js"></script>
 
-    <div class="grid">
+    <div class="grid" >
         <div class="item">
             <div class="item-content">
-                <h2>대한민국 도시 인구 순위</h2>
+                
                 <div id="7lfxIhp2GiscHjEmabeklB"></div>
             </div>
         </div>
@@ -323,53 +326,8 @@
 		</div>
 	</div>
 	<script>
-        var data = [{
-            city: '서울특별시',
-            value: 991,
-            percent: '<div class="progress"><div title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 19.15%" aria-valuenow="19.15" aria-valuemin="0" aria-valuemax="100">19.15%</div></div>'
-        }, {
-            city: '부산광역시',
-            value: 348,
-            percent: '<div class="progress"><div title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 6.72%" aria-valuenow="6.72" aria-valuemin="0" aria-valuemax="100">6.72%</div></div>'
-        }, {
-            city: '인천광역시',
-            value: 295,
-            percent: '<div class="progress"><div title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 5.70%" aria-valuenow="5.70" aria-valuemin="0" aria-valuemax="100">5.70%</div></div>'
-        }, {
-            city: '전체',
-            value: 5174,
-            percent: '<div class="progress"><div title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div></div>'
-        }];
-        var hot = new Handsontable(document.getElementById('7lfxIhp2GiscHjEmabeklB'), {
-            data: data,
-            rowHeaders: true,
-            colWidths: [100, 100, 600],
-            colHeaders: false,
-            columns: [{
-                data: "city",
-                renderer: "numeric",
-                className: "htMiddle sans",
-                readOnly: true
-            }, {
-                data: "value",
-                renderer: "numeric",
-                className: "htMiddle sans",
-                readOnly: true
-            }, {
-                data: "percent",
-                renderer: "html",
-                className: "htMiddle sans",
-                readOnly: true
-            }]
-        });
-        var grid = new Muuri('.grid', {
-            dragEnabled: false,
-            dragContainer: document.body,
-            dragSort: function() {
-                return [grid]
-            }
-        });
-        
+      
+         
         
         //하이차트
         Highcharts.chart('container', {
@@ -377,7 +335,7 @@
                 type: 'areaspline'
             },
             title: {
-                text: '안녕하세요 저는 이쁜이차트라고해요'
+                text: '임대 월별 결산'
             },
             legend: {
                 layout: 'vertical',
@@ -430,7 +388,7 @@
             },
             //여기에 종류 추가해준다
             series: [{
-                name: '전세',
+                name: '보증금',
                 data: [80, 90, 75, 88, 84, 98, 120, 110, 100, 90, 60, 40]
             }, {
                 name: '월세',
@@ -440,6 +398,4 @@
     </script>
 </div>
 
-
-</body>
-</html>
+<%@ include file="../../common/footer.jsp" %>

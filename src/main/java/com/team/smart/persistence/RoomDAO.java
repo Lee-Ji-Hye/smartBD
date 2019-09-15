@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.team.smart.room.vo.RoomVO;
+import com.team.smart.room.vo.TotalVO;
 
 @Repository
 public interface RoomDAO {
@@ -47,6 +48,9 @@ public interface RoomDAO {
 		public List<RoomVO> getpaylist();
 		
 		//납부상세 페이지
-		public List<RoomVO> getpaydetail();
+		public List<RoomVO> getpaydetail(String rt_code);
+		
+		//결산 월별 월세총합 getmonthtotal
+		public List<TotalVO> getmonthtotal();
 
 }

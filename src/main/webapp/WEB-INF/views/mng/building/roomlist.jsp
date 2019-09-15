@@ -134,7 +134,7 @@ pageEncoding="UTF-8"%>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_name}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_type}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_price}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_able_date}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_able_date}일 후</td>
 			                  <td class="align-middle text-primary">${dto.r_area}</td>
 	              		</tbody>
               	</c:forEach>

@@ -43,6 +43,9 @@ public interface RoomService {
 		
 		//납부 상세페이지
 		public void getpaydetail(HttpServletRequest req,Model model);
+		
+		//결산 월별 월세총액
+		public void getmonthtotal(HttpServletRequest req,Model model);
 
 
 }

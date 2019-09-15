@@ -35,6 +35,9 @@ public class RoomVO {
 	String rt_deposit;	//보증금현황
 	String rt_mobile;	//폰번호
 	String rt_code;		//계약코드
+	int rt_pay;		//납부금액
+	String rt_type;		//납부종류
+	
 	
 
 }
