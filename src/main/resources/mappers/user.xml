@@ -22,6 +22,7 @@
 	<select id="getAuthority" resultType="com.team.smart.security.config.UserGrantedAuthority">
 		SELECT a.comp_auth
                 , a.comp_seq
+                , a.rt_code
                 , o.comp_org
                 , a.b_code
                 , b.b_name

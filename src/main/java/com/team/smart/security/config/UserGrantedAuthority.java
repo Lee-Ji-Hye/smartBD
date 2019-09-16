@@ -11,6 +11,7 @@ public class UserGrantedAuthority implements GrantedAuthority {
 
 	private final String comp_auth;//권한이름
 	private final String comp_seq; //업체 정보(업체 코드)
+	private final String rt_code;
 	private final String comp_org; //업체명(업체 명)
 	private final String b_code; //건물 정보(건물 코드)
 	private final String b_name; //건물이름
@@ -25,6 +26,7 @@ public class UserGrantedAuthority implements GrantedAuthority {
 	public UserGrantedAuthority() {
 		this.comp_auth = "ROLE_DEFAULT";
 		this.comp_seq = null;
+		this.rt_code = null;
 		this.comp_org = null;
 		this.b_code = null;
 		this.b_name = null;
@@ -36,9 +38,10 @@ public class UserGrantedAuthority implements GrantedAuthority {
 		this.comp_hp = null;
 	}
 	
-	public UserGrantedAuthority(String comp_auth, String comp_seq, String comp_org, String r_code, String b_code, String b_name, String b_status, Timestamp rt_date1, Timestamp rt_date2, String f_mainimg, String comp_hp) {
+	public UserGrantedAuthority(String comp_auth, String comp_seq, String rt_code,String comp_org, String r_code, String b_code, String b_name, String b_status, Timestamp rt_date1, Timestamp rt_date2, String f_mainimg, String comp_hp) {
 		this.comp_auth = comp_auth;
 		this.comp_seq = comp_seq;
+		this.rt_code = rt_code;
 		this.comp_org = comp_org;
 		this.r_code = r_code;
 		this.b_code = b_code;
@@ -125,6 +128,10 @@ public class UserGrantedAuthority implements GrantedAuthority {
 
 	public String getComp_hp() {
 		return comp_hp;
+	}
+
+	public String getRt_code() {
+		return rt_code;
 	}
 	
 }

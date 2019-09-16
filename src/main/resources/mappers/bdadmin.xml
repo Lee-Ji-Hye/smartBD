@@ -67,7 +67,8 @@
 	
 	<!-- 권한 추가 -->
 	<insert id="authInsert" parameterType="java.util.Map">
-		insert into user_compauth_tbl(userid, comp_auth, ${category}) values(#{userid}, #{req_auth}, #{req_key})
+		insert into user_compauth_tbl(userid, comp_auth, ${category}, rt_code) 
+		values(#{userid}, #{req_auth}, #{req_key}, #{rt_code,jdbcType=VARCHAR})
 	</insert>
 	
 </mapper>
