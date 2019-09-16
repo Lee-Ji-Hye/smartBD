@@ -160,7 +160,7 @@ public class BD_OfficeController {
 	        
 	        
 
-	        return mngBuilding_ + "/roomdetail?r_code=" + r_code;
+	        return "/smart/bd_office/roomdetail?r_code=" + r_code;
 	    }
 		
 		//계약관리

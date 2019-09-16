@@ -12,6 +12,7 @@ public class TotalVO {
 	
 	
 	int monthpay;		//납부금액
+	String payday;		//납부월
 	
 	
 	

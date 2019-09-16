@@ -93,8 +93,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 결산 월별 월세 합산금액 -->
-	<select id="getmonthtotal" resultType="com.team.smart.room.vo.TotalVO">
-		select sum(rt_pay) monthpay
+	<select id="getmonthtotal" resultType="java.util.Map">
+		select (substr(rt_paydate,1,5)) payday,  
+		sum(rt_pay) monthpay
 		from room_contract_pay_tbl
 		where rt_type='월세'
 		GROUP by (substr(rt_paydate,1,5))

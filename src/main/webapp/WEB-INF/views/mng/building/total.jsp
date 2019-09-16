@@ -50,6 +50,7 @@
             </div>
         </div>
     </div>
+    
 	<div id="container"
 		style="min-width: 310px; height: 400px; margin: 0px auto; overflow: hidden;"
 		data-highcharts-chart="0">
@@ -326,7 +327,28 @@
 		</div>
 	</div>
 	<script>
-      
+	//
+    //하이차트(div의 아이디값, chart데이터 객체)
+    //text로 변환 후에 JSON.parse안하면 오류남 (비동기떄문에 그런거같음)
+    //var textData = 
+	//${dto}
+    var chartData = JSON.parse('${dto}');
+    var monthData = [];
+    var priceData = [];
+    
+    async function goWork(){
+    	await conconcon();
+    	console.dir(monthData);
+    	console.dir(priceData);
+    };
+    
+    function conconcon(){
+        for(key in chartData){
+        	monthData.push(chartData[key].PAYDAY);
+        	priceData.push(chartData[key].MONTHPAY);
+        };
+    };
+    goWork();
          
         
         //하이차트
@@ -349,20 +371,7 @@
                     Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
             },
             xAxis: {
-                categories: [
-                    '1월',
-                    '2월',
-                    '3월',
-                    '4월',
-                    '5월',
-                    '6월',
-                    '7월',
-                    '8월',
-                    '9월',
-                    '10월',
-                    '11월',
-                    '12월'
-                ],
+                categories: monthData,
                 plotBands: [{ // visualize the weekend
                     from: 4.5,
                     to: 6.5,
@@ -389,7 +398,7 @@
             //여기에 종류 추가해준다
             series: [{
                 name: '보증금',
-                data: [80, 90, 75, 88, 84, 98, 120, 110, 100, 90, 60, 40]
+                data: priceData
             }, {
                 name: '월세',
                 data: [100, 100, 110, 115, 120, 100, 120, 130, 100, 100, 120, 110]

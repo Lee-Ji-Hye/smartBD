@@ -310,14 +310,16 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 	
-	//
+	//결산차트용 월세값 가져오기
 	@Override
 	public void getmonthtotal(HttpServletRequest req, Model model) {
 
 
-		List<TotalVO> dto = dao.getmonthtotal();
+		List<Map<String,Object>> dto = dao.getmonthtotal();
 		
-		req.setAttribute("dto", dto);
+		
+		
+		req.setAttribute("dto", jsonutil.getJsonStringFromList(dto));
 		
 	}
 

@@ -51,6 +51,6 @@ public interface RoomDAO {
 		public List<RoomVO> getpaydetail(String rt_code);
 		
 		//결산 월별 월세총합 getmonthtotal
-		public List<TotalVO> getmonthtotal();
+		public List<Map<String, Object>> getmonthtotal();
 
 }

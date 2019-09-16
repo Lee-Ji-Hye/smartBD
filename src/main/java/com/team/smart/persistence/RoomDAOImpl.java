@@ -113,7 +113,7 @@ public class RoomDAOImpl implements RoomDAO{
 
 	//결산 월별 월세금액
 	@Override
-	public List<TotalVO> getmonthtotal() {
+	public List<Map<String, Object>> getmonthtotal() {
 		
 		return sqlSession.selectList("RoomDAO.getmonthtotal");
 	}
