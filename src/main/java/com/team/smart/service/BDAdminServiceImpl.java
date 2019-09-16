@@ -50,43 +50,43 @@ public class BDAdminServiceImpl implements BDAdminService{
 	}
 	
 	@Override
-	public AuthReqVO authInfo(HttpServletRequest req, String userid) {
+	public AuthReqVO authInfo(HttpServletRequest req, String userid, String req_auth) {
 		log.debug("권한 정보 단건 조회");
 		Map<String, Object> map = new HashMap<>();
 		map.put("req_division", "bd");//bd를 검사함
 		map.put("userid", userid);//bd를 검사함
+		map.put("req_auth", req_auth);
 		map.put("req_key", req.getSession().getAttribute("b_code"));//b_code
 		return bdDao.authInfo(map); 
 	}
 
 	@Override
-	public void authDel(HttpServletRequest req, String userid) {
+	public void authDel(HttpServletRequest req, String userid, String req_auth) {
 		log.debug("권한 정보 단건 삭제");
 		Map<String, Object> map = new HashMap<>();
 		map.put("req_division", "bd");//bd를 검사함
 		map.put("userid", userid);//bd를 검사함
 		map.put("req_key", req.getSession().getAttribute("b_code"));//b_code
-
+		map.put("req_auth", req_auth);
 		log.debug(map.toString());
+		bdDao.authReqDel(map);
 		bdDao.authDel(map);
+		
 	}
-
+	//권한 삭제 , 변경 시 user_compauth_tbl 테이블도 수정해야됨.
 	@Override
-	public void authAmd(HttpServletRequest req, String amd, String userid) {
+	public void authAmd(HttpServletRequest req, String amd, String userid, String req_auth) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("amd", amd);
 		map.put("req_division", "bd");//bd를 검사함
 		map.put("req_key", req.getSession().getAttribute("b_code"));//b_code
 		map.put("userid", userid);
-		
+		map.put("req_auth", req_auth);
 		log.debug(map.toString());
 		bdDao.authAmd(map);
-	}
-
-	@Override
-	public void authInsert(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
-		
+		//map에 구분자 추가
+		map.put("category", "b_code");
+		bdDao.authInsert(map);
 	}
 	
 	

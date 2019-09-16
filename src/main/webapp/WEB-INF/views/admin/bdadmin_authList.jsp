@@ -107,7 +107,7 @@ pageEncoding="UTF-8"%>
                  <!-- 관리자 아이디 -->
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	<a onclick="compDetail('${dto.userid}',${index})">${dto.userid}</a>
+                    	<a onclick="compDetail('${dto.userid}', '${dto.req_auth}',${index})">${dto.userid}</a>
                     </div>
                   </td>
                   
@@ -238,9 +238,9 @@ pageEncoding="UTF-8"%>
   </div>
   <!-- End Content Section -->
   <script>
-	function compDetail(userid, tbl_index){
+	function compDetail(userid, req_auth, tbl_index){
 		var request = new XMLHttpRequest();//지역변수 추천
-		request.open("GET", "${path}/bd_admin/bdmnermn/details/" + userid, true);//요청보내는거
+		request.open("GET", "${path}/bd_admin/bdmnermn/details/" + userid + '/' + req_auth, true);//요청보내는거
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		console.dir(request);
 		request.onreadystatechange = function(){//콜백함수
@@ -290,17 +290,18 @@ pageEncoding="UTF-8"%>
 	function compPro(jong) {
 		//amd_ok, amd_ng, del
 		var userid = document.getElementById('details_userid').innerText;
+		var req_auth = document.getElementById('details_req_auth').innerText;//
 		var url = "${path}/bd_admin/bdmnermn/";
 		var method = "";
 		
 		if(jong === 'amd_ok'){
-			url += 'amd/1/' + userid;
+			url += 'amd/1/' + userid + "/" + req_auth;
 			method = "GET";
 		} else if(jong === 'amd_ng'){
-			url += 'amd/2/' + userid;
+			url += 'amd/2/' + userid + "/" + req_auth;
 			method = "GET";
 		} else if(jong === 'del'){
-			url +=  'del/' + userid;
+			url +=  'del/' + userid + "/" + req_auth;
 			method = "GET";
 		}
 		

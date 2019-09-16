@@ -79,7 +79,7 @@
 	            <span class="text-danger">*</span>
 	          </label>
 	    	  <!-- 아래의 input의 값을 받을 때, 자동완성 기능이 작동합니다. -->
-	          <input type="text" id="autoInput" onkeyup="startSearch()" class="form-control" name="name" placeholder="법인명 (단체명, 상호명)" required>
+	          <input type="text" id="autoInput" onkeyup="startSearch()" class="form-control" name="name" placeholder="법인명 (단체명, 상호명)" autocomplete="off" required>
 	          <input type="hidden" id="code" name="req_key">
 	        </div>
 	        <!-- End Input -->

@@ -16,9 +16,11 @@ public interface BDAdminDAO {
 
 	//권한 단건 조회
 	public AuthReqVO authInfo(Map<String, Object> map);
-	//권한 단건 삭제
+	//권한 요청 테이블 삭제
+	public int authReqDel(Map<String, Object> map);
+	//권한 테이블 단건 삭제
 	public int authDel(Map<String, Object> map);
 	//권한 단건 수정
 	public int authAmd(Map<String, Object> map);
-	
+	public int authInsert(Map<String, Object> map);
 }

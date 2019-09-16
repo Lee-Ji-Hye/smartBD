@@ -57,25 +57,25 @@ public class BD_AdminController {
 	}
 
 	///권한 목록 단건
-	@GetMapping({"/bdmnermn/details/{userid}"})
-	public @ResponseBody AuthReqVO bdmnermndetails(HttpServletRequest req, @PathVariable String userid) {
+	@GetMapping({"/bdmnermn/details/{userid}/{req_auth}"})
+	public @ResponseBody AuthReqVO bdmnermndetails(HttpServletRequest req, @PathVariable String userid, @PathVariable String req_auth) {
 		log.info("url -> /bd_admin/bdmnermn/details/{userid}");
-		return bdService.authInfo(req, userid);
+		return bdService.authInfo(req, userid, req_auth);
 	}
 
 	///권한 권한 수정 단건
-	@GetMapping({"/bdmnermn/amd/{amd}/{userid}"})
-	public String bdmnermnAmd(HttpServletRequest req, @PathVariable String amd, @PathVariable String userid) {
+	@GetMapping({"/bdmnermn/amd/{amd}/{userid}/{req_auth}"})
+	public String bdmnermnAmd(HttpServletRequest req, @PathVariable String amd, @PathVariable String userid, @PathVariable String req_auth) {
 		log.info("url -> bd_admin/bdmnermn/amd/{amd}/{userid}");
-		bdService.authAmd(req, amd, userid);
+		bdService.authAmd(req, amd, userid, req_auth);
 		return "redirect:/bd_admin/bdmnermn/list";
 	}
 	
 	///권한 삭제 단건
-	@GetMapping({"/bdmnermn/del/{userid}"})
-	public String bdmnermnDel(HttpServletRequest req, @PathVariable String userid) {
+	@GetMapping({"/bdmnermn/del/{userid}/{req_auth}"})
+	public String bdmnermnDel(HttpServletRequest req, @PathVariable String userid, @PathVariable String req_auth) {
 		log.info("url -> /bd_admin/bdmnermn/del/{userid}");
-		bdService.authDel(req, userid);
+		bdService.authDel(req, userid, req_auth);
 		return "redirect:/bd_admin/bdmnermn/list";
 	}
 	

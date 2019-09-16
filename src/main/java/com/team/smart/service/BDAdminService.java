@@ -15,14 +15,11 @@ public interface BDAdminService {
 	
 	
 	//권한 정보 단건 조회
-	public AuthReqVO authInfo(HttpServletRequest req, String userid);
+	public AuthReqVO authInfo(HttpServletRequest req, String userid, String req_auth);
 	//권한 단건 삭제
-	public void authDel(HttpServletRequest req, String userid);
+	public void authDel(HttpServletRequest req, String userid, String req_auth);
 	//권한 단건 승인 관련 변경 처리
-	public void authAmd(HttpServletRequest req, String amd, String userid);
-	//권한 단건 추가
-	public void authInsert(HttpServletRequest req, Model model);
-	
+	public void authAmd(HttpServletRequest req, String amd, String userid, String req_auth);
 	
 	
 }

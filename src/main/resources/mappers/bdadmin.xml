@@ -7,7 +7,7 @@
 <mapper namespace="BDAdminDAO">
 
 	<!-- 권한 갯수 -->
-	<select id="bdauthCnt" parameterType="java.util.Map" resultType="int">
+	<select id="authCnt" parameterType="java.util.Map" resultType="int">
 		select COUNT(*)
 		from user_authreq_tbl a
 		WHERE a.req_division = #{req_division}
@@ -15,7 +15,7 @@
 	</select>
 
 	<!-- 권한 리스트 -->
-	<select id="bdauthList" parameterType="java.util.Map" resultType="com.team.smart.vo.AuthReqVO">
+	<select id="authList" parameterType="java.util.Map" resultType="com.team.smart.vo.AuthReqVO">
 	<![CDATA[
 		select rowNum, userid, name, hp, email, req_key, req_auth, req_date, req_status, confirm_date
 		FROM (select m.userid, m.name, m.hp, m.email, a.req_key, a.req_auth, a.req_date, a.req_status, a.confirm_date
@@ -39,21 +39,35 @@
 		    JOIN user_member_tbl m
 		    ON a.userid=m.userid
 		    WHERE a.req_division = #{req_division}
-		    AND a.req_key = #{req_key})
+		    AND a.req_key = #{req_key}
+		    AND a.req_auth = #{req_auth}
+		    )
 		WHERE userid = #{userid}
 	</select>
 
 	<!-- 권한 단건 삭제 -->
-	<delete id="bdauthDel" parameterType="java.util.Map">
+	<delete id="authReqDel" parameterType="java.util.Map">
 		delete user_authreq_tbl WHERE userid = #{userid} AND req_key = #{req_key} AND req_division = #{req_division}
 	</delete>
 
+	<!-- 권한 단건 삭제 -->
+	<delete id="authDel" parameterType="java.util.Map">
+		delete user_compauth_tbl WHERE userid = #{userid} AND b_code = #{req_key} AND comp_auth = #{req_auth}
+	</delete>
+
 	<!-- 권한 차단 수정 -->
-	<update id="bdauthAmd" parameterType="java.util.Map">
-		update user_authreq_tbl set req_status = #{amd} 
-			WHERE userid = #{userid} 
+	<update id="authAmd" parameterType="java.util.Map">
+		update user_authreq_tbl
+			SET req_status = #{amd}
+			WHERE userid = #{userid}
 		    AND req_division = #{req_division}
 		    AND req_key = #{req_key}
+		    AND req_auth = #{req_auth}
 	</update>
+	
+	<!-- 권한 추가 -->
+	<insert id="authInsert" parameterType="java.util.Map">
+		insert into user_compauth_tbl(userid, comp_auth, ${category}) values(#{userid}, #{req_auth}, #{req_key})
+	</insert>
 	
 </mapper>

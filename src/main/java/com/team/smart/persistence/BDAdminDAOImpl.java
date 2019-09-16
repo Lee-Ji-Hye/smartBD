@@ -18,13 +18,13 @@ public class BDAdminDAOImpl implements BDAdminDAO{
 	//권한 테이블 갯수 확인
 	@Override
 	public int bdauthCnt(Map<String, Object> map) {
-		return sqlSession.selectOne("BDAdminDAO.bdauthCnt", map);
+		return sqlSession.selectOne("BDAdminDAO.authCnt", map);
 	}
 
 	//권한 리스트 보여주기
 	@Override
 	public List<AuthReqVO> bdauthList(Map<String, Object> map) {
-		return sqlSession.selectList("BDAdminDAO.bdauthList", map);
+		return sqlSession.selectList("BDAdminDAO.authList", map);
 	}
 
 	//권한 단건 보여주기
@@ -35,16 +35,28 @@ public class BDAdminDAOImpl implements BDAdminDAO{
 
 	//요청 권한 삭제
 	@Override
+	public int authReqDel(Map<String, Object> map) {
+		return sqlSession.delete("BDAdminDAO.authReqDel", map);
+	}
+
+	//요청 권한 삭제
+	@Override
 	public int authDel(Map<String, Object> map) {
-		return sqlSession.delete("BDAdminDAO.bdauthDel", map);
+		return sqlSession.delete("BDAdminDAO.authDel", map);
 	}
 
 	//요청된 권한 상태 변경
 	@Override
 	public int authAmd(Map<String, Object> map) {
-		return sqlSession.update("BDAdminDAO.bdauthAmd", map);
+		return sqlSession.update("BDAdminDAO.authAmd", map);
 	}
 	//요청된 권한 추가
+
+	@Override
+	public int authInsert(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("BDAdminDAO.authInsert", map);
+	}
 	
 	
 }
