@@ -38,6 +38,8 @@ public class UserLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
 				if(securityAuth.get(0).getComp_seq()!=null) {
 					request.getSession().setAttribute("comp_seq", securityAuth.get(0).getComp_seq());//업체코드 comp_seq에 넣음
 					request.getSession().setAttribute("comp_org", securityAuth.get(0).getComp_org());//법인명 comp_org에 넣음
+					request.getSession().setAttribute("comp_hp", securityAuth.get(0).getComp_hp());//법인명 comp_org에 넣음
+					request.getSession().setAttribute("comp_image", securityAuth.get(0).getF_mainimg());//법인명 comp_org에 넣음
 				}
 				if(securityAuth.get(0).getB_code()!=null) {
 					request.getSession().setAttribute("b_code", securityAuth.get(0).getB_code());

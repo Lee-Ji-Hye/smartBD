@@ -18,6 +18,8 @@ public class UserGrantedAuthority implements GrantedAuthority {
 	private final String r_code; //위치 정보(매물 코드)
 	private final Timestamp rt_date1; //건물이름
 	private final Timestamp rt_date2; //건물이름
+	private final String f_mainimg; //
+	private final String comp_hp; //
 
 
 	public UserGrantedAuthority() {
@@ -30,9 +32,11 @@ public class UserGrantedAuthority implements GrantedAuthority {
 		this.r_code = null;
 		this.rt_date1 = null;
 		this.rt_date2 = null;
+		this.f_mainimg = null;
+		this.comp_hp = null;
 	}
 	
-	public UserGrantedAuthority(String comp_auth, String comp_seq, String comp_org, String r_code, String b_code, String b_name, String b_status, Timestamp rt_date1, Timestamp rt_date2) {
+	public UserGrantedAuthority(String comp_auth, String comp_seq, String comp_org, String r_code, String b_code, String b_name, String b_status, Timestamp rt_date1, Timestamp rt_date2, String f_mainimg, String comp_hp) {
 		this.comp_auth = comp_auth;
 		this.comp_seq = comp_seq;
 		this.comp_org = comp_org;
@@ -42,6 +46,21 @@ public class UserGrantedAuthority implements GrantedAuthority {
 		this.b_status = b_status;
 		this.rt_date1 = rt_date1;
 		this.rt_date2 = rt_date2;
+		//this.f_mainimg = f_mainimg;
+		this.comp_hp = comp_hp;
+		
+		//임차인일떄
+		
+		//업장일떄
+		if(comp_auth.contains("CP_TENANT")) {
+			this.f_mainimg = f_mainimg;
+		}else if(comp_auth.contains("CP")) {
+			this.f_mainimg = "http://192.168.219.149/smart/resources/images/food/"+f_mainimg; //학원
+		}else {
+			this.f_mainimg = f_mainimg;
+		}
+		
+		
 	}
 
 	@Override
@@ -98,6 +117,14 @@ public class UserGrantedAuthority implements GrantedAuthority {
 		return "[comp_auth=" + comp_auth + ", comp_seq=" + comp_seq + ", comp_org=" + comp_org
 				+ ", b_code=" + b_code + ", b_name=" + b_name + ", b_status=" + b_status + ", r_code=" + r_code
 				+ ", rt_date1=" + rt_date1 + ", rt_date2=" + rt_date2 + "]";
+	}
+
+	public String getF_mainimg() {
+		return f_mainimg;
+	}
+
+	public String getComp_hp() {
+		return comp_hp;
 	}
 	
 }

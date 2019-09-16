@@ -20,6 +20,8 @@ public class Food_companyVO {
 	private char is_choise;				// 업장소개 
 	private String f_open_stt;			// 오픈시간
 	private String f_open_end;			// 마감시간
+	private String f_major;				// 비콘 아이디
+	private String f_minor;				// 비콘 비밀번호
 	
 	// 회원 > 업체 테이블 
     private String comp_section;		// 사업자구분(개인사업자,법인사업자)

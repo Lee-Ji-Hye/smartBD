@@ -184,4 +184,12 @@ public class CP_ManagerController {
 		return "redirect:/cp_manager/cpmn/list";
 	}
 	
+	// 결산
+	@RequestMapping("/foodChart")
+	public String chart(HttpServletRequest req, Model model) {
+		log.debug("url -> foodChart");
+		
+		return mngFood_ + "/foodChart";
+	}
+	
 }

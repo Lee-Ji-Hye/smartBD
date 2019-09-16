@@ -20,7 +20,7 @@
 		<association property="authority" column="userid" select="getAuthority"/>
 	</resultMap>
 	<select id="getAuthority" resultType="com.team.smart.security.config.UserGrantedAuthority">
-		 SELECT a.comp_auth
+		SELECT a.comp_auth
                 , a.comp_seq
                 , o.comp_org
                 , a.b_code
@@ -29,6 +29,8 @@
                 , c.r_code
                 , c.rt_date1
                 , c.rt_date2
+                , fc.f_mainimg
+                , o.comp_hp
 		 FROM user_compauth_tbl a
          LEFT JOIN 
          room_contract_tbl c
@@ -37,7 +39,9 @@
          building_tbl b
          ON a.b_code = b.b_code
          LEFT JOIN user_company_tbl o
-         ON a.comp_seq = o.comp_seq 
+         ON a.comp_seq = o.comp_seq
+         LEFT JOIN food_company_tbl fc
+         ON a.comp_seq = fc.comp_seq
 		 WHERE a.userid = #{userid}
 	</select>
 	<!-- 로그인 -->

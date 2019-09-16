@@ -11,9 +11,6 @@ import com.team.smart.food.vo.Food_menuVO;
 import com.team.smart.food.vo.Food_orderVO;
 
 public interface FoodDAO {
-	//지혜======================================
-	
-	
 	
 	//민경======================================
 	
@@ -71,11 +68,20 @@ public interface FoodDAO {
 	// 음식점 상품 주문 상세 보기
 	public Food_orderVO getFoodDetail(String f_ocode);
 	
-	// 주문 승인 처리
+	// 음식점 주문 승인 처리
 	public int amdFood(String f_ocode);
 	
-	// 주문 거절 처리
+	// 음식점 주문 거절 처리
 	public int amdNotFood(String f_ocode);
+	
+	// 음식점 결산
+	public List<Food_orderVO> getOrderAccounts(String comp_seq);
+	
+	// 음식점 결산 처리
+	public Map<String,String> getAccountsEnd();
+	
+	// 음식점 결산 차트
+	public List<Map<String,Object>> getFoodDon();
 	
 	// ------------ 페이징 처리
 	

@@ -130,6 +130,36 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectOne("FoodDAO.getFoodDetail", f_ocode);
 	}
 	
+	// 주문 승인 처리 
+	@Override
+	public int amdFood(String f_ocode) {
+		return sqlSession.update("FoodDAO.amdFood", f_ocode);
+	}
+	
+	// 주문 거절 처리
+	@Override
+	public int amdNotFood(String f_ocode) {
+		return sqlSession.update("FoodDAO.amdNotFood", f_ocode);
+	}
+	
+	// 관리자 결산
+	@Override
+	public List<Food_orderVO> getOrderAccounts(String comp_seq) {
+		return sqlSession.selectList("FoodDAO.getOrderAccounts", comp_seq);
+	}
+
+	// 관리자 결산 처리
+	@Override
+	public Map<String, String> getAccountsEnd() {
+		return sqlSession.selectOne("FoodDAO.getAccountsEnd");
+	}
+	
+	// 관리자 주문 결산 차트
+	@Override
+	public List<Map<String, Object>> getFoodDon() {
+		return sqlSession.selectList("FoodDAO.getFoodDon");
+	}
+	
 	// ======================== 페이징 처리
 	
 	// 쿠폰 리스트 페이징 처리
@@ -150,17 +180,7 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectOne("FoodDAO.getOrderPage");
 	}
 	
-	// 주문 승인 처리 
-	@Override
-	public int amdFood(String f_ocode) {
-		return sqlSession.update("FoodDAO.amdFood", f_ocode);
-	}
 	
-	// 주문 거절 처리
-	@Override
-	public int amdNotFood(String f_ocode) {
-		return sqlSession.update("FoodDAO.amdNotFood", f_ocode);
-	}
 
 	// ============================= 테스트
 	@Override
@@ -169,5 +189,6 @@ public class FoodDAOImpl implements FoodDAO {
 		System.out.println("~!!!!!!!!!!!!!!!!!!!!!!!!!!~");
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
+
 
 }
