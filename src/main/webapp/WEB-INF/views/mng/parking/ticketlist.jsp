@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-
+	 
       <div class="container space-bottom-1 space-bottom-lg-0">
         <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
           <!-- Navbar -->
@@ -127,14 +127,13 @@
 			<div class="editBtnDiv01">
 			
 	<form method="get" id="form" name="form" >
-	 <input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}" style="position: ">
+	 <input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}" style="position:relative;right:650px;top:40px; ">
  
-    <input type="button" id="serBtn" value="검색"  class="btn btn-sm btn-soft-secondary transition-3d-hover" s >
-    <input type="button" id="ticketAddBtn" class="btn btn-sm btn-primary transition-3d-hover mr-1" value="등록" />
-    <input type="button" id="ticketDelBtn"  class="btn btn-sm btn-soft-secondary transition-3d-hover" value="삭제" />
+    <input type="button" id="serBtn" value="검색"  class="btn btn-sm btn-soft-secondary transition-3d-hover" style="position: relative;right:200px;" >
+    <input type="button" id="ticketAddBtn" class="btn btn-sm btn-primary transition-3d-hover mr-1" value="등록" style="position:relative;left:150px;"/>
+    <input type="button" id="ticketDelBtn"  class="btn btn-sm btn-soft-secondary transition-3d-hover" value="삭제"style="position:relative;left:150px;" />
   
    
- 	
  	<!-- <button type="button"> -->
           </div>
         </div>
@@ -147,7 +146,7 @@
               <thead>
               	<tr>
                   <th scope="col">
-                    <div class="custom-control custom-checkbox d-flex align-items-center">
+                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
                       <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox" >
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox">
                         <span class="text-hide">Checkbox</span>
@@ -202,8 +201,8 @@
               	<c:forEach var="dto" items="${dtos}" varStatus="status" begin="" end="">
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
-			                    <div class="custom-control custom-checkbox d-flex align-items-center">
-			                      <input type="checkbox" class="custom-control-input"  id="invoiceCheckbox0${status.count}" name="p_code" value="${dto.p_code}">
+			                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
+			                      <input type="checkbox" class="custom-control-input"  id="invoiceCheckbox0${status.count}" name="p_code" value="${dto.p_code}" >
 			                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
 			                       <span class="text-hide">Checkbox</span>
 			                      </label>

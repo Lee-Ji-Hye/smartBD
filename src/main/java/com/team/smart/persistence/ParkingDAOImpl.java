@@ -131,6 +131,56 @@ public class ParkingDAOImpl implements ParkingDAO{
 		return sqlSession.selectList("ParkingDAO.getsearch",ser);
 	}
 
+	@Override
+	public int ticketuse(ParkingVO ticket) {
+		return sqlSession.insert("ParkingDAO.ticketuse",ticket);
+	}
+
+	@Override
+	public List<ParkingVO> ticketPG_CODE(String b_code) {
+		return sqlSession.selectList("ParkingDAO.ticketPG_CODE", b_code);
+	}
+
+	@Override
+	public int ticketorder(ParkingVO order) {
+		return sqlSession.insert("ParkingDAO.ticketorder",order);
+	}
+
+	@Override
+	public List<ParkingVO> p_seq() {
+		return sqlSession.selectList("ParkingDAO.p_seq");
+	}
+
+	@Override
+	public int upstate(ParkingVO vo) {
+		return sqlSession.update("ParkingDAO.upstate",vo);
+	}
+
+	@Override
+	public int insertinout(ParkingVO vo) {
+		return sqlSession.insert("ParkingDAO.insertinout",vo);
+	}
+
+	@Override
+	public int findid(String userid) {
+		return sqlSession.selectOne("ParkingDAO.findid",userid);
+	}
+
+	@Override
+	public int insertid(ParkingVO vo) {
+		return sqlSession.insert("ParkingDAO.insertid",vo);
+	}
+
+	@Override
+	public int inserthistory(ParkingVO vo) {
+		return sqlSession.insert("ParkingDAO.inserthistory",vo);
+	}
+
+	@Override
+	public List<Map<String, Object>> paytotal() {
+		return sqlSession.selectList("ParkingDAO.paytotal");
+	}
+
 	
 
 	

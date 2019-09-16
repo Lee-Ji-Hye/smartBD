@@ -129,7 +129,7 @@
               <thead>
               	<tr>
                   <th scope="col">
-                    <div class="custom-control custom-checkbox d-flex align-items-center">
+                    <div class="custom-control custom-checkbox d-flex align-items-center"style="position:relative;top:-12px;">
                       <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox">
                         <span class="text-hide">Checkbox</span>
@@ -153,8 +153,8 @@
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
                       	아이디
-                      <div class="ml-2">
-                      </div>
+                     <div class="ml-2">
+                     </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
@@ -173,18 +173,12 @@
                   </th>
                   
               </tr></thead>
-              
-              
-              
-              
-              
-              	
 	              		 <c:if test="${cnt >0}">
-              	<c:forEach var="dto" items="${dtos}" varStatus="status">
+              		<c:forEach var="dto" items="${dtos}" varStatus="status">
 	              		<tbody class="font-size-1">
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
-			                    <div class="custom-control custom-checkbox d-flex align-items-center">
+			                    <div class="custom-control custom-checkbox d-flex align-items-center"style="position:relative;top:-12px;">
 			                      <input type="checkbox" class="custom-control-input" name="couponChk" id="invoiceCheckbox0${status.count}" value="${vo.f_coupon_num}">
 			                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
 			                       <span class="text-hide">Checkbox</span>
@@ -197,9 +191,9 @@
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.car_number}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.use_day}</td>
 			       
-      		</c:forEach>
+      			 </c:forEach>
 	              		</tbody>
-              </c:if>
+             			 </c:if>
               	
               
                    

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%@ include file="../../common/setting.jsp" %>
+<%@ include file="../../common/headerAdmin.jsp" %>   
 <html>
 
 <head>
@@ -327,37 +328,29 @@
 		</div>
 	</div>
 	<script>
-        var data = [];
-        var hot = new Handsontable(document.getElementById('7lfxIhp2GiscHjEmabeklB'), {
-            data: data,
-            rowHeaders: true,
-            colWidths: [100, 100, 600],
-            colHeaders: false,
-            columns: [{
-                data: "city",
-                renderer: "numeric",
-                className: "htMiddle sans",
-                readOnly: true
-            }, {
-                data: "value",
-                renderer: "numeric",
-                className: "htMiddle sans",
-                readOnly: true
-            }, {
-                data: "percent",
-                renderer: "html",
-                className: "htMiddle sans",
-                readOnly: true
-            }]
-        });
-        var grid = new Muuri('.grid', {
-            dragEnabled: false,
-            dragContainer: document.body,
-            dragSort: function() {
-                return [grid]
-            }
-        });
         
+	//
+	//하이차트(div의 아이디값, chart데이터 객체)
+	//text로 변환 후에 JSON.parse안하면 오류남 (비동기떄문에 그런거같음)
+	//var textData =
+	//${dto}
+	var chartData = JSON.parse('${dto}');
+	var monthData = [];
+	var priceData = [];
+
+	async function goWork(){
+	await conconcon();
+	console.dir(monthData);
+	console.dir(priceData);
+	};
+
+	function conconcon(){
+	for(key in chartData){
+	monthData.push(chartData[key].PAY_DAY);
+	priceData.push(chartData[key].P_OPRICE);
+	};
+	};
+	goWork();
         
         //하이차트
         Highcharts.chart('container', {
@@ -379,20 +372,7 @@
                     Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
             },
             xAxis: {
-                categories: [
-                    '1월',
-                    '2월',
-                    '3월',
-                    '4월',
-                    '5월',
-                    '6월',
-                    '7월',
-                    '8월',
-                    '9월',
-                    '10월',
-                    '11월',
-                    '12월'
-                ],
+                categories: monthData,
                 plotBands: [{ // visualize the weekend
                     from: 4.5,
                     to: 6.5,
@@ -419,15 +399,15 @@
             //여기에 종류 추가해준다
             series: [{
                 name: '입차',
-                data: [3, 4, 3, 5, 4, 10, 12, 110, 8, 4, 5, 3]
+                data: priceData
             }, {
                 name: '출차',
-                data: [8, 3, 4, 3, 3, 5, 4, 8, 4, 4, 3, 8]
+                data: priceData
             }]
             	
         });
     </script>
 </div>
-
+<%@ include file="../../common/footer.jsp" %>
 </body>
 </html>

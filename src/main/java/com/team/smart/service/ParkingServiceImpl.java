@@ -1,5 +1,9 @@
 package com.team.smart.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,16 +11,23 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.team.smart.parking.vo.ParkingVO;
 import com.team.smart.persistence.ParkingDAO;
 import com.team.smart.utils.Functions;
+import com.team.smart.utils.JsonUtil;
 import com.team.smart.utils.Paging;
 @Service
 public class ParkingServiceImpl implements ParkingService{
 
+	@Autowired
+	JsonUtil jsonutil;
+	
 	@Autowired
 	ParkingDAO p_dao;
 	
@@ -220,15 +231,80 @@ public class ParkingServiceImpl implements ParkingService{
 	
 	//주차권 사용
 	@Override
-	public void useticket(HttpServletRequest req, Model model) {
-		
+	public void useticket(MultipartHttpServletRequest req, Model model) {
+		 MultipartFile file = req.getFile("img");
+	        
+	        String saveDir = req.getRealPath("/resources/images/parking/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
+	        
+	        String realDir="C:\\Users\\ksm05\\git\\smartBD\\src\\main\\webapp\\resources\\images\\parking\\"; // 저장 경로
+	        
+	        try {
+	            file.transferTo(new File(saveDir+file.getOriginalFilename()));
+	            
+	            FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
+	            FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
+	            
+	            int data = 0;
+	           
+	            while((data = fis.read()) != -1) {
+	                fos.write(data);
+	            }
+	            fis.close();
+	            fos.close();
+	            String p_ocode = fn.mkUniquecode("p_ocode", "parking_ticket_order_tbl");
+	    		System.out.println("p_ocode");
+	    		if(p_ocode == null) {
+	    			 return;
+	    		}
+	    		String p_code = req.getParameter("p_code");
+	            String b_code = req.getParameter("b_code");
+	            String userid = req.getParameter("userid");
+	            String inoutcoude = req.getParameter("inoutcoude");
+	            String p_type = req.getParameter("p_type");
+	            String kind_of_car = req.getParameter("kind_of_car");
+	            String car_number = req.getParameter("car_number");
+	            String ask = req.getParameter("ask");
+	            String fileName = file.getOriginalFilename();
+	            String subject = req.getParameter("subject");
+	            int domestic = Integer.parseInt(req.getParameter("domestic"));
+	            List<ParkingVO> p_seq = p_dao.p_seq();
+	            int p_seq1 = p_seq.get(0).getP_seq();
+	            String parking_location = Double.toString(p_seq.get(0).getP_lat())+ " , " +Double.toString(p_seq.get(0).getP_lot());
+	            List<ParkingVO> p_oprice =p_dao.ticketinfo(p_code);
+	            int idcheck = p_dao.findid(userid);
+	            if(idcheck == 0) {
+	            	
+	            }
+	            ParkingVO vo= ParkingVO
+						.builder()
+						.p_ocode(p_ocode)
+						.p_code(p_code)
+						.userid(userid)
+						.inoutcoude(inoutcoude)
+						.car_number(car_number)
+						.car_number_img(fileName)
+						.b_code(b_code)
+						.parking_state("0")
+						.parking_location(parking_location)
+						.ask(ask)
+						.p_oprice(p_oprice.get(0).getPrice())
+						.build();
+	            
+	            int ticketcode = p_dao.ticketorder(vo);
+	            int iCnt = p_dao.ticketuse(vo);
+	            int ticket_historycode = p_dao.inserthistory(vo);
+	            model.addAttribute("cnt", iCnt);
+	            
+	        } catch(IOException e) {
+	            e.printStackTrace();
+	        }
 	}
 	
 	//주차권 등록내역 리스트 
 	@Override
 	public void ticketlist(HttpServletRequest req, Model model) {
 				// 현재페이지
-		
+				
 				String page = req.getParameter("page");
 				int bcnt = 0;
 				String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
@@ -265,6 +341,7 @@ public class ParkingServiceImpl implements ParkingService{
 				model.addAttribute("cnt", bcnt);				//글갯수
 				model.addAttribute("pageNum", page);		//페이지번호
 				model.addAttribute("sertext", sertext);		//${sertext}
+			
 				
 	}
 	//주차권 사용내역 리스트
@@ -515,6 +592,42 @@ public class ParkingServiceImpl implements ParkingService{
 	public void inoutcartotal(HttpServletRequest req, Model model) {
 		
 	}
+	//주차권 아이디
+	@Override
+	public void id(HttpServletRequest req, Model model) {
+		String staff_id = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.addAttribute("staff_id",staff_id);    // 관리자 아이디
+	}
+	//주차권 사용 주차권 상품코드 불러오기
+	@Override
+	public void useticketproduct(HttpServletRequest req, Model model) {
+		String b_code = req.getParameter("b_code");
+		System.out.println(b_code);
+		List<ParkingVO> dtos = p_dao.ticketPG_CODE(b_code);
+	    String inoutcode = fn.mkUniquecode("inoutcode", "parking_history_tbl");
+ 		System.out.println(inoutcode);
+ 		if(inoutcode == null) {
+ 			 return;
+ 		}
+ 		
+ 		String parking_code = fn.mkUniquecode("parking_code","parking_ticket_history_tbl");
+ 		System.out.println("parking_code");
+ 		if(parking_code == null) {
+ 			 return;
+ 		}
+ 		System.out.println(dtos.get(0).getP_code() + "p_code");
+ 		System.out.println(dtos.get(1).getP_code() + "p_code");
+ 		System.out.println(dtos.get(2).getP_code() + "p_code");
+ 		model.addAttribute("inoutcode",inoutcode);
+ 		model.addAttribute("parking_code",parking_code);
+		model.addAttribute("dtos",dtos);
+	}
+	@Override
+	public void paychart(HttpServletRequest req, Model model) {
+		List<Map<String,Object>> paydto = p_dao.paytotal();
+		req.setAttribute("dto", jsonutil.getJsonStringFromList(paydto));
+	}
+	
 
 
 	

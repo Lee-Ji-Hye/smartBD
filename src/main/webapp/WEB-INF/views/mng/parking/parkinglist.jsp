@@ -131,8 +131,8 @@
               <thead>
               	<tr>
                   <th scope="col">
-                    <div class="custom-control custom-checkbox d-flex align-items-center">
-                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
+                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox" >
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox">
                         <span class="text-hide">Checkbox</span>
                       </label>
@@ -199,7 +199,7 @@
 	              		<tbody class="font-size-1">
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
-			                    <div class="custom-control custom-checkbox d-flex align-items-center">
+			                    <div class="custom-control custom-checkbox d-flex align-items-center"style="position:relative;top:-12px;">
 			                      <input type="checkbox" class="custom-control-input" name="couponChk" id="invoiceCheckbox0${status.count}" value="${vo.f_coupon_num}">
 			                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
 			                       <span class="text-hide">Checkbox</span>

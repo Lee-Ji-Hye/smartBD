@@ -68,4 +68,12 @@ public class ParkingVO {
 	private double disable_position_y;
 	private double reserved_position_x;
 	private double reserved_position_y;
+	
+	//주차권 사용
+	private String inoutcoude;
+	private String car_number_img;
+	private String parking_location;
+	private int   p_seq;           
+	private String parking_state;
+    	
 }

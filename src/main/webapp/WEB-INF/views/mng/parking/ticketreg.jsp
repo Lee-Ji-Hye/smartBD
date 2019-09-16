@@ -53,7 +53,7 @@
                          data-parent="#uploadForm">	
                         </span>
                       </div>
-                		<input type="text" class="form-control" name="b_code" id="listingCityProvince" placeholder="b_code" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
+                		<input type="text" class="form-control" name="b_code" id="listingCityProvince" value="${sessionScope.b_code}" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
                     </div>
                   </div>
                 </div>
@@ -132,7 +132,7 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="reg_id" id="listingLotSize" placeholder="reg_id" aria-label="Lot size" aria-describedby="listingLotSizeLabel">
+                      <input type="text" class="form-control" name="reg_id" id="listingLotSize" value="${staff_id}" aria-label="Lot size" aria-describedby="listingLotSizeLabel">
                     </div>
                   </div>
                 </div>

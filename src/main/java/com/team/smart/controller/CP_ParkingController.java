@@ -2,11 +2,11 @@ package com.team.smart.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tomcat.jni.Mmap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.team.smart.service.ParkingService;
 
@@ -63,6 +63,7 @@ public class CP_ParkingController {
 		//매출 결산
 		@RequestMapping(value="/paytotal")
 		public String paytotal(HttpServletRequest req, Model model) {
+			parkingService.paychart(req, model);
 			return mngParking_ + "/paytotal";
 		}
 		
@@ -73,20 +74,23 @@ public class CP_ParkingController {
 			return mngParking_+"/parkinglist";
 		}
 		//주차권 등록 내역
-		@RequestMapping(value="ticketlist")
+		@RequestMapping(value="/ticketlist")
 		public String ticketlist(HttpServletRequest req, Model model) {
 			parkingService.ticketlist(req, model);
 			return mngParking_+"/ticketlist";
 		}
 		//주차권 사용
-		@RequestMapping(value="ticketuse")
+		@RequestMapping(value="/ticketuse")
 		public String parkinguse(HttpServletRequest req, Model model) {
-			return mngParking_+"ticketuse";
+			parkingService.useticketproduct(req, model);
+			return mngParking_+"/ticketuse";
 		}
 		
+		
 		//주차권 사용 처리
-		@RequestMapping(value="ticketusepro")
-		public String parkingusepro(HttpServletRequest req, Model model) {
+		@RequestMapping(value="/ticketusepro")
+		public String parkingusepro(MultipartHttpServletRequest req, Model model) {
+			parkingService.useticket(req, model);
 			return mngParking_+"/ticketusepro";
 		}
 		
@@ -106,19 +110,16 @@ public class CP_ParkingController {
 		// 정산
 		@RequestMapping(value = "/total")
 		public String total(HttpServletRequest req, Model model) {
-			
 			return "redirect:/bd_park/intromn/inst5";
 		}
 		
 		@RequestMapping(value="/intromn/inst5")
 		public String total1(HttpServletRequest req, Model model) {
-			
 			return mngParking_+"/total";
 		}
 		//주차장 현황
 		@RequestMapping(value ="/ticketmanager")
 		public String ticketmanager(HttpServletRequest req, Model model) {
-			
 			return "redirect:/bd_park/intromn/inst2";
 		}
 		//주차장 현황 
@@ -132,7 +133,7 @@ public class CP_ParkingController {
 		@RequestMapping(value ="/parklist")
 		public String parklist(HttpServletRequest req, Model model) {
 			parkingService.parklist(req, model);
-			return mngParking_+"parklist";
+			return mngParking_+"/parklist";
 		}
 		
 		//주차권 등록
@@ -144,6 +145,7 @@ public class CP_ParkingController {
 		//주차권 등록
 		@RequestMapping(value ="/intromn/inst3")
 		public String ticketreg1(HttpServletRequest req, Model model) {
+		parkingService.id(req, model);
 		return "mng/parking/ticketreg";
 		}
 		//주차권 처리
@@ -204,7 +206,6 @@ public class CP_ParkingController {
 		//@RequestMapping(value="mypage", method=RequestMethod.POST) //통신 사용시 이걸로 사용.
 		@RequestMapping("mypage")
 		public String mypage(HttpServletRequest req, Model model) {
-			
 			return "svc/parking/mypage";
 		}
 		

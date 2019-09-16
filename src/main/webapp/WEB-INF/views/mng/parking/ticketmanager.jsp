@@ -125,7 +125,7 @@
 
           <div class="ml-lg-auto">
             <!-- Button -->
-            <a class="btn btn-sm btn-soft-white text-nowrap transition-3d-hover" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html#requestPaymentModal" data-modal-target="#requestPaymentModal">
+            <a class="btn btn-sm btn-soft-white text-nowrap transition-3d-hover" href="${path}/bd_park/parklist">
               <span style="font-size: 18px;margin-right: 5px;font-weight: bold;">+</span>
               Request a Payment
             </a>
@@ -144,7 +144,6 @@
 	init();
 });
 function init(){
-	alert("init 함수 실행");
 	var canvas = document.getElementById("B1");
 	var ctx = canvas.getContext("2d");	
 	var i = 0;
@@ -162,16 +161,16 @@ function init(){
 	for(; i<240;i++){
 		
 		if($("#P"+i).val() == 0){
-			 if(($("#DX"+i).val()===$("#X"+i).val()) === ($("#DY"+i).val()===$("#Y").val())){
+			/*  if(($("#DX"+i).val()===$("#X"+i).val()) === ($("#DY"+i).val()===$("#Y").val())){
 				ctx.fillStyle = "#FFFFFF";
 				ctx.fillRect($("#DX"+i).val(), $("#DY"+i).val(), 4, 2);
 			}else if(($("#RX"+i).val()===$("#X"+i).val()) === ($("#RY"+i).val()===$("#Y").val())){
 				ctx.fillStyle = "#008000";
 				ctx.fillRect($("#RX"+i).val(), $("#RY"+i).val(), 4, 2);
-			}else{ 
+			}else{  */
 				ctx.fillStyle = "#000000";
 				ctx.fillRect($("#X"+i).val(), $("#Y"+i).val(), 4, 2);
-			}
+			/* } */
 		}else{
 				ctx.fillStyle = "#FF0000";
 				ctx.fillRect($("#X"+i).val(), $("#Y"+i).val(), 4, 2);

@@ -176,7 +176,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	      OR REG_DATE like '%' ||  #{ser} || '%'
 	    AND rNum >=#{start} AND rNum <= #{end} order by p_code
 	</select> -->
-	
-	
+	<select id="ticketPG_CODE" resultType="com.team.smart.parking.vo.ParkingVO">
+			select p_code,p_type from parking_ticket_info_tbl where b_code = #{b_code}
+	</select>
+	<insert id="ticketorder" parameterType="com.team.smart.parking.vo.ParkingVO">
+			insert into parking_ticket_order_tbl 
+			values(p_ocode = #{p_ocode},p_code=#{p_code},userid=#{userid},p_state=3,p_oprice=#{p_price},p_count=#{p_count},tid='id5',pay_day='sysdate',,p_regidate='sysdate')
+	</insert>
+	<select id="p_seq" resultType="com.team.smart.parking.vo.ParkingVO">
+	SELECT p_seq,p_lat,p_lot FROM parking_lot_detail_tbl  WHERE p_state = 0 ORDER BY p_seq;   
+	</select>
+	<update id="upstate" parameterType="com.team.smart.parking.vo.ParkingVO">
+		UPDATE parking_lot_detail_tbl 
+		SET p_state = 1,ask = #{ask} WHERE p_seq=#{p_seq}
+	</update>
+	<insert id="insertinout" parameterType="com.team.smart.parking.vo.ParkingVO">
+		insert into parking_history_tbl 
+		values(inoutcode=#{inoutcode},car_number=#{car_number},car_number_img=#{car_number_img},b_code=#{b_code},in_time='sysdate',parking_time='sysdate',,parking_location=#{parking_location},parking_state = 0)
+	</insert>
+	<select id="findid" resultType="int">
+		select count(*) from parking_member_car_tbl  where userid=#{userid}
+	</select>
+	<insert id="insertid" parameterType="com.team.smart.parking.vo.ParkingVO">
+		insert into parking_member_car_tbl 
+		values (userid=#{userid},c_num=#{c_num},kind_of_car=#{kind_of_car},,)
+	</insert>
+	<insert id="inserthistory" parameterType="com.team.smart.parking.vo.ParkingVO">
+		insert into parking_ticket_history_tbl 
+		values (parking_code=#{parking_code},p_ocode=#{p_ocode},userid=#{userid},car_number=#{car_number},use_day ='sysdate')
+	</insert>
+	<select id="paytotal" resultType="java.util.Map">
+		select (substr(pay_day,1,5)) pay_day,
+		sum(p_oprice) p_oprice
+		from parking_ticket_order_tbl
+		where p_state = 1 OR p_state = 2
+		GROUP by (substr(pay_day,1,5))
+		order by (substr(pay_day,1,5))
+	</select>
 </mapper>
 

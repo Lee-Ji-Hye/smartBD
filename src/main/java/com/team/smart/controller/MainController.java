@@ -350,7 +350,7 @@ public class MainController {
 	//주차권 사용
 	@RequestMapping("ticketuse")
 	public String parkinguse(HttpServletRequest req, Model model) {
-		
+		log.debug("ticketuse");
 		return "mng/parking/ticketuse";
 	}
 	

@@ -5,6 +5,8 @@
 <html>
 <body>
 <!-- ========== MAIN ========== -->
+
+<form action="${path}/bd_park/ticketuse">
   <main id="content" role="main">
     <!-- Breadcrumb Section -->
     <div class="bg-primary">
@@ -112,7 +114,7 @@
                   <div class="mr-2">
                     <!-- Select -->
                    <div class="editBtnDiv01">
-                    <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" style="position:relative;left: 400px;width: 100px;" href=  onclick="window.location=${path}/bd_park/ticketuse">사용</button>
+                    <input type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" value="사용"  style="z-index:5; position:relative;left: 400px;width: 100px;" >
                    </div>
                     <!-- End Select -->
                   </div>
@@ -2759,7 +2761,7 @@
               </table>
             </div>
             <!-- End Activity Table -->
-
+			<input type="hidden" name="b_code" value="${sessionScope.b_code}"> 
             <!-- Pagination -->
             <div class="d-flex align-items-center">
               <nav id="datatablePagination" aria-label="Activity pagination"></nav>
@@ -2773,6 +2775,7 @@
     </div>
     <!-- End Content Section -->
   </main>
+  </form>
   <!-- ========== END MAIN ========== -->
 <%@ include file="../../common/footer.jsp" %>
 </body>

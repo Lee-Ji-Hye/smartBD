@@ -43,10 +43,19 @@ public class Functions {
 		} else if(codeColumn.equals("f_code")) {
 			strCode = "FM";
 		} else if(codeColumn.equals("parking_code")) {
-			strCode = "PK";//PK000001
+			strCode = "PT";//PT000001
 		} else if(codeColumn.equals("p_code")) {
-			strCode = "PG";//PG000001
-		} else if(codeColumn.equals("f_coupon_num")) {
+			strCode = "PG";//PG000001	
+		}else if(codeColumn.equals("inoutcode")) {
+			strCode = "PIO";//PIO00001	
+		}else if(codeColumn.equals("p_ocode")) {
+			strCode = "PK";//PIO00001	
+		}else if(codeColumn.equals("pay_code")) {
+			strCode = "PA";//PAO00001	
+		}else if(codeColumn.equals("pay_code")) {
+			strCode = "PQ";//PQO00001	
+		}
+		else if(codeColumn.equals("f_coupon_num")) {
 			strCode = "CP";//PK000001
 		} else if(codeColumn.equals("comp_seq")) {
 			strCode = "CM";//PK000001

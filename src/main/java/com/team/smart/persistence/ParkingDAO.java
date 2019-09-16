@@ -1,5 +1,6 @@
 package com.team.smart.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,24 @@ public interface ParkingDAO {
 		//건물 체크1
 		public int buildcount1(String b_name);
 		
+		//주차권 사용
+		public int ticketuse(ParkingVO ticket);
+		//주차권 사용 주차권 상품코드 불러오기 
+		public List<ParkingVO> ticketPG_CODE(String b_code);	
+		//주차권 사용 티켓 오더
+		public int ticketorder(ParkingVO order);
+		//주차권 주차 사용 주차 안된 위치 불러오기  
+		public List<ParkingVO> p_seq();
+		//주차권 사용 상세정보 테이블 정보변경
+		public int upstate(ParkingVO vo);
+		//주차권 사용 입출차 현황 insert
+		public int insertinout(ParkingVO vo);
+		//주차권 사용 아이디 체크
+		public int findid(String userid);
+		//주차권 사용 회원아이디 등록
+		public int insertid(ParkingVO vo);
+		//주차권 사용 티켓 히스토리
+		public int inserthistory(ParkingVO vo);
 		//주차권 수정
 		public int updateticket(ParkingVO ticket);
 		
@@ -74,5 +93,6 @@ public interface ParkingDAO {
 		//전체조회
 		public List<ParkingVO> getsearch(String ser);
 		
-		
+		//주차장 매출 결산
+		public List<Map<String, Object>> paytotal(); 
 }
