@@ -160,19 +160,20 @@
             <!-- Title -->
             <div class="border-bottom pb-3 mb-5">
               <h2 class="h6 text-secondary mb-0">차량 번호 이미지 등록</h2>
-            </div>
+           
             <!-- End Title -->
 
-            <!-- File Attachment Input -->
-            <div class="content">
+            <!-- File Attachment Input --></div>
+		 <input type="file" class="form-control1" id="img" name="img" style="border:0px solid black;"/>
+            <div class="content"style="display:none;">
               <div class="dz-message">
-                <img name="img"class="js-svg-injector max-width-10 mb-3" src="#" alt="SVG"
-                     data-parent="#uploadForm">
-               
+                <img class="js-svg-injector max-width-10 mb-3" src="#" alt="SVG"
+                     data-parent="#uploadForm" style="display:none;">
               </div>
             </div>
             <!-- End File Attachment Input -->
           </div>
+          
           <!-- End Upload Images -->
 		<div class="row">
               <div class="col-md-6 mb-3">
@@ -241,6 +242,7 @@
  <%@ include file="../../common/footer.jsp" %> 
 </body>
 <script type="text/javascript">
+<!--  
 $('.content')
 .on("dragover", dragOver)
 .on("dragleave", dragOver)
@@ -284,5 +286,6 @@ function uploadFiles(e) {
     return;
   }
 }
-</script>
+--> 
+</script> 
 </html>

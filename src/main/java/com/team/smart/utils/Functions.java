@@ -54,6 +54,8 @@ public class Functions {
 			strCode = "PA";//PAO00001	
 		}else if(codeColumn.equals("pay_code")) {
 			strCode = "PQ";//PQO00001	
+		}else if(codeColumn.equals("pay_code")) {
+			strCode = "PL";//PQO00001	
 		}
 		else if(codeColumn.equals("f_coupon_num")) {
 			strCode = "CP";//PK000001

@@ -19,7 +19,7 @@
 		
         <form id="insertplacepro" class="js-validate svg-preloader" method="post" action="insertplacepro">
          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-        
+        	${mode}
           <!-- Listing Agent Information -->
           
           <!-- Type of Listing -->
@@ -53,7 +53,7 @@
                          data-parent="#uploadForm">
                     </span>
                   </div>
-                  <input type="text" class="form-control" name="b_name" id="listingPrice" placeholder="대륭테크노3차" aria-label="Price" aria-describedby="listingPriceLabel" required
+                  <input type="text" class="form-control" name="b_name" id="listingPrice" value="${sessionScope.b_name}"   valaria-label="Price" aria-describedby="listingPriceLabel" required
                          data-msg="필수 항목입니다"
                          data-parent="#uploadForm"
                          data-error-class="u-has-error"

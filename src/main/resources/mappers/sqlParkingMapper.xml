@@ -180,11 +180,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select p_code,p_type from parking_ticket_info_tbl where b_code = #{b_code}
 	</select>
 	<insert id="ticketorder" parameterType="com.team.smart.parking.vo.ParkingVO">
-			insert into parking_ticket_order_tbl 
-			values(p_ocode = #{p_ocode},p_code=#{p_code},userid=#{userid},p_state=3,p_oprice=#{p_price},p_count=#{p_count},tid='id5',pay_day='sysdate',,p_regidate='sysdate')
+			insert into parking_ticket_order_tbl(p_ocode,p_code,userid,p_state,p_oprice,tid,pay_day) 
+			values( #{p_ocode},#{p_code},#{userid},3,#{p_oprice},'id5',sysdate)
 	</insert>
 	<select id="p_seq" resultType="com.team.smart.parking.vo.ParkingVO">
-	SELECT p_seq,p_lat,p_lot FROM parking_lot_detail_tbl  WHERE p_state = 0 ORDER BY p_seq;   
+	SELECT p_seq,p_lat,p_lot FROM parking_lot_detail_tbl  WHERE p_state = 0 ORDER BY p_seq   
 	</select>
 	<update id="upstate" parameterType="com.team.smart.parking.vo.ParkingVO">
 		UPDATE parking_lot_detail_tbl 
@@ -198,12 +198,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from parking_member_car_tbl  where userid=#{userid}
 	</select>
 	<insert id="insertid" parameterType="com.team.smart.parking.vo.ParkingVO">
-		insert into parking_member_car_tbl 
-		values (userid=#{userid},c_num=#{c_num},kind_of_car=#{kind_of_car},,)
+		insert into parking_member_car_tbl(userid,c_num,kind_of_car,ask) 
+		values (#{userid},#{car_number},#{kind_of_car},#{ask})
 	</insert>
 	<insert id="inserthistory" parameterType="com.team.smart.parking.vo.ParkingVO">
-		insert into parking_ticket_history_tbl 
-		values (parking_code=#{parking_code},p_ocode=#{p_ocode},userid=#{userid},car_number=#{car_number},use_day ='sysdate')
+		insert into parking_ticket_history_tbl(parking_code,p_ocode,userid,car_number,use_day) 
+		values (#{parking_code},#{p_ocode},#{userid},#{car_number},sysdate)
 	</insert>
 	<select id="paytotal" resultType="java.util.Map">
 		select (substr(pay_day,1,5)) pay_day,
@@ -212,6 +212,65 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where p_state = 1 OR p_state = 2
 		GROUP by (substr(pay_day,1,5))
 		order by (substr(pay_day,1,5))
+	</select>
+	<select id="getpriceCnt" resultType="int">
+		select count(*) from parking_basic_price_tbl
+	</select>
+	<select id="getpricelist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
+		select * 
+		  from (select pt.*,rownum rNum from parking_basic_price_tbl  pt
+		  	<if test="sertext != '' ">
+		  	 WHERE bp_seq  like '%' ||  #{sertext} || '%' 
+				    OR b_code  like '%' ||  #{sertext} || '%'
+				    OR bp_type  like '%' ||  #{sertext} || '%' 
+				    OR pb_time   like '%' ||  #{sertext} || '%' 
+			        OR pb_price   like '%'|| #{sertext} || '%'
+		         	OR pb_free    like '%'|| #{sertext} || '%'
+		          	OR pb_free_price    like '%'|| #{sertext} || '%'
+		           	OR reg_date   like '%'|| #{sertext} || '%'
+		  	</if>
+			)
+	<![CDATA[
+		 where rNum >=#{start} and rNum <= #{end} order by bp_seq
+	  ]]>
+	</select>
+	<insert id="insertprice" parameterType="com.team.smart.parking.vo.ParkingVO">
+		insert into parking_basic_price_tbl 
+		values(parking_basic_price_seq.NEXTVAL,#{b_code},#{bp_type},#{pb_time},#{pb_price},#{pb_free},#{pb_free_price },#{reg_id},sysdate) 
+	</insert>
+	<select id="getupprice" resultType="com.team.smart.parking.vo.ParkingVO">
+		select * from parking_basic_price_tbl where bp_seq = #{bp_seq} 
+	</select>
+	<update id="getuppricepro" parameterType="com.team.smart.parking.vo.ParkingVO">
+		update parking_basic_price_tbl
+		set b_code=#{b_code},bp_type=#{bp_type},reg_id=#{reg_id},pb_price=#{pb_price},pb_time=#{pb_time},pb_free=#{pb_free},pb_free_price=#{pb_free_price} where bp_seq = #{bp_seq}
+	</update>
+	<delete id="moneydelete" parameterType="int">
+		delete parking_basic_price_tbl
+		where bp_seq = #{bp_seq}
+	</delete>
+	<select id="getpricepaycnt" resultType="int">
+		select count(*) from parking_payment_tbl
+	</select>
+	<select id="pricepaylist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
+		select * 
+		  from (select pt.*,rownum rNum from parking_payment_tbl   pt
+		  	<if test="sertext != '' ">
+		  	 WHERE bp_seq  like '%' ||  #{sertext} || '%' 
+				    OR pay_seq  like '%' ||  #{sertext} || '%'
+				    OR inoutcode   like '%' ||  #{sertext} || '%' 
+				    OR userid    like '%' ||  #{sertext} || '%' 
+				    OR pay_price    like '%' ||  #{sertext} || '%' 
+				    OR pay_type    like '%' ||  #{sertext} || '%' 
+				    OR pay_enable_time    like '%' ||  #{sertext} || '%' 
+				    OR parking_code    like '%' ||  #{sertext} || '%' 
+				    OR pay_day    like '%' ||  #{sertext} || '%' 
+				    OR pb_state     like '%' ||  #{sertext} || '%' 
+		  	</if>
+			)
+	<![CDATA[
+		 where rNum >=#{start} and rNum <= #{end} order by pay_seq
+	  ]]>
 	</select>
 </mapper>
 

@@ -85,7 +85,7 @@
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
                       <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
-                        	주차권 사용 내역
+                        	주차권 주문 내역
                       </a>
                     </li>
                     <!-- Account Settings -->
@@ -97,6 +97,23 @@
                         data-animation-out="fadeOut">
                       <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/ticketlist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
                         	주차권 등록 내역
+                      </a>
+                    </li>
+                    <!-- Billing -->
+                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                        data-event="hover"
+                        data-animation-in="slideInUp"
+                        data-animation-out="fadeOut">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkpricelist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                        	주차  요금 내역
+                      </a>
+                    </li>
+                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                        data-event="hover"
+                        data-animation-in="slideInUp"
+                        data-animation-out="fadeOut">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkpaylist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                        	주차  결제 내역
                       </a>
                     </li>
                     <!-- Billing -->
@@ -128,7 +145,7 @@
 			
 	<form method="get" id="form" name="form" >
 	 <input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}" style="position:relative;right:650px;top:40px; ">
- 
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <input type="button" id="serBtn" value="검색"  class="btn btn-sm btn-soft-secondary transition-3d-hover" style="position: relative;right:200px;" >
     <input type="button" id="ticketAddBtn" class="btn btn-sm btn-primary transition-3d-hover mr-1" value="등록" style="position:relative;left:150px;"/>
     <input type="button" id="ticketDelBtn"  class="btn btn-sm btn-soft-secondary transition-3d-hover" value="삭제"style="position:relative;left:150px;" />
@@ -198,7 +215,7 @@
                   </th>
               </tr></thead>
               <tbody class="font-size-1" id="myTable">
-              	<c:forEach var="dto" items="${dtos}" varStatus="status" begin="" end="">
+              	<c:forEach var="dto" items="${dtos}" varStatus="status" >
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
 			                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">

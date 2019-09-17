@@ -33,11 +33,24 @@ public interface ParkingService {
 		//주차권 사용 주차권 상품코드 불러오기
 		public void useticketproduct(HttpServletRequest req,Model model);
 		//주차권 사용
+		////주차요금 등록 정보 불러오기
+		public void regid(HttpServletRequest req, Model model);
+		//주차요금 검색리스트 불러오기
+		public void parkpricelist(HttpServletRequest req, Model model);
+		//주차요금 등록
+		public void insertmoney(HttpServletRequest req, Model model);
+		//주차요금 수정 정보 불러오기
+		public void updatemoney(HttpServletRequest req, Model model);
+		//주차요금 수정 처리
+		public void updatemoneypro(HttpServletRequest req, Model model);
+		//주차 요금 삭제 처리
+		public void deletemoney(HttpServletRequest req, Model model);
 		//(돈)결산 차트
 		public void paychart(HttpServletRequest req,Model model);
 		//주차권 수정처리
 		public void updatepro(HttpServletRequest req,Model model);
-		
+		//주차 요금결제 내역 리스트 
+		public void pricepaylist(HttpServletRequest req,Model model);
 		//주차권 등록내역 리스트
 		public void ticketlist(HttpServletRequest req,Model model);
 		

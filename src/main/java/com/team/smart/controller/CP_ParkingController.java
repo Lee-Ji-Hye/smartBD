@@ -52,7 +52,7 @@ public class CP_ParkingController {
 	
 		@RequestMapping(value="/intromn/inst1")
 		public String inoutcar1(HttpServletRequest req, Model model) {
-			return mngParking_ + "/incar";
+			return mngParking_ + "/outcar";
 		}
 		//차량 입출차 결산 
 		@RequestMapping(value="/inoutcartotal")
@@ -66,7 +66,11 @@ public class CP_ParkingController {
 			parkingService.paychart(req, model);
 			return mngParking_ + "/paytotal";
 		}
-		
+		//업로드
+		@RequestMapping(value="test1")
+		public String test(HttpServletRequest req, Model model) {
+			return mngParking_+"/test1";
+		}
 		//주차권 발급 내역
 		@RequestMapping(value="parkinglist")
 		public String parkinglist(HttpServletRequest req, Model model) {
@@ -115,12 +119,50 @@ public class CP_ParkingController {
 		
 		@RequestMapping(value="/intromn/inst5")
 		public String total1(HttpServletRequest req, Model model) {
-			return mngParking_+"/total";
+			parkingService.paychart(req, model);
+			return mngParking_+"/paytotal";
 		}
 		//주차장 현황
 		@RequestMapping(value ="/ticketmanager")
 		public String ticketmanager(HttpServletRequest req, Model model) {
 			return "redirect:/bd_park/intromn/inst2";
+		}
+		//주차 요금 등록
+		@RequestMapping(value ="/inserprice")
+		public String parkprice(HttpServletRequest req, Model model) {
+			parkingService.regid(req, model);
+			return mngParking_+"/inserprice";
+		}
+		//주차 요금 등록 처리
+		@RequestMapping(value ="/inserpricepro")
+		public String insertpricepro(HttpServletRequest req, Model model) {
+			parkingService.insertmoney(req, model);
+			return mngParking_+"/inserpricepro";
+		}
+		
+		//주차 요금 리스트
+		@RequestMapping(value ="/parkpricelist")
+		public String parkpricelist(HttpServletRequest req, Model model) {
+			parkingService.parkpricelist(req, model);
+			return mngParking_+"/parkpricelist";
+		}
+		//주차 요금 수정 불러오기
+		@RequestMapping(value ="/upprice")
+		public String upprice(HttpServletRequest req, Model model) {
+			parkingService.updatemoney(req, model);
+			return mngParking_+"/upprice";
+		}
+		//주차 요금 수정 처리
+		@RequestMapping(value ="/uppricepro")
+		public String uppricepro(HttpServletRequest req, Model model) {
+			parkingService.updatemoneypro(req, model);
+			return mngParking_+"/uppricepro";
+		}
+		//주차요금 삭제 
+		@RequestMapping(value ="/uppricedelte")
+		public String uppricedelte(HttpServletRequest req, Model model) {
+			parkingService.deletemoney(req, model);
+			return mngParking_+"/uppricedelte";
 		}
 		//주차장 현황 
 		@RequestMapping(value ="/intromn/inst2")
@@ -134,6 +176,13 @@ public class CP_ParkingController {
 		public String parklist(HttpServletRequest req, Model model) {
 			parkingService.parklist(req, model);
 			return mngParking_+"/parklist";
+		}
+		
+		//주차 결제 리스트
+		@RequestMapping(value ="/parkpaylist")
+		public String parkpaylist(HttpServletRequest req, Model model) {
+			parkingService.pricepaylist(req, model);
+			return mngParking_+"/parkpaylist";
 		}
 		
 		//주차권 등록
@@ -201,6 +250,7 @@ public class CP_ParkingController {
 		public String updateplace(HttpServletRequest req, Model model) {
 			return mngParking_+"/updateplace";
 		}
+		
 		
 		
 		//@RequestMapping(value="mypage", method=RequestMethod.POST) //통신 사용시 이걸로 사용.

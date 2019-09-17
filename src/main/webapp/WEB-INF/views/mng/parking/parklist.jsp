@@ -63,37 +63,7 @@
                 <div id="breadcrumbNavBar" class="collapse navbar-collapse u-header__navbar-collapse">
                   <ul class="navbar-nav u-header__navbar-nav">
                     <!-- General -->
-                  <li class="nav-item hs-has-sub-menu u-header__nav-item"
-                        data-event="hover"
-                        data-animation-in="slideInUp"
-                        data-animation-out="fadeOut">
-                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/uselist" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
-                        	주차권 발급내역
-                      </a>
-                    </li>
-                    <!-- General -->
-
-                    <!-- Account Settings -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
-                        data-event="hover"
-                        data-animation-in="slideInUp"
-                        data-animation-out="fadeOut">
-                      <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
-                        	주차권 사용 내역
-                      </a>
-                    </li>
-                    <!-- Account Settings -->
-
-					<!-- Billing -->
-                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
-                        data-event="hover"
-                        data-animation-in="slideInUp"
-                        data-animation-out="fadeOut">
-                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/ticketlist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
-                        	주차권 등록 내역
-                      </a>
-
-                    </li>
+                  
                     <!-- Billing -->
                   
                   </ul>
@@ -102,7 +72,14 @@
             </div>
           </div>
           <!-- End Navbar -->
-
+			<div class="ml-lg-auto">
+            <!-- Button -->
+            <a class="btn btn-sm btn-soft-white text-nowrap transition-3d-hover" href="${path}/bd_park/intromn/inst2">
+              <span style="font-size: 18px;margin-right: 5px;font-weight: bold;">+</span>
+              	입출차 현황
+            </a>
+            <!-- End Button -->
+          </div>
          
         </div>
       </div>

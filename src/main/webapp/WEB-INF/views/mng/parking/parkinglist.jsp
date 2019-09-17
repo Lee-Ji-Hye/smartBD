@@ -94,6 +94,23 @@
                       </a>
 
                     </li>
+                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                        data-event="hover"
+                        data-animation-in="slideInUp"
+                        data-animation-out="fadeOut">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkpricelist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                        	주차  요금 내역
+                      </a>
+                    </li>
+                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                        data-event="hover"
+                        data-animation-in="slideInUp"
+                        data-animation-out="fadeOut">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkpaylist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                        	주차  결제 내역
+                      </a>
+                    </li>
+                    <!-- Billing -->
                     <!-- Billing -->
                   
                   </ul>
@@ -210,12 +227,11 @@
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_code}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.userid}</td>
 			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.p_state == 0}"> <input type="button" value="결재대기"></c:if>
-			                  <c:if test="${dto.p_state == 1}"><input type="button" value="결제완료"></c:if>
-			                  <c:if test="${dto.p_state == 2}"><input type="button" value="결제완료"></c:if>
-			                  <c:if test="${dto.p_state == 3}"><input type="button" value="사용완료 "></c:if>
-			                  <c:if test="${dto.p_state == 4}"><input type="button" value="환불요청 "></c:if>
-			                  <c:if test="${dto.p_state == 5}"><input type="button" value="환불 완료"></c:if>
-			                     <c:if test="${dto.p_state == 6}"><input type="button" value="환불 완료"></c:if></td>
+			                  <c:if test="${dto.p_state == 0}">결제대기</c:if>
+			                  <c:if test="${dto.p_state == 1}">결제요청완료</c:if>
+			                  <c:if test="${dto.p_state == 2}">결제 완료</c:if>
+			                  <c:if test="${dto.p_state == 3}">사용완료</c:if>
+			                  <c:if test="${dto.p_state == 4}">기간만료</c:if>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_oprice}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_count}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_day}</td>

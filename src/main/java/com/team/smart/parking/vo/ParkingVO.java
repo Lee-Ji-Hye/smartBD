@@ -75,5 +75,14 @@ public class ParkingVO {
 	private String parking_location;
 	private int   p_seq;           
 	private String parking_state;
-    	
+    private String kind_of_car;
+    
+    //주차요금 등록
+    private int bp_seq;
+    private String bp_type;
+    private int pb_time;
+    private int pb_price;
+    private int pb_free;
+    private int pb_free_price;
+   
 }

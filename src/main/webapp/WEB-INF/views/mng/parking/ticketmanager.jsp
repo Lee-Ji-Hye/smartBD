@@ -127,7 +127,7 @@
             <!-- Button -->
             <a class="btn btn-sm btn-soft-white text-nowrap transition-3d-hover" href="${path}/bd_park/parklist">
               <span style="font-size: 18px;margin-right: 5px;font-weight: bold;">+</span>
-              Request a Payment
+              	입출차 현황 리스트
             </a>
             <!-- End Button -->
           </div>

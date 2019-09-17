@@ -95,4 +95,23 @@ public interface ParkingDAO {
 		
 		//주차장 매출 결산
 		public List<Map<String, Object>> paytotal(); 
+		//주차 요금 등록
+		public int insertprice(ParkingVO price);
+		//주차 요금 등록 갯수
+		public int getpriceCnt();
+		
+		//주차 요금 리스트 불러오기
+		public List<ParkingVO> getpricelist(Map<String, Object> map);
+		
+		//주차 요금 수정 리스트 불러오기
+		public List<ParkingVO> getupprice(int bp_seq);
+		//주차 요금 수정 처리
+		public int getuppricepro(ParkingVO price);
+		//주차 요금 삭제 처리
+		public int moneydelete(int bp_seq);
+		//주차요금 결제 갯수
+		public int getpricepaycnt();
+		//주차 요금 결제 내역 리스트
+		public List<ParkingVO> pricepaylist(Map<String, Object> map); 
+		
 }
