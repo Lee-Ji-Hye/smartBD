@@ -38,7 +38,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 매물 내용 구하기 -->
 	<select id="List" parameterType="java.util.Map" resultType="com.team.smart.room.vo.RoomVO">
 		
-			select * from room_tbl order by r_code,r_delete
+			select * from room_tbl 
+			where r_delete in (0,1) 
+			order by r_code,r_delete
 		
 	</select>
 	
@@ -100,6 +102,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rt_type='월세'
 		GROUP by (substr(rt_paydate,1,5))
 		order by (substr(rt_paydate,1,5))
+	</select>
+	
+	<!-- 임차인 납부 목록 -->
+	<select id="getmemberpaylist" resultType="com.team.smart.room.vo.RoomVO">
+		select rp.rt_pay,rp.rt_type,
+		rp.rt_code,to_char(rp.rt_paydate, 'YYYY-MM-DD') rt_date1
+		from room_contract_tbl rc,
+		room_contract_pay_tbl rp
+		where rc.rt_code = rp.rt_code
+		and rc.userid=#{memberid}
 	</select>
 	
 </mapper>	   

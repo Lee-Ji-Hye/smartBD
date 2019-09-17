@@ -11,6 +11,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +42,7 @@ public class BD_OfficeController {
 	//매물 리스트
 	@RequestMapping("roomlist")
 	public String billing(HttpServletRequest req, Model model) {
-		//b_service.pageTest(req, model);
+		
 		
 		r_service.list(req,model);
 		
@@ -51,7 +52,7 @@ public class BD_OfficeController {
 		//매물 상세페이지
 		@RequestMapping("roomdetail")
 		public String roomdetail(HttpServletRequest req, Model model) {
-			//logger.info("URI -> sysmaster");
+			
 			
 			r_service.roomDetail(req, model);
 			r_service.getImage(req, model);
@@ -62,7 +63,7 @@ public class BD_OfficeController {
 		//매물 등록
 		@RequestMapping("roomupload")
 		public String roomupload(HttpServletRequest req, Model model) {
-			//logger.info("URI -> sysmaster");
+			
 			
 			String mode = (req.getParameter("mode") == null)? "insert" : req.getParameter("mode");
 			req.setAttribute("mode", mode);
@@ -158,9 +159,8 @@ public class BD_OfficeController {
 	            }
 	        }
 	        
-	        
-
-	        return "/smart/bd_office/roomdetail?r_code=" + r_code;
+	        //return  "smart/bd_office/roomDetail?r_code="+r_code;
+	        return "redirect:/bd_office/roomdetail?r_code="+r_code;
 	    }
 		
 		//계약관리
@@ -202,9 +202,13 @@ public class BD_OfficeController {
 		//결산페이지
 		@RequestMapping("total")
 		public String total(HttpServletRequest req, Model model) {
-										
+			
+			
+			
 			r_service.getmonthtotal(req, model);						
 										
+			
+			
 			return mngBuilding_ + "/total";
 		}
 		
@@ -223,5 +227,25 @@ public class BD_OfficeController {
 			String plusMonth = format.format(cal.getTime());
 
 			return plusMonth;
+		}
+		
+		//임차인 계약정보가져오기 
+		@RequestMapping("memcontract")
+		public String memcontract(HttpServletRequest req, Model model) {
+			
+			
+			
+			
+			return mngBuilding_ + "/memcontract";
+		}
+		
+		//임차인 납부정보가져오기
+		@RequestMapping("mempaylist")
+		public String mempaylist(HttpServletRequest req, Model model) {
+			
+			
+			r_service.getmemberpaylist(req, model);
+			
+			return mngBuilding_ + "/mempaylist";
 		}
 }

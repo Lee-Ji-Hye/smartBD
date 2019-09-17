@@ -118,6 +118,13 @@ public class RoomDAOImpl implements RoomDAO{
 		return sqlSession.selectList("RoomDAO.getmonthtotal");
 	}
 
+	//임차인의 id를 이용한 해당 납부 목록 가져오기
+	@Override
+	public List<RoomVO> getmemberpaylist(String memberid) {
+		
+		return sqlSession.selectList("RoomDAO.getmemberpaylist",memberid);
+	}
+
 	
 
 }

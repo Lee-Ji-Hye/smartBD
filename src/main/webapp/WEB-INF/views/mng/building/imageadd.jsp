@@ -45,11 +45,11 @@
 <body>
 <div class="container space-2">
 	<div class="file_input">
-    <form name="fileForm" action="requestupload2?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+    <form name="fileForm" action="${path_r_mng}/requestupload2?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
     	<div class="row">
     		<div class="col">
 		    	<label for="ex_file">업로드</label>
-				<input type="hidden" name="r_code" value="${r_code}">
+				<input type="hidden" name="r_code" value="${r_code}"/>
 			</div>
 			<div class="col">
 		        <input multiple="multiple" type="file" name="file" />

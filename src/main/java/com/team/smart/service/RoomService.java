@@ -46,6 +46,9 @@ public interface RoomService {
 		
 		//결산 월별 월세총액
 		public void getmonthtotal(HttpServletRequest req,Model model);
+		
+		//임차인의 id를 이용한 해당 납부 목록 가져오기
+		public void getmemberpaylist(HttpServletRequest req,Model model);
 
 
 }

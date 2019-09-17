@@ -1,7 +1,7 @@
 package com.team.smart.room.vo;
 
 
-import java.sql.Timestamp;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

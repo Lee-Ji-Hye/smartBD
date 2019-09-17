@@ -52,5 +52,8 @@ public interface RoomDAO {
 		
 		//결산 월별 월세총합 getmonthtotal
 		public List<Map<String, Object>> getmonthtotal();
+		
+		//임차인의 id를 이용한 해당 납부 목록 가져오기
+		public List<RoomVO> getmemberpaylist(String memberid);
 
 }

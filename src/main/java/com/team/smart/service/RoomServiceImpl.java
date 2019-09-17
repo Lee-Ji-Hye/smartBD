@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -320,6 +321,19 @@ public class RoomServiceImpl implements RoomService{
 		
 		
 		req.setAttribute("dto", jsonutil.getJsonStringFromList(dto));
+		
+	}
+
+	//임차인의 id를 이용한 해당 납부 목록 가져오기
+	@Override
+	public void getmemberpaylist(HttpServletRequest req, Model model) {
+		
+		
+		String memberid = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		List<RoomVO> dto = dao.getmemberpaylist(memberid);
+		
+		req.setAttribute("dto", dto);
 		
 	}
 
