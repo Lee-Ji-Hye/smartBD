@@ -125,6 +125,12 @@ public class RoomDAOImpl implements RoomDAO{
 		return sqlSession.selectList("RoomDAO.getmemberpaylist",memberid);
 	}
 
+	// 병권 도우미 나중에 삭제하심~~~~~~~~~~~~~
+	@Override
+	public int roomDelete(String r_codes) {
+		// TODO 병권 도우미
+		return sqlSession.update("RoomDAO.roomDelete", r_codes);
+	}
 	
 
 }

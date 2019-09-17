@@ -114,4 +114,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and rc.userid=#{memberid}
 	</select>
 	
+	<!-- 매물 목록 삭제 -->
+	<update id="roomDelete" parameterType="String">
+		UPDATE room_tbl SET r_delete = 2 where r_code in(${value})
+	</update>
 </mapper>	   

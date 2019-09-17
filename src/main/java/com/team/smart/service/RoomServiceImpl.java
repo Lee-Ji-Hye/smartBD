@@ -16,6 +16,7 @@ import com.team.smart.room.vo.RoomVO;
 import com.team.smart.room.vo.TotalVO;
 import com.team.smart.utils.Functions;
 import com.team.smart.utils.JsonUtil;
+import com.team.smart.utils.Paging;
 
 
 @Service
@@ -123,72 +124,30 @@ public class RoomServiceImpl implements RoomService{
 	//매물 리스트
 	@Override
 	public void list(HttpServletRequest req, Model model) {
-		// 페이징 처리
-		int pageSize = 10;		// 한 페이지당 출력할 글 갯수
-		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		int bcnt = 0;			// 글 갯수
-		int start = 0;			// 현재페이지 시작 글번호
-		int end = 0;			// 현재페이지 마지막 글번호
-		int number = 0;			// 출력용 글번호
-		String pageNum = "";	// 페이지 번호
-		int currentPage = 0;	// 현재 페이지
-		int pageCount = 0;		// 페이지 갯수
-		int startPage = 0;		// 시작 페이지
-		int endPage = 0;		// 마지막 페이지
 		
 		//글갯수 구하기
 		bcnt = dao.getArticleCnt();
 		System.out.println("bcnt = " + bcnt);	// 먼저 테이블에 30건 insert
-		pageNum = req.getParameter("pageNum");
-		if(pageNum == null) {
-			pageNum = "1"; //첫페이지를 1페이지로 지정
-		}
-		currentPage = Integer.parseInt(pageNum); 	//현재페이지 : 1
+		String page = req.getParameter("page");
 		
-		System.out.println("currentPage :" + currentPage);
+		//페이징 처리
+		String uri = req.getRequestURI();
+		Paging paging = new Paging(10, 5, bcnt, uri);
+		paging.pagelist(page);
 		
-		pageCount = (bcnt / pageSize) + (bcnt % pageSize > 0 ? 1 : 0 ); // 페이지갯수 + 나머지 있으면 1
-		start = (currentPage - 1) * pageSize + 1;
-		end = start + pageSize - 1;
-		System.out.println("start : " + start);
-		System.out.println("end :" + end);
-		if(end > bcnt) end = bcnt;
-		
-		number = bcnt - (currentPage - 1) * pageSize;
-		System.out.println("number :" + number);
-		System.out.println("pageSize :" + pageSize);
-		
+		List<RoomVO> dtos = null;
 		if(bcnt > 0) {
 			//  게시글 목록 조회
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("start", start);
-			map.put("end", end);
-			List<RoomVO> dtos = dao.getArticleList(map);
-			req.setAttribute("dtos", dtos); //큰바구니 : 게시글 목록 cf)작은바구니 : 게시글 한건
-			
+			System.out.println(paging.getStart() + " / " + paging.getEnd());
+			map.put("start", paging.getStart());
+			map.put("end", paging.getEnd());
+			dtos = dao.getArticleList(map);
 		}
 		
-		startPage = (currentPage / pageBlock) * pageBlock + 1;
-		if(currentPage % pageBlock == 0) startPage -= pageBlock;
-		System.out.println("startPage :" + startPage);
-		
-		endPage = startPage + pageBlock - 1;
-		if(endPage > pageCount)endPage = pageCount;
-		System.out.println("endPage :" + endPage);
-		System.out.println("==========");
-		
-		model.addAttribute("cnt", bcnt);				//글갯수
-		model.addAttribute("number", number);		//출력용 글번호
-		model.addAttribute("pageNum", pageNum);		//페이지번호
-		
-		if(bcnt > 0) {
-			model.addAttribute("startPage", startPage);		//시작
-			model.addAttribute("endPage", endPage);			//마지막
-			model.addAttribute("pageBlock", pageBlock);		//출력할
-			model.addAttribute("pageCount", pageCount);		//페이지갯수
-			model.addAttribute("currentPage", currentPage);	//현재페이지
-		}
-						
+		model.addAttribute("dtos", dtos); //큰바구니 : 게시글 목록 cf)작은바구니 : 게시글 한건
+		model.addAttribute("paging", paging);
 	}
 
 	
@@ -335,6 +294,15 @@ public class RoomServiceImpl implements RoomService{
 		
 		req.setAttribute("dto", dto);
 		
+	}
+
+	//병권 도우미====================(이건 나중에 삭제하세요)
+	@Override
+	public int  roomDelete(HttpServletRequest req, Model model) {
+		// TODO 매물삭제
+		String r_codes = req.getParameter("r_codes");
+		return dao.roomDelete(r_codes);
+
 	}
 
 	

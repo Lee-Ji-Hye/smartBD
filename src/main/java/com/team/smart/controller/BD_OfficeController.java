@@ -248,4 +248,15 @@ public class BD_OfficeController {
 			
 			return mngBuilding_ + "/mempaylist";
 		}
+		
+		//병권 도우미=========================
+		//매물 삭제
+		@RequestMapping("roomDelete")
+		public @ResponseBody int roomDelete(HttpServletRequest req, Model model) {
+			//b_service.pageTest(req, model);
+			
+			int resut = r_service.roomDelete(req,model);
+			
+			return resut;
+		}
 }
