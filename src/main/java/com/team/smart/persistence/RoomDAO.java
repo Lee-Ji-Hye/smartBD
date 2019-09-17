@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.team.smart.room.vo.RoomVO;
 import com.team.smart.room.vo.TotalVO;
+import com.team.smart.vo.CompVO;
 
 @Repository
 public interface RoomDAO {
@@ -43,6 +44,15 @@ public interface RoomDAO {
 		
 		//슬라이드용 이미지 가져오기
 		public List<RoomVO> getImage(String r_code);
+		
+		//계약 총 글 수
+		public int getContractCnt();
+		
+		//계약리스트 가져오기
+		public List<RoomVO> getContractList(Map<String,Object> map);
+		
+		//계약 상세페이지
+		public RoomVO getContractDetail(String rt_code);
 		
 		//납부리스트 가져오기
 		public List<RoomVO> getpaylist();

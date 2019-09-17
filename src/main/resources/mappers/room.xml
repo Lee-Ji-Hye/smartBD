@@ -70,6 +70,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from room_img_tbl where r_code= #{r_code}
 	</select>
 	
+	<!-- 계약 총 글 수 -->
+	<select id="getContractCnt" resultType="int">
+		SELECT COUNT(*)
+		  FROM room_contract_tbl
+	</select>
+	
+	<!-- 계약리스트 -->
+	<select id="getContractList" parameterType="java.util.Map" resultType="com.team.smart.room.vo.RoomVO">
+		SELECT * 
+		  FROM (SELECT rowNum rNum,rt_code,r_code,rt_mobile,rt_email,TO_CHAR(rt_date1,'YYYY-MM-DD') as rt_date1
+		          FROM room_contract_tbl
+		  	<if test="sertext != '' ">
+		  	 WHERE rt_code like '%' ||  #{sertext} || '%' 
+				    OR r_code like '%' ||  #{sertext} || '%'
+				    OR rt_mobile like '%' ||  #{sertext} || '%' 
+				    OR rt_email like '%' ||  #{sertext} || '%' 
+			        OR rt_date1 like '%'|| #{sertext} || '%'
+		  	</if>
+			)
+	<![CDATA[
+		 WHERE rNum >=#{start} AND rNum <= #{end} ORDER BY rt_date1 desc
+	  ]]>
+	</select>
+	
+	<!-- 계약 상세정보 -->
+	<select id="getContractDetail" parameterType="String" resultType="com.team.smart.room.vo.RoomVO">
+		SELECT b.b_area1,b.b_area2,b.b_address,b.b_year,b.b_landarea,b.b_buildscale,b.b_buildarea
+			  ,TO_NUMBER(SUBSTR(r.r_code, 2)) as r_blockcode,r.r_type,r.r_price,r.r_deposit,r.r_premium
+			  ,c.rt_code,c.rt_hash,c.r_code,c.rt_mobile,c.rt_email,TO_CHAR(c.rt_date1,'YYYY-MM-DD') as rt_date1,TO_CHAR(c.rt_date2,'YYYY-MM-DD') as rt_date2
+			  ,u.name,u.hp,u.email
+		  FROM building_tbl b, room_tbl r, room_contract_tbl c, user_member_tbl u
+		 WHERE b.b_code = r.b_code
+		   AND r.r_code = c.r_code
+		   AND c.userid = u.userid
+		   AND c.rt_code = #{rt_code}
+	</select>
+	
 	<!-- 납부리스트 -->
 	<select id="getpaylist" resultType="com.team.smart.room.vo.RoomVO">
 		SELECT r.r_code, to_char(rt.rt_date1, 'YYYY-MM-DD') rt_date1 ,to_char(rt.rt_date2, 'YYYY-MM-DD') rt_date2,

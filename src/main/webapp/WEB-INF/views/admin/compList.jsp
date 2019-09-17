@@ -163,7 +163,7 @@ pageEncoding="UTF-8"%>
                     <div class="row mb-6">
                       <div class="col-3">
                         <span class="text-secondary">신청일:</span>
-                        <span class="font-weight-medium" id="details_comp_propose">2019-09-03</span>
+                        <span class="font-weight-medium" id="details_comp_propose"></span>
                       </div>
                       
                       <div class="col-3">

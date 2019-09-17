@@ -15,6 +15,8 @@ import com.team.smart.room.vo.RoomVO;
 import com.team.smart.room.vo.TotalVO;
 import com.team.smart.utils.Functions;
 import com.team.smart.utils.JsonUtil;
+import com.team.smart.utils.Paging;
+import com.team.smart.vo.CompVO;
 
 
 @Service
@@ -287,7 +289,56 @@ public class RoomServiceImpl implements RoomService{
 			req.setAttribute("icnt", cnt);
 		}
 	}
-
+	
+	//계약 리스트 가져오기
+	@Override
+	public void getContractList(HttpServletRequest req, Model model) {
+		
+		//현재페이지
+		String page = req.getParameter("page");
+		int bcnt = 0;
+		String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
+		
+		//글갯수 구하기
+		bcnt = dao.getContractCnt();
+		String uri = req.getRequestURI();
+		System.out.println("bcnt : " + bcnt);
+		System.out.println("uri : " + uri);
+	
+		//http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
+		if(!sertext.equals("")) {
+			uri = uri+"?sertext=" + sertext;
+		}
+		Paging paging = new Paging(3, 1, bcnt, uri);
+		paging.pagelist(page);
+		
+		if(bcnt > 0) {
+			
+			//게시글 목록 조회
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", paging.getStart());
+			map.put("end", paging.getEnd());
+			map.put("sertext", sertext);
+			System.out.println("리밋 : " + map);
+		
+			List<RoomVO> dtos = dao.getContractList(map);
+			req.setAttribute("dtos", dtos); //큰바구니 : 게시글 목록 cf)작은바구니 : 게시글 한건
+		}
+		
+		model.addAttribute("page",page);
+		model.addAttribute("paging",paging);
+		model.addAttribute("cnt", bcnt);		//글갯수
+		model.addAttribute("pageNum", page);	//페이지번호
+		model.addAttribute("sertext", sertext);	//${sertext}	
+	}
+	
+	//계약 상세페이지
+	@Override
+	public RoomVO getContractDetail(String rt_code) {
+		
+		return dao.getContractDetail(rt_code);
+	}
+	
 	//납부 리스트 가져오기
 	@Override
 	public void getpaylist(HttpServletRequest req, Model model) {

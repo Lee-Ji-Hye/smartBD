@@ -13,12 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.team.smart.room.vo.RoomVO;
 import com.team.smart.service.RoomService;
+import com.team.smart.vo.CompVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -166,18 +170,17 @@ public class BD_OfficeController {
 		//계약관리
 		@RequestMapping("roomcontract")
 		public String contractlist(HttpServletRequest req, Model model) {
-					
-					
-					
+			
+			r_service.getContractList(req, model);
+			
 			return mngBuilding_ + "/roomcontract";
 		}
 		
-		//계약서
-		@RequestMapping("contract")
-		public String news1(HttpServletRequest req, Model model) throws Exception{
-			//logger.info("url => news1 호출");
-					
-			return mngBuilding_ +"/contract";
+		///계약 목록 단건
+		@GetMapping({"/detail/{rt_code}"})
+		public @ResponseBody RoomVO contractDetail(HttpServletRequest req, @PathVariable String rt_code) {
+			log.info("url -> bd_office/detail/ get"+rt_code);
+			return r_service.getContractDetail(rt_code);
 		}
 		
 		//납부관리

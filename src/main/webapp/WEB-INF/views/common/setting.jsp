@@ -13,7 +13,5 @@
 <c:set var="path_a" value="/smart/admin"/> <!-- 관리자 url -->
 <c:set var="path_r_mng" value="/smart/bd_office"/>   <!-- 매니저 임대 url -->
 
-
-
 <!-- jQuery 스크립트  -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
