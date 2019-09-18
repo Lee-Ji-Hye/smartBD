@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team.smart.room.vo.RoomVO;
-import com.team.smart.room.vo.TotalVO;
 
 @Repository
 public class RoomDAOImpl implements RoomDAO{
@@ -108,6 +107,27 @@ public class RoomDAOImpl implements RoomDAO{
 		return sqlSession.selectList("RoomDAO.getGu",si);
 	}
 
+	
+	//계약 총 글 수 
+	public int getContractCnt() {
+		
+		return sqlSession.selectOne("RoomDAO.getContractCnt");
+	}
+	
+	//계약리스트 가져오기
+	@Override
+	public List<RoomVO> getContractList(Map<String,Object> map) {
+		
+		return sqlSession.selectList("RoomDAO.getContractList",map);
+	}
+	
+	//계약 상세페이지
+	@Override
+	public RoomVO getContractDetail(String rt_code) {
+		
+		return sqlSession.selectOne("RoomDAO.getContractDetail", rt_code);
+	}
+	
 	//납부리스트 가져오기
 	@Override
 	public List<RoomVO> getpaylist() {

@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.team.smart.room.vo.RoomVO;
-import com.team.smart.room.vo.TotalVO;
 
 @Repository
 public interface RoomDAO {
@@ -49,6 +48,16 @@ public interface RoomDAO {
 		
 		//구가져오기
 		public List<String> getGu(String si);
+		
+		//계약 총 글 수
+		public int getContractCnt();
+		
+		//계약리스트 가져오기
+		public List<RoomVO> getContractList(Map<String,Object> map);
+		
+		//계약 상세페이지
+		public RoomVO getContractDetail(String rt_code);
+		
 		//납부리스트 가져오기
 		public List<RoomVO> getpaylist();
 		

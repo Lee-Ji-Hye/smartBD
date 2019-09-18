@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.team.smart.room.vo.RoomVO;
+import com.team.smart.vo.CompVO;
 
 @Service
 public interface RoomService {
@@ -39,6 +40,12 @@ public interface RoomService {
 		
 		//슬라이드용 이미지 가져오기
 		public void getImage(HttpServletRequest req,Model model);
+		
+		//계약 리스트 가져오기
+		public void getContractList(HttpServletRequest req, Model model);
+		
+		//계약 상세페이지
+		public RoomVO getContractDetail(String rt_code);
 		
 		//납부 리스트 가져오기
 		public void getpaylist(HttpServletRequest req,Model model);
