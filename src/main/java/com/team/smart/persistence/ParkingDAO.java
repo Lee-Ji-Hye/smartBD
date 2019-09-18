@@ -95,6 +95,8 @@ public interface ParkingDAO {
 		
 		//주차장 매출 결산
 		public List<Map<String, Object>> paytotal(); 
+		//주차장 매출 결산
+		public List<Map<String, Object>> pricetotal(); 
 		//주차 요금 등록
 		public int insertprice(ParkingVO price);
 		//주차 요금 등록 갯수

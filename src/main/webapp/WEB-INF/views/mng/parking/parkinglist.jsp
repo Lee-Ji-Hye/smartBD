@@ -226,7 +226,7 @@
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_ocode}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_code}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.userid}</td>
-			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.p_state == 0}"> <input type="button" value="결재대기"></c:if>
+			                  <td class="align-middle text-secondary font-weight-normal ">
 			                  <c:if test="${dto.p_state == 0}">결제대기</c:if>
 			                  <c:if test="${dto.p_state == 1}">결제요청완료</c:if>
 			                  <c:if test="${dto.p_state == 2}">결제 완료</c:if>

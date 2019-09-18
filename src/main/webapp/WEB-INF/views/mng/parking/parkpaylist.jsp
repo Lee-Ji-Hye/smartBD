@@ -172,14 +172,14 @@
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	건물코드
+                      	결제코드
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	시간타입
+                      	입출차코드
                       <div class="ml-2">
                       </div>
                     </div>
@@ -187,42 +187,49 @@
                  
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	주차시간
+                      	아이디
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	부과금액
+                      	결제금액
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	초과시간
+                      	결제구분
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	초과금액
+                      	주차결제시간
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	등록자
+                      	주차권코드
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	등록일
+                      	결제시간
+                      <div class="ml-2">
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	상태
                       <div class="ml-2">
                       </div>
                     </div>
@@ -233,20 +240,21 @@
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
 			                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
-			                      <input type="checkbox" class="custom-control-input"  id="invoiceCheckbox0${status.count}" name="bp_seq" value="${dto.bp_seq}" >
+			                      <input type="checkbox" class="custom-control-input"  id="invoiceCheckbox0${status.count}" name="pay_seq" value="${dto.pay_seq}" >
 			                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
 			                       <span class="text-hide">Checkbox</span>
 			                      </label>
 			                    </div>
 			                  </td>
-			                  <td class="align-middle text-secondary font-weight-normal "><a onClick="location.href='${path}/bd_park/upprice?bp_seq=${dto.bp_seq}'">${dto.b_code}</a></td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.bp_type}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_time}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_price}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_free}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_free_price}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.reg_id}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.reg_date}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_seq}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.inoutcode}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.userid}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_price}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_type}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_enable_time}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.parking_code}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_day}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_state}</td>
 	              		</tr>
 	              		</c:forEach>
               

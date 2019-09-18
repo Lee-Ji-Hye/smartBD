@@ -70,7 +70,7 @@ public class ParkingVO {
 	private double reserved_position_y;
 	
 	//주차권 사용
-	private String inoutcoude;
+	private String inoutcode;
 	private String car_number_img;
 	private String parking_location;
 	private int   p_seq;           
@@ -84,5 +84,11 @@ public class ParkingVO {
     private int pb_price;
     private int pb_free;
     private int pb_free_price;
-   
+    
+    //결제테이블
+    private String pay_price;
+    private String pay_seq;
+    private String pay_type;
+    private String pay_enable_time;
+    private int pb_state;
 }

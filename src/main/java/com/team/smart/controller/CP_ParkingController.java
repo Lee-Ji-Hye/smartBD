@@ -120,6 +120,7 @@ public class CP_ParkingController {
 		@RequestMapping(value="/intromn/inst5")
 		public String total1(HttpServletRequest req, Model model) {
 			parkingService.paychart(req, model);
+			parkingService.pricechart(req, model);
 			return mngParking_+"/paytotal";
 		}
 		//주차장 현황

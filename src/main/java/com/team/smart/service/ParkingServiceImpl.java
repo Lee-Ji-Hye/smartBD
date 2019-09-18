@@ -56,7 +56,7 @@ public class ParkingServiceImpl implements ParkingService{
 		System.out.println("bcnt : " + bcnt);
 		System.out.println("uri : " + uri);
 
-		Paging paging = new Paging( 5, 3, bcnt, uri);
+		Paging paging = new Paging( 10, 3, bcnt, uri);
 		paging.pagelist(page);
 		
 		
@@ -288,7 +288,6 @@ public class ParkingServiceImpl implements ParkingService{
 						.p_ocode(p_ocode)
 						.p_code(p_code)
 						.userid(userid)
-						.inoutcoude(inoutcoude)
 						.car_number(car_number)
 						.car_number_img(fileName)
 						.kind_of_car(kind_of_car)
@@ -330,7 +329,7 @@ public class ParkingServiceImpl implements ParkingService{
 				if(!sertext.equals("")) {
 					uri = uri+"?sertext=" + sertext;
 				}
-				Paging paging = new Paging( 5, 3, bcnt, uri);
+				Paging paging = new Paging( 10, 3, bcnt, uri);
 				paging.pagelist(page);
 				
 				System.out.println(paging.getStart());
@@ -558,7 +557,7 @@ public class ParkingServiceImpl implements ParkingService{
 		System.out.println("bcnt : " + bcnt);
 		System.out.println("uri : " + uri);
 
-		Paging paging = new Paging( 1, 3, bcnt, uri);
+		Paging paging = new Paging( 10, 3, bcnt, uri);
 		paging.pagelist(page);
 		
 		String ser = "";
@@ -775,7 +774,7 @@ public class ParkingServiceImpl implements ParkingService{
 		if(!sertext.equals("")) {
 			uri = uri+"?sertext=" + sertext;
 		}
-		Paging paging = new Paging( 5, 3, bcnt, uri);
+		Paging paging = new Paging( 10, 3, bcnt, uri);
 		paging.pagelist(page);
 		
 		
@@ -798,6 +797,12 @@ public class ParkingServiceImpl implements ParkingService{
 		model.addAttribute("pageNum", page);		//페이지번호
 		model.addAttribute("sertext", sertext);		//${sertext}
 				
+	}
+	@Override
+	public void pricechart(HttpServletRequest req, Model model) {
+		List<Map<String,Object>> paydto = p_dao.pricetotal();
+		req.setAttribute("dto1", jsonutil.getJsonStringFromList(paydto));
+		
 	}
 	
 

@@ -35,10 +35,6 @@ public class ParkingDAOImpl implements ParkingDAO{
 	public int ticketreg(ParkingVO ticket) {
 		return sqlSession.insert("ParkingDAO.ticketreg", ticket);
 	}
-
-	
-
-	
 	@Override
 	public List<ParkingVO> buliding(String b_name) {
 		return sqlSession.selectList("ParkingDAO.buliding",b_name);
@@ -218,6 +214,11 @@ public class ParkingDAOImpl implements ParkingDAO{
 	@Override
 	public List<ParkingVO> pricepaylist(Map<String, Object> map) {
 		return sqlSession.selectList("ParkingDAO.pricepaylist",map);
+	}
+
+	@Override
+	public List<Map<String, Object>> pricetotal() {
+		return sqlSession.selectList("ParkingDAO.pricetotal");
 	}
 
 

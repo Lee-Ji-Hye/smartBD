@@ -45,13 +45,15 @@ public interface ParkingService {
 		public void updatemoneypro(HttpServletRequest req, Model model);
 		//주차 요금 삭제 처리
 		public void deletemoney(HttpServletRequest req, Model model);
-		//(돈)결산 차트
+		//(주차권돈)결산 차트
 		public void paychart(HttpServletRequest req,Model model);
+		//(요금결제)결산 차트
+		public void pricechart(HttpServletRequest req,Model model);
 		//주차권 수정처리
 		public void updatepro(HttpServletRequest req,Model model);
 		//주차 요금결제 내역 리스트 
 		public void pricepaylist(HttpServletRequest req,Model model);
-		//주차권 등록내역 리스트
+		//주차권 주문내역 리스트
 		public void ticketlist(HttpServletRequest req,Model model);
 		
 		//주차권 사용내역 리스트

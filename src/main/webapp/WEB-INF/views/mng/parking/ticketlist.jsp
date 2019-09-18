@@ -216,6 +216,7 @@
               </tr></thead>
               <tbody class="font-size-1" id="myTable">
               	<c:forEach var="dto" items="${dtos}" varStatus="status" >
+              	<c:if test="${dto.b_code == 'BD000001'}">
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
 			                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
@@ -239,7 +240,9 @@
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.update_id}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.update_date}</td>
 			                  <td class="align-middle text-primary"></td>
+	              		</c:if>
 	              		</tr>
+	              		
 	              		</c:forEach>
               	
               

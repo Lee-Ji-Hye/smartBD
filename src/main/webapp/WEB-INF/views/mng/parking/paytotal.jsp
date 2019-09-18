@@ -47,7 +47,7 @@
     <div class="grid">
         <div class="item">
             <div class="item-content">
-                <h2>입/출차 통계</h2>
+                <h2>월 매출 통계</h2>
                 <div id="7lfxIhp2GiscHjEmabeklB"></div>
             </div>
         </div>
@@ -332,22 +332,32 @@
 	//
 	//하이차트(div의 아이디값, chart데이터 객체)
 	//text로 변환 후에 JSON.parse안하면 오류남 (비동기떄문에 그런거같음)
-	//var textData =
+	//var textData 
 	//${dto}
+	//${dto1}
 	var chartData = JSON.parse('${dto}');
+	var chartData1 = JSON.parse('${dto1}')
 	var monthData = [];
+	var monthData1 = [];
 	var priceData = [];
-
+	var priceData1 = [];
+	
 	async function goWork(){
 	await conconcon();
 	console.dir(monthData);
+	console.dir(monthData1);
 	console.dir(priceData);
+	console.dir(priceData1);
 	};
 
 	function conconcon(){
 	for(key in chartData){
 	monthData.push(chartData[key].PAY_DAY);
 	priceData.push(chartData[key].P_OPRICE);
+	};
+	for(key1 in chartData1){
+	monthData1.push(chartData1[key1].PAY_DAY);
+	priceData1.push(chartData1[key1].PAY_PRICE);
 	};
 	};
 	goWork();
@@ -358,7 +368,7 @@
                 type: 'areaspline'
             },
             title: {
-                text: 'InOutCarTotal'
+                text: ''
             },
             legend: {
                 layout: 'vertical',
@@ -372,7 +382,7 @@
                     Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
             },
             xAxis: {
-                categories: monthData,
+                categories: monthData1,
                 plotBands: [{ // visualize the weekend
                     from: 4.5,
                     to: 6.5,
@@ -381,7 +391,7 @@
             },
             yAxis: {
                 title: {
-                    text: '월세금액'
+                    text: '2019년'
                 }
             },
             tooltip: {
@@ -398,12 +408,13 @@
             },
             //여기에 종류 추가해준다
             series: [{
-                name: '입차',
+                name: '주차권매출',
                 data: priceData
-            }, {
-                name: '출차',
-                data: priceData
-            }]
+            },{
+                name: '주차요금매출',
+                data: priceData1
+            }	
+            ]
             	
         });
     </script>
