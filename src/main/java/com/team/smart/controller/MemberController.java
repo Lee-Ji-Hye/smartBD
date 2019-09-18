@@ -101,9 +101,43 @@ public class MemberController {
 	public String member(HttpServletRequest req, Model model) {
 		log.info("url -> member/member");
 
-		return "redirect:/admin";
+		return "redirect:/member/member/list";
 	}
 
+	
+	//내 정보
+	@RequestMapping({"/member/list"})
+	public String memberlist(HttpServletRequest req, Model model) {
+		log.info("url -> member/list");
+
+		userService.getUserInfo(req, model);
+		return "signup/usermod";
+	}
+
+	
+	//정보 수정
+	@RequestMapping({"/member/modpro"})
+	public String membermod(HttpServletRequest req, Model model) {
+		log.info("url -> member/member/mod");
+
+		return "redirect:/member/member/list";
+	}
+	
+	//회원 탈퇴
+	@RequestMapping({"/member/delpro"})
+	public String memberdel(HttpServletRequest req, Model model) {
+		log.info("url -> member/member/delpro");
+
+		return "redirect:/member/member/list";
+	}
+
+	
+	
+	
+	
+	
+	
+	
 	//빌딩 등록등
 	@RequestMapping({"/bdmn"})
 	public String bdmn(HttpServletRequest req, Model model) {

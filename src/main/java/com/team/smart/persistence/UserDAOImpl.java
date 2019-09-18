@@ -1,5 +1,6 @@
 package com.team.smart.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,5 +56,55 @@ public class UserDAOImpl implements UserDAO {
 	public int insertAuthReq(AuthReqVO vo) {
 		return sqlSession.insert("UserDAO.insertAuthReq", vo);
 	}
+
+	
+	//정보수정
+	
+	
+    @Override
+    public int selectUserId(String userid) {
+        return sqlSession.selectOne("UserDAO.selectUserId", userid);
+    }
+
+    @Override
+    public String selectUserPW(String userpw) {
+        return sqlSession.selectOne("UserDAO.selectUserPW", userpw);
+    }
+
+
+    @Override
+    public int insertMember(UserVO vo) {
+        return sqlSession.insert("UserDAO.insertMember", vo);
+    }
+
+    @Override
+    public UserVO getUserInfo(String userid) {
+        return sqlSession.selectOne("UserDAO.getUserInfo", userid);
+    }
+
+    @Override
+    public int modifyUserInfo(UserVO vo) {
+        return sqlSession.update("UserDAO.modifyUserInfo", vo);
+    }
+
+    @Override
+    public int modifyUserPwd(String userid, String encodeNewPw) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("userid", userid);
+        map.put("encodeNewPw", encodeNewPw);
+        return sqlSession.update("UserDAO.modifyUserPwd", map);
+    }
+
+    @Override
+    public int userAuthChk(String userid) {
+        return sqlSession.selectOne("UserDAO.userAuthChk", userid);
+    }
+
+    @Override
+    public int modifyUserWithdraw(String userid) {
+        return sqlSession.delete("UserDAO.modifyUserWithdraw", userid);
+    }
+
+	
 
 }

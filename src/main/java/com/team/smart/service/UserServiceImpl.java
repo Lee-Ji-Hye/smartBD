@@ -2,6 +2,7 @@ package com.team.smart.service;
 
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -174,8 +175,204 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
+
+	
+	public void getUserInfo(HttpServletRequest req, Model model) {
+		//유저정보가져옴
+		model.addAttribute("userVO", dao.getUserInfo(SecurityContextHolder.getContext().getAuthentication().getName()));
+	}
 	
 	
+    @Override
+    public Map<String, Object> SignIn(UserVO vo, HttpServletRequest req, Model model) {
+        int responseCode = 499; //로그인 실패
+        Map<String, Object> map = new HashMap<String, Object>();
+        UserVO user = null;
+
+        if(vo == null) {
+            map.put("responseCode", 401);//파라미터 부재
+            map.put("user", null);
+            return map;
+        }
+
+        String userid = (vo.getUserid() == null)? "" : vo.getUserid(); // null or "" 두가지의 빈값을 ""로ㅗ만 사용하겠다
+        String userpw = (vo.getUserpw() == null)? "" : vo.getUserpw();
+
+        //필수값 체크
+        if(userid.equals("")) {
+            map.put("responseCode", 402);//아이디 부재
+            map.put("user", null);
+            return map;
+        } else if(userpw.equals("")) {
+            map.put("responseCode", 403);//비밀번호 부재
+            map.put("user", null);
+            return map;
+        }
+
+        //비밀번호 불러오기
+        String encode_pw = dao.selectUserPW(userid);
+
+        if(encode_pw == null || encode_pw.equals("")) {
+            map.put("responseCode", 404);//존재하지 않는아이디
+            map.put("user", null);
+            return map;
+        }
+
+        //비밀번호 비교
+        //pwEncoderr는 매번 새로운 암호코드를 생성하기 떄문에 비밀번호를 불러와서 비교해야함.
+        boolean is_match =  pwEncoder.matches(userpw, encode_pw);
+
+        if(!is_match) {
+            map.put("responseCode", 405);//비밀번호 불일치
+            map.put("user", null);
+            return map;
+        }
+
+        user = dao.getUserInfo(userid);
+
+        //유저정보는 1이나 안드에서 받는 형식에 맞춰야해서 유저정보를 List에 담아 보냄
+        //그냥 vo만 보내면 안드 형식에 안맞아서 앱에서 에러남
+        List<UserVO> list = new ArrayList<UserVO>();
+        list.add(user);
+
+        //로그인 성공!
+        map.put("responseCode", 400);
+        map.put("user", list);
+
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> modifyUserInfo(UserVO vo,HttpServletRequest req, Model model) {
+        int responseCode = 0;
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        if(vo == null) {
+            return null;
+        }
+
+        //존재하는 아이디 인지 확인
+        String encode_pw = dao.selectUserPW(vo.getUserid());
+
+        if(encode_pw == null || encode_pw.equals("")) {
+            map.put("responseCode", "404");//존재하지 않는아이디
+            return map;
+        }
+
+        //비밀번호 비교
+        boolean is_match =  pwEncoder.matches(vo.getUserpw(), encode_pw);
+
+        if(!is_match) {
+            map.put("responseCode", "405");//비밀번호 불일치
+            return map;
+        }
+
+        int result = dao.modifyUserInfo(vo);
+
+        if(result > 0) {
+            map.put("responseCode", "200");
+            map.put("responseMsg", "수정 성공");
+        } else {
+            map.put("responseCode", "999");
+            map.put("responseMsg", "수정 실패");
+        }
+
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> modifyUserPwd(HashMap<String, String> reqMap,HttpServletRequest req, Model model) {
+        int responseCode = 0;
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        if(reqMap == null) {
+            return null;
+        }
+
+        String userid = reqMap.get("userid");
+        String userpw = reqMap.get("userpw");
+        String userpw_new = reqMap.get("userpw_new");
+
+        //존재하는 아이디 인지 확인
+        String encode_pw = dao.selectUserPW(userid);
+
+
+        if(encode_pw == null || encode_pw.equals("")) {
+            map.put("responseCode", "404");//존재하지 않는아이디
+            return map;
+        }
+
+        //비밀번호 비교
+        boolean is_match =  pwEncoder.matches(userpw, encode_pw);
+
+        if(!is_match) {
+            map.put("responseCode", "405");//비밀번호 불일치
+            return map;
+        }
+
+        String encodeNewPw = pwEncoder.encode(userpw_new);
+
+        //비밀번호 변경
+        int result = dao.modifyUserPwd(userid, encodeNewPw);
+
+        if(result > 0) {
+            map.put("responseCode", "200");
+            map.put("responseMsg", "수정 성공");
+        } else {
+            map.put("responseCode", "999");
+            map.put("responseMsg", "수정 실패");
+        }
+
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> modifyUserWithdraw(HashMap<String, String> reqMap,HttpServletRequest req, Model model) {
+        int responseCode = 0;
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        if(reqMap == null) {
+            return null;
+        }
+
+        String userid = reqMap.get("userid");
+        String userpw = reqMap.get("userpw");
+        String userpw_new = reqMap.get("userpw_new");
+
+        //존재하는 아이디 인지 확인
+        String encode_pw = dao.selectUserPW(userid);
+
+        if(encode_pw == null || encode_pw.equals("")) {
+            map.put("responseCode", "404");//존재하지 않는아이디
+            return map;
+        }
+
+        //비밀번호 비교
+        boolean is_match =  pwEncoder.matches(userpw, encode_pw);
+
+        if(!is_match) {
+            map.put("responseCode", "405");//비밀번호 불일치
+            return map;
+        }
+
+        //관리자인지 확인
+        int is_auth = dao.userAuthChk(userid);
+        if(is_auth > 0) {
+            map.put("responseCode", "411");//관리자는 권한 강등 후 탈퇴할 수 있습니다.
+            return map;
+        }
+
+        //회원 탈퇴
+        int result = dao.modifyUserWithdraw(userid);
+        if(result > 0) {
+            map.put("responseCode", "410");
+        } else {
+            map.put("responseCode", "419");
+        }
+
+        return map;
+    }
+
 	
 
 }
