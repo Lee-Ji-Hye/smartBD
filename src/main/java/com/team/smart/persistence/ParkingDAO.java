@@ -1,5 +1,6 @@
 package com.team.smart.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,8 +8,14 @@ import com.team.smart.parking.vo.ParkingVO;
 
 
 public interface ParkingDAO {
-	//주차장현황 정보가져오기
-		public List<ParkingVO> getcurrentpark();
+		//주차장현황 정보가져오기
+		public List<ParkingVO> getcurrentpark(String b_code);
+		
+		//주차장 현황 갯수
+		public int getparkCnt(String b_code);
+		
+		//주차장 현황 리스트 
+		public List<ParkingVO> getparklist(Map<String, Object> map);
 		
 		//주차권 등록
 		public int ticketreg(ParkingVO ticket);
@@ -22,6 +29,24 @@ public interface ParkingDAO {
 		//건물 체크1
 		public int buildcount1(String b_name);
 		
+		//주차권 사용
+		public int ticketuse(ParkingVO ticket);
+		//주차권 사용 주차권 상품코드 불러오기 
+		public List<ParkingVO> ticketPG_CODE(String b_code);	
+		//주차권 사용 티켓 오더
+		public int ticketorder(ParkingVO order);
+		//주차권 주차 사용 주차 안된 위치 불러오기  
+		public List<ParkingVO> p_seq();
+		//주차권 사용 상세정보 테이블 정보변경
+		public int upstate(ParkingVO vo);
+		//주차권 사용 입출차 현황 insert
+		public int insertinout(ParkingVO vo);
+		//주차권 사용 아이디 체크
+		public int findid(String userid);
+		//주차권 사용 회원아이디 등록
+		public int insertid(ParkingVO vo);
+		//주차권 사용 티켓 히스토리
+		public int inserthistory(ParkingVO vo);
 		//주차권 수정
 		public int updateticket(ParkingVO ticket);
 		
@@ -64,10 +89,31 @@ public interface ParkingDAO {
 		//주차권 등록리스트
 		public List<ParkingVO> getinsertlist(Map<String, Object> map);
 	
-		//조회 카운트 
 		
 		//전체조회
 		public List<ParkingVO> getsearch(String ser);
 		
+		//주차장 매출 결산
+		public List<Map<String, Object>> paytotal(); 
+		//주차장 매출 결산
+		public List<Map<String, Object>> pricetotal(); 
+		//주차 요금 등록
+		public int insertprice(ParkingVO price);
+		//주차 요금 등록 갯수
+		public int getpriceCnt();
+		
+		//주차 요금 리스트 불러오기
+		public List<ParkingVO> getpricelist(Map<String, Object> map);
+		
+		//주차 요금 수정 리스트 불러오기
+		public List<ParkingVO> getupprice(int bp_seq);
+		//주차 요금 수정 처리
+		public int getuppricepro(ParkingVO price);
+		//주차 요금 삭제 처리
+		public int moneydelete(int bp_seq);
+		//주차요금 결제 갯수
+		public int getpricepaycnt();
+		//주차 요금 결제 내역 리스트
+		public List<ParkingVO> pricepaylist(Map<String, Object> map); 
 		
 }

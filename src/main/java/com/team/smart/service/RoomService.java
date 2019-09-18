@@ -45,5 +45,6 @@ public interface RoomService {
 		
 		//주소 gu가져오기
 		public List<String> getGu(String si);
-
+		
+		
 }

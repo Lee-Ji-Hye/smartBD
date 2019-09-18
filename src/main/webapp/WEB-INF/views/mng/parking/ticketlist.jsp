@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-
+	 
       <div class="container space-bottom-1 space-bottom-lg-0">
         <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
           <!-- Navbar -->
@@ -85,7 +85,7 @@
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
                       <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
-                        	주차권 사용 내역
+                        	주차권 주문 내역
                       </a>
                     </li>
                     <!-- Account Settings -->
@@ -97,6 +97,23 @@
                         data-animation-out="fadeOut">
                       <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/ticketlist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
                         	주차권 등록 내역
+                      </a>
+                    </li>
+                    <!-- Billing -->
+                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                        data-event="hover"
+                        data-animation-in="slideInUp"
+                        data-animation-out="fadeOut">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkpricelist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                        	주차  요금 내역
+                      </a>
+                    </li>
+                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                        data-event="hover"
+                        data-animation-in="slideInUp"
+                        data-animation-out="fadeOut">
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkpaylist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
+                        	주차  결제 내역
                       </a>
                     </li>
                     <!-- Billing -->
@@ -127,13 +144,13 @@
 			<div class="editBtnDiv01">
 			
 	<form method="get" id="form" name="form" >
-	 <input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}">
-    <input type="button" id="serBtn" value="검색"  class="btn btn-sm btn-soft-secondary transition-3d-hover"  >
-    <input type="button" id="ticketAddBtn" class="btn btn-sm btn-primary transition-3d-hover mr-1" value="등록" />
-    <input type="button" id="ticketDelBtn"  class="btn btn-sm btn-soft-secondary transition-3d-hover" value="삭제" />
+	 <input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}" style="position:relative;right:650px;top:40px; ">
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    <input type="button" id="serBtn" value="검색"  class="btn btn-sm btn-soft-secondary transition-3d-hover" style="position: relative;right:200px;" >
+    <input type="button" id="ticketAddBtn" class="btn btn-sm btn-primary transition-3d-hover mr-1" value="등록" style="position:relative;left:150px;"/>
+    <input type="button" id="ticketDelBtn"  class="btn btn-sm btn-soft-secondary transition-3d-hover" value="삭제"style="position:relative;left:150px;" />
   
    
- 	
  	<!-- <button type="button"> -->
           </div>
         </div>
@@ -146,7 +163,7 @@
               <thead>
               	<tr>
                   <th scope="col">
-                    <div class="custom-control custom-checkbox d-flex align-items-center">
+                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
                       <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox" >
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox">
                         <span class="text-hide">Checkbox</span>
@@ -198,11 +215,12 @@
                   </th>
               </tr></thead>
               <tbody class="font-size-1" id="myTable">
-              	<c:forEach var="dto" items="${dtos}" varStatus="status" begin="" end="">
+              	<c:forEach var="dto" items="${dtos}" varStatus="status" >
+              	<c:if test="${dto.b_code == 'BD000001'}">
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
-			                    <div class="custom-control custom-checkbox d-flex align-items-center">
-			                      <input type="checkbox" class="custom-control-input"  id="invoiceCheckbox0${status.count}" name="p_code" value="${dto.p_code}">
+			                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
+			                      <input type="checkbox" class="custom-control-input"  id="invoiceCheckbox0${status.count}" name="p_code" value="${dto.p_code}" >
 			                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
 			                       <span class="text-hide">Checkbox</span>
 			                      </label>
@@ -222,7 +240,9 @@
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.update_id}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.update_date}</td>
 			                  <td class="align-middle text-primary"></td>
+	              		</c:if>
 	              		</tr>
+	              		
 	              		</c:forEach>
               	
               
@@ -278,7 +298,6 @@
 		});
 		
 		$("#serBtn").click(function(){
-			alert("하이");
 			$("#form").attr("action","${path}/bd_park/ticketlist");
 			$("#form").submit();
 		});

@@ -292,6 +292,7 @@ public class RoomServiceImpl implements RoomService{
 		return dao.getGu(si);
 	}
 
+
 	
 	
 	

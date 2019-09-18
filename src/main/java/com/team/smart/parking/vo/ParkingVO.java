@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 public class ParkingVO {
 	// 주차장 현황 자동차 위치 및 상태
 	private String p1_floor; 
-	private double location_x;
-	private double location_y;
+	private double p_lat;
+	private double p_lot;
 	private int    park_state;
 	
 	// 주차권 등록 페이지
@@ -59,5 +59,36 @@ public class ParkingVO {
 	//주차권 발급내역
 	private String parking_code; 
 	private String car_number;   
-	private Timestamp use_day;      
+	private Timestamp use_day;   
+	
+	//주차장 상세내역
+	private String p_detail_floor;
+	private String ask;
+	private double disable_position_x;
+	private double disable_position_y;
+	private double reserved_position_x;
+	private double reserved_position_y;
+	
+	//주차권 사용
+	private String inoutcode;
+	private String car_number_img;
+	private String parking_location;
+	private int   p_seq;           
+	private String parking_state;
+    private String kind_of_car;
+    
+    //주차요금 등록
+    private int bp_seq;
+    private String bp_type;
+    private int pb_time;
+    private int pb_price;
+    private int pb_free;
+    private int pb_free_price;
+    
+    //결제테이블
+    private String pay_price;
+    private String pay_seq;
+    private String pay_type;
+    private String pay_enable_time;
+    private int pb_state;
 }

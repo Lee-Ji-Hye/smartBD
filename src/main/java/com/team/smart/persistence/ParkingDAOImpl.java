@@ -18,18 +18,23 @@ public class ParkingDAOImpl implements ParkingDAO{
 	SqlSession sqlSession;
 	
 	@Override
-	public List<ParkingVO> getcurrentpark() {
-		return sqlSession.selectList("ParkingDAO.getcurrentpark");
+	public List<ParkingVO> getcurrentpark(String b_code) {
+		return sqlSession.selectList("ParkingDAO.getcurrentpark",b_code);
+	}
+	
+	@Override
+	public List<ParkingVO> getparklist(Map<String, Object> map) {
+		return sqlSession.selectList("ParkingDAO.getparklist",map);
 	}
 
+	@Override
+	public int getparkCnt(String b_code) {
+		return sqlSession.selectOne("ParkingDAO.getparkCnt",b_code);
+	}
 	@Override
 	public int ticketreg(ParkingVO ticket) {
 		return sqlSession.insert("ParkingDAO.ticketreg", ticket);
 	}
-
-	
-
-	
 	@Override
 	public List<ParkingVO> buliding(String b_name) {
 		return sqlSession.selectList("ParkingDAO.buliding",b_name);
@@ -121,6 +126,106 @@ public class ParkingDAOImpl implements ParkingDAO{
 	public List<ParkingVO> getsearch(String ser) {
 		return sqlSession.selectList("ParkingDAO.getsearch",ser);
 	}
+
+	@Override
+	public int ticketuse(ParkingVO ticket) {
+		return sqlSession.insert("ParkingDAO.ticketuse",ticket);
+	}
+
+	@Override
+	public List<ParkingVO> ticketPG_CODE(String b_code) {
+		return sqlSession.selectList("ParkingDAO.ticketPG_CODE", b_code);
+	}
+
+	@Override
+	public int ticketorder(ParkingVO order) {
+		return sqlSession.insert("ParkingDAO.ticketorder",order);
+	}
+
+	@Override
+	public List<ParkingVO> p_seq() {
+		return sqlSession.selectList("ParkingDAO.p_seq");
+	}
+
+	@Override
+	public int upstate(ParkingVO vo) {
+		return sqlSession.update("ParkingDAO.upstate",vo);
+	}
+
+	@Override
+	public int insertinout(ParkingVO vo) {
+		return sqlSession.insert("ParkingDAO.insertinout",vo);
+	}
+
+	@Override
+	public int findid(String userid) {
+		return sqlSession.selectOne("ParkingDAO.findid",userid);
+	}
+
+	@Override
+	public int insertid(ParkingVO vo) {
+		return sqlSession.insert("ParkingDAO.insertid",vo);
+	}
+
+	@Override
+	public int inserthistory(ParkingVO vo) {
+		return sqlSession.insert("ParkingDAO.inserthistory",vo);
+	}
+
+	@Override
+	public List<Map<String, Object>> paytotal() {
+		return sqlSession.selectList("ParkingDAO.paytotal");
+	}
+
+	@Override
+	public int insertprice(ParkingVO price) {
+		return sqlSession.insert("ParkingDAO.insertprice", price);
+	}
+
+	@Override
+	public int getpriceCnt() {
+		return sqlSession.selectOne("ParkingDAO.getpriceCnt");
+	}
+
+	@Override
+	public List<ParkingVO> getpricelist(Map<String, Object> map) {
+		return sqlSession.selectList("ParkingDAO.getpricelist",map);
+	}
+
+	@Override
+	public List<ParkingVO> getupprice(int bp_seq) {
+		return sqlSession.selectList("ParkingDAO.getupprice",bp_seq);
+	}
+
+	@Override
+	public int getuppricepro(ParkingVO price) {
+		return sqlSession.update("ParkingDAO.getuppricepro",price);
+	}
+
+	@Override
+	public int moneydelete(int bp_seq) {
+		return sqlSession.delete("ParkingDAO.moneydelete",bp_seq);
+	}
+
+	@Override
+	public int getpricepaycnt() {
+		return sqlSession.selectOne("ParkingDAO.getpricepaycnt");
+	}
+	@Override
+	public List<ParkingVO> pricepaylist(Map<String, Object> map) {
+		return sqlSession.selectList("ParkingDAO.pricepaylist",map);
+	}
+
+	@Override
+	public List<Map<String, Object>> pricetotal() {
+		return sqlSession.selectList("ParkingDAO.pricetotal");
+	}
+
+
+
+	
+
+	
 
 	
 
