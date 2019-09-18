@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team.smart.room.vo.RoomVO;
+import com.team.smart.room.vo.TotalVO;
 
 @Repository
 public class RoomDAOImpl implements RoomDAO{
@@ -107,6 +108,39 @@ public class RoomDAOImpl implements RoomDAO{
 		return sqlSession.selectList("RoomDAO.getGu",si);
 	}
 
+	//납부리스트 가져오기
+	@Override
+	public List<RoomVO> getpaylist() {
+		
+		return sqlSession.selectList("RoomDAO.getpaylist");
+	}
+
+	@Override
+	public List<RoomVO> getpaydetail(String rt_code) {
+		
+		return sqlSession.selectList("RoomDAO.getpaydetail",rt_code);
+	}
+
+	//결산 월별 월세금액
+	@Override
+	public List<Map<String, Object>> getmonthtotal() {
+		
+		return sqlSession.selectList("RoomDAO.getmonthtotal");
+	}
+
+	//임차인의 id를 이용한 해당 납부 목록 가져오기
+	@Override
+	public List<RoomVO> getmemberpaylist(String memberid) {
+		
+		return sqlSession.selectList("RoomDAO.getmemberpaylist",memberid);
+	}
+
+	// 병권 도우미 나중에 삭제하심~~~~~~~~~~~~~
+	@Override
+	public int roomDelete(String r_codes) {
+		// TODO 병권 도우미
+		return sqlSession.update("RoomDAO.roomDelete", r_codes);
+	}
 	
 
 }

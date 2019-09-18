@@ -34,7 +34,7 @@ pageEncoding="UTF-8"%>
 			<!-- Buttons -->
 			<div class="editBtnDiv01">
 				<button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='roomupload'">등록</button>
-				<button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">삭제</button>
+				<button type="button" id="deleteBtn" class="btn btn-sm btn-soft-secondary transition-3d-hover">삭제</button>
 			</div>
 			<!-- End Buttons -->
           </div>
@@ -62,6 +62,18 @@ pageEncoding="UTF-8"%>
                    data-dt-pagination-prev-link-classes="page-link"
                    data-dt-pagination-prev-link-markup='<span aria-hidden="true">&laquo;</span>'>
               <thead>
+              <colgroup>
+					<col width="3%"/>
+					<col width="12%"/>
+					<col width="7%"/>
+					<col width="9%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+					<col width="9%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+				</colgroup>
               	<tr>
                   <th scope="col">
                     <div class="custom-control custom-checkbox d-flex align-items-center">
@@ -87,6 +99,20 @@ pageEncoding="UTF-8"%>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
+                      	분류
+                      <div class="ml-2">
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	타입
+                      <div class="ml-2">
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
                       	전세/월세
                       <div class="ml-2">
                       </div>
@@ -94,37 +120,49 @@ pageEncoding="UTF-8"%>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	금액
+                      	보증금
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	입주가능일
+                      	평수(㎡)
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	평수(㎡ 기준)
+                      	층수
+                      <div class="ml-2">
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      	작성자
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
               </thead>
               
-              
-              
-              
-              <c:if test="${cnt >0}">
+              <c:if test="${fn:length(dtos) == 0}">
+           		  <tbody class="font-size-1">
+	              	<tr>
+	                  <td class="align-middle" colspan="7" style="text-align: center;padding:100px">
+	                    	매물을 등록해주세요.
+	                  </td>
+             		</tbody>
+              </c:if>
+              <c:if test="${fn:length(dtos) != 0}">
               	<c:forEach var="dto" items="${dtos}" varStatus="status">
 	              		<tbody class="font-size-1">
 			              	<tr>
 			                  <td class="align-middle">
 			                    <div class="custom-control custom-checkbox d-flex align-items-center">
-			                      <input type="checkbox" class="custom-control-input" id="invoiceCheckbox0${status.count}">
+			                      <input type="checkbox" class="custom-control-input chkBtn" id="invoiceCheckbox0${status.count}" r_code="${dto.r_code}">
 			                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}">
 			                        <span class="text-hide">Checkbox</span>
 			                      </label>
@@ -132,47 +170,32 @@ pageEncoding="UTF-8"%>
 			                  </td>
 			                  <td class="align-middle text-secondary font-weight-normal "><a href="${path_r_mng}/roomdetail?r_code=${dto.r_code}">${dto.r_code}</a></td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_name}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">
+			                  	<c:if test="${dto.r_kind == 'RT'}">
+			                  		임대
+			                  	</c:if>
+			                  	<c:if test="${dto.r_kind == 'ST'}">
+			                  		상가
+			                  	</c:if>
+			                  </td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_type}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_price}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.r_able_date}</td>
-			                  <td class="align-middle text-primary">${dto.r_area}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">
+								<fmt:formatNumber value="${dto.r_price}" pattern="#,###.##"/>
+							  </td>
+			                  <td class="align-middle text-secondary font-weight-normal ">
+								<fmt:formatNumber value="${dto.r_deposit}" pattern="#,###.##"/>
+							  </td>
+			                  <td class="align-middle font-weight-normal">${dto.r_area}㎡</td>
+			                  <td class="align-middle text-primary">${dto.r_floor}</td>
+			                  <td class="align-middle font-weight-normal">${dto.userid}</td>
 	              		</tbody>
               	</c:forEach>
               </c:if>
-             
               
             </table>
           </div>
           <!-- End Activity Table -->
-          <!-- Pagination -->
-          <div class="pagingDivCenter01">
-	          <div class="pagingDivCenter02">
-	            <nav id="datatablePagination" aria-label="Activity pagination">
-	             <div class="dataTables_paginate paging_simple_numbers pagination mb-0" id="DataTables_Table_0_paginate">
-	             	<span class="page-item">
-	              	<a class="paginate_button previous page-link" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
-	             			<span aria-hidden="true">«</span>
-	             		</a>
-	             	</span>
-	             	<span style="display: flex;">
-	             		<span class="page-item">
-	             			<a class="paginate_button page-link" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a>
-	             		</span>
-	             		<span class="page-item active">
-	             			<a class="paginate_button current page-link" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">2</a>
-	             		</span>
-	             	</span>
-	             	<span class="page-item">
-	             		<a class="paginate_button next disabled page-link" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" id="DataTables_Table_0_next">
-	             		<span aria-hidden="true">»</span>
-	             		</a>
-	             	</span>
-	             </div>
-	            </nav>
-	            <small id="datatableInfo" class="text-secondary ml-auto"></small>
-	          </div>
-          </div>
-          <!-- End Pagination -->
+          ${paging.html_mk_page()}
         </div>
       </div>
     </div>
@@ -186,6 +209,44 @@ pageEncoding="UTF-8"%>
 	$(function(){
 		$("#invoiceToggleAllCheckbox").click(function(){
 			$(".custom-control-input").prop("checked", this.checked);
+		});
+		
+		$("#deleteBtn").click(function(){
+			
+			if(confirm('정말 삭제하시겠습니까?')) {
+
+				var r_codes = "";
+				$.each($(".chkBtn"), function(i, v){
+					var is_checked = $(v).is(":checked");
+					if(is_checked) {
+						console.log('aaa');
+						if(r_codes != "") r_codes += ",";
+						r_codes += "'" + $(v).attr("r_code")+"'";
+					}
+				});
+				
+				$.ajax({
+					 url : "/smart/bd_office/roomDelete"
+					,type : "GET"
+					,data : {"r_codes" : r_codes}
+					,dataType : "json"
+					,success:function(e){
+						
+						if(e > 0) {
+							alert("삭제되었습니다.");
+						} else {
+							alert("삭제 실패하였습니다.\n다시 시도해주세요.");
+						}
+						
+						location.reload(); //페이지 새로고침
+			        }
+					,error:function(request,status,error){
+					        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+				});
+			} 
+			
+			
 		});
 	});
 </script>

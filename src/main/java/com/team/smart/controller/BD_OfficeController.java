@@ -2,14 +2,20 @@ package com.team.smart.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -36,7 +42,7 @@ public class BD_OfficeController {
 	//매물 리스트
 	@RequestMapping("roomlist")
 	public String billing(HttpServletRequest req, Model model) {
-		//b_service.pageTest(req, model);
+		
 		
 		r_service.list(req,model);
 		
@@ -46,7 +52,7 @@ public class BD_OfficeController {
 		//매물 상세페이지
 		@RequestMapping("roomdetail")
 		public String roomdetail(HttpServletRequest req, Model model) {
-			//logger.info("URI -> sysmaster");
+			
 			
 			r_service.roomDetail(req, model);
 			r_service.getImage(req, model);
@@ -57,7 +63,7 @@ public class BD_OfficeController {
 		//매물 등록
 		@RequestMapping("roomupload")
 		public String roomupload(HttpServletRequest req, Model model) {
-			//logger.info("URI -> sysmaster");
+			
 			
 			String mode = (req.getParameter("mode") == null)? "insert" : req.getParameter("mode");
 			req.setAttribute("mode", mode);
@@ -153,14 +159,13 @@ public class BD_OfficeController {
 	            }
 	        }
 	        
-	        
-
-	        return mngBuilding_ + "/roomdetail?r_code=" + r_code;
+	        //return  "smart/bd_office/roomDetail?r_code="+r_code;
+	        return "redirect:/bd_office/roomdetail?r_code="+r_code;
 	    }
 		
 		//계약관리
 		@RequestMapping("roomcontract")
-		public String pay(HttpServletRequest req, Model model) {
+		public String contractlist(HttpServletRequest req, Model model) {
 					
 					
 					
@@ -174,5 +179,84 @@ public class BD_OfficeController {
 					
 			return mngBuilding_ +"/contract";
 		}
-	
+		
+		//납부관리
+		@RequestMapping("paylist")
+		public String paylist(HttpServletRequest req, Model model) {
+						
+			
+			r_service.getpaylist(req,model);
+						
+			return mngBuilding_ + "/paylist";
+		}
+		
+		//납부관리
+		@RequestMapping("paydetail")
+		public String paydetail(HttpServletRequest req, Model model) {
+								
+			r_service.getpaydetail(req,model);					
+								
+			return mngBuilding_ + "/paydetail";
+		}
+		
+		//결산페이지
+		@RequestMapping("total")
+		public String total(HttpServletRequest req, Model model) {
+			
+			
+			
+			r_service.getmonthtotal(req, model);						
+										
+			
+			
+			return mngBuilding_ + "/total";
+		}
+		
+		//날짜 계산 테스트
+		@RequestMapping("monthtest")
+		public @ResponseBody String testtest(HttpServletRequest req) throws ParseException {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+			Date date = format.parse("2019-12-31");
+
+	        // 날짜 더하기
+	        Calendar cal = Calendar.getInstance();
+	        cal.setTime(date);
+	        cal.add(Calendar.MONTH, 1);		//월 더하기
+
+			String plusMonth = format.format(cal.getTime());
+
+			return plusMonth;
+		}
+		
+		//임차인 계약정보가져오기 
+		@RequestMapping("memcontract")
+		public String memcontract(HttpServletRequest req, Model model) {
+			
+			
+			
+			
+			return mngBuilding_ + "/memcontract";
+		}
+		
+		//임차인 납부정보가져오기
+		@RequestMapping("mempaylist")
+		public String mempaylist(HttpServletRequest req, Model model) {
+			
+			
+			r_service.getmemberpaylist(req, model);
+			
+			return mngBuilding_ + "/mempaylist";
+		}
+		
+		//병권 도우미=========================
+		//매물 삭제
+		@RequestMapping("roomDelete")
+		public @ResponseBody int roomDelete(HttpServletRequest req, Model model) {
+			//b_service.pageTest(req, model);
+			
+			int resut = r_service.roomDelete(req,model);
+			
+			return resut;
+		}
 }

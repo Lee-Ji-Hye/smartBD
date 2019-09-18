@@ -129,28 +129,7 @@
                 </div>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link font-weight-medium" id="pills-two-tab" data-toggle="pill" href="#pills-two" role="tab" aria-controls="pills-two" aria-selected="false">
-                <div class="d-md-flex justify-content-md-center align-items-md-center">
-                  <figure class="ie-height-40 d-none d-md-block w-100 max-width-6 mr-3">
-                    <img class="js-svg-injector" src="${resourceImg}/room/icon-63.svg" alt="SVG"
-                         data-parent="#SVGnavIcons">
-                  </figure>
-                  	등록한매물사진
-                </div>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link font-weight-medium" id="pills-three-tab" data-toggle="pill" href="#pills-three" role="tab" aria-controls="pills-three" aria-selected="false">
-                <div class="d-md-flex justify-content-md-center align-items-md-center">
-                  <figure class="ie-height-40 d-none d-md-block w-100 max-width-6 mr-3">
-                    <img class="js-svg-injector" src="${resourceImg}/room/icon-5.svg" alt="SVG"
-                         data-parent="#SVGnavIcons">
-                  </figure>
-                  	시장 통계
-                </div>
-              </a>
-            </li>
+            
           </ul>
           <!-- End Nav Classic -->
 
@@ -711,7 +690,7 @@
       <!-- End Calculator Section -->
 
       <!-- Google Map Section -->
-      <div id="GMapCustomized-light" class="js-g-map embed-responsive embed-responsive-21by9"
+      <!-- <div id="GMapCustomized-light" class="js-g-map embed-responsive embed-responsive-21by9"
            data-type="custom"
            data-lat="40.674"
            data-lng="-73.946"
@@ -723,7 +702,7 @@
              ["", "", [{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]],
              ["", "labels", [{"visibility":"on"}]],
              ["water", "", [{"color":"#bac6cb"}]]
-           ]'></div>
+           ]'></div> -->
       <!-- End Google Map Section -->
 
       <!-- Similar Properties Section -->

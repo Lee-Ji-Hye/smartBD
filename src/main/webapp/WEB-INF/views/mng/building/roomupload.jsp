@@ -373,43 +373,15 @@
                    </label>
 
                   <div class="input-group">
-                    <textarea class="form-control" rows="6" name="r_desc"  placeholder="r_desc" aria-label="Listing description" 
-                              >${dto.r_desc}</textarea>
+                    <textarea class="form-control" rows="6" name="r_desc"  
+                    		  placeholder="r_desc" aria-label="Listing description" >
+                    		  ${dto.r_desc}
+                    </textarea>
                   </div>
                 </div>
                 <!-- End Input -->
               </div>
-
               
-
-         
-			
-          <!-- 이미지등록 -->
-          <div class="mb-7">
-            <!-- Title -->
-            <div class="border-bottom pb-3 mb-5">
-              <!-- <h2 class="h6 text-secondary mb-0">이미지 등록</h2> -->
-            </div>
-            <!-- End Title -->
-
-            <!-- File Attachment Input -->
-            <div class="u-dropzone">
-              <div class="dz-message">
-                <%-- <img class="js-svg-injector max-width-10 mb-3" src="${resourceImg}/room/add-file.svg" alt="SVG"
-                     data-parent="#uploadForm"> --%>
-                      <input type="button" class="img-button">
-                <span class="d-block mb-2">대표이미지를 등록해주세요</span>
-                <small class="d-block text-muted">Maximum file size is 2MB</small>
-              </div>
-            </div>
-            <!-- End File Attachment Input -->
-          </div>
-          <!-- End Upload Images -->
-          
-
-
-			
-
           <button type="submit" id="editBtn" class="btn btn-primary btn-block transition-3d-hover">${(mode == 'insert')? "등록" : "수정"}</button> 
           
         </form>
