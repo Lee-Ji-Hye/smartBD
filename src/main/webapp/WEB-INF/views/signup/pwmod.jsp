@@ -27,7 +27,7 @@
     <!-- Hire Us Form Section -->
     <div class="container space-bottom-2">
       <!-- Hire Us Form -->
-      <form class="js-validate w-lg-50 mx-auto" action="/smart/member/member/infomodpro" method="post" name="signUpForm">
+      <form class="js-validate w-lg-50 mx-auto" action="/smart/member/member/pwmodpro" method="post" name="signUpForm">
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                  
         <!-- Input -->
         <div class="js-form-message mb-6">
@@ -38,26 +38,11 @@
 			<span class="form-control">${userVO.userid}</span>
         </div>
         <!-- End Input -->
-                  
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            Your name
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="name" placeholder="Kim MinKyung" aria-label="Kim MinKyung" required
-                 data-msg="Please enter your name."
-                 data-error-class="u-has-error"
-                 data-success-class="u-has-success"
-                 value="${userVO.name}">
-        </div>
-        <!-- End Input -->
 
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
-            password
+            current password
             <span class="text-danger">*</span>
           </label>
 
@@ -68,11 +53,26 @@
         </div>
         <!-- End Input -->
       
+        
+        <!-- Input -->
+        <div class="js-form-message mb-6">
+          <label class="form-label">
+            new password
+            <span class="text-danger">*</span>
+          </label>
+
+          <input type="password" class="form-control" name="newuserpw" placeholder="Password" aria-label="Password" required
+                 data-msg="Please enter your password."
+                 data-error-class="u-has-error"
+                 data-success-class="u-has-success">
+        </div>
+        <!-- End Input -->
+      
       
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
-            password check
+            new password check
             <span class="text-danger">*</span>
           </label>
 
@@ -82,49 +82,15 @@
                  data-success-class="u-has-success">
         </div>
         <!-- End Input -->
-        
-        
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            Your email address
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="email" class="form-control" name="email" placeholder="minkyung@gmail.com" aria-label="minkyung@gmail.com" required
-                 data-msg="Please enter a valid email address."
-                 data-error-class="u-has-error"
-                 data-success-class="u-has-success"
-                 value = "${userVO.email}">
-        </div>
-        <!-- End Input -->
-
-        <!-- Input -->
-        <div class="js-form-message mb-6">
-          <label class="form-label">
-            Your phone number
-            <span class="text-danger">*</span>
-          </label>
-
-          <input type="text" class="form-control" name="hp" placeholder="010-0000-0000" aria-label="010-0000-0000" required
-                 data-msg="Please enter a your phone number."
-                 data-error-class="u-has-error"
-                 data-success-class="u-has-success"
-                 value = "${userVO.hp}">
-        </div>
-        <!-- End Input -->
-        
+                
         <div class="text-center">
-
+        
+        
         
           <div class="mb-2">
             <button type="button" name="btnSubmit" class="btn btn-primary transition-3d-hover">정보 수정</button>
           </div>
           
-          <div class="mb-2">
-            <button type="button" name="button" class="btn  transition-3d-hover" onclick="window.location = '${path}/member/member/pwmod'">비밀번호 변경 가기</button>
-            <button type="button" name="button" class="btn  transition-3d-hover" onclick="window.location = '${path}/member/member/del'">회원 탈퇴 가기</button>
-          </div>
         </div>
       </form>
       <!-- End Hire Us Form -->

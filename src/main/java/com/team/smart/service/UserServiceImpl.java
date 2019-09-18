@@ -243,8 +243,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> modifyUserInfo(UserVO vo,HttpServletRequest req, Model model) {
+    public Map<String, Object> modifyUserInfo(HttpServletRequest req, Model model) {
         int responseCode = 0;
+
+		UserVO vo = UserVO.builder()
+				.userid(SecurityContextHolder.getContext().getAuthentication().getName())//아이디
+				.userpw(req.getParameter("userpw"))//비밀번호
+				.name(req.getParameter("name"))//이름
+				.email(req.getParameter("email"))//이메일
+				.hp(req.getParameter("hp"))//핸드폰번호
+				.build();
+		
+        
         Map<String, Object> map = new HashMap<String, Object>();
 
         if(vo == null) {
@@ -252,7 +262,7 @@ public class UserServiceImpl implements UserService {
         }
 
         //존재하는 아이디 인지 확인
-        String encode_pw = dao.selectUserPW(vo.getUserid());
+        String encode_pw = dao.selectUserPW(SecurityContextHolder.getContext().getAuthentication().getName());
 
         if(encode_pw == null || encode_pw.equals("")) {
             map.put("responseCode", "404");//존재하지 않는아이디
@@ -281,36 +291,35 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> modifyUserPwd(HashMap<String, String> reqMap,HttpServletRequest req, Model model) {
-        int responseCode = 0;
+    public Map<String, Object> modifyUserPwd(HttpServletRequest req, Model model) {
+    	
+
+//		UserVO vo = UserVO.builder()
+//				.userid(req.getParameter("userid"))//아이디
+//				.userpw(pwEncoder.encode(req.getParameter("userpw")))//비밀번호
+//				.name(req.getParameter("name"))//이름
+//				.email(req.getParameter("email"))//이메일
+//				.hp(req.getParameter("hp"))//핸드폰번호
+//				.build();
+//		
+    	
         Map<String, Object> map = new HashMap<String, Object>();
 
-        if(reqMap == null) {
-            return null;
-        }
 
-        String userid = reqMap.get("userid");
-        String userpw = reqMap.get("userpw");
-        String userpw_new = reqMap.get("userpw_new");
+        String userid = SecurityContextHolder.getContext().getAuthentication().getName();
+        String currentpw = req.getParameter("userpw");
+        String userpw = req.getParameter("newuserpw");
 
         //존재하는 아이디 인지 확인
         String encode_pw = dao.selectUserPW(userid);
 
 
-        if(encode_pw == null || encode_pw.equals("")) {
-            map.put("responseCode", "404");//존재하지 않는아이디
-            return map;
-        }
-
-        //비밀번호 비교
-        boolean is_match =  pwEncoder.matches(userpw, encode_pw);
-
-        if(!is_match) {
+        if(!pwEncoder.matches(currentpw, encode_pw)) {
             map.put("responseCode", "405");//비밀번호 불일치
             return map;
         }
 
-        String encodeNewPw = pwEncoder.encode(userpw_new);
+        String encodeNewPw = pwEncoder.encode(userpw);
 
         //비밀번호 변경
         int result = dao.modifyUserPwd(userid, encodeNewPw);
@@ -327,17 +336,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> modifyUserWithdraw(HashMap<String, String> reqMap,HttpServletRequest req, Model model) {
+    public Map<String, Object> modifyUserWithdraw(HttpServletRequest req, Model model) {
         int responseCode = 0;
         Map<String, Object> map = new HashMap<String, Object>();
+        
 
-        if(reqMap == null) {
-            return null;
-        }
-
-        String userid = reqMap.get("userid");
-        String userpw = reqMap.get("userpw");
-        String userpw_new = reqMap.get("userpw_new");
+        String userid = SecurityContextHolder.getContext().getAuthentication().getName();
+        String userpw = req.getParameter("userpw");
 
         //존재하는 아이디 인지 확인
         String encode_pw = dao.selectUserPW(userid);
@@ -347,10 +352,7 @@ public class UserServiceImpl implements UserService {
             return map;
         }
 
-        //비밀번호 비교
-        boolean is_match =  pwEncoder.matches(userpw, encode_pw);
-
-        if(!is_match) {
+        if(!pwEncoder.matches(userpw, encode_pw)) {
             map.put("responseCode", "405");//비밀번호 불일치
             return map;
         }

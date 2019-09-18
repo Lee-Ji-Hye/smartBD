@@ -40,13 +40,13 @@ public interface UserService {
     public Map<String, Object> SignIn(UserVO vo,HttpServletRequest req, Model model);
 
     //유저 정보 수정
-    public Map<String, Object> modifyUserInfo(UserVO vo,HttpServletRequest req, Model model);
+    public Map<String, Object> modifyUserInfo(HttpServletRequest req, Model model);
 
     //유저 비밀번호 변경
-    public Map<String, Object> modifyUserPwd(HashMap<String, String> map, HttpServletRequest req, Model model);
+    public Map<String, Object> modifyUserPwd(HttpServletRequest req, Model model);
 
     //회원 탈퇴
-    public Map<String, Object> modifyUserWithdraw(HashMap<String, String> map, HttpServletRequest req, Model model);
+    public Map<String, Object> modifyUserWithdraw(HttpServletRequest req, Model model);
 	
 	
 }

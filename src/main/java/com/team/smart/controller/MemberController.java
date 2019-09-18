@@ -1,5 +1,6 @@
 package com.team.smart.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,11 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.smart.service.RoomService;
 import com.team.smart.service.UserService;
+import com.team.smart.vo.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -116,19 +119,42 @@ public class MemberController {
 
 	
 	//정보 수정
-	@RequestMapping({"/member/modpro"})
-	public String membermod(HttpServletRequest req, Model model) {
+	@RequestMapping({"/member/infomodpro"})
+	public String memberinfomodpro(HttpServletRequest req, Model model) {
 		log.info("url -> member/member/mod");
-
+		userService.modifyUserInfo(req, model);
 		return "redirect:/member/member/list";
 	}
+
+	//정보 수정
+	@RequestMapping({"/member/pwmod"})
+	public String memberpwmod(HttpServletRequest req, Model model) {
+		log.info("url -> member/member/pwmod");
+		userService.getUserInfo(req, model);
+		return "signup/pwmod";
+	}
 	
+	//정보 수정
+	@RequestMapping({"/member/pwmodpro"})
+	public String memberpwmodpro(HttpServletRequest req, Model model) {
+		log.info("url -> member/member/mod");
+		userService.modifyUserPwd(req, model);
+		return "redirect:/member/member/list";
+	}
+
+	//회원 탈퇴
+	@RequestMapping({"/member/del"})
+	public String memberdel(HttpServletRequest req, Model model) {
+		log.info("url -> member/member/del");
+		userService.getUserInfo(req, model);
+		return "signup/deluser";
+	}
 	//회원 탈퇴
 	@RequestMapping({"/member/delpro"})
-	public String memberdel(HttpServletRequest req, Model model) {
+	public String memberdelpro(HttpServletRequest req, Model model) {
 		log.info("url -> member/member/delpro");
-
-		return "redirect:/member/member/list";
+		userService.modifyUserWithdraw(req, model);
+		return "redirect:/logout";
 	}
 
 	
