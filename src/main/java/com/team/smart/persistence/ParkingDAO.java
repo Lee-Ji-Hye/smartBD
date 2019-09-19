@@ -86,7 +86,7 @@ public interface ParkingDAO {
 		public List<ParkingVO> getorderlist(Map<String, Object> map);
 		
 		//주차권 등록  갯수
-		public int getinsertCnt();
+		public int getinsertCnt(Map<String, Object> map1);
 		
 		//주차권 등록리스트
 		public List<ParkingVO> getinsertlist(Map<String, Object> map);
@@ -102,7 +102,7 @@ public interface ParkingDAO {
 		//주차 요금 등록
 		public int insertprice(ParkingVO price);
 		//주차 요금 등록 갯수
-		public int getpriceCnt();
+		public int getpriceCnt(Map<String, Object> map1);
 		
 		//주차 요금 리스트 불러오기
 		public List<ParkingVO> getpricelist(Map<String, Object> map);
@@ -114,7 +114,7 @@ public interface ParkingDAO {
 		//주차 요금 삭제 처리
 		public int moneydelete(int bp_seq);
 		//주차요금 결제 갯수
-		public int getpricepaycnt();
+		public int getpricepaycnt(Map<String, Object> map1);
 		//주차 요금 결제 내역 리스트
 		public List<ParkingVO> pricepaylist(Map<String, Object> map); 
 		

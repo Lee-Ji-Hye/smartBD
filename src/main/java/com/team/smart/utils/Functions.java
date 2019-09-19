@@ -47,7 +47,7 @@ public class Functions {
 		} else if(codeColumn.equals("p_code")) {
 			strCode = "PG";//PG000001	
 		}else if(codeColumn.equals("inoutcode")) {
-			strCode = "PIO";//PIO00001	
+			strCode = "PI";//PI000001	
 		}else if(codeColumn.equals("p_ocode")) {
 			strCode = "PK";//PIO00001	
 		}else if(codeColumn.equals("pay_code")) {

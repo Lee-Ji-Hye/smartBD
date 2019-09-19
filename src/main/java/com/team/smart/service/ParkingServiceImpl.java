@@ -325,18 +325,23 @@ public class ParkingServiceImpl implements ParkingService{
 				String page = req.getParameter("page");
 				int bcnt = 0;
 				String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
-				
+				String b_code = (String) req.getSession().getAttribute("b_code");
+				System.out.println("b_code" + b_code);
 				//글갯수 구하기
-				bcnt = p_dao.getinsertCnt(); //총게시글 수
+				
 				String uri = req.getRequestURI();
-				System.out.println("bcnt : " + bcnt);
-				System.out.println("uri : " + uri);
-
 				//http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
 				if(!sertext.equals("")) {
 					uri = uri+"?sertext=" + sertext;
 				}
-				Paging paging = new Paging( 10, 3, bcnt, uri);
+				Map<String, Object> map1 = new HashMap<String, Object>();
+				map1.put("sertext",sertext);
+				map1.put("b_code",b_code);
+				bcnt = p_dao.getinsertCnt(map1); //총게시글 수
+				
+				System.out.println("bcnt : " + bcnt);
+				System.out.println("uri : " + uri);
+				Paging paging = new Paging( 5, 3, bcnt, uri);
 				paging.pagelist(page);
 				
 				System.out.println(paging.getStart());
@@ -347,6 +352,7 @@ public class ParkingServiceImpl implements ParkingService{
 					map.put("start", paging.getStart());
 					map.put("end", paging.getEnd());
 					map.put("sertext",sertext);
+					map.put("b_code",b_code);
 					System.out.println("리밋 : " + map);
 					List<ParkingVO> dtos = p_dao.getinsertlist(map);
 					req.setAttribute("dtos", dtos); //큰바구니 : 게시글 목록 cf)작은바구니 : 게시글 한건
@@ -555,50 +561,34 @@ public class ParkingServiceImpl implements ParkingService{
 	//조회
 	@Override
 	public void search(HttpServletRequest req, Model model) {
-		String page = req.getParameter("page");
-		int bcnt = 0;
-		//글갯수 구하기
-		bcnt = p_dao.getinsertCnt(); //총게시글 수
-		String uri = req.getRequestURI();
-		System.out.println("bcnt : " + bcnt);
-		System.out.println("uri : " + uri);
-
-		Paging paging = new Paging( 10, 3, bcnt, uri);
-		paging.pagelist(page);
-		
-		String ser = "";
-		if(bcnt > 0) {
-		if(req.getParameter("test1") ==  null) {
-			return;
-		}else if(req.getParameter("test1") != null) {
-			ser = req.getParameter("test1");
-			if((ser + "") == "") {
-				List<ParkingVO> dtos = p_dao.getsearch(ser);
-				model.addAttribute("dtos",dtos);
-			}else if(Integer.parseInt(ser) >=0) {
-				List<ParkingVO> dtos = p_dao.getsearch(ser);
-				model.addAttribute("dtos",dtos);
-			}
-			
-		}
-		
-		
-		
-			
-			//  게시글 목록 조회
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("start", paging.getStart());
-			map.put("end", paging.getEnd());
-			map.put("ser",ser);
-			System.out.println("리밋 : " + map);
-			List<ParkingVO> dtos = p_dao.getinsertlist(map);
-			req.setAttribute("dtos", dtos); //큰바구니 : 게시글 목록 cf)작은바구니 : 게시글 한건
-			
-		}
-		model.addAttribute("page",page);
-		model.addAttribute("paging",paging);
-		model.addAttribute("cnt", bcnt);				//글갯수
-		
+		/*
+		 * String page = req.getParameter("page"); int bcnt = 0; //글갯수 구하기 bcnt =
+		 * p_dao.getinsertCnt(); //총게시글 수 String uri = req.getRequestURI();
+		 * System.out.println("bcnt : " + bcnt); System.out.println("uri : " + uri);
+		 * 
+		 * Paging paging = new Paging( 10, 3, bcnt, uri); paging.pagelist(page);
+		 * 
+		 * String ser = ""; if(bcnt > 0) { if(req.getParameter("test1") == null) {
+		 * return; }else if(req.getParameter("test1") != null) { ser =
+		 * req.getParameter("test1"); if((ser + "") == "") { List<ParkingVO> dtos =
+		 * p_dao.getsearch(ser); model.addAttribute("dtos",dtos); }else
+		 * if(Integer.parseInt(ser) >=0) { List<ParkingVO> dtos = p_dao.getsearch(ser);
+		 * model.addAttribute("dtos",dtos); }
+		 * 
+		 * }
+		 * 
+		 * 
+		 * 
+		 * 
+		 * // 게시글 목록 조회 Map<String, Object> map = new HashMap<String, Object>();
+		 * map.put("start", paging.getStart()); map.put("end", paging.getEnd());
+		 * map.put("ser",ser); System.out.println("리밋 : " + map); List<ParkingVO> dtos =
+		 * p_dao.getinsertlist(map); req.setAttribute("dtos", dtos); //큰바구니 : 게시글 목록
+		 * cf)작은바구니 : 게시글 한건
+		 * 
+		 * } model.addAttribute("page",page); model.addAttribute("paging",paging);
+		 * model.addAttribute("cnt", bcnt); //글갯수
+		 */
 		
 	}
 	//입출차 결산
@@ -690,17 +680,23 @@ public class ParkingServiceImpl implements ParkingService{
 		String page = req.getParameter("page");
 		int bcnt = 0;
 		String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
-		
+		String b_code = (String)req.getSession().getAttribute("b_code");
 		//글갯수 구하기
-		bcnt = p_dao.getpriceCnt(); //총게시글 수
+		
 		String uri = req.getRequestURI();
-		System.out.println("bcnt : " + bcnt);
-		System.out.println("uri : " + uri);
+		
 
 		//http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
 		if(!sertext.equals("")) {
 			uri = uri+"?sertext=" + sertext;
 		}
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("sertext",sertext);
+		map1.put("b_code",b_code);
+		bcnt = p_dao.getpriceCnt(map1); //총게시글 수
+		System.out.println(bcnt);
+		System.out.println("bcnt : " + bcnt);
+		System.out.println("uri : " + uri);
 		Paging paging = new Paging( 5, 3, bcnt, uri);
 		paging.pagelist(page);
 		
@@ -712,6 +708,7 @@ public class ParkingServiceImpl implements ParkingService{
 			map.put("start", paging.getStart());
 			map.put("end", paging.getEnd());
 			map.put("sertext",sertext);
+			map.put("b_code",b_code);
 			System.out.println("리밋 : " + map);
 			List<ParkingVO> dtos = p_dao.getpricelist(map);
 			req.setAttribute("dtos", dtos); //큰바구니 : 게시글 목록 cf)작은바구니 : 게시글 한건
@@ -763,23 +760,28 @@ public class ParkingServiceImpl implements ParkingService{
 		model.addAttribute("check",check);	
 		
 	}
-	//주차요금리스트
+	//주차요금결제리스트
 	@Override
 	public void pricepaylist(HttpServletRequest req, Model model) {
 		String page = req.getParameter("page");
 		int bcnt = 0;
 		String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
-		
+		String b_code = (String)req.getSession().getAttribute("b_code");
 		//글갯수 구하기
-		bcnt = p_dao.getpricepaycnt(); //총게시글 수
+		
 		String uri = req.getRequestURI();
-		System.out.println("bcnt : " + bcnt);
-		System.out.println("uri : " + uri);
+		
 
 		//http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
 		if(!sertext.equals("")) {
 			uri = uri+"?sertext=" + sertext;
 		}
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("sertext",sertext);
+		map1.put("b_code",b_code);
+		bcnt = p_dao.getpricepaycnt(map1); //총게시글 수 
+		System.out.println("bcnt : " + bcnt);
+		System.out.println("uri : " + uri);
 		Paging paging = new Paging( 10, 3, bcnt, uri);
 		paging.pagelist(page);
 		

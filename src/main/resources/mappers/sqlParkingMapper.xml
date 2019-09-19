@@ -123,19 +123,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 ]]>
 	</select>
 	
-	<select id="getinsertCnt" resultType="int">
-		select count(*) from parking_ticket_info_tbl  
+	<select id="getinsertCnt" resultType="int" parameterType="java.util.Map">
+		select count(*) from parking_ticket_info_tbl where b_code = #{b_code}
+		  	<if test="sertext != '' ">
+		  	  		AND p_code like '%' ||  #{sertext} || '%' 
+				    OR B_CODE = #{b_code} 
+                    AND B_CODE like '%' || #{sertext} || '%'
+                    OR B_CODE = #{b_code} 
+                    AND  P_TYPE like '%' || #{sertext}  || '%' 
+                    OR B_CODE = #{b_code} 
+                    AND  REG_ID like '%' || #{sertext}  || '%' 
+                    OR B_CODE = #{b_code} 
+                    AND  REG_DATE like '%'|| #{sertext}  || '%'   
+		  	</if>
 	</select>
 	
 	<select id="getinsertlist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
 		select * 
 		  from (select pt.*,rownum rNum from parking_ticket_info_tbl  pt
+		  	WHERE B_CODE = #{b_code} 
 		  	<if test="sertext != '' ">
-		  	 WHERE p_code like '%' ||  #{sertext} || '%' 
-				    OR B_CODE like '%' ||  #{sertext} || '%'
-				    OR P_TYPE like '%' ||  #{sertext} || '%' 
-				    OR REG_ID like '%' ||  #{sertext} || '%' 
-			        OR REG_DATE like '%'|| #{sertext} || '%'
+		  	  		AND p_code like '%' ||  #{sertext} || '%' 
+				    OR B_CODE = #{b_code} 
+                    AND B_CODE like '%' || #{sertext} || '%'
+                    OR B_CODE = #{b_code} 
+                    AND  P_TYPE like '%' || #{sertext}  || '%' 
+                    OR B_CODE = #{b_code} 
+                    AND  REG_ID like '%' || #{sertext}  || '%' 
+                    OR B_CODE = #{b_code} 
+                    AND  REG_DATE like '%'|| #{sertext}  || '%'
+			        
 		  	</if>
 			)
 	<![CDATA[
@@ -213,21 +230,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		GROUP by (substr(pay_day,1,5))
 		order by (substr(pay_day,1,5))
 	</select>
-	<select id="getpriceCnt" resultType="int">
-		select count(*) from parking_basic_price_tbl
+	<select id="getpriceCnt" resultType="int" parameterType="java.util.Map">
+		select count(*) from parking_basic_price_tbl where b_code = #{b_code}
+		<if test="sertext != '' ">
+		  	        AND bp_seq  like '%' ||  #{sertext} || '%' 
+				    OR b_code = #{b_code}
+				    AND b_code  like '%' ||  #{sertext} || '%'
+				    OR b_code = #{b_code}
+				    AND bp_type  like '%' ||  #{sertext} || '%' 
+				    OR b_code = #{b_code}
+				    AND pb_time   like '%' ||  #{sertext} || '%' 
+				    OR b_code = #{b_code}
+			        AND pb_price   like '%'|| #{sertext} || '%'
+			        OR b_code = #{b_code}
+		         	AND pb_free    like '%'|| #{sertext} || '%'
+		         	OR b_code = #{b_code}
+		          	AND pb_free_price like '%'|| #{sertext} || '%'
+		          	OR b_code = #{b_code}
+		           	AND reg_date   like '%'|| #{sertext} || '%'
+		  	</if>
 	</select>
 	<select id="getpricelist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
-		select * 
+		select *  
 		  from (select pt.*,rownum rNum from parking_basic_price_tbl  pt
+		  	 WHERE  b_code = #{b_code}
 		  	<if test="sertext != '' ">
-		  	 WHERE bp_seq  like '%' ||  #{sertext} || '%' 
-				    OR b_code  like '%' ||  #{sertext} || '%'
-				    OR bp_type  like '%' ||  #{sertext} || '%' 
-				    OR pb_time   like '%' ||  #{sertext} || '%' 
-			        OR pb_price   like '%'|| #{sertext} || '%'
-		         	OR pb_free    like '%'|| #{sertext} || '%'
-		          	OR pb_free_price    like '%'|| #{sertext} || '%'
-		           	OR reg_date   like '%'|| #{sertext} || '%'
+		  	        AND bp_seq  like '%' ||  #{sertext} || '%' 
+				    OR b_code = #{b_code}
+				    AND b_code  like '%' ||  #{sertext} || '%'
+				    OR b_code = #{b_code}
+				    AND bp_type  like '%' ||  #{sertext} || '%' 
+				    OR b_code = #{b_code}
+				    AND pb_time   like '%' ||  #{sertext} || '%' 
+				    OR b_code = #{b_code}
+			        AND pb_price   like '%'|| #{sertext} || '%'
+			        OR b_code = #{b_code}
+		         	AND pb_free    like '%'|| #{sertext} || '%'
+		         	OR b_code = #{b_code}
+		          	AND pb_free_price    like '%'|| #{sertext} || '%'
+		          	OR b_code = #{b_code}
+		           	AND reg_date   like '%'|| #{sertext} || '%'
 		  	</if>
 			)
 	<![CDATA[
@@ -251,6 +293,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	<select id="getpricepaycnt" resultType="int">
 		select count(*) from parking_payment_tbl
+		<if test="sertext != '' ">
+		  	 WHERE  pay_seq  like '%' ||  #{sertext} || '%'
+				    OR inoutcode   like '%' ||  #{sertext} || '%' 
+				    OR userid    like '%' ||  #{sertext} || '%' 
+				    OR pay_price    like '%' ||  #{sertext} || '%' 
+				    OR pay_type    like '%' ||  #{sertext} || '%' 
+				    OR pay_enable_time    like '%' ||  #{sertext} || '%' 
+				    OR parking_code    like '%' ||  #{sertext} || '%' 
+				    OR pay_day    like '%' ||  #{sertext} || '%' 
+				    OR pb_state     like '%' ||  #{sertext} || '%'
+				    OR tid    like '%' ||  #{sertext} || '%' 
+		  	</if>
+			
 	</select>
 	<select id="pricepaylist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
 		select * 

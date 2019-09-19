@@ -513,15 +513,26 @@ public class FoodServiceImpl implements FoodService {
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		String page = req.getParameter("page"); // 현재페이지를 화면에서 가져옴
-
+		String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
+		
 		log.debug("음식점 상품 리스트 : " + comp_seq + " " + comp_org + " " + page);
 		
 		// 글 갯수 
 		int totCnt = 0;
-		totCnt = f_dao.getOrderPage();
+		System.out.println(comp_seq);
+		
+		
 		
 		String uri = req.getRequestURI(); // 현재 서블릿의 uri
-		Paging paging = new Paging(5, 5, totCnt, uri); //Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
+		if(!sertext.equals("")) {
+			uri = uri+"?sertext=" + sertext;
+		}
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("sertext",sertext);
+		map1.put("comp_seq",comp_seq);
+		totCnt = f_dao.getOrderPage(map1);
+		
+		Paging paging = new Paging(5, 3, totCnt, uri); //Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
 		
 		paging.pagelist(page); // 현재페이지번호를 넣어줌
 		
@@ -531,7 +542,7 @@ public class FoodServiceImpl implements FoodService {
 			map.put("startNum", paging.getStart()); // 시작번호
 			map.put("endNum", paging.getEnd()); // 끝번호
 			map.put("comp_seq", comp_seq); // 끝번호
-			
+			map.put("sertext",sertext);
 			List<Food_orderVO> order = f_dao.getFoodOrderList(map);
 			// 처리결과를 저장
 			model.addAttribute("detailO", order);
@@ -540,6 +551,7 @@ public class FoodServiceImpl implements FoodService {
 		model.addAttribute("paging", paging);
 		model.addAttribute("cnt", paging);
 		model.addAttribute("pageNum", page);
+		model.addAttribute("sertext", sertext);
 	}
 	
 	// 음식점 주문 목록 상세보기
