@@ -3,6 +3,12 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/headerAdmin.jsp" %>   
 <html>
+<style>
+table,td, th{
+		margin: auto;
+		text-align: center;
+	}
+</style>
 <body>
 <!-- ========== MAIN ========== -->
   <main id="content" role="main">
@@ -108,7 +114,7 @@
               <thead>
               	<tr>
                   <th scope="col">
-                    <div class="custom-control custom-checkbox d-flex align-items-center">
+                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;left:30px;">
                       <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox">
                         <span class="text-hide">Checkbox</span>
@@ -116,28 +122,28 @@
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	빌딩코드
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	주차층
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	주차상태
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	주차위치
                       <div class="ml-2">
                       </div>
@@ -145,7 +151,7 @@
                   </th>
                   
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	비고
                       <div class="ml-2">
                       </div>
@@ -158,8 +164,8 @@
 	              		<tbody class="font-size-1">
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
-			                    <div class="custom-control custom-checkbox d-flex align-items-center">
-			                      <input type="checkbox" class="custom-control-input" name="couponChk" id="invoiceCheckbox0${status.count}" value="${vo.f_coupon_num}">
+			                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;left:30px;">
+			                      <input type="checkbox" class="custom-control-input"  name="couponChk" id="invoiceCheckbox0${status.count}" value="${vo.f_coupon_num}">
 			                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
 			                       <span class="text-hide">Checkbox</span>
 			                      </label>
@@ -167,10 +173,10 @@
 			                  </td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.b_code}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_detail_floor}</td>
-			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.p_state == 0}"><input type="button" value="주차전"></c:if>
-			                  <c:if test="${dto.p_state == 1}"><input type="button" value="주차중"></c:if></td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_lat},${dto.p_lot}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.ask}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.p_state == 0}">주차전</c:if>
+			                  <c:if test="${dto.p_state == 1}">주차중</c:if></td>
+			                  <td class="align-middle text-secondary font-weight-normal " >${dto.p_lat},${dto.p_lot}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.ask == null}">-</c:if>${dto.ask}</td>
 			       				</tr>
       		</c:forEach>
 	              		</tbody>

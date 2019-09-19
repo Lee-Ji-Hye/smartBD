@@ -8,6 +8,10 @@
 ,#serBtn{
 	float: left;
 }
+table,td, th{
+		margin: auto;
+		text-align: center;
+	}
 </style>
 <body>
 <!-- ========== MAIN ========== -->
@@ -173,14 +177,14 @@
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	건물코드
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	시간타입
                       <div class="ml-2">
                       </div>
@@ -188,42 +192,42 @@
                   </th>
                  
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	주차시간
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	부과금액
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	초과시간
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	초과금액
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	등록자
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	등록일
                       <div class="ml-2">
                       </div>
@@ -249,7 +253,7 @@
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_free}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_free_price}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.reg_id}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.reg_date}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatDate value="${dto.reg_date}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	              		</tr>
 	              		</c:if>
 	              		</c:forEach>

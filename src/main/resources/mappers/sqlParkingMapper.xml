@@ -108,7 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getpaylist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
 		<![CDATA[
 		select * from (select pt.*,rownum rNum from parking_ticket_history_tbl pt)
-		  where rNum >=#{start} and rNum <= #{end} order by p_ocode
+		  where rNum >=#{start} and rNum <= #{end} order by parking_code
 		]]>
 	</select>
 	

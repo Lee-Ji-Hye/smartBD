@@ -8,6 +8,10 @@
 ,#serBtn{
 	float: left;
 }
+table,td, th{
+		margin: auto;
+		text-align: center;
+	}
 </style>
 <body>
 <!-- ========== MAIN ========== -->
@@ -171,14 +175,14 @@
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	주차상품코드
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	건물코드
                       <div class="ml-2">
                       </div>
@@ -186,28 +190,28 @@
                   </th>
                  
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	시간별
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	가격
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	작성자
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	작성일
                       <div class="ml-2">
                       </div>
@@ -236,9 +240,9 @@
 			                  </td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.price}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.reg_id}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.reg_date}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatDate value="${dto.reg_date}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.update_id}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.update_date}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatDate value="${dto.update_date}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			                  <td class="align-middle text-primary"></td>
 	              		</c:if>
 	              		</tr>
