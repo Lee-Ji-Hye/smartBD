@@ -4,8 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +22,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.team.smart.parking.vo.InoutCarVO;
+import com.team.smart.parking.vo.ParkingBasicPriceVO;
 import com.team.smart.parking.vo.ParkingVO;
 import com.team.smart.persistence.ParkingDAO;
 import com.team.smart.utils.Functions;
@@ -803,19 +810,175 @@ public class ParkingServiceImpl implements ParkingService{
 		req.setAttribute("dto1", jsonutil.getJsonStringFromList(paydto));
 		
 	}
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 		
+	@Override
+	public void inoutCarList(HttpServletRequest req, Model model) {
+		// TODO 입출차 현황
+		
+		String b_code = (req.getParameter("b_code")==null)? "" : req.getParameter("b_code");
+		String page = (req.getParameter("page")==null)? "" : req.getParameter("page");
+		
+		if(b_code.equals("")) {
+			b_code = (String) req.getSession().getAttribute("b_code");
+		}
+	
+		List<InoutCarVO> list = p_dao.getInoutCarList(b_code);
+		ParkingBasicPriceVO priceInfo = p_dao.getBasicPrice(b_code);
+		
+		//입출차량 있으면 리스트 뿌림
+		if(list == null) {
+			return;
+		}
+		
+		int cnt = p_dao.getTotalInoutCnt();
+		
+		String uri = req.getRequestURI();
+		Paging paging = new Paging(10, 5, cnt, uri);
+		paging.pagelist(page);
+		
+        List<InoutCarVO> dtos = new ArrayList<InoutCarVO>();
+        
+		try {
+
+			//현재시간 Date
+	        Date currtime = new Date();
+			SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+			SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+	        Date intime, outtime;
+	        long diff, totalMin;
+	        
+	        for(int i=0; i < list.size(); i++) {
+	        	InoutCarVO vo = list.get(i);
+	        	//리얼 주차중인 시간
+	        	intime =  f1.parse(vo.getIn_time());
+		        
+	        	//아래처럼 if문을 둔 이유는 출차 후에도 계속 출차시간이 이어지는 문제가 있기 때문에 나눠줌.
+	        	//출차 후에는 출차시안에서 입차시간을 계산함.
+	        	if(vo.getOut_time() == null) {
+	        		//출차전 => 현재시간 - 입차시간
+	        		diff = currtime.getTime() - intime.getTime();
+			        totalMin= diff / 60000; //차이나는 시간 만큼의 분
+	        	} else {
+	        		//출차후 => 출차시간 - 입차시간
+		        	outtime = f2.parse(vo.getOut_time());
+	        		diff = outtime.getTime() - intime.getTime();
+			        totalMin= diff / 60000; //차이나는 시간 만큼의 분
+	        	}
+		        
+		        int stayHours = (int)(totalMin / 60);
+		        int stayMin   = (int)(totalMin % 60);
+		        
+	        	vo.setStayHours(stayHours);
+	        	vo.setStayMin(stayMin);
+		        
+		        
+	        	//리얼 주차중인 시간 - 주차한만큼 결제한 시간
+		        long plus_stayTime = totalMin - vo.getTotParkingTime();
+		        long pb_free = (long) priceInfo.getPb_free();
+
+		        
+		        if(plus_stayTime > pb_free) {
+		        	vo.setIs_out("N");
+		        } else {
+		        	vo.setIs_out("Y");
+		        }
+		        
+		        dtos.add(vo);
+	        }
+	        
+	        
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		req.setAttribute("dtos", dtos);
+		req.setAttribute("paging", paging);
+		
+	}
+	
+	@Override
+	public int modiOutStatus(HttpServletRequest req, Model model) {
+		//출차 처리
+		int result = 0;
+		
+		String inoutcode = (req.getParameter("inoutcode") == null)? "" : req.getParameter("inoutcode");
+		
+		//입출차코드가 없으면 리턴
+		if(inoutcode.equals("")) {
+			return result;
+		}
+		
+		result = p_dao.modiOutStatus(inoutcode);
+		System.out.println("출차 :~~~~ " + result);
+		return result;
+	}
+	@Override
+	public void insertInOutPro(MultipartHttpServletRequest req, Model model) {
+		// 업체정보 가져오기(업체코드,업체명, 상품코드)
+		String b_code = (String)req.getSession().getAttribute("b_code");
+		String car_number = req.getParameter("car_number");
+		String in_date = req.getParameter("in_date");
+		String in_time = req.getParameter("in_time");
+		
+
+		String inoutcode = fn.mkUniquecode("inoutcode", "parking_history_tbl");
+		
+		if(inoutcode == null) {
+			return;
+		}
+		
+		MultipartFile file1 = req.getFile("p_img");
+
+		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/parking/"); 
+		System.out.println(uploadPath);
+		String realDir = "C:\\Users\\ksm10\\git\\smartBD_YJ\\src\\main\\webapp\\resources\\images\\parking\\";  
+		
+		try {
+			
+			if(file1 != null) {
+				file1.transferTo(new File(uploadPath+file1.getOriginalFilename()));
+				
+				FileInputStream fis1 = new FileInputStream(uploadPath + file1.getOriginalFilename());
+				FileOutputStream fos1 = new FileOutputStream(realDir + file1.getOriginalFilename());
+				
+				int data = 0;
+				while((data = fis1.read()) != -1) { fos1.write(data); }
+				fis1.close();
+				fos1.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 이미지 없을 때 처리
+		String images_name = null;
+		if(file1 != null) {
+			images_name = file1.getOriginalFilename();
+		}
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("inoutcode", inoutcode);
+		map.put("b_code", b_code);
+		map.put("car_number", car_number);
+		map.put("in_time", in_date + " " + in_time);
+		map.put("car_number_img", images_name);
+		
+		int result = p_dao.insertInOutPro(map);
+		
+		// 처리결과 저장
+		model.addAttribute("result", result);
+		
+	}
+	@Override
+	public int inoutDelete(HttpServletRequest req, Model model) {
+		// TODO 매물삭제
+		String inout_codes = req.getParameter("inout_codes");
+		return p_dao.inoutDelete(inout_codes);
+		
+	}
+	
+	
 }

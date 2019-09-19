@@ -93,138 +93,167 @@
             <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
               
             </div>
-			<!-- Buttons -->
-			<div class="editBtnDiv01">
-			
-	<form method="get" id="form" name="form" >
-	 <input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}" style="position:relative;right:650px;top:40px; ">
-  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-    <input type="button" id="serBtn" value="검색"  class="btn btn-sm btn-soft-secondary transition-3d-hover" style="position: relative;right:200px;" >
-    
-  
-   
- 	<!-- <button type="button"> -->
+		 <!-- Buttons -->
+          <div style="margin-right:20px;">
+           <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/bd_park/intromn/insertInOutForm'">등록</button>
+           <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover" id="deleteBtn" >삭제</button>
           </div>
+         <!-- End Buttons -->
         </div>
       
-	
-        <div class="card-body p-4">
-          <!-- Activity Table -->
-          <div class="table-responsive-md u-datatable">
-            <table class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5" data-dt-info="#datatableInfo" data-dt-search="#datatableSearch" data-dt-entries="#datatableEntries" data-dt-page-length="12" data-dt-is-responsive="false" data-dt-is-show-paging="true" data-dt-details-invoker=".js-datatabale-details" data-dt-select-all-control="#invoiceToggleAllCheckbox" data-dt-pagination="datatablePagination" data-dt-pagination-classes="pagination mb-0" data-dt-pagination-items-classes="page-item" data-dt-pagination-links-classes="page-link" data-dt-pagination-next-classes="page-item" data-dt-pagination-next-link-classes="page-link" data-dt-pagination-next-link-markup="<span aria-hidden=&quot;true&quot;>»</span>" data-dt-pagination-prev-classes="page-item" data-dt-pagination-prev-link-classes="page-link" data-dt-pagination-prev-link-markup="<span aria-hidden=&quot;true&quot;>«</span>">
-              <thead>
-              	<tr>
-                  <th scope="col">
-                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
-                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox" >
-                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
-                        <span class="text-hide">Checkbox</span>
-                      </label>
-                    </div>
-                  </th>
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	입출차코드
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	차번호
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                 	 <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	차번호이미지
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	건물코드
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	입차시간
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	주차시간
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	출차시간
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	주차위치
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	상태
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-              </tr></thead>
-              <tbody class="font-size-1" id="myTable">
-              	<c:forEach var="dto" items="${dtos}" varStatus="status" >
-			              	<tr class="text-uppercase font-size-1">
-			                  <td class="align-middle">
-			                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
-			                      <input type="checkbox" class="custom-control-input"  id="invoiceCheckbox0${status.count}" name="p_code" value="${dto.p_code}" >
-			                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
-			                       <span class="text-hide">Checkbox</span>
-			                      </label>
-			                    </div>
-			                  </td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.inoutcode}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.car_number}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.car_number_img}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.b_code}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.in_time}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.parking_time}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.out_time}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.parking_location}</td>
-			                 <td class="align-middle text-secondary font-weight-normal ">${dto.parking_state}</td>
-	              		</tr>
-	              		</c:forEach>
-              	
-              
-                   </tbody>
-                    </form>
-              </table>
-            </div>
-            <!-- End Activity Table -->
-
-               ${paging.html_mk_page()}
-            <!-- Pagination -->
-            <div class="d-flex align-items-center">
-              <nav id="datatablePagination" aria-label="Activity pagination"></nav>
-
-              <small id="datatableInfo" class="text-secondary ml-auto"></small>
-            </div>
-            <!-- End Pagination -->
-          </div>
+		<form method="get" id="form" name="form" >
+		  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<%-- <input class="form-control" id="myInput" name ="sertext"  
+				   type="text" placeholder="Search.." value="${sertext}"
+				   style="width:150px" >
+		    <input type="button" 
+		    	   class="btn btn-sm btn-soft-secondary transition-3d-hover" 
+		    	   id="serBtn" 
+		    	   style="position: relative;"
+		    	   value="검색"   /> --%>
+		    
+		    <input type="hidden" name="b_code" value="${sessionScope.b_code}"/>
+		    
+	        <div class="card-body p-4">
+	          <!-- Activity Table -->
+	          <div class="table-responsive-md u-datatable">
+	            <table class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5" data-dt-info="#datatableInfo" data-dt-search="#datatableSearch" data-dt-entries="#datatableEntries" data-dt-page-length="12" data-dt-is-responsive="false" data-dt-is-show-paging="true" data-dt-details-invoker=".js-datatabale-details" data-dt-select-all-control="#invoiceToggleAllCheckbox" data-dt-pagination="datatablePagination" data-dt-pagination-classes="pagination mb-0" data-dt-pagination-items-classes="page-item" data-dt-pagination-links-classes="page-link" data-dt-pagination-next-classes="page-item" data-dt-pagination-next-link-classes="page-link" data-dt-pagination-next-link-markup="<span aria-hidden=&quot;true&quot;>»</span>" data-dt-pagination-prev-classes="page-item" data-dt-pagination-prev-link-classes="page-link" data-dt-pagination-prev-link-markup="<span aria-hidden=&quot;true&quot;>«</span>">
+	              <thead>
+	              	<tr>
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox" >
+	                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
+	                      	입출차코드
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
+	                      	차번호
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                 	 <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
+	                      	차번호이미지
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
+	                      	입차시간
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
+	                      	주차시간
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
+	                      	출차시간
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <!-- <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
+	                      	주차위치
+	                    <div class="ml-2">
+	                    </div>
+	                    </div>
+	                  </th> -->
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
+	                      	상태
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
+	                      	-
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	              </tr></thead>
+	              <tbody class="font-size-1" id="myTable">
+	              	<c:forEach var="dto" items="${dtos}" varStatus="status" >
+				              	<tr class="text-uppercase font-size-1">
+				                  <td class="align-middle">
+				                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
+				                      <input type="checkbox" class="custom-control-input chkBtn" inoutcode="${dto.inoutcode}" id="invoiceCheckbox0${status.count}" name="p_code" value="${dto.inoutcode}" >
+				                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
+				                       <span class="text-hide">Checkbox</span>
+				                      </label>
+				                    </div>
+				                  </td>
+				                  <td class="align-middle text-secondary font-weight-normal ">${dto.inoutcode}</td>
+				                  <td class="align-middle text-secondary font-weight-normal ">${dto.car_number}</td>
+				                  <td class="align-middle text-secondary font-weight-normal ">${dto.car_number_img}</td>
+				                  <td class="align-middle text-secondary font-weight-normal ">${dto.in_time}</td>
+				                  <td class="align-middle text-secondary font-weight-normal ">
+				                  	<c:if test="${dto.stayHours!=''}">
+				                  		${dto.stayHours}시간
+				                  	</c:if>
+				                  	<c:if test="${dto.stayMin!=''}">
+				                  		${dto.stayMin}분
+				                  	</c:if>
+				                  </td>
+				                  <td class="align-middle text-secondary font-weight-normal ">
+				                  	<c:if test="${dto.out_time==null}">
+				                  		--:--:--
+				                  	</c:if>
+				                  	<c:if test="${dto.out_time!=null}">
+				                  		${dto.out_time}
+				                  	</c:if>
+								  </td>
+				                  <%-- <td class="align-middle text-secondary font-weight-normal ">${dto.parking_location}</td> --%>
+				                 <td class="align-middle text-secondary font-weight-normal ">
+				                  	<c:if test="${dto.out_time != null}">
+				                  		출차 완료
+				                  	</c:if>
+				                 	<c:if test="${dto.out_time == null && dto.is_out == 'Y'}">
+				                 		출차가능
+				                 	</c:if>
+				                 	<c:if test="${dto.out_time == null && dto.is_out == 'N'}">
+				                 		출차불가
+				                 	</c:if>
+				                 </td>
+				                 <td class="align-middle text-secondary font-weight-normal ">
+				                 <button type="button" class="outBtn" class="btn btn-sm btn-soft-first transition-3d-hover" inoutcode="${dto.inoutcode}">출차</button>
+				                 	<c:if test="${dto.is_out == 'Y'}">
+				                 		
+				                 	</c:if>
+				                 </td>
+		              		</tr>
+		              		</c:forEach>
+	              	
+	              
+	                   </tbody>
+	              </table>
+	            </div>
+	            <!-- End Activity Table -->
+	              ${paging.html_mk_page()}
+	            <!-- Pagination -->
+	            <!-- End Pagination -->
+	          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -250,6 +279,70 @@
 		$("#serBtn").click(function(){
 			$("#form").attr("action","${path}/bd_park/ticketlist");
 			$("#form").submit();
+		});
+		
+		$(".outBtn").click(function(){
+			
+			var inoutcode = $(this).attr("inoutcode");
+			
+			if(inoutcode != "") {
+				$.ajax({
+					 url : "/smart/bd_park/modiOutStatus"
+					,type : "GET"
+					,data : {"inoutcode" : inoutcode }
+					,dataType : "json"
+					,success:function(e){
+						console.log(e);
+						if(e == 1) {
+							alert("출차 완료.");
+						} else {
+							alert("출차 오류.");
+						}
+						location.reload();
+			        }
+					,error:function(request,status,error){
+					        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+				});
+				
+			}
+			
+		});
+		
+		$("#deleteBtn").click(function(){
+			
+			if(confirm('정말 삭제하시겠습니까?')) {
+				var inout_codes = "";
+				$.each($(".chkBtn"), function(i, v){
+					var is_checked = $(v).is(":checked");
+					if(is_checked) {
+						if(inout_codes != "") inout_codes += ",";
+						inout_codes += "'" + $(v).attr("inoutcode")+"'";
+					}
+				});
+
+				$.ajax({
+					 url : "/smart/bd_park/inoutDelete"
+					,type : "GET"
+					,data : {"inout_codes" : inout_codes}
+					,dataType : "json"
+					,success:function(e){
+						
+						if(e > 0) {
+							alert("삭제되었습니다.");
+						} else {
+							alert("삭제 실패하였습니다.\n다시 시도해주세요.");
+						}
+						
+						location.reload(); //페이지 새로고침
+			        }
+					,error:function(request,status,error){
+					        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+				});
+			} 
+			
+			
 		});
 	});
 	

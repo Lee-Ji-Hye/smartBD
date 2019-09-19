@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.team.smart.parking.vo.InoutCarVO;
+import com.team.smart.parking.vo.ParkingBasicPriceVO;
 import com.team.smart.parking.vo.ParkingVO;
 
 
@@ -116,4 +118,17 @@ public interface ParkingDAO {
 		//주차 요금 결제 내역 리스트
 		public List<ParkingVO> pricepaylist(Map<String, Object> map); 
 		
+		//입출차량 리스트
+		public List<InoutCarVO> getInoutCarList(String b_code);
+		//주차 요금
+		public ParkingBasicPriceVO getBasicPrice(String b_code);
+		//출차 처리
+		public int modiOutStatus(String inoutcode);
+		
+		public int insertInOutPro(Map<String,Object> map);
+		
+		//입출차 총 수
+		public int getTotalInoutCnt();
+		
+		public int inoutDelete(String inout_codes);
 }

@@ -7,9 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team.smart.parking.vo.InoutCarVO;
+import com.team.smart.parking.vo.ParkingBasicPriceVO;
 import com.team.smart.parking.vo.ParkingVO;
-
-import sun.nio.ch.SelChImpl;
 
 @Repository
 public class ParkingDAOImpl implements ParkingDAO{
@@ -221,12 +221,34 @@ public class ParkingDAOImpl implements ParkingDAO{
 		return sqlSession.selectList("ParkingDAO.pricetotal");
 	}
 
+	@Override
+	public List<InoutCarVO> getInoutCarList(String b_code) {
+		return sqlSession.selectList("ParkingDAO.inoutCarList", b_code);
+	}
 
+	@Override
+	public ParkingBasicPriceVO getBasicPrice(String b_code) {
+		return sqlSession.selectOne("ParkingDAO.getBasicPrice", b_code);
+	}
 
-	
+	@Override
+	public int modiOutStatus(String inoutcode) {
+		return sqlSession.update("ParkingDAO.modiOutStatus", inoutcode);
+	}
 
-	
+	@Override
+	public int insertInOutPro(Map<String, Object> map) {
+		return sqlSession.insert("ParkingDAO.insertInOutPro", map);
+	}
 
-	
+	@Override
+	public int inoutDelete(String inout_codes) {
+		return sqlSession.update("ParkingDAO.inoutDelete", inout_codes);
+	}
+
+	@Override
+	public int getTotalInoutCnt() {
+		return sqlSession.selectOne("ParkingDAO.getTotalInoutCnt");
+	}
 
 }

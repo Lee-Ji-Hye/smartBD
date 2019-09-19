@@ -83,5 +83,16 @@ public interface ParkingService {
 		//주차권 자동사용
 		public void ticketautouse(HttpServletRequest req,Model model);
 		
+		//입출차 현황
+		public void inoutCarList(HttpServletRequest req,Model model);
+		
+		//출차처리
+		public int modiOutStatus(HttpServletRequest req,Model model);
+		
+		//입출차등록처리
+		public void insertInOutPro(MultipartHttpServletRequest req, Model model);
+		
+		//입출차 삭제
+		public int inoutDelete(HttpServletRequest req,Model model);
 		
 }

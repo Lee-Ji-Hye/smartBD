@@ -281,5 +281,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		GROUP by (substr(pay_day,1,5))
 		order by (substr(pay_day,1,5))
 	</select>
+	
+	<select id="inoutCarList" resultType="com.team.smart.parking.vo.InoutCarVO" >
+		SELECT *
+		  FROM parking_history_tbl ph
+		  LEFT JOIN (select inoutcode, sum(pay_enable_time) totParkingTime from parking_payment_tbl where pb_state = 2 group by inoutcode
+		              ) pp ON(pp.inoutcode = ph.inoutcode)
+		 WHERE ph.b_code = #{b_code}
+		   AND is_delete = 'N'
+		   ORDER BY out_time nulls first, in_time desc
+	</select>
+	
+	<select id="getBasicPrice" resultType="com.team.smart.parking.vo.ParkingBasicPriceVO">
+		select * from parking_basic_price_tbl where b_code = #{b_code}
+	</select>
+	
+	<update id="modiOutStatus" parameterType="String" >
+		update parking_history_tbl set parking_state = 1, out_time = sysdate where inoutcode = #{inoutcode}
+	</update>
+
+	<insert id="insertInOutPro" parameterType="java.util.Map">
+		insert into parking_history_tbl (inoutcode,b_code,car_number,in_time,car_number_img)  
+	     values (#{inoutcode}, #{b_code}, #{car_number}, #{in_time}, #{car_number_img})
+	</insert>
+	
+	<update id="inoutDelete" parameterType="String" >
+		UPDATE parking_history_tbl SET is_delete = 'Y' where inoutcode in(${value})
+	</update>
+	
+	<select id="getTotalInoutCnt" resultType="int">
+		select count(*) cnt from parking_history_tbl where is_delete='N'
+	</select>
+	
 </mapper>
 

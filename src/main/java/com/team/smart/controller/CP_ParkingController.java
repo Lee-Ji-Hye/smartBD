@@ -1,11 +1,17 @@
 package com.team.smart.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.team.smart.service.ParkingService;
@@ -52,6 +58,7 @@ public class CP_ParkingController {
 	
 		@RequestMapping(value="/intromn/inst1")
 		public String inoutcar1(HttpServletRequest req, Model model) {
+			parkingService.inoutCarList(req, model);
 			return mngParking_ + "/outcar";
 		}
 		//차량 입출차 결산 
@@ -262,4 +269,32 @@ public class CP_ParkingController {
 		
 		
 		
+		//지혜 추가 영역. 나중에 지우삼
+		@RequestMapping("modiOutStatus")
+		public @ResponseBody int modiOutStatus(HttpServletRequest req, Model model) {
+			int result = parkingService.modiOutStatus(req, model);
+			return result;
+		}
+		
+		//입출차 등록 폼
+		@RequestMapping("/intromn/insertInOutForm")
+		public String insertInOutForm(HttpServletRequest req, Model model) {
+			//int result = parkingService.modiOutStatus(req, model);
+			return mngParking_+"/insertInOut";
+		}
+		
+		//입출차등록
+		@RequestMapping("/intromn/insertInOutPro")
+		public String insertInOutPro(MultipartHttpServletRequest req, Model model) {
+			parkingService.insertInOutPro(req, model);
+			return mngParking_+"/insertInOutPro";
+		}
+		
+		//영중 도우미=========================
+		//매물 삭제
+		@RequestMapping("inoutDelete")
+		public @ResponseBody int inoutDelete(HttpServletRequest req, Model model) {
+			int resut = parkingService.inoutDelete(req,model);
+			return resut;
+		}
 }
