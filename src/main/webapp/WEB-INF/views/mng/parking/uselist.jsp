@@ -3,6 +3,13 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/headerAdmin.jsp" %>   
 <html>
+<style>
+	table,td, th{
+		margin: auto;
+		text-align: center;
+	}
+	
+</style>
 <body>
 <!-- ========== MAIN ========== -->
   <main id="content" role="main">
@@ -67,52 +74,35 @@
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/uselist" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
-                        	주차권 발급내역
-                      </a>
+                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/uselist" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">주차권 발급내역</a>
                     </li>
                     <!-- General -->
-
                     <!-- Account Settings -->
                     <li class="nav-item hs-has-sub-menu u-header__nav-item"
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
-                        	주차권 주문 내역
-                      </a>
+                      <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">주차권 주문 내역</a>
                     </li>
-                    <!-- Account Settings -->
-
-					<!-- Billing -->
                     <li class="nav-item hs-has-sub-menu u-header__nav-item"
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/ticketlist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
-                        	주차권 등록 내역
-                      </a>
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/ticketlist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">주차권 등록 내역</a>
 
                     </li>
                     <li class="nav-item hs-has-sub-menu u-header__nav-item"
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkpricelist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
-                        	주차  요금 내역
-                      </a>
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkpricelist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">주차  요금 내역</a>
                     </li>
                     <li class="nav-item hs-has-sub-menu u-header__nav-item"
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkpaylist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">
-                        	주차  결제 내역
-                      </a>
+                      <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkpaylist" aria-haspopup="true" aria-expanded="false" aria-labelledby="billingDropdownMenu">주차  결제 내역</a>
                     </li>
-                    <!-- Billing -->
-                    <!-- Billing -->
-                  
                   </ul>
                 </div>
               </nav>
@@ -146,7 +136,7 @@
               <thead>
               	<tr>
                   <th scope="col">
-                    <div class="custom-control custom-checkbox d-flex align-items-center"style="position:relative;top:-12px;">
+                    <div class="custom-control custom-checkbox d-flex align-items-center"style="position:relative;top:-12px;left:30px;">
                       <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox">
                         <span class="text-hide">Checkbox</span>
@@ -154,35 +144,31 @@
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	주차권코드
-                      <div class="ml-2">
-                      </div>
-                    </div>
+                    <div>주차권코드</div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	결제 코드
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	아이디
                      <div class="ml-2">
                      </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	사용차량 번호
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	사용날짜
                       <div class="ml-2">
                       </div>
@@ -195,18 +181,18 @@
 	              		<tbody class="font-size-1">
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
-			                    <div class="custom-control custom-checkbox d-flex align-items-center"style="position:relative;top:-12px;">
-			                      <input type="checkbox" class="custom-control-input" name="couponChk" id="invoiceCheckbox0${status.count}" value="${vo.f_coupon_num}">
+			                    <div class="custom-control custom-checkbox d-flex align-items-center"style="position:relative;top:-12px;left:30px;">
+			                      <input type="checkbox" class="custom-control-input" name="couponChk" id="invoiceCheckbox0${status.count}" value="${vo.f_coupon_num}" >
 			                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
 			                       <span class="text-hide">Checkbox</span>
 			                      </label>
 			                    </div>
 			                  </td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.parking_code}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.userid}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_ocode}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.car_number}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.use_day}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.userid}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.car_number == null}">-</c:if>${dto.car_number}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.car_number == null}">-</c:if><fmt:formatDate value="${dto.use_day}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			       
       			 </c:forEach>
 	              		</tbody>

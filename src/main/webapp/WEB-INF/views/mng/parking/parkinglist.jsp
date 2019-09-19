@@ -3,6 +3,13 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/headerAdmin.jsp" %>   
 <html>
+<style>
+	table,td, th{
+		margin: auto;
+		text-align: center;
+	}
+	
+</style>
 <body>
 <!-- ========== MAIN ========== -->
   <main id="content" role="main">
@@ -79,7 +86,7 @@
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
                       <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/parkinglist" aria-haspopup="true" aria-expanded="false" aria-labelledby="accountSettingsDropdownMenu">
-                        	주차권 사용 내역
+                        	주차권 주문 내역
                       </a>
                     </li>
                     <!-- Account Settings -->
@@ -148,7 +155,7 @@
               <thead>
               	<tr>
                   <th scope="col">
-                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
+                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;left:30px;">
                       <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox" >
                       <label class="custom-control-label" for="invoiceToggleAllCheckbox">
                         <span class="text-hide">Checkbox</span>
@@ -156,67 +163,61 @@
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	결제코드
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	주차상품코드
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	아이디
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	상태
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	가격
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	총수량
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	결제일
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
-              </tr></thead>
-              
-              
-              
-              
-              
-              	
+              </tr></thead>          	
 	              		 <c:if test="${cnt >0}">
               	<c:forEach var="dto" items="${dtos}" varStatus="status">
 	              		<tbody class="font-size-1">
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
-			                    <div class="custom-control custom-checkbox d-flex align-items-center"style="position:relative;top:-12px;">
+			                    <div class="custom-control custom-checkbox d-flex align-items-center"style="position:relative;top:-12px;left:30px;">
 			                      <input type="checkbox" class="custom-control-input" name="couponChk" id="invoiceCheckbox0${status.count}" value="${vo.f_coupon_num}">
 			                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
 			                       <span class="text-hide">Checkbox</span>
@@ -234,7 +235,7 @@
 			                  <c:if test="${dto.p_state == 4}">기간만료</c:if>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_oprice}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_count}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_day}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatDate value="${dto.pay_day}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			       				</tr>
       		</c:forEach>
 	              		</tbody>

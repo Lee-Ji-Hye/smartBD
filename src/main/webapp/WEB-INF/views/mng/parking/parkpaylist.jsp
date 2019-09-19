@@ -8,6 +8,10 @@
 ,#serBtn{
 	float: left;
 }
+table,td, th{
+		margin: auto;
+		text-align: center;
+	}
 </style>
 <body>
 <!-- ========== MAIN ========== -->
@@ -73,9 +77,7 @@
                         data-event="hover"
                         data-animation-in="slideInUp"
                         data-animation-out="fadeOut">
-                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/uselist" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">
-                        	주차권 발급내역
-                      </a>
+                      <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="${path}/bd_park/uselist" aria-haspopup="true" aria-expanded="false" aria-labelledby="generalDropdownMenu">주차권 발급내역</a>
                     </li>
                     <!-- General -->
 
@@ -171,14 +173,14 @@
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	결제코드
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	입출차코드
                       <div class="ml-2">
                       </div>
@@ -186,49 +188,49 @@
                   </th>
                  
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	아이디
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	결제금액
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	결제구분
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	주차결제시간
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	주차권코드
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	결제시간
                       <div class="ml-2">
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
                       	상태
                       <div class="ml-2">
                       </div>
@@ -253,8 +255,10 @@
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_type}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_enable_time}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.parking_code}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_day}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_state}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatDate value="${dto.pay_day}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
+			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.pb_state == 0}">결제대기</c:if>
+			                  <c:if test="${dto.pb_state == 1}">결제요청완료</c:if>
+			                  <c:if test="${dto.pb_state == 2}">결제 완료</c:if></td>
 	              		</tr>
 	              		</c:forEach>
               
