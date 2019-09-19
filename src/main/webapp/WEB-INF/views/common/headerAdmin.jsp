@@ -204,24 +204,11 @@
               <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Billding management<span></span></a>
               <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
                 <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_admin/bdmnermn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">빌딩 관리자 관리</a></li>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_manager/ptmnmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">파트별 관리자 관리</a></li>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_manager/elcmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">빌딩 전력 관리</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_manager/bdstat" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">빌딩 현황</a></li>
               </ul>
             </li>
             <!-- /표시되는 큰메뉴 끝 -->
             
-            <!-- 표시되는 큰메뉴 시스템 관리자 권한 파트별 관리자 1안-->
-            <%-- <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-              <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Part area management<span></span></a>
-              <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
-                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_office/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">임대 관리</a></li>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_resu/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">예약 관리</a></li>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_park/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">주차장 관리</a></li>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_food/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">식당 관리</a></li>
-              </ul>
-            </li> --%>
-            <!-- /표시되는 큰메뉴 끝 -->
             
             <!-- 표시되는 큰메뉴 시스템 관리자 권한 파트별 관리자 2안-->
             <li class="nav-item hs-has-sub-menu u-header__nav-item"
@@ -245,20 +232,7 @@
                   </ul>
                 </li>
                 <!-- End 임대관리 -->
-
-                <!-- 예약관리 -->
-                <li class="hs-has-sub-menu">
-                  <a id="navLinkPagesLogin" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_resu/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesLogin">예약 파트 관리</a>
-
-                  <ul id="navSubmenuPagesLogin" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesLogin" style="min-width: 230px;">
-                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_resu/mtmn">회의실 관리</a></li>
-                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_resu/rsmn">예약 관리</a></li>
-                      <li class="dropdown-divider"></li>
-                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_resu/settlement">결산</a></li>
-                  </ul>
-                </li>
-                <!-- End 예약관리 -->
-
+                
                 <!-- 주차장 관리 -->
                 <li class="hs-has-sub-menu">
                   <a id="navLinkContactsServices" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_park/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuContactsServices">주차장 파트 관리</a>
