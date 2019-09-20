@@ -176,8 +176,8 @@ public class FoodDAOImpl implements FoodDAO {
 	
 	// 주문 목록 페이징 처리
 	@Override
-	public int getOrderPage() {
-		return sqlSession.selectOne("FoodDAO.getOrderPage");
+	public int getOrderPage(Map<String, Object> map1) {
+		return sqlSession.selectOne("FoodDAO.getOrderPage",map1);
 	}
 	
 	

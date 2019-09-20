@@ -120,18 +120,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 음식점 주문 목록 갯수 조회 -->
 	<select id="getOrderPage" resultType="int">
-		SELECT COUNT(*) FROM food_order_tbl
+		SELECT COUNT(*) FROM food_order_tbl 
+		where comp_seq = #{comp_seq} 
+		<if test="sertext != '' ">
+		   AND f_ocode like '%' ||  #{sertext} || '%'
+           OR comp_seq = #{comp_seq}
+           AND userid like '%' ||  #{sertext} || '%'
+           OR comp_seq = #{comp_seq}
+           AND f_takeout like '%' ||  #{sertext} || '%'
+           OR comp_seq = #{comp_seq}
+           AND f_pay_price like '%' ||  #{sertext} || '%'
+           OR comp_seq = #{comp_seq}
+           AND f_regidate like '%' ||  #{sertext} || '%' 
+           OR comp_seq = #{comp_seq}
+           AND f_status like '%' ||  #{sertext} || '%' 
+		</if>
 	</select>
 	
 	<!-- 음식점 주문 목록 -->
 	<select id="getFoodOrderList" resultType="com.team.smart.food.vo.Food_orderVO" parameterType="java.util.Map">
-		<![CDATA[
 		SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price
           FROM (SELECT comp_seq, rownum rNum, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price
-              FROM (SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price FROM food_order_tbl ORDER BY f_regidate desc, CASE f_status WHEN '주문접수' THEN 1 WHEN '주문대기' THEN 2 ELSE 999 END ))
-         WHERE rNum>=#{startNum}
-           AND rNum<=#{endNum}
-    	]]>
+              FROM (SELECT comp_seq, f_ocode, f_takeout, f_status, f_name, f_hp, f_receive_time, f_message, userid, f_regidate, f_pay_type, f_amount, f_pay_price FROM food_order_tbl
+         WHERE comp_seq = #{comp_seq}
+         <if test="sertext != '' ">
+	 	   AND f_ocode like '%' ||  #{sertext} || '%'
+           OR comp_seq = #{comp_seq}
+           AND userid like '%' ||  #{sertext} || '%'
+           OR comp_seq = #{comp_seq}
+           AND f_takeout like '%' ||  #{sertext} || '%'
+           OR comp_seq = #{comp_seq}
+           AND f_pay_price like '%' ||  #{sertext} || '%'
+           OR comp_seq = #{comp_seq}
+           AND f_regidate like '%' ||  #{sertext} || '%' 
+           OR comp_seq = #{comp_seq}
+           AND f_status like '%' ||  #{sertext} || '%' 
+           </if>
+            ORDER BY f_regidate desc, CASE f_status WHEN '주문접수' THEN 1 WHEN '주문대기' THEN 2 ELSE 999 END 
+           ))
+        <![CDATA[
+         WHERE rNum>=#{startNum} AND rNum<=#{endNum}
+           ]]>
 	</select>
 	
 	<!-- 음식점 주문 목록 상세보기 -->

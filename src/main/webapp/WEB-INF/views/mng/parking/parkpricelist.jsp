@@ -236,7 +236,7 @@ table,td, th{
               </tr></thead>
               <tbody class="font-size-1" id="myTable">
               	<c:forEach var="dto" items="${dtos}" varStatus="status" >
-              	<c:if test="${dto.b_code == 'BD000001'}">
+              	
 			              	<tr class="text-uppercase font-size-1">
 			                  <td class="align-middle">
 			                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
@@ -255,7 +255,7 @@ table,td, th{
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.reg_id}</td>
 			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatDate value="${dto.reg_date}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	              		</tr>
-	              		</c:if>
+	              		
 	              		</c:forEach>
               
                    </tbody>

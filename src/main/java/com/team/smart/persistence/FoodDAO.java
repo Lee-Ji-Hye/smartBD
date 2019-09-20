@@ -92,7 +92,7 @@ public interface FoodDAO {
 	public int getGoodsPage(Map<String, Object> map1);
 	
 	// 주문 목록 페이지 처리
-	public int getOrderPage();
+	public int getOrderPage(Map<String, Object> map1);
 	
 	//테스트
 	public int getUniqIndex();
