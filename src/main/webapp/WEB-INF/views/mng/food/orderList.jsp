@@ -443,7 +443,7 @@ function orderPro2(event) {
 <script type="text/javascript">
 	$(function(){
 		$("#serBtn").click(function(){
-			$("#form").attr("action","${path}/cp_employee/odmn");
+			$("#form").attr("action","${path}/cp_employee/odmn/list");
 			$("#form").submit();
 		});
 	});

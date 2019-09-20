@@ -516,6 +516,7 @@ public class FoodServiceImpl implements FoodService {
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		String page = req.getParameter("page"); // 현재페이지를 화면에서 가져옴
+		log.debug(req.getParameter("sertext"));
 		String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
 		
 		log.debug("음식점 상품 리스트 : " + comp_seq + " " + comp_org + " " + page);
