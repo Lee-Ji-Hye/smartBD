@@ -109,9 +109,9 @@ public class RoomDAOImpl implements RoomDAO{
 
 	
 	//계약 총 글 수 
-	public int getContractCnt() {
+	public int getContractCnt(Map<String, Object> map1) {
 		
-		return sqlSession.selectOne("RoomDAO.getContractCnt");
+		return sqlSession.selectOne("RoomDAO.getContractCnt",map1);
 	}
 	
 	//계약리스트 가져오기

@@ -78,7 +78,7 @@ public class RoomServiceImpl implements RoomService{
 		
 		String b_code = "B000000";												//건물코드
 		String r_delete = "0";													//삭제 여부
-		String userid = "id9";													//관리자아이디
+		String userid = SecurityContextHolder.getContext().getAuthentication().getName();//등록자아이디,현재접속중인아이디들어감
 		
 		System.out.println("r_type :"+r_type);
 		
@@ -268,15 +268,20 @@ public class RoomServiceImpl implements RoomService{
 		String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
 		
 		//글갯수 구하기
-		bcnt = dao.getContractCnt();
+		
 		String uri = req.getRequestURI();
-		System.out.println("bcnt : " + bcnt);
+		
 		System.out.println("uri : " + uri);
 	
 		//http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
 		if(!sertext.equals("")) {
 			uri = uri+"?sertext=" + sertext;
 		}
+		
+		System.out.println("bcnt : " + bcnt);
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("sertext", sertext);
+		bcnt = dao.getContractCnt(map1);
 		Paging paging = new Paging(3, 1, bcnt, uri);
 		paging.pagelist(page);
 		

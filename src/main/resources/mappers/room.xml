@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 			select * from room_tbl 
 			where r_delete in (0,1) 
-			order by r_code,r_delete
+			order by regidate desc
 		
 	</select>
 	
@@ -83,9 +83,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         
         
 	<!-- 계약 총 글 수 -->
-	<select id="getContractCnt" resultType="int">
+	<select id="getContractCnt" resultType="int" parameterType="java.util.Map">
 		SELECT COUNT(*)
 		  FROM room_contract_tbl
+		  <if test="sertext != '' ">
+		  	 WHERE rt_code like '%' ||  #{sertext} || '%' 
+				    OR r_code like '%' ||  #{sertext} || '%'
+				    OR rt_mobile like '%' ||  #{sertext} || '%' 
+				    OR rt_email like '%' ||  #{sertext} || '%' 
+			        OR rt_date1 like '%'|| #{sertext} || '%'
+		  	</if>
 	</select>
 	
 	<!-- 계약리스트 -->
