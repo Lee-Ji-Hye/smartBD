@@ -392,9 +392,12 @@ public class FoodServiceImpl implements FoodService {
 
 		log.debug("음식점 상품 리스트 : " + comp_seq + " " + comp_org + " " + page);
 		
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("comp_seq",comp_seq);
+		
 		// 글 갯수 
 		int totCnt = 0;
-		totCnt = f_dao.getGoodsPage();
+		totCnt = f_dao.getGoodsPage(map1);
 		
 		String uri = req.getRequestURI(); // 현재 서블릿의 uri
 		Paging paging = new Paging(5, 5, totCnt, uri); //Paging(int pageLine, int pageBlock, int cnt);//페이징 생성

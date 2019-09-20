@@ -89,7 +89,7 @@ public interface FoodDAO {
 	public int getCouponPage();
 	
 	// 상품 등록 페이지 처리
-	public int getGoodsPage();
+	public int getGoodsPage(Map<String, Object> map1);
 	
 	// 주문 목록 페이지 처리
 	public int getOrderPage();
