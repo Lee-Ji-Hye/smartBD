@@ -1,5 +1,8 @@
 package com.team.smart.service;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.team.smart.blockchain.Web3jAPI;
 import com.team.smart.persistence.RoomDAO;
 import com.team.smart.room.vo.RoomVO;
 import com.team.smart.utils.Functions;
@@ -23,6 +27,9 @@ public class RoomServiceImpl implements RoomService{
 	
 	@Autowired
 	RoomDAO dao;
+	
+	@Autowired(required=false)
+	Web3jAPI roomContract;
 
 	@Autowired
 	Functions fn;
@@ -297,14 +304,42 @@ public class RoomServiceImpl implements RoomService{
 		model.addAttribute("paging",paging);
 		model.addAttribute("cnt", bcnt);		//글갯수
 		model.addAttribute("pageNum", page);	//페이지번호
-		model.addAttribute("sertext", sertext);	//${sertext}	
+		model.addAttribute("sertext", sertext);	//${sertext}
 	}
+	
+    //Bytes32toString
+    public static String hexToASCII(String hexValue) {
+        StringBuilder output = new StringBuilder("");
+        for (int i = 0; i < hexValue.length(); i += 2)
+        {
+            String str = hexValue.substring(i, i + 2);
+            output.append((char) Integer.parseInt(str, 16));
+        }
+        return output.toString();
+    }
 	
 	//계약 상세페이지
 	@Override
-	public RoomVO getContractDetail(String rt_code) {
+	public RoomVO getContractDetail(String rt_code, int r_blockcode) {
 		
-		return dao.getContractDetail(rt_code);
+		RoomVO roomVO = dao.getContractDetail(rt_code);
+		String rt_address = null;
+		String rt_name = null;
+		String rt_businessNum = null;
+		
+		List<Object> details = Web3jAPI.getInstance().getBuyerInfo(BigInteger.valueOf(r_blockcode));
+		if (details.get(0).toString() != null) {
+	        System.out.println(details.get(0).toString());
+	        System.out.println(details.get(1).toString());
+	        System.out.println(details.get(2).toString());
+	        rt_address = details.get(0).toString();
+	        rt_name = hexToASCII(details.get(1).toString());
+	        rt_businessNum = hexToASCII(details.get(2).toString());
+		}
+		roomVO.setRt_address(rt_address);
+		roomVO.setRt_name(rt_name);
+		roomVO.setRt_businessNum(rt_businessNum);
+		return roomVO;
 	}
 	
 	//납부 리스트 가져오기
