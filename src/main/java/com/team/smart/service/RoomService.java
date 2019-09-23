@@ -45,7 +45,7 @@ public interface RoomService {
 		public void getContractList(HttpServletRequest req, Model model);
 		
 		//계약 상세페이지
-		public RoomVO getContractDetail(String rt_code);
+		public RoomVO getContractDetail(String rt_code, int r_blockcode);
 		
 		//납부 리스트 가져오기
 		public void getpaylist(HttpServletRequest req,Model model);

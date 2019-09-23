@@ -740,7 +740,7 @@
               	<tr class="text-uppercase font-size-1 form-original">
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	<a onclick="contractDetail('${dto.rt_code}',${index})">${dto.rt_code}</a>
+                    	<a onclick="contractDetail('${dto.rt_code}',${index},'${dto.r_blockcode}')">${dto.rt_code}</a>
                     </div>
                   </td>
                   <td class="align-middle">
@@ -884,12 +884,12 @@
 					<tbody>
 						<tr align="center">
 							<th>계약자명</th>
-							<td>ex) 임차인 이름(블록체인)</td>
+							<td id="rt_name">ex) 임차인 이름(블록체인)</td>
 						</tr>
 
 						<tr align="center">
 							<th class="td_center">주민번호/사업자번호</th>
-							<td>ex) 임차인 주민번호/사업자번호(블록체인)</td>
+							<td id="rt_businessNum">ex) 임차인 주민번호/사업자번호(블록체인)</td>
 						</tr>
 					
 						<tr align="center">
@@ -913,7 +913,7 @@
 					<tbody>
 						<tr align="center">
 							<th>지갑주소</th>
-							<td>ex) 임차인 지갑주소(블록체인)</td>
+							<td id="rt_address">ex) 임차인 지갑주소(블록체인)</td>
 						</tr>
 					</tbody>
 				</table>
@@ -962,9 +962,9 @@
     </div>
     <!-- End Content Section -->
     <script type="text/javascript">
-   	function contractDetail(rt_code, tbl_index){
+   	function contractDetail(rt_code, tbl_index, r_blockcode){
    		var request = new XMLHttpRequest();//지역변수 추천
-   		request.open("GET", "${path}/bd_office/detail/" + rt_code, true);//요청보내는거
+   		request.open("GET", "${path}/bd_office/detail/" + rt_code + "/" + r_blockcode, true);//요청보내는거
    		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    		console.dir(request);
    		request.onreadystatechange = function(){//콜백함수
@@ -994,6 +994,9 @@
    					document.getElementById('name').innerHTML = obj.name;
    					document.getElementById('hp').innerHTML = obj.hp;
    					document.getElementById('email').innerHTML = obj.email;
+   					document.getElementById('rt_name').innerHTML = obj.rt_name;
+   					document.getElementById('rt_businessNum').innerHTML = obj.rt_businessNum;
+   					document.getElementById('rt_address').innerHTML = obj.rt_address;
    					
    					//삽입될 위치를 변경
    					tbl.children[1].insertBefore(details, tblclass[tbl_index + 1]);

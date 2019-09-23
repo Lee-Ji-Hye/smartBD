@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 public class RoomVO {
 	
-	private String r_code="";		//매물코드
-	private String b_code="";		//건물코드
-	private String r_img="";		//사진
+	private String r_code="";	//매물코드
+	private String b_code="";	//건물코드
+	private String r_img="";	//사진
 	private String r_name;		//매물명
 	private String r_type;		//거래타입(전세/월세)
 	private int r_price;		//매물가격
@@ -30,9 +30,24 @@ public class RoomVO {
 	private String rt_date2;	//만기일
 	private String rt_deposit;	//보증금현황
 	private String rt_mobile;	//폰번호
+	private String rt_email;	//이메일
 	private String rt_code;		//계약코드
 	private int rt_pay;			//납부금액
 	private String rt_type;		//납부종류
 	
-
+	private String b_area1;
+	private String b_area2;
+	private String b_address;
+	private String b_year;
+	private String b_landarea;
+	private String b_buildscale;
+	private String b_buildarea;
+	
+	private int r_blockcode;
+	private String rt_name;
+	private String rt_businessNum;
+	private String rt_address;
+	private String name;
+	private String hp;
+	private String email;
 }

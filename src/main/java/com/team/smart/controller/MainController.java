@@ -1,5 +1,10 @@
 package com.team.smart.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.net.URLDecoder;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team.smart.blockchain.Web3jAPI;
 import com.team.smart.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -253,6 +259,37 @@ public class MainController {
 	public String main(HttpServletRequest req, Model model) {
 		log.info("url -> admin_index");
 		return "admin/index";
+	}
+	
+	
+    //Bytes32toString
+    public static String hexToASCII(String hexValue){
+        StringBuilder output = new StringBuilder("");
+        for (int i = 0; i < hexValue.length(); i += 2)
+        {
+            String str = hexValue.substring(i, i + 2);
+            output.append((char) Integer.parseInt(str, 16));
+        }
+        return output.toString();
+    }
+	
+	
+	@RequestMapping({"/test"})
+	public void test(HttpServletRequest req, Model model) {
+		List<Object> details = Web3jAPI.getInstance().getBuyerInfo(BigInteger.valueOf(60));
+	    if (details.get(0).toString() != null) {
+	        System.out.println(details.get(0).toString());
+	        String result = hexToASCII(details.get(1).toString());
+	        String result1 = null;
+			try {
+				result1 = URLDecoder.decode(result, "utf-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        System.out.println(result1);
+	        System.out.println(hexToASCII(details.get(2).toString()));
+	    }
 	}
 	
 	
