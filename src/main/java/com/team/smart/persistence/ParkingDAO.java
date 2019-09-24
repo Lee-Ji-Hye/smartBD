@@ -95,10 +95,15 @@ public interface ParkingDAO {
 		//전체조회
 		public List<ParkingVO> getsearch(String ser);
 		
+		//빌딩 주차권 주차상품코드 불러오기
+		public List<ParkingVO> list(Map<String, Object> map);
 		//주차장 매출 결산
-		public List<Map<String, Object>> paytotal(); 
+		public List<Map<String, Object>> paytotal(Map<String, Object> map1); 
+		
 		//주차장 매출 결산
-		public List<Map<String, Object>> pricetotal(); 
+		public List<Map<String, Object>> pricetotal(Map<String, Object> map); 
+
+		
 		//주차 요금 등록
 		public int insertprice(ParkingVO price);
 		//주차 요금 등록 갯수

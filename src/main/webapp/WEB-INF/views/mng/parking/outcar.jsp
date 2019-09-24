@@ -165,6 +165,13 @@
 	                  </th>
 	                  <th scope="col" class="font-weight-medium">
 	                    <div class="d-flex justify-content-between align-items-center">
+	                      	결제시간
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
 	                      	출차시간
 	                      <div class="ml-2">
 	                      </div>
@@ -208,14 +215,30 @@
 				                  <td class="align-middle text-secondary font-weight-normal ">${dto.car_number_img}</td>
 				                  <td class="align-middle text-secondary font-weight-normal ">${dto.in_time}</td>
 				                  <td class="align-middle text-secondary font-weight-normal ">
-				                  	<c:if test="${dto.stayHours!=''}">
-				                  		${dto.stayHours}시간
+				                  	<c:if test="${dto.out_time == null}">
+					                  	<c:if test="${dto.stayHours!=''}">
+					                  		${dto.stayHours}시간
+					                  	</c:if>
+					                  	<c:if test="${dto.stayMin!=''}">
+					                  		${(dto.stayMin == '')? 0 : dto.stayMin}분
+					                  	</c:if>
 				                  	</c:if>
-				                  	<c:if test="${dto.stayMin!=''}">
-				                  		${dto.stayMin}분
+				                  	<c:if test="${dto.out_time != null}">
+				                  		<c:if test="${dto.stayHours!=''}">
+					                  		${dto.payHours}시간
+					                  	</c:if>
+					                  	<c:if test="${dto.stayMin!=''}">
+					                  		${(dto.payMin == '')? 0 : dto.payMin}분
+					                  	</c:if>
 				                  	</c:if>
 				                  </td>
 				                  <td class="align-middle text-secondary font-weight-normal ">
+				                  	<c:if test="${dto.payHours!=''}">
+				                  		${dto.payHours}시간
+				                  	</c:if>
+				                  	${(dto.payMin == '')? 0 : dto.payMin}분
+								  </td>
+								  <td class="align-middle text-secondary font-weight-normal ">
 				                  	<c:if test="${dto.out_time==null}">
 				                  		--:--:--
 				                  	</c:if>
@@ -236,9 +259,8 @@
 				                 	</c:if>
 				                 </td>
 				                 <td class="align-middle text-secondary font-weight-normal ">
-				                 <button type="button" class="outBtn" class="btn btn-sm btn-soft-first transition-3d-hover" inoutcode="${dto.inoutcode}">출차</button>
-				                 	<c:if test="${dto.is_out == 'Y'}">
-				                 		
+				                 	<c:if test="${dto.is_out == 'Y' && dto.out_time == null}">
+				                 		<button type="button" class="outBtn" class="btn btn-sm btn-soft-first transition-3d-hover" inoutcode="${dto.inoutcode}">출차</button>		
 				                 	</c:if>
 				                 </td>
 		              		</tr>

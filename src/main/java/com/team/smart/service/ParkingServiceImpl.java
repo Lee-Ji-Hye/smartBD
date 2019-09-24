@@ -628,7 +628,18 @@ public class ParkingServiceImpl implements ParkingService{
 	}
 	@Override
 	public void paychart(HttpServletRequest req, Model model) {
-		List<Map<String,Object>> paydto = p_dao.paytotal();
+		String b_code = (String)req.getSession().getAttribute("b_code");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("b_code",b_code);
+		List<ParkingVO> list = p_dao.list(map);
+		System.out.println("p_code"+list.get(0).getP_code());
+		System.out.println("p_code"+list.get(1).getP_code());
+		System.out.println("p_code"+list.get(2).getP_code());
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("p_code0",list.get(0).getP_code());
+		map1.put("p_code1",list.get(1).getP_code());
+		map1.put("p_code2",list.get(2).getP_code());
+		List<Map<String,Object>> paydto = p_dao.paytotal(map1);
 		req.setAttribute("dto", jsonutil.getJsonStringFromList(paydto));
 	}
 	@Override
@@ -777,7 +788,17 @@ public class ParkingServiceImpl implements ParkingService{
 			uri = uri+"?sertext=" + sertext;
 		}
 		Map<String, Object> map1 = new HashMap<String, Object>();
-		map1.put("sertext",sertext);
+		if(sertext.equals("카카오페이")) {
+			map1.put("sertext","money");
+			}else if(sertext.equals("주차권")) {
+				map1.put("sertext","ticket");
+			}else if(sertext.equals("money")){
+				map1.put("sertext","");
+			}else if(sertext.equals("ticket")) {
+				map1.put("sertext","");
+			}else {
+				map1.put("sertext",sertext);
+			}
 		map1.put("b_code",b_code);
 		bcnt = p_dao.getpricepaycnt(map1); //총게시글 수 
 		System.out.println("bcnt : " + bcnt);
@@ -792,7 +813,17 @@ public class ParkingServiceImpl implements ParkingService{
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", paging.getStart());
 			map.put("end", paging.getEnd());
-			map.put("sertext",sertext);
+			if(sertext.equals("카카오페이")) {
+				map.put("sertext","money");
+			}else if(sertext.equals("주차권")) {
+				map.put("sertext","ticket");
+			}else if(sertext.equals("money")){
+				map.put("sertext","");
+			}else if(sertext.equals("ticket")) {
+				map.put("sertext","");
+			}else {
+				map.put("sertext",sertext);
+			}
 			System.out.println("리밋 : " + map);
 			List<ParkingVO> dtos = p_dao.pricepaylist(map);
 			req.setAttribute("dtos", dtos); //큰바구니 : 게시글 목록 cf)작은바구니 : 게시글 한건
@@ -808,7 +839,10 @@ public class ParkingServiceImpl implements ParkingService{
 	}
 	@Override
 	public void pricechart(HttpServletRequest req, Model model) {
-		List<Map<String,Object>> paydto = p_dao.pricetotal();
+		String b_code = (String)req.getSession().getAttribute("b_code");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("b_code", b_code);
+		List<Map<String,Object>> paydto = p_dao.pricetotal(map);
 		req.setAttribute("dto1", jsonutil.getJsonStringFromList(paydto));
 		
 	}
@@ -873,13 +907,20 @@ public class ParkingServiceImpl implements ParkingService{
 		        
 	        	vo.setStayHours(stayHours);
 	        	vo.setStayMin(stayMin);
+	        	
+	        	
+		        int payHours = (int)(vo.getTotParkingTime() / 60);
+		        int payMin   = (int)(vo.getTotParkingTime() % 60);
+		        
+	        	vo.setPayHours(payHours);
+	        	vo.setPayMin(payMin);        	
 		        
 		        
 	        	//리얼 주차중인 시간 - 주차한만큼 결제한 시간
 		        long plus_stayTime = totalMin - vo.getTotParkingTime();
 		        long pb_free = (long) priceInfo.getPb_free();
 
-		        
+		        System.out.println(plus_stayTime + "  >  " + pb_free);
 		        if(plus_stayTime > pb_free) {
 		        	vo.setIs_out("N");
 		        } else {
