@@ -8,6 +8,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
 	
 	<ul class="bxslider" style="width:300px;height:150px">
+			  
+			  <c:if test="${icnt == 0}">
+			  	<li><img src="/smart/resources/images/slide/nomoney.JPG" /></li>
+			  </c:if>
 	 
               <c:if test="${icnt >0}">
               	<c:forEach var="img" items="${image}" varStatus="status">
