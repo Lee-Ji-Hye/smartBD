@@ -173,8 +173,8 @@ public class ParkingDAOImpl implements ParkingDAO{
 	}
 
 	@Override
-	public List<Map<String, Object>> paytotal() {
-		return sqlSession.selectList("ParkingDAO.paytotal");
+	public List<Map<String, Object>> paytotal(Map<String, Object> map1) {
+		return sqlSession.selectList("ParkingDAO.paytotal",map1);
 	}
 
 	@Override
@@ -217,8 +217,8 @@ public class ParkingDAOImpl implements ParkingDAO{
 	}
 
 	@Override
-	public List<Map<String, Object>> pricetotal() {
-		return sqlSession.selectList("ParkingDAO.pricetotal");
+	public List<Map<String, Object>> pricetotal(Map<String, Object> map) {
+		return sqlSession.selectList("ParkingDAO.pricetotal",map);
 	}
 
 	@Override
@@ -249,6 +249,11 @@ public class ParkingDAOImpl implements ParkingDAO{
 	@Override
 	public int getTotalInoutCnt() {
 		return sqlSession.selectOne("ParkingDAO.getTotalInoutCnt");
+	}
+
+	@Override
+	public List<ParkingVO> list(Map<String, Object> map) {
+		return sqlSession.selectList("ParkingDAO.list",map);
 	}
 
 }

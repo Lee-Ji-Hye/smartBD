@@ -72,7 +72,11 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="p_type" id="listingCityProvince" placeholder="p_type" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
+                      <select name="p_type">
+                      <option value='m'>m</option>
+                      <option value='h'>h</option>
+                      <option value='d'>d</option>
+                      </select>
                     </div>
                   </div>
                 </div>

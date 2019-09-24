@@ -252,7 +252,8 @@ table,td, th{
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.inoutcode}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.userid}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_price}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_type}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.pay_type =='money'}">카카오페이</c:if>
+			                  <c:if test="${dto.pay_type =='ticket'}">주차권</c:if></td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_enable_time}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.parking_code}</td>
 			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatDate value="${dto.pay_day}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
