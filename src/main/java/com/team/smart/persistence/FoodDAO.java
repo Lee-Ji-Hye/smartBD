@@ -8,6 +8,7 @@ import com.team.smart.app.vo.FoodStoreVO;
 import com.team.smart.food.vo.Food_companyVO;
 import com.team.smart.food.vo.Food_couponVO;
 import com.team.smart.food.vo.Food_menuVO;
+import com.team.smart.food.vo.Food_orde_menuVO;
 import com.team.smart.food.vo.Food_orderVO;
 
 public interface FoodDAO {
@@ -67,6 +68,9 @@ public interface FoodDAO {
 	
 	// 음식점 상품 주문 상세 보기
 	public Food_orderVO getFoodDetail(String f_ocode);
+	
+	// 음식점 상품 주문 상세 여러건
+	public List<Food_orde_menuVO> getFoodMenuList(String f_ocode);
 	
 	// 음식점 주문 승인 처리
 	public int amdFood(String f_ocode);

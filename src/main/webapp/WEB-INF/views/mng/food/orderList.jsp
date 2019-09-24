@@ -86,7 +86,7 @@ pageEncoding="UTF-8"%>
                   </th>
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center" onclick="window.location='orderList'">
-                      	<strong>테이크아웃</strong>
+                      	<strong>주문자명</strong>
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
@@ -113,9 +113,16 @@ pageEncoding="UTF-8"%>
 	                  <th scope="col">
 	                  </th>
 	                   <td class="align-middle" id="detail_odrerCode" onclick="orderDetailCode('${ovo.f_ocode}',${order})">${ovo.f_ocode}</td>
-	                  <td class="align-middle text-secondary font-weight-normal">${ovo.userid}</td>
-	                  <td class="align-middle">${ovo.f_takeout}</td>
-	                  <td class="align-middle text-primary">${ovo.f_pay_price}</td>
+	                  <td class="align-middle text-secondary font-weight-normal">
+	                  	<c:if test="${ovo.userid == null}">
+	                  		Guest
+	                  	</c:if>
+	                  	<c:if test="${ovo.userid != null}">
+	                  		${ovo.userid}
+	                  	</c:if>
+	                  </td>
+	                  <td class="align-middle">${ovo.f_name}</td>
+	                  <td class="align-middle text-primary"><fmt:formatNumber value="${ovo.f_pay_price}" pattern="#,###" />원</td>
 	                  <td class="align-middle">${ovo.f_regidate}</td>
 	                  <td class="align-middle" id="foodOrderApp">
 	                  	<!-- <div class="media align-items-center" > -->
@@ -164,7 +171,7 @@ pageEncoding="UTF-8"%>
 				              <h3 class="h5">주문 내역</h3>
 				              <span class="d-block">주문자 </span>
 				              <address class="text-secondary mb-0" id="detail_orderID">
-				               		${ovo.userid}
+				               		${ovo.f_name}
 				              </address>
 				            </div>
 				            
@@ -196,13 +203,13 @@ pageEncoding="UTF-8"%>
 				              </tr>
 				            </thead>
 				            <c:forEach var="dvo" items="detail" varStatus="status">
-				            <tbody>
-				              <tr>
+				            <tbody id="menuAdd">
+				             <%--  <tr>
 				                <th scope="row" class="font-weight-normal" id="detail_menuName">${ovo.f_name}</th>
 				                <td scope="row" class="font-weight-normal" id="detail_menuCount">${ovo.f_cnt}</td>
-				                <td scope="row" class="font-weight-normal" id="detail_menuPrice">${ovo.f_price}</td>
+				                <td scope="row" class="font-weight-normal" id="detail_menuPrice"><fmt:formatNumber value="${ovo.f_price}" pattern="#,###" />원</td>
 				                <td class="text-right" id="detail_menuMessage">${ovo.f_message}</td>
-				              </tr>
+				              </tr> --%>
 				            </tbody>
                         		<hr class="my-4">
 				              <tr class="h6">
@@ -215,7 +222,7 @@ pageEncoding="UTF-8"%>
 				              </tr>
 				              <tr class="h6">
 				                <td scope="row">Total</td>
-				                <td colspan="3" class="text-right" id="detail_menuTotal">${ovo.f_pay_price}</td>
+				                <td colspan="3" class="text-right" id="detail_menuTotal"><fmt:formatNumber value="${ovo.f_pay_price}" pattern="#,###" />원</td>
 				              </tr>
 				              <!-- <tr class="h6" style="float:right">
 				                <td scope="row" >승인상태:</td>
@@ -223,6 +230,7 @@ pageEncoding="UTF-8"%>
 				                <td></td>
 				              </tr> -->
 				            </c:forEach>
+				            
 				          </table>
 				          <!-- End Table -->
 				
@@ -329,21 +337,18 @@ function orderDetail(f_ocode, tbl_order){
 				// 서버에서 받아온 데이터
 				obj = JSON.parse(request.responseText);
 				// 콘솔에찍음
-				console.log(obj);
 				
-				if(obj.f_status === '0'){
-					obj.f_status = '주문대기';
-				} else if(obj.f_status === '1'){
-					obj.f_status = '주문완료';
-				} else if(obj.f_status === '2'){
-					obj.f_status = '주문거절';
-				}
+				var orderInfo = obj.orderInfo; // 주문자의 정보를 담은 변수
+				var orderMenu = obj.orderMenu; // 메뉴 상세 정보를 담는 변수
 				
-								
-				if(obj.f_status == '주문대기') { // '주문대기' 상태 
+				console.log(orderInfo);
+				console.log(orderMenu);
+ 				console.log(orderInfo.f_status);
+				
+				if(orderInfo.f_status == '주문대기') { // '주문대기' 상태 
 					$("#amdNg").show(); // 거절버튼 보이기
 					$("#amdOk").hide();	// 승인버튼 숨기기 
-				} else if(obj.f_status == '주문접수') { // '주문접수' 상태
+				} else if(orderInfo.f_status == '주문접수') { // '주문접수' 상태
 					$("#amdNg").show(); // 거절버튼 보이기
 					$("#amdOk").show(); // 승인버튼 보이기
 				} else { // 그 외 버튼 다 숨기기
@@ -351,20 +356,50 @@ function orderDetail(f_ocode, tbl_order){
 					$("#amdOk").hide();
 				}
 				
-				document.getElementById('foodOrderApp').innerText = obj.f_status; // 주문상태코드
-				document.getElementById('foodOrderApp2').innerText = obj.f_status; // 주문상태코드
+				var f_message = (orderInfo.f_message == null)? "" : orderInfo.f_message;
+				
+				console.log(f_message);
+				
+				document.getElementById('foodOrderApp').innerText = orderInfo.f_status; // 주문상태코드
+				document.getElementById('foodOrderApp2').innerText = orderInfo.f_status; // 주문상태코드
+				document.getElementById('detail_f_ocode').innerText = orderInfo.f_ocode; // 주문코드
+				document.getElementById('detail_orderID').innerText = orderInfo.f_name; // 주문자 아이디
+				document.getElementById('detail_orderTakeOut').innerText = orderInfo.f_takeout; // 테이크아웃여부
+				document.getElementById('detail_pickUp').innerText = orderInfo.f_receive_time; // 할인
+				
+				// 변수명.toLocaleString();  ==> 숫자에 , 찍어주는 함수
+				document.getElementById('detail_menu_amount').innerText = orderInfo.f_amount.toLocaleString(); // 제품 총 가격
+				// orderInfo.f_sale_price(할인쿠폰 적용가격)이 0보다 클 때 , 를 찍어주고
+				if(orderInfo.f_sale_price > 0){
+					document.getElementById('detail_menu_sale').innerText = orderInfo.f_sale_price.toLocaleString(); // 할인쿠폰 가격
+				} else { // 0보다 작다면 0을 출력
+					document.getElementById('detail_menu_sale').innerText = 0; // 할인쿠폰 가격
+				}
+				//document.getElementById('detail_menuMessage').innerText = f_message; // 주문 메세지 
+				document.getElementById('detail_menuTotal').innerText = orderInfo.f_pay_price.toLocaleString(); // 총 결제 금액
 
-				document.getElementById('detail_f_ocode').innerText = obj.f_ocode; // 주문코드
-				document.getElementById('detail_orderID').innerText = obj.userid; // 주문자 아이디
-				document.getElementById('detail_orderTakeOut').innerText = obj.f_takeout; // 테이크아웃여부
-				document.getElementById('detail_pickUp').innerText = obj.f_receive_time; // 할인
-				document.getElementById('detail_menuName').innerText = obj.f_name; // 제품명
-				document.getElementById('detail_menuCount').innerText = obj.f_cnt; // 제품 갯수
-				document.getElementById('detail_menuPrice').innerText = obj.f_price; // 제품 한 건당 가격
-				document.getElementById('detail_menu_amount').innerText = obj.f_amount; // 제품 총 가격
-				document.getElementById('detail_menu_sale').innerText = obj.f_sale_price; // 할인쿠폰 가격
-				document.getElementById('detail_menuMessage').innerText = obj.f_message; // 주문 메세지
-				document.getElementById('detail_menuTotal').innerText = obj.f_pay_price; // 총 결제 금액
+			/* 	document.getElementById('detail_menuName').innerText = orderMenu.f_name; // 제품명
+				document.getElementById('detail_menuCount').innerText = orderMenu.f_cnt; // 제품 갯수
+				document.getElementById('detail_menuPrice').innerText = orderMenu.f_price; // 제품 한 건당 가격  */
+				
+				/* $('#menuAdd').remove(); */
+				
+				var html="";
+				$.each(orderMenu,function(i,v){
+					
+					html +=  '<tr>'+
+				                '<th scope="row" class="font-weight-normal" id="detail_menuName">'+v.f_name+'</th>'+
+				                '<td scope="row" class="font-weight-normal" id="detail_menuCount">'+v.f_cnt+'</td>'+
+				                '<td scope="row" class="font-weight-normal" id="detail_menuPrice">'+v.f_price.toLocaleString()+'원</td>'+
+				                '<td class="text-right" id="detail_menuMessage">'+f_message+'</td>'+
+				              '</tr>';
+					
+				});
+
+				console.log(html);
+				
+				$('#menuAdd').append(html);
+				
 				// 삽입될 위치를 변경
 				tbl[0].children[1].insertBefore(details, tblclass[tbl_order + 1]);
 				$(tblclass[tbl_order]).css("color", "blue");
@@ -377,6 +412,9 @@ function orderDetail(f_ocode, tbl_order){
 	};
 	request.send(null); // body
 };
+// 
+
+
 
 // 주문 승인 하기
 function orderPro(event) {
