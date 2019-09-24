@@ -245,7 +245,8 @@ public class RoomServiceImpl implements RoomService{
 		
 		String r_code = req.getParameter("r_code");
 		int cnt = dao.getImagecount(r_code);
-		
+		System.out.println("이미지갯수 :" + cnt);
+		req.setAttribute("icnt", cnt);
 		
 		if(cnt > 0) {
 			//  이미지 갯수 수량만큼 가져와서 리스트에 담는다
@@ -253,7 +254,7 @@ public class RoomServiceImpl implements RoomService{
 			List<RoomVO> dtos = dao.getImage(r_code);
 			
 			req.setAttribute("image", dtos); 
-			req.setAttribute("icnt", cnt);
+			
 		}
 	}
 
