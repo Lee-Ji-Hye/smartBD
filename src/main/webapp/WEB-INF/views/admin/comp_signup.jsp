@@ -27,7 +27,7 @@
     <!-- Hire Us Form Section -->
     <div class="container space-bottom-2">
       <!-- Hire Us Form -->
-      <form class="js-validate w-lg-50 mx-auto" action="${path}/sysmaster/cormn/instpro" method="post" name="signUpForm">
+      <form class="js-validate w-lg-50 mx-auto" action="${path}/bd_food/cormn/instpro" method="post" name="signUpForm">
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                  
         <!-- Input -->
         <div class="js-form-message mb-6">

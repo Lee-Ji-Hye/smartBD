@@ -34,7 +34,7 @@ pageEncoding="UTF-8"%>
             
             <!-- Buttons -->
             <div style="margin-right:20px;">
-	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/sysmaster/cormn/inst'">등록</button>
+	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/bd_food/cormn/inst'">등록</button>
             </div>
             <!-- End Buttons -->
           </div>
@@ -252,7 +252,7 @@ pageEncoding="UTF-8"%>
   <script>
 	function compDetail(comp_seq, tbl_index){
 		var request = new XMLHttpRequest();//지역변수 추천
-		request.open("GET", "${path}/sysmaster/cormn/details/" + comp_seq, true);//요청보내는거
+		request.open("GET", "${path}/bd_food/cormn/details/" + comp_seq, true);//요청보내는거
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		console.dir(request);
 		request.onreadystatechange = function(){//콜백함수
@@ -310,7 +310,7 @@ pageEncoding="UTF-8"%>
 	function compPro(event, jong) {
 		//amd_ok, amd_ng, del
 		var comp_seq = document.getElementById('details_comp_seq').innerText;
-		var url = "${path}/sysmaster/cormn/";
+		var url = "${path}/bd_food/cormn/";
 		var method = "";
 		
 		if(jong === 'amd_ok'){

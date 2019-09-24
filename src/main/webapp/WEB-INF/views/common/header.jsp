@@ -203,7 +203,7 @@
                 <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/memcontract" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">임대 정보</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/mempaylist" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">납부 정보</a></li>
                 <%-- <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/pkcmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">주차권 관리</a></li> --%>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/fdmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">식당 관리</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/comp" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">식당 관리</a></li>
               </ul>
             </li>
             <!-- /표시되는 큰메뉴 끝 -->
