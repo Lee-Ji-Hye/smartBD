@@ -50,7 +50,7 @@ public interface RoomDAO {
 		public List<String> getGu(String si);
 		
 		//계약 총 글 수
-		public int getContractCnt();
+		public int getContractCnt(Map<String, Object> map1);
 		
 		//계약리스트 가져오기
 		public List<RoomVO> getContractList(Map<String,Object> map);

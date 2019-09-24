@@ -83,9 +83,9 @@ public class RoomServiceImpl implements RoomService{
 			r_code = req.getParameter("r_code");
 		}
 		
-		String b_code = "B000000";												//건물코드
+		String b_code = req.getParameter("b_code");												//건물코드
 		String r_delete = "0";													//삭제 여부
-		String userid = "id9";													//관리자아이디
+		String userid = SecurityContextHolder.getContext().getAuthentication().getName();//등록자아이디,현재접속중인아이디들어감
 		
 		System.out.println("r_type :"+r_type);
 		
@@ -131,7 +131,8 @@ public class RoomServiceImpl implements RoomService{
 	@Override
 	public void list(HttpServletRequest req, Model model) {
 		int bcnt = 0;			// 글 갯수
-		
+		Object b_code = req.getSession().getValue("b_code");
+		System.out.println("삐코드="+ b_code);
 		//글갯수 구하기
 		bcnt = dao.getArticleCnt();
 		System.out.println("bcnt = " + bcnt);	// 먼저 테이블에 30건 insert
@@ -147,6 +148,7 @@ public class RoomServiceImpl implements RoomService{
 			//  게시글 목록 조회
 			Map<String, Object> map = new HashMap<String, Object>();
 			System.out.println(paging.getStart() + " / " + paging.getEnd());
+			map.put("b_code",b_code);
 			map.put("start", paging.getStart());
 			map.put("end", paging.getEnd());
 			dtos = dao.getArticleList(map);
@@ -237,6 +239,7 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 	
+	//슬라이드 이미지 가져오기
 	@Override
 	public void getImage(HttpServletRequest req, Model model) {
 		
@@ -275,15 +278,20 @@ public class RoomServiceImpl implements RoomService{
 		String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
 		
 		//글갯수 구하기
-		bcnt = dao.getContractCnt();
+		
 		String uri = req.getRequestURI();
-		System.out.println("bcnt : " + bcnt);
+		
 		System.out.println("uri : " + uri);
 	
 		//http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
 		if(!sertext.equals("")) {
 			uri = uri+"?sertext=" + sertext;
 		}
+		
+		System.out.println("bcnt : " + bcnt);
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("sertext", sertext);
+		bcnt = dao.getContractCnt(map1);
 		Paging paging = new Paging(3, 1, bcnt, uri);
 		paging.pagelist(page);
 		
