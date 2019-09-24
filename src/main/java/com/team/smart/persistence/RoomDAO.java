@@ -20,7 +20,7 @@ public interface RoomDAO {
 		public int roomupload(RoomVO vo);
 		
 		//매물 갯수 구하기
-		public int getArticleCnt();
+		public int getArticleCnt(String b_code);
 		
 		//매물 목록 조회
 		public List<RoomVO> getArticleList(Map<String, Object> map);

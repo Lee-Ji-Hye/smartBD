@@ -131,10 +131,10 @@ public class RoomServiceImpl implements RoomService{
 	@Override
 	public void list(HttpServletRequest req, Model model) {
 		int bcnt = 0;			// 글 갯수
-		Object b_code = req.getSession().getValue("b_code");
+		String b_code = (String) (req.getSession().getValue("b_code"));
 		System.out.println("삐코드="+ b_code);
 		//글갯수 구하기
-		bcnt = dao.getArticleCnt();
+		bcnt = dao.getArticleCnt(b_code);
 		System.out.println("bcnt = " + bcnt);	// 먼저 테이블에 30건 insert
 		String page = req.getParameter("page");
 		

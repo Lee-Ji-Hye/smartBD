@@ -40,9 +40,9 @@ public class RoomDAOImpl implements RoomDAO{
 
 	//매물 갯수구하기
 	@Override
-	public int getArticleCnt() {
+	public int getArticleCnt(String b_code) {
 		
-		return sqlSession.selectOne("RoomDAO.getArticleCnt");
+		return sqlSession.selectOne("RoomDAO.getArticleCnt",b_code);
 	}
 
 	
