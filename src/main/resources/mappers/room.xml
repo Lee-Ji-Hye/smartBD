@@ -40,6 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 			select * from room_tbl 
 			where r_delete in (0,1) 
+			and b_code=#{b_code} 
 			order by regidate desc
 		
 	</select>

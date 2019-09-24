@@ -40,6 +40,8 @@
          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		 <input type="hidden" name="mode" value="${mode}">
 		 <input type="hidden" name="r_code" value="${dto.r_code}" />
+		 <input type="hidden" name="b_code" value="${sessionScope.b_code}"/>
+		 
         	
         	<c:if test="${mode eq 'edit'}">수정</c:if>
         	<c:if test="${mode == 'insert'}">등록</c:if>
@@ -49,7 +51,7 @@
           <div class="mb-10">
             <!-- Title -->
             <div class="border-bottom pb-3 mb-5">
-              <h2 class="h6 text-secondary mb-0">매물 거래 타입 r_kind</h2>
+              <h2 class="h6 text-secondary mb-0">매물 거래 타입</h2>
             </div>
             <!-- End Title -->
 
@@ -96,7 +98,7 @@
           <div class="mb-10">
             <!-- Title -->
             <div class="border-bottom pb-3 mb-5">
-              <h2 class="h6 text-secondary mb-0">전세/월세 r_type</h2>
+              <h2 class="h6 text-secondary mb-0">전세/월세</h2>
             </div>
             <!-- End Title -->
 
@@ -148,7 +150,7 @@
                          data-parent="#uploadForm">
                     </span>
                   </div>
-                  <input type="text" class="form-control" name="r_price" id="listingPrice" value="${dto.r_price}" placeholder="r_price" aria-label="Price" aria-describedby="listingPriceLabel">
+                  <input type="text" class="form-control" name="r_price" id="listingPrice" value="${dto.r_price}" aria-label="Price" aria-describedby="listingPriceLabel">
                 </div>
               </div>
             </div>
@@ -167,7 +169,7 @@
                          data-parent="#uploadForm">	
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="r_premium" id="listingAddress" value="${dto.r_premium}" placeholder="r_premium" aria-label="Address" aria-describedby="listingAddressLabel" autocomplete="off">
+                      <input type="text" class="form-control" name="r_premium" id="listingAddress" value="${dto.r_premium}" aria-label="Address" aria-describedby="listingAddressLabel" autocomplete="off">
                     </div>
                   </div>
                 </div>
@@ -186,7 +188,7 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="r_deposit" id="listingCityProvince" value="${dto.r_deposit}" placeholder="r_deposit" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
+                      <input type="text" class="form-control" name="r_deposit" id="listingCityProvince" value="${dto.r_deposit}" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
                     </div>
                   </div>
                 </div>
@@ -207,7 +209,7 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="r_area" id="listingLotSize" value="${dto.r_area}" placeholder="r_area" aria-label="Lot size" aria-describedby="listingLotSizeLabel" autocomplete="off">
+                      <input type="text" class="form-control" name="r_area" id="listingLotSize" value="${dto.r_area}" aria-label="Lot size" aria-describedby="listingLotSizeLabel" autocomplete="off">
                     </div>
                   </div>
                 </div>
@@ -226,7 +228,7 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="r_name" id="listingPostalCode" value="${dto.r_name}" placeholder="r_name" aria-label="Postal code" aria-describedby="listingPostalCodeLabel" autocomplete="off">
+                      <input type="text" class="form-control" name="r_name" id="listingPostalCode" value="${dto.r_name}" aria-label="Postal code" aria-describedby="listingPostalCodeLabel" autocomplete="off">
                     </div>
                   </div>
                 </div>
@@ -250,7 +252,7 @@
                       </div>
                       
                       <select class="custom-select" name="r_toilet" id="listingBedroom"  aria-describedby="listingBedroomLabel">
-                        <option >r_toilet</option>
+                        <option >갯수를 선택해주세요</option>
                         <option value="1" ${(dto.r_toilet == "1")? "selected" : "" }>1</option>
                         <option value="2" ${(dto.r_toilet == "2")? "selected" : "" }>2</option>
                         <option value="3" ${(dto.r_toilet == "3")? "selected" : "" }>3</option>

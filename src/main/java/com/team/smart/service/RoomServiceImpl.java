@@ -76,7 +76,7 @@ public class RoomServiceImpl implements RoomService{
 			r_code = req.getParameter("r_code");
 		}
 		
-		String b_code = "B000000";												//건물코드
+		String b_code = req.getParameter("b_code");												//건물코드
 		String r_delete = "0";													//삭제 여부
 		String userid = SecurityContextHolder.getContext().getAuthentication().getName();//등록자아이디,현재접속중인아이디들어감
 		
@@ -124,7 +124,8 @@ public class RoomServiceImpl implements RoomService{
 	@Override
 	public void list(HttpServletRequest req, Model model) {
 		int bcnt = 0;			// 글 갯수
-		
+		Object b_code = req.getSession().getValue("b_code");
+		System.out.println("삐코드="+ b_code);
 		//글갯수 구하기
 		bcnt = dao.getArticleCnt();
 		System.out.println("bcnt = " + bcnt);	// 먼저 테이블에 30건 insert
@@ -140,6 +141,7 @@ public class RoomServiceImpl implements RoomService{
 			//  게시글 목록 조회
 			Map<String, Object> map = new HashMap<String, Object>();
 			System.out.println(paging.getStart() + " / " + paging.getEnd());
+			map.put("b_code",b_code);
 			map.put("start", paging.getStart());
 			map.put("end", paging.getEnd());
 			dtos = dao.getArticleList(map);
@@ -230,6 +232,7 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 	
+	//슬라이드 이미지 가져오기
 	@Override
 	public void getImage(HttpServletRequest req, Model model) {
 		
