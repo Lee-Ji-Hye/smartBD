@@ -98,8 +98,8 @@ public class ParkingDAOImpl implements ParkingDAO{
 	}
 
 	@Override
-	public int getinsertCnt() {
-		return sqlSession.selectOne("ParkingDAO.getinsertCnt");
+	public int getinsertCnt(Map<String, Object> map1) {
+		return sqlSession.selectOne("ParkingDAO.getinsertCnt",map1);
 	}
 
 	@Override
@@ -183,8 +183,8 @@ public class ParkingDAOImpl implements ParkingDAO{
 	}
 
 	@Override
-	public int getpriceCnt() {
-		return sqlSession.selectOne("ParkingDAO.getpriceCnt");
+	public int getpriceCnt(Map<String, Object> map1) {
+		return sqlSession.selectOne("ParkingDAO.getpriceCnt",map1);
 	}
 
 	@Override
@@ -208,8 +208,8 @@ public class ParkingDAOImpl implements ParkingDAO{
 	}
 
 	@Override
-	public int getpricepaycnt() {
-		return sqlSession.selectOne("ParkingDAO.getpricepaycnt");
+	public int getpricepaycnt(Map<String, Object> map1) {
+		return sqlSession.selectOne("ParkingDAO.getpricepaycnt",map1);
 	}
 	@Override
 	public List<ParkingVO> pricepaylist(Map<String, Object> map) {

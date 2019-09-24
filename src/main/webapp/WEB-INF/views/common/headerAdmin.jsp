@@ -208,7 +208,7 @@
               <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Billding management<span></span></a>
               <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
                 <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_admin/bdmnermn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">빌딩 관리자 관리</a></li>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_manager/bdstat" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">빌딩 현황</a></li>
+                <%-- <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_manager/bdstat" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">빌딩 현황</a></li> --%>
               </ul>
             </li>
             <!-- /표시되는 큰메뉴 끝 -->

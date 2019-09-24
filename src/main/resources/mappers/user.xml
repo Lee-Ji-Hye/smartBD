@@ -35,7 +35,7 @@
 		 FROM user_compauth_tbl a
          LEFT JOIN 
          room_contract_tbl c
-         ON a.rt_code = c.rt_code
+         ON a.userid = c.userid
          LEFT JOIN
          building_tbl b
          ON a.b_code = b.b_code

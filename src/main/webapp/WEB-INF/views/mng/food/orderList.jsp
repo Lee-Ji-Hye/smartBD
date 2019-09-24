@@ -14,22 +14,7 @@ pageEncoding="UTF-8"%>
           <!-- Activity Menu -->
           <div class="row justify-content-sm-between align-items-sm-center">
             <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
-              
-              <!-- Datepicker -->
-              <div id="datepickerWrapper" class="js-focus-state u-datepicker w-auto input-group input-group-sm">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <span class="fas fa-calendar"></span>
-                  </span>
-                </div>
-                
-                <input type="text" class="js-range-datepicker form-control bg-white rounded-right"
-                       data-rp-wrapper="#datepickerWrapper"
-                       data-rp-type="range"
-                       data-rp-date-format="d M Y"
-                       data-rp-default-date='["05 Jul 2019", "19 Jul 2019"]'
-                       data-rp-is-disable-future-dates="true">
-              </div>
+           
               <!-- End Datepicker -->
             </div>
            <div class="col-md-6">
@@ -44,15 +29,14 @@ pageEncoding="UTF-8"%>
                   </select>
                   End Select
                 </div> -->
-                Search
+              
                 <div class="js-focus-state input-group input-group-sm">
                   <div class="input-group-prepend">
-                    <span class="input-group-text" id="searchActivities">
-                      <span class="fas fa-search"></span>
-                    </span>
+                    
                   </div>
-                  <input id="datatableSearch" type="email" class="form-control" placeholder="Search activities" aria-label="Search activities" aria-describedby="searchActivities">
-                </div>
+                  <form method="get" id="form" name="form" >
+ 				<input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}" style="position:relative;right:500px;top:10px; ">                </div>
+             	<input type="button" id="serBtn" value="검색"  class="btn btn-sm btn-soft-secondary transition-3d-hover" style="position: relative;right:700px; height:50px;top:10px;" >
               </div>
             </div>
           </div>
@@ -275,6 +259,7 @@ pageEncoding="UTF-8"%>
                 	</td>
                 </tr>
               </tbody>
+              </form>
             </table>
           </div>
           <!-- End Activity Table -->
@@ -283,6 +268,7 @@ pageEncoding="UTF-8"%>
           <!-- End Pagination -->
         </div>
       </div>
+      
     </div>
   </div>
   <!-- End Content Section -->
@@ -453,6 +439,17 @@ function orderPro2(event) {
 	});
 	
 </script> -->
+
+
+<script type="text/javascript">
+	$(function(){
+		$("#serBtn").click(function(){
+			$("#form").attr("action","${path}/cp_employee/odmn/list");
+			$("#form").submit();
+		});
+	});
+	
+</script>
 
 <!-- ========== END MAIN ========== -->
 <%@ include file="../../common/footer.jsp" %>

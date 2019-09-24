@@ -127,12 +127,12 @@ public class UserServiceImpl implements UserService {
 		//TODO 아이디, 업체코드를 넣은 권한 생성 CP_TENATE -> 계약코드가 없기때문에 권한은 못가짐..
 		//
 		//id, 업체코드, 권한명, insert 이거 승인되면 넣을예정
-//		HashMap<String,String> map = new HashMap<>();
-//		map.put("userid", SecurityContextHolder.getContext().getAuthentication().getName());
-//		map.put("comp_auth", "ROLE_BD_ADMIN");
-//		map.put("b_code", b_code);
-//		
-//		count += dao.insertAuth(map);
+		HashMap<String,String> map = new HashMap<>();
+		map.put("userid", SecurityContextHolder.getContext().getAuthentication().getName());
+		map.put("comp_auth", "ROLE_BD_ADMIN");
+		map.put("b_code", b_code);
+		
+		count += dao.insertAuth(map);
 		
 		log.debug("count = "+count);
 		return count;

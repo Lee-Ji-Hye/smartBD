@@ -201,9 +201,46 @@
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
         </dependency>
-
-        <!-- fileUpload --> 
+        <!-- fileUpload -->
         
+        <!-- 컨트랙트 하려면 아래의 메이븐 다 추가해야함 -->
+        <dependency>
+      		<groupId>org.web3j</groupId>
+      		<artifactId>core</artifactId>
+      		<version>4.2.0</version>
+   		</dependency>
+	    <dependency>
+	    	<groupId>com.squareup.okhttp3</groupId>
+	        <artifactId>okhttp</artifactId>
+	        <version>4.1.0</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>com.fasterxml.jackson.core</groupId>
+	        <artifactId>jackson-databind</artifactId>
+	        <version>2.9.9</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>com.squareup.okio</groupId>
+	        <artifactId>okio</artifactId>
+	        <version>2.4.0</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>io.reactivex</groupId>
+	        <artifactId>rxjava</artifactId>
+	        <version>1.1.0</version>
+	    </dependency> 
+	    <dependency>
+	        <groupId>org.latencyutils</groupId>
+	        <artifactId>LatencyUtils</artifactId>
+	        <version>2.0.3</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.bouncycastle</groupId>
+	        <artifactId>bcprov-jdk15on</artifactId>
+	        <version>1.62</version>
+	    </dependency>
+   		<!-- 컨트랙트 하려면 위의 메이븐 다 추가해야함 -->
+           
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

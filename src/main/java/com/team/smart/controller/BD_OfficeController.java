@@ -2,6 +2,7 @@ package com.team.smart.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.team.smart.blockchain.Web3jAPI;
 import com.team.smart.room.vo.RoomVO;
 import com.team.smart.service.RoomService;
 import com.team.smart.vo.CompVO;
@@ -177,10 +179,11 @@ public class BD_OfficeController {
 		}
 		
 		///계약 목록 단건
-		@GetMapping({"/detail/{rt_code}"})
-		public @ResponseBody RoomVO contractDetail(HttpServletRequest req, @PathVariable String rt_code) {
-			log.info("url -> bd_office/detail/ get"+rt_code);
-			return r_service.getContractDetail(rt_code);
+		@GetMapping({"/detail/{rt_code}/{r_blockcode}"})
+		public @ResponseBody RoomVO contractDetail(HttpServletRequest req, @PathVariable String rt_code, @PathVariable int r_blockcode) {
+			log.info("url -> bd_office/detail/get"+rt_code+"/get"+r_blockcode);
+			
+			return r_service.getContractDetail(rt_code, r_blockcode);
 		}
 		
 		//납부관리

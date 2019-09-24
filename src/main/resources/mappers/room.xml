@@ -99,7 +99,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 계약리스트 -->
 	<select id="getContractList" parameterType="java.util.Map" resultType="com.team.smart.room.vo.RoomVO">
 		SELECT * 
-		  FROM (SELECT rowNum rNum,rt_code,r_code,rt_mobile,rt_email,TO_CHAR(rt_date1,'YYYY-MM-DD') as rt_date1
+		  FROM (SELECT rowNum rNum,rt_code,r_code,rt_mobile,rt_email,TO_CHAR(rt_date1,'YYYY-MM-DD') as rt_date1,TO_NUMBER(SUBSTR(r_code, 2)) as r_blockcode
 		          FROM room_contract_tbl
 		  	<if test="sertext != '' ">
 		  	 WHERE rt_code like '%' ||  #{sertext} || '%' 

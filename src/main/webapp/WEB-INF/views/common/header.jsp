@@ -200,8 +200,8 @@
             <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
               <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Rent<span></span></a>
               <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
-                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_office/memcontract" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">임대 정보</a></li>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_office/mempaylist" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">납부 정보</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/memcontract" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">임대 정보</a></li>
+                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/mempaylist" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">납부 정보</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/pkcmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">주차권 관리</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/cp_tenant/fdmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">식당 관리</a></li>
               </ul>
@@ -231,7 +231,7 @@
                 <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/auth" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">직원 권한 요청</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/member" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">개인 정보</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/bdmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">건물 등록</a></li>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/comp" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">업체 등록</a></li>
+                <%-- <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/comp" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">업체 등록</a></li> --%>
               </ul>
             </li>
             <!-- /표시되는 큰메뉴 끝 -->
