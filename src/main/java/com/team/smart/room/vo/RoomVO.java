@@ -34,7 +34,6 @@ public class RoomVO {
 	private String rt_code;		//계약코드
 	private int rt_pay;			//납부금액
 	private String rt_type;		//납부종류
-	private String rt_email;	//이메일
 	private String name;		//이름
 	private String hp;			//폰번호
 	private String email;		//이메일
@@ -46,19 +45,9 @@ public class RoomVO {
 	private String b_buildscale;
 	private String b_address;
 	
-	private String b_area1;
-	private String b_area2;
-	private String b_address;
-	private String b_year;
-	private String b_landarea;
-	private String b_buildscale;
-	private String b_buildarea;
-	
 	private int r_blockcode;
 	private String rt_name;
 	private String rt_businessNum;
 	private String rt_address;
-	private String name;
-	private String hp;
-	private String email;
+	
 }
