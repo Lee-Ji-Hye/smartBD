@@ -15,22 +15,6 @@ pageEncoding="UTF-8"%>
           <div class="row justify-content-sm-between align-items-sm-center">
             <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
               
-              <!-- Datepicker -->
-              <div id="datepickerWrapper" class="js-focus-state u-datepicker w-auto input-group input-group-sm">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <span class="fas fa-calendar"></span>
-                  </span>
-                </div>
-                
-                <input type="text" class="js-range-datepicker form-control bg-white rounded-right"
-                       data-rp-wrapper="#datepickerWrapper"
-                       data-rp-type="range"
-                       data-rp-date-format="d M Y"
-                       data-rp-default-date='["05 Jul 2019", "19 Jul 2019"]'
-                       data-rp-is-disable-future-dates="true">
-              </div>
-              <!-- End Datepicker -->
             </div>
             
             <!-- Buttons -->
@@ -112,7 +96,7 @@ pageEncoding="UTF-8"%>
                     </div>
                   </td>
                   <td class="align-middle text-secondary font-weight-normal ">${vo.f_coupon_name}</td>
-                  <td class="align-middle">${vo.f_coupon_price}</td>
+                  <td class="align-middle"><fmt:formatNumber value="${vo.f_coupon_price}" pattern="#,###" />원</td>
                   <td class="align-middle text-primary"><fmt:formatDate value="${vo.f_coupon_start}" pattern="yyyy-MM-dd"/></td>
                   <td class="align-middle text-primary"><fmt:formatDate value="${vo.f_coupon_end}" pattern="yyyy-MM-dd"/></td>
                   <td class="align-middle text-secondary">${vo.f_coupon_count}</td>

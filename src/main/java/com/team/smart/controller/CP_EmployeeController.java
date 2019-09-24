@@ -1,5 +1,7 @@
 package com.team.smart.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -61,7 +63,7 @@ public class CP_EmployeeController {
 	
 	// 주문건 메뉴 상세보기
 	@GetMapping("/odmn/amd/{f_ocode}")
-	public @ResponseBody Food_orderVO orderDetail(HttpServletRequest req, @PathVariable String f_ocode) {
+	public @ResponseBody Map<String,Object> orderDetail(HttpServletRequest req, @PathVariable String f_ocode) {
 		log.info("url -> orderDetail/");
 		
 		return service.getDetailOrder(f_ocode);

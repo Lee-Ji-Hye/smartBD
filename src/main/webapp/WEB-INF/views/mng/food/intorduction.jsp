@@ -187,17 +187,26 @@
         
        <div class="container space-1">
            	<!-- Update Avatar Form -->
-	          <div class="u-lg-avatar mr-3">
-	           <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
-	          </div>
-	
 	          <div class="media-body">
-	            <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn">
-	              Upload
+	            <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn">Upload</label>
 	              <input id="fileAttachmentBtn" name="f_mainimg" type="file" class="file-attachment-btn__label" value="Upload">
-	            </label>
 	            <button type="reset" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>
+		          <div class="u-lg-avatar mr-3"><img src="../../assets/img/160x160/img2.jpg" /></div>
 	          </div>
+	          
+          	  <!-- alt="Image Description" -->
+          	   <!-- class="img-fluid rounded-circle"  -->
+          	  <script>
+			 /*  $("#fileAttachmentBtn").change(function(){
+			   if(this.files && this.files[0]) {
+			    var reader = new FileReader;
+			    reader.onload = function(data) {
+			     $(".u-lg-avatar mr-3 img").attr("src", data.target.result).width(500);        
+			    }
+			    reader.readAsDataURL(this.files[0]);
+			   }
+			  }); */
+			 </script>
         </div>
         
        

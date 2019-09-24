@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
         <div class="card-header py-2 px-0 mx-4">
         	<!-- Title & Settings -->
               <div class="d-flex justify-content-between align-items-center">
-                <h4 class="h4 mb-0">Goods List</h4>
+                <h4 class="h4 mb-0"></h4>
               </div>
               <!-- End Title & Settings -->
           <!-- Activity Menu -->
@@ -104,7 +104,7 @@ pageEncoding="UTF-8"%>
                   </td>
                   <td class="align-middle text-secondary font-weight-normal" >${dto.f_code}</td>
                   <td class="align-middle text-secondary font-weight-normal">${dto.f_name}</td>
-                  <td class="align-middle">${dto.f_price}</td>
+                  <td class="align-middle"><fmt:formatNumber value="${dto.f_price}" pattern="#,###" />원</td>
                   <td class="align-middle text-primary">${dto.f_type}</td>
                   <td class="align-middle text-secondary">${dto.f_icon}</td>
                   <td><button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/cp_manager/menumn/mod?f_code=${dto.f_code}'">수정</button></td>
