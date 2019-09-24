@@ -46,11 +46,13 @@ public class UserAuthenticationService implements UserDetailsService {
 				for(Object obj : (ArrayList<?>)auth) {
 					if(obj instanceof UserGrantedAuthority) {
 						//형변환
-						UserGrantedAuthority uauth=(UserGrantedAuthority)obj;
+						UserGrantedAuthority uauth = 
+								(UserGrantedAuthority)obj;
 						//권한이 유효한지 확인
 						String delimiter = uauth.getAuthority().substring(5,7);
 						//log.debug(uauth.getAuthority().substring(5,7));//ROLE_CP_TENANT//ROLE_BD_FOOD
 						
+						String authorityname = uauth.getAuthority();
 						
 						String comp_seq = uauth.getComp_seq();//업체코드
 						
@@ -66,20 +68,46 @@ public class UserAuthenticationService implements UserDetailsService {
 						if(delimiter.equals("CP")) {
 							//구분자가 사업체일때 rt_code의 계약정보를 확인하고 맞을때만 권한을 넣어준다
 							log.debug("CP 권한 줌 .. 0 구분자로 확인");
+							log.debug("CP 권한체크 1 null체크");
+							Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+							currentTime.setDate(currentTime.getDate() + 1);
 							if(comp_seq!=null) { // && r_code != null
 								//1이 2보다 크냐?라고 물어보는 메소드 ts1.compareTo(ts2) 일때 ts1이 크면 1, 같으면 0, 작으면 -1 나옴
-								log.debug("CP 권한체크 1 null체크");
-								Timestamp currentTime = new Timestamp(System.currentTimeMillis()); 
-								if(!(rt_date1 == null) & !(rt_date2 == null)) {// 
-									log.debug("cp 권한체크2 유효기간 체크");
-									//현재시간(currentTime)이 시작시간 (Rt_date1)보다 커서 0이상이 나와야하고, 현재시간(currentTime)이 종료시간 (Rt_date2)보다 작아서 0이하가 나와야한다.
-									if(currentTime.compareTo(rt_date1)>=0 && currentTime.compareTo(rt_date2)<0) {
-										//이조건이 참일때 유효하므로 권한을 넣음
-										authority.add(uauth);	
-									}else {
-										authority.add(new UserGrantedAuthority());
-									}
+								authority.add(uauth);
+								
+							}else if(!(rt_date1 == null) & !(rt_date2 == null)) {
+								log.debug("cp 권한체크2 유효기간 체크");
+								//log.debug("currentTime.compareTo(rt_date1) >= 0 : " + currentTime.compareTo(rt_date1));
+								//log.debug("currentTime.compareTo(rt_date2) < 0 : " + currentTime.compareTo(rt_date2));
+//								log.debug("rt_date1 getTime() : " + rt_date1.getTime());
+//								log.debug("rt_date2 getTime() : " + rt_date2.getTime());
+								
+
+								log.debug("rt_date1 time () : ");
+								log.debug("rt_date1 time () : " + rt_date1.getTime());
+								log.debug("rt_date1 Year () : " + rt_date1.getYear());
+								log.debug("rt_date1 Month () : " + rt_date1.getMonth());
+								log.debug("rt_date1 Date () : " + rt_date1.getDate());
+								log.debug("rt_date1 hour () : " + rt_date1.getHours());
+								log.debug("rt_date1 min () : " + rt_date1.getMinutes());
+								log.debug("rt_date1 sec () : " + rt_date1.getSeconds());
+								log.debug("rt_date1 nanos () : " + rt_date1.getNanos());
+								
+								log.debug("sys cur time () : ");
+								log.debug("sys cur time () : " + currentTime.getTime());
+								log.debug("sys cur Year () : " + currentTime.getYear());
+								log.debug("sys cur Month () : " + currentTime.getMonth());
+								log.debug("sys cur Date () : " + currentTime.getDate());
+								log.debug("sys cur hour () : " + currentTime.getHours());
+								log.debug("sys cur min () : " + currentTime.getMinutes());
+								log.debug("sys cur sec () : " + currentTime.getSeconds());
+								log.debug("sys cur nanos () : " + currentTime.getNanos());
+								//현재시간(currentTime)이 시작시간 (Rt_date1)보다 커서 0이상이 나와야하고, 현재시간(currentTime)이 종료시간 (Rt_date2)보다 작아서 0이하가 나와야한다.
+								if(currentTime.compareTo(rt_date1)>=0 && currentTime.compareTo(rt_date2)<0) {
+									//이조건이 참일때 유효하므로 권한을 넣음
+									authority.add(uauth);	
 								}else {
+									authority.add(new UserGrantedAuthority());
 								}
 							}else {
 								authority.add(new UserGrantedAuthority());
