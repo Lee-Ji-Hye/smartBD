@@ -612,31 +612,79 @@
 <title>Insert title here</title>
 </head>
 <body>
-<article id="contract" style="z-index: 99; opacity: 1;">
-	
-	<div class="tit">
-		<h2>사무실 임대차 계약서</h2>
-		<p>아래 부동산에 대해서 임대인과 임차인은 합의하여 다음과 같이 임대차 계약을 체결한다.</p>
-	</div>
+<div class="table-responsive-md u-datatable">
+              <table id='table'
+              		 class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5"
+                     data-dt-info="#datatableInfo"
+                     data-dt-search="#datatableSearch"
+                     data-dt-entries="#datatableEntries"
+                     data-dt-page-length="12"
+                     data-dt-is-responsive="false"
+                     data-dt-is-show-paging="true"
+                     data-dt-details-invoker=".js-datatabale-details"
+                     data-dt-select-all-control="#invoiceToggleAllCheckbox"
 
-	<form name="contractform" method="post" action="contract_ok.asp">
-		<input type="hidden" name="c_code" value="비상주사무실">
-		<input type="hidden" name="c_month" value="12">
-		<input type="hidden" name="c_post" value="false">
-		<input type="hidden" name="c_balance" value="70000">
-		<input type="hidden" name="c_fax" value="undefined">
-		<input type="hidden" name="c_rent" value="600000">
-		
-			<input type="hidden" name="c_pay_amount" value="730000">
-		
-		
-		<div class="contractCon">
+                     data-dt-pagination="datatablePagination"
+                     data-dt-pagination-classes="pagination mb-0"
+                     data-dt-pagination-items-classes="page-item"
+                     data-dt-pagination-links-classes="page-link"
+
+                     data-dt-pagination-next-classes="page-item"
+                     data-dt-pagination-next-link-classes="page-link"
+                     data-dt-pagination-next-link-markup='<span aria-hidden="true">&raquo;</span>'
+
+                     data-dt-pagination-prev-classes="page-item"
+                     data-dt-pagination-prev-link-classes="page-link"
+                     data-dt-pagination-prev-link-markup='<span aria-hidden="true">&laquo;</span>'>
+              
+              <tbody class="font-size-1">
+              <c:set var="index" value="${0}"/>
+              <c:forEach var="dto" items="${dtos}">
+              	<tr class="text-uppercase font-size-1 form-original">
+                  <td class="align-middle">
+                    <div class="media align-items-center">
+                    	<a onclick="contractDetail('${dto.rt_code}',${index},'${dto.r_blockcode}')">${dto.rt_code}</a>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="media align-items-center">
+                    	${dto.r_code}
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="media align-items-center">
+                    	${dto.rt_mobile}
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="media align-items-center">
+                    	${dto.rt_email}
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="media align-items-center" id="details_comp_status2">
+						${dto.rt_date1}
+                    </div>
+                  </td>
+                  <!-- <td class="align-middle text-secondary">2019/08/12~2019/09/11</td> -->
+                  <!-- <td class="align-middle text-danger"></td> -->
+                </tr>
+                <c:set var="index" value="${index+1}"/>
+                </c:forEach>
+                
+		<tr id='formDetail' style="z-index: 99; opacity: 1; display: none;">
+          	<td colspan="5">
+            <div class="tit">
+            	<h2>사무실 임대차 계약서</h2>
+				<p>아래 부동산에 대해서 임대인과 임차인은 합의하여 다음과 같이 임대차 계약을 체결한다.</p>
+			</div>
+
+			<div class="contractCon">
 			<section class="contractSec1">
 				<h3 class="tit">[부동산의 표시]</h3>
-				<table class="tablStyle style1" align="center" width="1000px;">
+				<table class="tablStyle style1" style="width: 100%">
 					<!-- <caption>부동산의 표시</caption> -->
 					<colgroup>
-						<col width="">
 						<col width="">
 						<col width="">
 						<col width="">
@@ -645,21 +693,19 @@
 					<tbody>
 						<tr align="center">
 							<th scope="row">소재지</th>
-							<td colspan="4">서울시 금천구 가산동 549-8</td>
+							<td colspan="4" id="b_area1 + b_area2 + b_address">ex) 서울시 금천구 가산동 543-1</td>
 						</tr>
-						<tr align="center">
-							
+						<tr align="center">	
 							<th scope="row">준공년도</th>
-							<td>04/11</td>
+							<td id="b_year">ex) 04/11</td>
 							<th scope="row">대지면적</th>
-							<td>12084.05</td>
+							<td id="b_landarea">ex) 12084.05</td>
 						</tr>
 						<tr align="center">
-							
 							<th scope="row">건축규모</th>
-							<td>B2,15</td>
+							<td id="b_buildscale">ex) B2,15</td>
 							<th scope="row">건축면적</th>
-							<td>3985.47</td>
+							<td id="b_buildarea">ex) 3985.47</td>
 						</tr>
 					</tbody>
 				</table>
@@ -670,43 +716,35 @@
 					<dt>제1조 [보증금과 지급시기]</dt>
 					<dd>임대인과 임차인은 위 임대차 부동산에 관하여 보증금과 월 임대료에 대해 아래와 같이 합의한다.</dd>
 				</dl>
-				<table class="tablStyle style1" align="center" width="1000px;">
-					<!-- <caption>부동산의 표시</caption> -->
+				<table class="tablStyle style1" style="width: 100%">
 					<colgroup>
 						<col width="45%">
-						<col width="">
-						<col width="">
-						<col width="">
+						<col width="55%">
 					</colgroup>
 					<thead>
 						<tr align="center">
 							<th>항 목</th>
 							<th>공급가액</th>
-							<th>부가세</th>
-							<th>합 계</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td class="td_center">보증금(최초1회)</td>
-							<td class="td_right" id="deposit">70,000원</td>
-							<td class="td_right" id="deposit_tax">0원</td>
-							<td class="td_right" id="deposit_total">70,000원</td>
+							<td class="td_center">보증금 (최초 1회)</td>
+							<td class="td_right" id="r_price">ex) 700,000원</td>
 						</tr>
 						<tr>
 							<td class="td_center">월 임대료</td>
-							<td class="td_right" id="rent">600,000원</td>
-							<td class="td_right" id="rent_tax">60,000원</td>
-							<td class="td_right" id="rent_total">660,000원</td>
+							<td class="td_right" id="r_deposit">ex) 600,000원</td>
 						</tr>
-						
+						<tr>
+							<td class="td_center">권리금</td>
+							<td class="td_right" id="r_premium">ex) 0원</td>
+						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
 							<td class="td_center">합 계</td>
-							<td class="td_right" id="total1"></td>
-							<td class="td_right" id="total2"></td>
-							<td class="td_right" id="total3">730,000원</td>
+							<td class="td_right" id="r_price + r_deposit + r_premium">ex) 1,300,000원</td>
 						</tr>
 					</tfoot>
 				</table>
@@ -741,168 +779,76 @@
 					<dd>위에 언급되지 않은 사항은 특약으로 갈음한다.</dd>
 				</dl>
 				
-				<div>
-					<table class="tablStyle style2 w50">
-						<!-- <caption>계약자 정보</caption> -->
-						<colgroup>
-							<col width="">
-							<col width="">
-						</colgroup>
-						<tbody>
-							<tr>
-								<th scope="row">계약자명</th>
-								<td><input type="text" name="c_name" class="input" placeholder="계약자명" required=""></td>
-							</tr>
-						</tbody>
-					</table>
-					<table class="tablStyle style2 w50">
-						<!-- <caption>계약자 정보</caption> -->
-						<colgroup>
-							<col width="">
-							<col width="">
-						</colgroup>
-						<tbody>
-							<tr>
-								<th scope="row">연락처</th>
-								<td><input type="text" name="c_tel" class="input" placeholder="연락처" required=""></td>
-							</tr>
-						</tbody>
-					</table>
-					<table class="tablStyle style2 w100">
-						<!-- <caption>계약자 정보 - 이메일</caption> -->
-						<colgroup>
-							<col width="">
-							<col width="">
-						</colgroup>
-						<tbody>
-							<tr>
-								<th scope="row">이메일</th>
-								<td><input type="text" name="c_email" class="input" placeholder="이메일" required=""></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<h3 class="tit">[보증금반환 계좌정보]</h3>
-				<table class="tablStyle style2">
-					<!-- <caption>보증금반환 계좌정보</caption> -->
+				<table class="tablStyle style1" style="width: 100%">
 					<colgroup>
-						<col width="">
-						<col width="">
+						<col width="45%">
+						<col width="55%">
 					</colgroup>
 					<tbody>
-						<tr>
-							<th scope="row">은행명</th>
-							<td><input type="text" name="c_bank" class="input" placeholder="은행명" required=""></td>
+						<tr align="center">
+							<th>계약자명</th>
+							<td id="rt_name">ex) 임차인 이름(블록체인)</td>
 						</tr>
-						<tr>
-							<th scope="row">예금주</th>
-							<td><input type="text" name="c_bank_name" class="input" placeholder="예금주명" required=""></td>
+
+						<tr align="center">
+							<th class="td_center">주민번호/사업자번호</th>
+							<td id="rt_businessNum">ex) 임차인 주민번호/사업자번호(블록체인)</td>
 						</tr>
-						<tr>
-							<th scope="row">계좌번호</th>
-							<td><input type="text" name="c_bank_no" class="input" placeholder="계좌번호" required=""></td>
+					
+						<tr align="center">
+							<th class="td_center">연락처</th>
+							<td id="rt_mobile">ex) 010-1111-2222</td>
+						</tr>
+
+						<tr align="center">
+							<th class="td_center">이메일</th>
+							<td id="rt_email">ex) kim@naver.com</td>
+						</tr>
+					</tbody>
+				</table>
+				<h3 class="tit">[보증금반환 계좌정보]</h3>
+				<table class="tablStyle style1" style="width: 100%">
+					<!-- <caption>보증금반환 계좌정보</caption> -->
+					<colgroup>
+						<col width="45%">
+						<col width="55%">
+					</colgroup>
+					<tbody>
+						<tr align="center">
+							<th>지갑주소</th>
+							<td id="rt_address">ex) 임차인 지갑주소(블록체인)</td>
 						</tr>
 					</tbody>
 				</table>
 			</section> <!-- // .contractSec2  -->
 			<section class="contractSec3">
-				<p id="date"></p>
-				<div>
-					<h3 class="tit">[임차인 정보]</h3>
-					<table class="tablStyle style2">
-						<!-- <caption>임차인 정보</caption> -->
-						<colgroup>
-							<col width="">
-							<col width="">
-						</colgroup>
-						<tbody>
-							<tr>
-								<th scope="row">이름</th>
-								<td><input type="text" class="input" name="c_r_name" placeholder="이름"></td>
-							</tr>
-							<tr>
-								<th scope="row">주민번호/사업자번호</th>
-								<td><input type="text" class="input" name="c_r_jumin" placeholder="주민번호/사업자번호"></td>
-							</tr>
-							<tr>
-								<th scope="row">연락처</th>
-								<td><input type="text" class="input" name="c_r_tel" placeholder="연락처"></td>
-							</tr>
-							<tr>
-								<th scope="row">주소</th>
-								<td><input type="text" class="input" name="c_r_address" placeholder="주소"></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div>
-					<h3 class="tit">[임대인 정보]</h3>
-					<table class="tablStyle style1">
-						<!-- <caption>임대인 정보</caption> -->
-						<colgroup>
-							<col width="">
-							<col width="">
-						</colgroup>
-						<tbody>
-							<tr>
-								<th scope="row">이름</th>
-								<td class="stamp"><span>빅굿나</span></td>
-							</tr>
-							<tr>
-								<th scope="row">사업자번호</th>
-								<td>CM000007</td>
-							</tr>
-							<tr>
-								<th scope="row">연락처</th>
-								<td>010-1111-2222</td>
-							</tr>
-							<tr>
-								<th scope="row">이메일</th>
-								<td>bigoodna@naver.com</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+				<h3 class="tit">[임대인 정보]</h3>
+				<table class="tablStyle style1" style="width: 100%">
+					<colgroup>
+						<col width="45%">
+						<col width="55%">
+					</colgroup>
+					<tbody>
+						<tr align="center">
+							<th scope="row">이름</th>
+							<td id="name">ex) 홍길동3</td>
+						</tr>
+						<tr align="center">
+							<th scope="row">연락처</th>
+							<td id="hp">ex) 010-1111-2222</td>
+						</tr>
+						<tr align="center">
+							<th scope="row">이메일</th>
+							<td id="email">ex) hong@naver.com</td>
+						</tr>
+					</tbody>
+				</table>
 			</section> <!-- // .contractSec3  -->
-			<section class="contractSec4">
-				<a href="javascript:;" id="specialAgreement"><span>[특약 사항]</span></a>
-				<div id="specialAgreement_content">
-					
-					<dl>
-						<dt>1. 임대인이 운영하는 홈페이지(www.sgbc.co.kr)상에 기재된 서비스 이용약관에 동의한다.</dt>
-					</dl>
-					<dl>
-						<dt>2. 계약해지를 원하는 경우에는 계약만료 1개월전에 임차인은 임대인에게 통지를 하여야하며 그렇지 않을경우, 재계약은 1개월단위로 자동 갱신된다.</dt>
-					</dl>
-					<dl>
-						<dt>3. 임차인이 다음 사항의 사유가 발생될 경우 별도의 통보없이 계약해지 하며, 이로 인한 일체의 민형사책임을</dt>
-                        <dd><span>-</span><span> 임대인에게 제기할 수 없으며 잔여임대료의 반환처리는 배상처리로 갈음한다.</span></dd>
-						<dd><span>-</span><span> 임대료 2회이상 미납시 (임차인의 사유로 자동결제가 안될 경우도 포함)</span></dd>
-						<dd><span>-</span><span> 사업자 등록 후 3개월이상 사업영위가 없음을 확인한 경우</span></dd>
-                        <dd><span>-</span><span> 관할 관청이나 세무서등에서 민원이 다수 발생되었을 경우</span></dd>
-                        <dd><span>-</span><span> 부가세, 소득세, 법인세 신고등의 일체의무를 성실히 이행하지 않을 경우</span></dd>
-                        <dd><span>-</span><span> 실제 거래사실 없이 세금계산서를 수수하는 행위하였을 경우</span></dd>
-					</dl>
-					<dl>
-						<dt>4. 임차인은 제3자에게 계약상의 권리를 양도하거나 전대할 수 없다.</dt>
-					</dl>
-					<dl>
-						<dt>5. 임차인은 센터 시설물을 이용함에 있어서 선량한 관리자의 주의 의무를 다하여야 하며, 계약종료시 계약목적물에 발생된 손망실, 훼손등이 있을 경우, 자신의 비용으로 이를 원상복구 또는 원상복구를 위한 실비를 보상한다.</dt>
-					</dl>
-					<dl>
-						<dt>6. 음주, 소란, 도난등의 사유로 타 입주사에게 피해를 발생시킨 경우에는, 즉시 퇴거조치에 응한다.</dt>
-					</dl>
-					<dl>
-						<dt>7. 현행법 위반등이 발생된 경우에도 5항과 동일하게 적용된다.</dt>
-					</dl>
-					
-				</div>
-			</section>
-
-		</div>
-	</form>
-
-</article>
+			</div>
+          	</td>
+		</tr>
+              </table>
+        	</div>  
 </body>
 </html>
 <%@ include file="../../common/footer.jsp" %>

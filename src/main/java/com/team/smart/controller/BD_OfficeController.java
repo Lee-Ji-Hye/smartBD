@@ -235,25 +235,27 @@ public class BD_OfficeController {
 			return plusMonth;
 		}
 		
-		//임차인 계약정보가져오기 
-		@RequestMapping("memcontract")
-		public String memcontract(HttpServletRequest req, Model model) {
-			
-			
-			
-			
-			return mngBuilding_ + "/memcontract";
-		}
-		
-		//임차인 납부정보가져오기
-		@RequestMapping("mempaylist")
-		public String mempaylist(HttpServletRequest req, Model model) {
-			
-			
-			r_service.getmemberpaylist(req, model);
-			
-			return mngBuilding_ + "/mempaylist";
-		}
+	/*
+	 * //임차인 계약정보가져오기
+	 * 
+	 * @RequestMapping("memcontract") public String memcontract(HttpServletRequest
+	 * req, Model model) {
+	 * 
+	 * 
+	 * 
+	 * 
+	 * return mngBuilding_ + "/memcontract"; }
+	 * 
+	 * //임차인 납부정보가져오기
+	 * 
+	 * @RequestMapping("mempaylist") public String mempaylist(HttpServletRequest
+	 * req, Model model) {
+	 * 
+	 * 
+	 * r_service.getmemberpaylist(req, model);
+	 * 
+	 * return mngBuilding_ + "/mempaylist"; }
+	 */
 		
 		//병권 도우미=========================
 		//매물 삭제
