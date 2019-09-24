@@ -231,7 +231,7 @@
                 <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/auth" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">직원 권한 요청</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/member" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">개인 정보</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/bdmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">건물 등록</a></li>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/comp" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">업체 등록</a></li>
+                <%-- <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/member/comp" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">업체 등록</a></li> --%>
               </ul>
             </li>
             <!-- /표시되는 큰메뉴 끝 -->
