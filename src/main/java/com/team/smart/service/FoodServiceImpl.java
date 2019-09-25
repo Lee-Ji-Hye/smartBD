@@ -284,18 +284,23 @@ public class FoodServiceImpl implements FoodService {
 		
 		// 쿠폰 번호 가져오기
 		String[] f_coupon_num = req.getParameterValues("couponChk");
+		//String[] f_coupon_serial = req.getParameterValues("");
 		
 		log.debug("쿠폰리스트 삭제 : " + f_coupon_num);
-		 
+		
+		//int f_coupon_ser = 0;
+		//f_coupon_ser = f_dao.getSerial(f_coupon_num);
 		// 시리얼 테이블에서 쿠폰 번호와 사용날짜로 쿠폰 조회
-		
-		// 쿠폰 시리얼이 없으면 삭제 가능
-		int couponDel = f_dao.deleteCoupon(f_coupon_num);
-		
-		// 처리결과를 저장
-		model.addAttribute("couponDel", couponDel);
+		//if(f_coupon_ser < 0) {
+			//alert('발급된 쿠폰이 있으므로 삭제가 불가능합니다.');
+		//} else {
+			// 쿠폰 시리얼이 없으면 삭제 가능
+			int couponDel = f_dao.deleteCoupon(f_coupon_num);
 			
-			
+			// 처리결과를 저장
+			model.addAttribute("couponDel", couponDel);
+				
+		//}
 	}
 	
 	// 음식점 상품 등록 
