@@ -14,7 +14,7 @@
         </figure>
         <div class="mb-5">
           <h1 class="h3 font-weight-medium">Sign-up completed!</h1>
-          <p>빌딩등록이 완료되었으니 얌전히 승인을 기다리면됩니다.</p>
+          <p>빌딩등록이 완료되었으니 승인을 기다려주세요.</p>
         </div>
       </div>
     
