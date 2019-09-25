@@ -15,7 +15,7 @@
 	 
               <c:if test="${icnt >0}">
               	<c:forEach var="img" items="${image}" varStatus="status">
-              		<li><img src="/smart/resources/images/slide/${img.r_img}" /></li>
+              		<li><img src="/smart/resources/images/room/${img.r_img}" /></li>
               	</c:forEach>
               </c:if>
 		
