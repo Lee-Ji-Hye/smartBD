@@ -1024,7 +1024,7 @@
 		});
 		 
 		$("#serBtn").click(function(){
-			alert("확인용");
+			
 			$("#form").attr("action","${path}/bd_office/roomcontract");
 			$("#form").submit();
 		});

@@ -118,14 +118,24 @@ public class RoomDAOImpl implements RoomDAO{
 	@Override
 	public List<RoomVO> getContractList(Map<String,Object> map) {
 		
+		System.out.println("contractList : " + map);
+		
 		return sqlSession.selectList("RoomDAO.getContractList",map);
 	}
+	
+	  
 	
 	//계약 상세페이지
 	@Override
 	public RoomVO getContractDetail(String rt_code) {
 		
 		return sqlSession.selectOne("RoomDAO.getContractDetail", rt_code);
+	}
+	//임차인의 id를 이용한 해당 임대계약서 가져오기
+	@Override
+	public RoomVO getContractmember(String userid) {
+			
+		return sqlSession.selectOne("RoomDAO.getContractmember",userid);
 	}
 	
 	//납부리스트 가져오기
@@ -140,6 +150,7 @@ public class RoomDAOImpl implements RoomDAO{
 		
 		return sqlSession.selectList("RoomDAO.getpaydetail",rt_code);
 	}
+	
 
 	//결산 월별 월세금액
 	@Override
@@ -154,6 +165,9 @@ public class RoomDAOImpl implements RoomDAO{
 		
 		return sqlSession.selectList("RoomDAO.getmemberpaylist",memberid);
 	}
+	
+	
+	
 
 	// 병권 도우미 나중에 삭제하심~~~~~~~~~~~~~
 	@Override
@@ -161,6 +175,7 @@ public class RoomDAOImpl implements RoomDAO{
 		// TODO 병권 도우미
 		return sqlSession.update("RoomDAO.roomDelete", r_codes);
 	}
+
 	
 
 }

@@ -612,65 +612,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+${roomVO}
+
 <div class="table-responsive-md u-datatable">
-              <table id='table'
-              		 class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5"
-                     data-dt-info="#datatableInfo"
-                     data-dt-search="#datatableSearch"
-                     data-dt-entries="#datatableEntries"
-                     data-dt-page-length="12"
-                     data-dt-is-responsive="false"
-                     data-dt-is-show-paging="true"
-                     data-dt-details-invoker=".js-datatabale-details"
-                     data-dt-select-all-control="#invoiceToggleAllCheckbox"
-
-                     data-dt-pagination="datatablePagination"
-                     data-dt-pagination-classes="pagination mb-0"
-                     data-dt-pagination-items-classes="page-item"
-                     data-dt-pagination-links-classes="page-link"
-
-                     data-dt-pagination-next-classes="page-item"
-                     data-dt-pagination-next-link-classes="page-link"
-                     data-dt-pagination-next-link-markup='<span aria-hidden="true">&raquo;</span>'
-
-                     data-dt-pagination-prev-classes="page-item"
-                     data-dt-pagination-prev-link-classes="page-link"
-                     data-dt-pagination-prev-link-markup='<span aria-hidden="true">&laquo;</span>'>
               
-              <tbody class="font-size-1">
-              <c:set var="index" value="${0}"/>
-              <c:forEach var="dto" items="${dtos}">
-              	<tr class="text-uppercase font-size-1 form-original">
-                  <td class="align-middle">
-                    <div class="media align-items-center">
-                    	<a onclick="contractDetail('${dto.rt_code}',${index},'${dto.r_blockcode}')">${dto.rt_code}</a>
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <div class="media align-items-center">
-                    	${dto.r_code}
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <div class="media align-items-center">
-                    	${dto.rt_mobile}
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <div class="media align-items-center">
-                    	${dto.rt_email}
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <div class="media align-items-center" id="details_comp_status2">
-						${dto.rt_date1}
-                    </div>
-                  </td>
-                  <!-- <td class="align-middle text-secondary">2019/08/12~2019/09/11</td> -->
-                  <!-- <td class="align-middle text-danger"></td> -->
-                </tr>
-                <c:set var="index" value="${index+1}"/>
-                </c:forEach>
+    
                 
 		<tr id='formDetail' style="z-index: 99; opacity: 1; display: none;">
           	<td colspan="5">

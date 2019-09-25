@@ -298,7 +298,14 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="r_able_date" id="listingLotSize" value="${dto.r_able_date}" placeholder="r_able_date" aria-label="Lot size" aria-describedby="listingLotSizeLabel" autocomplete="off">
+                      <select class="custom-select" name="r_able_date" id="listingBedroom"  aria-describedby="listingBedroomLabel">
+                        <option >날짜를 선택해주세요</option>
+                        <option value="1" ${(dto.r_able_date == "1")? "selected" : "" }>1</option>
+                        <option value="2" ${(dto.r_able_date == "2")? "selected" : "" }>2</option>
+                        <option value="3" ${(dto.r_able_date == "3")? "selected" : "" }>3</option>
+                        <option value="4" ${(dto.r_able_date == "4")? "selected" : "" }>4</option>
+                        <option value="5" ${(dto.r_able_date == "5")? "selected" : "" }>5</option>
+                      </select>
                     </div>
                   </div>
                 </div>

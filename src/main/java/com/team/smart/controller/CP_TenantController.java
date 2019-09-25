@@ -39,6 +39,7 @@ public class CP_TenantController {
 	public String memcontract(HttpServletRequest req, Model model) {
 				
 				
+		r_service.getContractmember(req, model);
 				
 				
 		return mngBuilding_ + "/memcontract";

@@ -10,7 +10,7 @@
 	<ul class="bxslider" style="width:300px;height:150px">
 			  
 			  <c:if test="${icnt == 0}">
-			  	<li><img src="/smart/resources/images/slide/nomoney.JPG" /></li>
+			  	<li><img src="/smart/resources/images/room/noimage.png" /></li>
 			  </c:if>
 	 
               <c:if test="${icnt >0}">
@@ -119,7 +119,7 @@
       <!-- End Title -->
 
       <div class="row space-top-2">
-        <div class="col-lg-8 mb-9 mb-lg-0" >
+        <div class="col-lg-8 mb-9 mb-lg-0">
           <!-- Nav Classic -->
           <ul id="SVGnavIcons" class="svg-preloader nav nav-classic nav-rounded nav-shadow nav-justified border" role="tablist">
             <li class="nav-item">
@@ -213,7 +213,7 @@
                 <p>${dto.r_desc}</p>
 
 
-                <p>You may download, store and use the material for your own personal use and research. You may not republish, retransmit, redistribute or otherwise make the material available to any party or make the same available on any website, online service or bulletin board of your own or of any other party or make the same available in hard copy or in any other media without the website owner's express prior written consent. The website owner's copyright must remain on all reproductions of material taken from this website.</p> -->
+                
               </div>
               <!-- End Collapse Link - Content -->
 

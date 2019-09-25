@@ -398,8 +398,37 @@ public class RoomServiceImpl implements RoomService{
 		req.setAttribute("dto", dto);
 		
 	}
+	
+	//임차인의 id를 이용한 자신의 임대계약서 가져오기
+	@Override
+	public void getContractmember(HttpServletRequest req, Model model) {
+		
+		//로그인한 유저 id 가져오기
+		String userid = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		
+		RoomVO roomVO = dao.getContractmember(userid);
+		String rt_address = null;
+		String rt_name = null;
+		String rt_businessNum = null;
+		
+		List<Object> details = Web3jAPI.getInstance().getBuyerInfo(BigInteger.valueOf(roomVO.getR_blockcode()));
+		if (details.get(0).toString() != null) {
+	        System.out.println(details.get(0).toString());
+	        System.out.println(details.get(1).toString());
+	        System.out.println(details.get(2).toString());
+	        rt_address = details.get(0).toString();
+	        rt_name = hexToASCII(details.get(1).toString());
+	        rt_businessNum = hexToASCII(details.get(2).toString());
+		}
+		roomVO.setRt_address(rt_address);
+		roomVO.setRt_name(rt_name);
+		roomVO.setRt_businessNum(rt_businessNum);
+		req.setAttribute("roomVO", roomVO);
+	}
 
-	//병권 도우미====================(이건 나중에 삭제하세요)
+
+	//병권이도 모르는 도우미====================(이건 나중에 삭제하세요)
 	@Override
 	public int  roomDelete(HttpServletRequest req, Model model) {
 		// TODO 매물삭제
@@ -408,6 +437,7 @@ public class RoomServiceImpl implements RoomService{
 
 	}
 
+	
 	
 	
 	

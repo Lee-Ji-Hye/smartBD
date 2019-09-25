@@ -58,6 +58,9 @@ public interface RoomDAO {
 		//계약 상세페이지
 		public RoomVO getContractDetail(String rt_code);
 		
+		//임차인의 id를 이용한 해당 임대계약서 가져오기
+		public RoomVO getContractmember(String userid);
+		
 		//납부리스트 가져오기
 		public List<RoomVO> getpaylist();
 		
@@ -69,6 +72,8 @@ public interface RoomDAO {
 		
 		//임차인의 id를 이용한 해당 납부 목록 가져오기
 		public List<RoomVO> getmemberpaylist(String memberid);
+		
+		
 		
 		//병권 도우미~~~~(겹치지 말라고 넣은거임 나중에 삭제하셈)
 		//매물 삭제
