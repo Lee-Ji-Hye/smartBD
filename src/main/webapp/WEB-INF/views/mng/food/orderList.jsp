@@ -135,9 +135,6 @@ pageEncoding="UTF-8"%>
 	                  	<c:if test="${ovo.f_status}=='주문접수'">
 	                  	<font color="green">${ovo.f_status}</font>
 	                  	</c:if>
-	                  	<c:if test="${ovo.f_status}=='주문접수'">
-	                  	<font color="green">${ovo.f_status}</font>
-	                  	</c:if>
 	                  	<c:if test="${ovo.f_status}=='주문완료'">
 	                  	<font color="green">${ovo.f_status}</font>
 	                  	</c:if>
@@ -150,6 +147,9 @@ pageEncoding="UTF-8"%>
 	                  			<font color="red">${ovo.f_status}</font>
 					       </c:when>
 					       <c:when test="${ovo.f_status == '주문접수'}">
+	                  			<font color="green">${ovo.f_status}</font>
+					       </c:when>
+					       <c:when test="${ovo.f_status == '주문대기'}">
 	                  			<font color="green">${ovo.f_status}</font>
 					       </c:when>
 					       <c:otherwise>
@@ -173,7 +173,13 @@ pageEncoding="UTF-8"%>
 				              <address class="text-secondary mb-0" id="detail_orderID">
 				               		${ovo.f_name}
 				              </address>
+				              <br>
+				              <span class="d-block">H.P </span>
+				              <address class="text-secondary mb-0" id="detail_orderHP">
+				               		${ovo.f_hp}
+				              </address>
 				            </div>
+				            
 				            
 				            <div class="col-md-5 col-lg-4 mt-6">
 				              <dl class="row mb-0">
@@ -344,6 +350,14 @@ function orderDetail(f_ocode, tbl_order){
 				console.log(orderInfo);
 				console.log(orderMenu);
  				console.log(orderInfo.f_status);
+ 				
+ 				/* if(obj.f_status === '0'){
+					obj.f_status = '주문대기';
+				} else if(obj.f_status === '1'){
+					obj.f_status = '주문완료';
+				} else if(obj.f_status === '2'){
+					obj.f_status = '주문거절';
+				} */
 				
 				if(orderInfo.f_status == '주문대기') { // '주문대기' 상태 
 					$("#amdNg").show(); // 거절버튼 보이기
@@ -358,12 +372,11 @@ function orderDetail(f_ocode, tbl_order){
 				
 				var f_message = (orderInfo.f_message == null)? "" : orderInfo.f_message;
 				
-				console.log(f_message);
-				
 				document.getElementById('foodOrderApp').innerText = orderInfo.f_status; // 주문상태코드
 				document.getElementById('foodOrderApp2').innerText = orderInfo.f_status; // 주문상태코드
 				document.getElementById('detail_f_ocode').innerText = orderInfo.f_ocode; // 주문코드
 				document.getElementById('detail_orderID').innerText = orderInfo.f_name; // 주문자 아이디
+				document.getElementById('detail_orderHP').innerText = orderInfo.f_hp; // 주문자 아이디
 				document.getElementById('detail_orderTakeOut').innerText = orderInfo.f_takeout; // 테이크아웃여부
 				document.getElementById('detail_pickUp').innerText = orderInfo.f_receive_time; // 할인
 				
@@ -375,12 +388,12 @@ function orderDetail(f_ocode, tbl_order){
 				} else { // 0보다 작다면 0을 출력
 					document.getElementById('detail_menu_sale').innerText = 0; // 할인쿠폰 가격
 				}
-				//document.getElementById('detail_menuMessage').innerText = f_message; // 주문 메세지 
 				document.getElementById('detail_menuTotal').innerText = orderInfo.f_pay_price.toLocaleString(); // 총 결제 금액
 
 			/* 	document.getElementById('detail_menuName').innerText = orderMenu.f_name; // 제품명
 				document.getElementById('detail_menuCount').innerText = orderMenu.f_cnt; // 제품 갯수
-				document.getElementById('detail_menuPrice').innerText = orderMenu.f_price; // 제품 한 건당 가격  */
+				document.getElementById('detail_menuPrice').innerText = orderMenu.f_price; // 제품 한 건당 가격  
+				document.getElementById('detail_menuMessage').innerText = f_message; // 주문 메세지 */
 				
 				/* $('#menuAdd').remove(); */
 				
@@ -412,9 +425,6 @@ function orderDetail(f_ocode, tbl_order){
 	};
 	request.send(null); // body
 };
-// 
-
-
 
 // 주문 승인 하기
 function orderPro(event) {
@@ -447,14 +457,13 @@ function orderPro2(event) {
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	console.dir(request);
 	request.onreadystatechange = function(){ // 콜백함수
-		alert(request.readyState);
 		if (request.readyState == 4) {
 			if(request.status == 200){
 				document.getElementById('foodOrderApp').innerText = '주문거절';
 				document.getElementById('foodOrderApp2').innerText = '주문거절';
 			} else if(request.status == 448){
-				document.getElementById('foodOrderApp').innerText = '승인 거절';
-				document.getElementById('foodOrderApp2').innerText = '승인 거절';
+				document.getElementById('foodOrderApp').innerText = '승인거절';
+				document.getElementById('foodOrderApp2').innerText = '승인거절';
 			} else {
 				alert("데이터 가져오기 실패");
 			}
