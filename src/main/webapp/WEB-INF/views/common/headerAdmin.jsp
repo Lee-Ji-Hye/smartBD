@@ -256,8 +256,6 @@
                   <a id="navLinkPagesUtilities" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_food/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesUtilities">식당 파트 관리</a>
                   <ul id="navSubmenuPagesUtilities" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesUtilities" style="min-width: 230px;">
                     <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_food/cormn">음식점 관리</a></li>
-                      <li class="dropdown-divider"></li>
-                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_food/settlement">결산</a></li>
                   </ul>
                 </li>
                 <!-- End 식당 관리 -->
