@@ -304,6 +304,16 @@
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
+            	관리자 아이디
+            <span class="text-danger">*</span>
+          </label>
+
+          <input type="text" class="form-control" name="userid" placeholder="관리자아이디" required>
+        </div>
+        
+        <!-- Input -->
+        <div class="js-form-message mb-6">
+          <label class="form-label">
             	교통편
             <span class="text-danger">*</span>
           </label>

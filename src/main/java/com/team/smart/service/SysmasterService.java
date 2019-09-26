@@ -40,7 +40,7 @@ public interface SysmasterService {
 	//빌딩 단건 승인 관련 변경 처리
 	public void memAmd(String amd, String userid);
 	//회원 단건 추가
-	public void memInsert(HttpServletRequest req, Model model);
+	public int memInsert(HttpServletRequest req, Model model);
 	
 	
 }

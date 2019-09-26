@@ -13,29 +13,12 @@ pageEncoding="UTF-8"%>
           <div class="row justify-content-sm-between align-items-sm-center">
             <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
               
-              
-              <!-- Datepicker -->
-              <!-- <div id="datepickerWrapper" class="js-focus-state u-datepicker w-auto input-group input-group-sm">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <span class="fas fa-calendar"></span>
-                  </span>
-                </div>
-                
-                <input type="text" class="js-range-datepicker form-control bg-white rounded-right"
-                       data-rp-wrapper="#datepickerWrapper"
-                       data-rp-type="range"
-                       data-rp-date-format="d M Y"
-                       data-rp-default-date='["05 Jul 2019", "19 Jul 2019"]'
-                       data-rp-is-disable-future-dates="true">
-              </div> -->
-              <!-- End Datepicker -->
             </div>
             
             <!-- Buttons -->
-            <div style="margin-right:20px;">
+            <%-- <div style="margin-right:20px;">
 	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/bd_food/cormn/inst'">등록</button>
-            </div>
+            </div> --%>
             <!-- End Buttons -->
           </div>
           <!-- End Activity Menu -->
