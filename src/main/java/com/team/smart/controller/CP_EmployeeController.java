@@ -75,7 +75,6 @@ public class CP_EmployeeController {
 		log.info("url -> orderDetail/");
 		
 		service.amdOrder(res, f_ocode);
-		
 		return null;
 	}
 	

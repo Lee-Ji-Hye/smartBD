@@ -22,8 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="getparklist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
 		<![CDATA[
-		select * from (select pt.*,rownum rNum from parking_lot_detail_tbl pt)
-	   where rNum >=#{start} and rNum <= #{end} and b_code = #{b_code} order by b_code
+		select * from(select p_seq, b_code, p_detail_floor, disable_position_x, disable_position_y, reserved_position_x, reserved_position_y, ask, p_lat, p_lot, p_state, rownum rNum from (select * from parking_lot_detail_tbl order by  p_state desc)
+	   where b_code = #{b_code})where rNum >=#{start} and rNum <= #{end} 
 		]]>
 	</select>
 	
@@ -339,14 +339,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by (substr(pay_day,1,5))
 	</select>
 	
-	<select id="inoutCarList" resultType="com.team.smart.parking.vo.InoutCarVO" >
-		SELECT *
+	<select id="inoutCarList" parameterType="java.util.Map" resultType="com.team.smart.parking.vo.InoutCarVO" >
+		<![CDATA[
+		  select * from (select tmp.*, rownum rNum from (SELECT *
 		  FROM parking_history_tbl ph
 		  LEFT JOIN (select inoutcode, sum(pay_enable_time) totParkingTime from parking_payment_tbl where pb_state = 2 group by inoutcode
-		              ) pp ON(pp.inoutcode = ph.inoutcode)
-		 WHERE ph.b_code = #{b_code}
+		              ) pp ON(pp.inoutcode = ph.inoutcode) order by parking_state, out_time nulls first, in_time desc) tmp
+           WHERE b_code = 'BD000001'
 		   AND is_delete = 'N'
-		   ORDER BY out_time nulls first, in_time desc
+		   ) where rNum >= #{start} and rNum <= #{end} 
+			]]>
 	</select>
 	
 	<select id="getBasicPrice" resultType="com.team.smart.parking.vo.ParkingBasicPriceVO">
@@ -358,8 +360,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<insert id="insertInOutPro" parameterType="java.util.Map">
-		insert into parking_history_tbl (inoutcode,b_code,car_number,in_time,car_number_img)  
-	     values (#{inoutcode}, #{b_code}, #{car_number}, #{in_time}, #{car_number_img})
+		insert into parking_history_tbl (inoutcode,b_code,car_number,in_time,car_number_img,p_lat,p_lot)  
+	     values (#{inoutcode}, #{b_code}, #{car_number}, #{in_time}, #{car_number_img},#{p_lat},#{p_lot})
 	</insert>
 	
 	<update id="inoutDelete" parameterType="String" >
@@ -367,10 +369,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="getTotalInoutCnt" resultType="int">
-		select count(*) cnt from parking_history_tbl where is_delete='N'
+		select count(*) cnt from parking_history_tbl where is_delete='N' and b_code = #{b_code}
 	</select>
 	<select id="list" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
 		select * from parking_ticket_info_tbl where b_code = #{b_code}      
 	</select>
+	
+	<select id="parkcount" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="String">
+		<![CDATA[
+		select rownum,p_lat,p_lot from PARKING_LOT_DETAIL_TBL where b_code = #{b_code} and p_state = 0 and rownum>0 and  rownum<2 order by p_seq 
+	 ]]>
+	</select>
+	
+	<update id="upparkdata" parameterType="java.util.Map">
+		update  PARKING_LOT_DETAIL_TBL 
+		set p_state = #{p_state} where p_lot = #{p_lot} and p_lat= #{p_lat} and b_code =#{b_code}
+	</update>
+	
+	<select id="carlist" resultType="com.team.smart.parking.vo.InoutCarVO" parameterType="java.util.Map">
+		select p_lat,p_lot from parking_history_tbl where inoutcode = #{inoutcode} and b_code = #{b_code}
+	</select>
+	
+	<update id="upparkdata1" parameterType="java.util.Map">
+		update PARKING_LOT_DETAIL_TBL
+		set p_state = #{p_state} where b_code = #{b_code} and p_lat = #{p_lat} and p_lot = #{p_lot} 
+	</update>
 </mapper>
 

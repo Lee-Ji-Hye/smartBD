@@ -52,10 +52,9 @@ public class CP_ParkingController {
 		
 		@RequestMapping(value="/inoutcar")
 		public String inoutcar(HttpServletRequest req, Model model) {
-			
 			return "redirect:/bd_park/intromn/inst1";
 		}
-	
+		
 		@RequestMapping(value="/intromn/inst1")
 		public String inoutcar1(HttpServletRequest req, Model model) {
 			parkingService.inoutCarList(req, model);
@@ -269,7 +268,7 @@ public class CP_ParkingController {
 		
 		
 		
-		//지혜 추가 영역. 나중에 지우삼
+		//출차처리
 		@RequestMapping("modiOutStatus")
 		public @ResponseBody int modiOutStatus(HttpServletRequest req, Model model) {
 			int result = parkingService.modiOutStatus(req, model);
