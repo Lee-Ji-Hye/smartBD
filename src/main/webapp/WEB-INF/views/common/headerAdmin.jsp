@@ -115,12 +115,12 @@
 
           <ul class="list-inline ml-2 mb-0">
             <!-- Search -->
-            <li class="list-inline-item">
+            <%-- <li class="list-inline-item">
               <a class="btn btn-xs btn-icon btn-text-secondary target-of-invoker-has-unfolds" href="javascript:;" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="searchPushTop" data-unfold-type="jquery-slide" data-unfold-target="#searchPushTop">
                 <!-- <span class="fas fa-search btn-icon__inner"></span> -->
                 <img src="${resourceImg}/icon/topIcon1.PNG" onerror='this.src="${resourceImg}/common/noimage_1.jpg"' style="width: 100%;height: 90%;margin-top: 2.5px;"/>
               </a>
-            </li>
+            </li> --%>
             <!-- End Search -->
             
             

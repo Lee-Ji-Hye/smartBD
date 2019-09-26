@@ -18,7 +18,7 @@
             <input type="hidden" name="urlinfo" value="">
               <!-- Title -->
               <div class="mb-7">
-                <h2 class="h3 text-primary font-weight-normal mb-0">Welcome <span class="font-weight-semi-bold">back</span></h2>
+                <h2 class="h3 text-primary font-weight-normal mb-0"> <span class="font-weight-semi-bold">Login</span></h2>
                 <p>Login to manage your account.</p>
               </div>
               <!-- End Title -->
@@ -43,7 +43,7 @@
                        data-msg="Your password is invalid. Please try again."
                        data-error-class="u-has-error"
                        data-success-class="u-has-success">
-                    <a class="link-muted text-capitalize font-weight-normal" href="recover-account.html">Forgot Password?</a>
+                    
                 </label>
               </div>
               <!-- End Form Group -->
