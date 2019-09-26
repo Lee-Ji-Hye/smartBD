@@ -233,11 +233,11 @@ table,td, th{
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.b_code}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">
 			                  ${dto.hourly}
-			                  <c:if test="${dto.p_type == 'M'}">분</c:if>
-			                  <c:if test="${dto.p_type == 'H'}">시간</c:if>
-			                  <c:if test="${dto.p_type == 'D'}">일</c:if>
+			                  <c:if test="${dto.p_type == 'm'}">분</c:if>
+			                  <c:if test="${dto.p_type == 'h'}">시간</c:if>
+			                  <c:if test="${dto.p_type == 'd'}">일</c:if>
 			                  </td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.price}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.reg_id}</td>
 			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatDate value="${dto.reg_date}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.update_id}</td>

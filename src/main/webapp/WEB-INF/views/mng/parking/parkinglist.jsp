@@ -233,8 +233,8 @@
 			                  <c:if test="${dto.p_state == 2}">결제 완료</c:if>
 			                  <c:if test="${dto.p_state == 3}">사용완료</c:if>
 			                  <c:if test="${dto.p_state == 4}">기간만료</c:if>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_oprice}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_count}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatNumber value="${dto.p_oprice}" pattern="#,###" />원</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.p_count}개</td>
 			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatDate value="${dto.pay_day}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			       				</tr>
       		</c:forEach>

@@ -251,11 +251,19 @@ table,td, th{
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_seq}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.inoutcode}</td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.userid}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_price}</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.pay_price > 0}"><fmt:formatNumber value="${dto.pay_price}" pattern="#,###" />원</c:if>
+			                  <c:if test="${dto.pay_price == 0}">-</c:if></td>
 			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.pay_type =='money'}">카카오페이</c:if>
-			                  <c:if test="${dto.pay_type =='ticket'}">주차권</c:if></td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pay_enable_time}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.parking_code}</td>
+			                  <c:if test="${dto.pay_type =='ticket'}">주차권</c:if>
+			                  </td>
+			                  <td class="align-middle text-secondary font-weight-normal ">
+			                  <c:if test="${dto.pay_enable_time < 60}">${dto.pay_enable_time}분</c:if>
+			                  <c:if test="${dto.pay_enable_time >= 60}">
+			                  <fmt:formatNumber value="${dto.pay_enable_time / 60}" type="number" maxFractionDigits="0"/>시간 <c:if test="${(dto.pay_enable_time %60) != 0}">${dto.pay_enable_time % 60}분</c:if></c:if></td>
+			                  <td class="align-middle text-secondary font-weight-normal ">
+			                  <c:if test="${dto.parking_code == null}">-</c:if>
+			                  <c:if test="${dto.parking_code != null}">${dto.parking_code}</c:if>
+			                 </td>
 			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatDate value="${dto.pay_day}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.pb_state == 0}">결제대기</c:if>
 			                  <c:if test="${dto.pb_state == 1}">결제요청완료</c:if>

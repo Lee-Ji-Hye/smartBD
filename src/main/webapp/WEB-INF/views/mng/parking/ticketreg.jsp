@@ -95,7 +95,10 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="hourly" id="listingCityProvince" placeholder="hourly" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
+                      <select name="hourly">
+                      <option value='1'>1</option>
+                      <option value='30'>30</option>
+                      </select>
                     </div>
                   </div>
                 </div>

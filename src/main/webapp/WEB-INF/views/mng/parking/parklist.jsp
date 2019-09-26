@@ -8,6 +8,10 @@ table,td, th{
 		margin: auto;
 		text-align: center;
 	}
+.ml-lg-auto{
+	position: relative;
+	top:-20px;
+} 	
 </style>
 <body>
 <!-- ========== MAIN ========== -->

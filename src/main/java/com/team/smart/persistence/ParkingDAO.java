@@ -124,7 +124,8 @@ public interface ParkingDAO {
 		public List<ParkingVO> pricepaylist(Map<String, Object> map); 
 		
 		//입출차량 리스트
-		public List<InoutCarVO> getInoutCarList(String b_code);
+		public List<InoutCarVO> getInoutCarList(Map<String, Object> map);
+		
 		//주차 요금
 		public ParkingBasicPriceVO getBasicPrice(String b_code);
 		//출차 처리
@@ -133,7 +134,19 @@ public interface ParkingDAO {
 		public int insertInOutPro(Map<String,Object> map);
 		
 		//입출차 총 수
-		public int getTotalInoutCnt();
+		public int getTotalInoutCnt(String b_code);
 		
 		public int inoutDelete(String inout_codes);
+		
+		//주차장 차량현황 입주안된 구역
+		public List<ParkingVO> parkcount(String b_code);
+		
+		//주차장 현황 데이터 업데이트(입출차량 리스트 연관)
+		public int upparkdata (Map<String, Object> map);
+		
+		//입출차 코드에 의한 정보 차량 정보 불러오기(입출차 리스트 연관)
+		public List<InoutCarVO> carlist(Map<String, Object> map);
+		
+		//주차장 현황 출차 업데이트(입출차량 리스트 연관)
+		public int upparkdata1(Map<String, Object> map);
 }

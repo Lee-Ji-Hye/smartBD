@@ -183,13 +183,6 @@ table,td, th{
                       </div>
                     </div>
                   </th>
-                  <th scope="col" class="font-weight-medium">
-                    <div>
-                      	시간타입
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
                  
                   <th scope="col" class="font-weight-medium">
                     <div>
@@ -247,11 +240,14 @@ table,td, th{
 			                    </div>
 			                  </td>
 			                  <td class="align-middle text-secondary font-weight-normal "><a onClick="location.href='${path}/bd_park/upprice?bp_seq=${dto.bp_seq}'">${dto.b_code}</a></td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.bp_type}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_time}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_price}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_free}</td>
-			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_free_price}</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_time}
+			                  <c:if test="${dto.bp_type == 'd'}">일</c:if>
+			                  <c:if test="${dto.bp_type == 'h'}">시간</c:if>
+			                  <c:if test="${dto.bp_type == 'm'}">분</c:if></td>
+			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatNumber value="${dto.pb_price}" pattern="#,###" />원</td>
+			                  <td class="align-middle text-secondary font-weight-normal ">${dto.pb_free}분</td>
+			                  <td class="align-middle text-secondary font-weight-normal "><c:if test="${dto.pb_free_price >0}"><fmt:formatNumber value="${dto.pb_free_price}" pattern="#,###" />원</c:if>
+			                  <c:if test="${dto.pb_free_price == null}">-</c:if></td>
 			                  <td class="align-middle text-secondary font-weight-normal ">${dto.reg_id}</td>
 			                  <td class="align-middle text-secondary font-weight-normal "><fmt:formatDate value="${dto.reg_date}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	              		</tr>

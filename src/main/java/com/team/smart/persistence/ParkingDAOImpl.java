@@ -3,6 +3,7 @@ package com.team.smart.persistence;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -222,8 +223,8 @@ public class ParkingDAOImpl implements ParkingDAO{
 	}
 
 	@Override
-	public List<InoutCarVO> getInoutCarList(String b_code) {
-		return sqlSession.selectList("ParkingDAO.inoutCarList", b_code);
+	public List<InoutCarVO> getInoutCarList(Map map) {
+		return sqlSession.selectList("ParkingDAO.inoutCarList", map);
 	}
 
 	@Override
@@ -247,13 +248,33 @@ public class ParkingDAOImpl implements ParkingDAO{
 	}
 
 	@Override
-	public int getTotalInoutCnt() {
-		return sqlSession.selectOne("ParkingDAO.getTotalInoutCnt");
+	public int getTotalInoutCnt(String b_code) {
+		return sqlSession.selectOne("ParkingDAO.getTotalInoutCnt", b_code);
 	}
 
 	@Override
 	public List<ParkingVO> list(Map<String, Object> map) {
 		return sqlSession.selectList("ParkingDAO.list",map);
+	}
+
+	@Override
+	public int upparkdata(Map<String, Object> map) {
+		return sqlSession.update("ParkingDAO.upparkdata",map);
+	}
+
+	@Override
+	public List<ParkingVO> parkcount(String b_code) {
+		return sqlSession.selectList("ParkingDAO.parkcount",b_code);
+	}
+
+	@Override
+	public int upparkdata1(Map<String, Object> map) {
+		return sqlSession.update("ParkingDAO.upparkdata1",map);
+	}
+
+	@Override
+	public List<InoutCarVO> carlist(Map<String, Object> map) {
+		return sqlSession.selectList("ParkingDAO.carlist",map);
 	}
 
 }

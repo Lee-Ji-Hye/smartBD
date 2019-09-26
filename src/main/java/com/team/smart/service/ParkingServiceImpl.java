@@ -858,20 +858,25 @@ public class ParkingServiceImpl implements ParkingService{
 		if(b_code.equals("")) {
 			b_code = (String) req.getSession().getAttribute("b_code");
 		}
+		
+		int cnt = p_dao.getTotalInoutCnt(b_code);
+		
+		String uri = req.getRequestURI();
+		Paging paging = new Paging(10, 5, cnt, uri);
+		paging.pagelist(page);
 	
-		List<InoutCarVO> list = p_dao.getInoutCarList(b_code);
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		map.put("b_code", b_code);
+		map.put("start", paging.getStart());
+		map.put("end", paging.getEnd());
+		
+		List<InoutCarVO> list = p_dao.getInoutCarList(map);
 		ParkingBasicPriceVO priceInfo = p_dao.getBasicPrice(b_code);
 		
 		//입출차량 있으면 리스트 뿌림
 		if(list == null) {
 			return;
 		}
-		
-		int cnt = p_dao.getTotalInoutCnt();
-		
-		String uri = req.getRequestURI();
-		Paging paging = new Paging(10, 5, cnt, uri);
-		paging.pagelist(page);
 		
         List<InoutCarVO> dtos = new ArrayList<InoutCarVO>();
         
@@ -888,7 +893,7 @@ public class ParkingServiceImpl implements ParkingService{
 	        	InoutCarVO vo = list.get(i);
 	        	//리얼 주차중인 시간
 	        	intime =  f1.parse(vo.getIn_time());
-		        
+	        		
 	        	//아래처럼 if문을 둔 이유는 출차 후에도 계속 출차시간이 이어지는 문제가 있기 때문에 나눠줌.
 	        	//출차 후에는 출차시안에서 입차시간을 계산함.
 	        	if(vo.getOut_time() == null) {
@@ -939,13 +944,14 @@ public class ParkingServiceImpl implements ParkingService{
 		req.setAttribute("dtos", dtos);
 		req.setAttribute("paging", paging);
 		
+		
 	}
 	
 	@Override
 	public int modiOutStatus(HttpServletRequest req, Model model) {
 		//출차 처리
 		int result = 0;
-		
+		String b_code = (String)req.getSession().getAttribute("b_code");
 		String inoutcode = (req.getParameter("inoutcode") == null)? "" : req.getParameter("inoutcode");
 		
 		//입출차코드가 없으면 리턴
@@ -954,6 +960,22 @@ public class ParkingServiceImpl implements ParkingService{
 		}
 		
 		result = p_dao.modiOutStatus(inoutcode);
+		if(result !=0) {
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("inoutcode", inoutcode);
+		map1.put("b_code", b_code);
+		List<InoutCarVO> carlist1 = p_dao.carlist(map1);
+		System.out.println("p_lat" +carlist1.get(0).getP_lat());
+		System.out.println("p_lat" +carlist1.get(0).getP_lot());
+		String P_lat =  carlist1.get(0).getP_lat();
+		String P_lot = carlist1.get(0).getP_lot();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("p_lat",P_lat);
+		map.put("p_lot",P_lot);
+		map.put("p_state",0);
+		map.put("b_code",b_code);
+		result =p_dao.upparkdata1(map);	
+		}
 		System.out.println("출차 :~~~~ " + result);
 		return result;
 	}
@@ -976,7 +998,7 @@ public class ParkingServiceImpl implements ParkingService{
 
 		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/parking/"); 
 		System.out.println(uploadPath);
-		String realDir = "C:\\Users\\ksm10\\git\\smartBD_YJ\\src\\main\\webapp\\resources\\images\\parking\\";  
+		String realDir = "C:\\Users\\ksm05\\git\\smartBD\\src\\main\\webapp\\resources\\images\\parking\\";  
 		
 		try {
 			
@@ -1002,14 +1024,30 @@ public class ParkingServiceImpl implements ParkingService{
 		}
 		
 		
+		List<ParkingVO> p_lot_lat = p_dao.parkcount(b_code);
+		double p_lot = p_lot_lat.get(0).getP_lot();
+		double p_lat = p_lot_lat.get(0).getP_lat();
+		System.out.println(p_lot);
+		System.out.println(p_lat);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("inoutcode", inoutcode);
 		map.put("b_code", b_code);
 		map.put("car_number", car_number);
 		map.put("in_time", in_date + " " + in_time);
 		map.put("car_number_img", images_name);
-		
+		map.put("p_lot", p_lot);
+		map.put("p_lat",p_lat);
 		int result = p_dao.insertInOutPro(map);
+		if(result != 0) {
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("p_state", 1);
+		map1.put("p_lot",p_lot);
+		map1.put("p_lat",p_lat);
+		map1.put("b_code",b_code);
+		result = p_dao.upparkdata(map1);	
+		}
+		
 		
 		// 처리결과 저장
 		model.addAttribute("result", result);

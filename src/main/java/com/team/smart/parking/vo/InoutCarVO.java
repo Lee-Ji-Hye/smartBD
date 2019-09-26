@@ -17,6 +17,8 @@ public class InoutCarVO {
 	private String out_time;
 	private String parking_location;
 	private String parking_state;
+	private String p_lat;
+	private String p_lot;
 	
 	private int totParkingTime; //(결제한)총 주차시간 분
 	
