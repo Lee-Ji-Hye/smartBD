@@ -32,11 +32,6 @@ pageEncoding="UTF-8"%>
               <!-- End Datepicker -->
             </div>
             
-            <!-- Buttons -->
-            <div style="margin-right:20px;">
-	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/sysmaster/cormn/inst'">등록</button>
-            </div>
-            <!-- End Buttons -->
           </div>
           <!-- End Activity Menu -->
         </div>
