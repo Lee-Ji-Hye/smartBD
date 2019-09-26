@@ -21,7 +21,7 @@
             <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
               <!-- Breadcrumb -->
               <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="../home/index.html">Parking-List</a></li>
+                <li class="breadcrumb-item"></li>
               </ol>
               <!-- End Breadcrumb -->
 
@@ -46,13 +46,13 @@
             <!-- User Info -->
             <div class="media d-block d-sm-flex align-items-sm-center">
               <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
-                <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
+                <img class="img-fluid rounded-circle" src="/smart/resources/images/parking/parking.png" alt="Image Description">
                 <span class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle">
                   <span class="fas fa-check"></span>
                 </span>
               </div>
               <div class="media-body">
-                <h1 class="h3 text-white font-weight-medium mb-1">YEONGJUNG,KIM</h1>
+                <h1 class="h3 text-white font-weight-medium mb-1">주차권 관리>주차권 발급내역</h1>
                 <span class="d-block text-white">dudwnddl1101@gmail.com</span>
               </div>
             </div>

@@ -327,7 +327,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  	</if>
 			)
 	<![CDATA[
-		 where rNum >=#{start} and rNum <= #{end} order by pay_day 
+		 where rNum >=#{start} and rNum <= #{end} order by pay_day desc
 	  ]]>
 	</select>
 	<select id="pricetotal" resultType="java.util.Map" parameterType="java.util.Map">

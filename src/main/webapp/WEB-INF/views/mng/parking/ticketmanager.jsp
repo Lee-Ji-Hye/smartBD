@@ -48,11 +48,7 @@
           <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
             <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
               <!-- Breadcrumb -->
-              <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="https://htmlstream.com/preview/front-v2.9.0/html/home/index.html">Home</a></li>
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="https://htmlstream.com/preview/front-v2.9.0/html/account/dashboard.html">Account</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-              </ol>
+              
               <!-- End Breadcrumb -->
 
               <!-- Breadcrumb Nav Toggle Button -->
@@ -71,15 +67,15 @@
             <!-- User Info -->
             <div class="media d-block d-sm-flex align-items-sm-center">
               <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
-                <img class="img-fluid rounded-circle" src="/smart/resources/bootstrap/image/img2.jpg" alt="Image Description">
+                <img class="img-fluid rounded-circle" src="/smart/resources/images/parking/parking.png" alt="Image Description">
                 <span class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle">
                   <!-- <span class="fas fa-check"></span> -->
                   <img src="/smart/resources/images/icon/checkicon.PNG" style="width: 10px;">
                 </span>
               </div>
               <div class="media-body">
-                <h1 class="h3 text-white font-weight-medium mb-1">Howdy, Natalie!</h1>
-                <span class="d-block text-white">natalie.curtis@gmail.com</span>
+                <h1 class="h3 text-white font-weight-medium mb-1">주차장 현황</h1>
+                <span class="d-block text-white">dudwnddl1101@gmail.com</span>
               </div>
             </div>
             <!-- End User Info -->
