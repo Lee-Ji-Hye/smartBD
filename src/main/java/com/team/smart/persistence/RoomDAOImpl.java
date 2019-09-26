@@ -176,6 +176,11 @@ public class RoomDAOImpl implements RoomDAO{
 		return sqlSession.update("RoomDAO.roomDelete", r_codes);
 	}
 
+	@Override
+	public int getImgmaxSort(String r_code) {
+		return sqlSession.selectOne("RoomDAO.getImgmaxSort", r_code);
+	}
+
 	
 
 }

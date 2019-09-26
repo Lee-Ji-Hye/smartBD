@@ -78,5 +78,7 @@ public interface RoomDAO {
 		//병권 도우미~~~~(겹치지 말라고 넣은거임 나중에 삭제하셈)
 		//매물 삭제
 		public int roomDelete(String r_codes); //'R00001','R00001'이런식으로 들어옴
+		
+		public int getImgmaxSort(String r_code);
 
 }

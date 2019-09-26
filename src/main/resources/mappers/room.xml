@@ -24,11 +24,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 슬라이드 이미지 삽입 -->
-	<insert id="slide" parameterType="com.team.smart.room.vo.RoomVO">
-		insert into room_img_tbl (r_code,r_img)
-		VALUES(#{r_code},#{r_img})
-	</insert>
+    <insert id="slide" parameterType="com.team.smart.room.vo.RoomVO">
+       insert into room_img_tbl (r_code,r_img,r_sort)
+       VALUES(#{r_code},#{r_img},#{idx})
+    </insert>
 
+	<select id="getImgmaxSort" parameterType="String" resultType="int">
+		select NVL((max(r_sort)),0) + 1 cnt from room_img_tbl where r_code = #{value}
+	</select>
 
 	<!-- 매물 갯수 구하기 -->
 	<select id="getArticleCnt" resultType="int">

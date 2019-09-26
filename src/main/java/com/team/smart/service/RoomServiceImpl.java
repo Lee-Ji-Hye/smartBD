@@ -113,7 +113,8 @@ public class RoomServiceImpl implements RoomService{
 		if(mode.equals("insert")) {
 		
 		int insertCnt = dao.roomupload(vo);
-		System.out.println("등록 :" + insertCnt);
+		
+		System.out.println("등록 :" + insertCnt); //room_tbl
 		
 		
 		req.setAttribute("cnt", insertCnt);
@@ -124,6 +125,7 @@ public class RoomServiceImpl implements RoomService{
 			
 			req.setAttribute("cnt", updateCnt);
 		}
+		
 		
 	}
 	
@@ -224,19 +226,20 @@ public class RoomServiceImpl implements RoomService{
 	
 
 	//이미지이름 DB에 저장하기
-	@Override
-	public void addImage(HttpServletRequest req, Model model,String originFileName,String r_code) {
-		RoomVO vo = new RoomVO();
-		vo.setR_code(req.getParameter("r_code"));
-		vo.setR_img(originFileName);
-		
-		System.out.println("빅"+originFileName);
-		System.out.println("굿"+req.getParameter("r_code"));
-		
-		dao.slide(vo);
-		
-		
-	}
+	   @Override
+	   public void addImage(HttpServletRequest req, Model model,String originFileName,String r_code, int i) {
+	      RoomVO vo = new RoomVO();
+	      vo.setR_code(req.getParameter("r_code"));
+	      vo.setR_img(originFileName);
+	      
+	      System.out.println("빅"+originFileName);
+	      System.out.println("굿"+req.getParameter("r_code"));
+	      
+	      vo.setIdx(i);
+	      
+	      dao.slide(vo);
+	      
+	   }
 
 	
 	//슬라이드 이미지 가져오기
@@ -435,6 +438,11 @@ public class RoomServiceImpl implements RoomService{
 		String r_codes = req.getParameter("r_codes");
 		return dao.roomDelete(r_codes);
 
+	}
+
+	@Override
+	public int getImgmaxSort(String r_code) {
+		return dao.getImgmaxSort(r_code);
 	}
 
 	

@@ -50,4 +50,6 @@ public class RoomVO {
 	private String rt_businessNum;//임차인 주민번호
 	private String rt_address;	//임차인 지갑주소
 	
+	private int idx;
+	
 }

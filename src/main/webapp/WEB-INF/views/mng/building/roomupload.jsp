@@ -277,7 +277,7 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="r_floor" id="listingPostalCode" value="${dto.r_floor}" placeholder="r_floor" aria-label="Postal code" aria-describedby="listingPostalCodeLabel" autocomplete="off">
+                      <input type="text" class="form-control" name="r_floor" id="listingPostalCode" value="${dto.r_floor}"  aria-label="Postal code" aria-describedby="listingPostalCodeLabel" autocomplete="off">
                     </div>
                   </div>
                 </div>
@@ -324,7 +324,7 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="r_indi_space" id="listingPostalCode" value="${dto.r_indi_space}" placeholder="r_indi_space" aria-label="Postal code" aria-describedby="listingPostalCodeLabel" autocomplete="off">
+                      <input type="text" class="form-control" name="r_indi_space" id="listingPostalCode" value="${dto.r_indi_space}"  aria-label="Postal code" aria-describedby="listingPostalCodeLabel" autocomplete="off">
                     </div>
                   </div>
                 </div>
@@ -346,7 +346,7 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="r_ofer_fee" id="listingPostalCode" value="${dto.r_ofer_fee}" placeholder="r_ofer_fee" aria-label="Postal code" aria-describedby="listingPostalCodeLabel" autocomplete="off">
+                      <input type="text" class="form-control" name="r_ofer_fee" id="listingPostalCode" value="${dto.r_ofer_fee}"  aria-label="Postal code" aria-describedby="listingPostalCodeLabel" autocomplete="off">
                     </div>
                   </div>
                 </div>
@@ -365,7 +365,7 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="r_pmemo" id="listingPostalCode" value="${dto.r_pmemo}" placeholder="r_pmemo" aria-label="Postal code" aria-describedby="listingPostalCodeLabel" autocomplete="off">
+                      <input type="text" class="form-control" name="r_pmemo" id="listingPostalCode" value="${dto.r_pmemo}" aria-label="Postal code" aria-describedby="listingPostalCodeLabel" autocomplete="off">
                     </div>
                   </div>
                 </div>
@@ -383,9 +383,7 @@
 
                   <div class="input-group">
                     <textarea class="form-control" rows="6" name="r_desc"  
-                    		  placeholder="r_desc" aria-label="Listing description" >
-                    		  ${dto.r_desc}
-                    </textarea>
+                    		   aria-label="Listing description" >${dto.r_desc}</textarea>
                   </div>
                 </div>
                 <!-- End Input -->
