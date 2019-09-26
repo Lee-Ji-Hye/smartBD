@@ -841,7 +841,7 @@
 					<tfoot>
 						<tr>
 							<td class="td_center">합 계</td>
-							<td class="td_right" id="r_price + r_deposit + r_premium">ex) 1,300,000원</td>
+							<td class="td_right" id="r_price + r_deposit">ex) 1,300,000원</td>
 						</tr>
 					</tfoot>
 				</table>

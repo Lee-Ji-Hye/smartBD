@@ -19,8 +19,6 @@
               	</c:forEach>
               </c:if>
 		
-		<!-- <li><img src="/smart/resources/images/room/img1.jpg" /></li>
-		<li><img src="/smart/resources/images/room/charter.png" /></li> -->
 	</ul>
 	<script type="text/javascript">
 		$(document).ready(function() {
