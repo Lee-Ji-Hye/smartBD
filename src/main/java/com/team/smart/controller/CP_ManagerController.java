@@ -1,11 +1,17 @@
 package com.team.smart.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.team.smart.service.FoodService;
@@ -143,7 +149,6 @@ public class CP_ManagerController {
 		return "redirect:/cp_manager/cpmn/list";
 	}
 	
-	
 	// 쿠폰 리스트
 	@RequestMapping("/cpmn/list")
 	public String couponList(HttpServletRequest req, Model model) {
@@ -153,6 +158,14 @@ public class CP_ManagerController {
 		
 		return mngFood_ + "/couponList";
 		
+	}
+	
+	// 쿠폰 리스트 상세보기
+	@GetMapping("/cpmn/amd/{f_coupon_num}")
+	public @ResponseBody Map<String,Object> couponDetail(HttpServletRequest req, @PathVariable String f_coupon_num) {
+		log.info("url -> cpmn/amd/{f_coupon_num}/");
+		
+		return service.getDetailCoupon(f_coupon_num);
 	}
 	
 	// 쿠폰 업로드

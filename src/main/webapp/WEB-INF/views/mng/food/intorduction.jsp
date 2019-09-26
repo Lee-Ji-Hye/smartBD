@@ -12,8 +12,6 @@
 <div class="container space-2 px-md-7 px-lg-11">
      <div class="card bg-img-hero" style="background-image: url(../../assets/svg/components/bg-elements-6.svg);">
        <div class="card-body p-9 p-md-7 p-lg-11">
-
-       
          <div class="row justify-content-lg-between align-items-sm-center mb-11">
            <div class="col-sm-6 col-lg-4 order-sm-1">
 	        <!-- End Update Avatar Form -->
@@ -21,8 +19,6 @@
              <h2 class="h1 text-primary font-weight-semi-bold">${sessionScope.comp_org}</h2>
              <!-- End Logo -->
              
-                    
-       
 			 <!-- Input -->
 			<div class="col-sm-6 col-lg-5 order-sm-1" style="padding:00px" >
              <h1 class="h6 font-weight-medium mb-0">
@@ -191,7 +187,7 @@
           <!-- <div class="row"> -->
             <div class="mr-1 imageclass" style="width:150px;height:150px;"><img src="${resourceImg}/noimg.gif" alt="Image Description" style="width:150px;height:130px;"/></div>
             <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn" >Upload
-             <input id="fileAttachmentBtn" name="f_mainimg" type="file" value="Upload" class="file-attachment-btn__label"></label>
+             <input id="fileAttachmentBtn" name="f_mainimg" type="file" value="${store.f_mainimg}" class="file-attachment-btn__label"></label>
            </div>  
             <!-- <button type="reset" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button> -->
         </div>

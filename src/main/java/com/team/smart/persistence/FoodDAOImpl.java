@@ -70,6 +70,18 @@ public class FoodDAOImpl implements FoodDAO {
 	public int getSerial(String[] f_coupon_num) {
 		return sqlSession.selectOne("FoodDAO.getSerial", f_coupon_num);
 	}
+	
+	// 음식점 리스트 상세보기
+	@Override
+	public Map<String, Object> getCouponDetail(String f_coupon_name) {
+		return sqlSession.selectOne("FoodDAO.getCouponDetail", f_coupon_name);
+	}
+
+	// 음식점 리스트 상세보기 여러건 
+	@Override
+	public List<com.team.smart.food.vo.Food_coupon_serialVO> getFoodCouponList(String f_coupon_name) {
+		return sqlSession.selectList("FoodDAO.getFoodCouponList", f_coupon_name);
+	}
 
 	// 음식점 쿠폰 리스트 삭제
 	@Override
@@ -196,5 +208,6 @@ public class FoodDAOImpl implements FoodDAO {
 		System.out.println("~!!!!!!!!!!!!!!!!!!!!!!!!!!~");
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
+
 
 }

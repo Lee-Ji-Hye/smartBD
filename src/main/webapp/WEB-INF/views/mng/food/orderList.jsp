@@ -19,20 +19,9 @@ pageEncoding="UTF-8"%>
             </div>
            <div class="col-md-6">
               <div class="d-flex">
-                <!-- <div class="mr-2">
-                  Select
-                  <select id="datatableEntries" class="js-select selectpicker dropdown-select" data-width="fit" data-style="btn-soft-primary btn-sm">
-                    <option value="6">6 entries</option>
-                    <option value="12" selected>12 entries</option>
-                    <option value="18">18 entries</option>
-                    <option value="24">24 entries</option>
-                  </select>
-                  End Select
-                </div> -->
-              
                 <div class="js-focus-state input-group input-group-sm">
                   <div class="input-group-prepend">
-                    
+                  <!-- 영역을 맞추기 위해  -->
                   </div>
                   <form method="get" id="form" name="form" >
  				<input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}" style="position:relative;right:500px;top:10px; ">                </div>
@@ -180,7 +169,6 @@ pageEncoding="UTF-8"%>
 				              </address>
 				            </div>
 				            
-				            
 				            <div class="col-md-5 col-lg-4 mt-6">
 				              <dl class="row mb-0">
 				                <dt class="col-5 col-md-6 font-weight-normal text-secondary">테이크아웃</dt>
@@ -271,8 +259,8 @@ pageEncoding="UTF-8"%>
 				      </div>
 				      </div>
                 	</td>
-                </tr>
-              </tbody>
+                 </tr>
+               </tbody>
               </form>
             </table>
           </div>
@@ -282,7 +270,6 @@ pageEncoding="UTF-8"%>
           <!-- End Pagination -->
         </div>
       </div>
-      
     </div>
   </div>
   <!-- End Content Section -->
@@ -351,14 +338,6 @@ function orderDetail(f_ocode, tbl_order){
 				console.log(orderMenu);
  				console.log(orderInfo.f_status);
  				
- 				/* if(obj.f_status === '0'){
-					obj.f_status = '주문대기';
-				} else if(obj.f_status === '1'){
-					obj.f_status = '주문완료';
-				} else if(obj.f_status === '2'){
-					obj.f_status = '주문거절';
-				} */
-				
 				if(orderInfo.f_status == '주문대기') { // '주문대기' 상태 
 					$("#amdNg").show(); // 거절버튼 보이기
 					$("#amdOk").hide();	// 승인버튼 숨기기 
@@ -473,21 +452,7 @@ function orderPro2(event) {
 }
 </script>
 
-<!-- 주문 번호 재클릭시 열린 창 닫기 jQuery -->
-<!-- <script type="text/javascript">
-	$(function(){
-		$("#detail_odrerCode").click(function() {
-			if($("#formDetail").hasClass("hide")) {
-				$("#formDetail").removeClass("hide");
-			} else {
-				$("#formDetail").addClass("hide");
-			}
-		});
-	});
-	
-</script> -->
-
-
+<!-- 검색 -->
 <script type="text/javascript">
 	$(function(){
 		$("#serBtn").click(function(){
