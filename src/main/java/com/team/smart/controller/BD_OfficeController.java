@@ -128,46 +128,51 @@ public class BD_OfficeController {
 			
 			return mngBuilding_ + "/imageadd";
 		}
-		//이미지 다중업로드
-		@RequestMapping(value = "requestupload2")
-	    public String requestupload2(MultipartHttpServletRequest mtfRequest,HttpServletRequest req, Model model) {
-	        List<MultipartFile> fileList = mtfRequest.getFiles("file");
-	        String src = mtfRequest.getParameter("src");
-	        String r_code = req.getParameter("r_code");
-	        System.out.println("src value : " + src);
+	  //이미지 다중업로드
+      @RequestMapping(value = "requestupload2")
+       public String requestupload2(MultipartHttpServletRequest mtfRequest,HttpServletRequest req, Model model) {
+           List<MultipartFile> fileList = mtfRequest.getFiles("file");
+           String src = mtfRequest.getParameter("src");
+           String r_code = req.getParameter("r_code");
+           System.out.println("src value : " + src);
 
-	        //해당 저장경로는 컴퓨터마다 다르기때문에 pull받은 컴퓨터에 알맞는 경로로 지정해줘야 저장이 됨
-	        //git파일 위치가 동일하다면C:\\Users\\kosmo27\\ 부분만 수정해주면 된다
-	        String path = "C:\\Users\\kosmo27\\git\\smartBD\\src\\main\\webapp\\resources\\images\\room\\";
-	        
-	        for (MultipartFile mf : fileList) {
-	            String originFileName = mf.getOriginalFilename(); // 원본 파일 명
-	            long fileSize = mf.getSize(); // 파일 사이즈
+           //해당 저장경로는 컴퓨터마다 다르기때문에 pull받은 컴퓨터에 알맞는 경로로 지정해줘야 저장이 됨
+           //git파일 위치가 동일하다면C:\\Users\\kosmo27\\ 부분만 수정해주면 된다
+           String path = "C:\\Users\\kosmo27\\git\\smartBD\\src\\main\\webapp\\resources\\images\\room\\";
+           
+           //int i = 1;           
+           int i  = r_service.getImgmaxSort(r_code);
+           
+           //i = (idx > 1)? idx : i;
+           
+           for (MultipartFile mf : fileList) {
+               String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+               long fileSize = mf.getSize(); // 파일 사이즈
 
-	            System.out.println("originFileName : " + originFileName);
-	            System.out.println("fileSize : " + fileSize);
+               System.out.println("originFileName : " + originFileName);
+               System.out.println("fileSize : " + fileSize);
 
-	            String safeFile = path +  originFileName;
-	            
-	            //파일 이름가지고 DB에 저장하기
-	            
-	            System.out.println(r_code);
-	            r_service.addImage(req, model,originFileName,r_code);
-	            
-	            try {
-	                mf.transferTo(new File(safeFile));
-	            } catch (IllegalStateException e) {
-	                
-	                e.printStackTrace();
-	            } catch (IOException e) {
-	                
-	                e.printStackTrace();
-	            }
-	        }
-	        
-	        //return  "smart/bd_office/roomDetail?r_code="+r_code;
-	        return "redirect:/bd_office/roomdetail?r_code="+r_code;
-	    }
+               String safeFile = path +  originFileName;
+               
+               //파일 이름가지고 DB에 저장하기
+               
+               System.out.println(r_code);
+               r_service.addImage(req, model,originFileName,r_code, i);
+               i++;
+               try {
+                   mf.transferTo(new File(safeFile));
+               } catch (IllegalStateException e) {
+                   
+                   e.printStackTrace();
+               } catch (IOException e) {
+                   
+                   e.printStackTrace();
+               }
+           }
+           
+           //return  "smart/bd_office/roomDetail?r_code="+r_code;
+           return "redirect:/bd_office/roomdetail?r_code="+r_code;
+       }
 		
 		//계약관리
 		@RequestMapping("roomcontract")

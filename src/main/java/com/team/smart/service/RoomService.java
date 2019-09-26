@@ -36,7 +36,7 @@ public interface RoomService {
 		public void reload(HttpServletRequest req, Model model);
 		
 		//이미지 등록시 DB에 이미지name저장
-		public void addImage(HttpServletRequest req, Model model,String originFileName,String r_code);
+		public void addImage(HttpServletRequest req, Model model,String originFileName,String r_code, int i);
 		
 		//슬라이드용 이미지 가져오기
 		public void getImage(HttpServletRequest req,Model model);
@@ -70,6 +70,9 @@ public interface RoomService {
 		
 		//주소 gu가져오기
 		public List<String> getGu(String si);
+		
+		//이미지 큰번호 가져오기
+		public int getImgmaxSort(String r_code);
 		
 		
 }
