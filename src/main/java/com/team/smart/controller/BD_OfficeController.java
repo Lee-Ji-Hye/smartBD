@@ -138,7 +138,7 @@ public class BD_OfficeController {
 
 	        //해당 저장경로는 컴퓨터마다 다르기때문에 pull받은 컴퓨터에 알맞는 경로로 지정해줘야 저장이 됨
 	        //git파일 위치가 동일하다면C:\\Users\\kosmo27\\ 부분만 수정해주면 된다
-	        String path = "C:\\Users\\kosmo27\\git\\smartBD\\src\\main\\webapp\\resources\\images\\slide\\";
+	        String path = "C:\\Users\\kosmo27\\git\\smartBD\\src\\main\\webapp\\resources\\images\\room\\";
 	        
 	        for (MultipartFile mf : fileList) {
 	            String originFileName = mf.getOriginalFilename(); // 원본 파일 명
@@ -235,25 +235,27 @@ public class BD_OfficeController {
 			return plusMonth;
 		}
 		
-		//임차인 계약정보가져오기 
-		@RequestMapping("memcontract")
-		public String memcontract(HttpServletRequest req, Model model) {
-			
-			
-			
-			
-			return mngBuilding_ + "/memcontract";
-		}
-		
-		//임차인 납부정보가져오기
-		@RequestMapping("mempaylist")
-		public String mempaylist(HttpServletRequest req, Model model) {
-			
-			
-			r_service.getmemberpaylist(req, model);
-			
-			return mngBuilding_ + "/mempaylist";
-		}
+	/*
+	 * //임차인 계약정보가져오기
+	 * 
+	 * @RequestMapping("memcontract") public String memcontract(HttpServletRequest
+	 * req, Model model) {
+	 * 
+	 * 
+	 * 
+	 * 
+	 * return mngBuilding_ + "/memcontract"; }
+	 * 
+	 * //임차인 납부정보가져오기
+	 * 
+	 * @RequestMapping("mempaylist") public String mempaylist(HttpServletRequest
+	 * req, Model model) {
+	 * 
+	 * 
+	 * r_service.getmemberpaylist(req, model);
+	 * 
+	 * return mngBuilding_ + "/mempaylist"; }
+	 */
 		
 		//병권 도우미=========================
 		//매물 삭제

@@ -59,6 +59,9 @@ public interface RoomService {
 		//임차인의 id를 이용한 해당 납부 목록 가져오기
 		public void getmemberpaylist(HttpServletRequest req,Model model);
 		
+		//임차인의 id를 이용한 자신의 임대계약서 가져오기
+		public void getContractmember(HttpServletRequest req,Model model);
+		
 		//매물 삭제 
 		public int roomDelete(HttpServletRequest req, Model model);
 

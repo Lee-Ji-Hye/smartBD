@@ -385,7 +385,7 @@
             },
             tooltip: {
                 shared: true,
-                valueSuffix: ' 원'
+                valueSuffix: ' ETH'
             },
             credits: {
                 enabled: false

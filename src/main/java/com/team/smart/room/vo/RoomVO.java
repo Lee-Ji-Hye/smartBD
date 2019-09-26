@@ -37,17 +37,17 @@ public class RoomVO {
 	private String name;		//이름
 	private String hp;			//폰번호
 	private String email;		//이메일
-	private String b_area1;
-	private String b_area2;
-	private String b_year;
-	private String b_landarea;
-	private String b_buildarea;
-	private String b_buildscale;
-	private String b_address;
+	private String b_area1;		//건물 주소
+	private String b_area2;		//건물 주소
+	private String b_year;		//준공년도
+	private String b_landarea;	//대지면적
+	private String b_buildarea;	//건축면적
+	private String b_buildscale;//건축규모
+	private String b_address;	//건물 주소
 	
-	private int r_blockcode;
-	private String rt_name;
-	private String rt_businessNum;
-	private String rt_address;
+	private int r_blockcode;	//블록체인 코드
+	private String rt_name;		//임차인 이름
+	private String rt_businessNum;//임차인 주민번호
+	private String rt_address;	//임차인 지갑주소
 	
 }

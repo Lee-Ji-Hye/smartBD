@@ -127,6 +127,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   AND c.rt_code = #{rt_code}
 	</select>
 	
+	<select id="getContractmember" parameterType="String" resultType="com.team.smart.room.vo.RoomVO">
+		SELECT b.b_area1 
+      ,b.b_area2 
+      ,b.b_address 
+      ,b.b_year 
+      ,b.b_landarea 
+      ,b.b_buildscale 
+      ,b.b_buildarea 
+      ,TO_NUMBER(SUBSTR(r.r_code, 2)) as r_blockcode 
+      ,r.r_type 
+      ,r.r_price 
+      ,r.r_deposit 
+      ,r.r_premium 
+      ,r.r_kind 
+      ,r.r_floor 
+      ,r.regidate 
+      ,c.rt_hash 
+      ,c.r_code 
+      ,c.rt_mobile 
+      ,c.rt_email 
+      ,c.rt_date1 as rt_date 
+      ,c.rt_date2 
+      ,u.name 
+      ,u.hp 
+      ,u.email 
+      FROM building_tbl b, room_tbl r, room_contract_tbl c, user_member_tbl u 
+      WHERE b.b_code = r.b_code 
+      AND r.r_code = c.r_code 
+      AND c.userid = u.userid 
+      AND u.userid = #{userid}
+	</select>
+	
 	<!-- 납부리스트 -->
 	<select id="getpaylist" resultType="com.team.smart.room.vo.RoomVO">
 		SELECT r.r_code, to_char(rt.rt_date1, 'YYYY-MM-DD') rt_date1 ,to_char(rt.rt_date2, 'YYYY-MM-DD') rt_date2,
