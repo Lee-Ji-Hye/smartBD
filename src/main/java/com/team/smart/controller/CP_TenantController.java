@@ -55,7 +55,8 @@ public class CP_TenantController {
 		r_service.getmemberpaylist(req, model);
 		
 		return mngBuilding_ + "/mempaylist";
-
+	}
+	
 	//업체 등록 등
 	@RequestMapping({"/comp"})
 	public String comp(HttpServletRequest req, Model model) {
