@@ -50,7 +50,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          FROM (SELECT comp_seq, rownum rNum, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end
               FROM (SELECT comp_seq, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end FROM food_coupon_tbl order by comp_seq desc))
         where rNum>=#{startNum}
-        and rNum<=#{endNum}
+        AND rNum<=#{endNum}
+        AND comp_seq = #{comp_seq}
     	]]>
 	</select>
 	
