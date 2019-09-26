@@ -35,24 +35,16 @@ function sample_string_view(ans, typea) {
   <main id="content" role="main">
     <!-- Breadcrumb Section -->
     <div class="bg-primary">
+    <div class="bg-primary" style="background-color: !important;">
       <div class="container space-top-1 pb-3">
         <div class="row">
           <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
             <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
-              <!-- Breadcrumb -->
-              <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="../home/index.html">Parking-List</a></li>
-              </ol>
-              <!-- End Breadcrumb -->
+              
 
               <!-- Breadcrumb Nav Toggle Button -->
               <div class="d-lg-none">
-                <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white"
-                        aria-label="Toggle navigation"
-                        aria-expanded="false"
-                        aria-controls="breadcrumbNavBar"
-                        data-toggle="collapse"
-                        data-target="#breadcrumbNavBar">
+                <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white" aria-label="Toggle navigation" aria-expanded="false" aria-controls="breadcrumbNavBar" data-toggle="collapse" data-target="#breadcrumbNavBar">
                   <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box">
                     <span class="u-hamburger__inner"></span>
                   </span>
@@ -66,19 +58,18 @@ function sample_string_view(ans, typea) {
             <!-- User Info -->
             <div class="media d-block d-sm-flex align-items-sm-center">
               <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
-                <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
-                <span class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle">
-                  <span class="fas fa-check"></span>
-                </span>
+                <img class="img-fluid rounded-circle" src="/smart/resources/images/parking/parking.png" alt="Image Description">
               </div>
               <div class="media-body">
-                <h1 class="h3 text-white font-weight-medium mb-1">YEONGJUNG,KIM</h1>
+                <h1 class="h3 text-white font-weight-medium mb-1">주차장>입출차관리</h1>
                 <span class="d-block text-white">dudwnddl1101@gmail.com</span>
               </div>
             </div>
             <!-- End User Info -->
           </div>
         </div>
+      </div>
+    </div>
       </div>
 	 
       <div class="container space-bottom-1 space-bottom-lg-0">
@@ -230,7 +221,7 @@ function sample_string_view(ans, typea) {
 				                  <td class="align-middle text-secondary font-weight-normal ">
 				                  
 				                   <div id="Text${num}" class="im1" style="display: none; left: 48px; position: absolute; top: 84px;"> 
-									<img alt="등록된 이미지가 없습니다." src="${resourceImg}/parking/${dto.car_number_img}" width="150px;"height="100px;">
+									<img alt="등록된 이미지가 없습니다." src="${resourceImg}/parking/${dto.car_number_img}" width="150px;"height="100px;" onerror='this.src="${resourceImg}/common/noimage_1.jpg"'>
 									</div>
 										<a href="#" onmouseover="sample_string_view(true, 'Text${num}');" onmousemove="sample_string_move('Text${num}');" onmouseout="sample_string_view(false,'Text${num}');">${dto.car_number}</a>
 								</td>
