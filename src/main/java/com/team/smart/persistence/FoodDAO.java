@@ -33,6 +33,12 @@ public interface FoodDAO {
 	// 음식점 쿠폰 리스트
 	public List<Food_couponVO> getCoupon(Map<String, Object> map);
 	
+	// 음식점 쿠폰 리스트 상세보기
+	public Map<String, Object> getCouponDetail(String f_coupon_name);
+	
+	// 음식점 쿠폰 리스트 상세보기 여러건 
+	public List<com.team.smart.food.vo.Food_coupon_serialVO> getFoodCouponList(String f_coupon_name);
+	
 	// 음식점 쿠폰 시리얼
 	public int insertCouponSer(Map<String, Object> map);
 	

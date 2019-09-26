@@ -48,18 +48,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 		SELECT comp_seq, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end, f_coupon_num
          FROM (SELECT comp_seq, rownum rNum, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end
-              FROM (SELECT comp_seq, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end FROM food_coupon_tbl order by comp_seq desc))
+              FROM (SELECT comp_seq, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end FROM food_coupon_tbl WHERE comp_seq = #{comp_seq} ORDER BY comp_seq desc))
         where rNum>=#{startNum}
         AND rNum<=#{endNum}
-        AND comp_seq = #{comp_seq}
     	]]>
 	</select>
 	
-	<!-- 음식점 쿠폰 시리얼 있는지 확인 -->
-	<!-- <select id="getSerial" parameterType="com.team.smart.food.vo.Food_couponVO" resultType="int">
-		SELECT COUNT(*) FROM food_coupon_serial_tbl WHERE f_use_date IS NULL AND f_coupon_num = #{f_coupon_num}
-	</select> -->
+	<!-- 음식점 쿠폰 상세내역 보기 -->
+	<select id="getCouponDetail" parameterType="String" resultType="java.util.Map">
+          SELECT f_coupon_name, comp_seq, f_coupon_count
+          from food_coupon_tbl 
+          WHERE f_coupon_num = #{f_coupon_num}
+	</select>
 	
+	<!-- 음식점 쿠폰 상세내역 다건 -->
+		<select id="getFoodCouponList" resultType="com.team.smart.food.vo.Food_coupon_serialVO" parameterType="String">
+		select f_serial, f_coupon_num, f_coupon_use, f_use_date  from food_coupon_serial_tbl o
+        WHERE o.f_coupon_num = #{f_coupon_num}
+	</select>
+
 	<!-- 음식점 쿠폰 리스트 삭제 -->
 	<delete id="deleteCoupon" parameterType="String">
 		DELETE food_coupon_tbl WHERE f_coupon_num IN 
@@ -104,10 +111,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 		SELECT comp_seq, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate
          FROM (SELECT comp_seq, rownum rNum, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate
-              FROM (SELECT comp_seq, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate FROM food_menu_tbl ORDER BY comp_seq))
+              FROM (SELECT comp_seq, f_code, f_type, f_name, f_price, f_img, f_icon, f_regidate FROM food_menu_tbl WHERE comp_seq = #{comp_seq} ORDER BY f_regidate desc))
         WHERE rNum>=#{startNum}
         AND rNum<=#{endNum}
-        AND comp_seq = #{comp_seq}
     	]]>
 	</select>
 	
