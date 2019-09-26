@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team.smart.service.RoomService;
+import com.team.smart.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +27,7 @@ public class CP_TenantController {
 	RoomService r_service;
 
 	private String mngBuilding_ = "mng/building";
+	UserService userService;
 
 	@RequestMapping({"/"})
 	public String main(HttpServletRequest req, Model model) {
@@ -53,6 +55,39 @@ public class CP_TenantController {
 		r_service.getmemberpaylist(req, model);
 		
 		return mngBuilding_ + "/mempaylist";
+
+	//업체 등록 등
+	@RequestMapping({"/comp"})
+	public String comp(HttpServletRequest req, Model model) {
+		log.info("url -> cp_tenant/comp");
+
+		return "redirect:/cp_tenant/comp/put";
+	}
+	
+
+	//업체 등록 등
+	@RequestMapping({"/comp/put"})
+	public String insertComp(HttpServletRequest req, Model model) {
+		log.info("url -> cp_tenant/comp/put");
+
+		return "signup/comp_signup";
+	}
+	
+	//업체 등록 등
+	@RequestMapping("/comp/putpro")
+	public String insertProComp(HttpServletRequest req, Model model) {
+		log.info("url -> cp_tenant/comp/putpro");
+		userService.insertComp(req, model);
+		
+		return "redirect:/cp_tenant/comp/comp_complet";
+	}
+
+	//업체 등록 등
+	@RequestMapping("/comp/comp_complet")
+	public String comp_complet(HttpServletRequest req, Model model) {
+		log.info("url -> cp_tenant/comp/comp_complet");
+
+		return "signup/comp_complet";
 	}
 	
 }

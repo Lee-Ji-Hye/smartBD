@@ -50,7 +50,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          FROM (SELECT comp_seq, rownum rNum, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end
               FROM (SELECT comp_seq, f_coupon_num, f_coupon_name, f_coupon_price, f_coupon_count, f_coupon_regidate, f_coupon_start, f_coupon_end FROM food_coupon_tbl order by comp_seq desc))
         where rNum>=#{startNum}
-        and rNum<=#{endNum}
+        AND rNum<=#{endNum}
+        AND comp_seq = #{comp_seq}
     	]]>
 	</select>
 	
@@ -165,12 +166,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 음식점 주문 목록 상세보기 -->
 	<select id="getFoodDetail" resultType="com.team.smart.food.vo.Food_orderVO" parameterType="String">
-		 SELECT o.f_ocode, o.comp_seq, o.f_takeout, o.f_takeout_sale, o.f_status, o.f_name, o.f_hp, o.f_receive_time, o.f_message, o.f_person_num,
-        		o.userid, o.f_serial, o.f_regidate, o.f_amount, o.f_sale_price, o.f_pay_type, o.tid, o.f_pay_price, o.f_refund_price, o.f_rate, d.f_odetail_code, d.f_price, d.f_cnt
-           FROM food_order_tbl o
-           JOIN food_order_detail_tbl d
-             ON o.f_ocode = d.f_ocode
-          WHERE o.f_ocode = #{f_ocode}
+		 SELECT f_ocode, comp_seq, f_takeout, f_takeout_sale, f_status, f_name, f_hp, f_receive_time, f_message, f_person_num,
+        		userid, f_serial, f_regidate, f_amount, f_sale_price, f_pay_type, tid, f_pay_price, f_refund_price, f_rate
+           FROM food_order_tbl 
+          WHERE f_ocode = #{f_ocode}
+	</select>
+	
+	<!-- 음식점 주문 상세보기 여러건 주문시 -->
+	<select id="getFoodMenuList" resultType="com.team.smart.food.vo.Food_orde_menuVO" parameterType="String">
+		SELECT f_name, f_cnt, f_price, f_odetail_code FROM food_order_detail_tbl WHERE f_ocode = #{f_ocode}
 	</select>
 	
 	<!-- 음식점 주문 승인 처리하기 -->

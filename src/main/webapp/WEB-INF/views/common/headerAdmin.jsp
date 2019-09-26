@@ -197,7 +197,6 @@
               <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">System management<span></span></a>
               <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px; display: none;">
                 <li class="hs-has-sub-menu"><a id="navLinkPagesAccount" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/sysmaster/bdmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">빌딩 관리</a></li>
-                <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/sysmaster/cormn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">업체 관리</a></li>
                 <li class="hs-has-sub-menu"><a id="navLinkPagesCompany" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/sysmaster/memmn" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">회원 관리</a></li>
               </ul>
             </li>
@@ -256,9 +255,7 @@
                 <li class="hs-has-sub-menu">
                   <a id="navLinkPagesUtilities" class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle" href="${path}/bd_food/" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesUtilities">식당 파트 관리</a>
                   <ul id="navSubmenuPagesUtilities" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesUtilities" style="min-width: 230px;">
-                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_food/fdmn">음식점 관리</a></li>
-                      <li class="dropdown-divider"></li>
-                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_food/settlement">결산</a></li>
+                    <li><a class="nav-link u-header__sub-menu-nav-link" href="${path}/bd_food/cormn">음식점 관리</a></li>
                   </ul>
                 </li>
                 <!-- End 식당 관리 -->

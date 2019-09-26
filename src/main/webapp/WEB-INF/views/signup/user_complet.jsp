@@ -35,7 +35,7 @@
         
         <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="${path}/member/comp/put">업체 등록</a>
         
-        <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="${path}/member/auth/put">직원 권한 요청</a>
+        <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="${path}/member/auth">직원 권한 요청</a>
         </div>
         </div>
         <!-- End Platform -->

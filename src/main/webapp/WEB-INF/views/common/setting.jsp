@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
-
+<sec:authentication var="principal" property="principal" />
 <!-- resources PATH-->
 <c:set var="resource"     value="/smart/resources"/>
 <c:set var="resourceBoot" value="/smart/resources/bootstrap"/> <!-- bootstrap resource 파일 경로 -->

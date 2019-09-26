@@ -216,41 +216,6 @@ public class MemberController {
 	}
 	
 	
-	//업체 등록 등
-	@RequestMapping({"/comp"})
-	public String comp(HttpServletRequest req, Model model) {
-		log.info("url -> member/comp");
-
-		return "redirect:/member/comp/put";
-	}
-	
-
-	//업체 등록 등
-	@RequestMapping({"/comp/put"})
-	public String insertComp(HttpServletRequest req, Model model) {
-		log.info("url -> member/comp/put");
-
-		return "signup/comp_signup";
-	}
-	
-	//업체 등록 등
-	@RequestMapping("/comp/putpro")
-	public String insertProComp(HttpServletRequest req, Model model) {
-		log.info("url -> member/comp/putpro");
-		userService.insertComp(req, model);
-		
-		return "redirect:/member/comp/comp_complet";
-	}
-
-	//업체 등록 등
-	@RequestMapping("/comp/comp_complet")
-	public String comp_complet(HttpServletRequest req, Model model) {
-		log.info("url -> member/comp/comp_complet");
-
-		return "signup/comp_complet";
-	}
-	
-
 
 	//직원 권한 요청
 	@RequestMapping({"/auth"})

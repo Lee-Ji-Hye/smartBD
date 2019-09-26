@@ -107,8 +107,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getpaylist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
 		<![CDATA[
-		select * from (select pt.*,rownum rNum from parking_ticket_history_tbl pt)
-		  where rNum >=#{start} and rNum <= #{end} order by parking_code
+		select * from ( select parking_code, userid, p_ocode, car_number, use_day, rownum r_num from 
+		(select * from parking_ticket_history_tbl order by parking_code)) where r_num >= #{start} and r_num <= #{end}
 		]]>
 	</select>
 	
@@ -118,8 +118,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getorderlist" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
 		<![CDATA[
-		select * from (select pt.*,rownum rNum from parking_ticket_order_tbl pt)
-		  where rNum >=#{start} and rNum <= #{end} order by p_ocode
+		 select * from (select p_ocode,p_code,userid,p_state,p_oprice,p_count,pay_day,refund_day,tid,rownum r_num from 
+		 (select * from parking_ticket_order_tbl order by p_ocode))where r_num >=#{start} and r_num <= #{end}                        
 		 ]]>
 	</select>
 	
@@ -222,11 +222,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into parking_ticket_history_tbl(parking_code,p_ocode,userid,car_number,use_day) 
 		values (#{parking_code},#{p_ocode},#{userid},#{car_number},sysdate)
 	</insert>
-	<select id="paytotal" resultType="java.util.Map">
+	<select id="paytotal" resultType="java.util.Map" parameterType="java.util.Map">
 		select (substr(pay_day,1,5)) pay_day,
 		sum(p_oprice) p_oprice
 		from parking_ticket_order_tbl
-		where p_state = 1 OR p_state = 2
+		where p_code = #{p_code0} AND p_state = 1  OR p_code = #{p_code1}  AND p_state = 1
+		OR p_state = 1 AND p_code = #{p_code2} OR
+		p_code = #{p_code0} AND p_state = 2  OR p_code = #{p_code1}  AND p_state = 2
+		OR p_state = 2 AND p_code = #{p_code2}
 		GROUP by (substr(pay_day,1,5))
 		order by (substr(pay_day,1,5))
 	</select>
@@ -323,16 +326,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				    OR tid    like '%' ||  #{sertext} || '%' 
 		  	</if>
 			)
-			
 	<![CDATA[
-		 where rNum >=#{start} and rNum <= #{end} order by pay_seq
+		 where rNum >=#{start} and rNum <= #{end} order by pay_day 
 	  ]]>
 	</select>
-	<select id="pricetotal" resultType="java.util.Map">
+	<select id="pricetotal" resultType="java.util.Map" parameterType="java.util.Map">
 	select (substr(pay_day,1,5)) pay_day,
 		sum(pay_price) pay_price
-		from parking_payment_tbl 
-		where pb_state = 2
+		from parking_payment_tbl p, parking_history_tbl h 
+		where pb_state = 2 and  p.inoutcode = h.inoutcode and h.b_code=#{b_code}
 		GROUP by (substr(pay_day,1,5))
 		order by (substr(pay_day,1,5))
 	</select>
@@ -367,6 +369,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getTotalInoutCnt" resultType="int">
 		select count(*) cnt from parking_history_tbl where is_delete='N'
 	</select>
-	
+	<select id="list" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
+		select * from parking_ticket_info_tbl where b_code = #{b_code}      
+	</select>
 </mapper>
 

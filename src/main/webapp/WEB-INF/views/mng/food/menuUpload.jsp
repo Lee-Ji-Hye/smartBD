@@ -8,8 +8,8 @@
       <div class="container space-2">
       	 <!-- Update Avatar Form -->
         <form name="mkMenu"  enctype="multipart/form-data" method="post">
-          <div class="u-lg-avatar mr-4">
-            <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
+          <div class="mr-4 imageclass" style="width:150px;height:150px;">
+            <img class="img-fluid rounded-circle" src="${resourceImg}/noimg.gif" alt="Image Description">
           </div>
 
           <div class="media-body" style="text-align: right">
@@ -151,6 +151,22 @@
 	 couponCnt.value = couponCnt.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
  }
 	
+</script>
+
+<!-- fileAttachmentBtn => 이미지 등록시 이미지가 띄게 하는  jQuery-->
+<script type="text/javascript">
+	$(function(){
+    	  $("#fileAttachmentBtn").change(function(){
+			   if(this.files && this.files[0]) {
+			    var reader = new FileReader;
+			    reader.onload = function(data) {
+			     $(".imageclass img").attr("src", data.target.result).width(150);        
+			    }
+			    reader.readAsDataURL(this.files[0]);
+			   }
+		  }); 
+	});
+
 </script>
 <!-- script end -->
 <!-- footer start -->

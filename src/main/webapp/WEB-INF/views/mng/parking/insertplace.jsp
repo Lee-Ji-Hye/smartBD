@@ -45,7 +45,7 @@
             <!-- Input -->
             <div class="form-group mb-5">
               <div class="js-focus-state">
-                <label class="form-label" for="listingPrice">건물이름</label>
+                <label class="form-label" for="listingPrice">건물명</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="listingPriceLabel">
@@ -53,11 +53,11 @@
                          data-parent="#uploadForm">
                     </span>
                   </div>
-                  <input type="text" class="form-control" name="b_name" id="listingPrice" placeholder="대륭테크노3차" aria-label="Price" aria-describedby="listingPriceLabel" required
+                  <input type="text" class="form-control" name="b_name" id="listingPrice" placeholder="${sessionScope.b_name}" aria-label="Price" aria-describedby="listingPriceLabel" required
                          data-msg="필수 항목입니다"
                          data-parent="#uploadForm"
                          data-error-class="u-has-error"
-                         data-success-class="u-has-success">
+                         data-success-class="u-has-success" value="${sessionScope.b_name}">
                 </div>
               </div>
             </div>

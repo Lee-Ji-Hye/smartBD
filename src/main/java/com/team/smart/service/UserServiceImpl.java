@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
 		//id, 업체코드, 권한명, insert
 		HashMap<String,String> map = new HashMap<>();
 		map.put("userid", SecurityContextHolder.getContext().getAuthentication().getName());
-		map.put("comp_auth", "ROLE_CP_TENANT");
+		map.put("comp_auth", "ROLE_CP_ADMIN");
 		map.put("comp_seq", comp_seq);
 		
 		count += dao.insertAuth(map);

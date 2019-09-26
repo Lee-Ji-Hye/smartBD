@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.team.smart.food.vo.Food_companyVO;
 import com.team.smart.food.vo.Food_couponVO;
 import com.team.smart.food.vo.Food_menuVO;
+import com.team.smart.food.vo.Food_orde_menuVO;
 import com.team.smart.food.vo.Food_orderVO;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class FoodServiceImpl implements FoodService {
 
 		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); 
 		System.out.println(uploadPath);
-		String realDir = "C:\\Users\\KIM\\git\\smartBD_new\\src\\main\\webapp\\resources\\images\\food\\";  
+		String realDir = "C:\\Users\\KIM\\git\\smartBD\\src\\main\\webapp\\resources\\images\\food\\";  
 		
 		try {
 			
@@ -145,10 +146,9 @@ public class FoodServiceImpl implements FoodService {
 	@Override
 	public void getStore(HttpServletRequest req, Model model) {
 		
-		// 업체정보 가져오기 (업체코드, 업체명, 등록자 id)
+		// 업체정보 가져오기 (업체코드,등록자 id)
 		// 업체정보 가져오기
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
-		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		
 		Food_companyVO list = f_dao.getStoreOne(comp_seq);
 		
@@ -172,7 +172,6 @@ public class FoodServiceImpl implements FoodService {
 			
 			//Date f_coupon_start = new Timestamp(f_start1, f_start2, f_start3, 0, 0, 0, 0);
 					//(f_start1, f_start2, f_start3);
-			
 			
 			log.debug("f_coupon_start" + f_coupon_start);
 			
@@ -285,17 +284,23 @@ public class FoodServiceImpl implements FoodService {
 		
 		// 쿠폰 번호 가져오기
 		String[] f_coupon_num = req.getParameterValues("couponChk");
+		//String[] f_coupon_serial = req.getParameterValues("");
 		
 		log.debug("쿠폰리스트 삭제 : " + f_coupon_num);
-		 
-		// 시리얼 테이블에서 쿠폰 번호와 사용날짜로 쿠폰 조회
-		// 쿠폰 시리얼이 없으면 삭제 가능
-		int couponDel = f_dao.deleteCoupon(f_coupon_num);
 		
-		// 처리결과를 저장
-		model.addAttribute("couponDel", couponDel);
+		//int f_coupon_ser = 0;
+		//f_coupon_ser = f_dao.getSerial(f_coupon_num);
+		// 시리얼 테이블에서 쿠폰 번호와 사용날짜로 쿠폰 조회
+		//if(f_coupon_ser < 0) {
+			//alert('발급된 쿠폰이 있으므로 삭제가 불가능합니다.');
+		//} else {
+			// 쿠폰 시리얼이 없으면 삭제 가능
+			int couponDel = f_dao.deleteCoupon(f_coupon_num);
 			
-			
+			// 처리결과를 저장
+			model.addAttribute("couponDel", couponDel);
+				
+		//}
 	}
 	
 	// 음식점 상품 등록 
@@ -440,9 +445,8 @@ public class FoodServiceImpl implements FoodService {
 	@Override
 	public void modGoodsSuEnd(MultipartHttpServletRequest req, Model model) {
 		
-		// 업체정보 가져오기(업체코드,업체명, 상품코드)
+		// 업체정보 가져오기(업체코드, 상품코드)
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
-		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		String f_code = req.getParameter("f_code");
 		
 		MultipartFile file1 = req.getFile("f_img");
@@ -560,9 +564,17 @@ public class FoodServiceImpl implements FoodService {
 	
 	// 음식점 주문 목록 상세보기
 	@Override
-	public Food_orderVO getDetailOrder(String f_ocode) {
+	public Map<String,Object> getDetailOrder(String f_ocode) {
 		
-		return f_dao.getFoodDetail(f_ocode);
+		Food_orderVO orderInfo =f_dao.getFoodDetail(f_ocode);
+		
+		List<Food_orde_menuVO> orderMenu = f_dao.getFoodMenuList(f_ocode);
+		
+		Map<String,Object> map = new HashMap<>();
+		map.put("orderInfo", orderInfo);
+		map.put("orderMenu", orderMenu);
+		
+		return map;
 	}
 	
 	// 음식점 승인 처리

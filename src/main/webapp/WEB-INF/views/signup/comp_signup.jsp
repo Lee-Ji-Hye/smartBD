@@ -27,7 +27,7 @@
     <!-- Hire Us Form Section -->
     <div class="container space-bottom-2">
       <!-- Hire Us Form -->
-      <form class="js-validate w-lg-50 mx-auto" action="${path}/member/comp/putpro" method="post" name="signUpForm">
+      <form class="js-validate w-lg-50 mx-auto" action="${path}/cp_tenant/comp/putpro" method="post" name="signUpForm">
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                  
         <!-- Input -->
         <div class="js-form-message mb-6">

@@ -141,7 +141,7 @@
         <!-- End Input -->
         
         <!-- Input -->
-        <div class="js-form-message mb-6">
+        <div class="js-form-message mb-3">
           <label class="form-label">
             	업체 소개 긴 글
           </label>
@@ -186,21 +186,16 @@
            </div>
         
        <div class="container space-1">
-           	<!-- Update Avatar Form -->
-	          <div class="u-lg-avatar mr-3">
-	           <img class="img-fluid rounded-circle" src="../../assets/img/160x160/img2.jpg" alt="Image Description">
-	          </div>
-	
-	          <div class="media-body">
-	            <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn">
-	              Upload
-	              <input id="fileAttachmentBtn" name="f_mainimg" type="file" class="file-attachment-btn__label" value="Upload">
-	            </label>
-	            <button type="reset" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button>
-	          </div>
+      		<!-- Update Avatar Form -->
+          <div class="media-body">
+          <!-- <div class="row"> -->
+            <div class="mr-1 imageclass" style="width:150px;height:150px;"><img src="${resourceImg}/noimg.gif" alt="Image Description" style="width:150px;height:130px;"/></div>
+            <label class="btn btn-sm btn-primary transition-3d-hover file-attachment-btn mb-1 mb-sm-0 mr-1" for="fileAttachmentBtn" >Upload
+             <input id="fileAttachmentBtn" name="f_mainimg" type="file" value="Upload" class="file-attachment-btn__label"></label>
+           </div>  
+            <!-- <button type="reset" class="btn btn-sm btn-soft-secondary transition-3d-hover mb-1 mb-sm-0">Delete</button> -->
         </div>
-        
-       
+         
          <!-- Contacts -->
          <div class="row justify-content-lg-between">
            <div class="col-md-8 col-lg-4 order-md-3 mb-5 mb-md-0">
@@ -209,7 +204,7 @@
 
              <span class="d-block">
                <small class="font-weight-medium">email:</small>
-               <small class="text-muted">시스템관리자정보?</small>
+               <small class="text-muted">smartBD@kosmo.com</small>
              </span>
              <small class="font-weight-medium">telephone:</small>
              <small class="text-muted">+1 (062) 109-9222</small>
@@ -277,7 +272,21 @@
 				$("#beconBtn").text("비콘추가");
 			}
 		});
-		
+	});
+</script>
+
+<!-- fileAttachmentBtn => 이미지 등록시 이미지가 띄게 하는  jQuery-->
+<script type="text/javascript">
+	$(function(){
+    	  $("#fileAttachmentBtn").change(function(){
+			   if(this.files && this.files[0]) {
+			    var reader = new FileReader;
+			    reader.onload = function(data) {
+			     $(".imageclass img").attr("src", data.target.result).width(120);        
+			    }
+			    reader.readAsDataURL(this.files[0]);
+			   }
+		  }); 
 	});
 
 </script>

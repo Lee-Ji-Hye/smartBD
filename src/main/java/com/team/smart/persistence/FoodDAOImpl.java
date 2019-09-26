@@ -12,6 +12,7 @@ import com.team.smart.app.vo.FoodStoreVO;
 import com.team.smart.food.vo.Food_companyVO;
 import com.team.smart.food.vo.Food_couponVO;
 import com.team.smart.food.vo.Food_menuVO;
+import com.team.smart.food.vo.Food_orde_menuVO;
 import com.team.smart.food.vo.Food_orderVO;
 
 @Repository
@@ -130,6 +131,12 @@ public class FoodDAOImpl implements FoodDAO {
 		return sqlSession.selectOne("FoodDAO.getFoodDetail", f_ocode);
 	}
 	
+	// 음식점 주문 상세내역 다 건 
+	@Override
+	public List<Food_orde_menuVO> getFoodMenuList(String f_ocode) {
+		return sqlSession.selectList("FoodDAO.getFoodMenuList", f_ocode);
+	}
+	
 	// 주문 승인 처리 
 	@Override
 	public int amdFood(String f_ocode) {
@@ -189,6 +196,5 @@ public class FoodDAOImpl implements FoodDAO {
 		System.out.println("~!!!!!!!!!!!!!!!!!!!!!!!!!!~");
 		return sqlSession.selectOne("FoodDAO.getTest");
 	}
-
 
 }

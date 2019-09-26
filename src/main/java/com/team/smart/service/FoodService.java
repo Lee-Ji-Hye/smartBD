@@ -1,6 +1,9 @@
 package com.team.smart.service;
 
 import org.springframework.ui.Model;
+
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -49,7 +52,7 @@ public interface FoodService {
 	public void getOrderFood(HttpServletRequest req, Model model);
 	
 	// 음식점 주문 목록 상세보기
-	public Food_orderVO getDetailOrder(String f_ocode);
+	public Map<String,Object> getDetailOrder(String f_ocode);
 	
 	// 음식점 주문 승인 처리
 	public void amdOrder(HttpServletResponse res, String f_ocode);
