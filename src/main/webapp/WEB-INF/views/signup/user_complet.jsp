@@ -31,9 +31,7 @@
           <p>회원 가입을 축하드립니다. 관리자 권한으로 사용하기 위해서는 추가 정보 입력이 필요합니다. 아래 버튼을 눌러 진행해주세요.</p>
         </div>
          <div class="w-md-80 w-lg-50 text-center mx-md-auto">
-        <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="${path}/member/bdmn/put">건물 등록</a>
-        
-        <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="${path}/member/comp/put">업체 등록</a>
+        <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="${path}/member/bdmn">건물 등록</a>
         
         <a class="btn btn-primary btn-pill transition-3d-hover px-5 btn-block" href="${path}/member/auth">직원 권한 요청</a>
         </div>

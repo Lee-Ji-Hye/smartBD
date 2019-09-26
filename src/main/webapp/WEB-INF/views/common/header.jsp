@@ -52,9 +52,16 @@
   <%
 	//현재들어있는 세션값이 인가된 값이면 userGrantedAuth가 들어가야됨.. 형변환 하기전 체크함 아래EL태그 사용위해 request객체에 삽입
 	if(!SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))){
-		List<UserGrantedAuthority> securityAuth = (List<UserGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		List<UserGrantedAuthority> securityAuth = new ArrayList<>();
+		for(Object obj : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
+			if(obj instanceof UserGrantedAuthority){
+				securityAuth.add((UserGrantedAuthority)obj);
+			}
+		}
+		
 		List<String> choice = new ArrayList<>();
 		//업체 정보를 꺼내서 중복되지 않게 담음
+		System.out.println("securityAuth"+SecurityContextHolder.getContext().getAuthentication());
 		for(UserGrantedAuthority secu : securityAuth){
 			if(secu.getComp_seq()!=null){
 				String option = secu.getComp_seq()+"::"+secu.getComp_org();

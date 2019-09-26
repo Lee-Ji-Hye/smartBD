@@ -43,8 +43,8 @@ public class SysmasterDAOImpl implements SysmasterDAO{
 	
 	//업체 갯수
 	@Override
-	public int compListCnt() {
-		return sqlSession.selectOne("SysmasterDAO.compListCnt");
+	public int compListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("SysmasterDAO.compListCnt", map);
 	}
 
 	

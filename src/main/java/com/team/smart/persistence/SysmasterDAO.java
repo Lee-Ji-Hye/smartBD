@@ -17,7 +17,7 @@ public interface SysmasterDAO {
 	//업체 단건 수정
 	public int compAmd(Map<String,String> map);
 	//업체 갯수
-	public int compListCnt();
+	public int compListCnt(Map<String, Object> map);
 	
 	
 	

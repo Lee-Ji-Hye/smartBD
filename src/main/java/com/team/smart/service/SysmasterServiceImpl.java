@@ -47,10 +47,15 @@ public class SysmasterServiceImpl implements SysmasterService{
 	//업체 리스트
 	public void compList(HttpServletRequest req, Model model) {
 		
+		String b_code = (String)req.getSession().getAttribute("b_code");
+		
 		//상품 총 글 수
 		String page = req.getParameter("page");
+
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("b_code", b_code);
 		
-		int totCnt = sysDAO.compListCnt();
+		int totCnt = sysDAO.compListCnt(map);
 		
 		//페이징 처리
 		String uri = req.getRequestURI();
@@ -58,7 +63,6 @@ public class SysmasterServiceImpl implements SysmasterService{
 		
 		paging.pagelist(page);
 		
-		HashMap<String, Object> map = new HashMap<>();
 		map.put("startNum", paging.getStart());
 		map.put("endNum", paging.getEnd());
 		
