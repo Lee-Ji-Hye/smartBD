@@ -29,7 +29,7 @@
                 , b.b_name
                 , b.b_status
                 , c.r_code
-                , c.rt_date1
+                , c.rt_regidate rt_date1
                 , c.rt_date2
                 , fc.f_mainimg
                 , o.comp_hp
