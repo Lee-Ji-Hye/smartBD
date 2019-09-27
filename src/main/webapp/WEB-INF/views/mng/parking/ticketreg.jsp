@@ -4,6 +4,13 @@
 <%@ include file="../../common/headerAdmin.jsp" %>   
  <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
  
+ <style>
+ #content{
+ width:800px;
+ position: relative;
+ left: 550px;
+ }
+ </style>
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
     <!-- Upload Form Section -->
@@ -72,7 +79,7 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <select name="p_type">
+                      <select name="p_type" class="form-control" id="listingCityProvince">
                       <option value='m'>m</option>
                       <option value='h'>h</option>
                       <option value='d'>d</option>
@@ -95,7 +102,7 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <select name="hourly">
+                      <select name="hourly" class="form-control" id="listingCityProvince">
                       <option value='1'>1</option>
                       <option value='30'>30</option>
                       </select>
@@ -126,20 +133,19 @@
                 <!-- End Input -->
               </div>
 
-             <div class="row">
-              <div class="col-lg-6 mb-3">
+            <div class="col-lg-6 mb-3">
                 <!-- Input -->
                 <div class="form-group">
                   <div class="js-focus-state">
-                    <label class="form-label" for="listingLotSize">등록자</label>
+                    <label class="form-label" for="listingCityProvince">주차시간타입</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
-                        <span class="input-group-text" id="listingLotSizeLabel">
-                          <img  src="${resourceImg}/room/ruler.png" width=15px; height=15px;
+                        <span class="input-group-text" id="listingCityProvinceLabel">
+                          <img  src="${resourceImg}/room/deposit.png" width=15px; height=15px;
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="reg_id" id="listingLotSize" value="${staff_id}" aria-label="Lot size" aria-describedby="listingLotSizeLabel">
+                      <input type="text" class="form-control" name="reg_id" id="listingCityProvince" value="${staff_id}" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
                     </div>
                   </div>
                 </div>

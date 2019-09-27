@@ -15,7 +15,7 @@ function sample_string_view(ans, typea) {
 	var obj = document.getElementById(typea); 
 	if (ans) { 
 	obj.style.top = window.event.clientY-310 + document.body.scrollTop + 10; 
-	obj.style.left = window.event.clientX-290 + document.body.scrollLeft + 10; 
+	obj.style.left = window.event.clientX-470 + document.body.scrollLeft + 10; 
 	obj.style.display = "block"; 
 	} 
 	else { 
@@ -26,7 +26,7 @@ function sample_string_view(ans, typea) {
 	var obj = document.getElementById(objName); 
 	if (obj.style.display == "block") { 
 	obj.style.top = window.event.clientY-310 + document.body.scrollTop + 10; 
-	obj.style.left = window.event.clientX-290 + document.body.scrollLeft + 10; 
+	obj.style.left = window.event.clientX-470 + document.body.scrollLeft + 10; 
 	} 
 	} 
 </script>
