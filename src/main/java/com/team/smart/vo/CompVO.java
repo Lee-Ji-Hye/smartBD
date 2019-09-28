@@ -37,6 +37,7 @@ public class CompVO {
     private String comp_hp;				// 대표전화번호
     private Timestamp comp_regidate;	// 시스템등록일
     private String comp_status;			// 승인상태 
+    private String b_code;				// 건물코
 	
 	
 }

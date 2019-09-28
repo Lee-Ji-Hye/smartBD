@@ -176,7 +176,6 @@
 				var keyword = document.getElementById("autoInput").value;
 
 			    if (!keyword.replace(/^\s+|\s+$/g, '')) {
-			        alert('키워드를 입력해주세요!');
 			        return false;
 			    }
 			    

@@ -28,7 +28,24 @@
     <div class="container space-bottom-2">
       <!-- Hire Us Form -->
       <form class="js-validate w-lg-50 mx-auto" action="${path}/cp_tenant/comp/putpro" method="post" name="signUpForm">
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                  
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">  
+      
+      
+        <!-- Input -->
+        <div class="js-form-message mb-6">
+          <label class="form-label">
+            	소속 건물
+            <span class="text-danger">*</span>
+          </label>
+
+          <input type="text" class="form-control" name="b_name" placeholder="소속 건물" required>
+          <input type="hidden" class="form-control" name="b_code" placeholder="소속건물코" required>
+          
+          
+        </div>
+        <!-- End Input -->
+
+                        
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">

@@ -36,7 +36,7 @@
 		 FROM user_compauth_tbl a
          LEFT JOIN 
          room_contract_tbl c
-         ON a.userid = c.userid
+         ON a.rt_code = c.rt_code
          LEFT JOIN
          building_tbl b
          ON a.b_code = b.b_code
@@ -56,8 +56,8 @@
 	
 	<!-- 업체등록 -->
 	<insert id="insertComp" parameterType="com.team.smart.vo.CompVO">
-		insert into user_company_tbl(comp_seq, comp_section, comp_org, comp_bn, comp_owner, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_status)  
-		values(#{comp_seq}, #{comp_section}, #{comp_org}, #{comp_bn}, #{comp_owner}, #{comp_branch}, #{comp_master}, #{comp_business}, #{comp_category}, #{comp_hp}, #{comp_status})
+		insert into user_company_tbl(comp_seq, comp_section, comp_org, comp_bn, comp_owner, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_status, b_code)
+		values(#{comp_seq}, #{comp_section}, #{comp_org}, #{comp_bn}, #{comp_owner}, #{comp_branch}, #{comp_master}, #{comp_business}, #{comp_category}, #{comp_hp}, #{comp_status}, #{b_code})
 	</insert>
 	
 	<!-- 권한등록(업체등록에따른) -->
