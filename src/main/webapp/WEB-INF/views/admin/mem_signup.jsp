@@ -3,7 +3,7 @@
     
     
 <%@ include file="../common/setting.jsp"%>
-<%@ include file="../common/header.jsp"%>
+<%@ include file="../common/headerAdmin.jsp" %>
 
   <!-- ========== MAIN ========== -->
   <main id="content" role="main">

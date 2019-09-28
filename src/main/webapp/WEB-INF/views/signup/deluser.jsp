@@ -11,8 +11,8 @@
     <!-- 위에영역먹고있던페이지 -->
       <div class="container space-top-2 space-bottom-3 space-top-md-5 space-lg-4">
         <div class="w-md-80 w-lg-50 text-center mx-md-auto">
-          <h1 class="text-primary"><span class="font-weight-semi-bold">정보 수정</span></h1>
-          <p class="lead">등록된 이메일과 전화번호를 수정할 수 있습니다.</p>
+          <h1 class="text-primary"><span class="font-weight-semi-bold">회원 탈퇴</span></h1>
+          <p class="lead">탈퇴 메뉴입니다. 탈퇴는 되돌릴 수 없습니다.</p>
         </div>
       </div>
 
@@ -72,7 +72,15 @@
 //submit event 처리
 document.signUpForm.btnSubmit.addEventListener("click", function(){
 	var fom = document.signUpForm;
-	fom.submit();
+	if(confirm("정말 탈퇴 하시겠어요?")){
+		if(confirm("다시한번생각해주세요 ... ")){
+			fom.submit();	
+		}else{
+			alert("잘생각하셨어요!!");
+		}
+	}else{
+		alert("좋은하루되세요!!");
+	}
 });
 
 /* 	console.dir(document.signUpForm);

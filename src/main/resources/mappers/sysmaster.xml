@@ -113,5 +113,4 @@
 		update user_member_tbl set enabled = #{amd} where userid = #{userid}
 	</update>
 	
-	
 </mapper>

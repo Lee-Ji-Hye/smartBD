@@ -240,6 +240,7 @@ public class SysmasterServiceImpl implements SysmasterService{
 		map.put("endNum", paging.getEnd());
 		
 		List<UserVO> memList = sysDAO.memList(map);
+		log.debug(memList.get(0).getRegidate().toString());
 		model.addAttribute("memList", memList);
 		model.addAttribute("paging", paging);
 	}

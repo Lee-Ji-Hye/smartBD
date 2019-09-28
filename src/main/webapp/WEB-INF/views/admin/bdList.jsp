@@ -114,7 +114,8 @@ pageEncoding="UTF-8"%>
                   <td class="align-middle">
                     <div class="media align-items-center" id="details_b_status">
                     	<c:if test="${dto.b_status==1}">승인</c:if>
-                    	<c:if test="${dto.b_status!=1}">승인 대기</c:if>
+                    	<c:if test="${dto.b_status==0}"><span class="text-primary">승인 대기</span></c:if>
+                    	<c:if test="${dto.b_status==2}"><span class="text-danger">반려</span></c:if>
                     </div>
                   </td>
                 </tr>
@@ -272,18 +273,36 @@ pageEncoding="UTF-8"%>
 					} else {
 						obj.b_status = '승인대기';
 					}
+					
+					if(obj.b_park===1){
+						obj.b_park = '있음';
+					}else{
+						obj.b_park = '없음';
+					}
+					
+					if(obj.b_elev===1){
+						obj.b_elev = '있음';
+					}else{
+						obj.b_elev = '없음';
+					}
+					
+					
 					//b_code, b_area1, b_area2, b_address, b_name, b_floor, b_year, b_park, b_elev, b_heat, b_traffic, b_lat, b_lon, userid, b_unique, b_owner, b_regnum, b_landarea, b_buildarea, b_buildscale, b_status, b_regidate
+					
+					document.getElementById('details_b_name').innerText = obj.b_name;
 					document.getElementById('details_b_area1').innerText = obj.b_area1;
 					document.getElementById('details_b_area2').innerText = obj.b_area2;
 					document.getElementById('details_b_code').innerText = obj.b_code;
 					document.getElementById('details_b_address').innerText = obj.b_address;
-					document.getElementById('details_b_floor').innerText = obj.b_floor;
+					document.getElementById('details_b_floor').innerText = obj.b_floor + '층';
 					document.getElementById('details_b_year').innerText = obj.b_year;
 					
 					document.getElementById('details_b_unique').innerText = obj.b_unique;
 					document.getElementById('details_b_owner').innerText = obj.b_owner;
-					document.getElementById('details_b_year').innerText = obj.b_regnum;
-					document.getElementById('details_b_regnum').innerText = obj.b_landarea;
+					document.getElementById('details_b_year').innerText = obj.b_year;
+					document.getElementById('details_b_regnum').innerText = obj.b_regnum;
+					
+					document.getElementById('details_b_landarea').innerText = obj.b_landarea;
 					document.getElementById('details_b_buildarea').innerText = obj.b_buildarea;
 					document.getElementById('details_b_buildscale').innerText = obj.b_buildscale;
 					
@@ -294,8 +313,8 @@ pageEncoding="UTF-8"%>
 					document.getElementById('details_b_lat').innerText = obj.b_lat;
 					document.getElementById('details_b_lon').innerText = obj.b_lon;
 					//document.getElementById('details_userid').innerText = obj.userid;
-					document.getElementById('details_b_status').innerText = obj.b_status;
 					document.getElementById('details_b_status2').innerText = obj.b_status;
+					//document.getElementById('details_b_status2').innerText = obj.b_status2;
 					//삽입될 위치를 변경
 					tbl[0].children[1].insertBefore(details, tblclass[tbl_index + 1]);
 					//display 속성을 변경
@@ -316,12 +335,15 @@ pageEncoding="UTF-8"%>
 		var method = "";
 		
 		if(jong === 'amd_ok'){
+			if(!confirm("승인처리 하시겠어요?"))return false;
 			url += 'amd/1/' + comp_seq;
 			method = "GET";
 		} else if(jong === 'amd_ng'){
+			if(!confirm("승인을 철회 하시겠어요?"))return false;
 			url += 'amd/2/' + comp_seq;
 			method = "GET";
 		} else if(jong === 'del'){
+			if(!confirm("삭제처리 하시겠어요?"))return false;
 			url +=  'del/' + comp_seq;
 			method = "GET";
 		}
@@ -334,6 +356,7 @@ pageEncoding="UTF-8"%>
 			if (request.readyState == 4) {
 				if(request.status == 200){
 					window.location = request.responseURL;
+					alert("처리했습니다");
 				}else{
 					//실패했을때 알럿
 					alert("데이터 가져오기 실패");

@@ -1,6 +1,7 @@
 package com.team.smart.vo;
 
-import java.security.Timestamp;
+
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -127,9 +127,9 @@ pageEncoding="UTF-8"%>
                   </td>
                   <td class="align-middle">
                     <div class="media align-items-center" id="details_comp_status2">
-                    	<c:if test="${dto.comp_status=='2'}">반려</c:if>
-                    	<c:if test="${dto.comp_status=='0'}">승인 대기</c:if>
-                    	<c:if test="${dto.comp_status=='1'}">승인 완료</c:if>
+                    	<c:if test="${dto.comp_status==1}">승인</c:if>
+                    	<c:if test="${dto.comp_status==0}"><span class="text-primary">승인 대기</span></c:if>
+                    	<c:if test="${dto.comp_status==2}"><span class="text-danger">반려</span></c:if>
                     </div>
                   </td>
                   <!-- <td class="align-middle text-secondary">2019/08/12~2019/09/11</td> -->
@@ -297,12 +297,15 @@ pageEncoding="UTF-8"%>
 		var method = "";
 		
 		if(jong === 'amd_ok'){
+			if(!confirm("승인처리 하시겠어요?"))return false;
 			url += 'amd/1/' + comp_seq;
 			method = "GET";
 		} else if(jong === 'amd_ng'){
+			if(!confirm("반려 처리 하시겠어요?"))return false;
 			url += 'amd/2/' + comp_seq;
 			method = "GET";
 		} else if(jong === 'del'){
+			if(!confirm("삭제 처리 하시겠어요?"))return false;
 			url +=  'del/' + comp_seq;
 			method = "GET";
 		}
@@ -315,6 +318,7 @@ pageEncoding="UTF-8"%>
 			if (request.readyState == 4) {
 				if(request.status == 200){
 					window.location = request.responseURL;
+					alert("처리했습니다.");
 				}else{
 					//실패했을때 알럿
 					alert("데이터 가져오기 실패");

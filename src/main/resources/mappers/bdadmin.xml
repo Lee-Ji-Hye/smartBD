@@ -54,11 +54,18 @@
 	<delete id="authDel" parameterType="java.util.Map">
 		delete user_compauth_tbl WHERE userid = #{userid} AND b_code = #{req_key} AND comp_auth = #{req_auth}
 	</delete>
+	
+	
+	<!-- 권한 단건 삭제 -->
+	<delete id="authComDel" parameterType="java.util.Map">
+		delete user_compauth_tbl WHERE userid = #{userid} AND comp_seq = #{req_key} AND comp_auth = #{req_auth}
+	</delete>
+	
 
 	<!-- 권한 차단 수정 -->
 	<update id="authAmd" parameterType="java.util.Map">
 		update user_authreq_tbl
-			SET req_status = #{amd}
+			SET req_status = #{amd}, confirm_date = ${confirm_date}
 			WHERE userid = #{userid}
 		    AND req_division = #{req_division}
 		    AND req_key = #{req_key}

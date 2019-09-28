@@ -109,16 +109,19 @@ pageEncoding="UTF-8"%>
                   <!-- 권한 -->
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	${dto.req_auth}
+                    	<c:if test="${dto.req_auth == 'ROLE_BD_MANAGER'}">매니저</c:if>
+                    	<c:if test="${dto.req_auth == 'ROLE_BD_PARK'}">주차장 파트관리자</c:if>
+                    	<c:if test="${dto.req_auth == 'ROLE_BD_OFFICE'}">임대 파트관리자</c:if>
+                    	<c:if test="${dto.req_auth == 'ROLE_BD_FOOD'}">식당 파트관리자</c:if>
                     </div>
                   </td>
                   
                   <!-- 상태 -->
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	<c:if test="${dto.req_status=='0'}">승인 대기</c:if>
-                    	<c:if test="${dto.req_status=='1'}">승인</c:if>
-                    	<c:if test="${dto.req_status=='2'}">반려</c:if>
+                    	<c:if test="${dto.req_status==1}">승인</c:if>
+                    	<c:if test="${dto.req_status==0}"><span class="text-primary">승인 대기</span></c:if>
+                    	<c:if test="${dto.req_status==2}"><span class="text-danger">반려</span></c:if>
                     </div>
                   </td>
                   
@@ -213,7 +216,7 @@ pageEncoding="UTF-8"%>
                     <div class="row justify-content-end mb-4">
                        <div class="media align-items-center">
 	            		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="compPro('amd_ok')">승인</button>
-                  		<!-- <button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="compPro('amd_ng')">반려</button> -->
+                  		<button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="compPro('amd_ng')">반려</button>
                   		<button type="button" class="btn btn-sm btn-danger transition-3d-hover" onclick="compPro('del')">삭제</button>
                        </div>
                     </div>
@@ -259,6 +262,17 @@ pageEncoding="UTF-8"%>
 					} else if(obj.req_status === '2'){
 						obj.req_status = '반려';
 					} 
+
+					if(obj.req_auth === 'ROLE_BD_MANAGER'){
+						obj.req_auth = '매니저';
+					}else if(obj.req_auth === 'ROLE_BD_PARK'){
+						obj.req_auth = '주차장 파트관리자';
+					}else if(obj.req_auth === 'ROLE_BD_OFFICE'){
+						obj.req_auth = '임대 파트관리자';
+					}else if(obj.req_auth === 'ROLE_BD_FOOD'){
+						obj.req_auth = '식당 파트관리자';
+					}
+					
 					// userid, name, hp, email, req_key, req_auth, req_date, req_status, confirm_date
 					document.getElementById('details_userid').innerHTML = obj.userid;
 					document.getElementById('details_name').innerHTML = obj.name;
@@ -288,6 +302,18 @@ pageEncoding="UTF-8"%>
 		var req_auth = document.getElementById('details_req_auth').innerText;//
 		var url = "${path}/bd_admin/bdmnermn/";
 		var method = "";
+		
+
+		if(req_auth === '매니저'){
+			req_auth = 'ROLE_BD_MANAGER';
+		}else if(obj.req_auth === '주차장 파트관리자'){
+			req_auth = 'ROLE_BD_PARK';
+		}else if(obj.req_auth === '임대 파트관리자'){
+			req_auth = 'ROLE_BD_OFFICE';
+		}else if(obj.req_auth === '식당 파트관리자'){
+			req_auth = 'ROLE_BD_FOOD';
+		}
+		
 		
 		if(jong === 'amd_ok'){
 			url += 'amd/1/' + userid + "/" + req_auth;

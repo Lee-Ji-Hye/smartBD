@@ -132,4 +132,9 @@
 		delete from user_member_tbl where userid = #{userid}
 	</delete>
 	
+	
+	<update id="memVisit" parameterType="String">
+		update user_member_tbl set visit = visit+1, visit_date = sysdate where userid = #{userid}
+	</update>
+	
 </mapper>
