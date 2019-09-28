@@ -69,12 +69,16 @@
   </main>
   <!-- ========== END MAIN ========== -->
 
+<c:if test="${loginErr!=null}">
+<script type="text/javascript">
+	alert('${loginErr}');
+</script>
+</c:if>
 <script type="text/javascript">
 (function urlinfo() {
 	document.login.urlinfo.value = document.referrer;
 })();
-console.dir(document.referrer);
-console.dir(document);
+
 </script>
 <%@ include file="../common/footer.jsp"%>
 </body>
