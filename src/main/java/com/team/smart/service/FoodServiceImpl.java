@@ -637,17 +637,18 @@ public class FoodServiceImpl implements FoodService {
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		
 		List<Food_orderVO> don = f_dao.getOrderAccounts(comp_seq);
-		
-		Map<String,String> sum = f_dao.getAccountsEnd();
-		String foodSum = String.valueOf(sum.get("SUM(f_pay_price)"));  // 상품 합계
-		String foodCancel = String.valueOf(sum.get("f_refund_price"));	// 상품 취소
-		
-		List<Map<String,Object>> food_don = f_dao.getFoodDon();
-		 
-		model.addAttribute("don",don);
-		model.addAttribute("food_don", jsonutil.getJsonStringFromList(food_don));
-		model.addAttribute("foodSum",foodSum);
-		model.addAttribute("foodCancel",foodCancel);
+		if(don.size()!=0) {
+			Map<String,String> sum = f_dao.getAccountsEnd();
+			String foodSum = String.valueOf(sum.get("SUM(f_pay_price)"));  // 상품 합계
+			String foodCancel = String.valueOf(sum.get("f_refund_price"));	// 상품 취소
+			
+			List<Map<String,Object>> food_don = f_dao.getFoodDon();
+			 
+			model.addAttribute("don",don);
+			model.addAttribute("food_don", jsonutil.getJsonStringFromList(food_don));
+			model.addAttribute("foodSum",foodSum);
+			model.addAttribute("foodCancel",foodCancel);
+		}
 	}
 
 	
