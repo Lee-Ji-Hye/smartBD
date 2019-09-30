@@ -296,7 +296,7 @@ public class RoomServiceImpl implements RoomService{
 		Map<String, Object> map1 = new HashMap<String, Object>();
 		map1.put("sertext", sertext);
 		bcnt = dao.getContractCnt(map1);
-		Paging paging = new Paging(3, 1, bcnt, uri);
+		Paging paging = new Paging(5, 3, bcnt, uri);
 		paging.pagelist(page);
 		
 		if(bcnt > 0) {
