@@ -164,11 +164,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 납부리스트 -->
 	<select id="getpaylist" resultType="com.team.smart.room.vo.RoomVO">
-		SELECT r.r_code, to_char(rt.rt_date1, 'YYYY-MM-DD') rt_date1 ,to_char(rt.rt_date2, 'YYYY-MM-DD') rt_date2,
+		SELECT to_char(rt.RT_REGIDATE,'YYYY-MM-DD') r_regdate,r.r_code, to_char(rt.rt_date1, 'YYYY-MM-DD') rt_date1 ,to_char(rt.rt_date2, 'YYYY-MM-DD') rt_date2,
 		r.r_name,r.r_ofer_fee,r.r_price,rt.rt_deposit,rt.rt_mobile,r.r_premium,rt.rt_code 
 		FROM room_contract_tbl rt, 
 		room_tbl r 
 		where rt.r_code=r.r_code
+        order by rt.RT_REGIDATE desc
 	</select>
 	
 	<!-- 납부 상세정보 -->

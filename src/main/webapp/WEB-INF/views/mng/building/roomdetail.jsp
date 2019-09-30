@@ -92,14 +92,14 @@
           <c:if test="${dto.r_kind eq 'ST'}">상가</c:if>
               </li>
               <li class="breadcrumb-item">거래유형 :${dto.r_type}</li>
-              <li class="breadcrumb-item active" aria-current="page">보증금:${dto.r_deposit} ETH</li>
-              <li class="breadcrumb-item active" aria-current="page">권리금:${dto.r_premium} ETH</li>
-              <li class="breadcrumb-item active" aria-current="page">관리비:${dto.r_ofer_fee} ETH</li>
+              <li class="breadcrumb-item active" aria-current="page">보증금:${dto.r_deposit} <span class="text-success">ETH</span></li>
+              <li class="breadcrumb-item active" aria-current="page">권리금:${dto.r_premium} <span class="text-success">ETH</span></li>
+              <li class="breadcrumb-item active" aria-current="page">관리비:${dto.r_ofer_fee} <span class="text-success">ETH</span></li>
             </ol>
           </nav>
           <!-- End Breadcrumb -->
 
-          <h1 class="h3 font-weight-medium">매물가 :${dto.r_price} ETH</h1>
+          <h1 class="h3 font-weight-medium">매물가 :${dto.r_price} <span class="text-success">ETH</span></h1>
           <h1 class="h3 font-weight-medium">등록 상태:
          	 <c:if test="${dto.r_delete eq 0}">
           		공개
@@ -182,17 +182,17 @@
 
                     <li class="d-sm-flex justify-content-sm-between py-1">
                       <span class="font-weight-medium">권리금(상가만):</span>
-                      <span class="text-secondary">${dto.r_premium} ETH</span>
+                      <span class="text-secondary">${dto.r_premium} <span class="text-success">ETH</span></span>
                     </li>
 
                     <li class="d-sm-flex justify-content-sm-between py-1">
                       <span class="font-weight-medium">보증금:</span>
-                      <span class="text-secondary">${dto.r_deposit} ETH</span>
+                      <span class="text-secondary">${dto.r_deposit} <span class="text-success">ETH</span></span>
                     </li>
 
                     <li class="d-sm-flex justify-content-sm-between py-1">
                       <span class="font-weight-medium">관리비:</span>
-                      <span class="text-secondary">${dto.r_ofer_fee} ETH</span>
+                      <span class="text-secondary">${dto.r_ofer_fee} <span class="text-success">ETH</span></span>
                     </li>
                     
                   </ul>
