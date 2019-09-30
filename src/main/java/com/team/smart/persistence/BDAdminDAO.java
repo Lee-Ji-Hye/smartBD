@@ -3,6 +3,8 @@ package com.team.smart.persistence;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.team.smart.vo.AuthReqVO;
 
 public interface BDAdminDAO {
@@ -20,6 +22,10 @@ public interface BDAdminDAO {
 	public int authReqDel(Map<String, Object> map);
 	//권한 테이블 단건 삭제
 	public int authDel(Map<String, Object> map);
+
+	public int authComDel(Map<String, Object> map);
+	
+	
 	//권한 단건 수정
 	public int authAmd(Map<String, Object> map);
 	public int authInsert(Map<String, Object> map);

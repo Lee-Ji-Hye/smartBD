@@ -2,6 +2,7 @@ package com.team.smart.security.config;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,13 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import com.team.smart.persistence.UserDAO;
+
 
 public class UserLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
@@ -24,13 +33,20 @@ public class UserLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
 
 	private RequestCache requestCache = new HttpSessionRequestCache();
 
+	private SqlSession sqlSession;
+	
+	public UserLoginSuccessHandler(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
+	
 	//security에 접근했을때 막힌 url 저장한거 꺼내서 돌려보내주는 핸들러 null에 우리꺼 처리하면됨.
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request,
 			HttpServletResponse response, Authentication authentication)
 			throws ServletException, IOException {
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
-		//??
+		//방문자수더하기 실
+        //sqlSession.selectOne("UserDAO.userAuthChk", authentication.getName());
 		if(!authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))){
 			List<UserGrantedAuthority> securityAuth = (List<UserGrantedAuthority>) authentication.getAuthorities();
 			//업체 정보를 꺼내서 중복되지 않게 담음

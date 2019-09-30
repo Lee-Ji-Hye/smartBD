@@ -305,6 +305,8 @@ public class MainController {
 	@RequestMapping("login")
 	public String login(HttpServletRequest req, Model model) {
 		//로그아웃 후 메인으로 이동
+		log.debug((String)req.getAttribute("loginErr"));
+		model.addAttribute("loginErr", req.getAttribute("loginErr"));
 		return "signup/login";
 	}
 	

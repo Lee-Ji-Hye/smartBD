@@ -6,9 +6,10 @@
 
 <mapper namespace="SysmasterDAO">
 	<!-- 업체 갯수 -->
-	<select id="compListCnt" parameterType="int" resultType="int">
+	<select id="compListCnt" parameterType="java.util.Map" resultType="int">
 		select COUNT(*)
 		from user_company_tbl
+		where b_code = #{b_code}
 	</select>
 
 	<!-- 업체 리스트 -->
@@ -16,7 +17,8 @@
 	<![CDATA[
 		select comp_seq, comp_section, comp_org, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_regidate, comp_status
         from (select rownum rNum, comp_seq, comp_section, comp_org, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_regidate, comp_status
-              from (select comp_seq, comp_section, comp_org, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_regidate, comp_status from user_company_tbl order by comp_status asc, comp_seq desc))
+              from (select comp_seq, comp_section, comp_org, comp_branch, comp_master, comp_business, comp_category, comp_hp, comp_regidate, comp_status from user_company_tbl 
+		where b_code = #{b_code} order by comp_status asc, comp_seq desc))
         where rNum>=#{startNum}
         and rNum<=#{endNum}
     ]]>
@@ -110,6 +112,5 @@
 	<update id="memAmd" parameterType="java.util.Map">
 		update user_member_tbl set enabled = #{amd} where userid = #{userid}
 	</update>
-	
 	
 </mapper>

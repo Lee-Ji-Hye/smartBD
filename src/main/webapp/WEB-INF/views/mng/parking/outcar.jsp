@@ -6,12 +6,13 @@
 <style>
 #myInput
 ,#serBtn{
-	float: left;
+   float: left;
 }
 
 </style>
 <script type="text/javascript">
 function sample_string_view(ans, typea) { 
+
 	var obj = document.getElementById(typea); 
 	if (ans) { 
 	obj.style.top = window.event.clientY-310 + document.body.scrollTop + 10; 
@@ -29,6 +30,7 @@ function sample_string_view(ans, typea) {
 	obj.style.left = window.event.clientX-470 + document.body.scrollLeft + 10; 
 	} 
 	} 
+
 </script>
 <body>
 <!-- ========== MAIN ========== -->
@@ -71,7 +73,7 @@ function sample_string_view(ans, typea) {
       </div>
     </div>
       </div>
-	 
+    
       <div class="container space-bottom-1 space-bottom-lg-0">
         <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
           <!-- Navbar -->
@@ -105,7 +107,7 @@ function sample_string_view(ans, typea) {
             <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
               
             </div>
-		 <!-- Buttons -->
+       <!-- Buttons -->
           <div style="margin-right:20px;">
            <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/bd_park/intromn/insertInOutForm'" style="position:relative;top:10px;">등록</button>
            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover" id="deleteBtn" style="position:relative;top:10px;">삭제</button>
@@ -113,6 +115,7 @@ function sample_string_view(ans, typea) {
          <!-- End Buttons -->
         </div>
       
+
 		<form method="get" id="form" name="form" >
 		  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<input class="form-control" id="myInput" name ="sertext"  
@@ -287,6 +290,7 @@ function sample_string_view(ans, typea) {
 	            <!-- Pagination -->
 	            <!-- End Pagination -->
 	          </div>
+
           </form>
         </div>
       </div>
@@ -297,90 +301,90 @@ function sample_string_view(ans, typea) {
 <%@ include file="../../common/footer.jsp" %>
 </body>
 <script type="text/javascript">
-	$(function(){
-		$("#invoiceToggleAllCheckbox").click(function(){
-			$(".custom-control-input").prop("checked", this.checked);
-		});
-		
-		 $("#myInput").on("keyup", function() {
-			    var value = $(this).val().toLowerCase();
-			    $("#myTable tr").filter(function() {
-			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-			    });
-		});
-		 
-		
-		$("#serBtn").click(function(){
-			$("#form").attr("action","${path}/bd_park/ticketlist");
-			$("#form").submit();
-		});
-		
-		$(".outBtn").click(function(){
-			
-			var inoutcode = $(this).attr("inoutcode");
-			
-			if(inoutcode != "") {
-				$.ajax({
-					 url : "/smart/bd_park/modiOutStatus"
-					,type : "GET"
-					,data : {"inoutcode" : inoutcode }
-					,dataType : "json"
-					,success:function(e){
-						console.log(e);
-						if(e == 1) {
-							alert("출차 완료.");
-						} else {
-							alert("출차 오류.");
-						}
-						location.reload();
-			        }
-					,error:function(request,status,error){
-					        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-					}
-				});
-				
-			}
-			
-		});
-		
-		$("#deleteBtn").click(function(){
-			
-			if(confirm('정말 삭제하시겠습니까?')) {
-				var inout_codes = "";
-				$.each($(".chkBtn"), function(i, v){
-					var is_checked = $(v).is(":checked");
-					if(is_checked) {
-						if(inout_codes != "") inout_codes += ",";
-						inout_codes += "'" + $(v).attr("inoutcode")+"'";
-					}
-				});
+   $(function(){
+      $("#invoiceToggleAllCheckbox").click(function(){
+         $(".custom-control-input").prop("checked", this.checked);
+      });
+      
+       $("#myInput").on("keyup", function() {
+             var value = $(this).val().toLowerCase();
+             $("#myTable tr").filter(function() {
+               $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+             });
+      });
+       
+      
+      $("#serBtn").click(function(){
+         $("#form").attr("action","${path}/bd_park/ticketlist");
+         $("#form").submit();
+      });
+      
+      $(".outBtn").click(function(){
+         
+         var inoutcode = $(this).attr("inoutcode");
+         
+         if(inoutcode != "") {
+            $.ajax({
+                url : "/smart/bd_park/modiOutStatus"
+               ,type : "GET"
+               ,data : {"inoutcode" : inoutcode }
+               ,dataType : "json"
+               ,success:function(e){
+                  console.log(e);
+                  if(e == 1) {
+                     alert("출차 완료.");
+                  } else {
+                     alert("출차 오류.");
+                  }
+                  location.reload();
+                 }
+               ,error:function(request,status,error){
+                       alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+               }
+            });
+            
+         }
+         
+      });
+      
+      $("#deleteBtn").click(function(){
+         
+         if(confirm('정말 삭제하시겠습니까?')) {
+            var inout_codes = "";
+            $.each($(".chkBtn"), function(i, v){
+               var is_checked = $(v).is(":checked");
+               if(is_checked) {
+                  if(inout_codes != "") inout_codes += ",";
+                  inout_codes += "'" + $(v).attr("inoutcode")+"'";
+               }
+            });
 
-				$.ajax({
-					 url : "/smart/bd_park/inoutDelete"
-					,type : "GET"
-					,data : {"inout_codes" : inout_codes}
-					,dataType : "json"
-					,success:function(e){
-						
-						if(e > 0) {
-							alert("삭제되었습니다.");
-						} else {
-							alert("삭제 실패하였습니다.\n다시 시도해주세요.");
-						}
-						
-						location.reload(); //페이지 새로고침
-			        }
-					,error:function(request,status,error){
-					        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-					}
-				});
-			} 
-			
-			
-		});
-		
-		
-	});
-	 
+            $.ajax({
+                url : "/smart/bd_park/inoutDelete"
+               ,type : "GET"
+               ,data : {"inout_codes" : inout_codes}
+               ,dataType : "json"
+               ,success:function(e){
+                  
+                  if(e > 0) {
+                     alert("삭제되었습니다.");
+                  } else {
+                     alert("삭제 실패하였습니다.\n다시 시도해주세요.");
+                  }
+                  
+                  location.reload(); //페이지 새로고침
+                 }
+               ,error:function(request,status,error){
+                       alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+               }
+            });
+         } 
+         
+         
+      });
+      
+      
+   });
+    
 </script>
 </html>

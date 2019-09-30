@@ -47,8 +47,8 @@ public class ParkingServiceImpl implements ParkingService{
 		System.out.println("차량 현황");
 		String b_code = (String)req.getSession().getAttribute("b_code");
 		List<ParkingVO> curpark = p_dao.getcurrentpark(b_code);
-		System.out.println(curpark.get(0).getP_lat());
-		System.out.println(curpark.get(0).getP_lot());
+		//System.out.println(curpark.get(0).getP_lat());
+		//System.out.println(curpark.get(0).getP_lot());
 		model.addAttribute("curpark", curpark);
 	}
 	//주차장 현황 리스트
@@ -632,15 +632,17 @@ public class ParkingServiceImpl implements ParkingService{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("b_code",b_code);
 		List<ParkingVO> list = p_dao.list(map);
-		System.out.println("p_code"+list.get(0).getP_code());
-		System.out.println("p_code"+list.get(1).getP_code());
-		System.out.println("p_code"+list.get(2).getP_code());
+		//System.out.println("p_code"+list.get(0).getP_code());
+		//System.out.println("p_code"+list.get(1).getP_code());
+		//System.out.println("p_code"+list.get(2).getP_code());
 		Map<String, Object> map1 = new HashMap<String, Object>();
-		map1.put("p_code0",list.get(0).getP_code());
-		map1.put("p_code1",list.get(1).getP_code());
-		map1.put("p_code2",list.get(2).getP_code());
-		List<Map<String,Object>> paydto = p_dao.paytotal(map1);
-		req.setAttribute("dto", jsonutil.getJsonStringFromList(paydto));
+		if(list.size()!=0) {
+			map1.put("p_code0",list.get(0).getP_code());
+			map1.put("p_code1",list.get(1).getP_code());
+			map1.put("p_code2",list.get(2).getP_code());
+			List<Map<String,Object>> paydto = p_dao.paytotal(map1);
+			req.setAttribute("dto", jsonutil.getJsonStringFromList(paydto));
+		}
 	}
 	@Override
 	public void regid(HttpServletRequest req, Model model) {

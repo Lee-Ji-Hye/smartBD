@@ -58,6 +58,7 @@ public interface UserDAO {
     //회원 탈퇴
     public int modifyUserWithdraw(String userid);
 	
-	
+	//로그인 시 추가
+    public int memVisit(String userid);
 	
 }

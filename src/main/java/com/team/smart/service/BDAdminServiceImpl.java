@@ -77,17 +77,26 @@ public class BDAdminServiceImpl implements BDAdminService{
 	@Override
 	public void authAmd(HttpServletRequest req, String amd, String userid, String req_auth) {
 		Map<String, Object> map = new HashMap<>();
+		//map에 구분자 추가
+		map.put("category", "b_code");
+		map.put("rt_code", null);
 		map.put("amd", amd);
 		map.put("req_division", "bd");//bd를 검사함
 		map.put("req_key", req.getSession().getAttribute("b_code"));//b_code
 		map.put("userid", userid);
 		map.put("req_auth", req_auth);
+		String confirm_date = "null";
+		if(amd.equals("1")) {
+			confirm_date = "sysdate";
+			bdDao.authInsert(map);
+		}else {
+			bdDao.authDel(map);
+		}
+		
 		log.debug(map.toString());
+		map.put("confirm_date", confirm_date);
 		bdDao.authAmd(map);
-		//map에 구분자 추가
-		map.put("category", "b_code");
-		map.put("rt_code", null);
-		bdDao.authInsert(map);
+		
 	}
 	
 	

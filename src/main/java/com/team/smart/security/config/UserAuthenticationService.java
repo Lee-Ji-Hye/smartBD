@@ -70,7 +70,7 @@ public class UserAuthenticationService implements UserDetailsService {
 							log.debug("CP 권한 줌 .. 0 구분자로 확인");
 							log.debug("CP 권한체크 1 null체크");
 							Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-							currentTime.setDate(currentTime.getDate() + 1);
+							//currentTime.setDate(currentTime.getDate() + 1);
 							if(comp_seq!=null) { // && comp_seq != null
 								if(comp_status.equals("1"))
 									authority.add(uauth);
@@ -118,7 +118,7 @@ public class UserAuthenticationService implements UserDetailsService {
 						}else if(delimiter.equals("BD")) {
 							//구분자가 빌딩관련일때 b_code null체크하고 넣어준다.
 							log.debug("BD Null만체크해서 권한줌");
-							if(b_code != null) {
+							if(b_code != null && b_status != null) {
 								//b_status 를 검사해서 1이면 준다. 0이 미승인 1이 승인 
 								if(b_status.equals("1"))
 									authority.add(uauth);

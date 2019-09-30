@@ -24,6 +24,9 @@ public interface FoodService {
 	// 음식점 쿠폰 리스트
 	public void getCouponList(HttpServletRequest req, Model model);
 	
+	// 음식점 쿠폰 리스트 상세보기
+	public Map<String,Object>getDetailCoupon(String f_coupon_num);
+	
 	// 음식점 쿠폰 시리얼 등록
 	public String insertSerialNum();
 	
