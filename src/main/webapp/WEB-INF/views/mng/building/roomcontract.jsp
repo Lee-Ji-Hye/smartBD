@@ -988,7 +988,7 @@
    					document.getElementById('r_price').innerHTML = obj.r_price;
    					document.getElementById('r_deposit').innerHTML = obj.r_deposit;
    					document.getElementById('r_premium').innerHTML = obj.r_premium;
-   					document.getElementById('r_price + r_deposit + r_premium').innerHTML = obj.r_price + obj.r_deposit + obj.r_premium;
+   					document.getElementById('r_price + r_deposit').innerHTML = obj.r_price + obj.r_deposit;
    					document.getElementById('rt_mobile').innerHTML = obj.rt_mobile;
    					document.getElementById('rt_email').innerHTML = obj.rt_email;
    					document.getElementById('name').innerHTML = obj.name;
