@@ -134,7 +134,7 @@ public interface ParkingDAO {
 		public int insertInOutPro(Map<String,Object> map);
 		
 		//입출차 총 수
-		public int getTotalInoutCnt(String b_code);
+		public int getTotalInoutCnt(Map<String,Object> map3);
 		
 		public int inoutDelete(String inout_codes);
 		

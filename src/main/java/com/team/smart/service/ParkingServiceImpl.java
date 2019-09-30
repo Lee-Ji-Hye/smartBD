@@ -850,18 +850,25 @@ public class ParkingServiceImpl implements ParkingService{
 		
 	@Override
 	public void inoutCarList(HttpServletRequest req, Model model) {
-		// TODO 입출차 현황
-		
+		// TODO 입출차 현황1
+		String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
 		String b_code = (req.getParameter("b_code")==null)? "" : req.getParameter("b_code");
 		String page = (req.getParameter("page")==null)? "" : req.getParameter("page");
-		
+		String uri = req.getRequestURI();
 		if(b_code.equals("")) {
 			b_code = (String) req.getSession().getAttribute("b_code");
 		}
 		
-		int cnt = p_dao.getTotalInoutCnt(b_code);
+		//http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
+		if(!sertext.equals("")) {
+			uri = uri+"?sertext=" + sertext;
+		}
+		Map<String, Object> map3 = new HashMap<String, Object>(); 
+		map3.put("b_code", b_code);
+		map3.put("sertext",sertext);
+		int cnt = p_dao.getTotalInoutCnt(map3);
 		
-		String uri = req.getRequestURI();
+		
 		Paging paging = new Paging(10, 5, cnt, uri);
 		paging.pagelist(page);
 	
@@ -869,6 +876,7 @@ public class ParkingServiceImpl implements ParkingService{
 		map.put("b_code", b_code);
 		map.put("start", paging.getStart());
 		map.put("end", paging.getEnd());
+		map.put("sertext",sertext);
 		
 		List<InoutCarVO> list = p_dao.getInoutCarList(map);
 		ParkingBasicPriceVO priceInfo = p_dao.getBasicPrice(b_code);

@@ -248,8 +248,8 @@ public class ParkingDAOImpl implements ParkingDAO{
 	}
 
 	@Override
-	public int getTotalInoutCnt(String b_code) {
-		return sqlSession.selectOne("ParkingDAO.getTotalInoutCnt", b_code);
+	public int getTotalInoutCnt(Map<String,Object> map3) {
+		return sqlSession.selectOne("ParkingDAO.getTotalInoutCnt", map3);
 	}
 
 	@Override
