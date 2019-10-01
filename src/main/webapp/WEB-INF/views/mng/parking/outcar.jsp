@@ -107,22 +107,22 @@ function sample_string_view(ans, typea) {
             </div>
        <!-- Buttons -->
           <div style="margin-right:20px;">
-           <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/bd_park/intromn/insertInOutForm'">등록</button>
-           <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover" id="deleteBtn" >삭제</button>
+           <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/bd_park/intromn/insertInOutForm'" style="position:relative;top:10px;">등록</button>
+           <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover" id="deleteBtn" style="position:relative;top:10px;">삭제</button>
           </div>
          <!-- End Buttons -->
         </div>
       
       <form method="get" id="form" name="form" >
            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-         <%-- <input class="form-control" id="myInput" name ="sertext"  
+         <input class="form-control" id="myInput" name ="sertext"  
                type="text" placeholder="Search.." value="${sertext}"
-               style="width:150px" >
+               style="width:300px;position:relative;top: -25px;" >
           <input type="button" 
                 class="btn btn-sm btn-soft-secondary transition-3d-hover" 
                 id="serBtn" 
-                style="position: relative;"
-                value="검색"   /> --%>
+                style="position: relative;left:20px;top:-20px;"
+                value="검색"   />
           
           <input type="hidden" name="b_code" value="${sessionScope.b_code}"/>
           

@@ -856,103 +856,112 @@ public class ParkingServiceImpl implements ParkingService{
 
 		
 	@Override
-	public void inoutCarList(HttpServletRequest req, Model model) {
-		// TODO 입출차 현황
-		
-		String b_code = (req.getParameter("b_code")==null)? "" : req.getParameter("b_code");
-		String page = (req.getParameter("page")==null)? "" : req.getParameter("page");
-		
-		if(b_code.equals("")) {
-			b_code = (String) req.getSession().getAttribute("b_code");
-		}
-		
-		int cnt = p_dao.getTotalInoutCnt(b_code);
-		
-		String uri = req.getRequestURI();
-		Paging paging = new Paging(10, 5, cnt, uri);
-		paging.pagelist(page);
-	
-		Map<String, Object> map = new HashMap<String, Object>(); 
-		map.put("b_code", b_code);
-		map.put("start", paging.getStart());
-		map.put("end", paging.getEnd());
-		
-		List<InoutCarVO> list = p_dao.getInoutCarList(map);
-		ParkingBasicPriceVO priceInfo = p_dao.getBasicPrice(b_code);
-		
-		//입출차량 있으면 리스트 뿌림
-		if(list == null) {
-			return;
-		}
-		
-        List<InoutCarVO> dtos = new ArrayList<InoutCarVO>();
-        
-		try {
+	   public void inoutCarList(HttpServletRequest req, Model model) {
+	      // TODO 입출차 현황1
+	      String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
+	      String b_code = (req.getParameter("b_code")==null)? "" : req.getParameter("b_code");
+	      String page = (req.getParameter("page")==null)? "" : req.getParameter("page");
+	      String uri = req.getRequestURI();
+	      if(b_code.equals("")) {
+	         b_code = (String) req.getSession().getAttribute("b_code");
+	      }
+	      
+	      //http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
+	      if(!sertext.equals("")) {
+	         uri = uri+"?sertext=" + sertext;
+	      }
+	      Map<String, Object> map3 = new HashMap<String, Object>(); 
+	      map3.put("b_code", b_code);
+	      map3.put("sertext",sertext);
+	      int cnt = p_dao.getTotalInoutCnt(map3);
+	      
+	      
+	      Paging paging = new Paging(10, 5, cnt, uri);
+	      paging.pagelist(page);
+	   
+	      Map<String, Object> map = new HashMap<String, Object>(); 
+	      map.put("b_code", b_code);
+	      map.put("start", paging.getStart());
+	      map.put("end", paging.getEnd());
+	      map.put("sertext",sertext);
+	      
+	      List<InoutCarVO> list = p_dao.getInoutCarList(map);
+	      ParkingBasicPriceVO priceInfo = p_dao.getBasicPrice(b_code);
+	      
+	      //입출차량 있으면 리스트 뿌림
+	      if(list == null) {
+	         return;
+	      }
+	      
+	        List<InoutCarVO> dtos = new ArrayList<InoutCarVO>();
+	        
+	      try {
 
-			//현재시간 Date
-	        Date currtime = new Date();
-			SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-			SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-	        Date intime, outtime;
-	        long diff, totalMin;
-	        
-	        for(int i=0; i < list.size(); i++) {
-	        	InoutCarVO vo = list.get(i);
-	        	//리얼 주차중인 시간
-	        	intime =  f1.parse(vo.getIn_time());
-	        		
-	        	//아래처럼 if문을 둔 이유는 출차 후에도 계속 출차시간이 이어지는 문제가 있기 때문에 나눠줌.
-	        	//출차 후에는 출차시안에서 입차시간을 계산함.
-	        	if(vo.getOut_time() == null) {
-	        		//출차전 => 현재시간 - 입차시간
-	        		diff = currtime.getTime() - intime.getTime();
-			        totalMin= diff / 60000; //차이나는 시간 만큼의 분
-	        	} else {
-	        		//출차후 => 출차시간 - 입차시간
-		        	outtime = f2.parse(vo.getOut_time());
-	        		diff = outtime.getTime() - intime.getTime();
-			        totalMin= diff / 60000; //차이나는 시간 만큼의 분
-	        	}
-		        
-		        int stayHours = (int)(totalMin / 60);
-		        int stayMin   = (int)(totalMin % 60);
-		        
-	        	vo.setStayHours(stayHours);
-	        	vo.setStayMin(stayMin);
-	        	
-	        	
-		        int payHours = (int)(vo.getTotParkingTime() / 60);
-		        int payMin   = (int)(vo.getTotParkingTime() % 60);
-		        
-	        	vo.setPayHours(payHours);
-	        	vo.setPayMin(payMin);        	
-		        
-		        
-	        	//리얼 주차중인 시간 - 주차한만큼 결제한 시간
-		        long plus_stayTime = totalMin - vo.getTotParkingTime();
-		        long pb_free = (long) priceInfo.getPb_free();
+	         //현재시간 Date
+	           Date currtime = new Date();
+	         SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+	         SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+	           Date intime, outtime;
+	           long diff, totalMin;
+	           
+	           for(int i=0; i < list.size(); i++) {
+	              InoutCarVO vo = list.get(i);
+	              //리얼 주차중인 시간
+	              intime =  f1.parse(vo.getIn_time());
+	                 
+	              //아래처럼 if문을 둔 이유는 출차 후에도 계속 출차시간이 이어지는 문제가 있기 때문에 나눠줌.
+	              //출차 후에는 출차시안에서 입차시간을 계산함.
+	              if(vo.getOut_time() == null) {
+	                 //출차전 => 현재시간 - 입차시간
+	                 diff = currtime.getTime() - intime.getTime();
+	                 totalMin= diff / 60000; //차이나는 시간 만큼의 분
+	              } else {
+	                 //출차후 => 출차시간 - 입차시간
+	                 outtime = f2.parse(vo.getOut_time());
+	                 diff = outtime.getTime() - intime.getTime();
+	                 totalMin= diff / 60000; //차이나는 시간 만큼의 분
+	              }
+	              
+	              int stayHours = (int)(totalMin / 60);
+	              int stayMin   = (int)(totalMin % 60);
+	              
+	              vo.setStayHours(stayHours);
+	              vo.setStayMin(stayMin);
+	              
+	              
+	              int payHours = (int)(vo.getTotParkingTime() / 60);
+	              int payMin   = (int)(vo.getTotParkingTime() % 60);
+	              
+	              vo.setPayHours(payHours);
+	              vo.setPayMin(payMin);           
+	              
+	              
+	              //리얼 주차중인 시간 - 주차한만큼 결제한 시간
+	              long plus_stayTime = totalMin - vo.getTotParkingTime();
+	              long pb_free = (long) priceInfo.getPb_free();
 
-		        System.out.println(plus_stayTime + "  >  " + pb_free);
-		        if(plus_stayTime > pb_free) {
-		        	vo.setIs_out("N");
-		        } else {
-		        	vo.setIs_out("Y");
-		        }
-		        
-		        dtos.add(vo);
-	        }
-	        
-	        
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		req.setAttribute("dtos", dtos);
-		req.setAttribute("paging", paging);
-		
-		
-	}
+	              System.out.println(plus_stayTime + "  >  " + pb_free);
+	              if(plus_stayTime > pb_free) {
+	                 vo.setIs_out("N");
+	              } else {
+	                 vo.setIs_out("Y");
+	              }
+	              
+	              dtos.add(vo);
+	           }
+	           
+	           
+	      } catch (ParseException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      
+	      req.setAttribute("dtos", dtos);
+	      req.setAttribute("paging", paging);
+	      
+	      
+	   }
+
 	
 	@Override
 	public int modiOutStatus(HttpServletRequest req, Model model) {

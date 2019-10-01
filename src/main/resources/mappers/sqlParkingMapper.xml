@@ -340,16 +340,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="inoutCarList" parameterType="java.util.Map" resultType="com.team.smart.parking.vo.InoutCarVO" >
-		<![CDATA[
-		  select * from (select tmp.*, rownum rNum from (SELECT *
-		  FROM parking_history_tbl ph
-		  LEFT JOIN (select inoutcode, sum(pay_enable_time) totParkingTime from parking_payment_tbl where pb_state = 2 group by inoutcode
-		              ) pp ON(pp.inoutcode = ph.inoutcode) order by parking_state, out_time nulls first, in_time desc) tmp
-           WHERE b_code = 'BD000001'
-		   AND is_delete = 'N'
-		   ) where rNum >= #{start} and rNum <= #{end} 
-			]]>
-	</select>
+      
+        select * from (select tmp.*, rownum rNum from (SELECT *
+        FROM parking_history_tbl ph
+        LEFT JOIN (select inoutcode, sum(pay_enable_time) totParkingTime from parking_payment_tbl where pb_state = 2 group by inoutcode
+                    ) pp ON(pp.inoutcode = ph.inoutcode) order by parking_state, out_time nulls first, in_time desc) tmp
+           WHERE b_code = #{b_code}
+           <if test="sertext != '' ">
+                    AND car_number like '%' || #{sertext} || '%'
+           </if>
+         AND is_delete = 'N'
+         <![CDATA[
+         ) where rNum >= #{start} and rNum <= #{end}
+         ]]>
+   </select>
 	
 	<select id="getBasicPrice" resultType="com.team.smart.parking.vo.ParkingBasicPriceVO">
 		select * from parking_basic_price_tbl where b_code = #{b_code}
@@ -367,10 +371,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="inoutDelete" parameterType="String" >
 		UPDATE parking_history_tbl SET is_delete = 'Y' where inoutcode in(${value})
 	</update>
-	
-	<select id="getTotalInoutCnt" resultType="int">
-		select count(*) cnt from parking_history_tbl where is_delete='N' and b_code = #{b_code}
-	</select>
+
+	<select id="getTotalInoutCnt" resultType="int" parameterType="java.util.Map">
+      select count(*) cnt from parking_history_tbl where is_delete='N' and b_code = #{b_code}
+      <if test="sertext != '' ">
+                    AND car_number like '%' || #{sertext} || '%'
+       </if>
+   </select>
+   
 	<select id="list" resultType="com.team.smart.parking.vo.ParkingVO" parameterType="java.util.Map">
 		select * from parking_ticket_info_tbl where b_code = #{b_code}      
 	</select>
