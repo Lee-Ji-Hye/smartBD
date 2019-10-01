@@ -417,9 +417,14 @@ function orderPro(event) {
 			if(request.status == 200){
 				document.getElementById('foodOrderApp').innerText = '주문완료';
 				document.getElementById('foodOrderApp2').innerText = '주문완료';
+				alert("승인되었습니다.");
+				location.reload();
+				
 			} else if(request.status == 448){
 				document.getElementById('foodOrderApp').innerText = '주문거절';
 				document.getElementById('foodOrderApp2').innerText = '주문거절';
+				alert("거절되었습니다.");
+				location.reload();
 			} else {
 				alert("데이터 가져오기 실패");
 			}
@@ -438,11 +443,15 @@ function orderPro2(event) {
 	request.onreadystatechange = function(){ // 콜백함수
 		if (request.readyState == 4) {
 			if(request.status == 200){
-				document.getElementById('foodOrderApp').innerText = '주문거절';
-				document.getElementById('foodOrderApp2').innerText = '주문거절';
+				//document.getElementById('foodOrderApp').innerText = '주문거절';
+				//document.getElementById('foodOrderApp2').innerText = '주문거절';
+				alert("승인되었습니다.");
+				window.location = request.responseURL;
 			} else if(request.status == 448){
-				document.getElementById('foodOrderApp').innerText = '승인거절';
-				document.getElementById('foodOrderApp2').innerText = '승인거절';
+				//document.getElementById('foodOrderApp').innerText = '승인거절';
+				//document.getElementById('foodOrderApp2').innerText = '승인거절';
+				alert("거절되었습니다.");
+				window.location = request.responseURL;
 			} else {
 				alert("데이터 가져오기 실패");
 			}

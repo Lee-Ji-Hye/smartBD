@@ -104,162 +104,6 @@
 					transform="translate(0,0) rotate(270 25.640625 208)"
 					class="highcharts-axis-title" style="color:#666666;fill:#666666;"
 					y="208">
-				<!-- <tspan>Fruit units</tspan></text>
-				<path fill="none" class="highcharts-axis-line" data-z-index="7"
-					d="M 77 53 L 77 363"></path></g>
-				<g class="highcharts-series-group" data-z-index="3">
-				<g data-z-index="0.1"
-					class="highcharts-series highcharts-series-0 highcharts-areaspline-series highcharts-color-0  "
-					transform="translate(77,53) scale(1 1)"
-					clip-path="url(#highcharts-1xleot6-1-)">
-				<path fill="rgba(124,181,236,0.5)"
-					d="M 53.714285714286 248 C 53.714285714286 248 118.1714285714304 227.33333333333331 161.14285714286 227.33333333333331 C 204.114285714288 227.33333333333331 225.600000000002 248 268.57142857143 248 C 311.542857142858 248 333.02857142857204 206.66666666666666 376 206.66666666666666 C 418.97142857142796 206.66666666666666 440.457142857142 227.33333333333331 483.42857142857 227.33333333333331 C 526.399999999998 227.33333333333331 547.8857142857121 136.39999999999992 590.85714285714 103.33333333333331 C 633.8285714285681 70.26666666666661 698.28571428571 62 698.28571428571 62 L 698.28571428571 310 C 698.28571428571 310 633.8285714285681 310 590.85714285714 310 C 547.8857142857121 310 526.399999999998 310 483.42857142857 310 C 440.457142857142 310 418.97142857142796 310 376 310 C 333.02857142857204 310 311.542857142858 310 268.57142857143 310 C 225.600000000002 310 204.114285714288 310 161.14285714286 310 C 118.1714285714304 310 53.714285714286 310 53.714285714286 310"
-					class="highcharts-area" data-z-index="0"></path>
-				<path fill="none"
-					d="M 53.714285714286 248 C 53.714285714286 248 118.1714285714304 227.33333333333331 161.14285714286 227.33333333333331 C 204.114285714288 227.33333333333331 225.600000000002 248 268.57142857143 248 C 311.542857142858 248 333.02857142857204 206.66666666666666 376 206.66666666666666 C 418.97142857142796 206.66666666666666 440.457142857142 227.33333333333331 483.42857142857 227.33333333333331 C 526.399999999998 227.33333333333331 547.8857142857121 136.39999999999992 590.85714285714 103.33333333333331 C 633.8285714285681 70.26666666666661 698.28571428571 62 698.28571428571 62"
-					class="highcharts-graph" data-z-index="1" stroke="#7cb5ec"
-					stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
-				<path fill="none"
-					d="M 43.714285714286 248 L 53.714285714286 248 C 53.714285714286 248 118.1714285714304 227.33333333333331 161.14285714286 227.33333333333331 C 204.114285714288 227.33333333333331 225.600000000002 248 268.57142857143 248 C 311.542857142858 248 333.02857142857204 206.66666666666666 376 206.66666666666666 C 418.97142857142796 206.66666666666666 440.457142857142 227.33333333333331 483.42857142857 227.33333333333331 C 526.399999999998 227.33333333333331 547.8857142857121 136.39999999999992 590.85714285714 103.33333333333331 C 633.8285714285681 70.26666666666661 698.28571428571 62 698.28571428571 62 L 708.28571428571 62"
-					visibility="visible" data-z-index="2"
-					class="highcharts-tracker-line" stroke-linejoin="round"
-					stroke="rgba(192,192,192,0.0001)" stroke-width="22"></path></g>
-				<g data-z-index="0.1"
-					class="highcharts-markers highcharts-series-0 highcharts-areaspline-series highcharts-color-0  highcharts-tracker "
-					transform="translate(77,53) scale(1 1)">
-				<path fill="#7cb5ec" d="M 53 248 A 0 0 0 1 1 53 248 Z"
-					class="highcharts-halo highcharts-color-0" data-z-index="-1"
-					fill-opacity="0.25" visibility="hidden"></path>
-				<path fill="#7cb5ec"
-					d="M 53 252 A 4 4 0 1 1 53.00399999933334 251.99999800000018 Z"
-					opacity="1" class="highcharts-point highcharts-color-0 "
-					stroke-width="0.000009869571931497845"></path>
-				<path fill="#7cb5ec"
-					d="M 161 231 A 4 4 0 1 1 161.00399999933333 230.99999800000018 Z"
-					opacity="1" class="highcharts-point highcharts-color-0"></path>
-				<path fill="#7cb5ec"
-					d="M 268 252 A 4 4 0 1 1 268.00399999933336 251.99999800000018 Z"
-					opacity="1" class="highcharts-point highcharts-color-0"></path>
-				<path fill="#7cb5ec"
-					d="M 376 211 A 4 4 0 1 1 376.00399999933336 210.99999800000018 Z"
-					opacity="1" class="highcharts-point highcharts-color-0"></path>
-				<path fill="#7cb5ec"
-					d="M 483 231 A 4 4 0 1 1 483.00399999933336 230.99999800000018 Z"
-					opacity="1" class="highcharts-point highcharts-color-0"></path>
-				<path fill="#7cb5ec"
-					d="M 590 107 A 4 4 0 1 1 590.0039999993334 106.99999800000016 Z"
-					opacity="1" class="highcharts-point highcharts-color-0"></path>
-				<path fill="#7cb5ec"
-					d="M 698 66 A 4 4 0 1 1 698.0039999993334 65.99999800000016 Z"
-					opacity="1" class="highcharts-point highcharts-color-0"></path></g>
-				<g data-z-index="0.1"
-					class="highcharts-series highcharts-series-1 highcharts-areaspline-series highcharts-color-1 "
-					transform="translate(77,53) scale(1 1)"
-					clip-path="url(#highcharts-1xleot6-1-)">
-				<path fill="rgba(67,67,72,0.5)"
-					d="M 53.714285714286 289.3333333333333 C 53.714285714286 289.3333333333333 118.1714285714304 260.4000000000002 161.14285714286 248 C 204.114285714288 235.60000000000022 225.600000000002 227.33333333333331 268.57142857143 227.33333333333331 C 311.542857142858 227.33333333333331 333.02857142857204 248 376 248 C 418.97142857142796 248 440.457142857142 248 483.42857142857 248 C 526.399999999998 248 547.8857142857121 206.66666666666666 590.85714285714 206.66666666666666 C 633.8285714285681 206.66666666666666 698.28571428571 227.33333333333331 698.28571428571 227.33333333333331 L 698.28571428571 310 C 698.28571428571 310 633.8285714285681 310 590.85714285714 310 C 547.8857142857121 310 526.399999999998 310 483.42857142857 310 C 440.457142857142 310 418.97142857142796 310 376 310 C 333.02857142857204 310 311.542857142858 310 268.57142857143 310 C 225.600000000002 310 204.114285714288 310 161.14285714286 310 C 118.1714285714304 310 53.714285714286 310 53.714285714286 310"
-					class="highcharts-area" data-z-index="0"></path>
-				<path fill="none"
-					d="M 53.714285714286 289.3333333333333 C 53.714285714286 289.3333333333333 118.1714285714304 260.4000000000002 161.14285714286 248 C 204.114285714288 235.60000000000022 225.600000000002 227.33333333333331 268.57142857143 227.33333333333331 C 311.542857142858 227.33333333333331 333.02857142857204 248 376 248 C 418.97142857142796 248 440.457142857142 248 483.42857142857 248 C 526.399999999998 248 547.8857142857121 206.66666666666666 590.85714285714 206.66666666666666 C 633.8285714285681 206.66666666666666 698.28571428571 227.33333333333331 698.28571428571 227.33333333333331"
-					class="highcharts-graph" data-z-index="1" stroke="#434348"
-					stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
-				<path fill="none"
-					d="M 43.714285714286 289.3333333333333 L 53.714285714286 289.3333333333333 C 53.714285714286 289.3333333333333 118.1714285714304 260.4000000000002 161.14285714286 248 C 204.114285714288 235.60000000000022 225.600000000002 227.33333333333331 268.57142857143 227.33333333333331 C 311.542857142858 227.33333333333331 333.02857142857204 248 376 248 C 418.97142857142796 248 440.457142857142 248 483.42857142857 248 C 526.399999999998 248 547.8857142857121 206.66666666666666 590.85714285714 206.66666666666666 C 633.8285714285681 206.66666666666666 698.28571428571 227.33333333333331 698.28571428571 227.33333333333331 L 708.28571428571 227.33333333333331"
-					visibility="visible" data-z-index="2"
-					class="highcharts-tracker-line" stroke-linejoin="round"
-					stroke="rgba(192,192,192,0.0001)" stroke-width="22"></path></g>
-				<g data-z-index="0.1"
-					class="highcharts-markers highcharts-series-1 highcharts-areaspline-series highcharts-color-1  highcharts-tracker"
-					transform="translate(77,53) scale(1 1)">
-				<path fill="#434348"
-					d="M 53 289.3333333333333 A 0 0 0 1 1 53 289.3333333333333 Z"
-					class="highcharts-halo highcharts-color-1" data-z-index="-1"
-					fill-opacity="0.25" visibility="hidden"></path>
-				<path fill="#434348"
-					d="M 53 285.3333333333333 L 57 289.3333333333333 53 293.3333333333333 49 289.3333333333333 Z"
-					opacity="1" class="highcharts-point highcharts-color-1 "
-					stroke-width="0.00008882380959551739"></path>
-				<path fill="#434348" d="M 161 244 L 165 248 161 252 157 248 Z"
-					opacity="1" class="highcharts-point highcharts-color-1"></path>
-				<path fill="#434348" d="M 268 223 L 272 227 268 231 264 227 Z"
-					opacity="1" class="highcharts-point highcharts-color-1"></path>
-				<path fill="#434348" d="M 376 244 L 380 248 376 252 372 248 Z"
-					opacity="1" class="highcharts-point highcharts-color-1"></path>
-				<path fill="#434348" d="M 483 244 L 487 248 483 252 479 248 Z"
-					opacity="1" class="highcharts-point highcharts-color-1"></path>
-				<path fill="#434348" d="M 590 203 L 594 207 590 211 586 207 Z"
-					opacity="1" class="highcharts-point highcharts-color-1"></path>
-				<path fill="#434348" d="M 698 223 L 702 227 698 231 694 227 Z"
-					opacity="1" class="highcharts-point highcharts-color-1"></path></g></g>
-				<g class="highcharts-exporting-group" data-z-index="3">
-				<g class="highcharts-button highcharts-contextbutton"
-					stroke-linecap="round" transform="translate(805,10)">
-				<title>Chart context menu</title>
-				<rect fill="#ffffff" class="highcharts-button-box" x="0.5" y="0.5"
-					width="24" height="22" rx="2" ry="2" stroke="none" stroke-width="1"></rect>
-				<path fill="#666666"
-					d="M 6 6.5 L 20 6.5 M 6 11.5 L 20 11.5 M 6 16.5 L 20 16.5"
-					class="highcharts-button-symbol" data-z-index="1" stroke="#666666"
-					stroke-width="3"></path>
-				<text x="0" data-z-index="1"
-					style="font-weight:normal;color:#333333;cursor:pointer;fill:#333333;"
-					y="12"></text></g></g>
-				<text x="420" text-anchor="middle" class="highcharts-title"
-					data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;"
-					y="24">
-				<tspan>Average fruit consumption during one week</tspan></text>
-				<text x="420" text-anchor="middle" class="highcharts-subtitle"
-					data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text>
-				<text x="10" text-anchor="start" class="highcharts-caption"
-					data-z-index="4" style="color:#666666;fill:#666666;" y="397"></text>
-				<g class="highcharts-legend" data-z-index="7"
-					transform="translate(160,110)">
-				<rect fill="#FFFFFF" class="highcharts-legend-box" rx="0" ry="0"
-					stroke="#999999" stroke-width="1" x="0.5" y="0.5" width="65"
-					height="46" visibility="visible"></rect>
-				<g data-z-index="1">
-				<g>
-				<g
-					class="highcharts-legend-item highcharts-areaspline-series highcharts-color-0 highcharts-series-0"
-					data-z-index="1" transform="translate(8,3)">
-				<text x="21"
-					style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;"
-					text-anchor="start" data-z-index="2" y="15">
-				<tspan>John</tspan></text>
-				<rect x="2" y="4" width="12" height="12" fill="#7cb5ec" rx="6"
-					ry="6" class="highcharts-point" data-z-index="3"></rect></g>
-				<g
-					class="highcharts-legend-item highcharts-areaspline-series highcharts-color-1 highcharts-series-1"
-					data-z-index="1" transform="translate(8,21)">
-				<text x="21" y="15"
-					style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;"
-					text-anchor="start" data-z-index="2">
-				<tspan>Jane</tspan></text>
-				<rect x="2" y="4" width="12" height="12" fill="#434348" rx="6"
-					ry="6" class="highcharts-point" data-z-index="3"></rect></g></g></g></g>
-				<g class="highcharts-axis-labels highcharts-xaxis-labels"
-					data-z-index="7">
-				<text x="130.71428571428427"
-					style="color:#666666;cursor:default;font-size:11px;fill:#666666;"
-					text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">Monday</text>
-				<text x="238.14285714285427"
-					style="color:#666666;cursor:default;font-size:11px;fill:#666666;"
-					text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">Tuesday</text>
-				<text x="345.5714285714243"
-					style="color:#666666;cursor:default;font-size:11px;fill:#666666;"
-					text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">Wednesday</text>
-				<text x="453.00000000000426"
-					style="color:#666666;cursor:default;font-size:11px;fill:#666666;"
-					text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">Thursday</text>
-				<text x="560.4285714285743"
-					style="color:#666666;cursor:default;font-size:11px;fill:#666666;"
-					text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">Friday</text>
-				<text x="667.8571428571444"
-					style="color:#666666;cursor:default;font-size:11px;fill:#666666;"
-					text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">Saturday</text>
-				<text x="775.2857142857143"
-					style="color:#666666;cursor:default;font-size:11px;fill:#666666;"
-					text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">Sunday</text></g> -->
 				<g class="highcharts-axis-labels highcharts-yaxis-labels"
 					data-z-index="7">
 				<text x="62"
@@ -336,6 +180,7 @@
         };
         
         function conconcon(){
+        	console.dir(chartData)
 	        for(key in chartData){
             	monthData.push(chartData[key].MOONTH);
             	priceData.push(chartData[key].SUMPRICE);
@@ -348,7 +193,7 @@
                 type: 'areaspline'
             },
             title: {
-                text: '연간 매출 결산 차트입니다.'
+                text: '연간 매출 결산'
             },
             legend: {
                 layout: 'vertical',
