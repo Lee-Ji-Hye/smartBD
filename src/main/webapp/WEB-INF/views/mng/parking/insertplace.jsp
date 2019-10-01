@@ -22,7 +22,7 @@
           <p>Submissions which exceed maximum word counts will be edited.</p>
         </div>
         <!-- End Title -->
-		
+	<!--  -->	
         <form id="insertplacepro" class="js-validate svg-preloader" method="post" action="insertplacepro">
          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         

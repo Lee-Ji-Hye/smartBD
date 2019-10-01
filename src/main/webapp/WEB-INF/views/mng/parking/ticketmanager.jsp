@@ -68,7 +68,7 @@
               <!-- End Breadcrumb Nav Toggle Button -->
             </div>
           </div>
-
+<!--  -->
           <div class="col-lg-7 order-lg-1">
             <!-- User Info -->
             <div class="media d-block d-sm-flex align-items-sm-center">

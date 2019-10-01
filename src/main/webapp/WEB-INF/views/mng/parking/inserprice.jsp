@@ -3,6 +3,13 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/headerAdmin.jsp" %>   
  <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+ <style>
+ #content{
+ width:800px;
+ position: relative;
+ left: 550px;
+ }
+ </style>
  
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
