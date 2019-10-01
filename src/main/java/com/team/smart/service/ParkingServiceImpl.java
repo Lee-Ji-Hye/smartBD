@@ -642,9 +642,16 @@ public class ParkingServiceImpl implements ParkingService{
 		//System.out.println("p_code"+list.get(2).getP_code());
 		Map<String, Object> map1 = new HashMap<String, Object>();
 		if(list.size()!=0) {
-			map1.put("p_code0",list.get(0).getP_code());
-			map1.put("p_code1",list.get(1).getP_code());
-			map1.put("p_code2",list.get(2).getP_code());
+			String p_codes = "";
+			for(int i=0; i < list.size(); i++) {
+				if(!p_codes.equals("")) {
+					p_codes += ",";
+				} 
+				p_codes += "'"+list.get(i).getP_code()+"'"; // 'asd','asdg'
+			}
+			map1.put("p_codes", p_codes);
+			//map1.put("p_code1",list.get(1).getP_code());
+			//map1.put("p_code2",list.get(2).getP_code());
 			List<Map<String,Object>> paydto = p_dao.paytotal(map1);
 			req.setAttribute("dto", jsonutil.getJsonStringFromList(paydto));
 		}

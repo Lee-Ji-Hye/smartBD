@@ -226,10 +226,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select (substr(pay_day,1,5)) pay_day,
 		sum(p_oprice) p_oprice
 		from parking_ticket_order_tbl
-		where p_code = #{p_code0} AND p_state = 1  OR p_code = #{p_code1}  AND p_state = 1
-		OR p_state = 1 AND p_code = #{p_code2} OR
-		p_code = #{p_code0} AND p_state = 2  OR p_code = #{p_code1}  AND p_state = 2
-		OR p_state = 2 AND p_code = #{p_code2}
+		where p_state = 2
+		AND p_code in (${p_codes})
 		GROUP by (substr(pay_day,1,5))
 		order by (substr(pay_day,1,5))
 	</select>
