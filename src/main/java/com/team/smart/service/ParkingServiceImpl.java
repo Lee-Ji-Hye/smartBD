@@ -138,6 +138,11 @@ public class ParkingServiceImpl implements ParkingService{
 		model.addAttribute("p_type",park.get(0).getP_type());
 		model.addAttribute("p_hourly",park.get(0).getHourly());
 		model.addAttribute("p_price",park.get(0).getPrice());
+		
+		String staff_id = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.addAttribute("staff_id",staff_id);
+		model.addAttribute("staff_id",staff_id);
+		
 	}
 	// 주차권 삭제
 	@Override
@@ -556,7 +561,7 @@ public class ParkingServiceImpl implements ParkingService{
 				   .reg_id(reg_id)
 				   .build();
 		tikectcode = p_dao.ticketpro(vo);	
-		model.addAttribute(tikectcode);
+		model.addAttribute("tikectcode", tikectcode);
 	}
 	//조회
 	@Override

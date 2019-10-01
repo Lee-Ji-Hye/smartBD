@@ -72,7 +72,7 @@
                 <!-- Input -->
                 <div class="form-group">
                   <div class="js-focus-state">
-                    <label class="form-label" for="listingCityProvince">주차시간타입 h:시간,m:분</label>
+                    <label class="form-label" for="listingCityProvince">주차시간타입</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="listingCityProvinceLabel">
@@ -80,8 +80,8 @@
                         </span>
                       </div>
                       <select name="bp_type" class="form-control" id="listingCityProvince">
-  						<option value="H">H</option>
-  						<option value="M">M</option>
+  						<option value="h">시간</option>
+  						<option value="m">분</option>
                       </select>
                     </div>
                   </div>
@@ -101,7 +101,7 @@
                           <img src="/smart/resources/images/room/premium.png" width="15px;" height="15px;" data-parent="#uploadForm">	
                         </span>
                       </div>
-                		<input type="text" class="form-control" name="pb_time" id="listingCityProvince" placeholder="pb_time" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
+                		<input type="text" class="form-control" name="pb_time" id="listingCityProvince" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
                     </div>
                   </div>
                 </div>
@@ -118,7 +118,7 @@
                           <img src="/smart/resources/images/room/deposit.png" width="15px;" height="15px;" data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="pb_price" id="listingCityProvince" placeholder="pb_price" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
+                      <input type="text" class="form-control" name="pb_price" id="listingCityProvince" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
                     </div>
                   </div>
                 </div>
@@ -137,7 +137,7 @@
                           <img src="/smart/resources/images/room/premium.png" width="15px;" height="15px;" data-parent="#uploadForm">	
                         </span>
                       </div>
-                		<input type="text" class="form-control" name="pb_free" id="listingCityProvince" placeholder="pb_free" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
+                		<input type="text" class="form-control" name="pb_free" id="listingCityProvince" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
                     </div>
                   </div>
                 </div>
@@ -154,7 +154,7 @@
                           <img src="/smart/resources/images/room/deposit.png" width="15px;" height="15px;" data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="pb_free_price" id="listingCityProvince" placeholder="pb_free_price" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
+                      <input type="text" class="form-control" name="pb_free_price" id="listingCityProvince" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
                     </div>
                   </div>
                 </div>
@@ -173,7 +173,7 @@
                           <img src="/smart/resources/images/room/premium.png" width="15px;"height="15px;" data-parent="#uploadForm">	
                         </span>
                       </div>
-                		<input type="text" class="form-control" name="reg_id" id="listingCityProvince" placeholder="reg_id" value="${reg_id}" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
+                		<input type="text" class="form-control" name="reg_id" id="listingCityProvince" value="${reg_id}" aria-label="City, Province" aria-describedby="listingCityProvinceLabel">
                     </div>
                   </div>
                 </div>

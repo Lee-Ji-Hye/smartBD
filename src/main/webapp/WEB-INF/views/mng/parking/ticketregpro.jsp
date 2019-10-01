@@ -16,7 +16,7 @@ setTimeout(function(){
 },500);
 </script>
 </c:if>
-<c:if test="${tikectcode !=1}">
+<c:if test="${tikectcode != 1}">
 <script type="text/javascript">
 setTimeout(function(){
 	alert("등록에 실패하였습니다.");

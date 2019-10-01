@@ -3,7 +3,13 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/headerAdmin.jsp" %>   
  <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
- 
+  <style>
+ #content{
+ width:800px;
+ position: relative;
+ left: 470px;
+ }
+ </style>
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
     <!-- Upload Form Section -->
@@ -65,16 +71,16 @@
                 <!-- Input -->
                 <div class="form-group">
                   <div class="js-focus-state">
-                    <label class="form-label" for="listingCityProvince">주차시간타입 h:시간,m:분</label>
+                    <label class="form-label" for="listingCityProvince">주차시간타입</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="listingCityProvinceLabel">
                           <img src="/smart/resources/images/room/deposit.png" width="15px;" height="15px;" data-parent="#uploadForm">
                         </span>
                       </div>
-                      <select name="bp_type">
-  						<option value="H">H</option>
-  						<option value="M">M</option>
+                      <select name="bp_type" class="form-control" id="listingCityProvince">
+  						<option value="h" ${(bp_type == 'h')? 'selected' : ''}>시간</option>
+  						<option value="m"  ${(bp_type == 'm')? 'selected' : ''}>분</option>
                       </select>
                     </div>
                   </div>

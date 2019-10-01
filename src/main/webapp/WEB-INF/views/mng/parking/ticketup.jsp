@@ -3,7 +3,13 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/headerAdmin.jsp" %>   
  <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
- 
+<style>
+ #content{
+ width:800px;
+ position: relative;
+ left: 470px;
+ }
+ </style>
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
     <!-- Upload Form Section -->
@@ -72,7 +78,11 @@
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="p_type" id="listingCityProvince" placeholder="p_type" aria-label="City, Province" aria-describedby="listingCityProvinceLabel" value="${p_type}">
+                      <select name="p_type" class="form-control" id="listingCityProvince">
+                      <option value='m' ${(p_type == 'm')? 'selected' : ''} >m</option>
+                      <option value='h' ${(p_type == 'h')? 'selected' : ''} >h</option>
+                      <option value='d' ${(p_type == 'd')? 'selected' : ''} >d</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -119,28 +129,24 @@
                 <!-- End Input -->
               </div>
 
-             <div class="row">
-              <div class="col-lg-6 mb-3">
+                <div class="col-lg-6 mb-3">
                 <!-- Input -->
                 <div class="form-group">
                   <div class="js-focus-state">
-                    <label class="form-label" for="listingLotSize">수성자</label>
+                    <label class="form-label" for="listingCityProvince">수정자</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
-                        <span class="input-group-text" id="listingLotSizeLabel">
-                          <img  src="${resourceImg}/room/ruler.png" width=15px; height=15px;
+                        <span class="input-group-text" id="listingCityProvinceLabel">
+                          <img  src="${resourceImg}/room/deposit.png" width=15px; height=15px;
                          data-parent="#uploadForm">
                         </span>
                       </div>
-                      <input type="text" class="form-control" name="reg_id" id="listingLotSize" placeholder="reg_id" aria-label="Lot size" aria-describedby="listingLotSizeLabel">
+                      <input type="text" class="form-control" name="reg_id" id="listingCityProvince" placeholder="reg_id" aria-label="City, Province" aria-describedby="listingCityProvinceLabel" value="${staff_id}">
                     </div>
                   </div>
                 </div>
                 <!-- End Input -->
               </div>
-
-            
-            </div>
 
           <button type="submit" class="btn btn-primary btn-block transition-3d-hover">수정</button> 
           

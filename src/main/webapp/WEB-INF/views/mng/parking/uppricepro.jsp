@@ -9,7 +9,7 @@
 <c:if test="${parkingcode ==1}">
 <script type="text/javascript">
 setTimeout(function(){
-	alert("등록되었습니다.");
+	alert("수정되었습니다.");
 	window.location = '${path}/bd_park/parkpricelist';	/* cnt == 2 */ 
 },500);
 </script>
@@ -18,7 +18,7 @@ setTimeout(function(){
 <c:if test="${parkingcode !=1}">
 <script type="text/javascript">
 setTimeout(function(){
-	alert("등록에 실패하였습니다.");
+	alert("수정 실패!");
 	window.location = '${path}/bd_park/parkpricelist';	/* cnt == 2 */ 
 },500);
 </script>

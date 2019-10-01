@@ -12,7 +12,8 @@
 <script type="text/javascript">
 setTimeout(function(){
 	alert("수정되었습니다.");
-	window.location = 'inst3';	/* cnt == 2 */ 
+	//window.location = 'inst3';	/* cnt == 2 */
+	window.location = 'ticketlist';	/* cnt == 2 */ 
 },500);
 </script>
 </c:if>
@@ -20,7 +21,8 @@ setTimeout(function(){
 <script type="text/javascript">
 setTimeout(function(){
 	alert("수정에 실패하였습니다.");
-	window.location = 'inst3';	/* cnt == 2 */ 
+	//window.location = 'inst3';	/* cnt == 2 */ 
+	window.location = 'ticketlist';	/* cnt == 2 */ 
 },500);
 </script>
 </c:if>
