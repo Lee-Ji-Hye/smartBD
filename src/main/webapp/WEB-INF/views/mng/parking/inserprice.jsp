@@ -3,6 +3,13 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/headerAdmin.jsp" %>   
  <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+ <style>
+ #content{
+ width:800px;
+ position: relative;
+ left: 470px;
+ }
+ </style>
  
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
@@ -72,7 +79,7 @@
                           <img src="/smart/resources/images/room/deposit.png" width="15px;" height="15px;" data-parent="#uploadForm">
                         </span>
                       </div>
-                      <select name="bp_type">
+                      <select name="bp_type" class="form-control" id="listingCityProvince">
   						<option value="H">H</option>
   						<option value="M">M</option>
                       </select>

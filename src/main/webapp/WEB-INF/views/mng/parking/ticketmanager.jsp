@@ -14,7 +14,8 @@
               * { padding: 0; margin: 0; }
               canvas {background-image: url("/smart/resources/images/B1.jpg");
               background-size: 100% 100%; display: block;
-              width:100%; margin: 0 auto;}
+              width:1200px; margin: 0 auto;
+              }
 .box{
 	/* background-color: #f90; */
 }              
@@ -22,11 +23,16 @@
 	position: relative;
 	top:-20px;
 }      
+#kyj{
+	width: 100%;
+	height:40px;
+}
 </style>
 
 <meta charset="UTF-8">
 <title>주차장 현황</title>
 <body>
+
 <form>
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 <c:set var="num" value="-1"></c:set>
@@ -62,7 +68,7 @@
               <!-- End Breadcrumb Nav Toggle Button -->
             </div>
           </div>
-
+<!--  -->
           <div class="col-lg-7 order-lg-1">
             <!-- User Info -->
             <div class="media d-block d-sm-flex align-items-sm-center">
@@ -111,6 +117,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div id="kyj">
+    
     </div>
  
 

@@ -3,7 +3,13 @@
 <%@ include file="../../common/setting.jsp" %>
 <%@ include file="../../common/headerAdmin.jsp" %>   
  <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
- 
+ <style>
+ #content{
+ width:800px;
+ position: relative;
+ left: 470px;
+ }
+ </style>
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
     <!-- Upload Form Section -->
@@ -16,7 +22,7 @@
           <p>Submissions which exceed maximum word counts will be edited.</p>
         </div>
         <!-- End Title -->
-		
+	<!--  -->	
         <form id="insertplacepro" class="js-validate svg-preloader" method="post" action="insertplacepro">
          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         
