@@ -44,6 +44,7 @@ public class RoomVO {
 	private String b_buildarea;	//건축면적
 	private String b_buildscale;//건축규모
 	private String b_address;	//건물 주소
+	private String r_regdate;	//계약일
 	
 	private int r_blockcode;	//블록체인 코드
 	private String rt_name;		//임차인 이름

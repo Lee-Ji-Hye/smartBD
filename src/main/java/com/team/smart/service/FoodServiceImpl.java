@@ -68,7 +68,7 @@ public class FoodServiceImpl implements FoodService {
 	// 음식점 소개 등록  + 수정
 	@Override
 	public void insertStoreIntro(MultipartHttpServletRequest req, Model model) {
-		//TODO 1. 김민경 인서트스토어어쩌구 날짜추가
+		
 		MultipartFile file1 = req.getFile("f_mainimg");
 
 		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); 
@@ -92,13 +92,12 @@ public class FoodServiceImpl implements FoodService {
 			e.printStackTrace();
 		}
 		
-		// 이미지 없을 때 처리
+		// 이미지를 업로드 하지 않았을 경우 처리
 		if(file1 != null) {
 			images_name = file1.getOriginalFilename();
 		}
 		
-		// 음식점 소개 등록 VO에 담기
-		// 업체정보 가져오기
+		// 업체정보 가져오기 (업체코드,업체명)
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 
@@ -106,7 +105,7 @@ public class FoodServiceImpl implements FoodService {
 		
 		// 업체 코드를 통해 등록 글 조회
 		int compCnt = f_dao.getStoreSel(comp_seq);
-		
+		// 음식점 소개 등록 VO에 담기
 		Food_companyVO vo = Food_companyVO
 							.builder()
 							.comp_seq(comp_seq)  
@@ -123,6 +122,7 @@ public class FoodServiceImpl implements FoodService {
 							.f_minor(req.getParameter("f_minor"))
 							.build();
 		log.debug("food_company:" + vo.toString());
+		
 		// 등록 된 글이 있을 경우 수정
 		if(compCnt == 1) {
 			// 수정 처리 
@@ -135,7 +135,6 @@ public class FoodServiceImpl implements FoodService {
 		// 등록된 글이 없으면 등록
 		} else {
 			int storeUpCode = f_dao.insertStoreUp(vo);
-			
 			//  처리 결과 저장 
 			model.addAttribute("storeUpCode" , storeUpCode);
 		}
@@ -147,11 +146,10 @@ public class FoodServiceImpl implements FoodService {
 	public void getStore(HttpServletRequest req, Model model) {
 		
 		// 업체정보 가져오기 (업체코드,등록자 id)
-		// 업체정보 가져오기
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		
 		Food_companyVO list = f_dao.getStoreOne(comp_seq);
-		
+		//  처리 결과 저장 
 		model.addAttribute("store", list);
 	}
 	
@@ -184,7 +182,6 @@ public class FoodServiceImpl implements FoodService {
 			
 			log.debug("f_coupon_end" + f_coupon_end);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -216,10 +213,11 @@ public class FoodServiceImpl implements FoodService {
 		int couponCount = Integer.parseInt(req.getParameter("f_coupon_count"));
 		// 쿠폰 발급 수가 0장 이상일 경우
 		if(couponCount > 0) {
-			// 쿠폰 시리얼 번호화 쿠폰 번호
+			// 쿠폰 시리얼 번호와 쿠폰 번호를 Map에 담고
 			Map<String, Object> map = new HashMap<String,Object>();
 			map.put("f_serial", insertSerialNum());
 			map.put("f_coupon_num", funs.getCurrentcode("f_coupon_num", "food_coupon_tbl"));
+			// 쿠폰 장수만큼 시리얼 번호를 생성하기 위해 for문을 돌립니다
 			for(int j = 0; j < couponCount; j++) {
 				// 시리얼 등록
 				map.put("f_serial", insertSerialNum());
@@ -248,7 +246,7 @@ public class FoodServiceImpl implements FoodService {
 		// 업체정보 가져오기(업체코드, 업체명)
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
-		String page = req.getParameter("page"); // 현재페이지를 화면에서 가져옴
+		String page = req.getParameter("page"); // 페이징 처리를 위해 현재 페이지를 화면에서 가져옴
 		
 		log.debug("쿠폰리스트 : " + comp_seq + " " + comp_org + " " + page);
 		
@@ -257,7 +255,7 @@ public class FoodServiceImpl implements FoodService {
 		totCnt = f_dao.getCouponPage();
 		
 		String uri = req.getRequestURI(); // 현재 서블릿의 uri
-		Paging paging = new Paging(5, 5, totCnt, uri); //Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
+		Paging paging = new Paging(5, 5, totCnt, uri); // Paging(int pageLine, int pageBlock, int cnt);//페이징 생성
 		
 		paging.pagelist(page); // 현재페이지번호를 넣어줌
 		
@@ -272,10 +270,27 @@ public class FoodServiceImpl implements FoodService {
 			// 처리결과를 저장
 			model.addAttribute("list",list);
 		}
-		
+		// 처리결과를 저장
 		model.addAttribute("paging", paging);
 		model.addAttribute("cnt", paging);
 		model.addAttribute("pageNum", page);
+	}
+	
+	// 음식점 쿠폰 목록 상세보기
+	@Override
+	public Map<String,Object> getDetailCoupon(String f_coupon_num) {
+		
+		Map<String, Object> couponInfo = f_dao.getCouponDetail(f_coupon_num);
+		
+		List<com.team.smart.food.vo.Food_coupon_serialVO> couponMenu = f_dao.getFoodCouponList(f_coupon_num);
+		
+		Map<String,Object> map = new HashMap<>();
+		map.put("couponInfo", couponInfo);
+		map.put("couponMenu", couponMenu);
+
+		log.debug(map.toString());
+		
+		return map;
 	}
 	
 	// 쿠폰 리스트 삭제
@@ -332,7 +347,7 @@ public class FoodServiceImpl implements FoodService {
 			e.printStackTrace();
 		}
 		
-		// 이미지 없을 때 처리
+		// 등록한 이미지가 없을 때 처리
 		if(file1 != null) {
 			images_name = file1.getOriginalFilename();
 		}
@@ -342,11 +357,6 @@ public class FoodServiceImpl implements FoodService {
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 
 		log.debug("업체정보 : " + comp_seq + " " + comp_org);
-		
-		// 이미지 없을 때 처리
-		if(file1 != null) {
-			images_name = file1.getOriginalFilename();
-		}
 		
 		// 업체 코드를 통해 등록 상품 조회
 		int goodsCnt = f_dao.getGoods(comp_seq);
@@ -376,12 +386,11 @@ public class FoodServiceImpl implements FoodService {
 	public void getGoods(HttpServletRequest req, Model model) {
 		
 		// 업체정보 가져오기 (업체코드, 업체명, 등록자 id)
-		// 업체정보 가져오기
 		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		
 		Food_menuVO menu = f_dao.getGoodsOneList(comp_seq);
-		
+		// 처리 결과 저장 
 		model.addAttribute("menu", menu);
 		
 	}
@@ -430,13 +439,11 @@ public class FoodServiceImpl implements FoodService {
 	@Override
 	public void modGoodsSu(HttpServletRequest req, Model model) {
 		
-		// 업체정보 가져오기(업체코드,업체명, 상품코드)
-		String comp_seq = (String)req.getSession().getAttribute("comp_seq");
-		String comp_org = (String)req.getSession().getAttribute("comp_org");
+		// 업체정보 가져오기(상품코드)
 		String f_code = req.getParameter("f_code");
 		
 		Food_menuVO vo = f_dao.getGoodsOne(f_code);
-		
+		// 처리 결과 저장 
 		model.addAttribute("vo",vo);
 		
 	}
@@ -528,8 +535,6 @@ public class FoodServiceImpl implements FoodService {
 		// 글 갯수 
 		int totCnt = 0;
 		System.out.println(comp_seq);
-		
-		
 		
 		String uri = req.getRequestURI(); // 현재 서블릿의 uri
 		if(!sertext.equals("")) {
@@ -632,17 +637,18 @@ public class FoodServiceImpl implements FoodService {
 		String comp_org = (String)req.getSession().getAttribute("comp_org");
 		
 		List<Food_orderVO> don = f_dao.getOrderAccounts(comp_seq);
-		
-		Map<String,String> sum = f_dao.getAccountsEnd();
-		String foodSum = String.valueOf(sum.get("SUM(f_pay_price)"));  // 상품 합계
-		String foodCancel = String.valueOf(sum.get("f_refund_price"));	// 상품 취소
-		
-		List<Map<String,Object>> food_don = f_dao.getFoodDon();
-		 
-		model.addAttribute("don",don);
-		model.addAttribute("food_don", jsonutil.getJsonStringFromList(food_don));
-		model.addAttribute("foodSum",foodSum);
-		model.addAttribute("foodCancel",foodCancel);
+		if(don.size()!=0) {
+			Map<String,String> sum = f_dao.getAccountsEnd();
+			String foodSum = String.valueOf(sum.get("SUM(f_pay_price)"));  // 상품 합계
+			String foodCancel = String.valueOf(sum.get("f_refund_price"));	// 상품 취소
+			
+			List<Map<String,Object>> food_don = f_dao.getFoodDon();
+			 
+			model.addAttribute("don",don);
+			model.addAttribute("food_don", jsonutil.getJsonStringFromList(food_don));
+			model.addAttribute("foodSum",foodSum);
+			model.addAttribute("foodCancel",foodCancel);
+		}
 	}
 
 	
@@ -652,7 +658,4 @@ public class FoodServiceImpl implements FoodService {
 		
 	}
 
-
-
-	
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp"%>
 <%@ include file="../../common/headerAdmin.jsp"%>
 
@@ -12,10 +12,10 @@
         <form name="mkCoupon" class="js-validate" novalidate="novalidate" enctype="multipart/form-data" method="post" action="${path}/bd_park/intromn/insertInOutPro?${_csrf.parameterName}=${_csrf.token}">
           <!-- Input -->
           <div class="row">
-        	<div class="col-md-6 mb-3 mb-sm-4"> 
+           <div class="col-md-6 mb-3 mb-sm-4"> 
             <div class="js-form-message">
               <label class="form-label">
-                	차번호
+                   차번호
               </label>
 
               <div class="form-group">
@@ -29,7 +29,7 @@
           <div class="col-md-6 mb-3 mb-sm-4">
             <div class="js-form-message">
               <label class="form-label">
-                	차 이미지
+                   차 이미지
               </label>
 
               <div class="form-group">
@@ -41,7 +41,7 @@
           </div>
           <div class="js-form-message mb-4">
            <label class="form-label">
-            	입출일
+               입출일
            </label>
           </div>
           <div class="row">
@@ -56,11 +56,11 @@
             </div>
             <!-- End Input -->
 
-	          <div class="js-form-message mb-4">
-	           <label class="form-label">
-	            	입출시간
-	           </label>
-	          </div>
+             <div class="js-form-message mb-4">
+              <label class="form-label">
+                  입출시간
+              </label>
+             </div>
             <!-- Input -->
             <div class="col-sm-4 col-md-2 mb-3 mb-sm-4">
               <div class="js-form-message">
@@ -73,12 +73,16 @@
             
             </div>
 
-			<br><br>
+            <!-- 라즈베리 IP : 192.168.219.103:8090 -->
+            <div>
+            	<iframe width="550" height="370" scrolling="no" src="http://192.168.219.103:8090/?action=stream"></iframe>
+            </div>
+         	<br><br>
           <div class="w-lg-100">
             <!-- Buttons -->
             <div style="text-align:center">
-	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
-	            <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button>
+               <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">등록</button>
+               <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button>
             </div>
             <!-- End Buttons -->
             <iframe width="650" height="470" src="http://192.168.219.103:8090/?action=stream"></iframe>
@@ -91,10 +95,10 @@
  
  
 <script type="text/javascript">
-	$(function(){
-		    $("#datepicker").datepicker({
-		    	dateFormat: 'yy-mm-dd' //Input Display Format 변경		
-		    });
-	});
+   $(function(){
+          $("#datepicker").datepicker({
+             dateFormat: 'yy-mm-dd' //Input Display Format 변경      
+          });
+   });
 </script>
  <%@ include file="../../common/footer_roomDetail.jsp" %>

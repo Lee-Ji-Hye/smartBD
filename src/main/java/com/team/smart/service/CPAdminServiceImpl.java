@@ -72,31 +72,33 @@ public class CPAdminServiceImpl implements CPAdminService{
 		map.put("req_auth", req_auth);
 		log.debug(map.toString());
 		bdDao.authReqDel(map);
-		bdDao.authDel(map);
+		bdDao.authComDel(map);
 		
 	}
 	//권한 삭제 , 변경 시 user_compauth_tbl 테이블도 수정해야됨.
 	@Override
 	public void authAmd(HttpServletRequest req, String amd, String userid, String req_auth) {
+//		Map<String, Object> map = new HashMap<>()
 		Map<String, Object> map = new HashMap<>();
-		map.put("amd", amd);
-		String rt_code = null;
-		List<UserGrantedAuthority> user = (List<UserGrantedAuthority>)SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-		for(int i = 0; i<user.size(); i++) {
-			log.debug(user.get(i).toString());
-			if(user.get(i).getComp_seq().equals(req.getSession().getAttribute("comp_seq"))) {
-				rt_code = user.get(i).getRt_code();
-			}
-		}
-		map.put("req_division", "comp");//bd를 검사함
-		map.put("req_key", req.getSession().getAttribute("comp_seq"));//comp_seq
-		map.put("userid", userid);
-		map.put("req_auth", req_auth);
-		log.debug(map.toString());
-		bdDao.authAmd(map);
 		//map에 구분자 추가
 		map.put("category", "comp_seq");
-		map.put("rt_code", rt_code);
-		bdDao.authInsert(map);
+		map.put("rt_code", null);
+		map.put("amd", amd);
+		map.put("req_division", "comp");//bd를 검사함
+		map.put("req_key", req.getSession().getAttribute("comp_seq"));//b_code
+		map.put("userid", userid);
+		map.put("req_auth", req_auth);
+		String confirm_date = "null";
+		if(amd.equals("1")) {
+			confirm_date = "sysdate";
+			bdDao.authInsert(map);
+		}else {
+			bdDao.authComDel(map);
+		}
+		
+		log.debug(map.toString());
+		map.put("confirm_date", confirm_date);
+		bdDao.authAmd(map);
+		
 	}
 }

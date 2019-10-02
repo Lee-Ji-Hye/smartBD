@@ -124,7 +124,7 @@ public interface ParkingDAO {
 		public List<ParkingVO> pricepaylist(Map<String, Object> map); 
 		
 		//입출차량 리스트
-		public List<InoutCarVO> getInoutCarList(Map<String, Object> map);
+	    public List<InoutCarVO> getInoutCarList(Map<String, Object> map);
 		
 		//주차 요금
 		public ParkingBasicPriceVO getBasicPrice(String b_code);
@@ -133,6 +133,7 @@ public interface ParkingDAO {
 		
 		public int insertInOutPro(Map<String,Object> map);
 		
+
 		//입출차 총 수
 		public int getTotalInoutCnt(Map<String,Object> map3);
 		

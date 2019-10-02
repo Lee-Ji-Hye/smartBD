@@ -105,6 +105,12 @@ public class UserDAOImpl implements UserDAO {
         return sqlSession.delete("UserDAO.modifyUserWithdraw", userid);
     }
 
+    //방문자수 더하기 실
+	@Override
+	public int memVisit(String userid) {
+        return sqlSession.update("UserDAO.memVisit", userid);
+	}
+
 	
 
 }

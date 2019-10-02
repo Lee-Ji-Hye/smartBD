@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -37,6 +38,9 @@ public class SysmasterServiceImpl implements SysmasterService{
 	
 	@Autowired
 	UserDAO dao;
+
+	@Autowired
+	PasswordEncoder pwEncoder;
 	
 	@Autowired
 	Functions fun;
@@ -67,9 +71,9 @@ public class SysmasterServiceImpl implements SysmasterService{
 		map.put("endNum", paging.getEnd());
 		
 		List<CompVO> compList = sysDAO.compList(map);
+		
 		model.addAttribute("compList", compList);
 		model.addAttribute("paging", paging);
-		
 	}
 
 	//업체 단건 조회
@@ -190,7 +194,7 @@ public class SysmasterServiceImpl implements SysmasterService{
 						.b_landarea(req.getParameter("b_landarea"))
 						.b_buildarea(req.getParameter("b_buildarea"))
 						.b_buildscale(req.getParameter("b_buildscale"))
-						.b_status("0")
+						.b_status("1")
 						
 						.b_park(req.getParameter("b_park"))
 						.b_elev(req.getParameter("b_elev"))
@@ -198,20 +202,19 @@ public class SysmasterServiceImpl implements SysmasterService{
 						.b_traffic(req.getParameter("b_traffic"))
 						.b_lat(Double.parseDouble(req.getParameter("b_lat")))//지도에서 가져와야댐
 						.b_lon(Double.parseDouble(req.getParameter("b_lon")))//지도에서가져와야댐
-						.userid(SecurityContextHolder.getContext().getAuthentication().getName())
+						.userid(req.getParameter("userid"))
 						.build();
 		
 		int count = 0;
 		count += dao.insertBd(vo);
 		//TODO 아이디, 업체코드를 넣은 권한 생성 CP_TENATE -> 계약코드가 없기때문에 권한은 못가짐..
-		//
 		//id, 업체코드, 권한명, insert 이거 승인되면 넣을예정
-//		HashMap<String,String> map = new HashMap<>();
-//		map.put("userid", SecurityContextHolder.getContext().getAuthentication().getName());
-//		map.put("comp_auth", "ROLE_BD_ADMIN");
-//		map.put("b_code", b_code);
-//		
-//		count += dao.insertAuth(map);
+		HashMap<String,String> map = new HashMap<>();
+		map.put("userid", req.getParameter("userid"));
+		map.put("comp_auth", "ROLE_BD_ADMIN");
+		map.put("b_code", b_code);
+		
+		count += dao.insertAuth(map);
 		
 //		log.debug("count = "+count);
 	}
@@ -237,6 +240,7 @@ public class SysmasterServiceImpl implements SysmasterService{
 		map.put("endNum", paging.getEnd());
 		
 		List<UserVO> memList = sysDAO.memList(map);
+		log.debug(memList.get(0).getRegidate().toString());
 		model.addAttribute("memList", memList);
 		model.addAttribute("paging", paging);
 	}
@@ -263,9 +267,21 @@ public class SysmasterServiceImpl implements SysmasterService{
 	}
 
 	@Override
-	public void memInsert(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
+	public int memInsert(HttpServletRequest req, Model model) {
+		//TODO 회원가입 null chk, db 중복 chk
+		UserVO vo = UserVO.builder()
+				.userid(req.getParameter("userid"))//아이디
+				.userpw(pwEncoder.encode(req.getParameter("userpw")))//비밀번호
+				.name(req.getParameter("name"))//이름
+				.email(req.getParameter("email"))//이메일
+				.hp(req.getParameter("hp"))//핸드폰번호
+				.build();
 		
+		log.debug("signUpUser : " + vo);
+		
+		int cnt = dao.insertUser(vo);
+		if(cnt == 0) model.addAttribute("vo", vo);
+		return cnt;
 	}
 
 	

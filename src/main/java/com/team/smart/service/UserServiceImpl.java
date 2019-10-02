@@ -74,6 +74,7 @@ public class UserServiceImpl implements UserService {
 				.comp_category(req.getParameter("comp_category"))// 종목
 				.comp_hp(req.getParameter("comp_hp"))// 대표전화번호
 				.comp_status("0")// 승인상태 
+				.b_code(req.getParameter("b_code"))
 				.build();
 		int count = 0;
 		count += dao.insertComp(vo);

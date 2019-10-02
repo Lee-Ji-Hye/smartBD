@@ -44,6 +44,13 @@ public class BDAdminDAOImpl implements BDAdminDAO{
 	public int authDel(Map<String, Object> map) {
 		return sqlSession.delete("BDAdminDAO.authDel", map);
 	}
+	
+
+	@Override
+	public int authComDel(Map<String, Object> map) {
+		return sqlSession.delete("BDAdminDAO.authComDel", map);
+	}
+	
 
 	//요청된 권한 상태 변경
 	@Override
@@ -57,6 +64,6 @@ public class BDAdminDAOImpl implements BDAdminDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.insert("BDAdminDAO.authInsert", map);
 	}
-	
+
 	
 }

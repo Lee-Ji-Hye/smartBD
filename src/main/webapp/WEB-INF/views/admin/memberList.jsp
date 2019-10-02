@@ -15,7 +15,7 @@ pageEncoding="UTF-8"%>
             
             <!-- Buttons -->
             <div style="margin-right:20px;">
-	            <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/sysmaster/cormn/inst'">등록</button>
+	            <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/sysmaster/memmn/inst'">등록</button>
             </div>
             <!-- End Buttons -->
           </div>
@@ -88,31 +88,6 @@ pageEncoding="UTF-8"%>
                   
                   <th scope="col" class="font-weight-medium">
                     <div class="d-flex justify-content-between align-items-center">
-                      	<strong>방문일</strong>
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	<strong>방문횟수</strong>
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
-                      	<strong>제제</strong>
-                      <div class="ml-2">
-                      </div>
-                    </div>
-                  </th>
-                  
-                  
-                  <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
                       	<strong>버튼</strong>
                       <div class="ml-2">
                       </div>
@@ -149,27 +124,9 @@ pageEncoding="UTF-8"%>
                     	${dto.regidate }
                     </div>
                   </td>
-                  <td class="align-middle">
-                    <div class="media align-items-center">
-                    	${dto.visit }
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <div class="media align-items-center">
-                    	${dto.visit_date }
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <div class="media align-items-center" id="details_b_status">
-                    	<c:if test="${dto.enabled==1}">승인</c:if>
-                    	<c:if test="${dto.enabled!=1}">승인 대기</c:if>
-                    </div>
-                  </td>
                   <td>
                     <div class="row justify-content-end mb-4">
                        <div class="media align-items-center">
-		            		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="memPro('amd_ok','${dto.userid}')">승인</button>
-	                  		<button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="memPro('amd_ng','${dto.userid}')">반려</button>
 	                  		<button type="button" class="btn btn-sm btn-danger transition-3d-hover" onclick="memPro('del','${dto.userid}')">삭제</button>
                        </div>
                     </div>
@@ -196,12 +153,15 @@ pageEncoding="UTF-8"%>
 		var method = "";
 		
 		if(jong === 'amd_ok'){
+			if(!confirm("승인 처리 하시겠어요?"))return false;
 			url += 'amd/1/' + userid;
 			method = "GET";
 		} else if(jong === 'amd_ng'){
+			if(!confirm("반려 처리 하시겠어요?"))return false;
 			url += 'amd/2/' + userid;
 			method = "GET";
 		} else if(jong === 'del'){
+			if(!confirm("삭제 처리 하시겠어요?"))return false;
 			url +=  'del/' + userid;
 			method = "GET";
 		}
@@ -213,6 +173,7 @@ pageEncoding="UTF-8"%>
 		request.onreadystatechange = function(){//콜백함수
 			if (request.readyState == 4) {
 				if(request.status == 200){
+					alert("처리되었습니다. ")
 					window.location = request.responseURL;
 				}else{
 					//실패했을때 알럿

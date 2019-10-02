@@ -18,10 +18,10 @@
     <tr style="background-color: #b9d2ec!important;" align="center">
       <th rowspan="2">구분</th>
       <th rowspan="2">금액</th>
-      <th rowspan="2">관리비</th>
+     
       <th scope="col" >입금 일자</th>
       <th scope="col" >월세 입금</th>
-      <th scope="col" >월세 입금</th>
+      
       <th rowspan="2">미납</th>
       <th rowspan="2">비고</th>
     </tr>
@@ -30,11 +30,11 @@
     <c:forEach var="dto" items="${dto}">
     <tr align="center">
       <th scope="row">${dto.rt_type}</th>
-      <td>${dto.rt_pay}</td>
-      <td>10000</td>
+      <td>${dto.rt_pay} <span class="text-success">ETH</span></td>
+     
       <td>${dto.rt_date1}</td>
       <td>통장</td>
-      <td>300000</td>
+      
       <td>0</td>
       <td>비고란</td>
     </tr>

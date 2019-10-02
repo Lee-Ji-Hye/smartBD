@@ -15,11 +15,7 @@ pageEncoding="UTF-8"%>
               
             </div>
             
-            <!-- Buttons -->
-            <div style="margin-right:20px;">
-	            <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="window.location='${path}/sysmaster/cormn/inst'">등록</button>
-            </div>
-            <!-- End Buttons -->
+            
           </div>
           <!-- End Activity Menu -->
         </div>
@@ -97,16 +93,17 @@ pageEncoding="UTF-8"%>
                   <!-- 권한 -->
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	${dto.req_auth}
+                    	<c:if test="${dto.req_auth == 'ROLE_CP_MANAGER'}">매니저</c:if>
+                    	<c:if test="${dto.req_auth == 'ROLE_CP_EMPLOYEE'}">일반 직원</c:if>
                     </div>
                   </td>
                   
                   <!-- 상태 -->
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	<c:if test="${dto.req_status=='0'}">승인 대기</c:if>
-                    	<c:if test="${dto.req_status=='1'}">승인</c:if>
-                    	<c:if test="${dto.req_status=='2'}">반려</c:if>
+                    	<c:if test="${dto.req_status==1}">승인</c:if>
+                    	<c:if test="${dto.req_status==0}"><span class="text-primary">승인 대기</span></c:if>
+                    	<c:if test="${dto.req_status==2}"><span class="text-danger">반려</span></c:if>
                     </div>
                   </td>
                   
@@ -191,7 +188,7 @@ pageEncoding="UTF-8"%>
                     <div class="row justify-content-end mb-4">
                        <div class="media align-items-center">
 	            		<button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1" onclick="compPro('amd_ok')">승인</button>
-                  		<!-- <button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="compPro('amd_ng')">반려</button> -->
+                  		<button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover" onclick="compPro('amd_ng')">반려</button>
                   		<button type="button" class="btn btn-sm btn-danger transition-3d-hover" onclick="compPro('del')">삭제</button>
                        </div>
                     </div>
@@ -236,7 +233,12 @@ pageEncoding="UTF-8"%>
 						obj.req_status = '승인';
 					} else if(obj.req_status === '2'){
 						obj.req_status = '반려';
-					} 
+					}
+					if(obj.req_auth === 'ROLE_CP_MANAGER'){
+						obj.req_auth = '매니저';
+					}else if(obj.req_auth === 'ROLE_CP_EMPLOYEE'){
+						obj.req_auth = '일반 직원';
+					}
 					// userid, name, hp, email, req_key, req_auth, req_date, req_status, confirm_date
 					document.getElementById('details_userid').innerHTML = obj.userid;
 					document.getElementById('details_name').innerHTML = obj.name;
@@ -267,13 +269,23 @@ pageEncoding="UTF-8"%>
 		var url = "${path}/cp_admin/fdepmn/";
 		var method = "";
 		
+
+		if(req_auth === '매니저'){
+			req_auth = 'ROLE_CP_MANAGER';
+		}else if(obj.req_auth === '일반 직원'){
+			req_auth = 'ROLE_CP_EMPLOYEE';
+		}
+		
 		if(jong === 'amd_ok'){
+			if(!confirm("승인처리 하시겠어요?"))return false;
 			url += 'amd/1/' + userid + "/" + req_auth;
 			method = "GET";
 		} else if(jong === 'amd_ng'){
+			if(!confirm("반려 처리 하시겠어요?"))return false;
 			url += 'amd/2/' + userid + "/" + req_auth;
 			method = "GET";
 		} else if(jong === 'del'){
+			if(!confirm("삭제 처리 하시겠어요?"))return false;
 			url +=  'del/' + userid + "/" + req_auth;
 			method = "GET";
 		}
@@ -285,6 +297,7 @@ pageEncoding="UTF-8"%>
 		request.onreadystatechange = function(){//콜백함수
 			if (request.readyState == 4) {
 				if(request.status == 200){
+					alert("처리되었습니다.");
 					window.location = request.responseURL;
 				}else{
 					//실패했을때 알럿

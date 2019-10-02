@@ -11,6 +11,7 @@ pageEncoding="UTF-8"%>
     <div class="container space-2">
       <div class="card">
        <div class="card-header py-4 px-0 mx-4">
+       	  <h4>　매물 정보</h4>
           <!-- Activity Menu -->
           <div class="row justify-content-sm-between align-items-sm-center">
             <div class="col-md-5 col-lg-4 mb-2 mb-md-0">

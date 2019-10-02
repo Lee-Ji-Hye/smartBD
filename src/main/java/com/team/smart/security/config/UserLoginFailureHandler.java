@@ -37,6 +37,7 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler{
 		//request.getRequestDispatcher("/WEB-INF/views/test.jsp").forward(request, response);
 
 
+		request.setAttribute("loginErr","아이디 또는 비밀번호가 일치하지 않습니다.");
 
 		if (defaultFailureUrl == null) {
 			log.debug("No failure URL set, sending 401 Unauthorized error");
@@ -55,7 +56,8 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler{
 			}
 			else {
 				log.debug("Redirecting to " + defaultFailureUrl);
-				redirectStrategy.sendRedirect(request, response, defaultFailureUrl);
+				request.getRequestDispatcher("WEB-INF/views/signup/login.jsp")
+				.forward(request, response);
 			}
 		}
 		

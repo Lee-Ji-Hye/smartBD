@@ -27,6 +27,8 @@ public class CP_TenantController {
 	RoomService r_service;
 
 	private String mngBuilding_ = "mng/building";
+	
+	@Autowired
 	UserService userService;
 
 	@RequestMapping({"/"})

@@ -5,6 +5,41 @@
 <%@ include file="../common/setting.jsp"%>
 <%@ include file="../common/header.jsp"%>
 
+<!-- 검색어 자동완성 부분 추가 -->
+<style>
+.autocomplete {
+    position: relative;
+    display: inline-block;
+}
+ 
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+     top: 100%;
+    left: 0;
+    right: 0;
+}
+ 
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+ 
+.autocomplete-items div:hover {
+    background-color: #e9e9e9;
+}
+ 
+.autocomplete-active {
+   background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+</style>
+
   <!-- ========== MAIN ========== -->
   <main id="content" role="main">
     <!-- Hire Us Title Section -->
@@ -28,7 +63,34 @@
     <div class="container space-bottom-2">
       <!-- Hire Us Form -->
       <form class="js-validate w-lg-50 mx-auto" action="${path}/cp_tenant/comp/putpro" method="post" name="signUpForm">
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                  
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">  
+      
+      
+        <!-- Input -->
+        <div class="js-form-message mb-6 row">
+        
+	        <div class="js-form-message col autocomplete">
+	        
+	          <label class="form-label">
+	            	소속 건물
+	            <span class="text-danger">*</span>
+	          </label>
+	          <input type="text" id="autoInput" onkeyup="startSearch()" class="form-control" name="b_name" placeholder="소속된 건물" autocomplete="off" required>
+	        </div>
+	        
+	        <div class="js-form-message col">
+	        
+	          <label class="form-label">
+	            	값
+	            <span class="text-danger">*</span>
+	          </label>
+	          <input type="text" id="code" name="b_code" readonly class="form-control">
+	        </div>
+	        
+        </div>
+        <!-- End Input -->
+
+                        
         <!-- Input -->
         <div class="js-form-message mb-6">
           <label class="form-label">
@@ -161,13 +223,72 @@
 
 
 <%@ include file="../common/footer.jsp"%>
+<!-- 검색어 자동완성 부분 추가 -->
+<script src="${resource}/js/autocomplet.js"></script>
+<script>
+	//var animal = ["베스킨라빈스","김치찌개","부대찌개","순두부찌개","된장찌개"];
+	
+	var checkFirst = true;
+	var loopSendKeyword = false; //
+	var lastKeyword = null;
 
-<script type="text/javascript">
-//submit event 처리
-document.signUpForm.btnSubmit.addEventListener("click", function() {
-	var fom = document.signUpForm;
-	fom.submit();
-});
+	function compPro(keyword, category) {
+		var request = new XMLHttpRequest();//지역변수 추천
+		request.open("GET", "${path}/member/search/" + category + "/" + keyword, true);//요청보내는거
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		console.dir(request);
+		request.onreadystatechange = function(){//콜백함수
+			if (request.readyState == 4) {
+				if(request.status == 200){
+					//for문으로 돌린 table의 집합 (컨트롤하기위한 class)
+					var tblclass = document.getElementsByClassName('form-original');
+					//삽입할 부모 테이블
+					var tbl = document.getElementsByTagName('table');
+					//숨겨져 있는 값
+					var details = document.getElementById('formDetail');
+					//서버에서 받아온 데이터
+					obj = JSON.parse(request.responseText);
+					//콘솔에찍음
+					console.log(obj);
+					setTimeout(autocomplete.setAutocomplete(document.getElementById("autoInput"), obj), 1500);
+				}else{
+					//실패했을때 알럿
+					alert("데이터 가져오기 실패");
+				}
+			}
+		};
+		request.send(null);
+	};
+	
+	//검색 타이머
+	function startSearch(){//onkeyup
+		let category = 'bd'
+		if(checkFirst == true){//fist try
+			loopSendKeyword = true; // 0.5sec loop
+			setTimeout(function(){
+				if(loopSendKeyword == false) return false;
+				
+				var keyword = document.getElementById("autoInput").value;
+
+			    if (!keyword.replace(/^\s+|\s+$/g, '')) {
+			        return false;
+			    }
+			    
+				if(keyword==null){
+					lastKeyword = "";
+				}else if(keyword != lastKeyword){
+					lastKeyword = keyword;
+					compPro(keyword, category);
+				}
+			}, 500);
+		}
+	}	
+
+	//submit event 처리
+	document.signUpForm.btnSubmit.addEventListener("click", function() {
+		var fom = document.signUpForm;
+		fom.submit();
+	});
 </script>
 </body>
 </html>

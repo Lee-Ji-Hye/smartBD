@@ -72,6 +72,7 @@
         <th>월세</th>
         <th>관리비</th>
         <th>권리금(상가만)</th>
+        <th>계약일</th>
         <!-- <th>미납내역확인</th> -->
         <!-- <th style="border-radius: 0px 10px 10px 0px";>비고</th> -->
       </tr>
@@ -86,10 +87,11 @@
         <td class="align-middle text-secondary">${dto.rt_mobile}</td>
         <td class="align-middle text-primary">${dto.rt_date1}</td>
         <td class="align-middle text-danger">${dto.rt_date2}</td>
-        <td class="align-middle text-secondary">${dto.rt_deposit}</td>
-        <td class="align-middle text-secondary">${dto.r_price}</td>
-        <td class="align-middle text-secondary">${dto.r_ofer_fee}</td>
-        <td class="align-middle text-secondary">${dto.r_premium}</td>
+        <td class="align-middle text-secondary">${dto.rt_deposit} ETH</td>
+        <td class="align-middle text-secondary">${dto.r_price} ETH</td>
+        <td class="align-middle text-secondary">${dto.r_ofer_fee} ETH</td>
+        <td class="align-middle text-secondary">${dto.r_premium} ETH</td>
+        <td class="align-middle text-secondary">${dto.r_regdate}</td>
       </tr>
       </c:forEach>
     </tbody>
@@ -122,7 +124,7 @@ $(function(){
   //btn클릭했을때
   $('.showDetail').click(function(){
 	 var rt_code =  $(this).attr('rt_code');
-	  alert(rt_code);
+	  
 		$.ajax({
 			url : '${pageContext.request.contextPath}/bd_office/paydetail',//컨트롤러
 			type : 'GET',

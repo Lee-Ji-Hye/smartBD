@@ -305,12 +305,12 @@
 
 /*계약전 필독사항*/
 @media screen and (min-width:500px) {  
-	.pre_contract{
-		width: 50%;
-		margin: 0px auto !important;
-		margin-top: 70px !important;
-		text-align: left !important;
-	}
+   .pre_contract{
+      width: 50%;
+      margin: 0px auto !important;
+      margin-top: 70px !important;
+      text-align: left !important;
+   }
 }
 
 /* map */
@@ -330,273 +330,279 @@
 .map .txt dd p span + span { margin-top:5px; }
 
 @media screen and (max-width:1400px) {  
-	/* mainVisual */
-	#mainVisual .slick-arrow { display:none !important; }
+   /* mainVisual */
+   #mainVisual .slick-arrow { display:none !important; }
 
-	/*section2*/
-	#main_section2_slider li img { display:none !important; }
+   /*section2*/
+   #main_section2_slider li img { display:none !important; }
 
-	/* section3 */
-	.sec3Con dl { padding:0 50px; }
+   /* section3 */
+   .sec3Con dl { padding:0 50px; }
 
-	/* section6 */
-	.optionChoice .service { width:25%; }
-	.optionChoice .cost { width:15%; }
-	.optionChoice .content { width:60%; }
-	#product_list li { float:none; display:inline-block;margin:0 6px 12px; }
+   /* section6 */
+   .optionChoice .service { width:25%; }
+   .optionChoice .cost { width:15%; }
+   .optionChoice .content { width:60%; }
+   #product_list li { float:none; display:inline-block;margin:0 6px 12px; }
 
-	/* 계약서 */
-	#contract_close { top:255px; left:auto; right:10px; margin-left:0; }
+   /* 계약서 */
+   #contract_close { top:255px; left:auto; right:10px; margin-left:0; }
 
-	/* map */
-	/*.map .txt { left:auto; right:0; margin-left:0; }*/
+   /* map */
+   /*.map .txt { left:auto; right:0; margin-left:0; }*/
 }
 
 @media screen and (max-width:1200px) {
-	.contractCon .contractSec3 .stamp img { left:auto; right:5px; top:auto; bottom:0; }
+   .contractCon .contractSec3 .stamp img { left:auto; right:5px; top:auto; bottom:0; }
 }
 
 @media screen and (max-width:1000px) {  
-	/* mainVisual */
-	#mainVisual .txt { margin-top:-95px; }
-	#mainVisual .txt h3 { margin-bottom:25px; font-size:40px; }
-	#mainVisual .txt p { font-size:18px; }
-	#mainVisual .slick-dots { top:auto; margin-top:0; bottom:20px; }
+   /* mainVisual */
+   #mainVisual .txt { margin-top:-95px; }
+   #mainVisual .txt h3 { margin-bottom:25px; font-size:40px; }
+   #mainVisual .txt p { font-size:18px; }
+   #mainVisual .slick-dots { top:auto; margin-top:0; bottom:20px; }
 
-	/* section common */
-	.con_tit { padding-top:60px; }
-	.con_tit h3 { margin-bottom:16px; font-size:25px; }
-	.con_tit p { font-size:16px; }
-	.con_tit > span { font-size:16px; }
+   /* section common */
+   .con_tit { padding-top:60px; }
+   .con_tit h3 { margin-bottom:16px; font-size:25px; }
+   .con_tit p { font-size:16px; }
+   .con_tit > span { font-size:16px; }
 
-	/*section1*/
-	.section1 .list li dd { font-size:14px; }
+   /*section1*/
+   .section1 .list li dd { font-size:14px; }
 
-	/*section2*/
-	.section2 { height:auto; padding:0 0 65px; background-size:cover; }
-	#main_section2_slider { margin-top:50px; padding:0 20px; }
-	#main_section2_slider li { width:100%; height:auto; margin:0; padding-bottom:40px; }
+   /*section2*/
+   .section2 { height:auto; padding:0 0 65px; background-size:cover; }
+   #main_section2_slider { margin-top:50px; padding:0 20px; }
+   #main_section2_slider li { width:100%; height:auto; margin:0; padding-bottom:40px; }
 
-	#main_section2_slider li img { display:block !important; width:100%; height:auto; }
+   #main_section2_slider li img { display:block !important; width:100%; height:auto; }
 
-	#main_section2_slider .slick-current > div { padding:0; }
-	#main_section2_slider .slick-current dl { height:260px; padding:0 20px; }
-	#main_section2_slider .slick-current dt { display:table-cell; padding-top:0; vertical-align:middle; }
-	#main_section2_slider .slick-current dt em span { display:inline; }
+   #main_section2_slider .slick-current > div { padding:0; }
+   #main_section2_slider .slick-current dl { height:260px; padding:0 20px; }
+   #main_section2_slider .slick-current dt { display:table-cell; padding-top:0; vertical-align:middle; }
+   #main_section2_slider .slick-current dt em span { display:inline; }
 
-	/* section3 */
-	.sec3Con dl { height:auto; padding:50px; }
-	.sec3Con dt { padding:0 0 24px; font-size:25px; }
-	.sec3Con dd { padding-top:25px; }
+   /* section3 */
+   .sec3Con dl { height:auto; padding:50px; }
+   .sec3Con dt { padding:0 0 24px; font-size:25px; }
+   .sec3Con dd { padding-top:25px; }
 
-	/* section4 */
-	.section4 { padding-bottom:50px; }
-	.img_list { margin-top:20px; position:relative; }
-	.img_list ul { padding:0 20px; }
-	.img_list li { width:100%; height:auto; }
-	.img_list li img { height:auto; }
-	.img_list .over { display:block; position:static; height:auto; margin-top:20px; background:none; }
-	.img_list li:hover .over { display:block; }
-	.img_list .over p { display:block; color:#333; font-size:17px; text-shadow:none; }
-	.img_list .over p span { font-size:15px; margin-top:5px; font-weight:250; }
-	.img_list .slick-arrow { top:50%; width:40px; height:40px; margin-top:-42px; border:none; border-radius:50%; overflow:hidden; text-indent:-5000px; z-index:1; cursor:pointer; }
-	.img_list .slick-prev { left:30px; background:url(/img/main/imgBoard_prev.png) center no-repeat rgba(0,0,0,.7); }
-	.img_list .slick-next { right:30px; background:url(/img/main/imgBoard_next.png) center no-repeat rgba(0,0,0,.7); }
+   /* section4 */
+   .section4 { padding-bottom:50px; }
+   .img_list { margin-top:20px; position:relative; }
+   .img_list ul { padding:0 20px; }
+   .img_list li { width:100%; height:auto; }
+   .img_list li img { height:auto; }
+   .img_list .over { display:block; position:static; height:auto; margin-top:20px; background:none; }
+   .img_list li:hover .over { display:block; }
+   .img_list .over p { display:block; color:#333; font-size:17px; text-shadow:none; }
+   .img_list .over p span { font-size:15px; margin-top:5px; font-weight:250; }
+   .img_list .slick-arrow { top:50%; width:40px; height:40px; margin-top:-42px; border:none; border-radius:50%; overflow:hidden; text-indent:-5000px; z-index:1; cursor:pointer; }
+   .img_list .slick-prev { left:30px; background:url(/img/main/imgBoard_prev.png) center no-repeat rgba(0,0,0,.7); }
+   .img_list .slick-next { right:30px; background:url(/img/main/imgBoard_next.png) center no-repeat rgba(0,0,0,.7); }
 
-	/* section5 */
-	#sec5Con li > label { width:13%; }
-	#sec5Con li.w50 > label { width:26%; }
-	#sec5Con .inputSize2 { width:240px; }
-	#sec5Con .inputSize3 { width:100%; max-width:745px; }
+   /* section5 */
+   #sec5Con li > label { width:13%; }
+   #sec5Con li.w50 > label { width:26%; }
+   #sec5Con .inputSize2 { width:240px; }
+   #sec5Con .inputSize3 { width:100%; max-width:745px; }
 
-	/* section6 */
-	.sec6Con1 li { font-size:14px; }
-	.optionChoice th { font-size:15px; }
-	.optionChoice td { font-size:13px; padding:10px; }
-	.optionChoice td:nth-child(1), .optionChoice th:nth-child(1) { width:170px; }
-	.optionChoice td:nth-child(2), .optionChoice th:nth-child(2) { width:80px; }
-	/*
-	.optionProduct .optionChoice dl { width:100%; overflow:hidden; padding:20px; background:#fff; border:1px solid #ccc; border-top:none; box-sizing:border-box; }
-	.optionProduct .optionChoice .service { padding:0; }
-	.optionProduct .optionChoice .cost { border-bottom:none; }
-	.optionChoice dt { padding:0 0 10px; background:none; text-align:left; color:#ff6300; border:none; }
-	.optionChoice .service dt { padding:17px 0; text-align:center; color:#fff; background:#ff6300; }
-	.optionChoice dd { height:auto; line-height:1.2em; padding:0; border:none; }
-	.optionChoice .service dd { float:left; padding:20px; }
-	.optionChoice dd:first-child { height:auto; line-height:1.2em; border-top:1px solid #ccc; }
-	.optionChoice .tab dd:last-child { display:none; }
-	.optionChoice .content dd { border-right:none; }
-	.optionChoice .content dd:last-child { padding:0; }
-	*/
+   /* section6 */
+   .sec6Con1 li { font-size:14px; }
+   .optionChoice th { font-size:15px; }
+   .optionChoice td { font-size:13px; padding:10px; }
+   .optionChoice td:nth-child(1), .optionChoice th:nth-child(1) { width:170px; }
+   .optionChoice td:nth-child(2), .optionChoice th:nth-child(2) { width:80px; }
+   /*
+   .optionProduct .optionChoice dl { width:100%; overflow:hidden; padding:20px; background:#fff; border:1px solid #ccc; border-top:none; box-sizing:border-box; }
+   .optionProduct .optionChoice .service { padding:0; }
+   .optionProduct .optionChoice .cost { border-bottom:none; }
+   .optionChoice dt { padding:0 0 10px; background:none; text-align:left; color:#ff6300; border:none; }
+   .optionChoice .service dt { padding:17px 0; text-align:center; color:#fff; background:#ff6300; }
+   .optionChoice dd { height:auto; line-height:1.2em; padding:0; border:none; }
+   .optionChoice .service dd { float:left; padding:20px; }
+   .optionChoice dd:first-child { height:auto; line-height:1.2em; border-top:1px solid #ccc; }
+   .optionChoice .tab dd:last-child { display:none; }
+   .optionChoice .content dd { border-right:none; }
+   .optionChoice .content dd:last-child { padding:0; }
+   */
 
-	/*.map .inner { margin:0 10px; }*/
+   /*.map .inner { margin:0 10px; }*/
 }
 
 @media screen and (max-width:780px) {  
-	/* mainVisual */
-	#mainVisual li { overflow:hidden; }
-	#mainVisual img { width:auto; height:500px; }
-	#mainVisual .txt { margin-top:-65px; }
-	#mainVisual .txt h3 { margin-bottom:10px; font-size:25px; }
-	#mainVisual .txt p { font-size:16px; }
-	#mainVisual .txt p span { display:inline; }
+   /* mainVisual */
+   #mainVisual li { overflow:hidden; }
+   #mainVisual img { width:auto; height:500px; }
+   #mainVisual .txt { margin-top:-65px; }
+   #mainVisual .txt h3 { margin-bottom:10px; font-size:25px; }
+   #mainVisual .txt p { font-size:16px; }
+   #mainVisual .txt p span { display:inline; }
 
-	/* section1 */
-	.section1 { padding:10px 0 60px; }
-	.section1 .con_tit { margin-bottom:40px; }
-	.section1 .con_tit p { font-size:16px; }
+   /* section1 */
+   .section1 { padding:10px 0 60px; }
+   .section1 .con_tit { margin-bottom:40px; }
+   .section1 .con_tit p { font-size:16px; }
 
-	.section1 .txt { display:table-cell; height:220px; background-size:cover; vertical-align:middle; }
-	.section1 .txt dt { padding:0 0 15px; }
-	.section1 .txt dd { font-size:16px; }
-	.section1 .txt dd span { display:inline; }
+   .section1 .txt { display:table-cell; height:220px; background-size:cover; vertical-align:middle; }
+   .section1 .txt dt { padding:0 0 15px; }
+   .section1 .txt dd { font-size:16px; }
+   .section1 .txt dd span { display:inline; }
 
-	.section1 .list p { margin:40px 0 15px; font-size:22px; line-height:1.2em; }
-	.section1 .list > span { font-size:16px; }
-	.section1 .list li { width:50%; height:235px; }
-	.section1 .list li:after { display:none; }
-	.section1 .list li dt { font-size:30px; }
-	.section1 .list li dd span { display:inline; }
+   .section1 .list p { margin:40px 0 15px; font-size:22px; line-height:1.2em; }
+   .section1 .list > span { font-size:16px; }
+   .section1 .list li { width:50%; height:235px; }
+   .section1 .list li:after { display:none; }
+   .section1 .list li dt { font-size:30px; }
+   .section1 .list li dd span { display:inline; }
 
-	/* section2 */
-	#main_section2_slider { padding:0 10px; }
-	#main_section2_slider .slick-current dl { height:320px; }
-	#main_section2_slider .slick-current dt { font-size:20px; height:70px; }
-	#main_section2_slider .slick-current dt strong { float:none; display:inline-block; margin-right:4px; font-size:20px; opacity:1; }
-	#main_section2_slider .slick-current dt em { float:none; display:inline; }
-	#main_section2_slider .slick-current dt em span { display:inline; }
-	#main_section2_slider .slick-current dd { padding-top:20px; font-size:16px; }
-	#main_section2_slider .slick-current dd p span { display:inline; }
+   /* section2 */
+   #main_section2_slider { padding:0 10px; }
+   #main_section2_slider .slick-current dl { height:320px; }
+   #main_section2_slider .slick-current dt { font-size:20px; height:70px; }
+   #main_section2_slider .slick-current dt strong { float:none; display:inline-block; margin-right:4px; font-size:20px; opacity:1; }
+   #main_section2_slider .slick-current dt em { float:none; display:inline; }
+   #main_section2_slider .slick-current dt em span { display:inline; }
+   #main_section2_slider .slick-current dd { padding-top:20px; font-size:16px; }
+   #main_section2_slider .slick-current dd p span { display:inline; }
 
-	/* section3 */
-	.section3 { padding-bottom:0; background:#fff; }
-	.sec3Con .left { display:none; }
-	.sec3Con .right { width:100%; background:url(/img/main/img_section3.jpg) center / cover no-repeat; }
-	.sec3Con .right > p { display:none; }
-	.sec3Con dl { background:rgba(56,51,44,.9); }
-	.sec3Con dt { font-size:22px; }
+   /* section3 */
+   .section3 { padding-bottom:0; background:#fff; }
+   .sec3Con .left { display:none; }
+   .sec3Con .right { width:100%; background:url(/img/main/img_section3.jpg) center / cover no-repeat; }
+   .sec3Con .right > p { display:none; }
+   .sec3Con dl { background:rgba(56,51,44,.9); }
+   .sec3Con dt { font-size:22px; }
 
-	/* section5 */
-	.section5 { height:auto; padding-bottom:60px; }
-	.section5 .tab { display:none; }
-	#sec5Con { margin:20px 20px 0; }
-	#sec5Con ul { padding-bottom:40px; }
-	#sec5Con li { position:relative; padding:0 20px; box-sizing:border-box; }
-	#sec5Con li.w50 { width:100%; }
-	#sec5Con li > label { display:block; position:absolute; left:20px; right:20px; top:10px; width:auto; line-height:40px; padding:0; text-align:center; color:#555; }
-	#sec5Con li.w50 > label { width:auto; }
-	#sec5Con li > label.forContent { line-height:100px; }
-	#sec5Con li > label.forFile { display:none !important; }
-	#sec5Con li > label.forCaptcha { line-height:115px; }
-	#sec5Con li > p { display:block; padding:10px 0; }
-	#sec5Con li input { height:40px; }
-	#sec5Con .inputSize2 { width:100%; }
-	#sec5Con .inputSize3 { width:100%; }
-	#sec5Con .filebox .upload-name { position:absolute; left:20px; bottom:-40px; background:none; border:none; color:#fff; }
-	#sec5Con .filebox label { display:none; }
-	#sec5Con .filebox .formobile{ display:block; width:100%; height:40px; line-height:40px; margin:0; }
-	#sec5Con .btns { margin-top:0px; padding:0 20px; }
-	#sec5Con .btns .btn_submit { width:100%; height:65px; line-height:65px; font-size:18px; font-weight:400; border-radius:0; background-size:auto 100%; }
-	#sec5Con .btns .btn_cancle { display:none; }
+   /* section5 */
+   .section5 { height:auto; padding-bottom:60px; }
+   .section5 .tab { display:none; }
+   #sec5Con { margin:20px 20px 0; }
+   #sec5Con ul { padding-bottom:40px; }
+   #sec5Con li { position:relative; padding:0 20px; box-sizing:border-box; }
+   #sec5Con li.w50 { width:100%; }
+   #sec5Con li > label { display:block; position:absolute; left:20px; right:20px; top:10px; width:auto; line-height:40px; padding:0; text-align:center; color:#555; }
+   #sec5Con li.w50 > label { width:auto; }
+   #sec5Con li > label.forContent { line-height:100px; }
+   #sec5Con li > label.forFile { display:none !important; }
+   #sec5Con li > label.forCaptcha { line-height:115px; }
+   #sec5Con li > p { display:block; padding:10px 0; }
+   #sec5Con li input { height:40px; }
+   #sec5Con .inputSize2 { width:100%; }
+   #sec5Con .inputSize3 { width:100%; }
+   #sec5Con .filebox .upload-name { position:absolute; left:20px; bottom:-40px; background:none; border:none; color:#fff; }
+   #sec5Con .filebox label { display:none; }
+   #sec5Con .filebox .formobile{ display:block; width:100%; height:40px; line-height:40px; margin:0; }
+   #sec5Con .btns { margin-top:0px; padding:0 20px; }
+   #sec5Con .btns .btn_submit { width:100%; height:65px; line-height:65px; font-size:18px; font-weight:400; border-radius:0; background-size:auto 100%; }
+   #sec5Con .btns .btn_cancle { display:none; }
 
-	/* section6 */
-	.section6 { padding:0 20px 85px; }
-	.sec6Con1 li { width:100%; padding:20px 0; margin:0 0 12px; line-height:1em; border-radius:5px; font-size:17px; }
-	.sec6Con1 li:after { left:0; right:0; top:auto; bottom:-8px; width:16px; height:8px; margin:0 auto; background:url(/img/main/m_arr_section6_1.png); }
-	.sec6Con1 li.list2:after { background-image:url(/img/main/m_arr_section6_2.png); }
-	.sec6Con1 li.list3:after { background-image:url(/img/main/m_arr_section6_3.png); }
-	.sec6Con1 li.list4:after { background-image:url(/img/main/m_arr_section6_4.png); }
-	.sec6Con1 li.list5:after { background-image:url(/img/main/m_arr_section6_5.png); }
-	.sec6Con1 li span { display:inline; }
-	#main_pSelect_option label { margin:0; font-size:18px; }
-	#main_pSelect_option label + label { margin-left:25px; }
-	#product_list #product1 p { display:block; margin:0 !important; }
-	#product_list #product1 a { font-size:40px; }
-	.optionChoice th { font-size:14px; padding:10px 0; }
-	.optionChoice td { padding:5px; font-size:12px; }
-	.optionChoice td:nth-child(1), .optionChoice th:nth-child(1) { width:29%; }
-	.optionChoice td:nth-child(2), .optionChoice th:nth-child(2) { width:22%; }
-	#product_list { padding:0 20px; }
-	#product_list li { width:100%; height:360px; margin:0 0 12px; }
-	#product_list li dl { height:338px; }
-	#product_list .btn_payment { left:8%; width:84%; }
+   /* section6 */
+   .section6 { padding:0 20px 85px; }
+   .sec6Con1 li { width:100%; padding:20px 0; margin:0 0 12px; line-height:1em; border-radius:5px; font-size:17px; }
+   .sec6Con1 li:after { left:0; right:0; top:auto; bottom:-8px; width:16px; height:8px; margin:0 auto; background:url(/img/main/m_arr_section6_1.png); }
+   .sec6Con1 li.list2:after { background-image:url(/img/main/m_arr_section6_2.png); }
+   .sec6Con1 li.list3:after { background-image:url(/img/main/m_arr_section6_3.png); }
+   .sec6Con1 li.list4:after { background-image:url(/img/main/m_arr_section6_4.png); }
+   .sec6Con1 li.list5:after { background-image:url(/img/main/m_arr_section6_5.png); }
+   .sec6Con1 li span { display:inline; }
+   #main_pSelect_option label { margin:0; font-size:18px; }
+   #main_pSelect_option label + label { margin-left:25px; }
+   #product_list #product1 p { display:block; margin:0 !important; }
+   #product_list #product1 a { font-size:40px; }
+   .optionChoice th { font-size:14px; padding:10px 0; }
+   .optionChoice td { padding:5px; font-size:12px; }
+   .optionChoice td:nth-child(1), .optionChoice th:nth-child(1) { width:29%; }
+   .optionChoice td:nth-child(2), .optionChoice th:nth-child(2) { width:22%; }
+   #product_list { padding:0 20px; }
+   #product_list li { width:100%; height:360px; margin:0 0 12px; }
+   #product_list li dl { height:338px; }
+   #product_list .btn_payment { left:8%; width:84%; }
 
-	/* 계약서 */
-	#contract { padding:0 20px 80px; }
-	.contractCon .tablStyle { font-size:13px; }
-	.contractCon .tablStyle.w50 { float:left; width:100%; }
-	.contractCon .tablStyle th { width:85px; }
-	.contractCon dd span { width:96%; }
-	.contractCon dd span:first-child { width:4%; }
-	.contractCon .contractSec2 div { overflow:hidden; }
-	.contractCon .contractSec2 div table:nth-child(2) th, .contractCon .contractSec2 div table:nth-child(2) td { border-left:2px solid #555; border-top:none; }
-	.contractCon .contractSec3 div { width:100%; margin:0 0 20px; border:none !important; }
-	.contractCon .contractSec3 div:last-child { margin-bottom:0; }
-	.contractCon .tablStyle td { padding:13px 10px; }
-	.contractCon .contractSec3 .stamp img { left:220px; right:auto; }
+   /* 계약서 */
+   #contract { padding:0 20px 80px; }
+   .contractCon .tablStyle { font-size:13px; }
+   .contractCon .tablStyle.w50 { float:left; width:100%; }
+   .contractCon .tablStyle th { width:85px; }
+   .contractCon dd span { width:96%; }
+   .contractCon dd span:first-child { width:4%; }
+   .contractCon .contractSec2 div { overflow:hidden; }
+   .contractCon .contractSec2 div table:nth-child(2) th, .contractCon .contractSec2 div table:nth-child(2) td { border-left:2px solid #555; border-top:none; }
+   .contractCon .contractSec3 div { width:100%; margin:0 0 20px; border:none !important; }
+   .contractCon .contractSec3 div:last-child { margin-bottom:0; }
+   .contractCon .tablStyle td { padding:13px 10px; }
+   .contractCon .contractSec3 .stamp img { left:220px; right:auto; }
 
-	#contract .btns .btn_submit { width:40%; background:#ff2400; }
-	#contract .btns .btn_cancle { width:30%; background:#555555; }
+   #contract .btns .btn_submit { width:40%; background:#ff2400; }
+   #contract .btns .btn_cancle { width:30%; background:#555555; }
 
-	/* map */
-	.map .root_daum_roughmap { height:450px; }
-	.map .txt { position:static; width:100%; -webkit-transform:translateY(0); -ms-transform:translateY(0); transform:translateY(0); }
-	.map .txt dl { padding:30px 5% 10px; }
-	.map .txt dt { padding-bottom:20px; margin-bottom:30px; }
-	.map .txt br { display:none; }
+   /* map */
+   .map .root_daum_roughmap { height:450px; }
+   .map .txt { position:static; width:100%; -webkit-transform:translateY(0); -ms-transform:translateY(0); transform:translateY(0); }
+   .map .txt dl { padding:30px 5% 10px; }
+   .map .txt dt { padding-bottom:20px; margin-bottom:30px; }
+   .map .txt br { display:none; }
 }
 
 
 @media screen and (max-width:480px) {  
-	/* section3 */
-	.sec3Con dl { padding:40px 15px; }
-	.sec3Con dt { letter-spacing:-0.03em; }
+   /* section3 */
+   .sec3Con dl { padding:40px 15px; }
+   .sec3Con dt { letter-spacing:-0.03em; }
 
-	/* section5 */
-	#sec5Con { margin:20px 10px 0; }
-	#sec5Con li { padding:0 10px; }
-	#sec5Con .btns { padding:0 10px; }
-	#sec5Con .btns .btn_submit { height:50px; line-height:50px; }
+   /* section5 */
+   #sec5Con { margin:20px 10px 0; }
+   #sec5Con li { padding:0 10px; }
+   #sec5Con .btns { padding:0 10px; }
+   #sec5Con .btns .btn_submit { height:50px; line-height:50px; }
 
-	/* section6 */
-	.optionChoice .service dd { float:none; }
-	.optionChoice .service dd:last-child { padding-top:0; }
+   /* section6 */
+   .optionChoice .service dd { float:none; }
+   .optionChoice .service dd:last-child { padding-top:0; }
 
-	#main_pSelect {width:100%; box-sizing:border-box;}
-	#main_pSelect_option {width:auto;}
-	#main_pSelect_option label { font-size:14px; /*padding-left:8px;*/ }
-	#main_pSelect_option label + label { margin-left:1%; }
-	/*#main_pSelect_option label:before { width:4px; height:4px; margin-top:-2px; }*/
+   #main_pSelect {width:100%; box-sizing:border-box;}
+   #main_pSelect_option {width:auto;}
+   #main_pSelect_option label { font-size:14px; /*padding-left:8px;*/ }
+   #main_pSelect_option label + label { margin-left:1%; }
+   /*#main_pSelect_option label:before { width:4px; height:4px; margin-top:-2px; }*/
 
-	#product_list { padding:0; }
+   #product_list { padding:0; }
 
-	/* 계약서 */
-	#contract { padding:0 3% 50px; }
-	#contract > .tit { margin:50px 0 30px; }
-	#contract > .tit h2 { margin-bottom:25px;font-size:30px;  }
-	#contract > .tit p { font-size:16px; color:#222; }
+   /* 계약서 */
+   #contract { padding:0 3% 50px; }
+   #contract > .tit { margin:50px 0 30px; }
+   #contract > .tit h2 { margin-bottom:25px;font-size:30px;  }
+   #contract > .tit p { font-size:16px; color:#222; }
 
-	.contractCon section { padding:20px 10px; }
+   .contractCon section { padding:20px 10px; }
 
-	.contractCon .tablStyle th { width:70px; }
-	.contractCon .tablStyle td { padding:13px 5px; }
-	.contractCon .tablStyle.style2 td { padding:5px; }
+   .contractCon .tablStyle th { width:70px; }
+   .contractCon .tablStyle td { padding:13px 5px; }
+   .contractCon .tablStyle.style2 td { padding:5px; }
 
-	.contractCon .tit { font-size:16px; }
-	.contractCon dl {  font-size:13px; }
-	.contractCon dd span { width:95%; }
-	.contractCon dd span:first-child { width:5%; }
+   .contractCon .tit { font-size:16px; }
+   .contractCon dl {  font-size:13px; }
+   .contractCon dd span { width:95%; }
+   .contractCon dd span:first-child { width:5%; }
 
-	.contractCon .contractSec4 #specialAgreement { font-size:16px; }
-	.contractCon .contractSec5 h3 { font-size:16px; }
-	.contractCon .contractSec3 .stamp img { left:auto; right:5px; }
+   .contractCon .contractSec4 #specialAgreement { font-size:16px; }
+   .contractCon .contractSec5 h3 { font-size:16px; }
+   .contractCon .contractSec3 .stamp img { left:auto; right:5px; }
 
-	/* map */
-	.map .root_daum_roughmap { height:250px; }
+   /* map */
+   .map .root_daum_roughmap { height:250px; }
+}
+.form-control{
+   width: 300px;
+   position: relative;
+    left: 10px;
+     top:20px;"
 }
 </style>
-	<!-- ========== MAIN ========== -->
-	<main id="content" role="main">
+   <!-- ========== MAIN ========== -->
+   <main id="content" role="main">
     <!-- Breadcrumb Section -->
     <div class="bg-primary">
       <div class="container space-top-1 pb-3">
@@ -662,28 +668,16 @@
     <div class="bg-light">
       <div class="container space-2">
         <div class="card">
-          <div class="card-header py-4 px-0 mx-4">
-            <!-- Activity Menu -->
-            <div class="row justify-content-sm-between align-items-sm-center">
-              <div class="col-md-5 col-lg-4 mb-2 mb-md-0"></div>
-              <div class="col-md-6">
-                <div class="d-flex">
-                  <div class="mr-2">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Activity Menu -->
-          </div>
+          
           
           <form method="get" id="form" name="form" >
-          	<input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}">
-          	<input type="button" id="serBtn" value="검색"  class="btn btn-sm btn-soft-secondary transition-3d-hover">
+             <input class="form-control" id="myInput" name ="sertext"  type="text" placeholder="Search.." value="${sertext}"  >
+             <input type="button" id="serBtn" value="검색"  class="btn btn-sm btn-soft-secondary transition-3d-hover" style="position: relative; left: 335px; top: -30px; height: 50px;">
           <div class="card-body p-4">
             <!-- Activity Table -->
             <div class="table-responsive-md u-datatable">
               <table id='table'
-              		 class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5"
+                     class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5"
                      data-dt-info="#datatableInfo"
                      data-dt-search="#datatableSearch"
                      data-dt-entries="#datatableEntries"
@@ -706,6 +700,7 @@
                      data-dt-pagination-prev-link-classes="page-link"
                      data-dt-pagination-prev-link-markup='<span aria-hidden="true">&laquo;</span>'>
                 <thead>
+
                   <tr class="text-uppercase font-size-1">
                     <th scope="col" class="font-weight-medium">
                       <div class="d-flex justify-content-between align-items-center">
@@ -737,10 +732,10 @@
               <tbody class="font-size-1">
               <c:set var="index" value="${0}"/>
               <c:forEach var="dto" items="${dtos}">
-              	<tr class="text-uppercase font-size-1 form-original">
+              	<tr class="text-uppercase font-size-1 form-original" onclick="contractDetail('${dto.rt_code}',${index},'${dto.r_blockcode}')">
                   <td class="align-middle">
                     <div class="media align-items-center">
-                    	<a onclick="contractDetail('${dto.rt_code}',${index},'${dto.r_blockcode}')">${dto.rt_code}</a>
+                    	${dto.rt_code}
                     </div>
                   </td>
                   <td class="align-middle">
@@ -827,21 +822,21 @@
 					<tbody>
 						<tr>
 							<td class="td_center">보증금 (최초 1회)</td>
-							<td class="td_right" id="r_price">ex) 700,000원</td>
+							<td class="td_center" id="r_price">ex) 700,000원</td>
 						</tr>
 						<tr>
 							<td class="td_center">월 임대료</td>
-							<td class="td_right" id="r_deposit">ex) 600,000원</td>
+							<td class="td_center" id="r_deposit">ex) 600,000원</td>
 						</tr>
 						<tr>
 							<td class="td_center">권리금</td>
-							<td class="td_right" id="r_premium">ex) 0원</td>
+							<td class="td_center" id="r_premium">ex) 0원</td>
 						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
 							<td class="td_center">합 계</td>
-							<td class="td_right" id="r_price + r_deposit">ex) 1,300,000원</td>
+							<td class="td_center" id="r_price + r_deposit">ex) 1,300,000원</td>
 						</tr>
 					</tfoot>
 				</table>
@@ -963,52 +958,63 @@
     <!-- End Content Section -->
     <script type="text/javascript">
    	function contractDetail(rt_code, tbl_index, r_blockcode){
-   		var request = new XMLHttpRequest();//지역변수 추천
-   		request.open("GET", "${path}/bd_office/detail/" + rt_code + "/" + r_blockcode, true);//요청보내는거
-   		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-   		console.dir(request);
-   		request.onreadystatechange = function(){//콜백함수
-   			if (request.readyState == 4) {
-   				if(request.status == 200){
-   					//for문으로 돌린 table의 집합 (컨트롤하기위한 class)
-   					var tblclass = document.getElementsByClassName('form-original');
-   					//삽입할 부모 테이블
-   					var tbl = document.getElementById('table')
-   					//숨겨져 있는 값
-   					var details = document.getElementById('formDetail');
-   					//서버에서 받아온 데이터
-   					obj = JSON.parse(request.responseText);
-   					//콘솔에찍음
-   					console.log(obj);
-   					document.getElementById('b_area1 + b_area2 + b_address').innerHTML = obj.b_area1 + " " + obj.b_area2 + " " + obj.b_address;
-   					document.getElementById('b_year').innerHTML = obj.b_year;
-   					document.getElementById('b_landarea').innerHTML = obj.b_landarea;
-   					document.getElementById('b_buildscale').innerHTML = obj.b_buildscale;
-   					document.getElementById('b_buildarea').innerHTML = obj.b_buildarea;
-   					document.getElementById('r_price').innerHTML = obj.r_price;
-   					document.getElementById('r_deposit').innerHTML = obj.r_deposit;
-   					document.getElementById('r_premium').innerHTML = obj.r_premium;
-   					document.getElementById('r_price + r_deposit + r_premium').innerHTML = obj.r_price + obj.r_deposit + obj.r_premium;
-   					document.getElementById('rt_mobile').innerHTML = obj.rt_mobile;
-   					document.getElementById('rt_email').innerHTML = obj.rt_email;
-   					document.getElementById('name').innerHTML = obj.name;
-   					document.getElementById('hp').innerHTML = obj.hp;
-   					document.getElementById('email').innerHTML = obj.email;
-   					document.getElementById('rt_name').innerHTML = obj.rt_name;
-   					document.getElementById('rt_businessNum').innerHTML = obj.rt_businessNum;
-   					document.getElementById('rt_address').innerHTML = obj.rt_address;
-   					
-   					//삽입될 위치를 변경
-   					tbl.children[1].insertBefore(details, tblclass[tbl_index + 1]);
-   					//display 속성을 변경
-   					details.style.display="table-row";
-   				}else{
-   					//실패했을때 알럿
-   					alert("데이터 가져오기 실패");
-   				}
-   			}
-   		};
-   		request.send(null);
+   		//상세보기창이 display:none이면 false 출력
+		if($('#formDetail').is(':visible')){
+			// display:table-row일때
+			//숨겨야됨
+			$("#formDetail").hide();
+		}else{
+			// display:none일때
+			//펼쳐야됨
+			var request = new XMLHttpRequest();//지역변수 추천
+	   		request.open("GET", "${path}/bd_office/detail/" + rt_code + "/" + r_blockcode, true);//요청보내는거
+	   		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	   		console.dir(request);
+	   		request.onreadystatechange = function(){//콜백함수
+	   			if (request.readyState == 4) {
+	   				if(request.status == 200){
+	   					//for문으로 돌린 table의 집합 (컨트롤하기위한 class)
+	   					var tblclass = document.getElementsByClassName('form-original');
+	   					//삽입할 부모 테이블
+	   					var tbl = document.getElementById('table')
+	   					//숨겨져 있는 값
+	   					var details = document.getElementById('formDetail');
+	   					//서버에서 받아온 데이터
+	   					obj = JSON.parse(request.responseText);
+	   					//콘솔에찍음
+	   					console.log(obj);
+	   					document.getElementById('b_area1 + b_area2 + b_address').innerHTML = obj.b_area1 + " " + obj.b_area2 + " " + obj.b_address;
+	   					var array1 = obj.b_year.split("/");
+	   					document.getElementById('b_year').innerHTML = array1[0]+"년 "+array1[1]+"월";
+	   					document.getElementById('b_landarea').innerHTML = obj.b_landarea + " ㎡";
+	   			        var array2 = obj.b_buildscale.split(",");
+	   					document.getElementById('b_buildscale').innerHTML = array2[0]+"층 ~ "+array2[1]+"층";
+	   					document.getElementById('b_buildarea').innerHTML = obj.b_buildarea + " ㎡";
+	   					document.getElementById('r_price').innerHTML = obj.r_price + " ETH";
+	   					document.getElementById('r_deposit').innerHTML = obj.r_deposit + " ETH";
+	   					document.getElementById('r_premium').innerHTML = obj.r_premium + " ETH";
+	   					document.getElementById('r_price + r_deposit').innerHTML = obj.r_price + obj.r_deposit + " ETH";
+	   					document.getElementById('rt_mobile').innerHTML = obj.rt_mobile;
+	   					document.getElementById('rt_email').innerHTML = obj.rt_email;
+	   					document.getElementById('name').innerHTML = obj.name;
+	   					document.getElementById('hp').innerHTML = obj.hp;
+	   					document.getElementById('email').innerHTML = obj.email;
+	   					document.getElementById('rt_name').innerHTML = obj.rt_name;
+	   					document.getElementById('rt_businessNum').innerHTML = obj.rt_businessNum;
+	   					document.getElementById('rt_address').innerHTML = obj.rt_address;
+	   					
+	   					//삽입될 위치를 변경
+	   					tbl.children[1].insertBefore(details, tblclass[tbl_index + 1]);
+	   					//display 속성을 변경
+	   					details.style.display="table-row";
+	   				}else{
+	   					//실패했을때 알럿
+	   					alert("데이터 가져오기 실패");
+	   				}
+	   			}
+	   		};
+	   		request.send(null);
+		}
    	}
 	
 	$(function(){
