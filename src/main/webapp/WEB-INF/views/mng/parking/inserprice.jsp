@@ -7,7 +7,7 @@
  #content{
  width:800px;
  position: relative;
- left: 470px;
+ left: 550px;
  }
  </style>
  

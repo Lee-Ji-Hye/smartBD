@@ -863,44 +863,92 @@ public class ParkingServiceImpl implements ParkingService{
 
 		
 	@Override
-	   public void inoutCarList(HttpServletRequest req, Model model) {
-	      // TODO 입출차 현황1
-	      String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
-	      String b_code = (req.getParameter("b_code")==null)? "" : req.getParameter("b_code");
-	      String page = (req.getParameter("page")==null)? "" : req.getParameter("page");
-	      String uri = req.getRequestURI();
-	      if(b_code.equals("")) {
-	         b_code = (String) req.getSession().getAttribute("b_code");
-	      }
+	public void inoutCarList(HttpServletRequest req, Model model) {
+		// TODO 입출차 현황1
+		String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
+		String b_code = (req.getParameter("b_code")==null)? "" : req.getParameter("b_code");
+		String page = (req.getParameter("page")==null)? "" : req.getParameter("page");
+		String uri = req.getRequestURI();
+		if(b_code.equals("")) {
+			b_code = (String) req.getSession().getAttribute("b_code");
+		}
+		
+		//http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
+		if(!sertext.equals("")) {
+			uri = uri+"?sertext=" + sertext;
+		}
+		Map<String, Object> map3 = new HashMap<String, Object>(); 
+		map3.put("b_code", b_code);
+		map3.put("sertext",sertext);
+		int cnt = p_dao.getTotalInoutCnt(map3);
+		
+		
+		Paging paging = new Paging(10, 5, cnt, uri);
+		paging.pagelist(page);
+	
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		map.put("b_code", b_code);
+		map.put("start", paging.getStart());
+		map.put("end", paging.getEnd());
+		map.put("sertext",sertext);
+		
+		List<InoutCarVO> list = p_dao.getInoutCarList(map);
+		ParkingBasicPriceVO priceInfo = p_dao.getBasicPrice(b_code);
+		
+		//입출차량 있으면 리스트 뿌림
+		if(list == null) {
+			return;
+		}
+		
+        List<InoutCarVO> dtos = new ArrayList<InoutCarVO>();
+        
+		try {
+
+			//현재시간 Date
+	        Date currtime = new Date();
+			SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+			SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+	        Date intime, outtime;
+	        long diff, totalMin;
+
+// 	   public void inoutCarList(HttpServletRequest req, Model model) {
+// 	      // TODO 입출차 현황1
+// 	      String sertext = (req.getParameter("sertext") == null)? "" : req.getParameter("sertext");
+// 	      String b_code = (req.getParameter("b_code")==null)? "" : req.getParameter("b_code");
+// 	      String page = (req.getParameter("page")==null)? "" : req.getParameter("page");
+// 	      String uri = req.getRequestURI();
+// 	      if(b_code.equals("")) {
+// 	         b_code = (String) req.getSession().getAttribute("b_code");
+// 	      }
 	      
-	      //http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
-	      if(!sertext.equals("")) {
-	         uri = uri+"?sertext=" + sertext;
-	      }
-	      Map<String, Object> map3 = new HashMap<String, Object>(); 
-	      map3.put("b_code", b_code);
-	      map3.put("sertext",sertext);
-	      int cnt = p_dao.getTotalInoutCnt(map3);
+// 	      //http://localhost:8035/smart/bd_park/ticketlist?sertext=김&page=2
+// 	      if(!sertext.equals("")) {
+// 	         uri = uri+"?sertext=" + sertext;
+// 	      }
+// 	      Map<String, Object> map3 = new HashMap<String, Object>(); 
+// 	      map3.put("b_code", b_code);
+// 	      map3.put("sertext",sertext);
+// 	      int cnt = p_dao.getTotalInoutCnt(map3);
 	      
 	      
-	      Paging paging = new Paging(10, 5, cnt, uri);
-	      paging.pagelist(page);
+// 	      Paging paging = new Paging(10, 5, cnt, uri);
+// 	      paging.pagelist(page);
 	   
-	      Map<String, Object> map = new HashMap<String, Object>(); 
-	      map.put("b_code", b_code);
-	      map.put("start", paging.getStart());
-	      map.put("end", paging.getEnd());
-	      map.put("sertext",sertext);
+// 	      Map<String, Object> map = new HashMap<String, Object>(); 
+// 	      map.put("b_code", b_code);
+// 	      map.put("start", paging.getStart());
+// 	      map.put("end", paging.getEnd());
+// 	      map.put("sertext",sertext);
 	      
-	      List<InoutCarVO> list = p_dao.getInoutCarList(map);
-	      ParkingBasicPriceVO priceInfo = p_dao.getBasicPrice(b_code);
+// 	      List<InoutCarVO> list = p_dao.getInoutCarList(map);
+// 	      ParkingBasicPriceVO priceInfo = p_dao.getBasicPrice(b_code);
 	      
-	      //입출차량 있으면 리스트 뿌림
-	      if(list == null) {
-	         return;
-	      }
+// 	      //입출차량 있으면 리스트 뿌림
+// 	      if(list == null) {
+// 	         return;
+// 	      }
 	      
-	        List<InoutCarVO> dtos = new ArrayList<InoutCarVO>();
+// 	        List<InoutCarVO> dtos = new ArrayList<InoutCarVO>();
 	        
 	      try {
 

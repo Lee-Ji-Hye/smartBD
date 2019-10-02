@@ -47,7 +47,7 @@ public class CP_ParkingController {
 			parkingService.paylist(req, model);
 			log.info("url -> uselist1");
 			return mngParking_ + "/uselist";
-		}
+		} 
 		
 		
 		@RequestMapping(value="/inoutcar")
@@ -280,6 +280,7 @@ public class CP_ParkingController {
 		public String insertInOutForm(HttpServletRequest req, Model model) {
 			//int result = parkingService.modiOutStatus(req, model);
 			return mngParking_+"/insertInOut";
+			
 		}
 		
 		//입출차등록

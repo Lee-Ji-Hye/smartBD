@@ -12,23 +12,23 @@
 </style>
 <script type="text/javascript">
 function sample_string_view(ans, typea) { 
-   var obj = document.getElementById(typea); 
-   if (ans) { 
-   obj.style.top = window.event.clientY-310 + document.body.scrollTop + 10; 
-   obj.style.left = window.event.clientX-470 + document.body.scrollLeft + 10; 
-   obj.style.display = "block"; 
-   } 
-   else { 
-   obj.style.display = "none"; 
-   } 
-   } 
-   function sample_string_move(objName) { 
-   var obj = document.getElementById(objName); 
-   if (obj.style.display == "block") { 
-   obj.style.top = window.event.clientY-310 + document.body.scrollTop + 10; 
-   obj.style.left = window.event.clientX-470 + document.body.scrollLeft + 10; 
-   } 
-   } 
+	var obj = document.getElementById(typea); 
+	if (ans) { 
+	obj.style.top = window.event.clientY-310 + document.body.scrollTop + 10; 
+	obj.style.left = window.event.clientX-470 + document.body.scrollLeft + 10; 
+	obj.style.display = "block"; 
+	} 
+	else { 
+	obj.style.display = "none"; 
+	} 
+	} 
+	function sample_string_move(objName) { 
+	var obj = document.getElementById(objName); 
+	if (obj.style.display == "block") { 
+	obj.style.top = window.event.clientY-310 + document.body.scrollTop + 10; 
+	obj.style.left = window.event.clientX-470 + document.body.scrollLeft + 10; 
+	} 
+	} 
 </script>
 <body>
 <!-- ========== MAIN ========== -->
@@ -113,180 +113,181 @@ function sample_string_view(ans, typea) {
          <!-- End Buttons -->
         </div>
       
-      <form method="get" id="form" name="form" >
-           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-         <input class="form-control" id="myInput" name ="sertext"  
-               type="text" placeholder="Search.." value="${sertext}"
-               style="width:300px;position:relative;top: -25px;" >
-          <input type="button" 
-                class="btn btn-sm btn-soft-secondary transition-3d-hover" 
-                id="serBtn" 
-                style="position: relative;left:20px;top:-20px;"
-                value="검색"   />
-          
-          <input type="hidden" name="b_code" value="${sessionScope.b_code}"/>
-          
-           <div class="card-body p-4">
-             <!-- Activity Table -->
-             <div class="table-responsive-md u-datatable">
-               <table class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5" data-dt-info="#datatableInfo" data-dt-search="#datatableSearch" data-dt-entries="#datatableEntries" data-dt-page-length="12" data-dt-is-responsive="false" data-dt-is-show-paging="true" data-dt-details-invoker=".js-datatabale-details" data-dt-select-all-control="#invoiceToggleAllCheckbox" data-dt-pagination="datatablePagination" data-dt-pagination-classes="pagination mb-0" data-dt-pagination-items-classes="page-item" data-dt-pagination-links-classes="page-link" data-dt-pagination-next-classes="page-item" data-dt-pagination-next-link-classes="page-link" data-dt-pagination-next-link-markup="<span aria-hidden=&quot;true&quot;>»</span>" data-dt-pagination-prev-classes="page-item" data-dt-pagination-prev-link-classes="page-link" data-dt-pagination-prev-link-markup="<span aria-hidden=&quot;true&quot;>«</span>" style="text-align:center;">
-                 <thead>
-                    <tr>
-                     <th scope="col">
-                       <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
-                         <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox" >
-                         <label class="custom-control-label" for="invoiceToggleAllCheckbox">
-                           <span class="text-hide">Checkbox</span>
-                         </label>
-                       </div>
-                     </th>
-                     <th scope="col" class="font-weight-medium">
-                       <div class="">
-                            입출차코드
-                         <div class="ml-2">
-                         </div>
-                       </div>
-                     </th>
-                     <th scope="col" class="font-weight-medium">
-                       <div class="">
-                            차번호
-                         <div class="ml-2">
-                         </div>
-                       </div>
-                     </th>
-                     <th scope="col" class="font-weight-medium">
-                       <div class="">
-                            입차시간
-                         <div class="ml-2">
-                         </div>
-                       </div>
-                     </th>
-                     <th scope="col" class="font-weight-medium">
-                       <div class="">
-                            주차시간
-                         <div class="ml-2">
-                         </div>
-                       </div>
-                     </th>
-                     <th scope="col" class="font-weight-medium">
-                       <div class="">
-                            결제시간
-                         <div class="ml-2">
-                         </div>
-                       </div>
-                     </th>
-                     <th scope="col" class="font-weight-medium">
-                       <div class="">
-                            출차시간
-                         <div class="ml-2">
-                         </div>
-                       </div>
-                     </th>
-                     <!-- <th scope="col" class="font-weight-medium">
-                       <div class="d-flex justify-content-between align-items-center">
-                            주차위치
-                       <div class="ml-2">
-                       </div>
-                       </div>
-                     </th> -->
-                     <th scope="col" class="font-weight-medium">
-                       <div class="">
-                            상태
-                         <div class="ml-2">
-                         </div>
-                       </div>
-                     </th>
-                     <th scope="col" class="font-weight-medium">
-                       <div class="d-flex justify-content-between align-items-center">
-                            -
-                         <div class="ml-2">
-                         </div>
-                       </div>
-                     </th>
-                 </tr></thead>
-                 <tbody class="font-size-1" id="myTable">
-                 <c:set var="num" value="0"/>
-                    <c:forEach var="dto" items="${dtos}" varStatus="status" >
-                    <c:set var="num" value="${num+1}" />
-                             <tr class="text-uppercase font-size-1">
-                              <td class="align-middle">
-                                <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
-                                  <input type="checkbox" class="custom-control-input chkBtn" inoutcode="${dto.inoutcode}" id="invoiceCheckbox0${status.count}" name="p_code" value="${dto.inoutcode}" >
-                                  <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
-                                   <span class="text-hide">Checkbox</span>
-                                  </label>
-                                </div>
-                              </td>
-                              <td class="align-middle text-secondary font-weight-normal ">${dto.inoutcode}</td>
-                              <td class="align-middle text-secondary font-weight-normal ">
-                              
-                               <div id="Text${num}" class="im1" style="display: none; left: 48px; position: absolute; top: 84px;"> 
-                           <img alt="등록된 이미지가 없습니다." src="${resourceImg}/parking/${dto.car_number_img}" width="150px;"height="100px;" onerror='this.src="${resourceImg}/common/noimage_1.jpg"'>
-                           </div>
-                              <a href="#" onmouseover="sample_string_view(true, 'Text${num}');" onmousemove="sample_string_move('Text${num}');" onmouseout="sample_string_view(false,'Text${num}');">${dto.car_number}</a>
-                        </td>
-                              <td class="align-middle text-secondary font-weight-normal ">${dto.in_time}</td>
-                              <td class="align-middle text-secondary font-weight-normal ">
-                                 <c:if test="${dto.out_time == null}">
-                                    <c:if test="${dto.stayHours!=''}">
-                                       ${dto.stayHours}시간
-                                    </c:if>
-                                    <c:if test="${dto.stayMin!=''}">
-                                       ${(dto.stayMin == '')? 0 : dto.stayMin}분
-                                    </c:if>
-                                 </c:if>
-                                 <c:if test="${dto.out_time != null}">
-                                    <c:if test="${dto.stayHours!=''}">
-                                       ${dto.payHours}시간
-                                    </c:if>
-                                    <c:if test="${dto.stayMin!=''}">
-                                       ${(dto.payMin == '')? 0 : dto.payMin}분
-                                    </c:if>
-                                 </c:if>
-                              </td>
-                              <td class="align-middle text-secondary font-weight-normal ">
-                                 <c:if test="${dto.payHours!=''}">
-                                    ${dto.payHours}시간
-                                 </c:if>
-                                 ${(dto.payMin == '')? 0 : dto.payMin}분
-                          </td>
-                          <td class="align-middle text-secondary font-weight-normal ">
-                                 <c:if test="${dto.out_time==null}">
-                                    --:--:--
-                                 </c:if>
-                                 <c:if test="${dto.out_time!=null}">
-                                    ${dto.out_time}
-                                 </c:if>
-                          </td>
-                              <%-- <td class="align-middle text-secondary font-weight-normal ">${dto.parking_location}</td> --%>
-                             <td class="align-middle text-secondary font-weight-normal ">
-                                 <c:if test="${dto.out_time != null}">
-                                    출차 완료
-                                 </c:if>
-                                <c:if test="${dto.out_time == null && dto.is_out == 'Y'}">
-                                   출차가능
-                                </c:if>
-                                <c:if test="${dto.out_time == null && dto.is_out == 'N'}">
-                                   출차불가
-                                </c:if>
-                             </td>
-                             <td class="align-middle text-secondary font-weight-normal ">
-                                <c:if test="${dto.is_out == 'Y' && dto.out_time == null}">
-                                   <button type="button" class="outBtn" class="btn btn-sm btn-primary transition-3d-hover mr-1" inoutcode="${dto.inoutcode}">출차</button>      
-                                </c:if>
-                             </td>
-                          </tr>
-                          </c:forEach>
-                    
-                 
-                      </tbody>
-                 </table>
-               </div>
-               <!-- End Activity Table -->
-                 ${paging.html_mk_page()}
-               <!-- Pagination -->
-               <!-- End Pagination -->
-             </div>
+		<form method="get" id="form" name="form" >
+		  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<input class="form-control" id="myInput" name ="sertext"  
+				   type="text" placeholder="Search.." value="${sertext}"
+				   style="width:300px;position:relative;top: -25px;" >
+		    <input type="button" 
+		    	   class="btn btn-sm btn-soft-secondary transition-3d-hover" 
+		    	   id="serBtn" 
+		    	   style="position: relative;left:20px;top:-20px;"
+		    	   value="검색"   />
+		    
+		    <input type="hidden" name="b_code" value="${sessionScope.b_code}"/>
+		    
+	        <div class="card-body p-4">
+	          <!-- Activity Table -->
+	          <div class="table-responsive-md u-datatable">
+	            <table class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5" data-dt-info="#datatableInfo" data-dt-search="#datatableSearch" data-dt-entries="#datatableEntries" data-dt-page-length="12" data-dt-is-responsive="false" data-dt-is-show-paging="true" data-dt-details-invoker=".js-datatabale-details" data-dt-select-all-control="#invoiceToggleAllCheckbox" data-dt-pagination="datatablePagination" data-dt-pagination-classes="pagination mb-0" data-dt-pagination-items-classes="page-item" data-dt-pagination-links-classes="page-link" data-dt-pagination-next-classes="page-item" data-dt-pagination-next-link-classes="page-link" data-dt-pagination-next-link-markup="<span aria-hidden=&quot;true&quot;>»</span>" data-dt-pagination-prev-classes="page-item" data-dt-pagination-prev-link-classes="page-link" data-dt-pagination-prev-link-markup="<span aria-hidden=&quot;true&quot;>«</span>" style="text-align:center;">
+	              <thead>
+	              	<tr>
+	                  <th scope="col">
+	                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
+	                      <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox" >
+	                      <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+	                        <span class="text-hide">Checkbox</span>
+	                      </label>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="">
+	                      	입출차코드
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="">
+	                      	차번호
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="">
+	                      	입차시간
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="">
+	                      	주차시간
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="">
+	                      	결제시간
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="">
+	                      	출차시간
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <!-- <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
+	                      	주차위치
+	                    <div class="ml-2">
+	                    </div>
+	                    </div>
+	                  </th> -->
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="">
+	                      	상태
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	                  <th scope="col" class="font-weight-medium">
+	                    <div class="d-flex justify-content-between align-items-center">
+	                      	-
+	                      <div class="ml-2">
+	                      </div>
+	                    </div>
+	                  </th>
+	              </tr></thead>
+	              <tbody class="font-size-1" id="myTable">
+	              <c:set var="num" value="0"/>
+	              	<c:forEach var="dto" items="${dtos}" varStatus="status" >
+	              	<c:set var="num" value="${num+1}" />
+				              	<tr class="text-uppercase font-size-1">
+				                  <td class="align-middle">
+				                    <div class="custom-control custom-checkbox d-flex align-items-center" style="position:relative;top:-12px;">
+				                      <input type="checkbox" class="custom-control-input chkBtn" inoutcode="${dto.inoutcode}" id="invoiceCheckbox0${status.count}" name="p_code" value="${dto.inoutcode}" >
+				                      <label class="custom-control-label" for="invoiceCheckbox0${status.count}" >
+				                       <span class="text-hide">Checkbox</span>
+				                      </label>
+				                    </div>
+				                  </td>
+				                  <td class="align-middle text-secondary font-weight-normal ">${dto.inoutcode}</td>
+				                  <td class="align-middle text-secondary font-weight-normal ">
+				                  
+				                   <div id="Text${num}" class="im1" style="display: none; left: 48px; position: absolute; top: 84px;"> 
+									<img alt="등록된 이미지가 없습니다." src="${resourceImg}/parking/${dto.car_number_img}" width="150px;"height="100px;" onerror='this.src="${resourceImg}/common/noimage_1.jpg"'>
+									</div>
+										<a href="#" onmouseover="sample_string_view(true, 'Text${num}');" onmousemove="sample_string_move('Text${num}');" onmouseout="sample_string_view(false,'Text${num}');">${dto.car_number}</a>
+								</td>
+				                  <td class="align-middle text-secondary font-weight-normal ">${dto.in_time}</td>
+				                  <td class="align-middle text-secondary font-weight-normal ">
+				                  	<c:if test="${dto.out_time == null}">
+					                  	<c:if test="${dto.stayHours!=''}">
+					                  		${dto.stayHours}시간
+					                  	</c:if>
+					                  	<c:if test="${dto.stayMin!=''}">
+					                  		${(dto.stayMin == '')? 0 : dto.stayMin}분
+					                  	</c:if>
+				                  	</c:if>
+				                  	<c:if test="${dto.out_time != null}">
+				                  		<c:if test="${dto.stayHours!=''}">
+					                  		${dto.payHours}시간
+					                  	</c:if>
+					                  	<c:if test="${dto.stayMin!=''}">
+					                  		${(dto.payMin == '')? 0 : dto.payMin}분
+					                  	</c:if>
+				                  	</c:if>
+				                  </td>
+				                  <td class="align-middle text-secondary font-weight-normal ">
+				                  	<c:if test="${dto.payHours!=''}">
+				                  		${dto.payHours}시간
+				                  	</c:if>
+				                  	${(dto.payMin == '')? 0 : dto.payMin}분
+								  </td>
+								  <td class="align-middle text-secondary font-weight-normal ">
+				                  	<c:if test="${dto.out_time==null}">
+				                  		--:--:--
+				                  	</c:if>
+				                  	<c:if test="${dto.out_time!=null}">
+				                  		${dto.out_time}
+				                  	</c:if>
+								  </td>
+				                  <%-- <td class="align-middle text-secondary font-weight-normal ">${dto.parking_location}</td> --%>
+				                 <td class="align-middle text-secondary font-weight-normal ">
+				                  	<c:if test="${dto.out_time != null}">
+				                  		출차 완료
+				                  	</c:if>
+				                 	<c:if test="${dto.out_time == null && dto.is_out == 'Y'}">
+				                 		출차가능
+				                 	</c:if>
+				                 	<c:if test="${dto.out_time == null && dto.is_out == 'N'}">
+				                 		출차불가
+				                 	</c:if>
+				                 </td>
+				                 <td class="align-middle text-secondary font-weight-normal ">
+				                 	<c:if test="${dto.is_out == 'Y' && dto.out_time == null}">
+				                 		<button type="button" class="outBtn" class="btn btn-sm btn-primary transition-3d-hover mr-1" inoutcode="${dto.inoutcode}">출차</button>		
+				                 	</c:if>
+				                 </td>
+		              		</tr>
+		              		</c:forEach>
+	              	
+	              
+	                   </tbody>
+	              </table>
+	            </div>
+	            <!-- End Activity Table -->
+	              ${paging.html_mk_page()}
+	            <!-- Pagination -->
+	            <!-- End Pagination -->
+	          </div>
+         
           </form>
         </div>
       </div>
