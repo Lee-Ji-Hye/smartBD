@@ -446,12 +446,12 @@ function orderPro2(event) {
 				//document.getElementById('foodOrderApp').innerText = '주문거절';
 				//document.getElementById('foodOrderApp2').innerText = '주문거절';
 				alert("승인되었습니다.");
-				window.location = request.responseURL;
+				location.reload();
 			} else if(request.status == 448){
 				//document.getElementById('foodOrderApp').innerText = '승인거절';
 				//document.getElementById('foodOrderApp2').innerText = '승인거절';
 				alert("거절되었습니다.");
-				window.location = request.responseURL;
+				location.reload();
 			} else {
 				alert("데이터 가져오기 실패");
 			}

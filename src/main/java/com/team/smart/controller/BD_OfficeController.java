@@ -138,7 +138,7 @@ public class BD_OfficeController {
 
            //해당 저장경로는 컴퓨터마다 다르기때문에 pull받은 컴퓨터에 알맞는 경로로 지정해줘야 저장이 됨
            //git파일 위치가 동일하다면C:\\Users\\kosmo27\\ 부분만 수정해주면 된다
-           String path = "C:\\Users\\kosmo27\\git\\smartBD\\src\\main\\webapp\\resources\\images\\room\\";
+           String path = "C:\\Users\\Kosmo00\\javachip\\projectsource\\smartBD\\src\\main\\webapp\\resources\\images\\room\\";
            
            //int i = 1;           
            int i  = r_service.getImgmaxSort(r_code);
