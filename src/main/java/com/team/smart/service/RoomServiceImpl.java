@@ -338,6 +338,7 @@ public class RoomServiceImpl implements RoomService{
 		String rt_address = null;
 		String rt_name = null;
 		String rt_businessNum = null;
+		String result = "";
 		
 		List<Object> details = Web3jAPI.getInstance().getBuyerInfo(BigInteger.valueOf(r_blockcode));
 		if (details.get(0).toString() != null) {
@@ -345,7 +346,7 @@ public class RoomServiceImpl implements RoomService{
 	        System.out.println(details.get(1).toString());
 	        System.out.println(details.get(2).toString());
 	        rt_address = details.get(0).toString();
-	        rt_name = hexToASCII(details.get(1).toString());
+	        rt_name = URLDecoder.decode(hexToASCII(details.get(1).toString()));
 	        rt_businessNum = hexToASCII(details.get(2).toString());
 		}
 		roomVO.setRt_address(rt_address);

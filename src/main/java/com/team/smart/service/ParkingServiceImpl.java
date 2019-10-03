@@ -902,14 +902,14 @@ public class ParkingServiceImpl implements ParkingService{
 		
         List<InoutCarVO> dtos = new ArrayList<InoutCarVO>();
         
-		try {
-
-			//현재시간 Date
-	        Date currtime = new Date();
-			SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-			SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-	        Date intime, outtime;
-	        long diff, totalMin;
+//		try {
+//
+//			//현재시간 Date
+//	        Date currtime = new Date();
+//			SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+//			SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+//	        Date intime, outtime;
+//	        long diff, totalMin;
 
 // 	   public void inoutCarList(HttpServletRequest req, Model model) {
 // 	      // TODO 입출차 현황1
