@@ -34,7 +34,7 @@
 
               <div class="form-group">
                 <input type="file" class="form-control" name="p_img" >
-                http://192.168.219.103:8090/?action=snapshot
+                http://192.168.219.137:8090/?action=snapshot
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@
 
             <!-- 라즈베리 IP : 192.168.219.103:8090 -->
             <div>
-            	<iframe width="550" height="370" scrolling="no" src="http://192.168.219.103:8090/?action=stream"></iframe>
+            	<iframe width="550" height="370" scrolling="no" src="http://192.168.219.137:8090/?action=stream"></iframe>
             </div>
          	<br><br>
           <div class="w-lg-100">
@@ -85,7 +85,6 @@
                <button type="submit" class="btn btn-sm btn-soft-secondary transition-3d-hover">수정</button>
             </div>
             <!-- End Buttons -->
-            <iframe width="650" height="470" src="http://192.168.219.103:8090/?action=stream"></iframe>
             
             
           </div>
