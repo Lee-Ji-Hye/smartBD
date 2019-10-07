@@ -248,7 +248,7 @@ public class ParkingServiceImpl implements ParkingService{
 	        
 	        String saveDir = req.getRealPath("/resources/images/parking/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
 	        
-	        String realDir="C:\\Users\\ksm05\\git\\smartBD\\src\\main\\webapp\\resources\\images\\parking\\"; // 저장 경로
+	        String realDir="C:\\Users\\ksm10\\git\\smartBD\\src\\main\\webapp\\resources\\images\\parking\\"; // 저장 경로
 	        
 	        try {
 	            file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -1069,7 +1069,7 @@ public class ParkingServiceImpl implements ParkingService{
 
 		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/parking/"); 
 		System.out.println(uploadPath);
-		String realDir = "C:\\Users\\ksm05\\git\\smartBD\\src\\main\\webapp\\resources\\images\\parking\\";  
+		String realDir = "C:\\Users\\ksm10\\git\\smartBD\\src\\main\\webapp\\resources\\images\\parking\\"; // 저장 경로
 		
 		try {
 			

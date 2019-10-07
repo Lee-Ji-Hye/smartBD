@@ -73,7 +73,7 @@ public class FoodServiceImpl implements FoodService {
 
 		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); 
 		System.out.println(uploadPath);
-		String realDir = "C:\\Users\\Kosmo00\\javachip\\projectsource\\smartBD\\src\\main\\webapp\\resources\\images\\food\\";  
+		String realDir = "C:\\Users\\ksm10\\git\\smartBD\\src\\main\\webapp\\resources\\images\\food\\";    
 		
 		try {
 			
@@ -328,7 +328,7 @@ public class FoodServiceImpl implements FoodService {
 
 		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); 
 		System.out.println(uploadPath);
-		String realDir = "C:\\Users\\Kosmo00\\javachip\\projectsource\\smartBD\\src\\main\\webapp\\resources\\images\\food\\";  
+		String realDir = "C:\\Users\\ksm10\\git\\smartBD\\src\\main\\webapp\\resources\\images\\food\\";
 		
 		try {
 			
@@ -460,7 +460,7 @@ public class FoodServiceImpl implements FoodService {
 
 		String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/food/"); 
 		System.out.println(uploadPath);
-		String realDir = "C:\\Users\\Kosmo00\\javachip\\projectsource\\smartBD\\src\\main\\webapp\\resources\\images\\food\\";  
+		String realDir = "C:\\Users\\ksm10\\git\\smartBD\\src\\main\\webapp\\resources\\images\\food\\";
 		
 		try {
 			
