@@ -144,7 +144,7 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.8</version>
+			<version>2.9.10.4</version>
 		</dependency>
 		<!-- json converter 종료-->
 		
@@ -165,7 +165,7 @@
          <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.8</version>
+            <version>2.9.10.4</version>
          </dependency>
 		<!-- JSONArray JSONObject -->
 		
@@ -217,7 +217,7 @@
 	    <dependency>
 	        <groupId>com.fasterxml.jackson.core</groupId>
 	        <artifactId>jackson-databind</artifactId>
-	        <version>2.9.9</version>
+	        <version>2.9.10.4</version>
 	    </dependency>
 	    <dependency>
 	        <groupId>com.squareup.okio</groupId>
